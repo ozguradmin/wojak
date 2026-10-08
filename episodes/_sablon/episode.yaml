@@ -1,0 +1,76 @@
+# BÖLÜM ŞABLONU — kopyala: python -m wojak new <bolum-id>
+# Tüm yollar bu klasöre göredir. Karakterler: assets/characters/<isim>.png -> img: <isim>
+# Ses efektleri: assets/sfx/<isim>.wav -> file: <isim>   (boom, hit, whoosh, riser, heartbeat, static, shutter, drone)
+#
+# HEDEF: 11-15 sn, 4-6 sahne, her replik 3-9 kelime. Olayı ANLATMA, SEZDİR.
+# Hikayenin tamamı pinned_comment'e gider. Bkz. docs/KONSEPT.md
+
+id: sablon
+title: "<Olay adı> (Olayı yorumlara yazdım)"
+
+# İsteğe bağlı: üst siyah bantta kanca yazısı (altın dönemde yoktu; test için)
+# top_text: "1996, Manisa"
+
+# İsteğe bağlı müzik (assets/music/ içine koy). Yoksa sadece efektler çalar.
+# music: {file: gerilim_01.mp3, start: 0, volume: 0.85, fade_out: 0.3}
+
+scenes:
+  - type: dialog            # dialog | card | evidence
+    duration: 2.6           # saniye
+    bg: img/mekan_1.jpg     # olayın geçtiği yerin (mümkünse gerçek) fotoğrafı
+    # focus: [0.5, 0.5]     # kare kırpma odağı (x, y) 0..1
+    # darken: 0.2           # 0..1 karartma
+    # grayscale: true       # siyah-beyaz
+    # zoom: 1.05            # yavaş yakınlaşma (1.0 = sabit)
+    chars:
+      - {img: karakter_adi, side: left, height: 0.62}   # side: left|right|center, flip: true
+    text: "Masum ama ironik ilk replik"
+    # text_style: outline   # outline (varsayılan) | bubble | bubble_dark | none
+    # text_y: 0.30          # yazının dikey konumu (kare yüksekliği oranı)
+    # shake: 8              # sarsıntı (px)
+    # flash: true           # beyaz flaş
+    sfx: [{file: drone, volume: 0.8}]
+
+  - type: dialog
+    duration: 2.6
+    bg: img/mekan_2.jpg
+    chars:
+      - {img: kotu_karakter, side: right, height: 0.6}
+    text: "Gerilimi yükselten ikinci replik"
+    sfx: [{file: hit, volume: 0.7}]
+
+  - type: card
+    duration: 1.1
+    text: "Bir süre sonra"
+    sfx: [{file: boom, volume: 0.8}]
+
+  - type: dialog
+    duration: 2.8
+    bg: img/mekan_3.jpg
+    chars:
+      - {img: polis, side: right, height: 0.58}
+    text: "Doruk replik: izleyicinin 'ne?!' dediği an"
+
+  - type: evidence           # gerçek fotoğraflar (1 = ortalı, 2 = yan yana, 3-4 = ızgara)
+    duration: 1.6
+    images: [img/gercek_1.jpg]
+    # banner: "Haber bandı metni"
+    # label: "Gerçek fotoğraf"
+    sfx: [{file: shutter, volume: 0.6}]
+
+  - type: evidence
+    duration: 1.6
+    images: [img/gercek_2.jpg, img/gercek_3.jpg]
+
+caption: |
+  <Olay adı> (<yıl>)
+  Olayın tamamı sabit yorumda 👇
+hashtags: [olay, gizem]
+
+pinned_comment: |
+  <Olay adı>, <yıl>'da <yer>'de yaşanan ... (150-300 kelime, kronolojik, isim/tarih/yer net,
+  hassas kelimeler otomatik sansürlenir, son satır izleyiciye soru)
+
+sources:
+  - <kaynak linki 1>
+  - <kaynak linki 2>

@@ -1,0 +1,91 @@
+# Örnek bölüm — "olay" formatı (2023-12 / 2024-03 altın dönem şablonu)
+# Render: python -m wojak render episodes/dyatlov-gecidi
+id: dyatlov-gecidi
+title: "Dyatlov Geçidi olayı (Olayı yorumlara yazdım) ⛔️"
+
+scenes:
+  # 1) KANCA: sıradan, masum bir an. İzleyici "bir şey olacak" hissini alır.
+  - type: dialog
+    duration: 2.6
+    bg: img/orman_gece.jpg
+    darken: 0.15
+    chars:
+      - {img: sovyet_yuruyuscu_erkek, side: right, height: 0.60}
+    text: "Bu gece dağın yamacında kamp kuralım, sabah devam ederiz"
+    sfx: [{file: drone, volume: 0.9}]
+
+  # 2) GERİLİM: gece, belirsiz tehdit. Kısa replik + sarsıntı.
+  - type: dialog
+    duration: 2.5
+    bg: img/cadir_gece.jpg
+    focus: [0.85, 0.6]
+    darken: 0.35
+    grayscale: true
+    chars:
+      - {img: sovyet_kiz_gozluklu, side: left, height: 0.62}
+    text: "Dışarıdaki o ses de neydi?!"
+    shake: 8
+    sfx: [{file: hit, volume: 0.8}]
+
+  # 3) ZAMAN ATLAMASI kartı (orijinallerdeki "Bir süre sonra")
+  - type: card
+    duration: 1.1
+    text: "26 gün sonra"
+    sfx: [{file: boom, volume: 0.9}]
+
+  # 4) KEŞİF: arama ekibi gerçek fotoğrafın içinde.
+  - type: dialog
+    duration: 3.0
+    bg: img/gercek_cadir_1959.jpg
+    focus: [0.6, 0.5]
+    chars:
+      - {img: sovyet_asker_kis, side: right, height: 0.58}
+    text: "Çadırı içeriden kesmişler... Bu soğukta çıplak ayakla nereye kaçtılar?"
+    sfx: [{file: heartbeat, volume: 0.9, at: 0.4}]
+
+  # 5) KANIT: gerçek fotoğraf, karakter yok. "Bu gerçekten yaşandı" vuruşu.
+  - type: evidence
+    duration: 1.8
+    images: [img/gercek_cadir_1959.jpg]
+    label: "Gerçek fotoğraf · 26 Şubat 1959"
+    zoom: 1.08
+    sfx: [{file: shutter, volume: 0.7}]
+
+  # 6) KAPANIŞ: cevapsız soru, döngüye sokar (video aniden biter).
+  - type: dialog
+    duration: 1.9
+    bg: img/orman_gece.jpg
+    focus: [0.3, 0.5]
+    darken: 0.55
+    grayscale: true
+    chars:
+      - {img: sovyet_asker_kis, side: left, height: 0.58, flip: true}
+    text: "Dokuz kişi. Hiçbiri geri dönmedi."
+    sfx: [{file: boom, volume: 0.6}]
+
+caption: |
+  Dyatlov Geçidi olayı (1959)
+  Olayın tamamı sabit yorumda 👇
+hashtags: [dyatlov, gizem, çözülemeyengizemler, olay, tarih]
+
+pinned_comment: |
+  Dyatlov Geçidi olayı, Şubat 1959'da Sovyetler Birliği'nin Ural Dağları'nda yaşanan ve hâlâ tartışılan bir olaydır.
+
+  Ural Politeknik Enstitüsü'nden 10 kişilik bir kayak-yürüyüş grubu, Igor Dyatlov liderliğinde yola çıktı. Grubun üyelerinden Yuri Yudin hastalandığı için ilk günlerde geri döndü; bu kararı hayatını kurtardı.
+
+  1-2 Şubat gecesi kalan 9 kişi, Mansi dilinde "Ölü Dağ" anlamına gelen Kholat Syakhl'ın yamacında kamp kurdu. 26 Şubat'ta arama ekibi çadırı buldu: çadır İÇERİDEN kesilmişti. Karda; çorapla, tek ayakkabıyla ya da çıplak ayakla yürünmüş 9 kişilik ayak izleri vardı. Hava -25/-30 dereceydi.
+
+  İlk cesetler ormanın kenarında, yarım yanmış bir ateşin yanında iç çamaşırlarıyla bulundu. Son 4 kişi ancak Mayıs'ta, karın altındaki bir derede bulunabildi. 6 kişi donarak öldü; 3 kişide ise kafatası ve göğüs kafesi kırıkları vardı ama dışarıda neredeyse hiç yara yoktu. Bazı kıyafetlerde radyasyon izine rastlandı.
+
+  Sovyet soruşturması ölüm nedenini "karşı konulamaz bir doğa gücü" diyerek kapattı. Yıllarca askeri test, UFO, kar adamı ve Mansi saldırısı teorileri konuşuldu. 2020'de Rusya Başsavcılığı olayın çığ sonucu yaşandığını açıkladı; 2021'de İsviçreli bilim insanları "levha çığı" ihtimalini destekleyen bir çalışma yayımladı. Ancak ailelerin ve araştırmacıların çoğu bu açıklamaya hâlâ ikna olmadı.
+
+  Sizce o gece çadırda ne oldu?
+
+sources:
+  - https://en.wikipedia.org/wiki/Dyatlov_Pass_incident
+  - "Gaume & Puzrin (2021), Communications Earth & Environment — slab avalanche"
+  - "Görseller: orman_gece.jpg ve cadir_gece.jpg rawpixel CC0; gercek_cadir_1959.jpg Wikimedia Commons (Dyatlov_Pass_incident_02.jpg)"
+
+notes: |
+  Müzik eklenmedi (drone efekti altlık). Paylaşırken Instagram'da trend bir
+  gerilim/korku sesi eklenmeli; bkz. docs/URETIM_REHBERI.md > Ses.
