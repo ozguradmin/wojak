@@ -35,8 +35,14 @@ python -m wojak frames episodes/yeni-olay      # her sahneden 1 kare (hızlı ko
 python -m wojak render episodes/yeni-olay      # out/yeni-olay/: mp4 + kapak.jpg + paylasim.md
 ```
 
-Örnek: [`episodes/dyatlov-gecidi`](episodes/dyatlov-gecidi/episode.yaml) →
-[`ornekler/dyatlov-gecidi.mp4`](ornekler/dyatlov-gecidi.mp4)
+Örnek bölümler (render'ları `ornekler/` içinde, paylaşım paketleriyle birlikte):
+
+| Bölüm | Tür | Video |
+|---|---|---|
+| [`episodes/derinkuyu`](episodes/derinkuyu/episode.yaml) | Türkiye gizemi | [`ornekler/derinkuyu.mp4`](ornekler/derinkuyu.mp4) |
+| [`episodes/dyatlov-gecidi`](episodes/dyatlov-gecidi/episode.yaml) | Dünya gizemi | [`ornekler/dyatlov-gecidi.mp4`](ornekler/dyatlov-gecidi.mp4) |
+
+Not: örnekler müziksiz (yalnızca sentezlenmiş efektler). Paylaşırken trend ses eklenmeli.
 
 ## Ne yapar?
 

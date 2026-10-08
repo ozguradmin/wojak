@@ -10,7 +10,7 @@ Her konuda üretimden önce **en az 2 kaynakla doğrula** (`docs/URETIM_REHBERI.
 
 | | Konu | Kanca (başlık fikri) | Kanıt görseli |
 |---|---|---|---|
-| ⭐ | Derinkuyu yeraltı şehri (1963'te bulundu) | Evini tamir ederken duvarın arkasında bir şehir buldu | Tünel/şehir fotoğrafları |
+| ✅ | Derinkuyu yeraltı şehri (1963'te bulundu) | Evini tamir ederken duvarın arkasında bir şehir buldu | **Örnek bölüm hazır:** `episodes/derinkuyu` |
 | ⭐ | Çanakkale'de "bulutun içinde kaybolan" İngiliz taburu (1/5 Norfolk, 1915) | Çanakkale'de bir bulutun içine girip kaybolan tabur | Dönem fotoğrafı, harita |
 | ⭐ | Kayaköy (Fethiye) — boşaltılan hayalet köy | Bir gecede terk edilen 500 evlik köy | Köy fotoğrafları |
 | ⭐ | Divriği Ulu Camii'nde güneşin oluşturduğu "namaz kılan adam" gölgesi | Her öğleden sonra cami kapısında beliren gölge | Gölge fotoğrafı |
@@ -45,7 +45,7 @@ Mizah yok. Hassas kelimeler sansürlü. Yeni/yargısı süren davalarda sadece k
 
 | | Konu | Kanca |
 |---|---|---|
-| ⭐ | Dyatlov Geçidi (1959) | Çadırı içeriden kesip çıplak ayakla kaçtılar — **örnek bölüm hazır** |
+| ✅ | Dyatlov Geçidi (1959) | Çadırı içeriden kesip çıplak ayakla kaçtılar — **örnek bölüm hazır:** `episodes/dyatlov-gecidi` |
 | ⭐ | Elisa Lam / Cecil Oteli (2013) | Asansördeki son görüntü |
 | ⭐ | Hinterkaifeck çiftliği (1922) | Çatıdan ayak sesleri geliyordu |
 | | Somerton Adamı — "Tamam Shud" (1948) | Cebinden çıkan kâğıtta tek kelime vardı |

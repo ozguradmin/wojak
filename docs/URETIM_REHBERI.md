@@ -74,6 +74,10 @@ Kırpma kare (1:1) olduğu için yatay fotoğraflarda `focus: [x, y]` ile odağ�
    Faydalı kategoriler: `Doomer`, `Doomer_Girl`, `Trad_Wife` (masum kadın), `Crying_Wojak`,
    `Bloomer` (iyi kalpli), `Boomer` (yaşlı adam), `Tired_Wojak`, `Withered_Wojak` (ürkütücü),
    `NPC`, `Soyjak` (şaşkın/bağıran), `Yes_Chad` (kahraman), `Rage`.
+   **Dikkat:** kütüphane internet meme arşivi; "Turkey" gibi etiketlerin çoğu **siyasi/etnik
+   karikatür** (darbeci general, parti, milliyetçi/İslamcı meme'ler, ten rengi karikatürleri).
+   Bunları asla kullanma. Rol + kıyafetle ara (`worker`, `farmer`, `police`, `nurse`, `soldier`,
+   `doctor`, `1950-1960`, `Civilian (Adult)`) ve önizleme sayfasında gözle seç.
 2. **JPG/beyaz zeminli wojak bulduysan:** `python tools/cutout.py dosya.jpg -o assets/characters/isim.png`
 3. **Kütüphanede yoksa yapay zekâ ile üret** (stil tutarlılığı için `--ref` ile mevcut bir wojak ver):
    ```bash
@@ -123,7 +127,7 @@ Kontrol listesi:
 
 `out/<id>/paylasim.md` içinde hazır: başlık, açıklama, sabit yorum, hashtag, kontrol listesi.
 
-- **Saat:** 17:00-21:00 TR (altın dönemde 17-21 arası paylaşımlar medyan 729-838K, 21-24 arası 519K; izleyici videoyu gece "gece shorts" olarak tüketiyor ama dağıtım akşamdan başlamalı).
+- **Saat:** 17:00-21:00 TR (altın dönemde 17-21 arası paylaşımlar medyan 729-812K, 21-24 arası 519K; izleyici videoyu gece "gece shorts" olarak tüketiyor ama dağıtım akşamdan başlamalı).
 - **Sıklık:** altın dönemde ~2-3 günde bir video vardı. En az haftada 3, ideali günde 1.
 - **İlk 1 dakika:** sabit yorumu yaz ve sabitle. Videonun bütün mekanizması buna dayanıyor
   ("Olayı yorumlara yazdım").

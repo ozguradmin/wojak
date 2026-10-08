@@ -15,11 +15,11 @@ yorumlarından çıkarıldı. Rakamlar: [`ANALIZ.md`](ANALIZ.md).
 
 | Dönem | Tarih | Ne yapıldı | Medyan izlenme |
 |---|---|---|---:|
-| 1. Tarihsel | Eki 2023 | 2. Dünya Savaşı / Çanakkale wojak'ları | — (6 video; 72K-2.3M) |
-| 2. Viral repost | Eki-Ara 2023 | "Low Budget Stories" çevirileri, split-screen, meme | yüksek ama **ödünç içerik** |
-| **3. OLAY (altın dönem)** | **10 Ara 2023 – 6 Mar 2024** | **Bu belgenin anlattığı format** | **727K** (%63'ü ≥500K) |
+| 1. Tarihsel | Eki 2023 | 2. Dünya Savaşı / Çanakkale wojak'ları | 508K (6 video; 72K-2.3M) |
+| 2. Viral repost | Eki-Ara 2023 | "Low Budget Stories" çevirileri, split-screen, meme | 331K (en büyük 4 hit 3.5-6.5M ama **ödünç içerik**) |
+| **3. OLAY (altın dönem)** | **10 Ara 2023 – 6 Mar 2024** | **Bu belgenin anlattığı format** | **705K** (%62'si ≥500K) |
 | 4. Dağılma | Mar-Ara 2024 | Gerçek video kesitleri, yabancı yayıncı reaction'ı, "vs" meme'leri, reklam | 54K |
-| 5. Olay'a dönüş | 2025-2026 | Format geri geldi ama uzun yazılar, AI sahneler, ayda ~1 video | 99K, son videolar 12-14K |
+| 5. Olay'a dönüş | 2025-2026 | Format geri geldi ama uzun yazılar, AI sahneler, ayda ~1 video | 96K, son videolar 12-14K |
 
 **Ders:** Kanalı büyüten şey wojak değil, **"olay" formatı**. Format bırakılınca izlenme 13 kat düştü.
 Geri dönüldüğünde iki şey eksikti: **kısa/ima eden replik** ve **sıklık**.
@@ -32,7 +32,7 @@ Geri dönüldüğünde iki şey eksikti: **kısa/ima eden replik** ve **sıklık
 Video olayı **anlatmaz**, olaydan **bir an** gösterir. İzleyici "ne oldu?" diye yorumlara iner, hesabın
 sabit yorumunda 150-300 kelimelik hikâyeyi okur. Yorum bölümünde geçen süre + yorum yazma =
 algoritmaya en güçlü sinyaller. (Not: başlığa "Olayı yorumlara yazdım" yazmak tek başına fark
-yaratmıyor — ibareli videolar medyan 538K, ibaresiz aynı dönem 705K. Önemli olan **sabit yorumun
+yaratmıyor — ibareli videolar medyan 538K, ibaresiz aynı dönem 658K. Önemli olan **sabit yorumun
 kendisi**.)
 
 ### 2.2 Çok kısa → tamamlanma + tekrar izleme
@@ -88,7 +88,7 @@ istikrarlı hem en çok paylaşılan grup. Yorumlar: *"Kırkağaç'ın dibinde o
 ya da **çok şok edici** (Hello Kitty) ise tutuyor; az bilinen yabancı gizemler 110-260K'da kaldı
 (Bélmez yüzleri, Taured adamı, Challenger).
 
-Altın dönem konu türüne göre medyan izlenme (46 video, elle etiketlendi):
+Altın dönem konu türüne göre medyan izlenme (47 video, elle etiketlendi):
 
 | Tür | Örnek | Medyan |
 |---|---|---:|
@@ -168,8 +168,8 @@ Başlık ve sabit yorum `wojak.censor.metin()` ile otomatik sansürlenir.
 - Instagram'da uygulama içi trend ses tercih edilir (bkz. `URETIM_REHBERI.md` > 5).
 
 ## 7. Yayın ritmi
-- Altın dönem: **haftada ~3.7 video**. Hedef: haftada en az 3, ideal günde 1.
-- Saat: **17:00-21:00** (altın dönemde 17-21 arası medyan 729-838K, 21-24 arası 519K).
+- Altın dönem: **haftada ~3.8 video**. Hedef: haftada en az 3, ideal günde 1.
+- Saat: **17:00-21:00** (altın dönemde 17-21 arası medyan 729-812K, 21-24 arası 519K).
 - Instagram + YouTube Shorts + TikTok aynı gün.
 
 ## 8. Etik çizgi
