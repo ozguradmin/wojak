@@ -3,6 +3,7 @@
     python -m wojak render episodes/<bolum>            # video + kapak + paylaşım paketi
     python -m wojak render episodes/<bolum> --preview  # hızlı yarım çözünürlük
     python -m wojak render episodes/<bolum> --square   # 1080x1080 sürüm
+    python -m wojak render episodes/<bolum> --dolgu    # siyah bantlar bulanık arka planla dolu (A/B testi)
     python -m wojak frames episodes/<bolum>            # her sahneden bir kare (kontrol için)
     python -m wojak check episodes/<bolum>             # YAML doğrulama + süre özeti
     python -m wojak new <bolum-id>                     # şablondan yeni bölüm klasörü
@@ -51,12 +52,12 @@ def cmd_render(a) -> None:
     _denetle(ep)
     out_dir = config.OUT / ep.id
     t0 = time.time()
-    mp4 = render.render(ep, out_dir, square=a.square, preview=a.preview)
+    mp4 = render.render(ep, out_dir, square=a.square, preview=a.preview, fill=a.dolgu)
     print(f"video -> {mp4}  ({time.time() - t0:.1f} sn)")
     if not a.preview:
         cover_idx = next((i for i, s in enumerate(ep.scenes) if s.type == "dialog"), 0)
-        cover = render.still(ep, cover_idx, out_dir / ("kapak_kare.jpg" if a.square else "kapak.jpg"), at=0.9,
-                             square=a.square)
+        name = "kapak_kare.jpg" if a.square else ("kapak_dolgu.jpg" if a.dolgu else "kapak.jpg")
+        cover = render.still(ep, cover_idx, out_dir / name, at=0.9, square=a.square, fill=a.dolgu)
         print(f"kapak -> {cover}")
         print(f"paket -> {pack.write(ep, out_dir, mp4)}")
 
@@ -95,6 +96,7 @@ def main(argv=None) -> None:
     p.add_argument("episode")
     p.add_argument("--square", action="store_true")
     p.add_argument("--preview", action="store_true")
+    p.add_argument("--dolgu", action="store_true", help="üst/alt bantları karenin bulanık hâliyle doldur")
     p.set_defaults(fn=cmd_render)
     for name, fn in (("check", cmd_check), ("frames", cmd_frames)):
         p = sp.add_parser(name)

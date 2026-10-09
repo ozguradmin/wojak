@@ -43,6 +43,7 @@ searches:
   - {q: '"son sözleri" OR "son mesajı"', when: 2d}   # replik kaynağı
   - {q: '"tarihi eser" OR arkeolojik OR "antik kent"', when: 2d}
   - {q: '"kahraman polis" OR "kahraman vatandaş" OR "kahraman öğretmen" OR "kahraman itfaiyeci"', when: 7d}
+  - {q: '"dileği gerçek oldu" OR "hayali gerçek oldu" OR "dileğini gerçekleştirdi" OR "duyarlı vatandaş"', when: 3d}
 
 # Bu kaynaklardan gelen öğeler atılır (makine çevirisi / alakasız). Kiril alfabeli kaynaklar da atılır.
 source_blacklist: [Vietnam.vn, "Sortir à Paris", Instagram, KOHA.net, Kosovahaber.com]
@@ -81,6 +82,12 @@ categories:
     weight: 2
     patterns: ['deprem', 'heyelan', '\bsel\b', 'çığ\b', 'patlama', 'maden', 'facia', 'uçak (?:düştü|kaza)', 'batan', 'battı',
                'alabora', 'zehirlen', 'metanol', 'sahte içki', 'çöktü', 'çöken']
+  iyilik:   # mutlu son / dilek: en yüksek beğeni oranı, en düşük hukuki risk (docs/GUNDEM.md §0)
+    weight: 4
+    patterns: ['dileği(?:ni)? gerçek', 'hayali(?:ni)? gerçek', 'yardım eli', 'yardımına koş',
+               'duyarlı (?:vatandaş|sürücü|esnaf|taksici|öğrenci)', 'mutlu son', 'yeniden kavuş', '(?:ailesine|sahibine|annesine) kavuş',
+               'umut oldu', 'duygulandır', 'örnek davranış', 'iyiliksever', 'sahibine (?:ulaştır|teslim)',
+               'sürpriz yap', 'ilk kez (?:gördü|duydu|yürüdü|konuştu)']
   duygu:
     weight: 1
     patterns: ['son sözleri', 'son mesaj', 'son fotoğraf', 'son görüntü', 'son paylaşım', 'yürek(?:leri)? (?:burk|dağla|yak|sızla)',

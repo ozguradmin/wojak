@@ -130,6 +130,12 @@ Ayrıntı, seçim kuralları ve hukuk: [`GUNDEM.md`](GUNDEM.md).
 - **Ara kart:** siyah ekran, Anton/Impact benzeri kalın yazı: *"Bir süre sonra"*.
 - **Kanıt:** gerçek fotoğraf kareye sığdırılmış (contain), gerekirse haber bandı/kolaj.
 
+> **Test edilecek risk:** Instagram'ın "kenarlıklı (letterbox) reel'leri daha az önerdiği" söyleniyor (resmi kaynakla
+> doğrulanamadı). Altın dönem bu formatla 700K medyan yaptı ama algoritma değişmiş olabilir. İlk haftalarda aynı bölümün
+> klasik (siyah bantlı) sürümü ile `python -m wojak render ... --dolgu` sürümünü (bantlar karenin bulanık, karartılmış
+> hâliyle dolu; görüntü kenarlıksız 9:16 sayılır) **deneme reel** (`ig_yayinla.py ... --trial`) olarak karşılaştır;
+> kazanana göre format sabitlenir.
+
 ### Zaman (12-14 sn)
 ```
 0.0 ─ 2.6   Sahne 1  Masum/ironik replik (kanca)              ← kapak karesi genelde buradan

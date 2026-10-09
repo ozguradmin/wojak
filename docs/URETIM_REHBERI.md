@@ -116,6 +116,7 @@ python -m wojak frames episodes/<id>             # her sahneden 1 kare -> out/<i
 python -m wojak render episodes/<id> --preview   # hızlı önizleme (yarım çözünürlük)
 python -m wojak render episodes/<id>             # final: out/<id>/<id>.mp4 + kapak.jpg + paylasim.md
 python -m wojak render episodes/<id> --square    # 1080x1080 sürüm (gerekirse)
+python -m wojak render episodes/<id> --dolgu     # bantlar bulanık arka planla dolu (kenarlık A/B testi, KONSEPT §3)
 ```
 
 Kontrol listesi:

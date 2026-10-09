@@ -10,7 +10,7 @@ Midjourney vb.) üretmek gerekirse aşağıdakileri kopyala. **İngilizce prompt
 | OpenAI `gpt-image-2.5-flare` / `-sunburst` (varsayılan) | **Evet** (`background=transparent`) | En pratik, orta kalite dikey görsel ≈ $0.01. Referansla stil eşleme için sunburst. (`gpt-image-1` 23.10.2026, `gpt-image-1.5` 01.12.2026'da kapanıyor) |
 | Ideogram 3.0 | Evet (ayrı uç nokta) | Alternatif. |
 | Gemini `gemini-nano-banana-2.1` | Hayır | Düz **yeşil** zeminde üretilir, `tools/cutout.py` ile kesilir (beyaz zemin wojak'ın beyaz yüzüyle karışır). `gemini-2.5-flash-image` kullanımdan kalktı. |
-| Flux (Replicate/fal) + wojak LoRA | Hayır | `fal/Wojak-Kontext-Dev-LoRA`, `marckohlbrugge/flux-wojak-v2` — stil en sadık; sonra arka plan kesimi. |
+| ~~Flux + wojak LoRA~~ | Hayır | **Kullanma.** `fal/Wojak-Kontext-Dev-LoRA` ağırlıkları `flux1-dev-non-commercial-license` (fal'daki "commercial use" etiketi bunu değiştirmiyor; hesap gelir elde ediyor). `marckohlbrugge/flux-wojak-v2`'nin lisansı belirsiz. |
 
 Anahtar tanımı: cloud environment ayarlarına `OPENAI_API_KEY` veya `GEMINI_API_KEY` ortam değişkeni.
 **Anahtarı sohbete ya da repoya yazma.**

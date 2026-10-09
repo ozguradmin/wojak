@@ -13,7 +13,8 @@ bulgular kesin değil yön gösterici.
 - **Patlayanların hepsi gündemin zirvesinden 0-7 gün sonra çıktı:** Iryna Zarutska (1.42M, 14.8x), Olimpiyat
   sevimli an (770K, 16.4x), Narin (564K, 12x), Kayseri'de tekerlekli sandalyeli kızın dileği (504K, 10.7x).
   **10 günden geç yayınlanan 6 videonun hiçbiri** yerel ortalamanın 2 katına çıkamadı.
-- **Hız tek başına yetmez:** 0-3 günde çıkan 10 videonun 7'si sıradan kaldı. Belirleyici olan konu:
+- **Hız tek başına yetmez:** 0-3 günde çıkan 10 videonun 7'si sıradan kaldı; medyan izlenmede 4-9 gün grubu
+  (545K) 0-3 gün grubunu (91K) geçti. Tek net sınır: **10 gün ve üstü 0/6**. Belirleyici olan konu:
   **adı bilinen tek bir masum insan + tek bir ironik/sevimli an + herkesin gördüğü bir görüntü.**
 - **Tutmayanlar:** kahramanı olmayan soyut olaylar (salgın), terör (Bondi 0.75x), suçu aileye yükleyen ya da
   tartışmalı olaylar (5 kardeş yangını, Buca), 20 gün gecikmiş yabancı haberler, 24 sn+ videolar.
@@ -36,7 +37,12 @@ python tools/gundem.py                 # son 48 saat -> out/gundem/<tarih_saat>.
 python tools/gundem.py --saat 24 --ilk 30
 python tools/gundem.py --sorgu "maden" --sorgu "göçük"   # o gün özel bir konu varsa
 python tools/gundem.py --taslak 3      # rapordaki 3. olay için episodes/gundem-... taslağı
+python tools/gundem.py --yasak-takip   # yayınlanmış gündem bölümleri: sonradan yayın yasağı geldi mi?
 ```
+
+Akış: tarama günde 1-2 kez (sabah ve öğleden sonra) → en iyi 3 aday hesap sahibine → onaylanan aynı gün
+hazırlanır → yayından sonra 2 hafta boyunca her gün `--yasak-takip` (yasaklar olaydan günler sonra gelebiliyor;
+Narin'de kayboluştan 8 gün sonra). Yasak gelirse video telefondan kaldırılır (API ile silinemiyor).
 
 Rapor her olay için şunu verir: temsilî başlık, puan dökümü (uygunluk, kaç kaynak yazdı, Google Trends,
 tazelik, konu dışı cezası), tür (kayıp, mucize, kahramanlık, gizem, suç, kaza, tarih, hayvan),
@@ -71,12 +77,13 @@ intiharı anlatmak (yöntem, mekân) · terör saldırısının failini öne ç�
 
 ## 3. Hız
 
-- Hedef: gündemin **son dalgasından 0-3 gün**, üst sınır **7 gün**. Tek günlük haberleri (yangın, kaza)
-  48 saat geçtiyse yapma.
+- Üst sınır: gündemin **son dalgasından 7 gün**. 0-3 gün tercih edilir ama şart değil: doğrulama ve hukuk
+  kontrolü için 1-2 gün beklemek izlenmeyi düşürmüyor. Tek günlük haberleri (yangın, kaza) 48 saat geçtiyse yapma.
 - **Kahramanlık / mucize / iyilik / tuhaf olay:** hemen (24-72 saat). Mutlu son = düşük risk, yüksek beğeni.
 - **Kayıp / ölüm / suç:** önce **resmi açıklama** (valilik, emniyet, jandarma, AFAD, savcılık) bekle.
-  Ülkenin her gün takip ettiği açık uçlu bir kayıpta erken gir (bilgilendirme + afiş), gelişme oldukça
-  devam videosu çek. Sonuç belli olmadan "kurban" anlatımı yapma.
+  Açık uçlu bir kayıpta yalnızca **yetişkin** ve yetkililerin/ailenin yaydığı arama duyurusu varsa bilgilendirme
+  videosu (afiş, son görüldüğü yer) yapılabilir. **Çocuk kaybında ve soruşturma başlamış dosyada yapma:** yasak
+  genelde birkaç gün içinde gelir ve devam videosu imkânsızlaşır (Narin). Sonuç belli olmadan "kurban" anlatımı yok.
 - **Büyük felaket (deprem, çökme):** ilk saatlerde değil; kurtarma hikâyeleri netleşince
   (ör. "22 saat sonra enkazdan çıkarılan..."). Acı tazeyken mizah ve "gizem" tonu yok.
 - **Takvim kancaları:** büyük olayların yıldönümlerini (6 Şubat depremi, 17 Ağustos, Soma...) önceden hazırla.
@@ -89,14 +96,15 @@ Farklar:
 - **Kanıt sahnesi = haber:** `type: evidence` + `banner: "SON DAKİKA: ..."` ile haber bandı ya da
   haber ekran görüntüsü. Kaynak gazete adı `label:` ile görünür olsun (şeffaflık).
 - **Replik yalnızca doğrulanmış bilgiden kurgulanır.** Kişinin gerçek sözü haberlerde varsa onu kullan
-  (tırnak içinde, kısaltılmış). Yoksa durumu ima eden genel bir cümle (*"Birazdan dönerim"*).
-  Asla olmayan bir suçlamayı karakterin ağzına koyma.
+  (tırnak içinde, kısaltılmış). Yoksa kurtaran, arayan ya da yetkili tarafın nötr bir cümlesi
+  (*"Ses geliyor, burada biri var!"*). Kurbana uydurma "son söz" ve olmayan bir suçlama koyma.
 - **Fail/şüpheli:** isim ve yüz benzerliği yok, karar kesinleşmeden "katil" yok ("şüpheli").
 - **Başlık:** **[kim] + [sıradan eylem] + [ters dönen son]**, doğrulanmış bilgiden
   (*"Evine giderken trende katledilen Ukraynalı kız"*, *"10 saat aranan çocuk kamyonet kasasında uyurken bulundu"*).
   Sadece isim ya da "X olayı" yazma.
 - **Sabit yorum:** kronoloji + "Resmi açıklamaya göre..." + kaynak adı + tarih.
-  Gelişme olursa yorumu güncelle ("GÜNCELLEME 12.10: ...").
+  Gelişme olursa `episode.yaml`'da metnin en üstüne "GÜNCELLEME 12.10: ..." ekle → `python tools/ig_yayinla.py yorum
+  episodes/<id>` (API yorum düzenlemiyor: yeni yorum yazılır, eskisi silinir) → telefondan yeniden sabitle.
 - **Devam videosu:** büyük gelişmede ikinci video ("Efe'nin bulunduğu an" gibi) — seri izleyici getirir.
 
 ## 5. Yayından önce kontrol listesi
@@ -114,19 +122,23 @@ Maddelerin tamamı "evet" olmadan güncel olay yayınlanmaz. `python -m wojak ch
 4. [ ] **Çocuk:** 18 yaş altı mağdur/şüpheli tanınamıyor (isim, yüz, okul, mahalle, ebeveyn adı yok). Konu cinsel suç değil.
 5. [ ] **Mahremiyet:** Adres, plaka, kimlik no, sağlık bilgisi, özel mesaj, özel hesaptan fotoğraf yok. Aileye resmî bildirim yapılmış.
 6. [ ] **Grafik içerik:** Ceset, kan, ölüm/saldırı anı, failin çektiği görüntü yok. İlk 3 saniyede şok yok.
+   Kamera görüntüsü yalnızca **kurumun kendisinin yayımladığı** (emniyet, valilik, ulaşım idaresi) ve saldırı/ölüm
+   anı içermeyen kısımsa; sızdırılmış görüntü hiçbir zaman (TCK 285).
    **Bağlam videonun içinde** (`top_text`: tarih, yer, "resmî açıklamalara göre").
 7. [ ] **Fail:** Adı, yüzü, silahı öne çıkmıyor; övgü/haklı gösterme yok; etnik köken/bölge genellemesi yok.
 8. [ ] **Afet ve kamu düzeni:** Sayılar ve tehlike bilgisi yalnızca AFAD/bakanlık/valilikten, saatiyle. "Gizleniyor",
    "yeni felaket geliyor" iddiası yok (TCK 217/A — anonim hesap cezayı artırır).
-9. [ ] **Ton ve replik:** Mizah/meme dili yok. Replik ya doğrulanmış bir alıntı ya da kimseyi suçlamayan nötr bir cümle.
+9. [ ] **Ton ve replik:** Wojak çizimi kanalın anlatım dili, ama replikte ve açıklamada espri, emoji, meme kalıbı yok
+   (taze trajedide yapılıp yapılmayacağı hesap sahibinin kararı: GEREKENLER §7). Replik ya doğrulanmış bir alıntı ya da kimseyi suçlamayan nötr bir cümle.
    **Yakın tarihli kurbana uydurma "son söz" ya da kendi ölümünü anlatan replik verilmez** — kurtaran, arayan, yetkili
    ya da dilek-gerçekleşme yapısı kullanılır.
 10. [ ] **Özgünlük ve yapay zekâ:** Haber ekran görüntüsü tek içerik değil (Instagram bunu "özgün olmayan" sayıyor);
     kurgu ve kanıt sahnesi bize ait. Fotogerçekçi yapay zekâ görseli varsa `ai_generated: true` (etiket otomatik).
 11. [ ] **Yorumlar:** Gizli kelimeler (Hidden Words) filtresi açık; ilk 2 saat yorumlar izlenip isim ifşası, hakaret,
     linç, nefret içerenler siliniyor (yorumlardan hesap sahibi de sorumlu tutulabiliyor).
-12. [ ] **Düzeltme ve kayıt:** Kaynak linkleri arşivlendi. Gelişme/düzeltme/yasak/aile talebi olursa sabit yorumun en
-    üstüne "GÜNCELLEME (tarih): ..." yazılır; yasak ya da aile talebinde video kaldırılır.
+12. [ ] **Düzeltme ve kayıt:** Kaynak linkleri arşivlendi. Gelişme/düzeltme olursa güncellenmiş yorum `ig_yayinla.py yorum`
+    ile yeniden yazılıp sabitlenir; linç riskinde `ig_yayinla.py yorumlar --kapat`. Yasak ya da aile talebinde video
+    telefondan kaldırılır. Yayından sonra 2 hafta `gundem.py --yasak-takip`.
 
 
 ## 6. Takvim önerisi
@@ -144,7 +156,7 @@ biri yayınlanır (`docs/KONU_HAVUZU.md`). Yıldönümleri takvime önceden işl
 1. **Yayın yasağı olan olay yapılmaz.** Yasaklar genelde sosyal medyayı açıkça kapsıyor (Narin Güran kararı:
    "sosyal medya ve internet ortamında... her türlü haber"); yasak varken görüntü paylaşan kişiler gözaltına alındı
    (Kahramanmaraş, Nisan 2026). Yasaklar çoğu zaman günler içinde kalkar (Kartalkaya 1 gün, Narin 11 gün): beklemek ucuz.
-2. **Yalnızca resmî açıklamalardaki bilgi.** Sızdırılmış ifade, otopsi, HTS, kamera görüntüsü kullanılmaz
+2. **Yalnızca resmî açıklamalardaki bilgi.** Sızdırılmış ifade, otopsi, HTS, sızdırılmış kamera görüntüsü kullanılmaz
    (CMK 157, TCK 285: soruşturmanın gizliliği "herkes" için; 285/5: kişiyi suçlu gösteren görüntü 6 ay-2 yıl).
 3. **Hüküm kesinleşmeden "katil" denmez** (Anayasa 38/4, Basın Meslek İlkeleri md. 9). Baş harf ya da karikatür,
    kişi tanınabiliyorsa korumaz (TCK 126).
@@ -158,7 +170,14 @@ biri yayınlanır (`docs/KONU_HAVUZU.md`). Yıldönümleri takvime önceden işl
 
 **Diğer riskler:** özel hayat (TCK 134, 136; KVKK 28), hakaret / ölünün hatırasına hakaret / iftira (TCK 125, 130, 267;
 TMK 24-25 tazminat), suçu övme ve kin-düşmanlığa tahrik (TCK 215, 216), 5651 md. 8/A ile 4 saat içinde erişim engeli.
-1.11.2026'dan itibaren 7578 sayılı Kanun: sosyal ağlar 15 yaş altına hizmet veremeyecek.
+1.11.2026'dan itibaren 7578 sayılı Kanun: sosyal ağlar 15 yaş altına hizmet veremeyecek (kitle genç olabilir;
+token gelince takipçi yaş dağılımını ölçeceğiz). 7590 sayılı Kanun'la 5651'deki yetki BTK'dan Siber Güvenlik
+Başkanlığı'na geçti.
+
+**Telif (FSEK, ayrıntılı araştırılmadı):** haber fotoğrafı ve videosu telifle korunur. Kanıt sahnesinde öncelik
+resmî kurum görselleri, CC lisanslı ya da kamu malı görseller; haber görseli kullanılırsa kısa süre, kaynak adı
+görünür (`label:`) ve anlatımın parçası olarak. Bir haber fotoğrafını birebir wojak'a çevirmek yerine sahneyi
+kendimiz kurgularız.
 
 **Platformlar**
 - **Instagram:** ölümü/trajediyi alaya almak yasak; taze trajediyi meme tonuyla anlatmak doğrudan risk. Şiddet içerebilecek

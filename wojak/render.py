@@ -8,7 +8,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageFilter
 
 from . import audio, compose, config
 from .episode import Episode, Scene
@@ -92,10 +92,19 @@ class SceneRenderer:
         return im
 
 
-def _canvas_frame(box_img: Image.Image, top: Image.Image | None, square: bool) -> bytes:
+def _fill_bg(box_img: Image.Image) -> Image.Image:
+    """Siyah bant yerine karenin bulanık, karartılmış büyütmesi (kenarlık testi için 'dolgu' sürümü)."""
+    small = box_img.convert("RGB").resize((96, 96), Image.BILINEAR).filter(ImageFilter.GaussianBlur(3))
+    big = small.resize((config.CANVAS_H, config.CANVAS_H), Image.BICUBIC)
+    x = (config.CANVAS_H - config.CANVAS_W) // 2
+    big = big.crop((x, 0, x + config.CANVAS_W, config.CANVAS_H))
+    return Image.blend(big, Image.new("RGB", big.size, (0, 0, 0)), 0.55)
+
+
+def _canvas_frame(box_img: Image.Image, top: Image.Image | None, square: bool, fill: bool = False) -> bytes:
     if square:
         return box_img.convert("RGB").tobytes()
-    canvas = Image.new("RGB", (config.CANVAS_W, config.CANVAS_H), (0, 0, 0))
+    canvas = _fill_bg(box_img) if fill else Image.new("RGB", (config.CANVAS_W, config.CANVAS_H), (0, 0, 0))
     canvas.paste(box_img.convert("RGB"), (0, config.BOX_Y))
     if top is not None:
         canvas.paste(top, ((config.CANVAS_W - top.width) // 2, (config.BOX_Y - top.height) // 2), top)
@@ -103,17 +112,18 @@ def _canvas_frame(box_img: Image.Image, top: Image.Image | None, square: bool) -
 
 
 def render(ep: Episode, out_dir: Path | None = None, *, square: bool = False, fps: int = config.FPS,
-           crf: int = 18, preset: str = "medium", preview: bool = False) -> Path:
+           crf: int = 18, preset: str = "medium", preview: bool = False, fill: bool = False) -> Path:
     """Bölümü render eder ve mp4 yolunu döndürür.
 
     square=True -> 1080x1080 (IG akış/gönderi); aksi halde 1080x1920 (Reels/Shorts).
     preview=True -> yarım çözünürlük, hızlı ön izleme.
+    fill=True -> üst/alt siyah bantlar karenin bulanık hâliyle dolar (kenarlık A/B testi).
     """
     if shutil.which("ffmpeg") is None:
         raise RuntimeError("ffmpeg bulunamadı (apt install ffmpeg)")
     out_dir = Path(out_dir or config.OUT / ep.id)
     out_dir.mkdir(parents=True, exist_ok=True)
-    suffix = "_kare" if square else ""
+    suffix = "_kare" if square else ("_dolgu" if fill else "")
     suffix += "_onizleme" if preview else ""
     silent = out_dir / f".{ep.id}{suffix}_video.mp4"
     final = out_dir / f"{ep.id}{suffix}.mp4"
@@ -131,7 +141,7 @@ def render(ep: Episode, out_dir: Path | None = None, *, square: bool = False, fp
         for si, sc in enumerate(ep.scenes):
             sr = SceneRenderer(ep, sc, config.BOX, fps, seed=si)
             for i in range(sr.n):
-                proc.stdin.write(_canvas_frame(sr.frame(i), top, square))
+                proc.stdin.write(_canvas_frame(sr.frame(i), top, square, fill))
     finally:
         proc.stdin.close()
         if proc.wait() != 0:
@@ -147,12 +157,13 @@ def render(ep: Episode, out_dir: Path | None = None, *, square: bool = False, fp
     return final
 
 
-def still(ep: Episode, scene_index: int, out: Path, at: float = 0.6, square: bool = False) -> Path:
+def still(ep: Episode, scene_index: int, out: Path, at: float = 0.6, square: bool = False,
+          fill: bool = False) -> Path:
     """Tek bir sahneden kare (kapak/ön izleme) çıkarır."""
     sc = ep.scenes[scene_index]
     sr = SceneRenderer(ep, sc, config.BOX, config.FPS)
     i = min(sr.n - 1, round(at * sr.n))
     top = compose.top_text_layer(ep.top_text) if (ep.top_text and not square) else None
     W, H = (config.BOX, config.BOX) if square else (config.CANVAS_W, config.CANVAS_H)
-    Image.frombytes("RGB", (W, H), _canvas_frame(sr.frame(i), top, square)).save(out, quality=92)
+    Image.frombytes("RGB", (W, H), _canvas_frame(sr.frame(i), top, square, fill)).save(out, quality=92)
     return out

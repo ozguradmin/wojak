@@ -5,5 +5,7 @@ requests>=2.31
 # Araştırma araçları (tools/yt_arastir.py) için:
 # yt-dlp[default,curl-cffi]
 # bgutil-ytdlp-pot-provider
+# Instagram yayını için videoyu Cloudflare R2'ye koymak (tools/ig_yayinla.py --r2):
+# boto3
 # Karmaşık arka plan temizleme (tools/cutout.py --rembg) için:
 # rembg[cpu]

@@ -5,6 +5,7 @@
     python tools/gundem.py --saat 24 --ilk 15 # son 24 saat, ilk 15 olay
     python tools/gundem.py --sorgu "maden"    # ek Google News araması
     python tools/gundem.py --taslak 3         # son raporun 3. olayı için episodes/gundem-... taslağı
+    python tools/gundem.py --yasak-takip      # yayınlanmış gündem bölümleri için yayın yasağı taraması
 
 Ne yapar:
   1. data/gundem_kaynaklar.yaml'daki RSS akışlarını, Google News aramalarını ve
@@ -386,33 +387,66 @@ def score(c: Cluster, cfg: dict, trends: list[dict]) -> None:
 
 
 ANGLES = {
-    "kayip": "Son masum an: kaybolan kişinin sıradan bir cümlesi (\"Birazdan dönerim anne\"). Sonuç belli değilse bilgilendirme amaçlı.",
+    "kayip": "Arayanların repliği (ekip, köpek, aile çağrısı) ya da haberdeki doğrulanmış son söz; kaybolana uydurma söz yok. "
+             "Sonuç belli değilse yalnızca bilgilendirme; çocuk kaybında ve soruşturma başladıysa yapma.",
     "olum_gizem": "Merak repliği: keşfedenin şaşkın cümlesi. Resmi açıklama gelmeden 'cinayet' deme.",
     "kurtarma_kahramanlik": "Mucize/fedakârlık repliği: kurtaranın tereddütsüz ya da kurtulanın ilk sözü. Kanıt: kurtarma anı.",
     "efsane_tarih": "Keşif repliği: bulanın şaşkın cümlesi. 'Tarihsel' seriye uygun; stok video olarak da bekletilebilir.",
     "suc": "Odak kurbanın hayatı; kurbana uydurma 'son söz' koyma. Şüpheliye karakter/korkunç yüz verme, 'katil' deme (hüküm yoksa).",
-    "felaket": "Son an repliği (\"Toprak mı kayıyor?\"). Felaketi değil içindeki bir insan hikâyesini anlat.",
+    "felaket": "Kurtaranın/kurtulanın repliği (\"Ses geliyor, burada biri var!\"). Felaketi değil içindeki bir insan "
+               "hikâyesini anlat; sayılar yalnızca AFAD/valilikten.",
+    "iyilik": "Dilek-gerçekleşme yapısı: 1. sahne haberdeki gerçek dilek, 2. sahne gerçekleştiği an, kanıt: o anın fotoğrafı. "
+              "En düşük risk, en yüksek beğeni oranı (Kayseri 10.7x).",
     "duygu": "Haberdeki gerçek son söz/son mesaj varsa replik o olsun (kısaltılmış, tırnak içinde).",
 }
 
 
+def _ban_search(terms: list[str]) -> str | None:
+    """Son 30 günde bu terimlerle birlikte 'yayın yasağı' geçen haber varsa linkini döndürür."""
+    toks = [t for t in terms if len(t) > 3][:3]
+    if not toks:
+        return None
+    q = " ".join(toks) + ' "yayın yasağı" when:30d'
+    stems = {_stem(t) for t in toks}
+    for it in fetch_feed("Yayın yasağı kontrolü", GNEWS_SEARCH.format(q=urllib.parse.quote(q))):
+        if "yayın yasağı" in tr_lower(it.title) and stems & {_stem(x) for x in tokens(it.title)}:
+            return it.link
+    return None
+
+
 def _ban_check(c: Cluster) -> None:
     """Olayla ilgili son 30 günde 'yayın yasağı' haberi var mı? (docs/GUNDEM.md > Hukuk)"""
-    toks = [t for t in tokens(c.headline) if len(t) > 3][:4]
-    if not toks:
-        return
-    q = " ".join(toks[:3]) + ' "yayın yasağı" when:30d'
-    items = fetch_feed("Yayın yasağı kontrolü", GNEWS_SEARCH.format(q=urllib.parse.quote(q)))
-    stems = {_stem(t) for t in toks}
-    for it in items:
-        t = tr_lower(it.title)
-        if "yayın yasağı" in t and len(stems & {_stem(x) for x in tokens(it.title)}) >= 1:
-            c.flags.insert(0, "🔴 YAYIN YASAĞI OLABİLİR")
-            c.ban_link = it.link
-            return
+    link = _ban_search(tokens(c.headline))
+    if link:
+        c.flags.insert(0, "🔴 YAYIN YASAĞI OLABİLİR")
+        c.ban_link = link
+
+
+def yasak_takip() -> int:
+    """Yayınlanmış/hazır gündem bölümleri için yayın yasağı taraması. Yasak geldiyse video elle kaldırılır
+    (API ile silinemiyor). Sorgu: episode.yaml 'yasak_sorgu' (yoksa başlıktaki ilk 3 kelime)."""
+    found = 0
+    for f in sorted((ROOT / "episodes").glob("*/episode.yaml")):
+        raw = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        if not raw.get("gundem"):
+            continue
+        q = raw.get("yasak_sorgu") or raw.get("title", "")
+        link = _ban_search(tokens(q))
+        print(f"{'🔴 YASAK OLABİLİR' if link else '✓ yasak haberi yok'}  {f.parent.name}  [{q}]"
+              + (f"\n    {link}" if link else ""))
+        found += bool(link)
+    if found:
+        print("\nRTÜK 'Mahkeme Yayın Yasakları' sayfasından teyit et; yasak varsa videoyu telefondan kaldır "
+              "(docs/GUNDEM.md §5 madde 12).")
+    return found
 
 
 # --- Rapor ---------------------------------------------------------------------
+
+def shortlist(clusters: list[Cluster], top: int, extra: int = 5) -> list[Cluster]:
+    """İlk `top` aday + puanı düşük kalsa da en güvenli tür olan iyilik/mutlu son hikâyelerinden `extra` tane."""
+    return clusters[:top] + [c for c in clusters[top:] if "iyilik" in c.categories][:extra]
+
 
 def report(clusters: list[Cluster], trends: list[dict], top: int, hours: int) -> tuple[Path, Path]:
     OUT.mkdir(parents=True, exist_ok=True)
@@ -428,7 +462,11 @@ def report(clusters: list[Cluster], trends: list[dict], top: int, hours: int) ->
               for t in trends]
         L.append("")
     L += ["## Aday olaylar", ""]
-    for n, c in enumerate(clusters[:top], 1):
+    shown = shortlist(clusters, top)
+    for n, c in enumerate(shown, 1):
+        if n == top + 1:
+            L += ["## Ayrıca: iyilik / mutlu son", "",
+                  "Puanı düşük kalsa da en güvenli tür: beğeni oranı en yüksek, hukuki risk en düşük (docs/GUNDEM.md §0).", ""]
         fs = c.first_seen.astimezone(TR).strftime("%d.%m %H:%M") if c.first_seen else "?"
         flag = f" ⚠️ **DİKKAT: {', '.join(c.flags)}**" if c.flags else ""
         L += [f"### {n}. {c.headline}{flag}", "",
@@ -451,7 +489,7 @@ def report(clusters: list[Cluster], trends: list[dict], top: int, hours: int) ->
              "sources": c.sources, "first_seen": c.first_seen.isoformat() if c.first_seen else None,
              "items": [{"title": i.title, "link": i.link, "source": i.source,
                         "published": i.published.isoformat() if i.published else None} for i in c.items]}
-            for c in clusters[:top * 2]]
+            for c in shown + [c for c in clusters[top:top * 2] if all(c is not x for x in shown)]]
     js.write_text(json.dumps({"trends": trends, "clusters": data}, ensure_ascii=False, indent=1), encoding="utf-8")
     return md, js
 
@@ -472,7 +510,8 @@ def draft_episode(report_json: Path, n: int) -> Path:
         raise SystemExit(f"zaten var: {dst}")
     (dst / "img").mkdir(parents=True)
     tpl = (ROOT / "episodes" / "_sablon" / "episode.yaml").read_text(encoding="utf-8")
-    tpl = tpl.replace("id: sablon", f"id: {slug}\ngundem: true          # güncel olay: dil denetimi + docs/GUNDEM.md kontrol listesi\nkesin_hukum: false    # fail hakkında kesinleşmiş mahkûmiyet var mı?")
+    ban_q = " ".join([t for t in tokens(c["headline"]) if len(t) > 3][:3])
+    tpl = tpl.replace("id: sablon", f"id: {slug}\nyasak_sorgu: \"{ban_q}\"  # tools/gundem.py --yasak-takip bununla arar; en ayırt edici 2-3 kelime (isim, yer)\ngundem: true          # güncel olay: dil denetimi + docs/GUNDEM.md kontrol listesi\nkesin_hukum: false    # fail hakkında kesinleşmiş mahkûmiyet var mı?")
     tpl = tpl.replace("# top_text: \"1996, Manisa\"", "top_text: \"<gün ay yıl>, <yer> — resmi açıklamalara göre\"  # bağlam videonun İÇİNDE olmalı")
     tpl = tpl.replace('title: "<Olay adı> (Olayı yorumlara yazdım)"', f'title: "{c["headline"][:90]}"')
     srcs = "\n".join(f"  - {i['link']}  # {i['source']}: {i['title'][:80]}" for i in c["items"][:8])
@@ -492,7 +531,11 @@ def main() -> None:
     ap.add_argument("--hepsi", action="store_true", help="uygunluk puanı 0 olanları da göster")
     ap.add_argument("--taslak", type=int, metavar="N",
                     help="tarama yapmadan, en son raporun N. olayı için bölüm taslağı aç")
+    ap.add_argument("--yasak-takip", action="store_true",
+                    help="gundem: true bölümler için son 30 günde yayın yasağı haberi ara")
     a = ap.parse_args()
+    if a.yasak_takip:
+        raise SystemExit(1 if yasak_takip() else 0)
     if a.taslak:
         last = max(OUT.glob("*.json"), key=lambda p: p.stat().st_mtime, default=None)
         if last is None:
@@ -511,8 +554,8 @@ def main() -> None:
     if not a.hepsi:
         clusters = [c for c in clusters if c.parts.get("uygunluk", 0) >= 4]
     clusters.sort(key=lambda c: -c.score)
-    with ThreadPoolExecutor(6) as ex:  # ilk adaylar için yayın yasağı kontrolü
-        list(ex.map(_ban_check, clusters[:a.ilk]))
+    with ThreadPoolExecutor(6) as ex:  # rapora girecek adaylar için yayın yasağı kontrolü
+        list(ex.map(_ban_check, shortlist(clusters, a.ilk)))
     md, js = report(clusters, trends, a.ilk, a.saat)
     print(f"{len(clusters)} aday küme -> {md}")
 

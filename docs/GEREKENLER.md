@@ -9,13 +9,21 @@ OpenAI ve Google dokümanlarından derlendi; menü adları zamanla değişebilir
 |---|---|---|---|---|---|
 | 1 | Instagram'ı **Creator (İçerik Üretici)** hesap yapmak | Önerilir | API ile yayın + müzik kütüphanesi erişimi | 0 | 2 dk |
 | 2 | **Instagram yayın token'ı** (`IG_ACCESS_TOKEN`) | Otomatik yayın için evet | Videoyu Instagram'a benim yüklemem, yorumu yazmam, istatistik okumam | 0 | 20-30 dk |
-| 3 | **Görsel üretim API anahtarı** (`OPENAI_API_KEY`) | Önerilir | Kütüphanede olmayan karakterleri (jandarma, imam...) ve arka planları üretmek | ~$2-12/ay | 15 dk + kimlik doğrulama |
+| 2b | **Video barındırma** (Cloudflare R2, `R2_*` 4 değişken) | Otomatik yayın için evet | Meta videoyu bir linkten indiriyor; R2 o geçici linki veriyor | ~0 (video yayından sonra silinir) | 10-15 dk |
+| 3 | **Görsel üretim API anahtarı** (`OPENAI_API_KEY`) | Önerilir | Kütüphanede olmayan karakterleri (jandarma, imam...) ve arka planları üretmek | ~$2-12/ay | 15 dk (+ gerekirse kimlik doğrulama) |
 | 4 | Müzik | **Hayır** — hazır | Kanalın imza müziği üretildi (`assets/music/imza_gece_vals.mp3`), hakkı bize ait | 0 | — |
 | 5 | Eski ses doğrulaması | İsteğe bağlı | Altın dönem sesi neydi? (Shazam ile 10 sn) | 0 | 1 dk |
 | 6 | Referans videolar | İsteğe bağlı | Eski videoların ses/kurgu temposunu birebir görmek | 0 | 5 dk |
+| 6b | YouTube Shorts otomatik yükleme | İsteğe bağlı | Aynı videoyu YouTube'a da benim yüklemem | 0 | 20 dk |
 | 7 | Kararlar (aşağıda) | Evet | Yayın düzeni ve onay akışı | — | — |
 
+Gerekmeyenler: senaryo/metin için ayrı bir yapay zekâ (LLM) anahtarı gerekmiyor, bu işleri bu oturumlarda ben yapıyorum.
+Instagram müzik kütüphanesi de gerekmiyor (imza müzik videoya gömülü).
+
 Gizli bilgiler (token, API anahtarı) **sohbete ya da repoya yazılmaz**. Hepsi bölüm 0'daki yöntemle eklenir.
+
+**Önerilen sıra:** 1 → 2 → 2b → ilk test yayını (2.9) → 3. Müzik ve görsel kütüphanesi hazır olduğu için
+token gelmeden de video üretmeye devam ediyorum; token sadece yayını otomatikleştiriyor.
 
 ---
 
@@ -95,22 +103,60 @@ telefon ve e-posta doğrulaması. Facebook ve Instagram'da iki adımlı doğrula
 ### 2.6 Test ve bakım (bunları ben çalıştırırım)
 ```bash
 python tools/ig_yayinla.py kontrol        # hesap adı, tipi, user_id, günlük kota
-python tools/ig_yayinla.py yenile         # ~50 günde bir: 60 günü yeniden başlatır
+python tools/ig_yayinla.py yenile         # 45-50. günde: 60 günü yeniden başlatır
 ```
+- Yenilemeyi ben çalıştırırım ve hatırlatıcı kurarım. Ancak bu oturum ortam değişkenini kendisi değiştiremez:
+  yenileme yeni bir token dizesi döndürürse araç bunu söyler ve `IG_ACCESS_TOKEN`'ı senin güncellemen gerekir
+  (dönen dizenin aynı mı yeni mi olduğu belgede yazmıyor; ilk yenilemede göreceğiz).
 - Süresi dolan token yenilenemez → 2.5'i tekrarla. Instagram şifresi değişirse token'ı yeniden üret.
 - İlk test yayınından sonra gönderiyi **çıkış yapılmış bir tarayıcıdan** kontrol et
   (uygulama "Development" modunda gönderilerin herkese görünüp görünmediği resmi olarak doğrulanamadı).
 
 ### 2.7 Önemli kısıtlar
 - **Video herkese açık bir HTTPS adresinde olmalı** (Instagram Login yolunda Meta videoyu oradan indirir).
-  `--dosya` ile doğrudan yükleme denenecek; resmi olarak yalnızca Facebook Login yolunda var.
-  Olmazsa iki seçenek: (a) videoyu herkese açık bir depoya koymak (ör. Cloudflare R2 / S3 kısa ömürlü
-  link), (b) hesap bir Facebook Sayfasına bağlıysa **Facebook Login** yoluna geçmek (doğrudan yükleme +
-  Instagram müzik kütüphanesinden API ile ses ekleme bu yolda var). İlk denemede birlikte karar veririz.
+  Doğrudan dosya yükleme (resumable) resmi belgeye göre yalnızca Facebook Login yolunda var. Çözüm: **2.8 R2**.
+  Alternatif: hesap bir Facebook Sayfasına bağlanıp **Facebook Login**'li ayrı bir uygulama ve token
+  (doğrudan yükleme + Instagram müzik kütüphanesinden API ile ses ekleme yalnızca bu yolda var).
 - **Yorum sabitleme API'de yok.** Hikâye yorumunu otomatik yazarım; sen telefondan sabitlersin
   (Android: yoruma uzun bas → raptiye; iOS: sola kaydır → raptiye).
-- API ile gönderi silinemez (yanlış gönderi uygulamadan silinir).
-- Günlük API yayın limiti 50-100 (bize fazlasıyla yeter).
+- **Yorum düzenlenemez, açıklama düzenlenemez, gönderi API ile silinemez.** Düzeltmede yeni yorum yazıp
+  eskisini silerim (`ig_yayinla.py yorum`), sen yenisini sabitlersin. Yayın yasağı ya da aile talebinde
+  videoyu sen telefondan kaldırırsın. Yorumları API ile kapatabilirim (`ig_yayinla.py yorumlar --kapat`).
+- Günlük API yayın limiti: belgede hem 50 hem 100 geçiyor; `kontrol` komutu gerçek sayıyı gösterir (bize yeter).
+
+### 2.8 Video barındırma: Cloudflare R2 (adım adım)
+Video yayın anında R2'ye yüklenir, Meta'ya **2 saatlik imzalı** (tahmin edilemeyen, süreli) bir link verilir,
+yayından sonra dosya silinir. Depo herkese açık değildir. Çıkış trafiği ücretsiz, depolama $0.015/GB-ay
+(bir video ~10 MB ve birkaç dakika duruyor → pratikte 0).
+
+1. **https://dash.cloudflare.com/sign-up** → e-posta ile ücretsiz hesap.
+2. Sol menü **R2 Object Storage** → R2'yi etkinleştir. Ücretsiz kota için bile ödeme yöntemi (kart/PayPal)
+   istenebilir (doğrulayamadım).
+3. **Create bucket** → ad: `tarihselwojak-yayin` → konum: Automatic → **Create**. **Public access'i açma**.
+4. R2 sayfasında **Manage R2 API Tokens** (ya da **API → Manage API tokens**) → **Create API token**:
+   - İzin: **Object Read & Write**
+   - **Apply to specific buckets only** → `tarihselwojak-yayin`
+   - **Create API Token**
+5. Çıkan ekrandan **Access Key ID** ve **Secret Access Key**'i al (bir kez gösterilir). **Account ID**
+   aynı ekrandaki endpoint adresinde (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`) ya da panelin sağ
+   kenarında yazar.
+6. Bölüm 0'daki yöntemle 4 değişken ekle: `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`,
+   `R2_BUCKET` (= `tarihselwojak-yayin`).
+7. İlk denemede bu ortamdan R2'ye bağlanabildiğimi kontrol ederim. Ağ politikası engellerse ortam
+   ayarlarında **Network access → Allowed domains**'e `*.r2.cloudflarestorage.com` eklenir
+   ([adımlar](https://code.claude.com/docs/en/cloud-environments#network-access)).
+
+Kaynak: [R2 fiyatları](https://developers.cloudflare.com/r2/pricing/) ·
+[R2 API token](https://developers.cloudflare.com/r2/api/tokens/)
+
+### 2.9 İlk test yayını (birlikte, bir kez)
+Belgelerin net söylemediği şeyleri ilk yayında ölçeceğiz:
+1. `python tools/ig_yayinla.py kontrol` → hesap ve kota.
+2. Hazır örnek videoyla deneme reel: `yayinla episodes/derinkuyu --dosya ... --r2 --trial`
+   (trial reel önce yalnızca takip etmeyenlere gösterilir; takipçiler rahatsız olmaz).
+3. Kontrol: gönderi **çıkış yapılmış bir tarayıcıda** görünüyor mu (uygulama "Development" modunda),
+   ~1.250 karakterlik hikâye yorumu kesilmeden yazıldı mı, ses ve görüntü bozulmadan işlendi mi.
+4. Sorun yoksa normal yayına geçeriz.
 
 Kaynaklar: [Instagram Login API](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login),
 [Get Started / token](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login/get-started),
@@ -135,10 +181,11 @@ orta kalitede dikey görsel ≈ $0.01. Yedek: Google Gemini `gemini-nano-banana-
    Otomatik yüklemeyi (auto-recharge) kapalı bırak.
 3. **Harcama sınırı:** platform.openai.com/settings/organization/limits → **Spend** → **Edit spend limit** →
    **$20** → **Enforce a hard limit** açık → **Save**. Ayrıca **$10** uyarı (spend alert) ekle.
-4. **Kuruluş kimlik doğrulaması** (görsel modeller için büyük olasılıkla gerekli): Settings → Organization →
-   **General** → **Verify Organization**. Geçerli bir kimlik (pasaport/ehliyet/kimlik kartı) ve yüz doğrulaması.
+4. **Kuruluş kimlik doğrulaması** (gerekebilir; resmi belgede net değil). İlk görselde "organization must be
+   verified" hatası alırsak (araç bunu ayrıca söyler): Settings → Organization → **General** →
+   **Verify Organization**. Geçerli bir kimlik (pasaport/ehliyet/kimlik kartı) ve yüz doğrulaması.
    İyi ışıkta tek seferde tamamla (tekrar denemek zor olabiliyor). Erişimin açılması ~15 dk.
-   (Türk kimliğinin kabul edildiği resmi olarak doğrulanamadı; pasaport en güvenlisi.)
+   (Türk kimliğinin kabul edildiği doğrulanamadı; pasaport en güvenlisi. Takılırsa 3.2 Gemini kimlik istemiyor.)
 5. **Proje:** Settings → **Projects** → yeni proje `tarihselwojak`.
 6. **Anahtar:** platform.openai.com/settings/organization/api-keys → **Create new secret key** → proje
    `tarihselwojak` → bir **son kullanma tarihi** ver → anahtar bir kez gösterilir, kopyala.
@@ -182,6 +229,24 @@ istatistiklerini API'den okuyabilirim. Videoların ses/kurgusunu birebir görmek
 repoya `referans/` klasörüne yükleyebilirsin: Kırkağaç, Epstein Adası, Kapalak kızı, Enkaz altından çıkarılan
 4 yaşındaki kız, Pippa Bacca, Hello Kitty cinayeti, Ukraynalı kız (Iryna), Hantavirüs.
 
+## 6b. (İsteğe bağlı) YouTube Shorts otomatik yükleme
+Kanalın YouTube'u da büyüyen tarafı (verinin çoğu oradan). İstersen yükleyiciyi yazarım; senden gerekenler:
+1. **https://console.cloud.google.com** → yeni proje `tarihselwojak`.
+2. **APIs & Services → Library → YouTube Data API v3 → Enable**.
+3. **OAuth consent screen:** External → uygulama adı ve e-posta → kapsam `youtube.upload` → kaydet →
+   **Publish app** ("In production"). *"Testing"te kalırsa yenileme token'ı 7 günde düşer.* Doğrulanmamış
+   uygulama uyarısı çıkar; kendi hesabın için sorun değil.
+4. **Credentials → Create OAuth client ID** (Web application, yönlendirme adresi:
+   `https://developers.google.com/oauthplayground`).
+5. **https://developers.google.com/oauthplayground** → ⚙️ **Use your own OAuth credentials** → client ID/secret →
+   kapsam `https://www.googleapis.com/auth/youtube.upload` → kanal hesabıyla izin ver →
+   **Exchange authorization code for tokens** → **Refresh token**'ı al.
+6. Ekle: `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_REFRESH_TOKEN`.
+
+Not: API ile yüklenen videolarda yapay zekâ içerik bildirimi (`containsSyntheticMedia`) de gönderilebiliyor.
+Kaynak: [videos.insert](https://developers.google.com/youtube/v3/docs/videos/insert) ·
+[OAuth yenileme token süresi](https://developers.google.com/identity/protocols/oauth2)
+
 ---
 
 ## 7. Senin karar vermen gerekenler
@@ -194,3 +259,8 @@ repoya `referans/` klasörüne yükleyebilirsin: Kırkağaç, Epstein Adası, Ka
    şüpheli bir çocuğun kimliği hiçbir zaman verilmez.)
 4. **Sabit yorum:** API sabitleyemiyor; yayından sonraki ilk dakikalarda telefondan sabitleyebilir misin?
    (Bildirim gidecek.) Alternatif: hikâyeyi açıklamaya (2.200 karakter) koymak.
+5. **Gündemde ton:** format wojak (meme kökenli) çizimle anlatıyor. Taze bir trajedide (ölüm, kayıp) bunu
+   hiç yapmayalım mı, yoksa yalnızca ciddi tonla (espri/emoji yok, kurtarma ve dayanışma odağı) mı?
+   Öneri: trajedide yalnızca kurtarma/mucize/iyilik açısı; saf trajediyi en az 1 yıl sonra "tarihsel" olarak.
+6. **Gündem onay hızı:** güncel olayda pencere 7 gün. Taramayı günde 1-2 kez yapıp en iyi 3 adayı sana
+   yazarım; "evet" dediğin aynı gün videoyu hazırlarım. Bu hız sana uyar mı?
