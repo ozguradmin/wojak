@@ -188,8 +188,9 @@ repoya `referans/` klasörüne yükleyebilirsin: Kırkağaç, Epstein Adası, Ka
 
 1. **Onay akışı:** Ben her videoyu hazırlayıp `out/<bölüm>/` altına (video + kapak + açıklama + sabit yorum)
    koyayım, sen bakıp "yayınla" de → ben yayınlayayım? Yoksa tamamen otomatik mi? (Öneri: ilk 2 hafta onaylı.)
-2. **Yayın sıklığı:** öneri haftada 5 (3 tarihsel/efsane + 2 gündem), saat 17:00-21:00.
-3. **Gündem sınırları:** `docs/GUNDEM.md`'deki kırmızı çizgiler senin için uygun mu? (çocuk mağdurlar,
-   intihar, terör, siyaset hiç yapılmaz.)
+2. **Yayın sıklığı:** öneri haftada 5 (3 tarihsel/efsane + 1-2 gündem), saat 17:00-21:00.
+3. **Gündem sınırları:** `docs/GUNDEM.md` §2'deki kırmızı çizgiler senin için uygun mu? (yayın yasaklı
+   dosya, çocuk istismarı/cinsel suç, intihar, terör failini öne çıkarma, siyaset hiç yapılmaz; mağdur ya da
+   şüpheli bir çocuğun kimliği hiçbir zaman verilmez.)
 4. **Sabit yorum:** API sabitleyemiyor; yayından sonraki ilk dakikalarda telefondan sabitleyebilir misin?
    (Bildirim gidecek.) Alternatif: hikâyeyi açıklamaya (2.200 karakter) koymak.

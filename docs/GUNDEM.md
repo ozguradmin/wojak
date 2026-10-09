@@ -61,7 +61,7 @@ Bir olayı yapmak için **en az 3 "evet"**, hiç "kırmızı çizgi" yok:
 |---|---|
 | Ülke çapında konuşuluyor mu? (≥10 kaynak veya Google Trends'te) | Arama ve paylaşım talebi hazır |
 | İçinde net bir **insan hikâyesi** var mı? (kahraman, kurban, kayıp, kurtulan) | Wojak formatı insanı anlatır; "bina çöktü" değil "enkazdan 22 saat sonra çıkan kız" |
-| Tek bir **ironik/ürpertici an** var mı? | Replik ondan doğar (son masum cümle, son mesaj, ilk söz) |
+| Tek bir **ironik/ürpertici an** var mı? | Replik ondan doğar (**doğrulanmış** son mesaj, ilk söz, kurtarmacının sözü; uydurma "son söz" yok) |
 | Gizem / mucize / fedakârlık unsuru var mı? | Altın dönemin en güçlü türleri |
 | Gerçek fotoğraf/görüntü var mı? | Kanıt sahnesi |
 
