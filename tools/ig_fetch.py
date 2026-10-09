@@ -24,6 +24,10 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from wojak import config  # noqa: E402
+
+config.load_secrets()  # IG_* ortamda yoksa repo dışındaki ~/.config/wojak/secrets.env
 USER = "tarihselwojak"
 APP_ID = "936619743392459"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
