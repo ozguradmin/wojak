@@ -46,11 +46,12 @@ Her video için `teslim/<bölüm>/` klasörü (repoda kalır, GitHub'dan da indi
 | `<bölüm>.mp4` | Video (1080x1920, H.264 + AAC, Instagram/YouTube/TikTok uyumlu) |
 | `kapak.jpg` | Instagram'da "Kapağı düzenle → Galeriden ekle" |
 | `paylasim.md` | Bütün metinler + yükleme kontrol listesi |
-| `metinler/instagram_aciklama.txt` | Instagram açıklaması: **başlık + hikâyenin tamamı + hashtag** (≤2.200) |
+| `metinler/instagram_aciklama.txt` | Instagram açıklaması: **başlık + hikâyenin tamamı + görsel atfı + en fazla 5 hashtag** (≤2.200) |
 | `metinler/youtube_baslik.txt` | YouTube Shorts başlığı (≤100) |
 | `metinler/youtube_aciklama.txt` | YouTube açıklaması (kısa + hashtag + #shorts) |
 | `metinler/youtube_sabit_yorum.txt` | YouTube'da yazıp **sabitleyeceğin** hikâye yorumu |
 | `metinler/tiktok_aciklama.txt` | TikTok (isteğe bağlı) |
+| `<bölüm>_dolgu.mp4`, `kapak_dolgu.jpg` | (Bazı bölümlerde) kenarlık A/B testi sürümü: Instagram'da **deneme reel** olarak (KONSEPT §3) |
 
 Senin adımların: izle → "onay" ya da düzeltme notu → (onaydan sonra) paylaş → YouTube'da yorumu sabitle.
 Düzeltme notu gelirse aynı gün yeni sürümü gönderirim.

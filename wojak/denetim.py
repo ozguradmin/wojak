@@ -37,6 +37,8 @@ def _texts(ep: Episode) -> dict[str, str]:
                 t[f"sahne {i} {k}"] = v
     if ep.top_text:
         t["üst yazı"] = ep.top_text
+    if ep.hashtags:  # açıklamalara olduğu gibi gider (sansürsüz)
+        t["hashtag"] = " ".join(ep.hashtags)
     return t
 
 

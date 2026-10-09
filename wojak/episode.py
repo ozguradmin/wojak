@@ -91,6 +91,7 @@ class Episode:
     gundem: bool = False         # güncel olay: docs/GUNDEM.md kuralları ve dil denetimi uygulanır
     kesin_hukum: bool = False    # failin mahkûmiyeti kesinleşmiş mi (değilse "katil" vb. yasak)
     ai_generated: bool = False   # fotogerçekçi yapay zekâ görseli var mı (platformlarda etiket zorunlu)
+    credits: str = ""            # görsel atfı (CC BY lisansı şart koşar); açıklamalara 'Görseller: ...' olarak eklenir
 
     @property
     def duration(self) -> float:
@@ -195,4 +196,5 @@ def load(path: str | Path) -> Episode:
         gundem=bool(raw.get("gundem", False)),
         kesin_hukum=bool(raw.get("kesin_hukum", False)),
         ai_generated=bool(raw.get("ai_generated", False)),
+        credits=str(raw.get("credits") or "").strip(),
     )

@@ -161,10 +161,13 @@ def _get_xml(url: str, tries: int = 3) -> ET.Element:
     raise last
 
 
-def fetch_feed(name: str, url: str, tz_fix_hours: float = 0) -> list[Item]:
+def fetch_feed(name: str, url: str, tz_fix_hours: float = 0, strict: bool = False) -> list[Item]:
+    """strict=True: çekilemezse hata fırlatır (yasak kontrolünde 'çekilemedi' ile 'sonuç yok' ayrı olmalı)."""
     try:
         root = _get_xml(url)
     except Exception as e:  # tek bir kaynak düşerse rapor yine çıksın
+        if strict:
+            raise
         print(f"  ! {name}: {type(e).__name__}: {str(e)[:80]}")
         return []
     out = []
@@ -252,7 +255,8 @@ def cluster_items(items: list[Item], topic_words: set[str] | None = None) -> lis
     "Cinayet şüphelisi adliyeye sevk edildi" gibi genel başlıklar varlık şartı yüzünden birleşmez.
     Aday çiftler ters indeksle bulunur; 60'tan fazla haberde geçen kökler aday üretmez.
     """
-    topic = {_stem(tr_lower(w)) for w in (topic_words or set())}
+    # Konu kelimeleri varlık sayılmaz; ama yaygın ad olan kökler (Umut, Duygu, Mutlu) varlık olarak kalmalı
+    topic = {_stem(tr_lower(w)) for w in (topic_words or set())} - {"umut", "duygu", "mutlu"}
     stems = [{_stem(t) for t in i.toks} for i in items]
     provinces = {_stem(p) for p in PROVINCES}
     entities = _proper_nouns(items) - GENERIC_PROPER - topic - provinces
@@ -401,14 +405,15 @@ ANGLES = {
 }
 
 
-def _ban_search(terms: list[str]) -> str | None:
-    """Son 30 günde bu terimlerle birlikte 'yayın yasağı' geçen haber varsa linkini döndürür."""
-    toks = [t for t in terms if len(t) > 3][:3]
+def _ban_search(terms: list[str], min_len: int = 4) -> str | None:
+    """Son 30 günde bu terimlerle birlikte 'yayın yasağı' geçen haber varsa linkini döndürür.
+    Arama yapılamazsa (ağ hatası, boş sorgu) HATA fırlatır: 'kontrol edilemedi' asla 'temiz' sayılmaz."""
+    toks = [t for t in terms if len(t) >= min_len][:3]
     if not toks:
-        return None
+        raise ValueError("sorgu boş (ayırt edici kelime yok)")
     q = " ".join(toks) + ' "yayın yasağı" when:30d'
     stems = {_stem(t) for t in toks}
-    for it in fetch_feed("Yayın yasağı kontrolü", GNEWS_SEARCH.format(q=urllib.parse.quote(q))):
+    for it in fetch_feed("Yayın yasağı kontrolü", GNEWS_SEARCH.format(q=urllib.parse.quote(q)), strict=True):
         if "yayın yasağı" in tr_lower(it.title) and stems & {_stem(x) for x in tokens(it.title)}:
             return it.link
     return None
@@ -416,36 +421,54 @@ def _ban_search(terms: list[str]) -> str | None:
 
 def _ban_check(c: Cluster) -> None:
     """Olayla ilgili son 30 günde 'yayın yasağı' haberi var mı? (docs/GUNDEM.md > Hukuk)"""
-    link = _ban_search(tokens(c.headline))
+    try:
+        link = _ban_search(tokens(c.headline))
+    except Exception:
+        c.flags.insert(0, "❔ yayın yasağı kontrol EDİLEMEDİ")
+        return
     if link:
         c.flags.insert(0, "🔴 YAYIN YASAĞI OLABİLİR")
         c.ban_link = link
 
 
-def yasak_takip() -> int:
-    """Yayınlanmış/hazır gündem bölümleri için yayın yasağı taraması. Yasak geldiyse video elle kaldırılır
-    (API ile silinemiyor). Sorgu: episode.yaml 'yasak_sorgu' (yoksa başlıktaki ilk 3 kelime)."""
-    found = 0
+def yasak_takip() -> tuple[int, int]:
+    """Yayınlanmış/hazır gündem bölümleri için yayın yasağı taraması. Yasak geldiyse video elle kaldırılır.
+    Sorgu: episode.yaml 'yasak_sorgu' (yoksa başlık). Dönüş: (yasak olabilir sayısı, kontrol edilemeyen sayısı)."""
+    found = failed = 0
     for f in sorted((ROOT / "episodes").glob("*/episode.yaml")):
-        raw = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        try:
+            raw = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        except yaml.YAMLError as e:
+            print(f"? kontrol EDİLEMEDİ  {f.parent.name}: episode.yaml okunamadı ({type(e).__name__})")
+            failed += 1
+            continue
         if not raw.get("gundem"):
             continue
         q = raw.get("yasak_sorgu") or raw.get("title", "")
-        link = _ban_search(tokens(q))
+        try:  # elle yazılan sorguda kısa isimler (Efe, Can) de sayılır
+            link = _ban_search(tokens(q), min_len=3 if raw.get("yasak_sorgu") else 4)
+        except Exception as e:
+            print(f"? kontrol EDİLEMEDİ  {f.parent.name}  [{q}]: {type(e).__name__}: {str(e)[:80]}")
+            failed += 1
+            continue
         print(f"{'🔴 YASAK OLABİLİR' if link else '✓ yasak haberi yok'}  {f.parent.name}  [{q}]"
               + (f"\n    {link}" if link else ""))
         found += bool(link)
     if found:
-        print("\nRTÜK 'Mahkeme Yayın Yasakları' sayfasından teyit et; yasak varsa videoyu telefondan kaldır "
+        print("\nRTÜK 'Mahkeme Yayın Yasakları' sayfasından teyit et; yasak varsa videoyu kaldır "
               "(docs/GUNDEM.md §5 madde 12).")
-    return found
+    if failed:
+        print(f"\n{failed} bölüm kontrol EDİLEMEDİ: temiz sayma, tekrar çalıştır ya da RTÜK sayfasından elle bak.")
+    return found, failed
 
 
 # --- Rapor ---------------------------------------------------------------------
 
 def shortlist(clusters: list[Cluster], top: int, extra: int = 5) -> list[Cluster]:
     """İlk `top` aday + puanı düşük kalsa da en güvenli tür olan iyilik/mutlu son hikâyelerinden `extra` tane."""
-    return clusters[:top] + [c for c in clusters[top:] if "iyilik" in c.categories][:extra]
+    # ölüm/suç içeren kümeler 'en güvenli tür' bölümüne girmez
+    return clusters[:top] + [c for c in clusters[top:] if "iyilik" in c.categories
+                             and not {"suc", "olum_gizem"} & set(c.categories)][:extra]
 
 
 def report(clusters: list[Cluster], trends: list[dict], top: int, hours: int) -> tuple[Path, Path]:
@@ -510,10 +533,11 @@ def draft_episode(report_json: Path, n: int) -> Path:
         raise SystemExit(f"zaten var: {dst}")
     (dst / "img").mkdir(parents=True)
     tpl = (ROOT / "episodes" / "_sablon" / "episode.yaml").read_text(encoding="utf-8")
-    ban_q = " ".join([t for t in tokens(c["headline"]) if len(t) > 3][:3])
-    tpl = tpl.replace("id: sablon", f"id: {slug}\nyasak_sorgu: \"{ban_q}\"  # tools/gundem.py --yasak-takip bununla arar; en ayırt edici 2-3 kelime (isim, yer)\ngundem: true          # güncel olay: dil denetimi + docs/GUNDEM.md kontrol listesi\nkesin_hukum: false    # fail hakkında kesinleşmiş mahkûmiyet var mı?")
+    ban_q = json.dumps(" ".join([t for t in tokens(c["headline"]) if len(t) > 3][:3]), ensure_ascii=False)
+    tpl = tpl.replace("id: sablon", f"id: {slug}\nyasak_sorgu: {ban_q}  # tools/gundem.py --yasak-takip bununla arar; en ayırt edici 2-3 kelime (isim, yer)\ngundem: true          # güncel olay: dil denetimi + docs/GUNDEM.md kontrol listesi\nkesin_hukum: false    # fail hakkında kesinleşmiş mahkûmiyet var mı?")
     tpl = tpl.replace("# top_text: \"1996, Manisa\"", "top_text: \"<gün ay yıl>, <yer> — resmi açıklamalara göre\"  # bağlam videonun İÇİNDE olmalı")
-    tpl = tpl.replace('title: "<Olay adı> (Olayı yorumlara yazdım)"', f'title: "{c["headline"][:90]}"')
+    # json.dumps -> geçerli YAML çift tırnaklı dize (başlıkta " ya da \\ olsa bile)
+    tpl = tpl.replace('title: "<Olay adı> (Olayı yorumlara yazdım)"', "title: " + json.dumps(c["headline"][:90], ensure_ascii=False))
     srcs = "\n".join(f"  - {i['link']}  # {i['source']}: {i['title'][:80]}" for i in c["items"][:8])
     tpl = re.sub(r"sources:\n(  - .*\n?)+", f"sources:\n{srcs}\n", tpl)
     flags = f"DİKKAT: {', '.join(c['flags'])} — docs/GUNDEM.md kontrol listesi zorunlu.\n  " if c["flags"] else ""
@@ -535,7 +559,8 @@ def main() -> None:
                     help="gundem: true bölümler için son 30 günde yayın yasağı haberi ara")
     a = ap.parse_args()
     if a.yasak_takip:
-        raise SystemExit(1 if yasak_takip() else 0)
+        found, failed = yasak_takip()
+        raise SystemExit(1 if found else 2 if failed else 0)
     if a.taslak:
         last = max(OUT.glob("*.json"), key=lambda p: p.stat().st_mtime, default=None)
         if last is None:

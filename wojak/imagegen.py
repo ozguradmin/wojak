@@ -16,7 +16,7 @@ Sağlayıcılar (ortam değişkeniyle seçilir, anahtarlar ASLA repoya yazılmaz
     WOJAK_IMG_QUALITY=low|medium|high   (OpenAI; varsayılan medium — wojak çizimi için yeterli, ~4 kat ucuz)
 
 Model durumu (2026-10-09): gpt-image-1 23.10.2026'da, gpt-image-1.5 01.12.2026'da kapanıyor;
-gemini-2.5-flash-image kullanımdan kaldırıldı. Ayrıntı: docs/GEREKENLER.md > 3.
+gemini-2.5-flash-image kullanımdan kaldırıldı. Ayrıntı: docs/arsiv/OTOMATIK_YAYIN.md > 3.
 
 Komut satırı: python tools/gorsel_uret.py --help
 """
@@ -89,7 +89,7 @@ def _provider() -> str:
     if os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"):
         return "gemini"
     raise RuntimeError("Görsel üretim anahtarı yok: SOL_API_KEY, OPENAI_API_KEY veya GEMINI_API_KEY tanımlayın "
-                       "(cloud environment ayarlarından ortam değişkeni olarak). Bkz. docs/GEREKENLER.md")
+                       "(cloud environment ayarlarından ortam değişkeni olarak). Bkz. docs/GEREKENLER.md > 1.")
 
 
 def _post(url: str, *, tries: int = 4, timeout: int = 300, **kw) -> requests.Response:
@@ -121,7 +121,7 @@ def _openai(prompt: str, *, size: str, transparent: bool, refs: list[Path]) -> I
         r = _post("https://api.openai.com/v1/images/generations", headers=headers, json=common)
     if r.status_code == 403 and "verif" in r.text.lower():
         raise RuntimeError("OpenAI: kuruluş kimlik doğrulaması gerekli (Settings > Organization > General > "
-                           "Verify Organization). Bkz. docs/GEREKENLER.md > 3.")
+                           "Verify Organization). Bkz. docs/arsiv/OTOMATIK_YAYIN.md > 3.1 (adım 4).")
     if r.status_code != 200:
         raise RuntimeError(f"OpenAI hata {r.status_code}: {r.text[:500]}")
     d = r.json()

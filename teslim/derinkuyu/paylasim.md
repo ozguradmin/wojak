@@ -2,9 +2,11 @@
 
 Süre: 13.3 sn · 6 sahne · video: `derinkuyu.mp4` · kapak: `kapak.jpg`
 
+Ek: `derinkuyu_dolgu.mp4` + `kapak_dolgu.jpg`: siyah bantlar bulanık arka planla dolu sürüm. Kenarlık A/B testi için Instagram'da **deneme reel** olarak paylaşılabilir (KONSEPT §3).
+
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + hashtag) — 1379/2200
+### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1431/2200
 
 ```
 Evini tamir ederken duvarın arkasında bir şehir buldu
@@ -21,7 +23,9 @@ Katlar arasındaki geçitler, yüzlerce kilo ağırlığındaki yuvarlak taş ka
 
 Sizce yerin altında aylarca yaşayan binlerce insan en çok neyden korkuyordu?
 
-#derinkuyu #kapadokya #nevşehir #gizem #tarih #wojak #tarihselwojak #keşfet
+Görseller: Flickr CC BY 2.0 — Minamie's Photo, VSmithUK, amitd, McFlickr
+
+#derinkuyu #kapadokya #nevşehir #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts
@@ -37,6 +41,8 @@ Evini tamir ederken duvarın arkasında bir şehir buldu
 ```
 Derinkuyu Yeraltı Şehri — Nevşehir
 Hikâyenin tamamı sabit yorumda 👇
+
+Görseller: Flickr CC BY 2.0 — Minamie's Photo, VSmithUK, amitd, McFlickr
 
 #derinkuyu #kapadokya #nevşehir #gizem #tarih #wojak #tarihselwojak #keşfet #shorts
 ```
@@ -59,7 +65,7 @@ Sizce yerin altında aylarca yaşayan binlerce insan en çok neyden korkuyordu?
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 1379/4000
+### Açıklama — 1453/4000
 
 ```
 Evini tamir ederken duvarın arkasında bir şehir buldu
@@ -76,6 +82,8 @@ Katlar arasındaki geçitler, yüzlerce kilo ağırlığındaki yuvarlak taş ka
 
 Sizce yerin altında aylarca yaşayan binlerce insan en çok neyden korkuyordu?
 
+Görseller: Flickr CC BY 2.0 — Minamie's Photo, VSmithUK, amitd, McFlickr
+
 #derinkuyu #kapadokya #nevşehir #gizem #tarih #wojak #tarihselwojak #keşfet
 ```
 
@@ -85,7 +93,7 @@ Sizce yerin altında aylarca yaşayan binlerce insan en çok neyden korkuyordu?
 - [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
 - [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
 - [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
-- [ ] Yapay zekâ sorusu: "Hayır" (wojak çizimi gerçekçi değil; gerçek fotoğraflar gerçek)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
 - [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
 
 Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).

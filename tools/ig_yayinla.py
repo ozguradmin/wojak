@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Instagram'a Reels yayınlama (Instagram API with Instagram Login — resmi Meta API'si).
 
-Kurulum ve token alma: docs/GEREKENLER.md > 2. Instagram yayın token'ı
+Kurulum ve token alma: docs/arsiv/OTOMATIK_YAYIN.md > 2. Instagram yayın token'ı
 
 Ortam değişkenleri (cloud environment ayarlarından; ASLA repoya/sohbete yazılmaz):
     IG_ACCESS_TOKEN   60 günlük Instagram kullanıcı token'ı (App Dashboard > Generate token)
@@ -11,7 +11,7 @@ Ortam değişkenleri (cloud environment ayarlarından; ASLA repoya/sohbete yazı
                       graph.facebook.com (Facebook Login; doğrudan dosya yükleme destekli)
     R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET
                       (--r2 için) Cloudflare R2: videoyu geçici, imzalı bir HTTPS linkine koyar.
-                      Kurulum: docs/GEREKENLER.md > 2.8
+                      Kurulum: docs/arsiv/OTOMATIK_YAYIN.md > 2.8
 
 Komutlar:
     python tools/ig_yayinla.py kontrol
@@ -71,7 +71,7 @@ BASE = f"https://{HOST}/{VERSION}"
 def token() -> str:
     t = os.environ.get("IG_ACCESS_TOKEN")
     if not t:
-        sys.exit("IG_ACCESS_TOKEN yok. Kurulum: docs/GEREKENLER.md > 2. Instagram yayın token'ı")
+        sys.exit("IG_ACCESS_TOKEN yok. Kurulum: docs/arsiv/OTOMATIK_YAYIN.md > 2. Instagram yayın token'ı")
     return t
 
 
@@ -104,7 +104,7 @@ def _r2():
     need = ["R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET"]
     miss = [k for k in need if not os.environ.get(k)]
     if miss:
-        sys.exit(f"R2 ortam değişkenleri eksik: {', '.join(miss)}. Kurulum: docs/GEREKENLER.md > 2.8")
+        sys.exit(f"R2 ortam değişkenleri eksik: {', '.join(miss)}. Kurulum: docs/arsiv/OTOMATIK_YAYIN.md > 2.8")
     s3 = boto3.client("s3", endpoint_url=f"https://{os.environ['R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
                       aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
                       aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],

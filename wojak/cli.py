@@ -61,7 +61,11 @@ def cmd_render(a) -> None:
         name = "kapak_kare.jpg" if a.square else ("kapak_dolgu.jpg" if a.dolgu else "kapak.jpg")
         cover = render.still(ep, cover_idx, out_dir / name, at=0.9, square=a.square, fill=a.dolgu)
         print(f"kapak -> {cover}")
+        if a.square or a.dolgu:  # metinler aynı; ana paketin üzerine yazma (teslim ek dosyaları kendisi alır)
+            return
         print(f"paket -> {pack.write(ep, out_dir, mp4)}")
+        for w in pack.warnings(pack.texts(ep), ep):
+            print(f"  ⚠ {w}")
 
 
 def cmd_frames(a) -> None:
@@ -86,8 +90,15 @@ def cmd_paket(a) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     mp4 = out_dir / f"{ep.id}.mp4"
     print(f"paket -> {pack.write(ep, out_dir, mp4 if mp4.exists() else None)}")
-    for w in pack.warnings(pack.texts(ep)):
+    for w in pack.warnings(pack.texts(ep), ep):
         print(f"  ⚠ {w}")
+    dst = config.ROOT / "teslim" / ep.id
+    if dst.exists():  # teslim edilmiş bölümün metinlerini de güncelle (video gerekmez)
+        (dst / "metinler").mkdir(exist_ok=True)
+        for f in (out_dir / "metinler").glob("*.txt"):
+            shutil.copy2(f, dst / "metinler" / f.name)
+        shutil.copy2(out_dir / "paylasim.md", dst / "paylasim.md")
+        print(f"teslim metinleri güncellendi -> {dst}")
 
 
 def cmd_teslim(a) -> None:
@@ -95,16 +106,30 @@ def cmd_teslim(a) -> None:
     ep = episode.load(a.episode)
     src = config.OUT / ep.id
     mp4 = src / f"{ep.id}.mp4"
-    if not mp4.exists():
+    if not mp4.exists() or not (src / "kapak.jpg").exists():
         sys.exit(f"Önce render: python -m wojak render {a.episode}")
-    _denetle(ep)
-    pack.write(ep, src, mp4)
+    # Kapılar mevcut teslim/<id>/ silinmeden ÖNCE: engellenen bir deneme eski geçerli paketi bozmasın.
+    uyarilar = denetim.check(ep)
+    for u in uyarilar:
+        print(f"  ⚠ {u}")
+    if ep.gundem and uyarilar and not a.zorla:
+        sys.exit("Güncel olay bölümünde denetim uyarıları var; düzelt ya da bilerek --zorla kullan.")
+    sinir = pack.warnings(pack.texts(ep), ep)
+    for w in sinir:
+        print(f"  ⚠ {w}")
+    if sinir and not a.zorla:
+        sys.exit("Paket sınırları aşıldı ya da hikâye boş; düzelt ya da bilerek --zorla kullan.")
+    yml = ep.dir / "episode.yaml"
+    if yml.exists() and mp4.stat().st_mtime < yml.stat().st_mtime:
+        print("  ⚠ video episode.yaml'dan eski: sahneler değiştiyse önce yeniden render et")
+    pack.write(ep, src, mp4, denetim=uyarilar)
     dst = config.ROOT / "teslim" / ep.id
     if dst.exists():
         shutil.rmtree(dst)
     (dst / "metinler").mkdir(parents=True)
     shutil.copy2(mp4, dst / mp4.name)
-    for name in ("kapak.jpg", "paylasim.md"):
+    # kenarlık A/B testi sürümü varsa o da gider (KONSEPT §3)
+    for name in ("kapak.jpg", "paylasim.md", f"{ep.id}_dolgu.mp4", "kapak_dolgu.jpg"):
         if (src / name).exists():
             shutil.copy2(src / name, dst / name)
     for f in (src / "metinler").glob("*.txt"):
@@ -136,10 +161,14 @@ def main(argv=None) -> None:
     p.add_argument("--preview", action="store_true")
     p.add_argument("--dolgu", action="store_true", help="üst/alt bantları karenin bulanık hâliyle doldur")
     p.set_defaults(fn=cmd_render)
-    for name, fn in (("check", cmd_check), ("frames", cmd_frames), ("paket", cmd_paket), ("teslim", cmd_teslim)):
+    for name, fn in (("check", cmd_check), ("frames", cmd_frames), ("paket", cmd_paket)):
         p = sp.add_parser(name)
         p.add_argument("episode")
         p.set_defaults(fn=fn)
+    p = sp.add_parser("teslim")
+    p.add_argument("episode")
+    p.add_argument("--zorla", action="store_true", help="denetim/sınır uyarılarına rağmen teslim et (bilerek)")
+    p.set_defaults(fn=cmd_teslim)
     p = sp.add_parser("new")
     p.add_argument("id")
     p.set_defaults(fn=cmd_new)

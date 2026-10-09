@@ -178,12 +178,14 @@ güncel olaylarda `python -m wojak check` dil denetimini ayrıca çalıştırır
 ## 5. Sabit yorum (hikâye metni)
 
 Örnekler: [`data/olay_metinleri.md`](../data/olay_metinleri.md).
-- **150-300 kelime**, 3-6 paragraf, ansiklopedi/haber dili.
+- **150-250 kelime** (≤ ~1.950 karakter: Instagram açıklaması başlık + hashtag ile 2.200'ü geçemez; paket aşarsa
+  uyarır, teslim durur), 3-6 paragraf, ansiklopedi/haber dili.
 - İlk cümle: *"X olayı, YYYY yılında [yer]'de yaşanan ve ... olarak bilinen bir olaydır."*
 - Kronolojik; isim, yaş, tarih, yer net. Efsanede "iddiaya göre / anlatılana göre".
 - Son satır: duygu ya da izleyiciye soru (*"Sizce o gece çadırda ne oldu?"*) → yorum sayısı.
 - YouTube'da paylaşımdan sonraki **ilk dakika** içinde yazılıp sabitlenir. **Instagram'da (2026-10 kararı) hikâye
-  doğrudan açıklamaya** konur (başlık + hikâye + hashtag, ≤2.200 karakter); paket bunu otomatik hazırlar.
+  doğrudan açıklamaya** konur (başlık + hikâye + en fazla 5 hashtag, ≤2.200 karakter); paket metni hazırlar, sınırı
+  aşarsa uyarır.
   Not: 2.1'deki "yorumlara iniş" sinyali Instagram'da açıklamaya kayıyor; ilk haftalarda sonuçlar izlenip karşılaştırılır.
 
 ## 6. Ses

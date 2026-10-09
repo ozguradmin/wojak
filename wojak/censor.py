@@ -16,32 +16,35 @@ from __future__ import annotations
 
 import re
 
-# (kök regex, değiştirme) — kelimenin başını yakalar, eki korur.
+# (kök regex, değiştirme): kelime BAŞINDA eşleşir ((?<!\w)), ek korunur. Kelime başı şartı olmadan
+# "Bakanlığı", "Gölü", "bölüm", "savuran" gibi sıradan kelimeler bozuluyordu.
+W = r"(?<!\w)"
 _EKRAN = [
-    (r"öld[üu]r", "*ldür"),
-    (r"öl(?=[üemdsiıyl])", "*l"),
-    (r"cinayet", "c!nayet"),
-    (r"tecav[üu]z", "t3c4v*z"),
-    (r"intihar", "1nt1h4r"),
-    (r"ceset", "c3s3t"),
-    (r"cesed", "c3s3d"),
-    (r"\bkan\b", "k*n"),
-    (r"kanl[ıi]", "k*nl"),
-    (r"taciz", "t4c*z"),
+    (W + r"öld[üu]r", "*ldür"),
+    (W + r"öl(?=[üemdsiıyl])", "*l"),
+    (W + r"cinayet", "c!nayet"),
+    (W + r"tecav[üu]z", "t3c4v*z"),
+    (W + r"intihar", "1nt1h4r"),
+    (W + r"ceset", "c3s3t"),
+    (W + r"cesed", "c3s3d"),
+    (W + r"kan(?!\w)", "k*n"),
+    (W + r"kanl(?=[ıi])", "k*nl"),
+    (W + r"taciz", "t4c*z"),
 ]
 _METIN = _EKRAN + [
-    (r"katlet", "k4tlet"),
-    (r"katil", "k4til"),
-    (r"b[ıi]çak", "b*çak"),
-    (r"silah", "s!lah"),
-    (r"vur(?=ul|du|an)", "v*r"),
-    (r"bo[ğg]arak", "b*ğarak"),
-    (r"bo[ğg]ul", "b*ğul"),
-    (r"uyu[şs]turucu", "uyu$turucu"),
-    (r"istismar", "1st1smar"),
-    (r"pedofil", "p3d0f1l"),
-    (r"terör", "t3rör"),
-    (r"bomba", "b0mba"),
+    (W + r"katlet", "k4tlet"),
+    # ı/i katlaması kapalı: "katıldı" / "KATILIM" katil değildir
+    (W + r"(?-i:[kK][aA][tT][iİ][lL])", "k4til"),
+    (W + r"b[ıi]çak", "b*çak"),
+    (W + r"silah", "s!lah"),
+    (W + r"vur(?=ul|du|an)", "v*r"),
+    (W + r"bo[ğg]arak", "b*ğarak"),
+    (W + r"bo[ğg]ul", "b*ğul"),
+    (W + r"uyu[şs]turucu", "uyu$turucu"),
+    (W + r"istismar", "1st1smar"),
+    (W + r"pedofil", "p3d0f1l"),
+    (W + r"terör", "t3rör"),
+    (W + r"bomba", "b0mba"),
 ]
 
 

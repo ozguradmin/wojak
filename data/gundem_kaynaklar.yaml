@@ -1,6 +1,6 @@
 # Gündem tarayıcı (tools/gundem.py) ayarları.
 # Kaynaklar ve sorgular 2026-10-09'da bu sunucudan test edildi (~70 RSS, ~60 Google News sorgusu).
-# Test bulgularının özeti: docs/GUNDEM.md > 7. Kaynaklar.
+# Test bulgularının özeti: docs/GUNDEM.md > 1. Günlük rutin (Kaynaklar paragrafı).
 
 # --- RSS / Atom akışları -------------------------------------------------------------
 # tz_fix_hours: saat dilimi hatalı yayınlayan kaynak için düzeltme (CNN Türk TSİ'yi "GMT" yazıyor).
@@ -85,12 +85,12 @@ categories:
   iyilik:   # mutlu son / dilek: en yüksek beğeni oranı, en düşük hukuki risk (docs/GUNDEM.md §0)
     weight: 4
     patterns: ['dileği(?:ni)? gerçek', 'hayali(?:ni)? gerçek', 'yardım eli', 'yardımına koş',
-               'duyarlı (?:vatandaş|sürücü|esnaf|taksici|öğrenci)', 'mutlu son', 'yeniden kavuş', '(?:ailesine|sahibine|annesine) kavuş',
-               'umut oldu', 'duygulandır', 'örnek davranış', 'iyiliksever', 'sahibine (?:ulaştır|teslim)',
-               'sürpriz yap', 'ilk kez (?:gördü|duydu|yürüdü|konuştu)']
+               'duyarlı (?:vatandaş|sürücü|esnaf|taksici|öğrenci)(?![a-zçğıöşü]*\s+ihbar)', 'mutlu son', 'yeniden kavuş', '(?:ailesine|sahibine|annesine) kavuş',
+               'örnek davranış', 'iyiliksever', 'sahibine (?:ulaştır|teslim)',
+               'ilk kez (?:gördü|duydu|yürüdü|konuştu)']
   duygu:
     weight: 1
-    patterns: ['son sözleri', 'son mesaj', 'son fotoğraf', 'son görüntü', 'son paylaşım', 'yürek(?:leri)? (?:burk|dağla|yak|sızla)',
+    patterns: ['duygulandır', 'umut oldu', 'son sözleri', 'son mesaj', 'son fotoğraf', 'son görüntü', 'son paylaşım', 'yürek(?:leri)? (?:burk|dağla|yak|sızla)',
                'gözyaşı', 'acı haber', 'kahreden', 'şoke eden', 'akıl ?almaz']
 
 # Konu dışı (puan düşürür). "resmi" bilerek zayıf: "Bakan: 39 yıllık faili meçhul çözüldü" elenmesin.

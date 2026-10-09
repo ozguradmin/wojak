@@ -4,7 +4,7 @@ Süre: 12.9 sn · 6 sahne · video: `dyatlov-gecidi.mp4` · kapak: `kapak.jpg`
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + hashtag) — 1460/2200
+### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1439/2200
 
 ```
 Dyatlov Geçidi olayı ⛔️
@@ -21,7 +21,7 @@ Sovyet soruşturması *lüm nedenini "karşı konulamaz bir doğa gücü" diyere
 
 Sizce o gece çadırda ne oldu?
 
-#dyatlov #gizem #çözülemeyengizemler #olay #tarih #wojak #tarihselwojak #keşfet
+#dyatlov #gizem #çözülemeyengizemler #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts
@@ -85,7 +85,7 @@ Sizce o gece çadırda ne oldu?
 - [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
 - [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
 - [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
-- [ ] Yapay zekâ sorusu: "Hayır" (wojak çizimi gerçekçi değil; gerçek fotoğraflar gerçek)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
 - [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
 
 Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).

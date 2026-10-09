@@ -40,9 +40,9 @@ python tools/gundem.py --taslak 3      # rapordaki 3. olay için episodes/gundem
 python tools/gundem.py --yasak-takip   # yayınlanmış gündem bölümleri: sonradan yayın yasağı geldi mi?
 ```
 
-Akış: tarama günde 1-2 kez (sabah ve öğleden sonra) → en iyi 3 aday hesap sahibine → onaylanan aynı gün
-hazırlanır → yayından sonra 2 hafta boyunca her gün `--yasak-takip` (yasaklar olaydan günler sonra gelebiliyor;
-Narin'de kayboluştan 8 gün sonra). Yasak gelirse video telefondan kaldırılır (API ile silinemiyor).
+Akış: tarama günde 1-2 kez (sabah ve öğleden sonra) → en iyi aday hazırlanıp videoyla birlikte hesap sahibine
+(diğer 2 aday kısa notta) → onay → hesap sahibi paylaşır → yayından sonra 2 hafta boyunca her gün `--yasak-takip` (yasaklar olaydan günler sonra gelebiliyor;
+Narin'de kayboluştan 8 gün sonra). Yasak gelirse hesap sahibine hemen yazılır, video kaldırılır.
 
 Rapor her olay için şunu verir: temsilî başlık, puan dökümü (uygunluk, kaç kaynak yazdı, Google Trends,
 tazelik, konu dışı cezası), tür (kayıp, mucize, kahramanlık, gizem, suç, kaza, tarih, hayvan),
@@ -103,8 +103,8 @@ Farklar:
   (*"Evine giderken trende katledilen Ukraynalı kız"*, *"10 saat aranan çocuk kamyonet kasasında uyurken bulundu"*).
   Sadece isim ya da "X olayı" yazma.
 - **Sabit yorum:** kronoloji + "Resmi açıklamaya göre..." + kaynak adı + tarih.
-  Gelişme olursa `episode.yaml`'da metnin en üstüne "GÜNCELLEME 12.10: ..." eklenir, `python -m wojak paket` ile
-  yeni metin hesap sahibine gönderilir; o da Instagram açıklamasını (⋯ → Düzenle) ve YouTube'daki sabit yorumu düzenler.
+  Gelişme olursa `episode.yaml`'da metnin en üstüne "GÜNCELLEME 12.10: ..." eklenir, `python -m wojak paket episodes/<id>`
+  (teslim/<id>/metinler de güncellenir) ile yeni metin hesap sahibine gönderilir; o da Instagram açıklamasını (⋯ → Düzenle) ve YouTube'daki sabit yorumu düzenler.
 - **Devam videosu:** büyük gelişmede ikinci video ("Efe'nin bulunduğu an" gibi) — seri izleyici getirir.
 
 ## 5. Yayından önce kontrol listesi

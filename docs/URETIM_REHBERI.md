@@ -28,7 +28,7 @@ olayları puanlar; `--taslak N` ile bölüm taslağı açar. Hangi olay, ne kada
 
 - En az **2 bağımsız kaynak** (Vikipedi + haber sitesi / resmi açıklama). `sources:` alanına yaz.
 - Tarih, yer, isim, sayı (kaç kişi, kaç yaşında) kontrolü. Efsanelerde "iddiaya göre", "anlatılana göre" kullan.
-- Sabit yorumu bu aşamada yaz (150-300 kelime). Örnek üslup: `data/olay_metinleri.md`.
+- Hikâye metnini (`pinned_comment`) bu aşamada yaz (150-250 kelime, ≤ ~1.950 karakter; Instagram'da açıklama olur). Örnek üslup: `data/olay_metinleri.md`.
 
 ## 3. Senaryo — episode.yaml
 

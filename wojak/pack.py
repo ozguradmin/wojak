@@ -17,7 +17,8 @@ from . import censor
 from .episode import Episode
 
 DEFAULT_TAGS = ["#wojak", "#tarihselwojak", "#keşfet", "#olay", "#gizem"]
-LIMITS = {"instagram": 2200, "youtube_title": 100, "youtube_desc": 5000, "tiktok": 4000}
+LIMITS = {"instagram": 2200, "instagram_tags": 5, "youtube_title": 100, "youtube_desc": 5000, "tiktok": 4000}
+BRAND_TAGS = ["#tarihselwojak", "#wojak"]
 
 
 def hashtags(ep: Episode, n: int = 8) -> str:
@@ -27,6 +28,12 @@ def hashtags(ep: Episode, n: int = 8) -> str:
         if t.lower() not in (x.lower() for x in tags):
             tags.append(t)
     return " ".join(tags[:n])  # IG: az ve alakalı hashtag daha iyi
+
+
+def instagram_tags(ep: Episode) -> str:
+    """Instagram gönderi başına en fazla 5 hashtag kabul ediyor (Aralık 2025'ten beri): 3 konu + 2 marka."""
+    own = [t for t in hashtags(ep, 20).split() if t.lower() not in BRAND_TAGS]
+    return " ".join(own[:LIMITS["instagram_tags"] - len(BRAND_TAGS)] + BRAND_TAGS)
 
 
 def _plain_title(title: str) -> str:
@@ -41,25 +48,33 @@ def texts(ep: Episode) -> dict[str, str]:
     caption = censor.metin(ep.caption.strip())
     tags = hashtags(ep)
     head = _plain_title(title)
-    long_cap = "\n\n".join(x for x in (head, story, tags) if x)
-    yt_desc = "\n\n".join(x for x in (caption, tags + " #shorts") if x)
+    credit = f"Görseller: {ep.credits}" if ep.credits else ""  # CC BY atfı
     return {
-        "instagram_aciklama": long_cap,
+        "instagram_aciklama": "\n\n".join(x for x in (head, story, credit, instagram_tags(ep)) if x),
         "youtube_baslik": title,
-        "youtube_aciklama": yt_desc,
+        "youtube_aciklama": "\n\n".join(x for x in (caption, credit, tags + " #shorts") if x),
         "youtube_sabit_yorum": story,
-        "tiktok_aciklama": long_cap,
+        "tiktok_aciklama": "\n\n".join(x for x in (head, story, credit, tags) if x),
     }
 
 
-def warnings(t: dict[str, str]) -> list[str]:
+def warnings(t: dict[str, str], ep: Episode | None = None) -> list[str]:
     w = []
     if len(t["instagram_aciklama"]) > LIMITS["instagram"]:
         w.append(f"Instagram açıklaması {len(t['instagram_aciklama'])} karakter (sınır 2200): hikâyeyi kısalt")
+    n_tags = len(re.findall(r"(?<!\w)#\w+", t["instagram_aciklama"]))
+    if n_tags > LIMITS["instagram_tags"]:
+        w.append(f"Instagram açıklamasında {n_tags} hashtag (sınır 5)")
+    if len(t["tiktok_aciklama"]) > LIMITS["tiktok"]:
+        w.append(f"TikTok açıklaması {len(t['tiktok_aciklama'])} karakter (sınır 4000)")
     if len(t["youtube_baslik"]) > LIMITS["youtube_title"]:
         w.append(f"YouTube başlığı {len(t['youtube_baslik'])} karakter (sınır 100)")
     if not t["youtube_sabit_yorum"]:
         w.append("Hikâye metni (pinned_comment) boş")
+    if ep is not None:
+        bad = [h for h in ep.hashtags if censor.metin(h) != h]
+        if bad:
+            w.append(f"Hassas kelimeli hashtag ({', '.join(bad)}): sansürlenemez, çıkar")
     return w
 
 
@@ -67,7 +82,7 @@ def _block(title: str, body: str, note: str = "") -> list[str]:
     return [f"### {title}" + (f" — {note}" if note else ""), "", "```", body or "(boş)", "```", ""]
 
 
-def write(ep: Episode, out_dir: Path, video: Path | None = None) -> Path:
+def write(ep: Episode, out_dir: Path, video: Path | None = None, denetim: list[str] | None = None) -> Path:
     t = texts(ep)
     tdir = out_dir / "metinler"
     tdir.mkdir(parents=True, exist_ok=True)
@@ -78,10 +93,14 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None) -> Path:
     lines = [f"# {ep.id} — paylaşım paketi", "",
              f"Süre: {ep.duration:.1f} sn · {len(ep.scenes)} sahne"
              + (f" · video: `{video.name}`" if video else "") + " · kapak: `kapak.jpg`", ""]
-    for w in warnings(t):
+    for w in warnings(t, ep) + [f"Denetim: {d}" for d in (denetim or [])]:
         lines += [f"> ⚠️ {w}", ""]
+    if (out_dir / f"{ep.id}_dolgu.mp4").exists():
+        lines += [f"Ek: `{ep.id}_dolgu.mp4` + `kapak_dolgu.jpg`: siyah bantlar bulanık arka planla dolu sürüm. Kenarlık "
+                  "A/B testi için Instagram'da **deneme reel** olarak paylaşılabilir (KONSEPT §3).", ""]
     lines += ["## Instagram Reels", ""]
-    lines += _block("Açıklama (başlık + hikâye + hashtag)", t["instagram_aciklama"], f"{n['instagram_aciklama']}/2200")
+    lines += _block("Açıklama (başlık + hikâye + en fazla 5 hashtag)", t["instagram_aciklama"],
+                    f"{n['instagram_aciklama']}/2200")
     lines += ["## YouTube Shorts", ""]
     lines += _block("Başlık", t["youtube_baslik"], f"{n['youtube_baslik']}/100")
     lines += _block("Açıklama", t["youtube_aciklama"])
@@ -90,8 +109,10 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None) -> Path:
     lines += ["## TikTok (isteğe bağlı)", ""]
     lines += _block("Açıklama", t["tiktok_aciklama"], f"{n['tiktok_aciklama']}/4000")
     ai = ("- [ ] **Yapay zekâ etiketi:** videoda fotogerçekçi yapay zekâ görseli var → Instagram'da "
-          "\"Yapay zekâ etiketi ekle\", YouTube'da \"Değiştirilmiş veya yapay içerik: Evet\"") if ep.ai_generated else \
-         "- [ ] Yapay zekâ sorusu: \"Hayır\" (wojak çizimi gerçekçi değil; gerçek fotoğraflar gerçek)"
+          "\"Yapay zekâ etiketi ekle\", YouTube'da \"Değiştirilmiş veya yapay içerik: Evet\", TikTok'ta "
+          "\"Yapay zekâ ile oluşturulan içerik\" açık") if ep.ai_generated else \
+         ("- [ ] Yapay zekâ sorusu: \"Hayır\" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi "
+          "sayılmaz)")
     lines += [
         "## Yükleme kontrol listesi", "",
         "- [ ] Saat: **17:00-21:00** (altın dönemde 21:00 sonrası paylaşımlar ~%35 daha az izlendi)",

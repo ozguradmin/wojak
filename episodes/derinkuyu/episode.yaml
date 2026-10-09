@@ -79,11 +79,13 @@ pinned_comment: |
 
   Sizce yerin altında aylarca yaşayan binlerce insan en çok neyden korkuyordu?
 
+credits: "Flickr CC BY 2.0 — Minamie's Photo, VSmithUK, amitd, McFlickr"
+
 sources:
   - https://en.wikipedia.org/wiki/Derinkuyu_underground_city
   - https://www.haberturk.com/binlerce-insan-yerin-18-kat-altina-saklandi-dunyanin-en-buyuk-yeralti-sehri-derinkuyu-yu-insa-ettiren-o-buyuk-korku-neydi-3899406
   - "Görseller (Flickr, CC BY 2.0): derinkuyu_sokak.jpg — Minamie's Photo; karanlik_oda.jpg, yeralti_oda_turuncu.jpg, yeralti_oda_lamba.jpg — VSmithUK; gercek_kesit_haritasi.jpg — amitd; gercek_tas_kapi.jpg — McFlickr"
 
 notes: |
-  CC BY görseller: paylaşımda açıklamaya "Görseller: Flickr CC BY — VSmithUK, amitd, McFlickr, Minamie's Photo" eklenebilir.
+  CC BY görsel atfı 'credits' alanından açıklamalara otomatik eklenir.
   Rakamlar kaynaklara göre değişiyor (derinlik 50-85 m, kapasite 20-50 bin) — metinde aralık kullanıldı.

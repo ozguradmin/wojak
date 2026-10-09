@@ -68,9 +68,13 @@ caption: |
 hashtags: [olay, gizem]
 
 pinned_comment: |
-  <Olay adı>, <yıl>'da <yer>'de yaşanan ... (150-300 kelime, kronolojik, isim/tarih/yer net,
-  hassas kelimeler otomatik sansürlenir, son satır izleyiciye soru)
+  <Olay adı>, <yıl>'da <yer>'de yaşanan ... (150-250 kelime, ≤ ~1.950 karakter: Instagram'da açıklamanın
+  kendisi olur; kronolojik, isim/tarih/yer net, hassas kelimeler otomatik sansürlenir, son satır izleyiciye soru)
 
-sources:
+# CC BY (ve BY-SA) görseller atıf ister: açıklamalara "Görseller: ..." olarak eklenir
+credits: ""             # ör. "Wikimedia Commons CC BY-SA 4.0 — Kullanıcı1; Flickr CC BY 2.0 — Kullanıcı2"
+ai_generated: false     # fotogerçekçi yapay zekâ görseli (ör. gorsel_uret arkaplan) varsa true -> etiket hatırlatması
+
+sources:                # doğrulama + görsel kaynak/lisans sayfaları (paylaşılmaz)
   - <kaynak linki 1>
   - <kaynak linki 2>
