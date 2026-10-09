@@ -100,7 +100,11 @@ Altın dönem konu türüne göre medyan izlenme (47 video, elle etiketlendi):
 
 ### 2.8 Gündem yakalama
 Pegasus "yardım edin" sesi (olaydan 4 gün sonra, 705K), Erzincan maden (2 gün sonra, 689K),
-Narin Güran (6 gün sonra, 564K), Iryna Zarutska (3 hafta sonra, **1.42M** — 2025'in tek büyük hiti).
+Narin Güran (6 gün sonra, 564K, 12x), Kayseri'de tekerlekli sandalyeli kızın dileği (aynı gün, 504K, 10.7x),
+Iryna Zarutska (görüntülerin yayınlanmasından 7 gün sonra, **1.42M**, 14.8x). Patlayanların hepsi gündemin
+son dalgasından 0-7 gün içinde; 10 günden geç yayınlananların hiçbiri 2x yapmadı. Ama hız tek başına yetmez:
+adı bilinen tek bir masum insan + tek bir ironik an + herkesin gördüğü bir görüntü şart.
+Ayrıntı, seçim kuralları ve hukuk: [`GUNDEM.md`](GUNDEM.md).
 
 ---
 
@@ -165,7 +169,7 @@ Başlık ve sabit yorum `wojak.censor.metin()` ile otomatik sansürlenir.
 
 ## 6. Ses
 - Gerilim/korku tonunda **tek parça** müzik + kesmelerde vuruş efektleri.
-- Instagram'da uygulama içi trend ses tercih edilir (bkz. `URETIM_REHBERI.md` > 5).
+- Varsayılan: kanalın **imza müziği** (`assets/music/imza_gece_vals.mp3`, özgün, hakkı bize ait). Her videoda aynı ses = tanınan kanal sesi. Bkz. `URETIM_REHBERI.md` > 5.
 
 ## 7. Yayın ritmi
 - Altın dönem: **haftada ~3.8 video**. Hedef: haftada en az 3, ideal günde 1.

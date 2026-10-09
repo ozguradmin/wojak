@@ -28,7 +28,8 @@ Notlar:
   * API ile yorum SABİTLENEMEZ (Meta API'sinde yok). Yorum otomatik yazılır; telefondan
     yoruma uzun bas (Android) / sola kaydır (iOS) -> raptiye.
   * Instagram Login yolunda video herkese açık bir HTTPS adresinde olmalı (Meta oradan indirir).
-  * Uygulama içi trend müzik API ile eklenemez; trend ses istiyorsan elle yükle.
+  * Instagram müzik kütüphanesinden ses eklemek (Audio API, audio_configuration) yalnızca Facebook
+    Login yolunda var. Varsayılan: videoya gömülü imza müzik (orijinal ses).
 """
 
 from __future__ import annotations

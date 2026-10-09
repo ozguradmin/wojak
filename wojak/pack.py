@@ -50,7 +50,7 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None) -> Path:
         "## Yükleme kontrol listesi",
         "",
         "- [ ] Kapak: `kapak.jpg` (Reels'te 'Kapağı düzenle' > galeriden ekle)",
-        "- [ ] Ses: varsa Instagram içi trend sesi ekle; videodaki müziği %10-20'ye indir",
+        "- [ ] Ses: videoda kanalın imza müziği var (orijinal ses). Trend ses eklenecekse hesap Creator olmalı, video sesini %20-30'a indir",
         "- [ ] Paylaştıktan sonra ilk 1 dakika içinde sabit yorumu yaz ve sabitle",
         "- [ ] YouTube Shorts'a da aynı başlıkla yükle; yorumu orada da sabitle",
         "- [ ] TikTok'a da aynı başlıkla yükle (aynı video, filigran yok)",

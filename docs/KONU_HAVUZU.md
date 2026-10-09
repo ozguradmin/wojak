@@ -73,11 +73,11 @@ Mizah yok. Hassas kelimeler sansürlü. Yeni/yargısı süren davalarda sadece k
 | | Desmond Doss | Eline silah almadan 75 askeri kurtaran sıhhiyeci |
 | | 1914 Noel Ateşkesi | Düşman askerlerin siperden çıkıp futbol oynadığı gün |
 
-## F. Gündem kuralı
+## F. Gündem
 
-Türkiye gündemine düşen trajik/gizemli olay → **1-7 gün içinde** yap (altın dönem verisi).
-Kontrol: resmi açıklama var mı, aile istismar ediliyor mu, çocuk mağdur kimliği gizli mi?
-Şüphedeysen yapma.
+Güncel olaylar bu listeye yazılmaz; her gün `python tools/gundem.py` ile taranır.
+Kurallar: [`GUNDEM.md`](GUNDEM.md). **Gündem kancalı eski hikâyeler** (yıldönümü, yeni açılan belge,
+yeni film/dizi) en güçlü grup: bu listedeki bir konu gündeme düşerse öne al.
 
 ## Seri fikirleri (düzenli izleyici için)
 

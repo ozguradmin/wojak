@@ -7,9 +7,9 @@ Midjourney vb.) üretmek gerekirse aşağıdakileri kopyala. **İngilizce prompt
 
 | Model | Şeffaf PNG | Not |
 |---|---|---|
-| OpenAI `gpt-image-1.5` / `gpt-image-1` | **Evet** (`background=transparent`) | En pratik. Referans görselle stil kopyalama iyi. |
+| OpenAI `gpt-image-2.5-flare` / `-sunburst` (varsayılan) | **Evet** (`background=transparent`) | En pratik, orta kalite dikey görsel ≈ $0.01. Referansla stil eşleme için sunburst. (`gpt-image-1` 23.10.2026, `gpt-image-1.5` 01.12.2026'da kapanıyor) |
 | Ideogram 3.0 | Evet (ayrı uç nokta) | Alternatif. |
-| Gemini "Nano Banana" (`gemini-2.5-flash-image`) | Hayır | Beyaz zeminde üretilir, `tools/cutout.py` ile kesilir (wojak'ın siyah konturu sayesinde temiz). |
+| Gemini `gemini-nano-banana-2.1` | Hayır | Düz **yeşil** zeminde üretilir, `tools/cutout.py` ile kesilir (beyaz zemin wojak'ın beyaz yüzüyle karışır). `gemini-2.5-flash-image` kullanımdan kalktı. |
 | Flux (Replicate/fal) + wojak LoRA | Hayır | `fal/Wojak-Kontext-Dev-LoRA`, `marckohlbrugge/flux-wojak-v2` — stil en sadık; sonra arka plan kesimi. |
 
 Anahtar tanımı: cloud environment ayarlarına `OPENAI_API_KEY` veya `GEMINI_API_KEY` ortam değişkeni.
@@ -25,6 +25,8 @@ from the chest up, body cut off at the bottom edge, head fully visible, facing {
 {KARAKTER TARİFİ}. Expression: {DUYGU}. No text, no letters, no watermark, no frame,
 no ground shadow, nothing else in the image. Transparent background.
 ```
+
+(Gemini'de son cümle yerine: `Plain flat pure green (#00FF00) background, no gradient.`)
 
 İpuçları:
 - **Referans ver:** kütüphaneden benzer bir wojak PNG'sini referans olarak eklemek stili sabitler

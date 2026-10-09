@@ -2,6 +2,9 @@
 id: derinkuyu
 title: "Evini tamir ederken duvarın arkasında bir şehir buldu"
 
+# Kanalın imza müziği (tools/make_music.py ile üretildi, hakkı bize ait)
+music: {file: imza_gece_vals.mp3, start: 0, volume: 0.7, fade_out: 0.3}
+
 scenes:
   # 1) Dramatik ironi: sıradan bir tadilat cümlesi.
   - type: dialog
@@ -11,7 +14,7 @@ scenes:
     chars:
       - {img: koylu_kasketli_biyikli, side: right, height: 0.6, flip: true}
     text: "Şu duvarı yıkıp evi biraz genişleteyim"
-    sfx: [{file: drone, volume: 0.8}]
+    sfx: [{file: drone, volume: 0.4}]
 
   # 2) Keşif anı: karanlık + sarsıntı.
   - type: dialog

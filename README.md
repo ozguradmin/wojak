@@ -13,6 +13,8 @@
 | [`docs/URETIM_REHBERI.md`](docs/URETIM_REHBERI.md) | Konudan paylaşıma adım adım üretim |
 | [`docs/KONU_HAVUZU.md`](docs/KONU_HAVUZU.md) | Yapılmamış konular (öncelikli) |
 | [`docs/PROMPTLAR.md`](docs/PROMPTLAR.md) | Wojak/arka plan görsel üretim promptları |
+| [`docs/GUNDEM.md`](docs/GUNDEM.md) | Güncel olay oyun kitabı: seçim, hız, uyarlama, hukuk, kontrol listesi |
+| [`docs/GEREKENLER.md`](docs/GEREKENLER.md) | **Hesap sahibinin yapacakları:** Instagram token, API anahtarı, müzik, kararlar (adım adım) |
 | [`data/videos.csv`](data/videos.csv) | Tüm videolar: tarih, süre, izlenme, beğeni, yorum |
 | [`data/olay_metinleri.md`](data/olay_metinleri.md) | Hesabın sabit "olay" yorumları (üslup örnekleri) |
 
@@ -42,7 +44,7 @@ python -m wojak render episodes/yeni-olay      # out/yeni-olay/: mp4 + kapak.jpg
 | [`episodes/derinkuyu`](episodes/derinkuyu/episode.yaml) | Türkiye gizemi | [`ornekler/derinkuyu.mp4`](ornekler/derinkuyu.mp4) |
 | [`episodes/dyatlov-gecidi`](episodes/dyatlov-gecidi/episode.yaml) | Dünya gizemi | [`ornekler/dyatlov-gecidi.mp4`](ornekler/dyatlov-gecidi.mp4) |
 
-Not: örnekler müziksiz (yalnızca sentezlenmiş efektler). Paylaşırken trend ses eklenmeli.
+Örneklerde kanalın imza müziği (`assets/music/imza_gece_vals.mp3`, burada üretildi, hakkı bize ait) ve sentezlenmiş efektler var.
 
 ## Ne yapar?
 
@@ -64,7 +66,10 @@ episode.yaml ──► sahne kompozisyonu (Pillow) ──► kare kare animasyon
 |---|---|
 | `tools/wojak_lib.py` | 10.378 şeffaf wojak PNG'si (HF `clayshoaf/Wojaks` = wojakparadise arşivi): ara, önizle, indir |
 | `tools/cutout.py` | Beyaz/düz zeminli wojak görselini şeffaf PNG'ye çevir |
-| `tools/gorsel_uret.py` | Yapay zekâ ile karakter/arka plan (OpenAI `gpt-image-1.5` şeffaf PNG, Gemini) |
+| `tools/gorsel_uret.py` | Yapay zekâ ile karakter/arka plan (OpenAI `gpt-image-2.5-flare` şeffaf PNG, Gemini `nano-banana-2.1`) |
+| `tools/gundem.py` | Gündem tarayıcı: Türkiye haber akışlarından kanala uygun güncel olaylar, `--taslak N` ile bölüm taslağı |
+| `tools/ig_yayinla.py` | Instagram'a Reels yayını (resmi API), hikâye yorumunu yazma, token yenileme |
+| `tools/make_music.py` | Kanalın imza müziğini (ürkütücü müzik kutusu valsi) sentezle |
 | `tools/bg_ara.py` | Telifsiz arka plan arama/indirme (Openverse) |
 | `tools/make_sfx.py` | Ses efektlerini sentezle |
 | `tools/yt_arastir.py` | YouTube kopyasından performans verisi, kapaklar, yorumlar |
@@ -77,7 +82,8 @@ episode.yaml ──► sahne kompozisyonu (Pillow) ──► kare kare animasyon
 | Değişken | Ne için |
 |---|---|
 | `OPENAI_API_KEY` veya `GEMINI_API_KEY` | Görsel üretim (`tools/gorsel_uret.py`) |
-| `IG_SESSIONID` (+ ops. `IG_CSRFTOKEN`, `IG_DS_USER_ID`) | Instagram verisi (`tools/ig_fetch.py`) — **ikincil hesap** çerezi |
+| `IG_ACCESS_TOKEN` (+ ops. `IG_USER_ID`) | Instagram'a yayın ve istatistik (`tools/ig_yayinla.py`) — kurulum: `docs/GEREKENLER.md` |
+| `IG_SESSIONID` (ops.) | Eski yöntem: çerezle istatistik (`tools/ig_fetch.py`) — token varsa gerekmez, **ikincil hesap** çerezi |
 
 ## Araştırma ortamı notları
 

@@ -3,6 +3,9 @@
 id: dyatlov-gecidi
 title: "Dyatlov Geçidi olayı (Olayı yorumlara yazdım) ⛔️"
 
+# Kanalın imza müziği (tools/make_music.py ile üretildi, hakkı bize ait)
+music: {file: imza_gece_vals.mp3, start: 0, volume: 0.7, fade_out: 0.3}
+
 scenes:
   # 1) KANCA: sıradan, masum bir an. İzleyici "bir şey olacak" hissini alır.
   - type: dialog
@@ -12,7 +15,7 @@ scenes:
     chars:
       - {img: sovyet_yuruyuscu_erkek, side: right, height: 0.60}
     text: "Bu gece dağın yamacında kamp kuralım, sabah devam ederiz"
-    sfx: [{file: drone, volume: 0.9}]
+    sfx: [{file: drone, volume: 0.4}]
 
   # 2) GERİLİM: gece, belirsiz tehdit. Kısa replik + sarsıntı.
   - type: dialog
@@ -87,5 +90,4 @@ sources:
   - "Görseller: orman_gece.jpg ve cadir_gece.jpg rawpixel CC0; gercek_cadir_1959.jpg Wikimedia Commons (Dyatlov_Pass_incident_02.jpg)"
 
 notes: |
-  Müzik eklenmedi (drone efekti altlık). Paylaşırken Instagram'da trend bir
-  gerilim/korku sesi eklenmeli; bkz. docs/URETIM_REHBERI.md > Ses.
+  Müzik: kanalın imza valsi (assets/music/imza_gece_vals.mp3).

@@ -20,10 +20,9 @@ Kaynak: `docs/KONU_HAVUZU.md` + gündem. Bir konuyu seçmeden önce 5 soruluk fi
 | Gerçek fotoğrafı / mekânı bulunabilir mi? | Kanıt sahnesi formatın yarısı. |
 | Kanalda daha önce yapıldı mı? | `data/videos.csv` başlıklarında ara. |
 
-**Gündem yakalama:** Türkiye'de gündem olan trajik/gizemli olaylar 1-7 gün içinde yapılırsa çok güçlü
-(Pegasus kargo sesi: olaydan 4 gün sonra → 705K; Erzincan maden: 2 gün sonra → 689K).
-Ama **taze ve acılı olaylarda** (kayıp çocuk, yeni cinayet) aileye saygı: gerçek isim ve fotoğraf
-yalnızca kamuya mal olmuş haber kaynaklarından; spekülasyon yok, mizah yok.
+**Gündem:** `python tools/gundem.py` her gün Türkiye haber akışlarını tarar ve kanala uygun güncel
+olayları puanlar; `--taslak N` ile bölüm taslağı açar. Hangi olay, ne kadar hızlı, hangi kırmızı çizgiler:
+[`docs/GUNDEM.md`](GUNDEM.md).
 
 ## 2. Araştırma ve doğrulama
 
@@ -97,15 +96,18 @@ Kurbanın/kişinin kamuya açık fotoğrafı, haber ekran görüntüsü, gazete 
 
 ## 5. Ses
 
-Yorumlardan: *"Ulan bu müzik beni videodan daha çok ürpertiyor"*. Ses formatın yarısı.
+Yorumlardan: *"Ulan bu müzik beni videodan daha çok ürpertiyor"*, *"videonun %90 korkutması zaten müzikten geliyor"*.
+Ses formatın yarısı.
 
-- **En iyi yol:** videoyu müziksiz (sadece efektli) render et, **Instagram'da yüklerken uygulama
-  içinden trend bir gerilim/korku sesi ekle** (trend ses = keşfet avantajı, telif sorunu yok).
-  Videodaki efektler kalsın, uygulamada orijinal ses seviyesini %20-30'a çek.
-- YouTube/TikTok için: `assets/music/` içine telifsiz gerilim müziği koy ve `music:` alanını doldur
-  (bkz. `assets/music/README.md`).
-- Efektler (`assets/sfx`, sentezlenmiş, telifsiz): `drone` (altlık), `hit` (kesme), `boom` (kart),
-  `heartbeat` (gerilim), `shutter` (gerçek fotoğraf), `whoosh`, `riser`, `static`.
+- **Varsayılan: kanalın imza müziği** `imza_gece_vals.mp3` (`tools/make_music.py` ile üretilen özgün,
+  ürkütücü müzik kutusu valsi; hakkı bize ait). Her bölümde aynı müzik = tanınan bir "kanal sesi".
+  `music: {file: imza_gece_vals.mp3, volume: 0.7}`
+- Altın dönemdeki ses büyük ihtimalle başkasına ait bir parçaydı ("Phantomimes"); dosyaya gömülmez.
+- Instagram'da uygulamadan trend ses eklemek istersen hesap **Creator** olmalı; videodaki sesi %20-30'a çek.
+  Bunun keşfete etkisi resmi olarak doğrulanmış değil; trial reels ile A/B test edilebilir.
+- Ayrıntı ve telifsiz kaynak listesi: `assets/music/README.md`.
+- Efektler (`assets/sfx`, sentezlenmiş, telifsiz): `drone` (altlık, müzikle birlikte 0.3-0.4),
+  `hit` (kesme), `boom` (kart), `heartbeat` (gerilim), `shutter` (gerçek fotoğraf), `whoosh`, `riser`, `static`.
 
 ## 6. Render ve kontrol
 
