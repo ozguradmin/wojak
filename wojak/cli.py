@@ -7,6 +7,8 @@
     python -m wojak frames episodes/<bolum>            # her sahneden bir kare (kontrol için)
     python -m wojak check episodes/<bolum>             # YAML doğrulama + süre özeti
     python -m wojak new <bolum-id>                     # şablondan yeni bölüm klasörü
+    python -m wojak paket episodes/<bolum>             # sadece paylaşım metinlerini yeniden yaz
+    python -m wojak teslim episodes/<bolum>            # video + kapak + metinler -> teslim/<bolum>/ (onaya)
 """
 
 from __future__ import annotations
@@ -78,6 +80,42 @@ def cmd_frames(a) -> None:
     print(f"-> {out_dir}/serit.jpg")
 
 
+def cmd_paket(a) -> None:
+    ep = episode.load(a.episode)
+    out_dir = config.OUT / ep.id
+    out_dir.mkdir(parents=True, exist_ok=True)
+    mp4 = out_dir / f"{ep.id}.mp4"
+    print(f"paket -> {pack.write(ep, out_dir, mp4 if mp4.exists() else None)}")
+    for w in pack.warnings(pack.texts(ep)):
+        print(f"  ⚠ {w}")
+
+
+def cmd_teslim(a) -> None:
+    """Onaya gidecek her şeyi tek klasörde toplar (repoda kalır, hesap sahibi GitHub'dan da indirebilir)."""
+    ep = episode.load(a.episode)
+    src = config.OUT / ep.id
+    mp4 = src / f"{ep.id}.mp4"
+    if not mp4.exists():
+        sys.exit(f"Önce render: python -m wojak render {a.episode}")
+    _denetle(ep)
+    pack.write(ep, src, mp4)
+    dst = config.ROOT / "teslim" / ep.id
+    if dst.exists():
+        shutil.rmtree(dst)
+    (dst / "metinler").mkdir(parents=True)
+    shutil.copy2(mp4, dst / mp4.name)
+    for name in ("kapak.jpg", "paylasim.md"):
+        if (src / name).exists():
+            shutil.copy2(src / name, dst / name)
+    for f in (src / "metinler").glob("*.txt"):
+        shutil.copy2(f, dst / "metinler" / f.name)
+    print(f"teslim -> {dst}")
+    for f in sorted(dst.rglob("*")):
+        if f.is_file():
+            n = f.stat().st_size
+            print(f"  {f.relative_to(dst)}  ({n / 1e6:.1f} MB)" if n > 1e5 else f"  {f.relative_to(dst)}  ({n / 1e3:.1f} KB)")
+
+
 def cmd_new(a) -> None:
     dst = config.ROOT / "episodes" / a.id
     if dst.exists():
@@ -98,7 +136,7 @@ def main(argv=None) -> None:
     p.add_argument("--preview", action="store_true")
     p.add_argument("--dolgu", action="store_true", help="üst/alt bantları karenin bulanık hâliyle doldur")
     p.set_defaults(fn=cmd_render)
-    for name, fn in (("check", cmd_check), ("frames", cmd_frames)):
+    for name, fn in (("check", cmd_check), ("frames", cmd_frames), ("paket", cmd_paket), ("teslim", cmd_teslim)):
         p = sp.add_parser(name)
         p.add_argument("episode")
         p.set_defaults(fn=fn)

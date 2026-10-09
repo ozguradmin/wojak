@@ -103,8 +103,8 @@ Farklar:
   (*"Evine giderken trende katledilen Ukraynalı kız"*, *"10 saat aranan çocuk kamyonet kasasında uyurken bulundu"*).
   Sadece isim ya da "X olayı" yazma.
 - **Sabit yorum:** kronoloji + "Resmi açıklamaya göre..." + kaynak adı + tarih.
-  Gelişme olursa `episode.yaml`'da metnin en üstüne "GÜNCELLEME 12.10: ..." ekle → `python tools/ig_yayinla.py yorum
-  episodes/<id>` (API yorum düzenlemiyor: yeni yorum yazılır, eskisi silinir) → telefondan yeniden sabitle.
+  Gelişme olursa `episode.yaml`'da metnin en üstüne "GÜNCELLEME 12.10: ..." eklenir, `python -m wojak paket` ile
+  yeni metin hesap sahibine gönderilir; o da Instagram açıklamasını (⋯ → Düzenle) ve YouTube'daki sabit yorumu düzenler.
 - **Devam videosu:** büyük gelişmede ikinci video ("Efe'nin bulunduğu an" gibi) — seri izleyici getirir.
 
 ## 5. Yayından önce kontrol listesi
@@ -129,15 +129,15 @@ Maddelerin tamamı "evet" olmadan güncel olay yayınlanmaz. `python -m wojak ch
 8. [ ] **Afet ve kamu düzeni:** Sayılar ve tehlike bilgisi yalnızca AFAD/bakanlık/valilikten, saatiyle. "Gizleniyor",
    "yeni felaket geliyor" iddiası yok (TCK 217/A — anonim hesap cezayı artırır).
 9. [ ] **Ton ve replik:** Wojak çizimi kanalın anlatım dili, ama replikte ve açıklamada espri, emoji, meme kalıbı yok
-   (taze trajedide yapılıp yapılmayacağı hesap sahibinin kararı: GEREKENLER §7). Replik ya doğrulanmış bir alıntı ya da kimseyi suçlamayan nötr bir cümle.
+   (taze trajedide yalnızca kurtarma/mucize/iyilik açısı: GEREKENLER §5). Replik ya doğrulanmış bir alıntı ya da kimseyi suçlamayan nötr bir cümle.
    **Yakın tarihli kurbana uydurma "son söz" ya da kendi ölümünü anlatan replik verilmez** — kurtaran, arayan, yetkili
    ya da dilek-gerçekleşme yapısı kullanılır.
 10. [ ] **Özgünlük ve yapay zekâ:** Haber ekran görüntüsü tek içerik değil (Instagram bunu "özgün olmayan" sayıyor);
     kurgu ve kanıt sahnesi bize ait. Fotogerçekçi yapay zekâ görseli varsa `ai_generated: true` (etiket otomatik).
 11. [ ] **Yorumlar:** Gizli kelimeler (Hidden Words) filtresi açık; ilk 2 saat yorumlar izlenip isim ifşası, hakaret,
     linç, nefret içerenler siliniyor (yorumlardan hesap sahibi de sorumlu tutulabiliyor).
-12. [ ] **Düzeltme ve kayıt:** Kaynak linkleri arşivlendi. Gelişme/düzeltme olursa güncellenmiş yorum `ig_yayinla.py yorum`
-    ile yeniden yazılıp sabitlenir; linç riskinde `ig_yayinla.py yorumlar --kapat`. Yasak ya da aile talebinde video
+12. [ ] **Düzeltme ve kayıt:** Kaynak linkleri arşivlendi. Gelişme/düzeltme olursa güncel metni gönderirim, hesap sahibi
+    açıklamayı/sabit yorumu düzenler; linç riskinde yorumları kapatır. Yasak ya da aile talebinde video
     telefondan kaldırılır. Yayından sonra 2 hafta `gundem.py --yasak-takip`.
 
 

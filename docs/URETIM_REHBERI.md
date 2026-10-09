@@ -130,14 +130,16 @@ Kontrol listesi:
 
 ## 7. Paylaşım
 
-`out/<id>/paylasim.md` içinde hazır: başlık, açıklama, sabit yorum, hashtag, kontrol listesi.
+Paylaşımı **hesap sahibi** yapar. Ben `python -m wojak teslim episodes/<id>` ile `teslim/<id>/` klasörünü
+(video, kapak, `paylasim.md`, `metinler/*.txt`) hazırlayıp sohbette dosya olarak gönderirim; onaydan sonra paylaşılır.
+Platform metinleri: Instagram açıklaması = başlık + hikâyenin tamamı + hashtag; YouTube = başlık + kısa açıklama,
+hikâye sabit yorumda.
 
 - **Saat:** 17:00-21:00 TR (altın dönemde 17-21 arası paylaşımlar medyan 729-812K, 21-24 arası 519K; izleyici videoyu gece "gece shorts" olarak tüketiyor ama dağıtım akşamdan başlamalı).
 - **Sıklık:** altın dönemde ~2-3 günde bir video vardı. En az haftada 3, ideali günde 1.
-- **İlk 1 dakika:** sabit yorumu yaz ve sabitle. Videonun bütün mekanizması buna dayanıyor
-  ("Olayı yorumlara yazdım"). `tools/ig_yayinla.py` yorumu otomatik yazar; **sabitleme elle**
-  (API'de yok). Kurulum: [`GEREKENLER.md`](GEREKENLER.md).
-- Aynı videoyu **YouTube Shorts** ve **TikTok**'a da yükle (aynı başlık, aynı sabit yorum).
+- **YouTube'da ilk dakika:** hikâye yorumunu yaz ve sabitle (videonun mekanizması buna dayanıyor).
+- Aynı videoyu **YouTube Shorts** ve isteğe bağlı **TikTok**'a da yükle (metinler pakette hazır).
+- Ayrıntı ve kararlar: [`GEREKENLER.md`](GEREKENLER.md).
 - İlk 1-2 saatte yorumlara cevap ver (özellikle "ben oralıyım" tipi yorumlara).
 
 ## 8. Takip

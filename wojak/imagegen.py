@@ -1,13 +1,17 @@
 """Yapay zekâ ile wojak karakteri / arka plan üretimi (isteğe bağlı).
 
 Sağlayıcılar (ortam değişkeniyle seçilir, anahtarlar ASLA repoya yazılmaz):
+  - sol    : SOL_API_KEY      hesap sahibinin OpenAI uyumlu ağ geçidi (SOL_BASE_URL, SOL_MODEL).
+                              POST /images/generations {prompt, images:[data URI]} -> data[0].b64_json.
+                              Arkada ChatGPT sohbeti açılır; şeffaflık garanti değil -> varsayılan olarak
+                              düz yeşil zemin istenir ve kesilir (WOJAK_SOL_TRANSPARENT=1 ile şeffaf istenir).
   - openai : OPENAI_API_KEY   varsayılan model gpt-image-2.5-flare (2026-10). Şeffaf PNG'yi
                               doğrudan verir (background=transparent).
   - gemini : GEMINI_API_KEY   varsayılan model gemini-nano-banana-2.1. Şeffaflık YOK -> düz yeşil
                               zeminde üretilir ve tools/cutout.py mantığıyla kesilir (beyaz zemin
                               kullanılmaz: wojak'ın yüzü de beyaz).
 
-    WOJAK_IMG_PROVIDER=openai|gemini   (boşsa hangi anahtar varsa o)
+    WOJAK_IMG_PROVIDER=sol|openai|gemini   (boşsa sırayla hangi anahtar varsa o)
     WOJAK_OPENAI_MODEL / WOJAK_GEMINI_MODEL   model adını değiştirmek için
     WOJAK_IMG_QUALITY=low|medium|high   (OpenAI; varsayılan medium — wojak çizimi için yeterli, ~4 kat ucuz)
 
@@ -29,9 +33,15 @@ from pathlib import Path
 import requests
 from PIL import Image
 
+from . import config
+
+config.load_secrets()
+
 OPENAI_MODEL = os.environ.get("WOJAK_OPENAI_MODEL", "gpt-image-2.5-flare")
 GEMINI_MODEL = os.environ.get("WOJAK_GEMINI_MODEL", "gemini-nano-banana-2.1")
-PROVIDERS = {"openai", "gemini"}
+SOL_BASE = os.environ.get("SOL_BASE_URL", "https://sol.ozgurguler.tech/v1").rstrip("/")
+SOL_MODEL = os.environ.get("SOL_MODEL", "gpt-5.6-sol-web")
+PROVIDERS = {"sol", "openai", "gemini"}
 
 # --- Prompt şablonları -------------------------------------------------------
 
@@ -72,18 +82,20 @@ def _provider() -> str:
         if p not in PROVIDERS:
             raise RuntimeError(f"WOJAK_IMG_PROVIDER geçersiz: {p} (geçerli: {sorted(PROVIDERS)})")
         return p
+    if os.environ.get("SOL_API_KEY"):
+        return "sol"
     if os.environ.get("OPENAI_API_KEY"):
         return "openai"
     if os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"):
         return "gemini"
-    raise RuntimeError("Görsel üretim anahtarı yok: OPENAI_API_KEY veya GEMINI_API_KEY tanımlayın "
+    raise RuntimeError("Görsel üretim anahtarı yok: SOL_API_KEY, OPENAI_API_KEY veya GEMINI_API_KEY tanımlayın "
                        "(cloud environment ayarlarından ortam değişkeni olarak). Bkz. docs/GEREKENLER.md")
 
 
-def _post(url: str, *, tries: int = 4, **kw) -> requests.Response:
+def _post(url: str, *, tries: int = 4, timeout: int = 300, **kw) -> requests.Response:
     """429/5xx'te üstel bekleyerek tekrar dener."""
     for k in range(tries):
-        r = requests.post(url, timeout=300, **kw)
+        r = requests.post(url, timeout=timeout, **kw)
         if r.status_code not in (429, 500, 502, 503, 504) or k == tries - 1:
             return r
         time.sleep(2 ** (k + 1))
@@ -116,6 +128,37 @@ def _openai(prompt: str, *, size: str, transparent: bool, refs: list[Path]) -> I
     if d.get("usage"):
         print(f"  [openai] {OPENAI_MODEL} kullanım: {d['usage']}")
     return Image.open(io.BytesIO(base64.b64decode(d["data"][0]["b64_json"])))
+
+
+def _transparent(prov: str) -> bool:
+    """Sağlayıcıdan gerçek şeffaf zemin istenecek mi? (Yoksa düz yeşil zemin istenir ve kesilir.)"""
+    if prov == "openai":
+        return True
+    if prov == "sol":
+        return os.environ.get("WOJAK_SOL_TRANSPARENT", "0") == "1"
+    return False
+
+
+def _data_uri(p: Path) -> str:
+    return f"data:{_mime(p)};base64,{base64.b64encode(p.read_bytes()).decode()}"
+
+
+def _sol(prompt: str, *, refs: list[Path]) -> Image.Image:
+    """Hesap sahibinin ağ geçidi. Referans görseller data URI olarak (uzak URL kabul edilmiyor)."""
+    body = {"model": SOL_MODEL, "prompt": prompt, "n": 1}
+    if refs:
+        body["images"] = [_data_uri(p) for p in refs[:8]]
+    r = _post(f"{SOL_BASE}/images/generations", tries=3, timeout=400,
+              headers={"Authorization": f"Bearer {os.environ['SOL_API_KEY']}"}, json=body)
+    if r.status_code != 200:
+        hint = (" (ağ geçidi ayakta ama arkadaki ChatGPT oturumu yanıt vermiyor; sahibinin /status ile "
+                "kontrol etmesi gerekiyor)") if r.status_code == 502 else ""
+        raise RuntimeError(f"sol hata {r.status_code}: {r.text[:300]}{hint}")
+    d = r.json()
+    try:
+        return Image.open(io.BytesIO(base64.b64decode(d["data"][0]["b64_json"])))
+    except (KeyError, IndexError, TypeError) as e:
+        raise RuntimeError(f"sol yanıtında görsel yok: {str(d)[:300]}") from e
 
 
 def _gemini(prompt: str, *, refs: list[Path], aspect: str = "1:1") -> Image.Image:
@@ -161,12 +204,14 @@ def generate_character(character: str, out: Path, *, emotion: str = "worried",
     """Şeffaf arka planlı wojak karakteri üretir ve out'a kaydeder."""
     refs = refs or []
     prov = _provider()
-    transparent = prov == "openai"
+    transparent = _transparent(prov)
     prompt = character_prompt(character, emotion, facing, transparent=transparent)
     if refs:
         prompt = "Match the exact drawing style of the reference wojak image(s). " + prompt
     if prov == "openai":
         im = _openai(prompt, size="1024x1536", transparent=True, refs=refs)
+    elif prov == "sol":
+        im = _sol(prompt + " Portrait orientation (2:3).", refs=refs)
     else:
         im = _gemini(prompt, refs=refs, aspect="2:3")
     im = im.convert("RGBA")
@@ -185,8 +230,11 @@ def generate_character(character: str, out: Path, *, emotion: str = "worried",
 def generate_background(place: str, out: Path, *, time: str = "Evening",
                         mood: str = "Quiet, slightly eerie atmosphere") -> Path:
     prompt = background_prompt(place, time, mood)
-    if _provider() == "openai":
+    prov = _provider()
+    if prov == "openai":
         im = _openai(prompt, size="1088x1088", transparent=False, refs=[])
+    elif prov == "sol":
+        im = _sol(prompt, refs=[])
     else:
         im = _gemini(prompt, refs=[], aspect="1:1")
     out.parent.mkdir(parents=True, exist_ok=True)

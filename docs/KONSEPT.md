@@ -133,7 +133,7 @@ Ayrıntı, seçim kuralları ve hukuk: [`GUNDEM.md`](GUNDEM.md).
 > **Test edilecek risk:** Instagram'ın "kenarlıklı (letterbox) reel'leri daha az önerdiği" söyleniyor (resmi kaynakla
 > doğrulanamadı). Altın dönem bu formatla 700K medyan yaptı ama algoritma değişmiş olabilir. İlk haftalarda aynı bölümün
 > klasik (siyah bantlı) sürümü ile `python -m wojak render ... --dolgu` sürümünü (bantlar karenin bulanık, karartılmış
-> hâliyle dolu; görüntü kenarlıksız 9:16 sayılır) **deneme reel** (`ig_yayinla.py ... --trial`) olarak karşılaştır;
+> hâliyle dolu; görüntü kenarlıksız 9:16 sayılır) **deneme reel** (Instagram'da "Deneme reel" seçeneğiyle, hesap sahibi paylaşırken) olarak karşılaştır;
 > kazanana göre format sabitlenir.
 
 ### Zaman (12-14 sn)
@@ -182,7 +182,9 @@ güncel olaylarda `python -m wojak check` dil denetimini ayrıca çalıştırır
 - İlk cümle: *"X olayı, YYYY yılında [yer]'de yaşanan ve ... olarak bilinen bir olaydır."*
 - Kronolojik; isim, yaş, tarih, yer net. Efsanede "iddiaya göre / anlatılana göre".
 - Son satır: duygu ya da izleyiciye soru (*"Sizce o gece çadırda ne oldu?"*) → yorum sayısı.
-- Paylaşımdan sonraki **ilk dakika** içinde yazılıp sabitlenir.
+- YouTube'da paylaşımdan sonraki **ilk dakika** içinde yazılıp sabitlenir. **Instagram'da (2026-10 kararı) hikâye
+  doğrudan açıklamaya** konur (başlık + hikâye + hashtag, ≤2.200 karakter); paket bunu otomatik hazırlar.
+  Not: 2.1'deki "yorumlara iniş" sinyali Instagram'da açıklamaya kayıyor; ilk haftalarda sonuçlar izlenip karşılaştırılır.
 
 ## 6. Ses
 - Gerilim/korku tonunda **tek parça** müzik + kesmelerde vuruş efektleri.

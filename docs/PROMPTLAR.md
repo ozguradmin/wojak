@@ -7,13 +7,15 @@ Midjourney vb.) üretmek gerekirse aşağıdakileri kopyala. **İngilizce prompt
 
 | Model | Şeffaf PNG | Not |
 |---|---|---|
+| **Hesap sahibinin ağ geçidi** (`SOL_API_KEY`, varsayılan) | Garanti değil | Arkada ChatGPT görsel üretimi. Düz **yeşil** zeminde istenir ve otomatik kesilir; referans görsel (`--ref`) data URI olarak gider. |
 | OpenAI `gpt-image-2.5-flare` / `-sunburst` (varsayılan) | **Evet** (`background=transparent`) | En pratik, orta kalite dikey görsel ≈ $0.01. Referansla stil eşleme için sunburst. (`gpt-image-1` 23.10.2026, `gpt-image-1.5` 01.12.2026'da kapanıyor) |
 | Ideogram 3.0 | Evet (ayrı uç nokta) | Alternatif. |
 | Gemini `gemini-nano-banana-2.1` | Hayır | Düz **yeşil** zeminde üretilir, `tools/cutout.py` ile kesilir (beyaz zemin wojak'ın beyaz yüzüyle karışır). `gemini-2.5-flash-image` kullanımdan kalktı. |
 | ~~Flux + wojak LoRA~~ | Hayır | **Kullanma.** `fal/Wojak-Kontext-Dev-LoRA` ağırlıkları `flux1-dev-non-commercial-license` (fal'daki "commercial use" etiketi bunu değiştirmiyor; hesap gelir elde ediyor). `marckohlbrugge/flux-wojak-v2`'nin lisansı belirsiz. |
 
-Anahtar tanımı: cloud environment ayarlarına `OPENAI_API_KEY` veya `GEMINI_API_KEY` ortam değişkeni.
-**Anahtarı sohbete ya da repoya yazma.**
+Anahtar tanımı: cloud environment ayarlarına `SOL_API_KEY` (ya da yedek `OPENAI_API_KEY` / `GEMINI_API_KEY`) ortam
+değişkeni, ya da repo dışındaki `~/.config/wojak/secrets.env`.
+**Anahtarı repoya yazma.**
 
 ## Karakter şablonu
 

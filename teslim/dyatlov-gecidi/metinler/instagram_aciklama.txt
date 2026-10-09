@@ -1,25 +1,5 @@
-# dyatlov-gecidi
+Dyatlov Geçidi olayı ⛔️
 
-Süre: 12.9 sn · 6 sahne · video: `dyatlov-gecidi.mp4`
-
-## Başlık (YouTube Shorts başlığı / IG açıklamasının ilk satırı)
-
-```
-Dyatlov Geçidi olayı (Olayı yorumlara yazdım) ⛔️
-```
-
-## Instagram açıklaması
-
-```
-Dyatlov Geçidi olayı (1959)
-Olayın tamamı sabit yorumda 👇
-
-#dyatlov #gizem #çözülemeyengizemler #olay #tarih #wojak #tarihselwojak #keşfet
-```
-
-## Sabit yorum (paylaşır paylaşmaz yaz ve sabitle)
-
-```
 Dyatlov Geçidi olayı, Şubat 1959'da Sovyetler Birliği'nin Ural Dağları'nda yaşanan ve hâlâ tartışılan bir olaydır.
 
 Ural Politeknik Enstitüsü'nden 10 kişilik bir kayak-yürüyüş grubu, Igor Dyatlov liderliğinde yola çıktı. Grubun üyelerinden Yuri Yudin hastalandığı için ilk günlerde geri döndü; bu kararı hayatını kurtardı.
@@ -31,19 +11,5 @@ Ural Politeknik Enstitüsü'nden 10 kişilik bir kayak-yürüyüş grubu, Igor D
 Sovyet soruşturması *lüm nedenini "karşı konulamaz bir doğa gücü" diyerek kapattı. Yıllarca askeri test, UFO, kar adamı ve Mansi saldırısı teorileri konuşuldu. 2020'de Rusya Başsavcılığı olayın çığ sonucu yaşandığını açıkladı; 2021'de İsviçreli bilim insanları "levha çığı" ihtimalini destekleyen bir çalışma yayımladı. Ancak ailelerin ve araştırmacıların çoğu bu açıklamaya hâlâ ikna olmadı.
 
 Sizce o gece çadırda ne oldu?
-```
 
-## Yükleme kontrol listesi
-
-- [ ] Kapak: `kapak.jpg` (Reels'te 'Kapağı düzenle' > galeriden ekle)
-- [ ] Ses: varsa Instagram içi trend sesi ekle; videodaki müziği %10-20'ye indir
-- [ ] Paylaştıktan sonra ilk 1 dakika içinde sabit yorumu yaz ve sabitle
-- [ ] YouTube Shorts'a da aynı başlıkla yükle; yorumu orada da sabitle
-- [ ] TikTok'a da aynı başlıkla yükle (aynı video, filigran yok)
-- [ ] Paylaşım saati: 17:00-21:00 (altın dönem verisi: 21:00 sonrası paylaşımlar ~%35 daha az izlendi)
-
-## Kaynaklar (doğrulama için, paylaşılmaz)
-
-- https://en.wikipedia.org/wiki/Dyatlov_Pass_incident
-- Gaume & Puzrin (2021), Communications Earth & Environment — slab avalanche
-- Görseller: orman_gece.jpg ve cadir_gece.jpg rawpixel CC0; gercek_cadir_1959.jpg Wikimedia Commons (Dyatlov_Pass_incident_02.jpg)
+#dyatlov #gizem #çözülemeyengizemler #olay #tarih #wojak #tarihselwojak #keşfet
