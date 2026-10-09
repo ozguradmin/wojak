@@ -25,12 +25,12 @@ class EpisodeError(ValueError):
 class Character:
     img: Path
     side: str = "right"          # left | right | center
-    height: float = 0.62         # kare yüksekliğine oranı
+    height: float = 0.50         # kare yüksekliğine oranı (altın dönem medyanı ~%50, en fazla 0.55)
     x: float | None = None       # 0..1, verilirse side yerine kullanılır (karakterin merkezi)
     y_offset: float = 0.0        # + aşağı, - yukarı (kare oranı)
     flip: bool = False           # yalnızca bakış yönü bilinmiyorsa ya da karakter ortadaysa kullanılır
     faces: str | None = None     # görselin baktığı yön (right/left/front; sag/sol/on); yoksa data/karakter_yon.json
-    pop: bool = True             # sahne başında küçük "pop-in" animasyonu
+    pop: bool = False            # sahne başında "pop-in" (altın dönemde YOK: sabit görüntü, sert kesme)
 
 
 @dataclass
@@ -49,13 +49,13 @@ class Scene:
     chars: list[Character] = field(default_factory=list)
     text: str | None = None
     text_style: str = "outline"
-    text_y: float = 0.30         # yazı bloğunun merkezi, kare yüksekliğine oranı
-    text_size: int = 76
-    zoom: float = 1.05           # Ken Burns: sahne boyunca 1.0 -> zoom
+    text_y: float | None = None  # yazı bloğunun merkezi (kare oranı); None = konuşanın başının hemen üstü
+    text_size: int = config.DIALOG_SIZE
+    zoom: float = 1.0            # Ken Burns (altın dönemde YOK; >1 verilirse sahne boyunca yakınlaşır)
     pan: tuple[float, float] = (0.0, 0.0)  # zoom sırasında kayma yönü (-1..1)
     focus: tuple[float, float] = (0.5, 0.5)  # arka plan kare kırpılırken odak (0..1, 0..1)
     darken: float = 0.0          # 0..1 arka planı karart
-    blur: float = 0.0            # arka plan bulanıklığı (px)
+    blur: float = 1.8            # arka plan yumuşatma (px; altın dönem fotoğrafları yumuşak, karakter keskin)
     grayscale: bool = False
     shake: float = 0.0           # 0 = yok; 6-14 px dramatik sarsıntı
     flash: bool = False          # sahne başında beyaz flaş

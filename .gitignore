@@ -6,3 +6,6 @@ referans/
 *.env
 .env*
 cookies*.txt
+
+# Lisanslı fontlar (Avenir LT Std): repo herkese açık, dağıtılamaz
+assets/fonts/ozel/

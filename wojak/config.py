@@ -21,10 +21,24 @@ BOX = 1080                      # kare görsel alanı kenarı
 BOX_Y = (CANVAS_H - BOX) // 2   # 420
 FPS = 30
 
-# Orijinal videolardaki yazı tipi Poppins Bold Italic ile birebir eşleşiyor.
-FONT_DIALOG = FONTS / "Poppins-BoldItalic.ttf"
+# Orijinal videolardaki yazı: DÜZ Poppins Bold, telefon editörü gibi ~7° eğdirilmiş (iki katlı "a";
+# Poppins Bold Italic'te "a" tek katlı ve eğim 10°). Ölçüm: 223 altın dönem kapağı + 30 Instagram reel'i
+# (docs/STIL.md). Boyut ~54 px, satır aralığı 1.1x, kontur ~%9.5, gölge yok, en fazla 2 satır.
+# Kanalın gerçek fontu (hesap sahibi verdi): Avenir LT Std Bold Italic TR. Lisanslı olduğu için repoya
+# KONMAZ (repo herkese açık): assets/fonts/ozel/ altında yerel durur (.gitignore). Yoksa en yakın eşdeğer
+# kullanılır: düz Poppins Bold + 7° yapay eğim.
+FONT_AVENIR = FONTS / "ozel" / "AvenirLTStd-BoldItalic-TR.otf"
+HAS_AVENIR = FONT_AVENIR.exists()
+FONT_DIALOG = FONT_AVENIR if HAS_AVENIR else FONTS / "Poppins-Bold.ttf"
 FONT_BOLD = FONTS / "Poppins-Bold.ttf"
 FONT_CARD = FONTS / "Anton-Regular.ttf"
+DIALOG_SHEAR = 0.0 if HAS_AVENIR else 7.0   # derece (Avenir zaten italik)
+DIALOG_SIZE = 58 if HAS_AVENIR else 54
+DIALOG_PITCH = 1.10         # satır aralığı / punto
+DIALOG_STROKE = 0.095       # kontur / punto
+DIALOG_MAX_W = 880
+DIALOG_MAX_LINES = 2
+TEXT_HEAD_GAP = 45          # yazı bloğunun altı ile konuşan karakterin başı arası (px, kare ölçeğinde)
 
 WATERMARK = "tarihselwojak"
 # Sahne etiketleri ("Gerçek fotoğraf · ...", "İddia · 1965") videoda gösterilmez: hesap sahibi istemiyor

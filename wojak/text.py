@@ -50,14 +50,31 @@ def balanced_wrap(text: str, f: ImageFont.FreeTypeFont, max_w: int, max_lines: i
     return None
 
 
+def greedy_wrap(text: str, f: ImageFont.FreeTypeFont, max_w: int, max_lines: int = 4,
+                stroke: int = 0) -> list[str] | None:
+    """Telefon editörü gibi açgözlü kırma: satır dolana kadar kelime ekle (son satır kısa kalabilir)."""
+    if "\n" in text:
+        return balanced_wrap(text, f, max_w, max_lines, stroke)
+    lines: list[str] = []
+    for w in text.split():
+        if lines and _width(lines[-1] + " " + w, f, stroke) <= max_w:
+            lines[-1] += " " + w
+        else:
+            if _width(w, f, stroke) > max_w:
+                return None
+            lines.append(w)
+    return lines if len(lines) <= max_lines else None
+
+
 def fit_text(text: str, font_path, size: int, max_w: int, max_lines: int = 3,
-             stroke_ratio: float = 0.05, min_size: int = 36):
+             stroke_ratio: float = 0.05, min_size: int = 36, wrap: str = "balanced"):
     """Metni max_w içine sığdıracak en büyük punto ve satırları bulur."""
     min_size = min(min_size, size)  # istenen punto alt sınırdan küçükse en az bir kez denensin
+    wrapper = greedy_wrap if wrap == "greedy" else balanced_wrap
     while size >= min_size:
         f = font(str(font_path), size)
         stroke = max(1, round(size * stroke_ratio))
-        lines = balanced_wrap(text, f, max_w, max_lines, stroke)
+        lines = wrapper(text, f, max_w, max_lines, stroke)
         if lines is not None:
             return f, lines, stroke
         size -= 2
@@ -69,11 +86,13 @@ def fit_text(text: str, font_path, size: int, max_w: int, max_lines: int = 3,
 def text_block(text: str, *, font_path=config.FONT_DIALOG, size: int = 76, max_w: int = 820,
                max_lines: int = 3, fill=config.WHITE, stroke_fill=config.BLACK,
                stroke_ratio: float = 0.055, line_gap: float = 0.98, shadow: bool = True,
-               align: str = "center") -> Image.Image:
-    """Konturlu (beyaz dolgu + siyah kenar) yazıyı şeffaf bir RGBA katman olarak döndürür."""
-    f, lines, stroke = fit_text(text, font_path, size, max_w, max_lines, stroke_ratio)
+               align: str = "center", shear: float = 0.0, pitch: float | None = None,
+               wrap: str = "balanced", min_size: int = 36) -> Image.Image:
+    """Konturlu (beyaz dolgu + siyah kenar) yazıyı şeffaf bir RGBA katman olarak döndürür.
+    pitch: satır aralığı / punto (verilirse line_gap yerine); shear: derece cinsinden yapay italik."""
+    f, lines, stroke = fit_text(text, font_path, size, max_w, max_lines, stroke_ratio, min_size, wrap)
     asc, desc = f.getmetrics()
-    lh = round((asc + desc) * line_gap)
+    lh = round(f.size * pitch) if pitch else round((asc + desc) * line_gap)
     widths = [_width(ln, f, stroke) for ln in lines]
     pad = stroke * 2 + 12
     w = max(widths) + pad * 2
@@ -97,7 +116,18 @@ def text_block(text: str, *, font_path=config.FONT_DIALOG, size: int = 76, max_w
         out.alpha_composite(sh, (0, 3))
         out.alpha_composite(layer)
         layer = out
+    if shear:
+        layer = _shear(layer, shear)
     return layer
+
+
+def _shear(layer: Image.Image, deg: float) -> Image.Image:
+    """Yapay italik: üst kenar sağa kayar (telefon editörlerindeki 'italik' düğmesi)."""
+    import math
+    k = math.tan(math.radians(deg))
+    w, h = layer.size
+    extra = round(h * k)
+    return layer.transform((w + extra, h), Image.AFFINE, (1, k, -extra, 0, 1, 0), resample=Image.BICUBIC)
 
 
 def bubble_block(text: str, *, dark: bool = False, font_path=config.FONT_DIALOG, size: int = 60,
@@ -122,9 +152,11 @@ def bubble_block(text: str, *, dark: bool = False, font_path=config.FONT_DIALOG,
     return layer
 
 
-def card_block(text: str, *, size: int = 150, max_w: int = 960, color=config.WHITE) -> Image.Image:
-    """'Bir süre sonra' tarzı ara kart yazısı (Anton)."""
-    f, lines, _ = fit_text(text, config.FONT_CARD, size, max_w, 3, 0, min_size=60)
+def card_block(text: str, *, size: int = 220, max_w: int = 950, color=config.WHITE) -> Image.Image:
+    """'Bir süre sonra' tarzı ara kart yazısı (Anton; orijinallerde ~950 px genişlik, tek satır)."""
+    f, lines, _ = fit_text(text, config.FONT_CARD, size, max_w, 1, 0, min_size=90)  # önce tek satır
+    if len(lines) > 1 or _width(lines[0], f) > max_w:
+        f, lines, _ = fit_text(text, config.FONT_CARD, size, max_w, 2, 0, min_size=60)
     asc, desc = f.getmetrics()
     lh = round((asc + desc) * 0.92)
     widths = [_width(ln, f) for ln in lines]

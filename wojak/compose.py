@@ -123,18 +123,33 @@ def _char_layers(scene: Scene, box: int) -> list[CharLayer]:
         if c.x is not None:
             x = round(c.x * box - w / 2)
         elif c.side == "left":
-            x = round(-w * 0.04)
+            x = round(-w * 0.02)
         elif c.side == "center":
             x = (box - w) // 2
         else:
-            x = round(box - w * 0.96)
+            x = round(box - w * 0.98)
         # Orijinallerde karakter alt kenardan kesilir (bel/göğüs planı).
         y = box - h + round(c.y_offset * box) + round(h * 0.02)
         out.append(CharLayer(im, x, y, c.pop))
     return out
 
 
-def _overlay(ep: Episode, scene: Scene, box: int) -> Image.Image:
+def dialog_text(msg: str, size: int = config.DIALOG_SIZE) -> Image.Image:
+    """Altın dönem replik yazısı: düz Poppins Bold + 7° eğim, beyaz, ~5 px siyah kontur, gölge yok,
+    satır aralığı 1.1x, en fazla 2 satır, açgözlü kırma (son satır kısa kalabilir)."""
+    return text.text_block(msg, font_path=config.FONT_DIALOG, size=size, max_w=config.DIALOG_MAX_W,
+                           max_lines=config.DIALOG_MAX_LINES, stroke_ratio=config.DIALOG_STROKE,
+                           pitch=config.DIALOG_PITCH, shadow=False, shear=config.DIALOG_SHEAR,
+                           wrap="greedy", min_size=40)
+
+
+def watermark_layer(msg: str) -> Image.Image:
+    # ölçülen: ~200 px genişlik, x-yüksekliği ~16 px, ince kontur
+    return text.text_block(msg, font_path=config.FONT_DIALOG, size=30, max_w=500, max_lines=1,
+                           stroke_ratio=0.09, pitch=1.1, shadow=False, shear=config.DIALOG_SHEAR)
+
+
+def _overlay(ep: Episode, scene: Scene, box: int, char_tops: list[int] | None = None) -> Image.Image:
     ov = Image.new("RGBA", (box, box), (0, 0, 0, 0))
     if scene.type == "card":
         if scene.text:
@@ -143,12 +158,19 @@ def _overlay(ep: Episode, scene: Scene, box: int) -> Image.Image:
     else:
         if scene.text and scene.text_style != "none":
             if scene.text_style == "outline":
-                blk = text.text_block(scene.text, size=scene.text_size, max_w=round(box * 0.80))
+                blk = dialog_text(scene.text, scene.text_size)
             else:
                 blk = text.bubble_block(scene.text, dark=scene.text_style == "bubble_dark",
                                         size=round(scene.text_size * 0.8), max_w=round(box * 0.86))
-            cy = round(scene.text_y * box)
-            y = max(10, min(box - blk.height - 10, cy - blk.height // 2))
+            if scene.text_y is not None:
+                y = round(scene.text_y * box) - blk.height // 2
+            elif char_tops:
+                # konuşanın başının hemen üstü (ölçülen: yazının altı başın ~35-80 px üstünde, merkez %38-41)
+                y = min(char_tops) - config.TEXT_HEAD_GAP - blk.height
+                y = max(round(box * 0.20), min(y, round(box * 0.47) - blk.height // 2))
+            else:
+                y = round(box * 0.40) - blk.height // 2
+            y = max(10, min(box - blk.height - 10, y))
             ov.alpha_composite(blk, ((box - blk.width) // 2, y))
         if scene.banner:
             bn = text.banner_block(scene.banner, width=box)
@@ -156,9 +178,10 @@ def _overlay(ep: Episode, scene: Scene, box: int) -> Image.Image:
         if scene.label and config.SHOW_LABELS:
             lb = text.bubble_block(scene.label, dark=True, size=34, max_w=1000, max_lines=1, radius=18)
             ov.alpha_composite(lb, (24, 24))
-    if ep.watermark and scene.type != "card":
-        wm = text.text_block(ep.watermark, size=36, max_w=500, stroke_ratio=0.07, shadow=False)
-        ov.alpha_composite(wm, (box - wm.width - 18, box - wm.height - 8))
+    if ep.watermark:  # ara kartlarda da var (orijinallerdeki gibi)
+        wm = watermark_layer(ep.watermark)
+        # sağ kenar ~x=990, taban çizgisi karenin altından ~15 px yukarıda
+        ov.alpha_composite(wm, (box - 90 - wm.width + 12, box - wm.height + 2))
     return ov
 
 
@@ -169,7 +192,8 @@ def build_layers(ep: Episode, scene: Scene, box: int = config.BOX) -> Layers:
         bg = _evidence_bg(scene, box)
     else:
         bg = _prep_bg(load_rgba(scene.bg), scene, box)
-    return Layers(bg=bg, chars=_char_layers(scene, box), overlay=_overlay(ep, scene, box))
+    chars = _char_layers(scene, box)
+    return Layers(bg=bg, chars=chars, overlay=_overlay(ep, scene, box, [c.y for c in chars]))
 
 
 def top_text_layer(msg: str) -> Image.Image:
