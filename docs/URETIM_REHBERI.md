@@ -124,6 +124,8 @@ Kontrol listesi:
 - [ ] Türkçe karakterler doğru (ğ, ı, ş, İ)
 - [ ] Kanıt fotoğrafı net ve gerçekten o olaya ait
 - [ ] Süre 11-15 sn, son kare "asılı" bitiyor
+- [ ] `python -m wojak check episodes/<id>` uyarısız (güncel olayda `gundem: true` ve
+      [`GUNDEM.md`](GUNDEM.md) §5'teki 12 maddelik liste tek tek işaretlendi)
 
 ## 7. Paylaşım
 
@@ -132,7 +134,8 @@ Kontrol listesi:
 - **Saat:** 17:00-21:00 TR (altın dönemde 17-21 arası paylaşımlar medyan 729-812K, 21-24 arası 519K; izleyici videoyu gece "gece shorts" olarak tüketiyor ama dağıtım akşamdan başlamalı).
 - **Sıklık:** altın dönemde ~2-3 günde bir video vardı. En az haftada 3, ideali günde 1.
 - **İlk 1 dakika:** sabit yorumu yaz ve sabitle. Videonun bütün mekanizması buna dayanıyor
-  ("Olayı yorumlara yazdım").
+  ("Olayı yorumlara yazdım"). `tools/ig_yayinla.py` yorumu otomatik yazar; **sabitleme elle**
+  (API'de yok). Kurulum: [`GEREKENLER.md`](GEREKENLER.md).
 - Aynı videoyu **YouTube Shorts** ve **TikTok**'a da yükle (aynı başlık, aynı sabit yorum).
 - İlk 1-2 saatte yorumlara cevap ver (özellikle "ben oralıyım" tipi yorumlara).
 

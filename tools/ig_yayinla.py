@@ -45,7 +45,7 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from wojak import censor, episode, pack  # noqa: E402
+from wojak import censor, denetim, episode, pack  # noqa: E402
 
 VERSION = os.environ.get("IG_API_VERSION", "v26.0")
 HOST = os.environ.get("IG_API_HOST", "graph.instagram.com")
@@ -119,6 +119,13 @@ def cmd_yayinla(a) -> None:
     if not (a.video_url or a.dosya):
         sys.exit("--video-url (herkese açık HTTPS adresi) veya --dosya gerekli")
     params = {"media_type": "REELS", "caption": cap, "share_to_feed": "true"}
+    if ep.ai_generated:  # fotogerçekçi yapay zekâ görseli: Meta etiket istiyor
+        params["is_ai_generated"] = "true"
+    uyarilar = denetim.check(ep)
+    for u in uyarilar:
+        print(f"  ⚠ {u}")
+    if ep.gundem and uyarilar and not a.zorla:
+        sys.exit("Güncel olay bölümünde denetim uyarıları var; düzelt ya da bilerek --zorla kullan.")
     if a.kapak_url:
         params["cover_url"] = a.kapak_url
     else:
@@ -182,6 +189,7 @@ def main() -> None:
     p.add_argument("--kapak-ms", type=float, default=900, help="kapak karesi (ms), kapak-url yoksa")
     p.add_argument("--yorumsuz", action="store_true", help="sabit yorum metnini yorum olarak yazma")
     p.add_argument("--deneme", action="store_true", help="hiçbir şey göndermeden göster")
+    p.add_argument("--zorla", action="store_true", help="güncel olay denetim uyarılarına rağmen yayınla")
     p.set_defaults(fn=cmd_yayinla)
     p = sp.add_parser("yenile")
     p.add_argument("--goster", action="store_true", help="yeni token'ı ekrana yaz")

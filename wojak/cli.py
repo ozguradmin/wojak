@@ -17,7 +17,7 @@ import time
 
 from PIL import Image
 
-from . import config, episode, pack, render
+from . import config, denetim, episode, pack, render
 
 
 def _summary(ep: episode.Episode) -> None:
@@ -29,9 +29,18 @@ def _summary(ep: episode.Episode) -> None:
         t += s.duration
 
 
+def _denetle(ep: episode.Episode) -> None:
+    uyarilar = denetim.check(ep)
+    for u in uyarilar:
+        print(f"  ⚠ {u}")
+    if ep.gundem:
+        print("  GÜNDEM bölümü: yayından önce docs/GUNDEM.md > 5. Kontrol listesi (yayın yasağı kontrolü dahil).")
+
+
 def cmd_check(a) -> None:
     ep = episode.load(a.episode)
     _summary(ep)
+    _denetle(ep)
     if not 7 <= ep.duration <= 30:
         print(f"UYARI: süre {ep.duration:.1f} sn. 'Olay' formatında hedef 11-16 sn.")
 
@@ -39,6 +48,7 @@ def cmd_check(a) -> None:
 def cmd_render(a) -> None:
     ep = episode.load(a.episode)
     _summary(ep)
+    _denetle(ep)
     out_dir = config.OUT / ep.id
     t0 = time.time()
     mp4 = render.render(ep, out_dir, square=a.square, preview=a.preview)

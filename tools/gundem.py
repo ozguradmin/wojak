@@ -101,6 +101,7 @@ class Cluster:
     categories: list[str] = field(default_factory=list)
     flags: list[str] = field(default_factory=list)
     trend: str = ""
+    ban_link: str = ""
 
     @property
     def sources(self) -> list[str]:
@@ -389,10 +390,26 @@ ANGLES = {
     "olum_gizem": "Merak repliği: keşfedenin şaşkın cümlesi. Resmi açıklama gelmeden 'cinayet' deme.",
     "kurtarma_kahramanlik": "Mucize/fedakârlık repliği: kurtaranın tereddütsüz ya da kurtulanın ilk sözü. Kanıt: kurtarma anı.",
     "efsane_tarih": "Keşif repliği: bulanın şaşkın cümlesi. 'Tarihsel' seriye uygun; stok video olarak da bekletilebilir.",
-    "suc": "Dramatik ironi: kurbanın olaydan önceki sıradan cümlesi. Fail = 'şüpheli', sadece kesinleşmiş bilgi.",
+    "suc": "Odak kurbanın hayatı; kurbana uydurma 'son söz' koyma. Şüpheliye karakter/korkunç yüz verme, 'katil' deme (hüküm yoksa).",
     "felaket": "Son an repliği (\"Toprak mı kayıyor?\"). Felaketi değil içindeki bir insan hikâyesini anlat.",
     "duygu": "Haberdeki gerçek son söz/son mesaj varsa replik o olsun (kısaltılmış, tırnak içinde).",
 }
+
+
+def _ban_check(c: Cluster) -> None:
+    """Olayla ilgili son 30 günde 'yayın yasağı' haberi var mı? (docs/GUNDEM.md > Hukuk)"""
+    toks = [t for t in tokens(c.headline) if len(t) > 3][:4]
+    if not toks:
+        return
+    q = " ".join(toks[:3]) + ' "yayın yasağı" when:30d'
+    items = fetch_feed("Yayın yasağı kontrolü", GNEWS_SEARCH.format(q=urllib.parse.quote(q)))
+    stems = {_stem(t) for t in toks}
+    for it in items:
+        t = tr_lower(it.title)
+        if "yayın yasağı" in t and len(stems & {_stem(x) for x in tokens(it.title)}) >= 1:
+            c.flags.insert(0, "🔴 YAYIN YASAĞI OLABİLİR")
+            c.ban_link = it.link
+            return
 
 
 # --- Rapor ---------------------------------------------------------------------
@@ -421,6 +438,8 @@ def report(clusters: list[Cluster], trends: list[dict], top: int, hours: int) ->
               f"- Kaynaklar: {', '.join(c.sources[:8])}"]
         if c.categories:
             L.append(f"- Açı önerisi: {ANGLES.get(c.categories[0], '')}")
+        if c.ban_link:
+            L.append(f"- 🔴 Yayın yasağı haberi: {c.ban_link} — RTÜK 'Mahkeme Yayın Yasakları' sayfasından teyit et")
         for i in c.items[:4]:
             L.append(f"  - [{i.title}]({i.link}) — {i.source}")
         summ = next((i.summary for i in c.items if len(i.summary) > 60 and not i.summary.startswith("http")), "")
@@ -453,11 +472,12 @@ def draft_episode(report_json: Path, n: int) -> Path:
         raise SystemExit(f"zaten var: {dst}")
     (dst / "img").mkdir(parents=True)
     tpl = (ROOT / "episodes" / "_sablon" / "episode.yaml").read_text(encoding="utf-8")
-    tpl = tpl.replace("id: sablon", f"id: {slug}")
+    tpl = tpl.replace("id: sablon", f"id: {slug}\ngundem: true          # güncel olay: dil denetimi + docs/GUNDEM.md kontrol listesi\nkesin_hukum: false    # fail hakkında kesinleşmiş mahkûmiyet var mı?")
+    tpl = tpl.replace("# top_text: \"1996, Manisa\"", "top_text: \"<gün ay yıl>, <yer> — resmi açıklamalara göre\"  # bağlam videonun İÇİNDE olmalı")
     tpl = tpl.replace('title: "<Olay adı> (Olayı yorumlara yazdım)"', f'title: "{c["headline"][:90]}"')
     srcs = "\n".join(f"  - {i['link']}  # {i['source']}: {i['title'][:80]}" for i in c["items"][:8])
     tpl = re.sub(r"sources:\n(  - .*\n?)+", f"sources:\n{srcs}\n", tpl)
-    flags = f"DİKKAT: {', '.join(c['flags'])} — docs/GUNDEM.md kontrol listesi zorunlu.\n" if c["flags"] else ""
+    flags = f"DİKKAT: {', '.join(c['flags'])} — docs/GUNDEM.md kontrol listesi zorunlu.\n  " if c["flags"] else ""
     tpl += (f"\nnotes: |\n  GÜNDEM — ilk görülme {c['first_seen']}, {len(c['sources'])} kaynak, tür: "
             f"{', '.join(c['categories'])}.\n  {flags}  Yayından önce resmi açıklama ve yayın yasağı kontrolü yap.\n")
     (dst / "episode.yaml").write_text(tpl, encoding="utf-8")
@@ -491,6 +511,8 @@ def main() -> None:
     if not a.hepsi:
         clusters = [c for c in clusters if c.parts.get("uygunluk", 0) >= 4]
     clusters.sort(key=lambda c: -c.score)
+    with ThreadPoolExecutor(6) as ex:  # ilk adaylar için yayın yasağı kontrolü
+        list(ex.map(_ban_check, clusters[:a.ilk]))
     md, js = report(clusters, trends, a.ilk, a.saat)
     print(f"{len(clusters)} aday küme -> {md}")
 

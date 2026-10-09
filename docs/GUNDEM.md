@@ -101,7 +101,33 @@ Farklar:
 
 ## 5. Yayından önce kontrol listesi
 
-<!-- BOLUM:KONTROL -->
+Maddelerin tamamı "evet" olmadan güncel olay yayınlanmaz. `python -m wojak check` dil denetimini otomatik yapar
+(`gundem: true` bölümlerde "katil", "itiraf" gibi kelimeleri maskelenmiş hâlleriyle bile yakalar).
+
+1. [ ] **Yayın yasağı:** RTÜK "Mahkeme Yayın Yasakları" sayfası (rtuk.gov.tr/mahkeme-yayin-yasaklari) ve
+   "<olay> yayın yasağı" haber araması yapıldı; tarih-saat not edildi; yasak yok. (`tools/gundem.py` ilk adaylar için
+   otomatik arar ve 🔴 işaretler — ama RTÜK sayfasından elle teyit şart.)
+2. [ ] **Kaynak:** Her bilgi en az 1 resmî açıklamaya (valilik, başsavcılık, emniyet, jandarma, AFAD, bakanlık) ve
+   2 bağımsız ana akım kaynağa dayanıyor. Sızıntı, "kulis", sosyal medya iddiası yok. Görüntünün tarihi doğrulandı.
+3. [ ] **Masumiyet:** "Katil", "itiraf", "cani" yok (hüküm kesinleşmedikçe). Şüpheli baş harfleriyle; yüz, kelepçe,
+   gözaltı fotoğrafı yok. **Şüpheliye wojak karakteri ya da korkunç yüz verilmez** — tanınabilirlik karikatürle de olur (TCK 126).
+4. [ ] **Çocuk:** 18 yaş altı mağdur/şüpheli tanınamıyor (isim, yüz, okul, mahalle, ebeveyn adı yok). Konu cinsel suç değil.
+5. [ ] **Mahremiyet:** Adres, plaka, kimlik no, sağlık bilgisi, özel mesaj, özel hesaptan fotoğraf yok. Aileye resmî bildirim yapılmış.
+6. [ ] **Grafik içerik:** Ceset, kan, ölüm/saldırı anı, failin çektiği görüntü yok. İlk 3 saniyede şok yok.
+   **Bağlam videonun içinde** (`top_text`: tarih, yer, "resmî açıklamalara göre").
+7. [ ] **Fail:** Adı, yüzü, silahı öne çıkmıyor; övgü/haklı gösterme yok; etnik köken/bölge genellemesi yok.
+8. [ ] **Afet ve kamu düzeni:** Sayılar ve tehlike bilgisi yalnızca AFAD/bakanlık/valilikten, saatiyle. "Gizleniyor",
+   "yeni felaket geliyor" iddiası yok (TCK 217/A — anonim hesap cezayı artırır).
+9. [ ] **Ton ve replik:** Mizah/meme dili yok. Replik ya doğrulanmış bir alıntı ya da kimseyi suçlamayan nötr bir cümle.
+   **Yakın tarihli kurbana uydurma "son söz" ya da kendi ölümünü anlatan replik verilmez** — kurtaran, arayan, yetkili
+   ya da dilek-gerçekleşme yapısı kullanılır.
+10. [ ] **Özgünlük ve yapay zekâ:** Haber ekran görüntüsü tek içerik değil (Instagram bunu "özgün olmayan" sayıyor);
+    kurgu ve kanıt sahnesi bize ait. Fotogerçekçi yapay zekâ görseli varsa `ai_generated: true` (etiket otomatik).
+11. [ ] **Yorumlar:** Gizli kelimeler (Hidden Words) filtresi açık; ilk 2 saat yorumlar izlenip isim ifşası, hakaret,
+    linç, nefret içerenler siliniyor (yorumlardan hesap sahibi de sorumlu tutulabiliyor).
+12. [ ] **Düzeltme ve kayıt:** Kaynak linkleri arşivlendi. Gelişme/düzeltme/yasak/aile talebi olursa sabit yorumun en
+    üstüne "GÜNCELLEME (tarih): ..." yazılır; yasak ya da aile talebinde video kaldırılır.
+
 
 ## 6. Takvim önerisi
 
@@ -109,4 +135,48 @@ Haftada 5 video: **3 tarihsel/efsane/gündem kancalı eski hikâye + 1-2 güncel
 Türkiye'de ulusal gündemdeyse ya da küresel viral bir görüntüsü varsa; yoksa stoktaki hazır videolardan
 biri yayınlanır (`docs/KONU_HAVUZU.md`). Yıldönümleri takvime önceden işlenir.
 
-<!-- BOLUM:HUKUK -->
+## 7. Hukuk ve platform kuralları (özet)
+
+> **Hukuki tavsiye değildir.** Kamuya açık mevzuat, platform kuralları ve basın kaynaklarından derlenmiş risk özetidir
+> (09.10.2026). Sınırda kalan vakada (yayın yasağı, çocuk, cinsel suç, şüpheli kimliği) bir medya/ceza hukukçusuna danış.
+
+**8 temel kural**
+1. **Yayın yasağı olan olay yapılmaz.** Yasaklar genelde sosyal medyayı açıkça kapsıyor (Narin Güran kararı:
+   "sosyal medya ve internet ortamında... her türlü haber"); yasak varken görüntü paylaşan kişiler gözaltına alındı
+   (Kahramanmaraş, Nisan 2026). Yasaklar çoğu zaman günler içinde kalkar (Kartalkaya 1 gün, Narin 11 gün): beklemek ucuz.
+2. **Yalnızca resmî açıklamalardaki bilgi.** Sızdırılmış ifade, otopsi, HTS, kamera görüntüsü kullanılmaz
+   (CMK 157, TCK 285: soruşturmanın gizliliği "herkes" için; 285/5: kişiyi suçlu gösteren görüntü 6 ay-2 yıl).
+3. **Hüküm kesinleşmeden "katil" denmez** (Anayasa 38/4, Basın Meslek İlkeleri md. 9). Baş harf ya da karikatür,
+   kişi tanınabiliyorsa korumaz (TCK 126).
+4. **18 yaş altı tanınamaz; cinsel suç hiç işlenmez** (ÇKK 5395 md. 4/1-l, Basın Meslek İlkeleri md. 16, UNICEF).
+5. **Afette sayı ve tehlike yalnızca resmî kaynaktan** (TCK 217/A dezenformasyon; anonim hesapta ceza yarı oranında artar;
+   sosyal ağ kimliği savcılığa vermek zorunda).
+6. **Failin adı, yüzü, kendi çektiği görüntü kullanılmaz; fail "efsane" gibi anlatılmaz** (TCK 215; Meta ve YouTube kuralları).
+7. **Sansürlü yazım (c!nayet, k4til) hukuki riski sıfırlamaz.** Suç tanımı yazılışa değil anlama bakar; YouTube'un
+   kuralları da maskenin altını okuyor. Maskeleme kanalın üslubu olarak kalabilir ama güvenlik önlemi değildir.
+8. **Hata aynı gün görünür biçimde düzeltilir**; yasak gelirse ya da aile isterse içerik kaldırılır.
+
+**Diğer riskler:** özel hayat (TCK 134, 136; KVKK 28), hakaret / ölünün hatırasına hakaret / iftira (TCK 125, 130, 267;
+TMK 24-25 tazminat), suçu övme ve kin-düşmanlığa tahrik (TCK 215, 216), 5651 md. 8/A ile 4 saat içinde erişim engeli.
+1.11.2026'dan itibaren 7578 sayılı Kanun: sosyal ağlar 15 yaş altına hizmet veremeyecek.
+
+**Platformlar**
+- **Instagram:** ölümü/trajediyi alaya almak yasak; taze trajediyi meme tonuyla anlatmak doğrudan risk. Şiddet içerebilecek
+  içerik takipçi olmayanlara önerilmeyebilir. Başkasının işinin ekran görüntüsü "özgün olmayan içerik" (30.04.2026'dan beri
+  daha sıkı). Hesap Durumu ekranı düzenli kontrol edilmeli.
+- **YouTube:** eğitsel/belgesel istisnası için **bağlam videonun içinde** olmalı (açıklama yetmez) → güncel olayda `top_text`.
+  Hassas olaydan kâr sağlayan içerik reklam alamayabilir. "Özgün olmayan içerik" (şablon hikâyeler) para kazanamaz →
+  her video kendi araştırması ve anlatısıyla farklı olmalı.
+- **TikTok:** kriz anlarında doğrulanmamış bilgi "Sana Özel"e girmez; grafik görüntü 18+ ile sınırlanır.
+
+**Etik:** kurbanın hayatını anlat, ölüm anını değil; yas/cenaze görüntüsü yok; süren soruşturmada "kim yaptı?" anketi ya da
+"gizem" tonu yok; **intihar olayları hiç işlenmez** (DSÖ: yöntem/mekân verilmez).
+
+Kaynaklar: [TCK](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5237.pdf) · [CMK](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5271.pdf) ·
+[5651](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5651.pdf) · [5395 ÇKK](https://www.mevzuat.gov.tr/mevzuatmetin/1.5.5395.pdf) ·
+[Basın Meslek İlkeleri](https://basinkonseyi.org.tr/basin-meslek-ilkeleri/) ·
+[Narin Güran yayın yasağı](https://bianet.org/haber/narin-guran-haberlerine-yayin-yasagi-299141) ·
+[Meta şiddet/grafik](https://transparency.meta.com/policies/community-standards/violent-graphic-content/) ·
+[Instagram özgün içerik](https://creators.instagram.com/original-content-guidelines/) ·
+[YouTube şiddet/grafik](https://support.google.com/youtube/answer/2802008) · [WHO intihar haberciliği](https://www.who.int/publications/i/item/9789240076846)
+

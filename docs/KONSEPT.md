@@ -63,11 +63,20 @@ Diğer replik tipleri:
   *"Sen artık benim ailemsin!"* (Kore'de Ayla, 1.48M).
 - **Suç ortaklığı repliği**: *"Ama ya insanlar orada neler yaptığımızı öğrenirse?"* (Epstein, 2.50M).
 
+**Güncel olaylarda ironi sınırı:** yakını hâlâ yasta olan bir kurbanın ağzına uydurma "son söz" koyma
+(*"Bir şey olmaz, birkaç dakikaya dönerim"* tarihsel bir olayda imza teknik, geçen haftaki bir ölümde
+aileyi yaralar ve şikâyet/kaldırma getirir). Güncel olayda replik ya **doğrulanmış bir alıntı** ya da
+**kurtarmacı / yetkili / dilek** repliğidir (*"Ses geliyor, burada biri var!"*, *"Tek dileğim onu
+görmekti"*). Ayrıntı: [`GUNDEM.md`](GUNDEM.md) §4-5.
+
 ### 2.4 Wojak = anında okunan duygu ve rol
 Wojak yüzü 0.3 saniyede "masum / korkmuş / kötü / yorgun" okutur. Kanalın karakter dili:
 - **Masum/kurban:** sade beyaz yüz, tradwife, doomer girl, okul üniformalı kız.
 - **Kötü:** ürkütücü yüz — siyah yüz + beyaz göz, kırmızı/erimiş cilt, sırıtan beyaz yüz, kapüşon.
   İzleyici yorumu: *"Videolarda şunu fark ettim, kötü kişiler hep korkunç bir yüz ifadesiyle çizilmiş"* (5.3K beğeni).
+  **Sınır:** korkunç yüz yalnızca **hükmü kesinleşmiş, tarihsel** faillere. Güncel olaylarda şüpheli/sanık
+  için wojak, korkunç yüz, "katil/cani/sapık" yok (masumiyet karinesi; bkz. [`GUNDEM.md`](GUNDEM.md) §7).
+  Orada fail ya hiç çizilmez ya da yüzü görünmeyen nötr bir siluettir; odak kurban ve kurtarmacılardır.
 - **Otorite:** üniformalı polis/jandarma/asker, cübbeli imam, önlüklü doktor.
 - **Benzerlik:** kişiye saç/yaş/kıyafet/dönem olarak benzer (Pippa Bacca → gelinlikli; Kore → Türk askeri).
 
@@ -136,7 +145,8 @@ Ayrıntı, seçim kuralları ve hukuk: [`GUNDEM.md`](GUNDEM.md).
 2. **Konuşma dili**, karakterin o andaki ağzından. Anlatıcı cümlesi yok ("1996'da Manisa'da..." ✗).
 3. **Bilgi verme, ima et.** İzleyici ancak sabit yorumu okuyunca tam anlamalı.
 4. **İlk replik = ironi.** Hikâyenin sonunu bilen biri için korkunç, bilmeyen için sıradan.
-5. Hassas kelime ekranda sansürlü: *"*leceğim"*, *"k*n lekeli"*, *"c!nayet"*.
+5. Hassas kelime ekranda sansürlü: *"*leceğim"*, *"k*n lekeli"*, *"c!nayet"*. Bu **kanalın üslubu**dur,
+   hukuki kalkan değil: "k4til" yazmak, hükmü kesinleşmemiş birine "katil" demekle aynıdır.
 6. Son replik ya cevapsız soru ya ağır bir gerçek (*"Dokuz kişi. Hiçbiri geri dönmedi."*).
 
 ### 2025 dönüşünde yapılan hatalar (tekrarlama)
@@ -156,7 +166,8 @@ Altın dönemde iki kalıp:
    "Enkaz altından çıkarılınca yemek yediğini söyleyen 4 yaşındaki kız".
 
 Kural: 3-12 kelime, spoiler değil ama "nasıl yani?" dedirtmeli. Emoji opsiyonel (⛔️🔞 şok içerikte).
-Başlık ve sabit yorum `wojak.censor.metin()` ile otomatik sansürlenir.
+Başlık ve sabit yorum `wojak.censor.metin()` ile otomatik sansürlenir (üslup; hukuki koruma sağlamaz,
+güncel olaylarda `python -m wojak check` dil denetimini ayrıca çalıştırır).
 
 ## 5. Sabit yorum (hikâye metni)
 

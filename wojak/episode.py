@@ -88,6 +88,9 @@ class Episode:
     hashtags: list[str] = field(default_factory=list)
     sources: list[str] = field(default_factory=list)
     notes: str = ""
+    gundem: bool = False         # güncel olay: docs/GUNDEM.md kuralları ve dil denetimi uygulanır
+    kesin_hukum: bool = False    # failin mahkûmiyeti kesinleşmiş mi (değilse "katil" vb. yasak)
+    ai_generated: bool = False   # fotogerçekçi yapay zekâ görseli var mı (platformlarda etiket zorunlu)
 
     @property
     def duration(self) -> float:
@@ -189,4 +192,7 @@ def load(path: str | Path) -> Episode:
         hashtags=list(raw.get("hashtags") or []),
         sources=list(raw.get("sources") or []),
         notes=raw.get("notes", "") or "",
+        gundem=bool(raw.get("gundem", False)),
+        kesin_hukum=bool(raw.get("kesin_hukum", False)),
+        ai_generated=bool(raw.get("ai_generated", False)),
     )

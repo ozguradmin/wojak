@@ -7,6 +7,9 @@ platformların otomatik kısıtlamasına (erişim düşürme, yaş sınırı) ta
 İki seviye:
   - "ekran": video üstü yazılar için hafif (sadece en riskli kökler)
   - "metin": başlık/açıklama/sabit yorum için daha kapsamlı
+
+Bu bir ÜSLUP aracıdır, hukuki koruma DEĞİLDİR: "k4til" yazmak hukuken "katil" demektir.
+Güncel olaylarda kelime seçimi wojak.denetim.check() ile ayrıca denetlenir (docs/GUNDEM.md §7).
 """
 
 from __future__ import annotations
