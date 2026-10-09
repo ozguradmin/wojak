@@ -135,11 +135,13 @@ def cmd_get(a) -> None:
         im = im.crop(bbox)
     if im.height > 1400:
         im = im.resize((round(im.width * 1400 / im.height), 1400), Image.LANCZOS)
-    CHARS.mkdir(parents=True, exist_ok=True)
     name = a.name or a.id.replace("/", "_")
-    out = CHARS / f"{name}.png"
+    dest = Path(a.out_dir) if a.out_dir else CHARS  # bölüme özel karakterler: episodes/<id>/chars
+    dest.mkdir(parents=True, exist_ok=True)
+    out = dest / f"{name}.png"
     im.save(out, optimize=True)
-    print(f"-> {out.relative_to(ROOT)}  ({im.width}x{im.height})")
+    shown = out.resolve().relative_to(ROOT) if out.resolve().is_relative_to(ROOT) else out
+    print(f"-> {shown}  ({im.width}x{im.height})")
 
 
 def cmd_sheet(a) -> None:
@@ -195,6 +197,7 @@ def main() -> None:
     p = sp.add_parser("get")
     p.add_argument("id", help="örn. 5_Doomer/13591")
     p.add_argument("--name", help="kaydedilecek isim (assets/characters/<isim>.png)")
+    p.add_argument("--out-dir", help="assets/characters yerine bu klasöre kaydet (ör. episodes/<id>/chars)")
     p.set_defaults(fn=cmd_get)
     a = ap.parse_args()
     a.fn(a)

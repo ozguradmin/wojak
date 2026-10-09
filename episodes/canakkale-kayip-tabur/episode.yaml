@@ -2,7 +2,7 @@
 # Efsane EFSANE olarak sunulur: belgelenen (12 Ağustos 1915 taarruzu, Hamilton raporu, 1919 bulgusu)
 # ile sonradan ortaya atılan iddia (1965, "bulut") ayrı tutulur. Sahne 2'deki replik iddiadır -> etiketli.
 id: canakkale-kayip-tabur
-title: 'Çanakkale''de "bir bulutun içine girip kaybolan" tabur'
+title: "Çanakkale'de bulutun içinde kaybolduğu söylenen İngiliz taburu"
 
 # Kanalın imza müziği (tools/make_music.py ile üretildi, hakkı bize ait)
 music: {file: imza_gece_vals.mp3, start: 0, volume: 0.7, fade_out: 0.3}
@@ -10,84 +10,95 @@ music: {file: imza_gece_vals.mp3, start: 0, volume: 0.7, fade_out: 0.3}
 scenes:
   # 1) KANCA / ironi: komutan önünü açık sanıp ilerletiyor (Hamilton raporu: "bir an için daha az
   #    direnç", "hevesle ilerledi"). Arka plan: Anafartalar'ın çalılık tepeleri (gerçek mekân).
+  #    Etiket kapakta da görünür: ilk saniyede yer + tarih bağlamı.
   - type: dialog
     duration: 2.6
     bg: img/anafartalar_tepeler.jpg
     focus: [0.45, 0.5]
     chars:
       - {img: chars/ingiliz_subay_tozluk.png, side: right, height: 0.6}
-    text: "Önümüz açık çocuklar, ilerleyin!"
+    text: "Çocuklar, önümüz açık!\nİlerleyin!"
+    label: "Çanakkale · 12 Ağustos 1915"
     sfx: [{file: drone, volume: 0.4}]
 
-  # 2) İDDİA (1965): tanığın ağzından bulut efsanesi. Etiketle "iddia" olduğu belirtilir.
+  # 2) İDDİA (1965): yaşlı gazinin ağzından bulut efsanesi. Etiketle "iddia" olduğu belirtilir.
+  #    Okuma süresi: 6 kelime -> 6/3 + 1 = 3.0 sn.
   - type: dialog
-    duration: 2.6
+    duration: 3.0
     bg: img/suvla_bulutlu.jpg
     focus: [0.5, 0.35]
     darken: 0.15
     chars:
-      - {img: chars/asker_haki_biyikli.png, side: left, height: 0.56}
-    text: "Bulutun içine girdiler...\nBir daha çıkmadılar?!"
+      - {img: chars/gazi_yasli.png, side: left, height: 0.56}
+    text: "Bulutun içine girdiler...\nBir daha çıkmadılar."
     label: "İddia · 1965"
     shake: 8
     sfx: [{file: hit, volume: 0.8}]
 
-  # 3) ZAMAN ATLAMASI (12 Ağustos 1915 -> Eylül 1919 mezar kayıt raporu)
+  # 3) ZAMAN ATLAMASI: 1965 iddiasının hemen ardından gerçek (Eylül 1919 mezar kayıt raporu).
+  #    "4 yıl sonra" 1965'ten sayılıyor gibi okunuyordu -> yıl açıkça yazıldı.
   - type: card
-    duration: 1.1
-    text: "4 yıl sonra"
+    duration: 1.0
+    text: "Oysa 1919'da..."
     sfx: [{file: boom, volume: 0.9}]
 
-  # 4) KEŞİF: 1919 aramasında bulunanlar. Arka plan: Chunuk Bair'den Suvla ovası (gerçek mekân).
+  # 4) KEŞİF: 1919 aramasında bulunanlar. Arka plan: Suvla ovası, 1915 (Te Papa, gerçek dönem fotoğrafı).
   - type: dialog
     duration: 2.7
-    bg: img/chunuk_bair_suvla_view.jpg
-    focus: [0.6, 0.5]
-    darken: 0.3
+    bg: img/suvla_ovasi_1915.jpg
+    focus: [0.4, 0.5]
+    darken: 0.25
     grayscale: true
     chars:
-      - {img: chars/rahip_yakalik.png, side: right, height: 0.56}
+      - {img: chars/papaz_urkek.png, side: right, height: 0.48, flip: true}
     text: "Kaybolmamışlar... Bu ovada yatıyorlar."
     sfx: [{file: heartbeat, volume: 0.9, at: 0.4}]
 
   # 5) KANIT: Hamilton'ın raporu, London Gazette eki, 6 Ocak 1916, s. 303 (gerçek belge).
+  #    Bant Türkçe okutur; tarama karenin içinde küçültüldü, bant vurgulu son satırı örtmüyor.
   - type: evidence
-    duration: 1.9
+    duration: 1.7
     images: [img/gercek_hamilton_raporu_1916.jpg]
     label: "Gerçek belge · Hamilton'ın raporu, 1916"
+    banner: "“Hiçbiri geri dönmedi.”"
     zoom: 1.04
     sfx: [{file: shutter, volume: 0.7}]
 
-  # 6) KAPANIŞ: ağır gerçek (1919 raporu: 180 kalıntı, yalnızca 2'si tanındı). Azmak Mezarlığı.
+  # 6) KAPANIŞ: ağır gerçek (1919 raporu: 180 kalıntı, yalnızca 2'si tanındı).
+  #    Arka plan: Suvla'da asker mezarları, 1915 (Museums Victoria, kamu malı). Okuma: 6 kelime -> 3.0 sn.
   - type: dialog
-    duration: 2.3
-    bg: img/azmak_mezarligi.jpg
-    focus: [0.5, 0.6]
-    darken: 0.45
+    duration: 3.0
+    bg: img/suvla_mezarlik_1915.jpg
+    focus: [0.3, 0.5]
+    darken: 0.3
     grayscale: true
     chars:
-      - {img: chars/rahip_yakalik.png, side: left, height: 0.55, flip: true}
+      - {img: chars/papaz_urkek.png, side: right, height: 0.47, flip: true}
     text: "180 asker bulundu.\nSadece ikisi tanınabildi."
-    label: "Azmak Mezarlığı, Suvla"
+    label: "Suvla'da asker mezarları · 1915"
     sfx: [{file: boom, volume: 0.6}]
 
 caption: |
   Kayıp Tabur efsanesi, Anafartalar (1915)
   Olayın tamamı sabit yorumda 👇
-hashtags: [çanakkale, anafartalar, kayıptabur, çanakkalesavaşı]
+hashtags: [çanakkale, çanakkalesavaşı, anafartalar, gelibolu]
 
 pinned_comment: |
   Kayıp Tabur olayı, 1915 yılında Çanakkale Savaşı sırasında Anafartalar'da yaşanan ve yıllar sonra "bulutun içinde kaybolan tabur" efsanesine dönüşen bir olaydır.
 
-  İngiliz ordusundaki 1/5. Norfolk Taburu, 10 Ağustos 1915'te Suvla'ya çıktı. Taburda, Kral V. George'un Sandringham malikânesinin çalışanlarından kurulan bir birliğin askerleri de vardı. Başlarında, bu birliğin kurulmasına öncülük eden 54 yaşındaki Yüzbaşı Frank Beck bulunuyordu.
+  İngiliz ordusundaki 1/5. Norfolk Taburu, Ağustos 1915'te Suvla'ya çıktı. Taburda, Kral V. George'un Sandringham malikânesinin çalışanlarından kurulan Sandringham Bölüğü de vardı. Bölüğün başında, kuruluşuna öncülük eden, Kral'ın arazi yöneticisi 54 yaşındaki Yüzbaşı Frank Beck bulunuyordu.
 
-  12 Ağustos öğleden sonra tabur, Küçükanafarta Ovası'nda taarruza kalktı. Tabur komutanı Sir Horace Proctor-Beauchamp, 16 subay ve 250 askerle Türk savunmasının içlerine kadar ilerledi ve grup ağaçlık, engebeli arazide gözden kayboldu. Başkomutan Sir Ian Hamilton, Ocak 1916'da yayımlanan raporunda bunu "çok gizemli bir şey" olarak anlattı: "Hiçbiri geri dönmedi."
+  12 Ağustos günü öğleden sonra tabur, Küçükanafarta Ovası'nda taarruza kalktı. Bu cephede Türk birlikleri, 8 Ağustos'ta Anafartalar Grubu Komutanlığına getirilen Albay Mustafa Kemal'in emrindeydi. Tabur komutanı Yarbay Sir Horace Proctor-Beauchamp, 16 subay ve 250 askerle Türk hatlarının içlerine ilerledi ve ağaçlık, engebeli arazide gözden kayboldu. İtilaf kuvvetleri komutanı General Sir Ian Hamilton, Ocak 1916'da yayımlanan raporunda bunu "çok gizemli bir şey" olarak anlattı: "Hiçbiri geri dönmedi."
 
-  Savaştan sonra, 1919'da İngiliz mezar kayıt ekibi, eski Türk hattının gerisindeki bir çiftlik arazisi ve çevresinde 180 asker kalıntısı buldu. Anlatılanlara göre aramada Rahip Charles Pierrepoint Edwards da vardı. Kalıntıların 122'si Norfolk askerlerine aitti; bulunanlardan yalnızca ikisinin kimliği belirlenebildi. Norfolk askerleri bugün Suvla'daki Azmak Mezarlığı'nda, çoğu isimsiz mezarlarda yatıyor.
+  1919'da İngiliz mezar kayıt ekibi, eski Türk hattının gerisindeki bir çiftlik arazisi ve çevresinde 180 asker kalıntısı buldu. Anlatılanlara göre aramada Papaz Charles Pierrepont Edwards da vardı. Kalıntıların 122'si Norfolk askerlerine aitti; yalnızca ikisinin kimliği belirlenebildi. Norfolk askerleri bugün Suvla'daki Azmak Mezarlığı'nda, çoğu isimsiz mezarlarda yatıyor. Frank Beck'in bilinen bir mezarı yok; adı Helles Anıtı'nda yazılı.
 
-  Efsane ise savaşın 50. yılında, 1965'te ortaya çıktı. Üç Yeni Zelandalı gazi, bir İngiliz birliğinin yere inmiş alçak bir bulutun içine yürüyüp gözlerinin önünde kaybolduğunu iddia etti. Ancak verdikleri tarih ve birlik adı gerçek olayla uyuşmuyordu.
+  Efsane ise Gelibolu çıkarmasının 50. yıl dönümünde, 1965'te ortaya çıktı. Üç Yeni Zelandalı gazi, bir İngiliz birliğinin yere kadar inmiş bir bulutun içine yürüyüp gözlerinin önünde kaybolduğunu iddia etti. Ancak verdikleri tarih ve birlik adı gerçek olayla uyuşmuyordu. Hikâye Türkiye'de de "düşmanı yutan bulut" olarak anlatılır.
 
-  Sizce o gün Anafartalar'da gerçekte ne oldu, bu efsane neden 50 yıl sonra ortaya çıktı?
+  Sizce o gün Anafartalar'da gerçekte ne oldu? Bu efsane neden 50 yıl sonra ortaya çıktı?
+
+# CC BY görseller atıf ister (yazar, eser adı, lisans adresi, değişiklik notu): açıklamalara "Görseller: ..." olarak eklenir
+credits: "Hüseyin Öcal (“Anafartalar Köyü ve Tepeleri”), Tevfik Teker (“Suvla Bay”); Wikimedia Commons, CC BY 3.0 (creativecommons.org/licenses/by/3.0); kırpılıp düzenlendi."
+ai_generated: false
 
 sources:
   # Birincil kaynak
@@ -98,23 +109,36 @@ sources:
   - https://articles.skeptics.nz/1999/08/01/a-day-to-remember-the-missing-regiment
   - https://www.historicmysteries.com/myths-legends/the-vanished-battalion/5187/
   - https://www.roll-of-honour.com/Norfolk/SandringhamRectory.html
+  - https://en.wikipedia.org/wiki/Frank_Beck_(British_Army_officer)
   - https://en.wikipedia.org/wiki/Azmak_Commonwealth_War_Graves_Commission_Cemetery
   - https://www.ww1cemeteries.com/azmak-cemetery.html
+  - "https://www.gallipoli-association.org/on-this-day/august/12/ — 'Lieutenant Colonel Sir Horace Proctor-Beauchamp'; Yüzbaşı Frank Beck, C (The King's) Company"
+  - "https://www.roll-of-honour.com/Norfolk/Langley.html — Proctor-Beauchamp, Lieutenant Colonel, Helles Memorial"
+  - "https://www.friendsofthesuffolkregiment.org/operation-legacy/the-fighting-parson-wins-the-mc — Rev. Charles Pierrepont Edwards (yazım), 1/5 Suffolk papazı, sonra Imperial War Graves Commission"
+  - "https://westmerseatowncouncil.gov.uk/Mersea-Books — 'Reverend Charles Pierrepont Edwards M.C., Vicar of West Mersea 1898 to 1946' (yazım, ikinci kaynak)"
+  - "https://www.cumhuriyet.com.tr/turkiye/anafartalar-zaferi-107-yasinda-canakkalenin-donum-noktasi-1967245 — Albay Mustafa Kemal 8 Ağustos 1915'te Anafartalar Grubu Komutanlığına atandı"
+  - "https://www.sozcu.com.tr/truva-nin-intikami-p315173 — aynı atama (savaş günlüğü, 8 Ağustos gecesi)"
+  - "https://www.islamveihsan.com/canakkale-savasinda-dusmani-yutan-bulut.html — Türkiye'deki 'düşmanı yutan bulut' anlatısı (O. N. Topbaş'tan)"
+  - "https://www.milligazete.com.tr/canakkale-zaferi-ve-bulut-olayi — Türkiye'de 'bulut olayı' anlatısı (eleştirel)"
   - "https://www.pen-and-sword.co.uk/The-Kings-Men-ePub/p/18227 — Neil R. Storey, The King's Men (tanıtım metni)"
   - "Travers & Çelik (2002), 'Not one of them ever came back': What happened to the 1/5 Norfolk Battalion on August 12, 1915 at Gallipoli?, Journal of Military History 66(2): 389-406 — https://hdl.handle.net/11511/39274"
   # Görseller
   - "anafartalar_tepeler.jpg — Hüseyin Öcal, 'ANAFARTALAR KÖYÜ VE TEPELERİ - panoramio', CC BY 3.0, https://commons.wikimedia.org/wiki/File:ANAFARTALAR_K%C3%96Y%C3%9C_VE_TEPELER%C4%B0_-_panoramio.jpg"
   - "suvla_bulutlu.jpg — Tevfik Teker, 'Suvla Bay - panoramio', CC BY 3.0, https://commons.wikimedia.org/wiki/File:Suvla_Bay_-_panoramio.jpg"
-  - "chunuk_bair_suvla_view.jpg — hugh llewelyn, 'View of Suvla Bay from Chunuk Bair' (2009), CC BY-SA 2.0, https://www.flickr.com/photos/58433307@N08/50294488896"
-  - "azmak_mezarligi.jpg — en:User:Jll, 'Azmak Cemetery, Gallipoli Peninsula' (2006), CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:Azmak_Cemetery,_Gallipoli_Peninsula.JPG"
-  - "gercek_hamilton_raporu_1916.jpg — London Gazette 29429 (2. ek), 6 Ocak 1916, s. 303 taraması; kamu malı (Crown copyright süresi doldu; The Gazette içeriği OGL v3). Kırpıldı, başlık satırı eklendi, iki cümle sarıyla vurgulandı, kâğıt renkli kare zemine yerleştirildi."
-  - "Karakterler: wojak kütüphanesi (HF clayshoaf/Wojaks) — 4_Yes_Chad/11559 'Chad Colonist' (subay), 5_Doomer/13656 'British Soldier WW1' (tanık), 4_Yes_Chad/11687 'Chad Priest' (rahip)"
+  - "suvla_ovasi_1915.jpg — 'View looking towards Suvla', Binbaşı John Rose, 1915, Photograph album of Major J.M. Rose, 1st NZEF; Te Papa O.040614, 'No Known Copyright Restrictions', https://collections.tepapa.govt.nz/object/1389646 (albüm kartonu ve el yazısı alt yazı kırpıldı)"
+  - "suvla_mezarlik_1915.jpg — Postcard 'Graveyard at Suvla', Gallipoli, Er John Lord, 1915; Museums Victoria 1699602, Public Domain Mark (Openverse kaydı), https://collections.museumsvictoria.com.au/items/1699602 (kartpostal kenarları ve el yazısı alt yazı kırpıldı)"
+  - "gercek_hamilton_raporu_1916.jpg — London Gazette 29429 (2. ek), 6 Ocak 1916, s. 303 taraması; kamu malı (Crown copyright süresi doldu; The Gazette içeriği OGL v3). Kırpıldı, sayfanın kendi üst satırı (6 JANUARY, 1916. 303) korundu, iki cümle sarıyla vurgulandı (bizim işaretimiz), kâğıt renkli kare zemine küçültülerek yerleştirildi (alt bant için boşluk)."
+  - "Karakterler: wojak kütüphanesi (HF clayshoaf/Wojaks) — 4_Yes_Chad/11559 'Chad Colonist' (subay), 5_Doomer/13794 'Eldery Wojak' (1965'teki yaşlı gazi), 5_Blobjak/9969 'Spooked Priest' (papaz, 1919)"
 
 notes: |
-  CC BY / CC BY-SA görseller: paylaşımda açıklamaya "Görseller: Wikimedia Commons / Flickr — Hüseyin Öcal, Tevfik Teker (CC BY 3.0); hugh llewelyn (CC BY-SA 2.0); Jll (CC BY-SA 3.0)" eklenebilir.
-  Karakter PNG'leri bu bölümün chars/ klasöründe (assets/characters'a dokunulmadı).
+  CC BY görsel atfı 'credits' alanından açıklamalara otomatik eklenir (yazar + eser adı + lisans adresi + "kırpılıp düzenlendi").
+  ShareAlike (CC BY-SA) görseller çıkarıldı: Azmak (Jll, BY-SA 3.0/GFDL) ve Chunuk Bair (hugh llewelyn, BY-SA 2.0) yerine kamu malı / telif kısıtlaması olmayan 1915 arşiv fotoğrafları kullanıldı. Commons'ta Azmak Mezarlığı'nın BY-SA olmayan bir fotoğrafı yok; bu yüzden sahne 6 etiketi "Azmak" değil, fotoğrafın gerçek içeriği ("Suvla'da asker mezarları · 1915").
+  suvla_mezarlik_1915.jpg: kartpostalın el yazısı alt yazısında soru işareti var ("Graveyard at Suvla?"); Museums Victoria kaydı fotoğrafı Suvla'ya bağlıyor (aynı askerin diğer kartları da Suvla: 'Snow Scene at Suvla', 'Ordnance Stores at Suvla'). Bu mezarlar 1915'e ait, 1919'da bulunan Norfolk askerlerinin mezarları DEĞİL; etiket yılı açıkça yazıyor.
+  Karakter PNG'leri bu bölümün chars/ klasöründe (assets/characters'a dokunulmadı; wojak_lib get ile aynı adımlar: alfa kırpma, en çok 1400 px).
+  Karakterler: 1965 iddiasını anlatan tanık artık yaşlı bir gazi (iddia sahipleri 1965'te yaşlı Yeni Zelandalı gazilerdi); 1919 sahnelerindeki papaz klasik wojak çiziminde, şaşkın/ürkek yüzlü, cüppe ve stola ile (cenaze/defin görevindeki papaz kıyafeti). Kütüphanede haki üniformalı ordu papazı yok.
   Rakamlar kaynaklara göre değişiyor: kayıp sayısı 266/267 (bazı yeni araştırmalar daha düşük veriyor), Azmak'taki Norfolk mezarı 114/115, 1919 bulgusu bazı yerlerde "1918". Metinde yalnızca birden çok kaynağın örtüştüğü rakamlar kullanıldı.
-  Rahip Edwards'ın rolü ve "hepsi başından vurulmuştu" iddiası belgeyle desteklenmiyor (Great War Forum) — metinde "anlatılanlara göre" dili kullanıldı, infaz iddiası hiç yazılmadı.
-  1965 iddiasındaki tarih kaynaklara göre 21 ya da 28 Ağustos; metinde tarih verilmedi, yalnızca "uyuşmuyordu" denildi.
-  anafartalar_tepeler.jpg büyük olasılıkla Büyükanafarta tarafı (taarruz Küçükanafarta Ovası'nda); genel "Anafartalar" mekânı olarak kullanıldı, ekranda yer adı yazılmadı.
-  Karakterler role/döneme göre seçildi: tozluk miğferli, haki giysili, ak sakallı kıdemli subay; Brodie miğferli WWI wojak'ları 1916 sonrası olduğu için kullanılmadı.
+  Papaz Edwards: yazım "Pierrepont" (Friends of the Suffolk Regiment, West Mersea; historic-uk/Great War Forum "Pierrepoint" yazıyor). Rolü ve "hepsi başından vurulmuştu" iddiası belgeyle desteklenmiyor (Great War Forum) — metinde "anlatılanlara göre" dili kullanıldı, infaz iddiası hiç yazılmadı.
+  1965 iddiasındaki tarih kaynaklara göre 21 ya da 28 Ağustos; metinde tarih verilmedi, yalnızca "uyuşmuyordu" denildi. Bildiri Rotorua'daki ANZAC çıkarmasının 50. yıl dönümü buluşmasında imzalandı (skeptics.nz; historic-uk "50th Anniversary of Gallipoli").
+  anafartalar_tepeler.jpg büyük olasılıkla Büyükanafarta tarafı (taarruz Küçükanafarta Ovası'nda); genel "Anafartalar" mekânı olarak kullanıldı, ekranda yalnızca "Çanakkale" yazıyor.
+  Karakterler role/döneme göre seçildi: tozluk miğferli, haki giysili, ak sakallı kıdemli subay; Brodie miğferli WWI wojak'ları 1916 sonrası olduğu için 1915 sahnesinde kullanılmadı.
+  Yorum riski: Türkiye'de olay dini bir mucize ("düşmanı yutan bulut") olarak da anlatılıyor; "Kaybolmamışlar" repliği bu anlatıyla çelişiyor ve işgalci askerlerin yasını tutmak gibi okunabilir. İlk saatlerde yorumlar saygılı ve kaynaklı yanıtlanmalı, hakaret içerenler silinmeli. Haber kancası yok: 18 Mart, 25 Nisan ya da 12 Ağustos'ta paylaşmak daha güçlü olur.

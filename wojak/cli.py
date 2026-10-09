@@ -46,6 +46,12 @@ def cmd_check(a) -> None:
     _denetle(ep)
     if not 7 <= ep.duration <= 30:
         print(f"UYARI: süre {ep.duration:.1f} sn. 'Olay' formatında hedef 11-16 sn.")
+    for i, s in enumerate(ep.scenes, 1):  # okuma süresi ≈ kelime/3 + 1 sn (KONSEPT §3)
+        if s.type == "dialog" and s.text:
+            need = len(s.text.split()) / 3 + 1
+            if s.duration + 0.15 < need:
+                print(f"UYARI: sahne {i} okunamayabilir: {len(s.text.split())} kelime için ~{need:.1f} sn gerekli, "
+                      f"süre {s.duration:.1f} sn")
 
 
 def cmd_render(a) -> None:
@@ -89,7 +95,7 @@ def cmd_paket(a) -> None:
     out_dir = config.OUT / ep.id
     out_dir.mkdir(parents=True, exist_ok=True)
     mp4 = out_dir / f"{ep.id}.mp4"
-    print(f"paket -> {pack.write(ep, out_dir, mp4 if mp4.exists() else None)}")
+    print(f"paket -> {pack.write(ep, out_dir, mp4 if mp4.exists() else None, denetim=denetim.check(ep))}")
     for w in pack.warnings(pack.texts(ep), ep):
         print(f"  ⚠ {w}")
     dst = config.ROOT / "teslim" / ep.id

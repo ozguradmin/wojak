@@ -53,6 +53,7 @@ def balanced_wrap(text: str, f: ImageFont.FreeTypeFont, max_w: int, max_lines: i
 def fit_text(text: str, font_path, size: int, max_w: int, max_lines: int = 3,
              stroke_ratio: float = 0.05, min_size: int = 36):
     """Metni max_w içine sığdıracak en büyük punto ve satırları bulur."""
+    min_size = min(min_size, size)  # istenen punto alt sınırdan küçükse en az bir kez denensin
     while size >= min_size:
         f = font(str(font_path), size)
         stroke = max(1, round(size * stroke_ratio))
@@ -102,7 +103,9 @@ def text_block(text: str, *, font_path=config.FONT_DIALOG, size: int = 76, max_w
 def bubble_block(text: str, *, dark: bool = False, font_path=config.FONT_DIALOG, size: int = 60,
                  max_w: int = 820, max_lines: int = 3, radius: int = 34) -> Image.Image:
     """Yuvarlatılmış kutu içinde yazı (Instagram 'arka planlı yazı' stili)."""
-    f, lines, _ = fit_text(text, font_path, size, max_w - 80, max_lines, 0)
+    # küçük etiketler (ör. 34 pt, tek satır) sığmazsa küçülebilsin; yoksa 36 pt'de çok satıra taşıyordu
+    min_size = 36 if size > 36 else max(20, round(size * 0.6))
+    f, lines, _ = fit_text(text, font_path, size, max_w - 80, max_lines, 0, min_size=min_size)
     asc, desc = f.getmetrics()
     lh = round((asc + desc) * 0.98)
     widths = [_width(ln, f) for ln in lines]
