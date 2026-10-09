@@ -1,0 +1,64 @@
+# Gündem tarayıcı (tools/gundem.py) ayarları.
+# Kaynaklar 2026-10-09'da bu sunucudan test edildi (HTTP 200, güncel öğe dönüyor).
+
+# Genel haber akışları (RSS 2.0 / RDF). weight: kaynak sayısı hesabında ağırlık.
+feeds:
+  - {name: Google News TR, url: "https://news.google.com/rss?hl=tr&gl=TR&ceid=TR:tr"}
+  - {name: Hürriyet, url: "https://www.hurriyet.com.tr/rss/gundem"}
+  - {name: Sözcü, url: "https://www.sozcu.com.tr/feeds-rss-category-gundem"}
+  - {name: CNN Türk, url: "https://www.cnnturk.com/feed/rss/turkiye/news"}
+  - {name: Habertürk, url: "https://www.haberturk.com/rss/kategori/gundem.xml"}
+  - {name: AA, url: "https://www.aa.com.tr/tr/rss/default?cat=guncel"}
+  - {name: TRT Haber, url: "https://www.trthaber.com/gundem_articles.rss"}
+  - {name: BBC Türkçe, url: "https://feeds.bbci.co.uk/turkce/rss.xml"}
+  - {name: DW Türkçe, url: "https://rss.dw.com/rdf/rss-tur-all"}
+
+# Google Trends günlük yükselen aramalar (Türkiye). Eşleşen olaylara puan eklenir.
+trends: "https://trends.google.com/trending/rss?geo=TR"
+
+# Kanala uygun olayları yakalamak için Google News arama sorguları ("when:2d" = son 2 gün).
+searches:
+  - "kayıp çocuk"
+  - "ölü bulundu"
+  - "esrarengiz"
+  - "gizemli olay"
+  - "kahraman"
+  - "canı pahasına"
+  - "enkazdan sağ"
+  - "yıllar sonra ortaya çıktı"
+  - "seri katil"
+  - "mucize"
+  - "arkeolojik keşif"
+  - "sahibini bekleyen köpek"
+
+# Puanlama: kelime kökleri (küçük harf, Türkçe). Başlık+özet kelimelerinin BAŞI bu köklerle eşleşirse sayılır.
+# Birden çok kelimeli ifadeler metnin tamamında aranır.
+categories:
+  gizem:       {weight: 3.0, roots: [gizem, esrarengiz, sırr, açıklanamayan, tuhaf, garip, "yıllar sonra", define, mağara, hayalet, lanet, efsane, ufo, "ortaya çıktı"]}
+  kayip:       {weight: 3.0, roots: [kayıp, kaybol, aranıyor, "haber alınamıyor", "izine rastlan", "iz yok"]}
+  kahramanlik: {weight: 3.0, roots: [kahraman, kurtar, fedakâr, fedakar, "canı pahasına", "hayatını feda", vefa, sadık, duygulandır, "gözyaşlarına boğ"]}
+  mucize:      {weight: 3.0, roots: [mucize, enkaz, "saat sonra", "sağ çıkarıldı", "sağ kurtarıldı", "hayata tutun"]}
+  tarih:       {weight: 2.5, roots: [arkeolo, kazı, antik, "bin yıllık", lahit, "tarihi eser", keşfedil, "gün yüzüne"]}
+  suc:         {weight: 2.0, roots: [cinayet, öldür, katil, "ölü bulundu", ceset, cesed, kaçırıl, "seri katil", vahşet, dehşet]}
+  kaza:        {weight: 1.5, roots: [kaza, devril, yangın, sel, deprem, patlama, maden, göçük, çığ, "uçak düştü", boğul]}
+  hayvan:      {weight: 2.0, roots: [köpek, kedi, "sokak hayvan", yavru]}
+
+# Kanalın konusu dışı (puan düşürür).
+exclude:
+  weight: -4.0
+  roots: [seçim, chp, akp, "ak parti", mhp, "dem parti", meclis, milletvekili, kabine, borsa, dolar, enflasyon, faiz,
+          "altın fiyat", akaryakıt, zam, "süper lig", transfer, maç, gol, teknik direktör, galatasaray, fenerbahçe,
+          beşiktaş, trabzonspor, tenis, raket, voleybol, basketbol, turnuva, şampiyon, magazin, dizi, şarkıcı,
+          oyuncu, ünlü, "son hali", boşan, "hava durumu", indirim, kampanya, burç, parti, muhalefet, iktidar,
+          kayyum, "belediye başkanı", bakanlığı, cumhurbaşkan, fon, bddk, arınç, dekan, "mucize bitki", kazandıran,
+          tarif, "kaç lira", "ne zaman", "saat kaçta"]
+
+# Hassas: elenmez ama rapor "DİKKAT" işaretler (docs/GUNDEM.md > kontrol listesi zorunlu).
+sensitive:
+  - {label: "çocuk + istismar", all: [çocuk, istismar]}
+  - {label: "çocuk + taciz", all: [çocuk, taciz]}
+  - {label: "cinsel suç", any: [tecavüz, "cinsel saldırı", "cinsel istismar"]}
+  - {label: "intihar", any: [intihar]}
+  - {label: "terör", any: [terör, bombalı, "canlı bomba"]}
+  - {label: "okul saldırısı / çocuk fail", any: ["okulda silahlı", "okulda bıçaklı", "öğrenci saldır", "okul saldırı"]}
+  - {label: "yayın yasağı olabilir", any: ["yayın yasağı", "gizlilik kararı", "kısıtlama kararı"]}
