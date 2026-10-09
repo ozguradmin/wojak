@@ -1,0 +1,54 @@
+{
+ "352072bb5d8d0a4bdcef95347d141923cf9a74b0": {
+  "faces": "right",
+  "file": "assets/characters/koylu_kasketli_biyikli.png"
+ },
+ "36a0bbbccb24412bd5e8678eb671fb168adc7960": {
+  "faces": "right",
+  "file": "episodes/van-depremi-azra-bebek/img/kurtarmaci_tulum.png"
+ },
+ "3bd087dffb2e0d19bf95a17f991530320b453437": {
+  "faces": "right",
+  "file": "assets/characters/sovyet_asker_kis.png"
+ },
+ "46336da719d04b5b080ceda151fb58d0ba86dea4": {
+  "faces": "right",
+  "file": "episodes/canakkale-kayip-tabur/chars/ingiliz_subay_tozluk.png"
+ },
+ "4d74384580c926c56d3dc31063cc887d9895d337": {
+  "faces": "front",
+  "file": "episodes/nusret-mayin-gemisi/chars/fransiz_denizci.png"
+ },
+ "53669d9d580e8d816123af1b6384f9210678e1d0": {
+  "faces": "right",
+  "file": "assets/characters/muhendis_baretli.png"
+ },
+ "66b32714080cedffa37883588ac4218865fc5e65": {
+  "faces": "left",
+  "file": "episodes/van-depremi-azra-bebek/img/anne_bebekli_sade.png"
+ },
+ "6cc312cba452973ecae99211f7ec41155e4bdb89": {
+  "faces": "right",
+  "file": "episodes/canakkale-kayip-tabur/chars/gazi_yasli.png"
+ },
+ "744a6f80ad4b44c9191bb467e704d03c6b234c0e": {
+  "faces": "right",
+  "file": "episodes/nusret-mayin-gemisi/chars/itilaf_deniz_subayi.png"
+ },
+ "91fb03f1d106a284376c4d1f90b860169de90464": {
+  "faces": "right",
+  "file": "episodes/nusret-mayin-gemisi/chars/osmanli_subay_fesli.png"
+ },
+ "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
+  "faces": "right",
+  "file": "episodes/canakkale-kayip-tabur/chars/papaz_urkek.png"
+ },
+ "ad12c792611141bb49f0b328249ad0dcc1f89ad0": {
+  "faces": "left",
+  "file": "assets/characters/sovyet_yuruyuscu_erkek.png"
+ },
+ "e637ebcfbc4beb352d32c9e317000e3d701000f9": {
+  "faces": "front",
+  "file": "assets/characters/sovyet_kiz_gozluklu.png"
+ }
+}

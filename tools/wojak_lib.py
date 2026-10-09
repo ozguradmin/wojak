@@ -142,6 +142,13 @@ def cmd_get(a) -> None:
     im.save(out, optimize=True)
     shown = out.resolve().relative_to(ROOT) if out.resolve().is_relative_to(ROOT) else out
     print(f"-> {shown}  ({im.width}x{im.height})")
+    sys.path.insert(0, str(ROOT))
+    from wojak import facing
+    if a.yon:  # gözle bakılan yön kaydedilir; sahnede karakter otomatik içeri çevrilir
+        print(f"   bakış yönü kaydedildi: {facing.register(out, a.yon)}")
+    else:
+        print(f"   bakış yönü kayıtlı değil (tahmin: {facing.guess(out)[0]}); görsele bakıp: "
+              f"python -m wojak yon {shown} --yon sag|sol|on")
 
 
 def cmd_sheet(a) -> None:
@@ -198,6 +205,7 @@ def main() -> None:
     p.add_argument("id", help="örn. 5_Doomer/13591")
     p.add_argument("--name", help="kaydedilecek isim (assets/characters/<isim>.png)")
     p.add_argument("--out-dir", help="assets/characters yerine bu klasöre kaydet (ör. episodes/<id>/chars)")
+    p.add_argument("--yon", choices=["sag", "sol", "on"], help="görselin baktığı yön (gözle bakıp ver)")
     p.set_defaults(fn=cmd_get)
     a = ap.parse_args()
     a.fn(a)

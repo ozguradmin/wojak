@@ -28,7 +28,8 @@ class Character:
     height: float = 0.62         # kare yüksekliğine oranı
     x: float | None = None       # 0..1, verilirse side yerine kullanılır (karakterin merkezi)
     y_offset: float = 0.0        # + aşağı, - yukarı (kare oranı)
-    flip: bool = False
+    flip: bool = False           # yalnızca bakış yönü bilinmiyorsa ya da karakter ortadaysa kullanılır
+    faces: str | None = None     # görselin baktığı yön (right/left/front; sag/sol/on); yoksa data/karakter_yon.json
     pop: bool = True             # sahne başında küçük "pop-in" animasyonu
 
 

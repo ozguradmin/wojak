@@ -27,6 +27,9 @@ FONT_BOLD = FONTS / "Poppins-Bold.ttf"
 FONT_CARD = FONTS / "Anton-Regular.ttf"
 
 WATERMARK = "tarihselwojak"
+# Sahne etiketleri ("Gerçek fotoğraf · ...", "İddia · 1965") videoda gösterilmez: hesap sahibi istemiyor
+# (2026-10-09) ve altın dönem videolarında yoktu. Atıf açıklamada (credits).
+SHOW_LABELS = False
 
 WHITE = (255, 255, 255, 255)
 BLACK = (0, 0, 0, 255)

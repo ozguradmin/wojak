@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 
-from . import config, text
+from . import config, facing, text
 from .episode import Episode, Scene
 
 
@@ -107,7 +107,12 @@ def _char_layers(scene: Scene, box: int) -> list[CharLayer]:
     out = []
     for c in scene.chars:
         im = trim_alpha(load_rgba(c.img))
-        if c.flip:
+        # Karakter her zaman kadrajın içine baksın (solda -> sağa, sağda -> sola). Yön kayıtlıysa
+        # (ya da sahnede faces: verildiyse) 'flip' yok sayılır ve otomatik karar verilir.
+        cx = c.x if c.x is not None else {"left": 0.2, "right": 0.8}.get(c.side, 0.5)
+        faces, known = facing.resolve(c.img, c.faces)
+        flip = facing.needs_flip(faces, cx) if known and faces != "front" else c.flip
+        if flip:
             im = ImageOps.mirror(im)
         h = round(box * c.height)
         w = round(im.width * h / im.height)
@@ -148,7 +153,7 @@ def _overlay(ep: Episode, scene: Scene, box: int) -> Image.Image:
         if scene.banner:
             bn = text.banner_block(scene.banner, width=box)
             ov.alpha_composite(bn, (0, box - bn.height - 70))
-        if scene.label:
+        if scene.label and config.SHOW_LABELS:
             lb = text.bubble_block(scene.label, dark=True, size=34, max_w=1000, max_lines=1, radius=18)
             ov.alpha_composite(lb, (24, 24))
     if ep.watermark and scene.type != "card":

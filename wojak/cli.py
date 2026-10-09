@@ -17,6 +17,7 @@ import argparse
 import shutil
 import sys
 import time
+from pathlib import Path
 
 from PIL import Image
 
@@ -41,9 +42,17 @@ def _denetle(ep: episode.Episode) -> None:
 
 
 def cmd_check(a) -> None:
+    from . import facing
     ep = episode.load(a.episode)
     _summary(ep)
     _denetle(ep)
+    for i, s in enumerate(ep.scenes, 1):
+        for c in s.chars:
+            if not c.faces and not facing.registered(c.img):
+                print(f"UYARI: sahne {i} karakterinin bakış yönü kayıtlı değil (tahmin: {facing.guess(c.img)[0]}). "
+                      f"Bak ve kaydet: python -m wojak yon {c.img} --yon sag|sol|on")
+        if s.label:
+            print(f"UYARI: sahne {i} 'label' içeriyor; videolarda etiket/atıf kullanılmıyor (hesap sahibi kararı)")
     if not 7 <= ep.duration <= 30:
         print(f"UYARI: süre {ep.duration:.1f} sn. 'Olay' formatında hedef 11-16 sn.")
     for i, s in enumerate(ep.scenes, 1):  # okuma süresi ≈ kelime/3 + 1 sn (KONSEPT §3)
@@ -147,6 +156,18 @@ def cmd_teslim(a) -> None:
             print(f"  {f.relative_to(dst)}  ({n / 1e6:.1f} MB)" if n > 1e5 else f"  {f.relative_to(dst)}  ({n / 1e3:.1f} KB)")
 
 
+def cmd_yon(a) -> None:
+    from . import facing
+    if a.yon and len(a.png) != 1:
+        sys.exit("Yön kaydederken tek dosya ver: python -m wojak yon <png> sag|sol|on")
+    for p in a.png:
+        if a.yon:
+            print(f"{p}: {facing.register(Path(p), a.yon)} (kaydedildi)")
+        else:
+            g, s = facing.guess(Path(p))
+            print(f"{p}: kayıt={facing.registered(Path(p)) or '-'}  tahmin={g} ({s:+.3f})")
+
+
 def cmd_new(a) -> None:
     dst = config.ROOT / "episodes" / a.id
     if dst.exists():
@@ -175,6 +196,11 @@ def main(argv=None) -> None:
     p.add_argument("episode")
     p.add_argument("--zorla", action="store_true", help="denetim/sınır uyarılarına rağmen teslim et (bilerek)")
     p.set_defaults(fn=cmd_teslim)
+    p = sp.add_parser("yon", help="karakter görselinin bakış yönü: göster ya da kaydet")
+    p.add_argument("png", nargs="+")
+    p.add_argument("--yon", choices=["sag", "sol", "on", "right", "left", "front"],
+                   help="gözle bakıp kaydet (yoksa kayıt + tahmin gösterilir)")
+    p.set_defaults(fn=cmd_yon)
     p = sp.add_parser("new")
     p.add_argument("id")
     p.set_defaults(fn=cmd_new)
