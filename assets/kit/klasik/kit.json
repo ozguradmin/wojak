@@ -1,0 +1,109 @@
+{
+ "aciklama": "Klasik 'feels guy' wojak (kütüphane 5_Tired_Wojak/10441 'Wojak Kinda Tired'). Altın dönemin ana karakteri. Taban: sakin.png (899x1022, sağa bakar). Varyantlar tools/kit_varyant.py ile tabandan üretilir; diğer duygular kütüphanedeki aynı aileden.",
+ "duygular": {
+  "sakin": "nötr, sıradan an (ilk sahne)",
+  "gulumsuyor": "memnun, rahat",
+  "mutlu": "gözleri kapalı gülümseme",
+  "terli": "tedirgin, bir şeyler ters gidiyor (1-2 ter damlası)",
+  "cok_terli": "panik (çok ter damlası)",
+  "gozyasli": "aynı yüz, gözyaşı akıyor",
+  "tek_gozyasi": "sessiz hüzün",
+  "uzgun": "üzgün, gözyaşlı",
+  "agliyor": "ağlıyor",
+  "hickiriyor": "hıçkırarak ağlıyor",
+  "cokkun": "çökkün, morarmış",
+  "korku_karanlik": "dehşet / ölüm sonrası (karanlık yüz)",
+  "olum_karanlik": "ölüm (karanlık, boş göz)"
+ },
+ "variants": {
+  "terli": {
+   "drops": [
+    [
+     300,
+     330,
+     24
+    ],
+    [
+     848,
+     405,
+     21
+    ]
+   ]
+  },
+  "cok_terli": {
+   "drops": [
+    [
+     300,
+     330,
+     24
+    ],
+    [
+     848,
+     405,
+     21
+    ],
+    [
+     392,
+     200,
+     20
+    ],
+    [
+     640,
+     168,
+     19
+    ],
+    [
+     212,
+     478,
+     21
+    ]
+   ]
+  },
+  "gozyasli": {
+   "tears": [
+    {
+     "path": [
+      [
+       515,
+       478
+      ],
+      [
+       512,
+       540
+      ],
+      [
+       505,
+       610
+      ],
+      [
+       500,
+       690
+      ]
+     ],
+     "w": 16
+    },
+    {
+     "path": [
+      [
+       770,
+       480
+      ],
+      [
+       775,
+       545
+      ],
+      [
+       782,
+       615
+      ],
+      [
+       790,
+       700
+      ]
+     ],
+     "w": 16
+    }
+   ]
+  }
+ }
+}

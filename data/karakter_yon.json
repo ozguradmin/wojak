@@ -1,4 +1,16 @@
 {
+ "0dc88746faae6e9f9ea7cd70afa2e8c10821df52": {
+  "faces": "front",
+  "file": "assets/kit/klasik/hickiriyor.png"
+ },
+ "1cc4bf39731e124e3aabb183c8d7deb075c4168b": {
+  "faces": "right",
+  "file": "assets/kit/klasik/mutlu.png"
+ },
+ "22b57f095dc4ce27dd8dd801bfb8ecc9d247bf35": {
+  "faces": "right",
+  "file": "assets/kit/klasik/gulumsuyor.png"
+ },
  "352072bb5d8d0a4bdcef95347d141923cf9a74b0": {
   "faces": "right",
   "file": "assets/characters/koylu_kasketli_biyikli.png"
@@ -11,13 +23,33 @@
   "faces": "right",
   "file": "assets/characters/sovyet_asker_kis.png"
  },
+ "3d7e09bde97cb3e0f5d135ce6a0f9378bcf219e5": {
+  "faces": "right",
+  "file": "assets/kit/klasik/uzgun.png"
+ },
+ "3f4d31c5d8d022f11843cdd61a1c7a74cb2a2098": {
+  "faces": "right",
+  "file": "assets/kit/klasik/cok_terli.png"
+ },
  "46336da719d04b5b080ceda151fb58d0ba86dea4": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/ingiliz_subay_tozluk.png"
  },
+ "498395ad191f2d60e1002883cb93094c0c549621": {
+  "faces": "right",
+  "file": "assets/kit/klasik/gozyasli.png"
+ },
  "4d74384580c926c56d3dc31063cc887d9895d337": {
   "faces": "front",
   "file": "episodes/nusret-mayin-gemisi/chars/fransiz_denizci.png"
+ },
+ "4ed75a4c3cfebea99e497c0be04586c474a2d06c": {
+  "faces": "right",
+  "file": "assets/kit/klasik/terli.png"
+ },
+ "51f7a3e469b7b28b2067f75a54ae3a61ac234fc7": {
+  "faces": "right",
+  "file": "assets/kit/klasik/agliyor.png"
  },
  "53669d9d580e8d816123af1b6384f9210678e1d0": {
   "faces": "right",
@@ -26,6 +58,10 @@
  "66b32714080cedffa37883588ac4218865fc5e65": {
   "faces": "left",
   "file": "episodes/van-depremi-azra-bebek/img/anne_bebekli_sade.png"
+ },
+ "6973d2c0f4c37747e15e339aa05b32cee732cc5e": {
+  "faces": "right",
+  "file": "assets/kit/klasik/sakin.png"
  },
  "6cc312cba452973ecae99211f7ec41155e4bdb89": {
   "faces": "right",
@@ -39,16 +75,40 @@
   "faces": "right",
   "file": "episodes/nusret-mayin-gemisi/chars/osmanli_subay_fesli.png"
  },
+ "9233544d92d5cb51ec431ffa436e7bc286a02d4b": {
+  "faces": "front",
+  "file": "assets/kit/klasik/korku_karanlik.png"
+ },
  "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/papaz_urkek.png"
+ },
+ "ab795e0baa11a4983b1f7120475aff4af014f70a": {
+  "faces": "right",
+  "file": "assets/kit/klasik/cokkun.png"
  },
  "ad12c792611141bb49f0b328249ad0dcc1f89ad0": {
   "faces": "left",
   "file": "assets/characters/sovyet_yuruyuscu_erkek.png"
  },
+ "b071933bb660c7934d1b50f583e8677192cacc67": {
+  "faces": "right",
+  "file": "assets/kit/klasik/tek_gozyasi.png"
+ },
+ "c287cca6d4f3259e1c9308d7b7d6356ada721185": {
+  "faces": "right",
+  "file": "assets/kit/klasik/cok_terli.png"
+ },
+ "ca74112f568126536d95ad0a7510f36daa49e97e": {
+  "faces": "right",
+  "file": "assets/kit/klasik/terli.png"
+ },
  "e637ebcfbc4beb352d32c9e317000e3d701000f9": {
   "faces": "front",
   "file": "assets/characters/sovyet_kiz_gozluklu.png"
+ },
+ "e83e885e7670d492d5342d3c561b4ba6dc72701d": {
+  "faces": "front",
+  "file": "assets/kit/klasik/olum_karanlik.png"
  }
 }
