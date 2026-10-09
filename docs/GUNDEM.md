@@ -77,8 +77,9 @@ intiharı anlatmak (yöntem, mekân) · terör saldırısının failini öne ç�
 
 ## 3. Hız
 
-- Üst sınır: gündemin **son dalgasından 7 gün**. 0-3 gün tercih edilir ama şart değil: doğrulama ve hukuk
-  kontrolü için 1-2 gün beklemek izlenmeyi düşürmüyor. Tek günlük haberleri (yangın, kaza) 48 saat geçtiyse yapma.
+- En iyi pencere: haber dalgasından **1-6 gün** sonra (Instagram verisi: 3-6 gün medyan 8,85M; 0-2 gün 1,44M;
+  7-14 gün 2,54M; bkz. `INSTAGRAM_ANALIZ.md` §3). 7 gün geçtiyse ancak yeni bir dalga varsa (video yayınlandı,
+  ölüm duyuruldu, iddianame, yıldönümü). Tek yüzü olmayan kurumsal/sistemik haberlere girme.
 - **Kahramanlık / mucize / iyilik / tuhaf olay:** hemen (24-72 saat). Mutlu son = düşük risk, yüksek beğeni.
 - **Kayıp / ölüm / suç:** önce **resmi açıklama** (valilik, emniyet, jandarma, AFAD, savcılık) bekle.
   Açık uçlu bir kayıpta yalnızca **yetişkin** ve yetkililerin/ailenin yaydığı arama duyurusu varsa bilgilendirme

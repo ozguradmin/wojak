@@ -1,66 +1,61 @@
 # BÖLÜM ŞABLONU — kopyala: python -m wojak new <bolum-id>
-# Tüm yollar bu klasöre göredir. Karakterler: assets/characters/<isim>.png -> img: <isim>
-# Ses efektleri: assets/sfx/<isim>.wav -> file: <isim>   (boom, hit, whoosh, riser, heartbeat, static, shutter, drone)
+# Ölçü kaynağı: docs/STIL.md (30 orijinal reel kare kare ölçüldü). `python -m wojak check` stil denetimi yapar.
 #
-# HEDEF: 11-15 sn, 4-6 sahne, her replik 3-9 kelime. Olayı ANLATMA, SEZDİR.
-# Hikayenin tamamı pinned_comment'e gider. Bkz. docs/KONSEPT.md
+# KALIP (orijinallerin 26/30'u): AYNI MEKÂNDA İKİ KİŞİ KONUŞUR
+#   A hep SOLDA, B hep SAĞDA; her diyalog sahnesinde yalnız o an konuşan görünür.
+#   Replikler şimdiki zaman, birinci ağız, günlük dil; anlatıcı/tarih/etiket YOK; nokta ve üç nokta YOK.
+#   1. replik = kanca (olay anından bir soru ya da masum/ironik niyet)
+#   son diyalog = ters köşe: aynı karakter, aynı kutu, YÜZ VARYANTI + "Bekle, ... neden ...?" tipi fark etme
+#   [isteğe bağlı] tek ara kart: yalnız ileri zaman atlaması ("Bir süre sonra", "Birkaç saat sonra")
+#   KANIT en sonda: 2-3 gerçek görsel, her biri 1,5 sn; son görsel tercihen Türkçe haber başlığı. Kanıttan sonra hiçbir şey yok.
+# SÜRE: toplam 13,5-14,0 sn; tüm süreler 0,5 sn'nin katı; diyalog 2,0-3,0 (ilk sahne 2,5-3,0); kart 1,5; kanıt 1,5.
+# GÖRÜNTÜ: tek arka plan fotoğrafı (en fazla 2, ikincisi karttan sonra), renkli, gerçek; zoom/sarsıntı/flaş/karartma/ses efekti YOK.
+# KARAKTER: kütüphaneden temiz düz çizim wojak (tools/wojak_site.py, tools/wojak_lib.py, assets/kit/klasik);
+#   bakış yönü kayıtlı olsun (python -m wojak yon <png> --yon sag|sol|on) — render içeri çevirir.
+#
+# Tüm yollar bu klasöre göredir. Karakter: assets/characters/<isim>.png -> img: <isim>
 
 id: sablon
 title: "<Olay adı> (Olayı yorumlara yazdım)"
 
-# İsteğe bağlı: üst siyah bantta kanca yazısı (altın dönemde yoktu; test için)
-# top_text: "1996, Manisa"
-
-# İsteğe bağlı müzik (assets/music/ içine koy). Yoksa sadece efektler çalar.
-# music: {file: gerilim_01.mp3, start: 0, volume: 0.85, fade_out: 0.3}
+# Kanalın imza sesi (assets/music/ozel/, hesabın reel'lerinden çıkarılır); yoksa sentez yedek kullanılır.
+music: kanal
 
 scenes:
-  - type: dialog            # dialog | card | evidence
-    duration: 2.6           # saniye
-    bg: img/mekan_1.jpg     # olayın geçtiği yerin (mümkünse gerçek) fotoğrafı
-    # focus: [0.5, 0.5]     # kare kırpma odağı (x, y) 0..1
-    # darken: 0.2           # 0..1 karartma
-    # grayscale: true       # siyah-beyaz
-    # zoom: 1.05            # yavaş yakınlaşma (1.0 = sabit)
-    chars:
-      - {img: karakter_adi, side: left, height: 0.62}   # side: left|right|center, flip: true
-    text: "Masum ama ironik ilk replik"
-    # text_style: outline   # outline (varsayılan) | bubble | bubble_dark | none
-    # text_y: 0.30          # yazının dikey konumu (kare yüksekliği oranı)
-    # shake: 8              # sarsıntı (px)
-    # flash: true           # beyaz flaş
-    sfx: [{file: drone, volume: 0.8}]
-
+  # 1) KANCA — A (sol). Kapak karesi genelde bu sahneden.
   - type: dialog
-    duration: 2.6
-    bg: img/mekan_2.jpg
+    duration: 2.5
+    bg: img/mekan.jpg
     chars:
-      - {img: kotu_karakter, side: right, height: 0.6}
-    text: "Gerilimi yükselten ikinci replik"
-    sfx: [{file: hit, volume: 0.7}]
+      - {img: /home/user/wojak/assets/kit/klasik/sakin.png, side: left}
+    text: "Gece yarısı oldu hadi ayin yapalım"
 
-  - type: card
-    duration: 1.1
-    text: "Bir süre sonra"
-    sfx: [{file: boom, volume: 0.8}]
-
+  # 2) CEVAP — B (sağ)
   - type: dialog
-    duration: 2.8
-    bg: img/mekan_3.jpg
+    duration: 2.5
+    bg: img/mekan.jpg
     chars:
-      - {img: polis, side: right, height: 0.58}
-    text: "Doruk replik: izleyicinin 'ne?!' dediği an"
+      - {img: karakter_b, side: right}
+    text: "Tamam"
 
-  - type: evidence           # gerçek fotoğraflar (1 = ortalı, 2 = yan yana, 3-4 = ızgara)
-    duration: 1.6
-    images: [img/gercek_1.jpg]
-    # banner: "Haber bandı metni"
-    # label: "Gerçek fotoğraf"
-    sfx: [{file: shutter, volume: 0.6}]
+  # 3) TERS KÖŞE — B, aynı kutu, yüz varyantı (ör. assets/kit/klasik/terli.png -> cok_terli.png)
+  - type: dialog
+    duration: 2.5
+    bg: img/mekan.jpg
+    chars:
+      - {img: karakter_b_korku, side: right}
+    text: "Bekle, ev neden sallanıyor?"
 
+  # 4-6) KANIT — gerçek görseller; tam genişlik, ortalı, etiket/bant YOK
   - type: evidence
-    duration: 1.6
-    images: [img/gercek_2.jpg, img/gercek_3.jpg]
+    duration: 1.5
+    images: [img/gercek_1.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/gercek_2.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/haber_basligi.jpg]
 
 caption: |
   <Olay adı> (<yıl>)

@@ -9,3 +9,6 @@ cookies*.txt
 
 # Lisanslı fontlar (Avenir LT Std): repo herkese açık, dağıtılamaz
 assets/fonts/ozel/
+
+# Kanalın imza orijinal sesi (hesabın kendi reel'lerinden çıkarılır; hak sahibi belirsiz, repo açık)
+assets/music/ozel/

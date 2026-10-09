@@ -25,7 +25,7 @@ class EpisodeError(ValueError):
 class Character:
     img: Path
     side: str = "right"          # left | right | center
-    height: float = 0.50         # kare yüksekliğine oranı (altın dönem medyanı ~%50, en fazla 0.55)
+    height: float = config.CHAR_HEIGHT  # kare yüksekliğine oranı (altın dönem medyanı %48)
     x: float | None = None       # 0..1, verilirse side yerine kullanılır (karakterin merkezi)
     y_offset: float = 0.0        # + aşağı, - yukarı (kare oranı)
     flip: bool = False           # yalnızca bakış yönü bilinmiyorsa ya da karakter ortadaysa kullanılır
@@ -55,7 +55,7 @@ class Scene:
     pan: tuple[float, float] = (0.0, 0.0)  # zoom sırasında kayma yönü (-1..1)
     focus: tuple[float, float] = (0.5, 0.5)  # arka plan kare kırpılırken odak (0..1, 0..1)
     darken: float = 0.0          # 0..1 arka planı karart
-    blur: float = 1.8            # arka plan yumuşatma (px; altın dönem fotoğrafları yumuşak, karakter keskin)
+    blur: float = config.BG_BLUR  # arka plan yumuşatma (px; altın dönem fotoğrafları yumuşak, karakter keskin)
     grayscale: bool = False
     shake: float = 0.0           # 0 = yok; 6-14 px dramatik sarsıntı
     flash: bool = False          # sahne başında beyaz flaş
@@ -69,9 +69,10 @@ class Scene:
 class Music:
     file: Path
     start: float = 0.0
-    volume: float = 0.9
+    volume: float = 1.0          # son miks zaten LOUDNESS_LUFS'a normalize edilir
     fade_in: float = 0.0
-    fade_out: float = 0.35
+    fade_out: float = 0.0        # orijinallerde parça kesilerek biter
+    loop: bool = False           # orijinallerde döngü yok
 
 
 @dataclass
@@ -178,6 +179,8 @@ def load(path: str | Path) -> Episode:
         if isinstance(m, str):
             m = {"file": m}
         m = dict(m)
+        if m["file"] in ("kanal", "imza"):  # kanalın imza sesi; yoksa sentez yedek
+            m["file"] = str(config.MUSIC_CHANNEL if config.MUSIC_CHANNEL.exists() else config.MUSIC_FALLBACK)
         m["file"] = _resolve(base, m["file"], "music")
         music = Music(**m)
     return Episode(

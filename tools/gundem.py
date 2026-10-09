@@ -539,7 +539,7 @@ def draft_episode(report_json: Path, n: int) -> Path:
     # json.dumps -> geçerli YAML çift tırnaklı dize (başlıkta " ya da \\ olsa bile)
     tpl = tpl.replace('title: "<Olay adı> (Olayı yorumlara yazdım)"', "title: " + json.dumps(c["headline"][:90], ensure_ascii=False))
     srcs = "\n".join(f"  - {i['link']}  # {i['source']}: {i['title'][:80]}" for i in c["items"][:8])
-    tpl = re.sub(r"sources:\n(  - .*\n?)+", f"sources:\n{srcs}\n", tpl)
+    tpl = re.sub(r"sources:[^\n]*\n(  - .*\n?)+", f"sources:\n{srcs}\n", tpl)
     flags = f"DİKKAT: {', '.join(c['flags'])} — docs/GUNDEM.md kontrol listesi zorunlu.\n  " if c["flags"] else ""
     tpl += (f"\nnotes: |\n  GÜNDEM — ilk görülme {c['first_seen']}, {len(c['sources'])} kaynak, tür: "
             f"{', '.join(c['categories'])}.\n  {flags}  Yayından önce resmi açıklama ve yayın yasağı kontrolü yap.\n")

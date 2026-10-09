@@ -140,7 +140,7 @@ def dialog_text(msg: str, size: int = config.DIALOG_SIZE) -> Image.Image:
     return text.text_block(msg, font_path=config.FONT_DIALOG, size=size, max_w=config.DIALOG_MAX_W,
                            max_lines=config.DIALOG_MAX_LINES, stroke_ratio=config.DIALOG_STROKE,
                            pitch=config.DIALOG_PITCH, shadow=False, shear=config.DIALOG_SHEAR,
-                           wrap="greedy", min_size=40)
+                           wrap="greedy", min_size=config.DIALOG_MIN_SIZE, soft=config.DIALOG_STROKE_SOFT)
 
 
 def watermark_layer(msg: str) -> Image.Image:
@@ -167,7 +167,8 @@ def _overlay(ep: Episode, scene: Scene, box: int, char_tops: list[int] | None = 
             elif char_tops:
                 # konuşanın başının hemen üstü (ölçülen: yazının altı başın ~35-80 px üstünde, merkez %38-41)
                 y = min(char_tops) - config.TEXT_HEAD_GAP - blk.height
-                y = max(round(box * 0.20), min(y, round(box * 0.47) - blk.height // 2))
+                lo, hi = config.TEXT_CENTER_RANGE
+                y = max(round(box * lo) - blk.height // 2, min(y, round(box * hi) - blk.height // 2))
             else:
                 y = round(box * 0.40) - blk.height // 2
             y = max(10, min(box - blk.height - 10, y))
@@ -181,7 +182,7 @@ def _overlay(ep: Episode, scene: Scene, box: int, char_tops: list[int] | None = 
     if ep.watermark:  # ara kartlarda da var (orijinallerdeki gibi)
         wm = watermark_layer(ep.watermark)
         # sağ kenar ~x=990, taban çizgisi karenin altından ~15 px yukarıda
-        ov.alpha_composite(wm, (box - 90 - wm.width + 12, box - wm.height + 2))
+        ov.alpha_composite(wm, (box - 90 - wm.width + 12, box - wm.height + 14))
     return ov
 
 

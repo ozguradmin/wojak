@@ -86,7 +86,8 @@ Düzeltme notu gelirse aynı gün yeni sürümü gönderirim.
 | Görsel üretimi | Senin ağ geçidin; önce hazır kütüphane |
 
 Önerim (itiraz etmezsen böyle ilerliyorum):
-- **Sıklık:** haftada 5 aday video (3 tarihsel/efsane + 1-2 güncel), paylaşım saati 17:00-21:00.
+- **Sıklık:** 2 günde 1 video (altın dönem ritmi), paylaşım saati 20:00-20:15. Akışın en az %60'ı Türkiye
+  efsane/gizem; yabancı konu en fazla 4'te 1 (bkz. `INSTAGRAM_ANALIZ.md`).
 - **Gündem sınırları:** [`GUNDEM.md`](GUNDEM.md) §2'deki kırmızı çizgiler (yayın yasaklı dosya, çocuk
   istismarı/cinsel suç, intihar, terör failini öne çıkarma, siyaset yok; mağdur ya da şüpheli bir çocuğun
   kimliği hiçbir zaman verilmez).

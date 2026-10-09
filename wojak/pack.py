@@ -115,7 +115,7 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None, denetim: list[s
           "sayılmaz)")
     lines += [
         "## Yükleme kontrol listesi", "",
-        "- [ ] Saat: **17:00-21:00** (altın dönemde 21:00 sonrası paylaşımlar ~%35 daha az izlendi)",
+        "- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)",
         "- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır",
         "- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme",
         "- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)",

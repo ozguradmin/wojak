@@ -135,7 +135,7 @@ Paylaşımı **hesap sahibi** yapar. Ben `python -m wojak teslim episodes/<id>` 
 Platform metinleri: Instagram açıklaması = başlık + hikâyenin tamamı + hashtag; YouTube = başlık + kısa açıklama,
 hikâye sabit yorumda.
 
-- **Saat:** 17:00-21:00 TR (altın dönemde 17-21 arası paylaşımlar medyan 729-812K, 21-24 arası 519K; izleyici videoyu gece "gece shorts" olarak tüketiyor ama dağıtım akşamdan başlamalı).
+- **Saat ve ritim:** 2 günde 1, **20:00-20:15** TR (Instagram altın döneminde 25/25 reel bu düzende).
 - **Sıklık:** altın dönemde ~2-3 günde bir video vardı. En az haftada 3, ideali günde 1.
 - **YouTube'da ilk dakika:** hikâye yorumunu yaz ve sabitle (videonun mekanizması buna dayanıyor).
 - Aynı videoyu **YouTube Shorts** ve isteğe bağlı **TikTok**'a da yükle (metinler pakette hazır).

@@ -33,17 +33,31 @@ FONT_DIALOG = FONT_AVENIR if HAS_AVENIR else FONTS / "Poppins-Bold.ttf"
 FONT_BOLD = FONTS / "Poppins-Bold.ttf"
 FONT_CARD = FONTS / "Anton-Regular.ttf"
 DIALOG_SHEAR = 0.0 if HAS_AVENIR else 7.0   # derece (Avenir zaten italik)
-DIALOG_SIZE = 58 if HAS_AVENIR else 54
-DIALOG_PITCH = 1.10         # satır aralığı / punto
-DIALOG_STROKE = 0.095       # kontur / punto
-DIALOG_MAX_W = 880
+DIALOG_SIZE = 55 if HAS_AVENIR else 52   # x-yüksekliği ~27 px (30 reel medyanı)
+DIALOG_MIN_SIZE = 50
+DIALOG_PITCH = 1.07         # satır aralığı / punto (59 px)
+DIALOG_STROKE = 0.08        # kontur / punto (~4,4 px) + dış kenarda yumuşak geçiş
+DIALOG_STROKE_SOFT = 1.5    # kontur dış kenarına Gauss (px), ofsetsiz
+DIALOG_MAX_W = 860
 DIALOG_MAX_LINES = 2
-TEXT_HEAD_GAP = 45          # yazı bloğunun altı ile konuşan karakterin başı arası (px, kare ölçeğinde)
+TEXT_HEAD_GAP = 55          # yazı bloğunun altı ile konuşanın başı arası (px, kare ölçeğinde)
+TEXT_CENTER_RANGE = (0.32, 0.50)  # blok merkezinin kare içindeki izinli aralığı
+
+# Ses: 27/30 reel'de AYNI parça (kanalın imza "orijinal ses"i, Do minör vals, 13,75 sn), efekt YOK,
+# entegre -29,5 LUFS, gerçek tepe -17 dBTP, döngü yok. Parça hesabın kendi reel'lerinden çıkarılır
+# (assets/music/ozel/, repoya girmez); yoksa sentez imza müziği kullanılır.
+MUSIC_CHANNEL = MUSIC / "ozel" / "kanal_orijinal_ses.m4a"
+MUSIC_FALLBACK = MUSIC / "imza_gece_vals.mp3"
+LOUDNESS_LUFS = -29.5
+LOUDNESS_TP = -17.0
+MAX_DURATION = 14.0
 
 WATERMARK = "tarihselwojak"
 # Sahne etiketleri ("Gerçek fotoğraf · ...", "İddia · 1965") videoda gösterilmez: hesap sahibi istemiyor
 # (2026-10-09) ve altın dönem videolarında yoktu. Atıf açıklamada (credits).
 SHOW_LABELS = False
+CHAR_HEIGHT = 0.48          # görünen yükseklik / kare (30 reel medyanı; izinli 0.42-0.55)
+BG_BLUR = 2.5               # arka plan yumuşatma (px): kenar Laplace varyansı orijinallerle eşleşsin
 
 WHITE = (255, 255, 255, 255)
 BLACK = (0, 0, 0, 255)

@@ -14,6 +14,8 @@
 | [`docs/KONU_HAVUZU.md`](docs/KONU_HAVUZU.md) | Yapılmamış konular (öncelikli) |
 | [`docs/PROMPTLAR.md`](docs/PROMPTLAR.md) | Wojak/arka plan görsel üretim promptları |
 | [`docs/GUNDEM.md`](docs/GUNDEM.md) | Güncel olay oyun kitabı: seçim, hız, uyarlama, hukuk, kontrol listesi |
+| [`docs/STIL.md`](docs/STIL.md) | **Ölçü kaynağı:** 30 orijinal reel kare kare ölçüldü (yapı, yazı, karakter, ses, kanıt) |
+| [`docs/INSTAGRAM_ANALIZ.md`](docs/INSTAGRAM_ANALIZ.md) | 1M+ izlenen 75 reel: dönemler, düşüşün sebepleri, konu ve zamanlama kuralları |
 | [`docs/GEREKENLER.md`](docs/GEREKENLER.md) | **Çalışma düzeni:** teslim paketi, hesap sahibinin yapacakları, görsel üretim anahtarı, kararlar |
 | [`data/videos.csv`](data/videos.csv) | Tüm videolar: tarih, süre, izlenme, beğeni, yorum |
 | [`data/olay_metinleri.md`](data/olay_metinleri.md) | Hesabın sabit "olay" yorumları (üslup örnekleri) |
@@ -69,6 +71,7 @@ episode.yaml ──► sahne kompozisyonu (Pillow) ──► kare kare animasyon
 | Komut | Ne işe yarar |
 |---|---|
 | `tools/wojak_lib.py` | 10.378 şeffaf wojak PNG'si (HF `clayshoaf/Wojaks` = wojakparadise arşivi): ara, önizle, indir |
+| `tools/wojak_site.py` | Ek kaynak: wojakland.com (~5.900, çoğu yeni) + wojaksparadise.com (110) — aynı ara/önizle/indir; düz zeminliyi otomatik keser |
 | `tools/cutout.py` | Beyaz/düz zeminli wojak görselini şeffaf PNG'ye çevir |
 | `tools/gorsel_uret.py` | Yapay zekâ ile karakter/arka plan (hesap sahibinin ağ geçidi `SOL_API_KEY`; yedek: OpenAI, Gemini) |
 | `tools/sol_sor.py` | Ağ geçidine metin/görsel/ses sorusu (bağlantı testi, görsel kontrolü, ses dökümü) |
@@ -79,6 +82,13 @@ episode.yaml ──► sahne kompozisyonu (Pillow) ──► kare kare animasyon
 | `tools/make_sfx.py` | Ses efektlerini sentezle |
 | `tools/yt_arastir.py` | YouTube kopyasından performans verisi, kapaklar, yorumlar |
 | `tools/ig_fetch.py` | Instagram reel istatistikleri/videoları (IG çerezi gerekir) |
+
+Ek wojak kaynağı (`wojak_lib.py`'de aranan bulunmazsa): `python tools/wojak_site.py index` (bir kez, ~4 dk,
+`data/wojak_site_index.csv`) → `search crying wojak [--site wl|wp]` → `sheet police officer` (out/ altında
+önizleme, ölçüleriyle) → `get wl:police_officer_generic_wojak.png --name polis --yon sag`. Siteye ~1 istek/sn;
+indirilenler `.cache/wojak_site/`. Siyasi/aşırılıkçı/cinsel görseller aramada gizli (`--hepsi`). Lisans:
+wojaksparadise yükleyenlerin malı (yeniden kullanım izni yok), wojakland'de şart yok; toplu kullanım için
+sitenin sattığı arşiv daha temiz yol.
 
 ## Gizli bilgiler (API anahtarı, çerez)
 

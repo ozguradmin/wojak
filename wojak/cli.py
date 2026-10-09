@@ -37,6 +37,8 @@ def _denetle(ep: episode.Episode) -> None:
     uyarilar = denetim.check(ep)
     for u in uyarilar:
         print(f"  ⚠ {u}")
+    for u in denetim.stil(ep):
+        print(f"  ✎ {u}")
     if ep.gundem:
         print("  GÜNDEM bölümü: yayından önce docs/GUNDEM.md > 5. Kontrol listesi (yayın yasağı kontrolü dahil).")
 

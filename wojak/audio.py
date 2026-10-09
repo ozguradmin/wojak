@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+import json
 import subprocess
 from pathlib import Path
 
+from . import config
 from .episode import Episode
 
 
@@ -26,7 +28,7 @@ def build(ep: Episode, out: Path, total: float, fps: int) -> Path:
 
     if ep.music:
         m = ep.music
-        inputs += ["-stream_loop", "-1", "-ss", f"{m.start:.3f}", "-i", str(m.file)]
+        inputs += (["-stream_loop", "-1"] if m.loop else []) + ["-ss", f"{m.start:.3f}", "-i", str(m.file)]
         f = [f"atrim=0:{total:.3f}", "asetpts=PTS-STARTPTS", f"volume={m.volume}"]
         if m.fade_in:
             f.append(f"afade=t=in:st=0:d={m.fade_in}")
@@ -52,8 +54,33 @@ def build(ep: Episode, out: Path, total: float, fps: int) -> Path:
                "anullsrc=r=48000:cl=stereo", "-t", f"{total:.3f}", str(out)]
     else:
         mix = (f"{''.join(labels)}amix=inputs={len(labels)}:duration=longest:normalize=0,"
-               f"apad,atrim=0:{total:.3f},alimiter=limit=0.95[out]")
+               f"apad,atrim=0:{total:.3f}[out]")
+        raw = out.with_name(out.stem + "_ham.wav")
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex",
-               ";".join(chains + [mix]), "-map", "[out]", "-ac", "2", "-ar", "48000", str(out)]
+               ";".join(chains + [mix]), "-map", "[out]", "-ac", "2", "-ar", "48000", str(raw)]
+        subprocess.run(cmd, check=True)
+        _loudnorm(raw, out)
+        raw.unlink(missing_ok=True)
+        return out
     subprocess.run(cmd, check=True)
     return out
+
+
+def _loudnorm(src: Path, dst: Path) -> None:
+    """İki geçişli EBU R128: orijinal reel'lerin seviyesine (-29,5 LUFS, -17 dBTP) doğrusal ayar."""
+    I, TP = config.LOUDNESS_LUFS, config.LOUDNESS_TP
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(src), "-af",
+                        f"loudnorm=I={I}:TP={TP}:LRA=7:print_format=json", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    err = r.stderr
+    try:
+        m = json.loads(err[err.rindex("{"):err.rindex("}") + 1])
+        if m["input_i"] in ("-inf", "inf"):
+            raise ValueError("sessiz")
+        af = (f"loudnorm=I={I}:TP={TP}:LRA=7:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
+              f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
+              f"offset={m['target_offset']}:linear=true")
+    except (ValueError, KeyError):
+        af = "anull"
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(src), "-af", af,
+                    "-ar", "48000", "-ac", "2", str(dst)], check=True)

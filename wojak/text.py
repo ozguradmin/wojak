@@ -87,7 +87,7 @@ def text_block(text: str, *, font_path=config.FONT_DIALOG, size: int = 76, max_w
                max_lines: int = 3, fill=config.WHITE, stroke_fill=config.BLACK,
                stroke_ratio: float = 0.055, line_gap: float = 0.98, shadow: bool = True,
                align: str = "center", shear: float = 0.0, pitch: float | None = None,
-               wrap: str = "balanced", min_size: int = 36) -> Image.Image:
+               wrap: str = "balanced", min_size: int = 36, soft: float = 0.0) -> Image.Image:
     """Konturlu (beyaz dolgu + siyah kenar) yazıyı şeffaf bir RGBA katman olarak döndürür.
     pitch: satır aralığı / punto (verilirse line_gap yerine); shear: derece cinsinden yapay italik."""
     f, lines, stroke = fit_text(text, font_path, size, max_w, max_lines, stroke_ratio, min_size, wrap)
@@ -108,6 +108,14 @@ def text_block(text: str, *, font_path=config.FONT_DIALOG, size: int = 76, max_w
             x = w - pad - widths[i]
         y = pad + i * lh
         d.text((x, y), ln, font=f, fill=fill, stroke_width=stroke, stroke_fill=stroke_fill)
+    if soft:
+        # konturun dış kenarına ofsetsiz yumuşak geçiş (orijinallerdeki gibi), dolgu keskin kalır
+        halo = Image.new("RGBA", layer.size, (0, 0, 0, 0))
+        halo.putalpha(layer.getchannel("A").filter(ImageFilter.GaussianBlur(soft)).point(lambda a: int(a * 0.85)))
+        out = Image.new("RGBA", layer.size, (0, 0, 0, 0))
+        out.alpha_composite(halo)
+        out.alpha_composite(layer)
+        layer = out
     if shadow:
         sh = Image.new("RGBA", layer.size, (0, 0, 0, 0))
         alpha = layer.getchannel("A").filter(ImageFilter.GaussianBlur(stroke * 1.5))
@@ -152,7 +160,7 @@ def bubble_block(text: str, *, dark: bool = False, font_path=config.FONT_DIALOG,
     return layer
 
 
-def card_block(text: str, *, size: int = 220, max_w: int = 950, color=config.WHITE) -> Image.Image:
+def card_block(text: str, *, size: int = 160, max_w: int = 990, color=config.WHITE) -> Image.Image:
     """'Bir süre sonra' tarzı ara kart yazısı (Anton; orijinallerde ~950 px genişlik, tek satır)."""
     f, lines, _ = fit_text(text, config.FONT_CARD, size, max_w, 1, 0, min_size=90)  # önce tek satır
     if len(lines) > 1 or _width(lines[0], f) > max_w:

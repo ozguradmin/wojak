@@ -9,6 +9,10 @@ Bu belge 223 videonun verisinden (YouTube kopyası: izlenme, beğeni, süre, saa
 karelerinin tek tek incelenmesinden, storyboard'lardan ve en çok beğenilen izleyici
 yorumlarından çıkarıldı. Rakamlar: [`ANALIZ.md`](ANALIZ.md).
 
+> **Önce bunlar (2026-10-09):** Instagram'daki 30 orijinal reel kare kare ölçüldü → [`STIL.md`](STIL.md) (format,
+> yazı, karakter, ses: **üretimin ölçü kaynağı**). 1M+ izlenen 75 reel'in dönem/konu/zamanlama analizi →
+> [`INSTAGRAM_ANALIZ.md`](INSTAGRAM_ANALIZ.md). Bu belgedeki eski değerler bunlarla çelişirse onlar geçerlidir.
+
 ---
 
 ## 1. Kanalın hikâyesi (5 dönem)
@@ -122,10 +126,10 @@ Ayrıntı, seçim kuralları ve hukuk: [`GUNDEM.md`](GUNDEM.md).
 ### Görsel
 - **Tuval:** 1080x1920 siyah. **Görsel alanı:** ortada 1080x1080 kare (y=420-1500). Üst/alt siyah bant boş.
 - **Arka plan:** olayın gerçek mekânı, kareyi doldurur (cover).
-- **Karakter:** sol-alt veya sağ-alt köşe, kare yüksekliğinin ~%55-65'i, alt kenardan kesik (bel/göğüs planı).
-  İki karakter varsa iki köşeye.
-- **Replik:** Poppins Bold Italic, beyaz dolgu + siyah kontur + hafif gölge, ~76 px, ortalanmış,
-  karenin üst-orta bölümünde (y ≈ %25-40), **1-2 satır**.
+- **Karakter:** her diyalog sahnesinde **tek** karakter (o an konuşan); A hep solda, B hep sağda; kare
+  yüksekliğinin ~%48'i, alt kenardan kesik büst, içeri bakar.
+- **Replik:** Avenir LT Std Bold Italic, beyaz + ~4 px siyah kontur (gölge yok), 55 px, satır aralığı 1,07,
+  ortalı, konuşanın başının ~55 px üstünde (blok merkezi karenin ~%42'si), **en fazla 2 satır**.
 - **Filigran:** "tarihselwojak", sağ alt köşe, aynı font, küçük.
 - **Ara kart:** siyah ekran, Anton/Impact benzeri kalın yazı: *"Bir süre sonra"*.
 - **Kanıt:** gerçek fotoğraf kareye sığdırılmış (contain), gerekirse haber bandı/kolaj.
@@ -136,24 +140,26 @@ Ayrıntı, seçim kuralları ve hukuk: [`GUNDEM.md`](GUNDEM.md).
 > hâliyle dolu; görüntü kenarlıksız 9:16 sayılır) **deneme reel** (Instagram'da "Deneme reel" seçeneğiyle, hesap sahibi paylaşırken) olarak karşılaştır;
 > kazanana göre format sabitlenir.
 
-### Zaman (12-14 sn)
+### Zaman (13,5-14 sn; ölçülen, bkz. STIL.md §2)
 ```
-0.0 ─ 2.6   Sahne 1  Masum/ironik replik (kanca)              ← kapak karesi genelde buradan
-2.6 ─ 5.2   Sahne 2  Gerilim / ikinci karakter
-5.2 ─ 6.3   (opsiyonel) "Bir süre sonra" kartı
-6.3 ─ 9.0   Sahne 3  Doruk/keşif repliği
-9.0 ─ 13.0  Kanıt    1-3 gerçek fotoğraf (her biri ~1.3-1.8 sn)
-13.0        Ani bitiş → döngü
+0.0 ─ 2.5   A (sol)   Kanca: olay anından bir soru ya da masum/ironik niyet   ← kapak karesi
+2.5 ─ 5.0   B (sağ)   Cevap / uyarı / ret
+5.0 ─ 6.5   (isteğe bağlı) "Bir süre sonra" kartı (yalnız ileri zaman atlaması)
+6.5 ─ 9.0   A ya da B Tırmanış
+9.0 ─ 10.5  Aynı karakter, aynı kutu, YÜZ VARYANTI: "Bekle, ... neden ...?"  (ters köşe)
+10.5 ─ 14.0 Kanıt     2-3 gerçek görsel x 1,5 sn; son görsel tercihen Türkçe haber başlığı
 ```
+Hareket, sarsıntı, flaş, ses efekti yok; sert kesme; kanıttan sonra hiçbir şey gelmez.
 
 ### Replik yazım kuralları
-1. **3-9 kelime.** Okuma süresi ≈ kelime/3 + 1 sn; sahne süresini buna göre ayarla.
+1. **1-11 kelime (medyan 5).** Nokta ve üç nokta yok; ünlem neredeyse hiç.
 2. **Konuşma dili**, karakterin o andaki ağzından. Anlatıcı cümlesi yok ("1996'da Manisa'da..." ✗).
 3. **Bilgi verme, ima et.** İzleyici ancak sabit yorumu okuyunca tam anlamalı.
 4. **İlk replik = ironi.** Hikâyenin sonunu bilen biri için korkunç, bilmeyen için sıradan.
 5. Hassas kelime ekranda sansürlü: *"*leceğim"*, *"k*n lekeli"*, *"c!nayet"*. Bu **kanalın üslubu**dur,
    hukuki kalkan değil: "k4til" yazmak, hükmü kesinleşmemiş birine "katil" demekle aynıdır.
-6. Son replik ya cevapsız soru ya ağır bir gerçek (*"Dokuz kişi. Hiçbiri geri dönmedi."*).
+6. Son diyalog = ters köşe: fark etme sorusu (*"Bekle, ev neden sallanıyor?"*, *"Neden vücudum yanıyor?!"*)
+   ya da dramatik ironi (*"Midende"*). Sonra yalnız kanıt gelir; açıklama repliği yok.
 
 ### 2025 dönüşünde yapılan hatalar (tekrarlama)
 - 4-5 satırlık, sola yaslı, "anlatan" uzun metinler ve farklı font → kanca zayıfladı, kare okunmuyor.
@@ -189,12 +195,15 @@ güncel olaylarda `python -m wojak check` dil denetimini ayrıca çalıştırır
   Not: 2.1'deki "yorumlara iniş" sinyali Instagram'da açıklamaya kayıyor; ilk haftalarda sonuçlar izlenip karşılaştırılır.
 
 ## 6. Ses
-- Gerilim/korku tonunda **tek parça** müzik + kesmelerde vuruş efektleri.
-- Varsayılan: kanalın **imza müziği** (`assets/music/imza_gece_vals.mp3`, özgün, hakkı bize ait). Her videoda aynı ses = tanınan kanal sesi. Bkz. `URETIM_REHBERI.md` > 5.
+- 30 reel'in 27'sinde **aynı parça**: kanalın imza "orijinal ses"i (Do minör vals, ~153 BPM, lo-fi, 13,75 sn).
+  **Ses efekti yok**, seslendirme yok, döngü yok; seviye −29,5 LUFS. En çok izlenen 9 reel'in hepsinde bu ses var.
+- Üretimde `music: kanal` (hesabın reel'lerinden çıkarılan dosya, repoya girmez); yoksa sentez yedek
+  (`imza_gece_vals.mp3`, orijinale benzemiyor; yeniden üretilmeli: STIL.md §10.4).
 
 ## 7. Yayın ritmi
-- Altın dönem: **haftada ~3.8 video**. Hedef: haftada en az 3, ideal günde 1.
-- Saat: **17:00-21:00** (altın dönemde 17-21 arası medyan 729-812K, 21-24 arası 519K).
+- Instagram altın dönemi (25 Ara 2023 – 19 Şub 2024): **istisnasız 2 günde 1**, saat **20:00-20:15** (25/25).
+- Bir video patlarsa 7 gün içinde aynı damardan 2-3 video daha; 31-79 günlük boşluklar ivmeyi öldürdü
+  ([`INSTAGRAM_ANALIZ.md`](INSTAGRAM_ANALIZ.md) §2, §6).
 - Instagram + YouTube Shorts + TikTok aynı gün.
 
 ## 8. Etik çizgi
