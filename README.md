@@ -43,14 +43,8 @@ python -m wojak teslim episodes/yeni-olay      # onaya: teslim/yeni-olay/ (video
 **Akış:** videoyu ben hazırlarım → `teslim/<bölüm>/` + sohbette dosya → hesap sahibi onaylar ve kendisi paylaşır
 (Instagram: hikâye açıklamada; YouTube: hikâye sabit yorumda). Ayrıntı: [`docs/GEREKENLER.md`](docs/GEREKENLER.md).
 
-Teslim edilen bölümler (`teslim/<bölüm>/`: video, kapak, paylaşım metinleri):
-
-| Bölüm | Tür | Video |
-|---|---|---|
-| [`episodes/derinkuyu`](episodes/derinkuyu/episode.yaml) | Türkiye gizemi | [`teslim/derinkuyu/`](teslim/derinkuyu/) |
-| [`episodes/dyatlov-gecidi`](episodes/dyatlov-gecidi/episode.yaml) | Dünya gizemi | [`teslim/dyatlov-gecidi/`](teslim/dyatlov-gecidi/) |
-
-Örneklerde kanalın imza müziği (`assets/music/imza_gece_vals.mp3`, burada üretildi, hakkı bize ait) ve sentezlenmiş efektler var.
+Teslim edilen bölümler `teslim/<bölüm>/` altında (video, kapak, paylaşım metinleri). `derinkuyu` ve `dyatlov-gecidi`
+ilk denemelerdir (eski stil: hareket, efekt, Poppins); ölçülen stile göre yeniden yapılacaklar. Yeni stil: [`docs/STIL.md`](docs/STIL.md).
 
 ## Ne yapar?
 

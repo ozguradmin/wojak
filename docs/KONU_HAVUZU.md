@@ -3,6 +3,11 @@
 Kanalda **daha önce yapılmamış** konular (2026-10 itibarıyla `data/videos.csv` başlıklarıyla
 karşılaştırıldı). Sıralama: formata uygunluk tahmini (⭐ = önce bunlar).
 
+> **Instagram verisi (2026-10, [`INSTAGRAM_ANALIZ.md`](INSTAGRAM_ANALIZ.md)):** 10M+ izlenen 19 reel'in 17'si Türkiye'de
+> geçiyor; Türkiye efsane/gizem kategorisinde 12 reel'in 10'u 10M+ ve bu kategori Mart 2024'ten beri hiç denenmedi.
+> Akışın en az %60'ı **A bölümünden** olsun; her konu "8 kelimelik dönüş testi"nden geçsin; yabancı (D/E) en fazla 4'te 1
+> ve ancak küresel bir haber dalgası ya da Kırkağaç seviyesinde bir dönüş varsa.
+
 Her konuda üretimden önce **en az 2 kaynakla doğrula** (`docs/URETIM_REHBERI.md` > 2).
 "Kanca" sütunu başlık/ilk replik fikridir, bilgi değildir.
 
@@ -18,7 +23,7 @@ Her konuda üretimden önce **en az 2 kaynakla doğrula** (`docs/URETIM_REHBERI.
 | | Ağrı'daki "Nuh'un Gemisi" izi (Durupınar formasyonu) | 1959'da bir pilotun çektiği fotoğraf | Hava fotoğrafı |
 | | Yerebatan Sarnıcı'ndaki ters Medusa başları | Neden ters konuldular? | Medusa başları |
 | | Hasankeyf'in sular altında kalması | 12.000 yıllık şehir artık suyun altında | Önce/sonra fotoğrafı |
-| | Kız Kulesi efsanesi | Kızını yılandan korumak için kule yaptıran padişah | Kule |
+| 🎬 | Kız Kulesi efsanesi | Yılandan korunsun diye kuleye kapatılan kızı yılan soktu | **Üretimde:** `episodes/kiz-kulesi-efsanesi` |
 | | Ayasofya'daki "terleyen sütun" | Parmağını sokup dilek tutulan delik | Sütun |
 
 ## B. Türkiye — deprem, mucize, kahramanlık (1.4M-1.7M getiren damar)
