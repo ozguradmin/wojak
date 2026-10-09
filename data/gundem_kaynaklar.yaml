@@ -1,64 +1,133 @@
 # Gündem tarayıcı (tools/gundem.py) ayarları.
-# Kaynaklar 2026-10-09'da bu sunucudan test edildi (HTTP 200, güncel öğe dönüyor).
+# Kaynaklar ve sorgular 2026-10-09'da bu sunucudan test edildi (~70 RSS, ~60 Google News sorgusu).
+# Test bulgularının özeti: docs/GUNDEM.md > 7. Kaynaklar.
 
-# Genel haber akışları (RSS 2.0 / RDF). weight: kaynak sayısı hesabında ağırlık.
+# --- RSS / Atom akışları -------------------------------------------------------------
+# tz_fix_hours: saat dilimi hatalı yayınlayan kaynak için düzeltme (CNN Türk TSİ'yi "GMT" yazıyor).
 feeds:
   - {name: Google News TR, url: "https://news.google.com/rss?hl=tr&gl=TR&ceid=TR:tr"}
-  - {name: Hürriyet, url: "https://www.hurriyet.com.tr/rss/gundem"}
-  - {name: Sözcü, url: "https://www.sozcu.com.tr/feeds-rss-category-gundem"}
-  - {name: CNN Türk, url: "https://www.cnnturk.com/feed/rss/turkiye/news"}
-  - {name: Habertürk, url: "https://www.haberturk.com/rss/kategori/gundem.xml"}
-  - {name: AA, url: "https://www.aa.com.tr/tr/rss/default?cat=guncel"}
-  - {name: TRT Haber, url: "https://www.trthaber.com/gundem_articles.rss"}
+  - {name: Google News Türkiye, url: "https://news.google.com/rss/headlines/section/topic/NATION?hl=tr&gl=TR&ceid=TR:tr"}
+  - {name: Haberler.com, url: "https://rss.haberler.com/rssnew.aspx"}          # ~1000 öğe, en zengin
+  - {name: Hürriyet, url: "https://www.hurriyet.com.tr/rss/son-dakika"}
+  - {name: Sözcü, url: "https://www.sozcu.com.tr/feeds-haberler"}
+  - {name: Habertürk, url: "https://www.haberturk.com/rss"}
+  - {name: Cumhuriyet, url: "https://www.cumhuriyet.com.tr/rss"}
+  - {name: TRT Haber, url: "https://www.trthaber.com/sondakika.rss"}
+  - {name: NTV, url: "https://www.ntv.com.tr/turkiye.rss"}                       # Atom
+  - {name: Sabah, url: "https://www.sabah.com.tr/rss/yasam.xml"}
+  - {name: CNN Türk, url: "https://www.cnnturk.com/feed/rss/all/news", tz_fix_hours: -3}
+  - {name: AA, url: "https://www.aa.com.tr/tr/rss/default?cat=guncel"}            # aralıklı bağlantı kopması: tekrar denenir
   - {name: BBC Türkçe, url: "https://feeds.bbci.co.uk/turkce/rss.xml"}
-  - {name: DW Türkçe, url: "https://rss.dw.com/rdf/rss-tur-all"}
+  - {name: DW Türkçe, url: "https://rss.dw.com/xml/rss-tur-all"}
 
-# Google Trends günlük yükselen aramalar (Türkiye). Eşleşen olaylara puan eklenir.
+# Google Trends günlük yükselen aramalar (Türkiye). Tek başına kaynak değil, sinyal.
 trends: "https://trends.google.com/trending/rss?geo=TR"
 
-# Kanala uygun olayları yakalamak için Google News arama sorguları ("when:2d" = son 2 gün).
+# --- Google News aramaları -------------------------------------------------------------
+# Testte İSABETLİ çıkanlar. "kahraman", "mucize", "gizemli", "efsane", "kurtarıldı" gibi tek kelimeler
+# gürültü getiriyor (soyadı Kahraman, "mucize gıda", "efsane cuma"...), kullanılmıyor.
 searches:
-  - "kayıp çocuk"
-  - "ölü bulundu"
-  - "esrarengiz"
-  - "gizemli olay"
-  - "kahraman"
-  - "canı pahasına"
-  - "enkazdan sağ"
-  - "yıllar sonra ortaya çıktı"
-  - "seri katil"
-  - "mucize"
-  - "arkeolojik keşif"
-  - "sahibini bekleyen köpek"
+  - {q: '"haber alınamıyor"', when: 1d}          # kayıplar haber patlamadan önce burada
+  - {q: '"kayıp" "aranıyor"', when: 1d}
+  - {q: '"kayıp çocuk"', when: 1d}
+  - {q: 'kaybolan', when: 1d}
+  - {q: '"cansız bedeni"', when: 1d}
+  - {q: '"şüpheli ölüm" OR "sır ölüm"', when: 2d}
+  - {q: '"ölü bulundu"', when: 12h}
+  - {q: '"sağ kurtarıldı" OR "sağ çıkarıldı"', when: 2d}
+  - {q: '"saat sonra" kurtarıldı OR bulundu', when: 7d}
+  - {q: '"faili meçhul" OR "çözülemeyen"', when: 7d}
+  - {q: '"yıl sonra" cinayet OR kemik OR kayıp OR "faili meçhul"', when: 7d}
+  - {q: '"DNA" kayıp OR cinayet', when: 7d}
+  - {q: '"maden ocağı" OR göçük', when: 7d}
+  - {q: '"son sözleri" OR "son mesajı"', when: 2d}   # replik kaynağı
+  - {q: '"tarihi eser" OR arkeolojik OR "antik kent"', when: 2d}
+  - {q: '"kahraman polis" OR "kahraman vatandaş" OR "kahraman öğretmen" OR "kahraman itfaiyeci"', when: 7d}
 
-# Puanlama: kelime kökleri (küçük harf, Türkçe). Başlık+özet kelimelerinin BAŞI bu köklerle eşleşirse sayılır.
-# Birden çok kelimeli ifadeler metnin tamamında aranır.
+# Bu kaynaklardan gelen öğeler atılır (makine çevirisi / alakasız). Kiril alfabeli kaynaklar da atılır.
+source_blacklist: [Vietnam.vn, "Sortir à Paris", Instagram, KOHA.net, Kosovahaber.com]
+
+# --- Puanlama sözlüğü (regex, Türkçe küçük harfe çevrilmiş metinde KELİME BAŞINDAN aranır) ---
+# Her kategori bir haber için en fazla bir kez sayılır. Küme puanı = haber puanlarının medyanı
+# + kaynak sayısı + Trends + tazelik.
 categories:
-  gizem:       {weight: 3.0, roots: [gizem, esrarengiz, sırr, açıklanamayan, tuhaf, garip, "yıllar sonra", define, mağara, hayalet, lanet, efsane, ufo, "ortaya çıktı"]}
-  kayip:       {weight: 3.0, roots: [kayıp, kaybol, aranıyor, "haber alınamıyor", "izine rastlan", "iz yok"]}
-  kahramanlik: {weight: 3.0, roots: [kahraman, kurtar, fedakâr, fedakar, "canı pahasına", "hayatını feda", vefa, sadık, duygulandır, "gözyaşlarına boğ"]}
-  mucize:      {weight: 3.0, roots: [mucize, enkaz, "saat sonra", "sağ çıkarıldı", "sağ kurtarıldı", "hayata tutun"]}
-  tarih:       {weight: 2.5, roots: [arkeolo, kazı, antik, "bin yıllık", lahit, "tarihi eser", keşfedil, "gün yüzüne"]}
-  suc:         {weight: 2.0, roots: [cinayet, öldür, katil, "ölü bulundu", ceset, cesed, kaçırıl, "seri katil", vahşet, dehşet]}
-  kaza:        {weight: 1.5, roots: [kaza, devril, yangın, sel, deprem, patlama, maden, göçük, çığ, "uçak düştü", boğul]}
-  hayvan:      {weight: 2.0, roots: [köpek, kedi, "sokak hayvan", yavru]}
+  kayip:
+    weight: 4
+    patterns: ['kayıp\b(?! ?(?:rapor|oran|yüzde|milyar|milyon|lira|dolar))', 'kayb[oe]l', 'haber alınamı', 'izine rastlan',
+               'aranıyor', 'arama[- ]kurtarma', 'arama çalışma', 'dalgıç', 'evden ayrıl', 'okuldan ayrıl']
+  olum_gizem:
+    weight: 4
+    patterns: ['ölü (?:olarak )?bulun', 'cansız bed', 'ceset', 'cesed', 'naaş', 'kemik(?:ler)?i? bulun', 'iskelet', 'kafatas',
+               'kimliği (?:belirlen|tespit)', 'dna\b', 'otopsi', 'adli tıp', 'esrarengiz', 'gizemli', 'gizemi\b',
+               'sır (?:ölüm|olay|perde|gibi|dolu)', 'şüpheli ölüm', 'açıklanamay', 'faili meçhul', 'çözülemey', 'çözüldü',
+               'yıllar sonra', '\d+ yıl sonra', 'itiraf', 'tuhaf', 'garip olay']
+  kurtarma_kahramanlik:
+    weight: 4
+    patterns: ['kurtarıl', 'kurtardı', 'sağ (?:olarak )?(?:çıkarıl|kurtarıl|bulun)', 'enkaz', 'göçük', 'mahsur',
+               'mucize(?! (?:gıda|bitki|besin|kür|krem|çay|ürün))', 'kahramanlı',
+               'kahraman (?:polis|asker|vatandaş|öğretmen|esnaf|anne|baba|çocuk|köpek|işçi|bekçi|itfaiyeci|madenci|çoban|doktor|hemşire|şoför)',
+               'hayat(?:ını)? kurtar', 'canını hiçe', 'kendini feda', 'fedak[âa]r', '\d+ (?:saat|gün) sonra', 'son anda',
+               'vefa(?:lı|sı|kâr|kar)?\b', 'sadık köpe', 'hayatta kalan', 'tek kurtulan']
+  efsane_tarih:
+    weight: 4
+    patterns: ['efsane(?! (?:cuma|kasım|indirim|fiyat))', 'hazine(?! ve maliye| müsteşar| arazi)', 'tarihi eser', 'arkeolo',
+               'antik', 'kazı(?:da|lar|sında)', 'mumya', 'lahit', 'mağara', 'lanet', 'perili', 'hayalet', 'terk edilmiş',
+               'batık', 'kayıp şehir', 'asırlık', 'yüzyıllık', 'bin yıllık']
+  suc:
+    weight: 2
+    patterns: ['cinayet', 'katil', 'öldürül', 'öldürd', 'vahşet', 'dehşet', 'kan donduran', 'kaçırıl', 'rehin', 'zehirle',
+               'boğarak', 'bıçakla', 'kurşunla', 'parçalan', 'bavul', 'gömül', 'yakılmış', 'katliam']
+  felaket:
+    weight: 2
+    patterns: ['deprem', 'heyelan', '\bsel\b', 'çığ\b', 'patlama', 'maden', 'facia', 'uçak (?:düştü|kaza)', 'batan', 'battı',
+               'alabora', 'zehirlen', 'metanol', 'sahte içki', 'çöktü', 'çöken']
+  duygu:
+    weight: 1
+    patterns: ['son sözleri', 'son mesaj', 'son fotoğraf', 'son görüntü', 'son paylaşım', 'yürek(?:leri)? (?:burk|dağla|yak|sızla)',
+               'gözyaşı', 'acı haber', 'kahreden', 'şoke eden', 'akıl ?almaz']
 
-# Kanalın konusu dışı (puan düşürür).
+# Konu dışı (puan düşürür). "resmi" bilerek zayıf: "Bakan: 39 yıllık faili meçhul çözüldü" elenmesin.
 exclude:
-  weight: -4.0
-  roots: [seçim, chp, akp, "ak parti", mhp, "dem parti", meclis, milletvekili, kabine, borsa, dolar, enflasyon, faiz,
-          "altın fiyat", akaryakıt, zam, "süper lig", transfer, maç, gol, teknik direktör, galatasaray, fenerbahçe,
-          beşiktaş, trabzonspor, tenis, raket, voleybol, basketbol, turnuva, şampiyon, magazin, dizi, şarkıcı,
-          oyuncu, ünlü, "son hali", boşan, "hava durumu", indirim, kampanya, burç, parti, muhalefet, iktidar,
-          kayyum, "belediye başkanı", bakanlığı, cumhurbaşkan, fon, bddk, arınç, dekan, "mucize bitki", kazandıran,
-          tarif, "kaç lira", "ne zaman", "saat kaçta"]
+  siyaset:
+    weight: -6
+    patterns: ['seçim', 'aday\b', 'parti', 'chp', 'akp\b', 'ak parti', 'mhp', 'dem parti', 'iyi parti', 'milletvekil', 'tbmm',
+               'meclis', 'cumhurbaşkan', 'erdoğan', 'bahçeli', 'imamoğlu', 'özgür özel', 'kurultay', 'miting', 'anket',
+               'muhalefet', 'iktidar', 'kabine', 'genel başkan', 'belediye başkan', 'büyükelçi', 'dışişleri', 'diplomas',
+               'nato\b', 'avrupa birliği', 'zirve', 'kanun teklif', 'kayyum']
+  resmi:
+    weight: -2
+    patterns: ['bakan\b', 'bakanı\b', 'bakanlığ', 'açıklama yaptı', 'genelge', 'toplantı', 'taziye']
+  ekonomi:
+    weight: -6
+    patterns: ['borsa', 'bist', 'dolar', 'euro', 'altın fiyat', 'gram altın', 'faiz', 'enflasyon', 'kredi', 'asgari ücret',
+               'emekli', 'zam\b', 'zamlı', 'ihracat', 'ithalat', 'piyasa', 'hisse', 'kripto', 'bitcoin', 'merkez bankası',
+               'tcmb', 'büyüme', 'vergi', 'akaryakıt', 'benzin', 'motorin', 'doğal ?gaz', 'yatırım', 'şirket', 'iflas', 'maaş',
+               'memur', 'sgk', 'bütçe', 'ihale', 'fon\b', 'bddk']
+  spor:
+    weight: -6
+    patterns: ['maç', 'gol', 'lig\b', 'galatasaray', 'fenerbahçe', 'beşiktaş', 'trabzonspor', 'teknik direktör', 'transfer',
+               'skor', 'puan durumu', 'derbi', 'milli takım', 'uefa', 'fifa', 'basketbol', 'voleybol', 'formula', 'şampiyon',
+               'antrenman', 'futbol', 'kadro', 'hakem', 'tenis', 'raket', 'turnuva']
+  magazin:
+    weight: -5
+    patterns: ['ünlü (?:oyuncu|şarkıcı|isim)', 'dizi', 'bölüm(?:ü|de)?\b', 'fragman', 'reyting', 'sevgili', 'boşan', 'evlendi',
+               'nişan', 'kırmızı halı', 'estetik', 'konser', 'albüm', 'magazin', 'survivor', 'masterchef', 'kısmetse',
+               'oyuncu', 'sezon', 'son hali']
+  rutin_operasyon:   # "tarihi eser operasyonu", "uyuşturucu operasyonu": formata uymayan rutin asayiş haberleri
+    weight: -3
+    patterns: ['operasyon', 'ele geçiril', 'kaçak kazı', 'gözaltına alındı', 'adli işlem']
+  servis_reklam:
+    weight: -8
+    patterns: ['kampanya', 'indirim', 'fiyat', 'satış', 'satın al', 'sponsor', 'tanıtım', 'promosyon', 'kupon', 'bahis', 'burç',
+               'hava durumu', 'namaz vakt', 'nöbetçi eczane', 'kpss', 'yks\b', 'lgs\b', 'sonuçları açıklandı', 'başvuru',
+               'ne zaman', 'nasıl yapılır', 'tarif', 'rüyada', 'canlı izle', 'hangi kanalda', 'kimdir\??$', 'nereli',
+               'kaç yaşında', 'saat kaçta', 'kaç lira']
 
 # Hassas: elenmez ama rapor "DİKKAT" işaretler (docs/GUNDEM.md > kontrol listesi zorunlu).
 sensitive:
-  - {label: "çocuk + istismar", all: [çocuk, istismar]}
-  - {label: "çocuk + taciz", all: [çocuk, taciz]}
-  - {label: "cinsel suç", any: [tecavüz, "cinsel saldırı", "cinsel istismar"]}
-  - {label: "intihar", any: [intihar]}
-  - {label: "terör", any: [terör, bombalı, "canlı bomba"]}
-  - {label: "okul saldırısı / çocuk fail", any: ["okulda silahlı", "okulda bıçaklı", "öğrenci saldır", "okul saldırı"]}
-  - {label: "yayın yasağı olabilir", any: ["yayın yasağı", "gizlilik kararı", "kısıtlama kararı"]}
+  - {label: "intihar", patterns: ['intihar']}
+  - {label: "cinsel suç / istismar", patterns: ['istismar', 'tecavüz', 'cinsel (?:saldırı|istismar|taciz)', 'taciz', 'reşit olmayan']}
+  - {label: "çocuk (kimlik gizliliği)", patterns: ['(?:[1-9]|1[0-7]) yaşındaki', 'bebek', 'kız çocuğu', 'erkek çocuğu', 'öğrenci']}
+  - {label: "terör", patterns: ['terör', 'bombalı', 'canlı bomba']}
+  - {label: "okul saldırısı", patterns: ['okulda (?:silahlı|bıçaklı)', 'okul saldırı']}
+  - {label: "yayın yasağı / gizlilik olabilir", patterns: ['yayın yasağı', 'gizlilik kararı', 'kısıtlama kararı']}

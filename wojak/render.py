@@ -140,8 +140,8 @@ def render(ep: Episode, out_dir: Path | None = None, *, square: bool = False, fp
     total = sum(max(1, round(s.duration * fps)) for s in ep.scenes) / fps
     wav = audio.build(ep, out_dir / f".{ep.id}{suffix}_audio.wav", total, fps)
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i", str(wav),
-                    "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
-                    "-ar", "48000", "-shortest", "-movflags", "+faststart", str(final)], check=True)
+                    "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
+                    "-ar", "48000", "-shortest", "-use_editlist", "0", "-movflags", "+faststart", str(final)], check=True)
     silent.unlink(missing_ok=True)
     wav.unlink(missing_ok=True)
     return final

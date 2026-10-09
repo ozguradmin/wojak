@@ -27,6 +27,7 @@ import html
 import json
 import math
 import re
+import statistics
 import urllib.parse
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
@@ -51,6 +52,14 @@ iki üç dört beş yıl yılı gün saat dakika haber haberi video foto galeri 
 açıklama açıkladı dedi etti eden yaptı yapan oluyor olacak var yok""".split())
 
 
+# İl adları: farklı olaylarda da geçtiği için tek başına "aynı olay" kanıtı sayılmaz (zincirleme birleşme yapar)
+PROVINCES = """adana adıyaman afyonkarahisar afyon ağrı amasya ankara antalya artvin aydın balıkesir bilecik bingöl
+bitlis bolu burdur bursa çanakkale çankırı çorum denizli diyarbakır edirne elazığ erzincan erzurum eskişehir
+gaziantep antep giresun gümüşhane hakkari hatay ısparta mersin istanbul izmir kars kastamonu kayseri kırklareli
+kırşehir kocaeli konya kütahya malatya manisa kahramanmaraş maraş mardin muğla muş nevşehir niğde ordu rize sakarya
+samsun siirt sinop sivas tekirdağ tokat trabzon tunceli şanlıurfa urfa uşak van yozgat zonguldak aksaray bayburt
+karaman kırıkkale batman şırnak bartın ardahan ığdır yalova karabük kilis osmaniye düzce kktc kıbrıs""".split()
+
 # Her olayda geçebilen, tek başına "aynı olay" kanıtı olmayan özel isimler
 GENERIC_PROPER = {"istan", "ankar", "izmir", "türki", "türk", "son", "dakik", "flaş", "vali", "bakan", "polis",
                   "jandarma", "afad", "emniy"}
@@ -61,7 +70,9 @@ def tr_lower(s: str) -> str:
 
 
 def strip_html(s: str) -> str:
-    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", s or ""))).strip()
+    # Haberler.com başlıkları çift kaçışlı ("Muş&amp;apos;ta"): iki kez çöz
+    s = html.unescape(html.unescape(s or ""))
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", s)).strip()
 
 
 def tokens(s: str) -> list[str]:
@@ -133,11 +144,24 @@ def _date(s: str) -> datetime | None:
     return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
 
 
-def fetch_feed(name: str, url: str) -> list[Item]:
+def _get_xml(url: str, tries: int = 3) -> ET.Element:
+    last = None
+    for _ in range(tries):
+        try:
+            r = requests.get(url, headers=UA, timeout=25)
+            r.raise_for_status()
+            # TRT gibi kaynaklarda yarım UTF-8 baytı var: katı ayrıştırıcıdan önce onar
+            text = r.content.decode("utf-8", "replace")
+            text = re.sub(r"^<\?xml[^>]*\?>", "", text.lstrip("\ufeff").lstrip())
+            return ET.fromstring(text)
+        except Exception as e:  # AA gibi aralıklı bağlantı kopmaları
+            last = e
+    raise last
+
+
+def fetch_feed(name: str, url: str, tz_fix_hours: float = 0) -> list[Item]:
     try:
-        r = requests.get(url, headers=UA, timeout=25)
-        r.raise_for_status()
-        root = ET.fromstring(r.content)
+        root = _get_xml(url)
     except Exception as e:  # tek bir kaynak düşerse rapor yine çıksın
         print(f"  ! {name}: {type(e).__name__}: {str(e)[:80]}")
         return []
@@ -161,15 +185,15 @@ def fetch_feed(name: str, url: str) -> list[Item]:
                 title, source = head.strip(), tail.strip()
         pub = _date(_child(el, "pubDate") or _child(el, "date") or _child(el, "published")
                     or _child(el, "updated"))
+        if pub and tz_fix_hours:
+            pub += timedelta(hours=tz_fix_hours)
         out.append(Item(title, link, source, pub, strip_html(_child(el, "description"))[:400], name))
     return out
 
 
 def fetch_trends(url: str) -> list[dict]:
     try:
-        r = requests.get(url, headers=UA, timeout=25)
-        r.raise_for_status()
-        root = ET.fromstring(r.content)
+        root = _get_xml(url)
     except Exception as e:
         print(f"  ! Trends: {e}")
         return []
@@ -186,13 +210,19 @@ def fetch_trends(url: str) -> list[dict]:
 
 
 def collect(cfg: dict, extra_queries: list[str], hours: int) -> tuple[list[Item], list[dict]]:
-    jobs = [(f["name"], f["url"]) for f in cfg.get("feeds", [])]
-    for q in list(cfg.get("searches", [])) + extra_queries:
-        jobs.append((f"Google News: {q}", GNEWS_SEARCH.format(q=urllib.parse.quote(f"{q} when:2d"))))
+    jobs = [(f["name"], f["url"], f.get("tz_fix_hours", 0)) for f in cfg.get("feeds", [])]
+    searches = [s if isinstance(s, dict) else {"q": s} for s in cfg.get("searches", [])]
+    searches += [{"q": q, "when": "2d"} for q in extra_queries]
+    for s in searches:
+        q = f"{s['q']} when:{s.get('when', '2d')}"
+        jobs.append((f"Google News: {s['q']}", GNEWS_SEARCH.format(q=urllib.parse.quote(q)), 0))
     with ThreadPoolExecutor(8) as ex:
         results = list(ex.map(lambda j: fetch_feed(*j), jobs))
         trends_f = ex.submit(fetch_trends, cfg["trends"]) if cfg.get("trends") else None
     items = [i for rs in results for i in rs]
+    black = {b.lower() for b in cfg.get("source_blacklist", [])}
+    items = [i for i in items if i.source.lower() not in black
+             and not re.search(r"[\u0400-\u04FF]", i.source + i.title)]  # Kiril alfabeli kaynaklar
     cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
     items = [i for i in items if i.published is None or i.published >= cutoff]
     trends = trends_f.result() if trends_f else []
@@ -211,57 +241,60 @@ def _stem(tok: str) -> str:
     return tok[:5]  # kaba Türkçe kök: "çöktü"/"çöken", "kaybolan"/"kayboldu" eşleşsin
 
 
-def cluster_items(items: list[Item], thr: float = 0.45, topic_words: set[str] | None = None) -> list[Cluster]:
-    """Aynı olayı anlatan başlıkları kümeler.
+def cluster_items(items: list[Item], topic_words: set[str] | None = None) -> list[Cluster]:
+    """Aynı olayı anlatan başlıkları kümeler (union-find).
 
-    Benzerlik, ortak kelimelerin NADİRLİK ağırlıklı (IDF) toplamıdır; "çocuk", "ölü",
-    "bulundu" gibi her habere geçen kelimeler alakasız olayları birleştiremez.
-    Her başlık yalnızca kümenin ilk (tohum) başlığıyla karşılaştırılır.
+    İki haber birleşir:
+      * kelime kökü kümelerinin Jaccard benzerliği >= 0.45 VE (>= 4 ortak kök YA DA ortak bir varlık), veya
+      * ortak bir varlık (ilçe/kişi adı: Maltepe, Efe... — il adları sayılmaz) + >= 3 ortak kök + Jaccard >= 0.25.
+    "Cinayet şüphelisi adliyeye sevk edildi" gibi genel başlıklar varlık şartı yüzünden birleşmez.
+    Aday çiftler ters indeksle bulunur; 60'tan fazla haberde geçen kökler aday üretmez.
     """
-    stems = [{_stem(t) for t in i.toks} for i in items]
-    df: dict[str, int] = {}
-    for st in stems:
-        for t in st:
-            df[t] = df.get(t, 0) + 1
-    n = max(1, len(items))
-    idf = {t: math.log(n / c) for t, c in df.items()}
-    proper = _proper_nouns(items) - GENERIC_PROPER
-
     topic = {_stem(tr_lower(w)) for w in (topic_words or set())}
+    stems = [{_stem(t) for t in i.toks} for i in items]
+    provinces = {_stem(p) for p in PROVINCES}
+    entities = _proper_nouns(items) - GENERIC_PROPER - topic - provinces
+    index: dict[str, list[int]] = {}
+    for k, st in enumerate(stems):
+        for t in st:
+            index.setdefault(t, []).append(k)
+    parent = list(range(len(items)))
 
-    def anchored(shared: set[str]) -> bool:
-        # "kayıp + çocuk + yaşındaki" gibi genel kelimeler tek başına yetmez: ortak bir özel isim
-        # (Maltepe, Efe...) ya da nadir bir kelime (haberlerin %3'ünden azında geçen) şart.
-        # Kategori/arama kelimeleri (kayıp, aranıyor...) bizim sorgularımız yüzünden sık
-        # toplandığı için çapa sayılmaz.
-        cand = shared - topic
-        return any(t in proper and idf[t] > math.log(10) for t in cand) or \
-            any(idf[t] > math.log(1 / 0.03) for t in cand)
-    order = sorted(range(len(items)),
-                   key=lambda k: items[k].published or datetime.min.replace(tzinfo=timezone.utc))
-    clusters: list[tuple[set[str], float, Cluster]] = []
-    seen = set()
-    for k in order:
-        it, st = items[k], stems[k]
-        key = tr_lower(it.title)
-        if not st:
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    seen_pairs: set[tuple[int, int]] = set()
+    for t, ks in index.items():
+        if len(ks) > 60:
             continue
-        w_it = sum(idf[t] for t in st)
-        best, best_sim = None, 0.0
-        for seed, w_seed, c in clusters:
-            shared = st & seed
-            if len(shared) < 2:
-                continue
-            sim = sum(idf[t] for t in shared) / max(1e-9, min(w_it, w_seed))
-            if sim > best_sim and anchored(shared):
-                best, best_sim = c, sim
-        if best is not None and best_sim >= thr:
-            if key not in {tr_lower(x.title) for x in best.items} or it.source not in best.sources:
-                best.items.append(it)
-        elif key not in seen:
-            clusters.append((st, w_it, Cluster(items=[it])))
-        seen.add(key)
-    return _merge_pass([c for _, _, c in clusters], idf, proper)
+        for x in range(len(ks)):
+            for y in range(x + 1, len(ks)):
+                a, b = ks[x], ks[y]
+                if (a, b) in seen_pairs or find(a) == find(b):
+                    continue
+                seen_pairs.add((a, b))
+                sa, sb = stems[a], stems[b]
+                shared = sa & sb
+                jac = len(shared) / len(sa | sb)
+                ent = bool(shared & entities)
+                if (jac >= 0.45 and (len(shared) >= 4 or ent)) or (ent and len(shared) >= 3 and jac >= 0.25):
+                    parent[find(b)] = find(a)
+    groups: dict[int, Cluster] = {}
+    for k, it in enumerate(items):
+        groups.setdefault(find(k), Cluster()).items.append(it)
+    # aynı başlığın kopyalarını (aynı kaynak) tekilleştir
+    for c in groups.values():
+        uniq, seen = [], set()
+        for it in c.items:
+            key = (tr_lower(it.title), it.source)
+            if key not in seen:
+                seen.add(key)
+                uniq.append(it)
+        c.items = uniq
+    return list(groups.values())
 
 
 def _proper_nouns(items: list[Item]) -> set[str]:
@@ -278,50 +311,6 @@ def _proper_nouns(items: list[Item]) -> set[str]:
     return {t for t, n in tot.items() if n >= 2 and up[t] / n >= 0.85}
 
 
-def _signature(c: Cluster, idf: dict[str, float], k: int = 6) -> list[str]:
-    cnt: dict[str, int] = {}
-    for i in c.items:
-        for t in {_stem(x) for x in i.toks}:
-            cnt[t] = cnt.get(t, 0) + 1
-    return sorted(cnt, key=lambda t: -(cnt[t] * idf.get(t, 0)))[:k]
-
-
-def _merge_pass(clusters: list[Cluster], idf: dict[str, float], proper: set[str]) -> list[Cluster]:
-    """İkinci geçiş: aynı olayın farklı ifade edilmiş başlıklarını birleştirir
-    (ör. "Maltepe'de bina çöktü" / "Maltepe'de çöken binada arama sürüyor").
-    Koşul: imzalarda en az 2 ortak kelime ve bunlardan biri ortak bir özel isim
-    (çok yaygın olanlar hariç: İstanbul, Türkiye...)."""
-    common = math.log(10)  # haberlerin %10'undan fazlasında geçen özel isim "yaygın" sayılır
-    changed = True
-    while changed:
-        changed = False
-        sigs = [set(_signature(c, idf)) for c in clusters]
-        for a in range(len(clusters)):
-            for b in range(a + 1, len(clusters)):
-                shared = sigs[a] & sigs[b]
-                anchor = [t for t in shared if t in proper and idf.get(t, 0) > common]
-                if len(shared) >= 2 and anchor:
-                    clusters[a].items.extend(clusters[b].items)
-                    del clusters[b]
-                    changed = True
-                    break
-            if changed:
-                break
-    return clusters
-
-
-def _match(text_tokens: list[str], text: str, roots: list[str]) -> list[str]:
-    hits = []
-    for r in roots:
-        r = tr_lower(str(r))
-        if " " in r:
-            if r in text:
-                hits.append(r)
-        elif any(tok.startswith(r) for tok in text_tokens):
-            hits.append(r)
-    return hits
-
-
 def _content_text(s: str) -> str:
     """Kategori eşleşmesi için metin: cümle ortasındaki özel isimleri (Ayla Aksu KAHRAMAN gibi
     soyadları, yer adları) çıkarır. Her kelimesi büyük harfle başlayan başlıklara dokunmaz."""
@@ -335,54 +324,74 @@ def _content_text(s: str) -> str:
     for n, w in enumerate(words):
         prev = words[n - 1] if n else ""
         sentence_start = n == 0 or prev[-1:] in ".!?:\"'“”‘’"
-        out.append(w if sentence_start or not w[:1].isupper() else "")
+        acronym = len(w) >= 2 and w.isupper()
+        out.append(w if sentence_start or acronym or not w[:1].isupper() else "")
     return " ".join(out)
 
 
+_RX_CACHE: dict[str, re.Pattern] = {}
+
+
+def _rx(pat: str) -> re.Pattern:
+    """Kelime başından eşleşen regex (ekler serbest: 'kaybol' -> kayboldu, kaybolan)."""
+    r = _RX_CACHE.get(pat)
+    if r is None:
+        r = _RX_CACHE[pat] = re.compile(r"(?<!\w)" + pat)
+    return r
+
+
+def _hits(text: str, groups: dict) -> dict[str, float]:
+    """Her grup (kategori) metinde en az bir kalıpla eşleşirse ağırlığını döndürür."""
+    return {name: g["weight"] for name, g in groups.items() if any(_rx(p).search(text) for p in g["patterns"])}
+
+
+def _item_text(i: Item) -> str:
+    return tr_lower(_content_text(f"{i.title}. {i.summary}"))
+
+
 def score(c: Cluster, cfg: dict, trends: list[dict]) -> None:
-    text = tr_lower(" ".join(_content_text(f"{i.title}. {i.summary}") for i in c.items))
-    toks = re.findall(r"[a-zçğıöşüâîû0-9]+", text)
-    fit = 0.0
-    strength = {}
-    for name, cat in cfg["categories"].items():
-        hits = _match(toks, text, cat["roots"])
-        if hits:
-            strength[name] = cat["weight"] * min(2, len(set(hits)))
-            fit += strength[name]
-    c.categories = sorted(strength, key=lambda k: -strength[k])
-    excl = _match(toks, text, cfg["exclude"]["roots"])
-    penalty = cfg["exclude"]["weight"] * min(2, len(set(excl))) if excl else 0.0
+    per_fit, per_pen, cat_count = [], [], {}
+    for i in c.items:
+        t = _item_text(i)
+        h = _hits(t, cfg["categories"])
+        for k in h:
+            cat_count[k] = cat_count.get(k, 0) + 1
+        per_fit.append(sum(h.values()))
+        per_pen.append(sum(_hits(t, cfg["exclude"]).values()))
+    # Medyan: kümeye yanlışlıkla karışmış tek bir haber puanı şişiremesin
+    fit = statistics.median(per_fit) if per_fit else 0.0
+    penalty = statistics.median(per_pen) if per_pen else 0.0
+    w = {k: cfg["categories"][k]["weight"] for k in cat_count}
+    c.categories = sorted(cat_count, key=lambda k: -(cat_count[k] * w[k]))
+    alltext = " ".join(_item_text(i) for i in c.items)
     for s in cfg.get("sensitive", []):
-        if ("all" in s and all(_match(toks, text, [w]) for w in s["all"])) or \
-           ("any" in s and _match(toks, text, s["any"])):
+        if any(_rx(p).search(alltext) for p in s["patterns"]):
             c.flags.append(s["label"])
-    n_src = len(c.sources)
-    coverage = 3.0 * math.log2(1 + n_src)
+    coverage = 2.0 * math.log2(1 + len(c.sources))
     trend_bonus = 0.0
     ctoks = set(tokens(" ".join(i.title for i in c.items)))
     for t in trends:
         tt = set(tokens(t["term"]))
         if tt and len(tt & ctoks) >= max(1, math.ceil(len(tt) * 0.6)):
             traffic = int(re.sub(r"\D", "", t["traffic"] or "0") or 0)
-            trend_bonus = max(trend_bonus, 2.0 + math.log10(1 + traffic))
+            trend_bonus = max(trend_bonus, 3.0 + math.log10(1 + traffic) / 2)
             c.trend = f"{t['term']} ({t['traffic']})"
     fs = c.first_seen
     age_h = (datetime.now(timezone.utc) - fs).total_seconds() / 3600 if fs else 24
     recency = max(0.0, 2.0 - age_h / 24)
     c.parts = {"uygunluk": round(fit, 1), "kaynak": round(coverage, 1), "trend": round(trend_bonus, 1),
                "tazelik": round(recency, 1), "konu_dışı": round(penalty, 1)}
-    c.score = round(fit + coverage + trend_bonus + recency + penalty, 1) if fit > 0 else round(penalty + coverage / 3, 1)
+    c.score = round(fit + coverage + trend_bonus + recency + penalty, 1)
 
 
 ANGLES = {
-    "kayip": "Son masum an: kaybolan kişinin sıradan bir cümlesi (\"Birazdan dönerim anne\"). Kanıt: arama ekibi/afiş.",
-    "kahramanlik": "Fedakârlık repliği: kahramanın tereddütsüz tek cümlesi (\"Önce çocuklar!\"). Kanıt: gerçek fotoğraf.",
-    "mucize": "Mucize repliği: kurtarılan ya da kurtaranın kısa sözü. Kanıt: kurtarma anı fotoğrafı.",
-    "gizem": "Merak repliği: keşfedenin şaşkın cümlesi (\"Bu duvarın arkasında ne var?\"). Kanıt: yer fotoğrafı.",
-    "tarih": "Keşif repliği: kazı ekibinden kısa cümle. Kanıt: buluntu fotoğrafı. 'Tarihsel' seriye uygun.",
-    "suc": "Dramatik ironi: kurbanın olaydan önceki sıradan cümlesi. Fail ürkütücü çizilir. Sadece kesinleşmiş bilgi.",
-    "kaza": "Son an repliği (\"Toprak mı kayıyor?\"). Kanıt: olay yeri. Ancak insan hikâyesi varsa seç.",
-    "hayvan": "Vefa repliği (hayvanın gözünden ya da sahibinden). Kanıt: gerçek fotoğraf.",
+    "kayip": "Son masum an: kaybolan kişinin sıradan bir cümlesi (\"Birazdan dönerim anne\"). Sonuç belli değilse bilgilendirme amaçlı.",
+    "olum_gizem": "Merak repliği: keşfedenin şaşkın cümlesi. Resmi açıklama gelmeden 'cinayet' deme.",
+    "kurtarma_kahramanlik": "Mucize/fedakârlık repliği: kurtaranın tereddütsüz ya da kurtulanın ilk sözü. Kanıt: kurtarma anı.",
+    "efsane_tarih": "Keşif repliği: bulanın şaşkın cümlesi. 'Tarihsel' seriye uygun; stok video olarak da bekletilebilir.",
+    "suc": "Dramatik ironi: kurbanın olaydan önceki sıradan cümlesi. Fail = 'şüpheli', sadece kesinleşmiş bilgi.",
+    "felaket": "Son an repliği (\"Toprak mı kayıyor?\"). Felaketi değil içindeki bir insan hikâyesini anlat.",
+    "duygu": "Haberdeki gerçek son söz/son mesaj varsa replik o olsun (kısaltılmış, tırnak içinde).",
 }
 
 
@@ -472,13 +481,15 @@ def main() -> None:
         return
     cfg = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     items, trends = collect(cfg, a.sorgu, a.saat)
-    topic_words = {w for cat in cfg["categories"].values() for r in cat["roots"] for w in str(r).split()}
-    topic_words |= {w for q in cfg.get("searches", []) + a.sorgu for w in q.split()}
+    topic_words = {w for cat in cfg["categories"].values() for p in cat["patterns"]
+                   for w in re.findall(r"[a-zçğıöşü]{3,}", p)}
+    for sq in cfg.get("searches", []) + a.sorgu:
+        topic_words |= set(re.findall(r"[a-zçğıöşü]{3,}", tr_lower(sq["q"] if isinstance(sq, dict) else sq)))
     clusters = cluster_items(items, topic_words=topic_words)
     for c in clusters:
         score(c, cfg, trends)
     if not a.hepsi:
-        clusters = [c for c in clusters if c.parts.get("uygunluk", 0) > 0]
+        clusters = [c for c in clusters if c.parts.get("uygunluk", 0) >= 4]
     clusters.sort(key=lambda c: -c.score)
     md, js = report(clusters, trends, a.ilk, a.saat)
     print(f"{len(clusters)} aday küme -> {md}")
