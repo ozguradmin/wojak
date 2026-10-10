@@ -57,9 +57,9 @@ def cmd_check(a) -> None:
             print(f"UYARI: sahne {i} 'label' içeriyor; videolarda etiket/atıf kullanılmıyor (hesap sahibi kararı)")
     if not 7 <= ep.duration <= 30:
         print(f"UYARI: süre {ep.duration:.1f} sn. 'Olay' formatında hedef 11-16 sn.")
-    for i, s in enumerate(ep.scenes, 1):  # okuma süresi ≈ kelime/3 + 1 sn (KONSEPT §3)
+    for i, s in enumerate(ep.scenes, 1):  # okuma süresi: orijinallerde 9 kelime 3,0 sn'de (STIL.md)
         if s.type == "dialog" and s.text:
-            need = len(s.text.split()) / 3 + 1
+            need = len(s.text.split()) / 3.5 + 0.4
             if s.duration + 0.15 < need:
                 print(f"UYARI: sahne {i} okunamayabilir: {len(s.text.split())} kelime için ~{need:.1f} sn gerekli, "
                       f"süre {s.duration:.1f} sn")

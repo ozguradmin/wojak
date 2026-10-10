@@ -162,15 +162,18 @@ def _overlay(ep: Episode, scene: Scene, box: int, char_tops: list[int] | None = 
             else:
                 blk = text.bubble_block(scene.text, dark=scene.text_style == "bubble_dark",
                                         size=round(scene.text_size * 0.8), max_w=round(box * 0.86))
+            # konumu katmanın kutusuna değil görünen yazıya göre hesapla (kutu kontur/satır boşluğu payı taşır)
+            _, ink_top, _, ink_bot = blk.getchannel("A").getbbox() or (0, 0, 0, blk.height)
+            mid = (ink_top + ink_bot) // 2
             if scene.text_y is not None:
-                y = round(scene.text_y * box) - blk.height // 2
+                y = round(scene.text_y * box) - mid
             elif char_tops:
                 # konuşanın başının hemen üstü (ölçülen: yazının altı başın ~35-80 px üstünde, merkez %38-41)
-                y = min(char_tops) - config.TEXT_HEAD_GAP - blk.height
+                y = min(char_tops) - config.TEXT_HEAD_GAP - ink_bot
                 lo, hi = config.TEXT_CENTER_RANGE
-                y = max(round(box * lo) - blk.height // 2, min(y, round(box * hi) - blk.height // 2))
+                y = max(round(box * lo) - mid, min(y, round(box * hi) - mid))
             else:
-                y = round(box * 0.40) - blk.height // 2
+                y = round(box * 0.40) - mid
             y = max(10, min(box - blk.height - 10, y))
             ov.alpha_composite(blk, ((box - blk.width) // 2, y))
         if scene.banner:

@@ -33,81 +33,68 @@ olayları puanlar; `--taslak N` ile bölüm taslağı açar. Hangi olay, ne kada
 ## 3. Senaryo — episode.yaml
 
 ```bash
-python -m wojak new kapalak-kizi-2     # episodes/_sablon kopyalanır
+python -m wojak new kapalak-kizi-2     # episodes/_sablon kopyalanır (A/B kalıbı, music: kanal)
 ```
 
-Kurallar (ayrıntı `docs/KONSEPT.md`):
+Ölçü kaynağı [`STIL.md`](STIL.md) (30 orijinal reel kare kare ölçüldü). Kısaca:
 
-- **Süre 11-15 sn.** 4-6 sahne. Diyalog sahnesi 2.4-3.0 sn, kart 1.0-1.2 sn, kanıt 1.4-1.8 sn.
-- **Replik 3-9 kelime**, konuşma dili, 1-2 satır. Olayı **anlatma**, karakterin ağzından **sezdir**.
-- İlk replik **masum/ironik** olmalı (Kırkağaç: *"Bekle, bunun tadı neden böyle?"*).
-- Son sahne ya gerçek fotoğraf ya da cevapsız bir replik → video **aniden** biter (tekrar izleme).
-- Hassas kelimeler ekranda sansürlü yazılır (`*leceğim`, `c!nayet`). Sabit yorum ve başlık
-  `wojak.censor` ile otomatik sansürlenir; ekran yazısını elle yaz.
+- **Süre 13,5-14,0 sn**, bütün süreler 0,5 sn'nin katı. Diyalog 2,0-3,0 sn (ilk sahne 2,5-3,0),
+  isteğe bağlı tek ara kart 1,5 sn (yalnız ileri zaman: "Bir süre sonra"), **kanıt en sonda** 2-3 görsel × 1,5 sn.
+  Kanıttan sonra hiçbir şey gelmez.
+- **İki kişi konuşur:** A hep solda, B hep sağda; her diyalog sahnesinde yalnız o an konuşan görünür.
+- **Replik:** şimdiki zaman, birinci ağız, günlük dil, 1-11 kelime (medyan 5). Nokta ve üç nokta yok,
+  anlatıcı/tarih/etiket yazısı yok. İlk replik kanca (olay anından bir soru ya da masum/ironik niyet).
+- **Ters köşe:** son diyalogda aynı karakter, aynı kutu, **yüz varyantı** (sakin → terli → çok terli / gözyaşlı)
+  ve "Bekle, … neden …?" tipi fark etme.
+- Ekrandaki hassas kelimeleri elle yaz (`*leceğim`, `c!nayet`); başlık ve hikâye metni `wojak.censor` ile
+  otomatik sansürlenir.
 
 ```bash
-python -m wojak check episodes/<id>    # doğrulama + sahne zaman çizelgesi
+python -m wojak check episodes/<id>    # doğrulama + zaman çizelgesi + [stil] uyarıları (hepsi giderilmeli)
 ```
 
 ## 4. Görseller
 
 ### Arka plan (mekân)
-Öncelik sırası:
-1. **Olayın gerçek mekânı** (haber fotoğrafı, Google Street View ekran görüntüsü, köy/okul/cami fotoğrafı).
-   Altın dönemin gücü buydu: izleyici "burası gerçek" hissediyor.
+Diyalog boyunca **tek** gerçek renkli fotoğraf (en fazla 2; ikincisi karttan sonra). Doğal renk, karartma ve
+gri ton yok; renderer hafif yumuşatır. Öncelik sırası:
+1. **Olayın gerçek mekânı** (Wikimedia Commons, kurum fotoğrafı). İzleyici "burası gerçek" hissetmeli.
 2. **Telifsiz benzer mekân:** `python tools/bg_ara.py "abandoned school corridor" --sheet`
-   (Openverse: CC0/CC-BY; lisans `sources:` alanına).
-3. **Yapay zekâ ile üret** (API anahtarı tanımlıysa):
-   `python tools/gorsel_uret.py arkaplan "a village cemetery in Anatolia with old tombstones" --zaman "Dusk" -o episodes/<id>/img/mezarlik.jpg`
+   (Openverse: CC0/CC-BY; lisans `sources:` alanına, CC BY atfı `credits:` alanına).
+3. **Yapay zekâ ile üret** (son çare; fotogerçekçiyse `ai_generated: true`):
+   `python tools/gorsel_uret.py arkaplan "a village cemetery in Anatolia" --zaman "Dusk" -o episodes/<id>/img/mezarlik.jpg`
 
-Kırpma kare (1:1) olduğu için yatay fotoğraflarda `focus: [x, y]` ile odağı ayarla.
+Yatay fotoğraflarda `focus: [x, y]` ile kare kırpmanın odağını ayarla.
 
 ### Karakterler (wojak)
-1. **Kütüphane (10.378 şeffaf PNG, dönem/ülke etiketli):**
-   ```bash
-   python tools/wojak_lib.py search police          # İngilizce etiketlerle ara
-   python tools/wojak_lib.py search turkey
-   python tools/wojak_lib.py sheet doomer girl      # numaralı önizleme -> out/sheet_*.jpg
-   python tools/wojak_lib.py get 5_Doomer_Girl/2420 --name kiz_gozluklu
-   ```
-   Faydalı kategoriler: `Doomer`, `Doomer_Girl`, `Trad_Wife` (masum kadın), `Crying_Wojak`,
-   `Bloomer` (iyi kalpli), `Boomer` (yaşlı adam), `Tired_Wojak`, `Withered_Wojak` (ürkütücü),
-   `NPC`, `Soyjak` (şaşkın/bağıran), `Yes_Chad` (kahraman), `Rage`.
-   **Dikkat:** kütüphane internet meme arşivi; "Turkey" gibi etiketlerin çoğu **siyasi/etnik
-   karikatür** (darbeci general, parti, milliyetçi/İslamcı meme'ler, ten rengi karikatürleri).
-   Bunları asla kullanma. Rol + kıyafetle ara (`worker`, `farmer`, `police`, `nurse`, `soldier`,
-   `doctor`, `1950-1960`, `Civilian (Adult)`) ve önizleme sayfasında gözle seç.
-2. **JPG/beyaz zeminli wojak bulduysan:** `python tools/cutout.py dosya.jpg -o assets/characters/isim.png`
-3. **Kütüphanede yoksa yapay zekâ ile üret** (stil tutarlılığı için `--ref` ile mevcut bir wojak ver):
-   ```bash
-   python tools/gorsel_uret.py karakter "a Turkish village imam in his 60s, white turban, grey beard, black robe" \
-       --duygu "calm but suspicious" --ref assets/characters/sovyet_asker_kis.png -o assets/characters/imam.png
-   ```
-   Prompt şablonları ve örnekler: `docs/PROMPTLAR.md`.
+Yalnız temiz, düz çizim (MS Paint) wojak: beyaz yüz, tek çizgi kalınlığı, düz dolgu. Gölgeli/ressamsı/yapay
+zekâ görünümlü çizim yok. Görünen yükseklik karenin ~%48'i (renderer varsayılanı).
+1. **Klasik kit** `assets/kit/klasik/` (sakin, terli, cok_terli, gozyasli, agliyor...): aynı yüzün duygu
+   varyantları. Başka bir taban için varyant: `python tools/kit_varyant.py` (`assets/kit/<isim>/kit.json`).
+2. **wojakland + wojaksparadise:** `python tools/wojak_site.py search turkish` → `sheet` → `get <id> --out-dir episodes/<id>/chars`
+3. **Kütüphane (10.378 şeffaf PNG):** `python tools/wojak_lib.py search police` → `sheet` → `get`.
+   **Dikkat:** "Turkey" etiketlilerin çoğu siyasi/etnik karikatür, asla kullanma; rol + kıyafetle ara.
+4. **Hiçbiri yoksa yapay zekâ** (`tools/gorsel_uret.py karakter ... --ref <mevcut wojak>`; şablonlar `docs/PROMPTLAR.md`).
 
-**Karakter = rol + benzerlik.** Olaydaki kişiye saç/yaş/kıyafet/dönem olarak benzemeli
-(Pippa Bacca → gelinlikli kadın; Kırkağaç → koyu saçlı genç; jandarma → üniformalı).
-Kötü karakter **ürkütücü** çizilir (siyah yüz + beyaz göz, kırmızı cilt, sırıtan yüz, kapüşon) —
-izleyiciler bunu fark edip yorumluyor.
+**Bakış yönü:** her yeni PNG'yi gözle bak ve kaydet: `python -m wojak yon <png> --yon sag|sol|on`.
+Renderer karakteri hep kadrajın içine çevirir (solda sağa, sağda sola bakar).
+
+**Karakter = rol + benzerlik:** saç/yaş/kıyafet/dönem olaydaki kişiye uymalı. Kötü karakter ürkütücü çizilir.
 
 ### Kanıt (gerçek) görseller
-Kurbanın/kişinin kamuya açık fotoğrafı, haber ekran görüntüsü, gazete kupürü, olay yeri fotoğrafı.
-1-2 tane yeter. `label: "Gerçek fotoğraf"` veya `banner: "..."` ile işaretle.
+Olayın gerçek fotoğrafı, gazete kupürü, Türkçe haber başlığı; tam genişlik, ortalı, **etiket/bant yok**.
+Kamu malı/CC görsel öncelikli. Haber fotoğrafı ya da haber başlığı kullanılacaksa kaynak linki `sources:`
+alanına yazılır ve teslimde hesap sahibine ayrıca sorulur (lisans kararı onundur). Telifli görseller
+`img/telifli/` altına konur: bu klasör repoya girmez (repo herkese açık).
 
 ## 5. Ses
 
-Yorumlardan: *"Ulan bu müzik beni videodan daha çok ürpertiyor"*, *"videonun %90 korkutması zaten müzikten geliyor"*.
-Ses formatın yarısı.
+Ses formatın yarısı (yorumlardan: *"videonun %90 korkutması zaten müzikten geliyor"*).
 
-- **Varsayılan: kanalın imza müziği** `imza_gece_vals.mp3` (`tools/make_music.py` ile üretilen özgün,
-  ürkütücü müzik kutusu valsi; hakkı bize ait). Her bölümde aynı müzik = tanınan bir "kanal sesi".
-  `music: {file: imza_gece_vals.mp3, volume: 0.7}`
-- Altın dönemdeki ses büyük ihtimalle başkasına ait bir parçaydı ("Phantomimes"); dosyaya gömülmez.
-- Instagram'da uygulamadan trend ses eklemek istersen hesap **Creator** olmalı; videodaki sesi %20-30'a çek.
-  Bunun keşfete etkisi resmi olarak doğrulanmış değil; trial reels ile A/B test edilebilir.
-- Ayrıntı ve telifsiz kaynak listesi: `assets/music/README.md`.
-- Efektler (`assets/sfx`, sentezlenmiş, telifsiz): `drone` (altlık, müzikle birlikte 0.3-0.4),
-  `hit` (kesme), `boom` (kart), `heartbeat` (gerilim), `shutter` (gerçek fotoğraf), `whoosh`, `riser`, `static`.
+- **`music: kanal`** (şablon varsayılanı): hesabın kendi reel'lerinden çıkarılan imza "orijinal ses"
+  (`assets/music/ozel/`, repoya girmez). Dosya yoksa sentez yedek `imza_gece_vals.mp3` kullanılır.
+- Düzey −29,5 LUFS, tepe −17 dBTP (renderer otomatik ayarlar). Döngü yok, **ses efekti yok**.
+- Ayrıntı: `STIL.md` §10, `assets/music/README.md`.
 
 ## 6. Render ve kontrol
 
@@ -115,18 +102,17 @@ Ses formatın yarısı.
 python -m wojak frames episodes/<id>             # her sahneden 1 kare -> out/<id>/kareler/serit.jpg
 python -m wojak render episodes/<id> --preview   # hızlı önizleme (yarım çözünürlük)
 python -m wojak render episodes/<id>             # final: out/<id>/<id>.mp4 + kapak.jpg + paylasim.md
-python -m wojak render episodes/<id> --square    # 1080x1080 sürüm (gerekirse)
 python -m wojak render episodes/<id> --dolgu     # bantlar bulanık arka planla dolu (kenarlık A/B testi, KONSEPT §3)
+python -m wojak teslim episodes/<id>             # teslim/<id>/: video, kapak, paylasim.md, metinler/
 ```
 
 Kontrol listesi:
-- [ ] Yazılar karakterin yüzünü/önemli detayı kapatmıyor (`text_y`, `side`, `height` ile oyna)
-- [ ] Her replik 1 saniyede okunabiliyor (okuma hızı ≈ 3 kelime/sn + 1 sn)
+- [ ] `python -m wojak check episodes/<id>` hiç `[stil]` uyarısı vermiyor
+- [ ] Yazı yüzü kapatmıyor; karakterler içeri bakıyor; A solda, B sağda sabit
 - [ ] Türkçe karakterler doğru (ğ, ı, ş, İ)
-- [ ] Kanıt fotoğrafı net ve gerçekten o olaya ait
-- [ ] Süre 11-15 sn, son kare "asılı" bitiyor
-- [ ] `python -m wojak check episodes/<id>` uyarısız (güncel olayda `gundem: true` ve
-      [`GUNDEM.md`](GUNDEM.md) §5'teki 12 maddelik liste tek tek işaretlendi)
+- [ ] Kanıt görseli net ve gerçekten o olaya ait; tarih/sayılar başlık ve hikâyeyle çelişmiyor
+- [ ] Orijinal bir reel'le yan yana kare karşılaştırması yapıldı (`referans/`)
+- [ ] Güncel olayda `gundem: true` ve [`GUNDEM.md`](GUNDEM.md) §5'teki liste tek tek işaretlendi
 
 ## 7. Paylaşım
 

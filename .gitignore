@@ -12,3 +12,7 @@ assets/fonts/ozel/
 
 # Kanalın imza orijinal sesi (hesabın kendi reel'lerinden çıkarılır; hak sahibi belirsiz, repo açık)
 assets/music/ozel/
+
+# Herkese açık repo: telifli haber görselleri ve kanal sesi gömülü videolar repoya girmez (sohbetten teslim edilir)
+episodes/*/img/telifli/
+teslim/*/*.mp4

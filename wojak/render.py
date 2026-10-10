@@ -135,6 +135,7 @@ def render(ep: Episode, out_dir: Path | None = None, *, square: bool = False, fp
            "-s", f"{W}x{H}", "-r", str(fps), "-i", "-", *scale,
            "-c:v", "libx264", "-preset", "veryfast" if preview else preset,
            "-crf", str(crf + (6 if preview else 0)), "-pix_fmt", "yuv420p",
+           "-bf", "0",  # B-kare yok: video 0'da başlar, kesmeler 0,5 sn ızgarasında kalır
            "-profile:v", "high", "-movflags", "+faststart", str(silent)]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     try:
@@ -149,9 +150,10 @@ def render(ep: Episode, out_dir: Path | None = None, *, square: bool = False, fp
 
     total = sum(max(1, round(s.duration * fps)) for s in ep.scenes) / fps
     wav = audio.build(ep, out_dir / f".{ep.id}{suffix}_audio.wav", total, fps)
+    # Standart edit list açık: AAC'nin 1024 örneklik ön dolgusu atlanır, ses ve görüntü 0'da başlar.
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(silent), "-i", str(wav),
                     "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
-                    "-ar", "48000", "-shortest", "-use_editlist", "0", "-movflags", "+faststart", str(final)], check=True)
+                    "-ar", "48000", "-shortest", "-movflags", "+faststart", str(final)], check=True)
     silent.unlink(missing_ok=True)
     wav.unlink(missing_ok=True)
     return final

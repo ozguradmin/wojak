@@ -10,7 +10,7 @@ istenirse diye [`arsiv/OTOMATIK_YAYIN.md`](arsiv/OTOMATIK_YAYIN.md) içinde duru
 |---|---|
 | Görsel üretimi (wojak karakteri, arka plan) | **Senin ağ geçidin** (`SOL_API_KEY`), anahtar alındı. Bkz. §1 |
 | Metin/görsel/ses soru-cevap | Aynı ağ geçidi (`tools/sol_sor.py`). Senaryoyu ben yazıyorum, ayrı anahtar gerekmez |
-| Müzik | **Hazır**: kanalın imza müziği (`assets/music/imza_gece_vals.mp3`), hakkı bize ait |
+| Müzik | **Hazır**: hesabın kendi imza "orijinal ses"i, reel'lerden çıkarıldı (repoya girmez). Bkz. §4 |
 | Yayın | **Sen**. Ben her video için hazır paket gönderirim (§2) |
 | Gizli bilgiler | Sohbete yazdığın anahtar repoya **yazılmadı**; repo dışında, sadece bu oturumun dosyasında (§1) |
 
@@ -39,7 +39,8 @@ istenirse diye [`arsiv/OTOMATIK_YAYIN.md`](arsiv/OTOMATIK_YAYIN.md) içinde duru
 
 ## 2. Teslim akışı (ben → sen)
 
-Her video için `teslim/<bölüm>/` klasörü (repoda kalır, GitHub'dan da indirebilirsin) ve sohbete dosya olarak:
+Her video için `teslim/<bölüm>/` klasörü ve sohbete dosya olarak. **Video dosyası sohbetten gelir, repoya
+konmaz:** repo herkese açık; videoda kanalın imza sesi ve bazen telifli haber görseli var. Metinler ve kapak repoda da durur.
 
 | Dosya | Ne için |
 |---|---|
@@ -69,12 +70,12 @@ Düzeltme notu gelirse aynı gün yeni sürümü gönderirim.
 
 ## 4. Müzik — senden bir şey gerekmiyor
 
-- **Kanalın imza müziği hazır:** `assets/music/imza_gece_vals.mp3`: özgün, ürkütücü müzik kutusu valsi,
-  burada sentezlendi, **hakkı bize ait**. Her videoda aynı ses tanınan bir kanal sesi olur; sessize alınma
-  ya da telif talebi riski yok. Paylaşırken ayrıca müzik ekleme.
-- Altın dönemdeki ses (yorumlarda "u a a u a a") büyük ihtimalle **"Phantomimes"** adlı bir vals
-  (orta güven). Hak sahibi belirsiz olduğu için videoya gömmüyoruz.
-- Ayrıntı: `assets/music/README.md`.
+- **Kanalın kendi sesi:** altın dönem reel'lerinin 27/30'unda aynı "orijinal ses" var (Do minör vals, ~153 BPM,
+  13,75 sn). Bu ses hesabın reel'lerinden çıkarıldı ve her videoda o kullanılıyor (`music: kanal`); izleyici
+  kanalı sesinden tanıyor. Dosya repoya konmaz (`assets/music/ozel/`, herkese açık repoda dağıtılmasın diye).
+- Paylaşırken ayrıca müzik ekleme; videodaki ses yeterli.
+- Yedek: dosya bulunmazsa burada sentezlenen özgün vals (`assets/music/imza_gece_vals.mp3`, hakkı bize ait).
+- Ayrıntı: `STIL.md` §10, `assets/music/README.md`.
 
 ## 5. Alınan kararlar
 
