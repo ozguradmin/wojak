@@ -1,39 +1,37 @@
 # van-depremi-azra-bebek — paylaşım paketi
 
-Süre: 13.5 sn · 6 sahne · video: `van-depremi-azra-bebek.mp4` · kapak: `kapak.jpg`
+Süre: 14.0 sn · 6 sahne · video: `van-depremi-azra-bebek.mp4` · kapak: `kapak.jpg`
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1840/2200
+### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1769/2200
 
 ```
-Van depreminde enkaz altında annesinin tükürüğüyle hayatta kalan 14 günlük bebek
+Enkaz altında 47 saat annesinin kucağında hayatta kalan 14 günlük bebek
 
 Azra bebek mucizesi, 2011 yılında Van'ın Erciş ilçesinde yaşanan ve 14 günlük bir bebeğin depremden yaklaşık 47 saat sonra annesinin kucağında bulunup enkazdan sağ çıkarılmasıyla bilinen bir olaydır.
 
-23 Ekim 2011 Pazar günü saat 13.41'de, merkez üssü Van'ın Tabanlı köyü olan 7,2 büyüklüğünde bir deprem meydana geldi. Azra, annesi, babası ve babaannesiyle birlikte o gün Erciş'te, çocuk doktoru olan dedesinin apartmandaki evindeydi. Bina çöktü. Dede kurtulmayı başardı; ancak 2 kilo 300 gram ağırlığında erken doğan Azra, annesi, babası ve babaannesi enkaz altında kaldı.
+23 Ekim 2011 Pazar günü saat 13.41'de Van'da 7,2 büyüklüğünde bir deprem meydana geldi. Erken doğan ve henüz 14 günlük olan Azra o gün annesi, babası ve babaannesiyle birlikte Erciş'te dedesinin evindeydi. Apartman çöktü, aile enkaz altında kaldı.
 
-Dinleme cihazlarıyla enkazdan yaşam belirtisi alan ekipler aileye ulaşmak için saatlerce çalıştı. İzmir Sivil Savunma ekibinden bir kurtarmacı, açılan dar bir boşluktan içeri girdiğinde Azra'yı annesinin kucağında buldu ve anneden bebeği uzatmasını istedi. Azra 25 Ekim'de sağ olarak çıkarıldı; ardından annesi ve babaannesi de kurtarıldı.
+Dinleme cihazlarıyla yapılan çalışmada anne, bebek ve babaannenin bir kanepenin oluşturduğu boşlukta sıkıştığı tespit edildi ve ekipler tünel kazmaya başladı. İzmir Sivil Savunma ekibinden bir kurtarmacı içeri ulaştığında Azra annesinin kucağındaydı. Açılan dar delikten yalnızca bebek geçebiliyordu; kurtarmacı anneden bebeği uzatmasını istedi. Azra 25 Ekim'de sağ olarak çıkarıldı, ardından annesi ve babaannesi de kurtarıldı.
 
-Annesi, enkaz altında hiçbir şey yiyemediği için sütünün kuruduğunu, bebeğini tükürüğüyle beslediğini anlattı. Azra ve annesi hava ambulansıyla Ankara'ya götürüldü; Azra'nın sağlık durumu iyiydi. Azra'nın babası ise enkazdan sağ çıkarılamadı.
+Anne, iki gün boyunca kızını kucağından hiç bırakmadığını anlattı. İlk gün Azra'yı emzirmiş, hiçbir şey yiyemediği için sütü kuruyunca bebeğini tükürüğüyle beslemişti. Azra hava ambulansıyla Ankara'ya götürüldü ve sağlık durumu iyiydi. Babası ise enkazdan sağ çıkarılamadı.
 
-AFAD'ın 21 Kasım 2011 tarihli bilançosuna göre 23 Ekim depreminde 604 kişi hayatını kaybetti, 222 kişi enkazdan sağ kurtarıldı. Enkazdan sağ çıkarılan 222 kişiden biri de 14 günlük Azra'ydı.
+AFAD'ın açıkladığı bilançoya göre 23 Ekim depreminde 604 kişi hayatını kaybetti, 222 kişi enkazdan sağ kurtarıldı. Azra da o 222 kişiden biriydi.
 
-Van depreminin üzerinden 23 Ekim 2026'da 15 yıl geçiyor.
+Van depreminin üzerinden 15 yıl geçti. Van depremini hatırlayanlar, o gün neredeydiniz?
 
-Van depremini hatırlayanlar, o gün neredeydiniz?
-
-Görseller: AKUT Arama Kurtarma Derneği, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/); Dick Osseman, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) — Wikimedia Commons; kırpıldı, renk düzenlendi, çizim/yazı eklendi
+Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Adem Altan/AFP (fotoğraf), Takvim 26.10.2011 (haber)
 
 #vandepremi #erciş #mucize #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts
 
-### Başlık — 80/100
+### Başlık — 71/100
 
 ```
-Van depreminde enkaz altında annesinin tükürüğüyle hayatta kalan 14 günlük bebek
+Enkaz altında 47 saat annesinin kucağında hayatta kalan 14 günlük bebek
 ```
 
 ### Açıklama
@@ -42,65 +40,54 @@ Van depreminde enkaz altında annesinin tükürüğüyle hayatta kalan 14 günl�
 Van depremi ve Azra bebek mucizesi (2011)
 Olayın tamamı sabit yorumda 👇
 
-Fotoğrafların kaynağı (Wikimedia Commons):
-https://commons.wikimedia.org/wiki/File:Erci%C5%9F_earthquake_traces_in_2012_4756.jpg
-https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-4.jpg
-https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-3.jpg
-https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-2.jpg
-https://commons.wikimedia.org/wiki/File:Erci%C5%9F_earthquake_traces_in_2012_4759.jpg
+Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Adem Altan/AFP (fotoğraf), Takvim 26.10.2011 (haber)
 
-Görseller: AKUT Arama Kurtarma Derneği, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/); Dick Osseman, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) — Wikimedia Commons; kırpıldı, renk düzenlendi, çizim/yazı eklendi
-
-#vandepremi #erciş #mucize #deprem #wojak #tarihselwojak #keşfet #olay #shorts
+#vandepremi #erciş #mucize #wojak #tarihselwojak #keşfet #olay #gizem #shorts
 ```
 
-### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1459 karakter
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1389 karakter
 
 ```
 Azra bebek mucizesi, 2011 yılında Van'ın Erciş ilçesinde yaşanan ve 14 günlük bir bebeğin depremden yaklaşık 47 saat sonra annesinin kucağında bulunup enkazdan sağ çıkarılmasıyla bilinen bir olaydır.
 
-23 Ekim 2011 Pazar günü saat 13.41'de, merkez üssü Van'ın Tabanlı köyü olan 7,2 büyüklüğünde bir deprem meydana geldi. Azra, annesi, babası ve babaannesiyle birlikte o gün Erciş'te, çocuk doktoru olan dedesinin apartmandaki evindeydi. Bina çöktü. Dede kurtulmayı başardı; ancak 2 kilo 300 gram ağırlığında erken doğan Azra, annesi, babası ve babaannesi enkaz altında kaldı.
+23 Ekim 2011 Pazar günü saat 13.41'de Van'da 7,2 büyüklüğünde bir deprem meydana geldi. Erken doğan ve henüz 14 günlük olan Azra o gün annesi, babası ve babaannesiyle birlikte Erciş'te dedesinin evindeydi. Apartman çöktü, aile enkaz altında kaldı.
 
-Dinleme cihazlarıyla enkazdan yaşam belirtisi alan ekipler aileye ulaşmak için saatlerce çalıştı. İzmir Sivil Savunma ekibinden bir kurtarmacı, açılan dar bir boşluktan içeri girdiğinde Azra'yı annesinin kucağında buldu ve anneden bebeği uzatmasını istedi. Azra 25 Ekim'de sağ olarak çıkarıldı; ardından annesi ve babaannesi de kurtarıldı.
+Dinleme cihazlarıyla yapılan çalışmada anne, bebek ve babaannenin bir kanepenin oluşturduğu boşlukta sıkıştığı tespit edildi ve ekipler tünel kazmaya başladı. İzmir Sivil Savunma ekibinden bir kurtarmacı içeri ulaştığında Azra annesinin kucağındaydı. Açılan dar delikten yalnızca bebek geçebiliyordu; kurtarmacı anneden bebeği uzatmasını istedi. Azra 25 Ekim'de sağ olarak çıkarıldı, ardından annesi ve babaannesi de kurtarıldı.
 
-Annesi, enkaz altında hiçbir şey yiyemediği için sütünün kuruduğunu, bebeğini tükürüğüyle beslediğini anlattı. Azra ve annesi hava ambulansıyla Ankara'ya götürüldü; Azra'nın sağlık durumu iyiydi. Azra'nın babası ise enkazdan sağ çıkarılamadı.
+Anne, iki gün boyunca kızını kucağından hiç bırakmadığını anlattı. İlk gün Azra'yı emzirmiş, hiçbir şey yiyemediği için sütü kuruyunca bebeğini tükürüğüyle beslemişti. Azra hava ambulansıyla Ankara'ya götürüldü ve sağlık durumu iyiydi. Babası ise enkazdan sağ çıkarılamadı.
 
-AFAD'ın 21 Kasım 2011 tarihli bilançosuna göre 23 Ekim depreminde 604 kişi hayatını kaybetti, 222 kişi enkazdan sağ kurtarıldı. Enkazdan sağ çıkarılan 222 kişiden biri de 14 günlük Azra'ydı.
+AFAD'ın açıkladığı bilançoya göre 23 Ekim depreminde 604 kişi hayatını kaybetti, 222 kişi enkazdan sağ kurtarıldı. Azra da o 222 kişiden biriydi.
 
-Van depreminin üzerinden 23 Ekim 2026'da 15 yıl geçiyor.
-
-Van depremini hatırlayanlar, o gün neredeydiniz?
+Van depreminin üzerinden 15 yıl geçti. Van depremini hatırlayanlar, o gün neredeydiniz?
 ```
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 1862/4000
+### Açıklama — 1790/4000
 
 ```
-Van depreminde enkaz altında annesinin tükürüğüyle hayatta kalan 14 günlük bebek
+Enkaz altında 47 saat annesinin kucağında hayatta kalan 14 günlük bebek
 
 Azra bebek mucizesi, 2011 yılında Van'ın Erciş ilçesinde yaşanan ve 14 günlük bir bebeğin depremden yaklaşık 47 saat sonra annesinin kucağında bulunup enkazdan sağ çıkarılmasıyla bilinen bir olaydır.
 
-23 Ekim 2011 Pazar günü saat 13.41'de, merkez üssü Van'ın Tabanlı köyü olan 7,2 büyüklüğünde bir deprem meydana geldi. Azra, annesi, babası ve babaannesiyle birlikte o gün Erciş'te, çocuk doktoru olan dedesinin apartmandaki evindeydi. Bina çöktü. Dede kurtulmayı başardı; ancak 2 kilo 300 gram ağırlığında erken doğan Azra, annesi, babası ve babaannesi enkaz altında kaldı.
+23 Ekim 2011 Pazar günü saat 13.41'de Van'da 7,2 büyüklüğünde bir deprem meydana geldi. Erken doğan ve henüz 14 günlük olan Azra o gün annesi, babası ve babaannesiyle birlikte Erciş'te dedesinin evindeydi. Apartman çöktü, aile enkaz altında kaldı.
 
-Dinleme cihazlarıyla enkazdan yaşam belirtisi alan ekipler aileye ulaşmak için saatlerce çalıştı. İzmir Sivil Savunma ekibinden bir kurtarmacı, açılan dar bir boşluktan içeri girdiğinde Azra'yı annesinin kucağında buldu ve anneden bebeği uzatmasını istedi. Azra 25 Ekim'de sağ olarak çıkarıldı; ardından annesi ve babaannesi de kurtarıldı.
+Dinleme cihazlarıyla yapılan çalışmada anne, bebek ve babaannenin bir kanepenin oluşturduğu boşlukta sıkıştığı tespit edildi ve ekipler tünel kazmaya başladı. İzmir Sivil Savunma ekibinden bir kurtarmacı içeri ulaştığında Azra annesinin kucağındaydı. Açılan dar delikten yalnızca bebek geçebiliyordu; kurtarmacı anneden bebeği uzatmasını istedi. Azra 25 Ekim'de sağ olarak çıkarıldı, ardından annesi ve babaannesi de kurtarıldı.
 
-Annesi, enkaz altında hiçbir şey yiyemediği için sütünün kuruduğunu, bebeğini tükürüğüyle beslediğini anlattı. Azra ve annesi hava ambulansıyla Ankara'ya götürüldü; Azra'nın sağlık durumu iyiydi. Azra'nın babası ise enkazdan sağ çıkarılamadı.
+Anne, iki gün boyunca kızını kucağından hiç bırakmadığını anlattı. İlk gün Azra'yı emzirmiş, hiçbir şey yiyemediği için sütü kuruyunca bebeğini tükürüğüyle beslemişti. Azra hava ambulansıyla Ankara'ya götürüldü ve sağlık durumu iyiydi. Babası ise enkazdan sağ çıkarılamadı.
 
-AFAD'ın 21 Kasım 2011 tarihli bilançosuna göre 23 Ekim depreminde 604 kişi hayatını kaybetti, 222 kişi enkazdan sağ kurtarıldı. Enkazdan sağ çıkarılan 222 kişiden biri de 14 günlük Azra'ydı.
+AFAD'ın açıkladığı bilançoya göre 23 Ekim depreminde 604 kişi hayatını kaybetti, 222 kişi enkazdan sağ kurtarıldı. Azra da o 222 kişiden biriydi.
 
-Van depreminin üzerinden 23 Ekim 2026'da 15 yıl geçiyor.
+Van depreminin üzerinden 15 yıl geçti. Van depremini hatırlayanlar, o gün neredeydiniz?
 
-Van depremini hatırlayanlar, o gün neredeydiniz?
+Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Adem Altan/AFP (fotoğraf), Takvim 26.10.2011 (haber)
 
-Görseller: AKUT Arama Kurtarma Derneği, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/); Dick Osseman, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) — Wikimedia Commons; kırpıldı, renk düzenlendi, çizim/yazı eklendi
-
-#vandepremi #erciş #mucize #deprem #wojak #tarihselwojak #keşfet #olay
+#vandepremi #erciş #mucize #wojak #tarihselwojak #keşfet #olay #gizem
 ```
 
 ## Yükleme kontrol listesi
 
-- [ ] Saat: **17:00-21:00** (altın dönemde 21:00 sonrası paylaşımlar ~%35 daha az izlendi)
+- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
 - [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
 - [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
 - [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
@@ -111,25 +98,19 @@ Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
 
 ## Kaynaklar (doğrulama için, paylaşılmaz)
 
-- Hürriyet, 26.10.2011 — Doktor dedesi 'Ben daha iyi bakarım' dedi, depreme yakalandılar: https://www.hurriyet.com.tr/gundem/doktor-dedesi-ben-daha-iyi-bakarim-dedi-depreme-yakalandilar-19089827
-- Gazete Vatan, 26.10.2011 — Azra yaşama sıkı sıkı sarıldı: https://www.gazetevatan.com/gundem/azra-yasama-siki-siki-sarildi-406880
-- Sabah (Memurlar.net), 26.10.2011 — Azra mucizesinin detayları: https://www.memurlar.net/haber/208556/azra-mucizesinin-detaylari-video.html
-- AP (Boston Globe), 25.10.2011 — Miracle baby emerges from Turkish quake rubble: https://www.bostonglobe.com/news/world/2011/10/25/miracle-baby-emerges-from-turkish-quake-rubble/cqUWk1gQKKQr1lpwJzQG0H/story.html
-- PRI/The World, 25.10.2011 — Baby rescued from rubble in Ercis: https://theworld.org/stories/2011-10-25/baby-rescued-rubble-ercis-death-toll-turkey-quake-rises-video
-- NTV, 18.11.2011 — Mucize bebek Azra kimliğine kavuştu (baba Sinan Karaduman'ın ölümü): https://www.ntv.com.tr/turkiye/mucize-bebek-azra-kimligine-kavustu,iogsVU_mEUaLHFsM8ygnww
-- AA (Memurlar.net), 22.10.2017 — 'Mucize bebek' Azra'nın hayalini doktorluk süslüyor (47 saat, baba): https://www.memurlar.net/haber/702324/mucize-bebek-azra-nin-hayalini-doktorluk-susluyor.html
+- Sabah (Memurlar.net), 26.10.2011 — Azra mucizesinin detayları (kurtarmacı: 'Annesine bebeği uzatmasını söyledim', 'Ancak bebeği çıkartacak kadar bir boşluk vardı'; anne: 'Sütüm kuruyunca bebeğimi tükürüğümle besledim'; 45,5 saat): https://www.memurlar.net/haber/208556/azra-mucizesinin-detaylari-video.html
+- Gazete Vatan, 26.10.2011 — Azra yaşama sıkı sıkı sarıldı (47 saat; 'iki gün boyunca Azra'yı kucağımdan hiç bırakmadım'; ilk gün emzirdi, sütü kuruyunca tükürüğüyle besledi; dinleme cihazı; kanepenin oluşturduğu yaşam alanı; tünel): https://www.gazetevatan.com/gundem/azra-yasama-siki-siki-sarildi-406880
+- Hürriyet, 26.10.2011 — Doktor dedesi 'Ben daha iyi bakarım' dedi, depreme yakalandılar (47 saat; 9 Ekim prematüre; İzmir Sivil Savunma Arama ve Kurtarma ekibi; emzirme + tükürük; hava ambulansıyla Ankara): https://www.hurriyet.com.tr/gundem/doktor-dedesi-ben-daha-iyi-bakarim-dedi-depreme-yakalandilar-19089827
+- Takvim, 26.10.2011 — Anne, Azra'yı tükürüğüyle besledi (46 saat; ambulans uçakla Ankara; başhekim: hayati tehlikesi yok): https://www.takvim.com.tr/Yasam/2011/10/26/anne-azrayi-tukuruguyle-besledi
+- AP (Boston Globe), 25.10.2011 — Miracle baby emerges from Turkish quake rubble (two-week-old; 'held tight against her mother's shoulder'; rescuer in an orange jumpsuit wriggling into a narrow slit): https://www.bostonglobe.com/news/world/2011/10/25/miracle-baby-emerges-from-turkish-quake-rubble/cqUWk1gQKKQr1lpwJzQG0H/story.html
+- AA (Memurlar.net), 22.10.2017 — 'Mucize bebek' Azra'nın hayalini doktorluk süslüyor (47 saat; baba depremde hayatını kaybetti): https://www.memurlar.net/haber/702324/mucize-bebek-azra-nin-hayalini-doktorluk-susluyor.html
+- NTV, 18.11.2011 — Mucize bebek Azra kimliğine kavuştu (babanın ölümü): https://www.ntv.com.tr/turkiye/mucize-bebek-azra-kimligine-kavustu,iogsVU_mEUaLHFsM8ygnww
 - DHA (Mynet), 18.09.2017 — Mucize bebek Azra ilkokula başladı (47 saat, baba): https://www.mynet.com/mucize-bebek-azra-ilkokula-basladi-180103714719
-- Takvim, 04.01.2012 — Azra bebeğe ABD'den koli geldi (ailenin Sivas'taki evi; dedenin Erciş'teki evi; baba Sinan): https://www.takvim.com.tr/Guncel/2012/01/04/azra-bebege-abdden-koli-geldi
-- TGRT Haber, 04.11.2020 — AFAD İzmir ekibi Azra'yı 47 saat sonra çıkardı: https://www.tgrthaber.com/gundem/azra-bebekten-sonra-aydanin-kurtarilmasina-da-elini-uzatti-2752020
-- AFAD Basın Duyurusu (21.11.2011, 16.00) — 604 ölü, 222 sağ kurtarılan; ODTÜ Afet Yönetimi raporu Tablo 1: https://www.metu.edu.tr/system/files/ODTUAYMVAN_rev3.pdf
+- TGRT Haber, 04.11.2020 — AFAD İzmir ekibi (eski İzmir Sivil Savunma) Azra'yı 47 saat sonra çıkardı: https://www.tgrthaber.com/gundem/azra-bebekten-sonra-aydanin-kurtarilmasina-da-elini-uzatti-2752020
 - Hürriyet, 13.11.2011 — İki depremde 644 ölü (AFAD: 23 Ekim'de 604 ölü, 222 sağ kurtarılan): https://www.hurriyet.com.tr/gundem/iki-depremde-644-olu-19232729
-- Deprem saati/merkezi: ODTÜ raporu (23.10.2011 13.41, Tabanlı, 7,2) + https://en.wikipedia.org/wiki/2011_Van_earthquake
-- GÖRSEL img/ercis_apartman_2012.jpg — Dick Osseman (Dosseman), 15.09.2012, Erciş, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Erciş_earthquake_traces_in_2012_4756.jpg
-- GÖRSEL img/ercis_enkaz_cami_2012.jpg — Dick Osseman (Dosseman), 2012, Erciş, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Erciş_earthquake_traces_in_2012_4759.jpg
-- GÖRSEL img/akut_van_2011_3.jpg — AKUT Arama Kurtarma Derneği, 25.10.2011, CC BY-SA 3.0 (VRT #2011111710023241): https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-3.jpg
-- GÖRSEL img/gercek_akut_van_2011_2.jpg (kanıt) — AKUT Arama Kurtarma Derneği, 25.10.2011, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-2.jpg
-- GÖRSEL img/akut_van_2011_4_beton_kesit.jpg — AKUT 2011 Van-4'ün sol üst köşesinden kırpıldı (yalnız beton; kişi yok), 25.10.2011, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-4.jpg
-- KARAKTER img/anne_bebekli_sade.png — wojak kütüphanesi 5_Trad_Wife/2942 'Babywearing Mama'; yerel düzenleme (PIL): saç koyu kahve, çiller ve allık silindi, dekolte elbise rengiyle kapatılıp yaka yükseltildi
-- KARAKTER img/kurtarmaci_tulum.png — wojak kütüphanesi 5_Tired_Wojak/10321 'Civil Engineer' (= assets/characters/muhendis_baretli); yerel düzenleme (PIL): yelek turuncu, beyaz gömlek+yaka turuncu tulum, beyaz baret kırmızı-turuncu kask (mühendis/müteahhit görüntüsünden uzaklaştırmak için)
-- Annenin 'Deprem olduğunda Azra kucağımdaydı' sözü (Vatan) + kurtarmacının 'ulaştığımda annesinin kucağındaydı' (Sabah) ve AP 'held tight against her mother's shoulder when rescuers found them' -> 1. ve 6. replik
-- Hava ambulansı: Hürriyet 'hava ambulansıyla Ankara'ya' (Azra); Sabah 'Azra bebek ve anne ambulans uçakla Ankara'ya'; Vatan 'ambulans helikopterle' (ikisi) -> metinde genel ifade 'hava ambulansıyla'
+- AFAD bilançosu ve deprem saati/merkezi (23.10.2011 13.41, Tabanlı, 7,2): ODTÜ Afet Yönetimi raporu https://www.metu.edu.tr/system/files/ODTUAYMVAN_rev3.pdf + https://en.wikipedia.org/wiki/2011_Van_earthquake
+- GÖRSEL img/arka_enkaz_akut_van3.jpg (tüm diyalog sahneleri) — AKUT Arama Kurtarma Derneği, 'AKUT 2011 Van-3', Van, 25.10.2011 ('2011 Van depremi sonrası arama kurtarma çalışmaları'), CC BY-SA 3.0 (VRT bileti #2011111710023241); orijinal 3872x2592 içinden kare kırpım x 1400-2735, y 620-1955 (1335 px: gökyüzü, sarı cepheli bina, katları çökmüş blok; sağdaki kurtarmacı ve soldaki arama köpeği kadraj dışında), renk doygunluğu x1,6 (PIL ImageEnhance.Color; parlaklık 116/255, doygunluk 0,15): https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-3.jpg
+- GÖRSEL img/kanit_1_azra_kurtarma_afp.jpg (kanıt 1) — HABER FOTOĞRAFI, telifli: Adem Altan/AFP/Getty Images, Erciş 25.10.2011 ('Rescue workers dug 2-week-old Azra ... from beneath the debris'); 1440x997 kopya Boston Globe'dan, 16:9'a kırpıldı (y 20-830 -> 1440x810): https://bostonglobe-prod.cdn.arcpublishing.com/resizer/v2/MHH45XX7CII6BISR5FF6L5DCZM.jpg?auth=f23778badc4959c7c56d15cc28b998f45a1525428dfbd6c9562d0f322440b84a&width=1440 (sayfa: yukarıdaki AP/Boston Globe haberi). Lisans yok: hesap sahibi karar verecek; serbest yedek: https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-2.jpg (CC BY-SA 3.0, aynı gün, arka plandaki aynı bina; Azra değil)
+- GÖRSEL img/kanit_2_takvim_baslik.png (kanıt 2) — HABER BAŞLIĞI, telifli: takvim.com.tr mobil sayfasının ekran görüntüsünden (10.10.2026) yalnız logo bandı ve başlık 'Anne, Azra'yı tükürüğüyle besledi' (1082x460); geri tuşu bant rengiyle örtüldü, gezinti satırı ve spot (46 saat) çıkarıldı, başlığın piksellerine dokunulmadı: https://www.takvim.com.tr/yasam/2011/10/26/anne-azrayi-tukuruguyle-besledi
+- KARAKTER anne (A, sol) — HF clayshoaf/Wojaks (wojakparadise.net arşivi) 5_Doomer_Girl/2341 'muslim doomer girl' (244x349) -> episodes/van-depremi-azra-bebek/chars/anne_basortulu2_kaynak.png; assets/kit/anne_basortulu2/ (uret.py: x1,6 büyütme + kenar yumuşatma, büst kırpımı, pembe gömlek -> kahverengi; tek_gozyasi = tools/kit_varyant.py gözyaşı; agliyor = iki gözden yaş + açık titreyen ağız)
+- KARAKTER kurtarmacı (B, sağ) — baş: assets/kit/klasik/sakin.png (kütüphane 5_Tired_Wojak/10441, C3DeLN1sU7O'daki kurtarmacıyla aynı yüz); baret ve mont: wojakland 'Annoyed Construction Worker Wojak' https://wojakland.com/gmedia/annoyed_construction_worker_wojak-png/ (episodes/van-depremi-azra-bebek/chars/kurtarmaci_baretli.png) gövdesinden kesilip kanıt 1'deki İzmir Sivil Savunma ekibine göre renklendirildi (kırmızı mont, lacivert yaka/kol, gümüş reflektör, kırmızı baret + beyaz bant) -> assets/kit/kurtarmaci_klasik/ (sakin; cok_terli = 4 ter damlası + baretin altından inen mavi soğuk ter çizgileri, tools/kit_varyant.py)

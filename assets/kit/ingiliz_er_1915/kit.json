@@ -1,0 +1,24 @@
+{
+ "aciklama": "1915 İngiliz piyadesi (Gelibolu, 1/5. Norfolk tipi), v3 (2026-10-10). Taban: klasik feels guy (taban/klasik_sakin.png = assets/kit/klasik/sakin.png, kütüphane 5_Tired_Wojak/10441, kenar beyaz saçağı temizlendi). Kostüm: Wolseley mantar miğfer + haki drill ceket, düz MS-Paint çizimi (~9 px çizgi, düz dolgu), kostum.py. Miğfer 150 px yukarıda ve 0,86 ölçekte: klasik alın kırışıkları ve ters köşedeki mavi soğuk ter çizgileri siperliğin altında görünür. Görsel yaka hizasında kesilir (taban y 985). Tuval 1029x1236, sağa bakar; bütün yüzler aynı kostüm yerleşiminde (aynı kutu). 'kaygili' tabanı = wojakland 'Nervous Wojak' (wl:nervous_wojak.png; klasikle aynı kafa, 1,417x ve (-12,+3) ile hizalandı, IoU 0,99); kendi mavi ter çizgileri siperliğin altındaki alın şeridine taşındı (taban/nervous_ter.png). A karakteri (bıyıklı) ayrı kitte: assets/kit/ingiliz_er_1915_biyikli (aynı kostum.py, --biyik). Yeniden üretmek: python assets/kit/ingiliz_er_1915/kostum.py taban/<x>.png <çıktı>.png [--biyik]; terli: python tools/kit_varyant.py assets/kit/ingiliz_er_1915/sakin.png --kit ingiliz_er_1915.",
+ "duygular": {
+  "sakin": "nötr, sıradan an",
+  "terli": "tedirgin (2 ter damlası: alın ve şakak)",
+  "kaygili": "fark etme / ters köşe: endişeli kaşlar, yan bakış, alında mavi soğuk ter çizgileri"
+ },
+ "variants": {
+  "terli": {
+   "drops": [
+    [
+     322,
+     541,
+     21
+    ],
+    [
+     902,
+     651,
+     19
+    ]
+   ]
+  }
+ }
+}

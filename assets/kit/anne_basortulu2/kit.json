@@ -1,0 +1,174 @@
+{
+ "aciklama": "Başörtülü genç anne, renkli yarı-anime yüz (kanalın C3DeLN1sU7O/C2FriLUM2DR'deki başörtülü kadınına en yakın kütüphane çizimi). Kaynak: HF clayshoaf/Wojaks 5_Doomer_Girl/2341 'muslim doomer girl' (244x349). x1,6 Lanczos büyütüldü, göğüs altı kesildi (büst), pembe gömlek kahverengi hırkaya çevrildi. Taban: sakin.png (390x480, sağa bakar). Hepsi uret.py ile yeniden üretilir: tek_gozyasi tools/kit_varyant.py ile; agliyor = iki gözden gözyaşı + alt kapakta ıslaklık + açık, titreyen ağız (üst dişler).",
+ "duygular": {
+  "sakin": "üzgün, endişeli (taban; gülümseme yok)",
+  "tek_gozyasi": "sessiz hüzün: sol gözden tek gözyaşı (kanca sahnesi)",
+  "agliyor": "ağlıyor: iki gözden gözyaşı, açık titreyen ağız (ters köşe)"
+ },
+ "variants": {
+  "tek_gozyasi": {
+   "tears": [
+    {
+     "path": [
+      [
+       186,
+       186
+      ],
+      [
+       185,
+       208
+      ],
+      [
+       182,
+       232
+      ],
+      [
+       178,
+       256
+      ]
+     ],
+     "w": 14
+    }
+   ]
+  }
+ },
+ "agliyor": {
+  "mouth": {
+   "box": [
+    205,
+    249,
+    260,
+    278
+   ],
+   "skin": [
+    229,
+    172,
+    133
+   ],
+   "top": [
+    [
+     207,
+     266
+    ],
+    [
+     212,
+     261
+    ],
+    [
+     217,
+     259
+    ],
+    [
+     222,
+     256
+    ],
+    [
+     227,
+     257
+    ],
+    [
+     232,
+     254
+    ],
+    [
+     237,
+     256
+    ],
+    [
+     242,
+     255
+    ],
+    [
+     247,
+     258
+    ],
+    [
+     252,
+     260
+    ],
+    [
+     257,
+     266
+    ]
+   ],
+   "bottom": [
+    [
+     207,
+     266
+    ],
+    [
+     214,
+     269
+    ],
+    [
+     222,
+     271
+    ],
+    [
+     232,
+     272
+    ],
+    [
+     242,
+     271
+    ],
+    [
+     250,
+     269
+    ],
+    [
+     257,
+     266
+    ]
+   ],
+   "teeth_h": 4.2,
+   "line": 2.6,
+   "lip_dy": 2.6,
+   "lip_w": 2.4
+  },
+  "tears": [
+   {
+    "path": [
+     [
+      176,
+      187
+     ],
+     [
+      174,
+      208
+     ],
+     [
+      170,
+      228
+     ],
+     [
+      166,
+      247
+     ]
+    ],
+    "w": 15
+   },
+   {
+    "path": [
+     [
+      279,
+      188
+     ],
+     [
+      281,
+      210
+     ],
+     [
+      282,
+      232
+     ],
+     [
+      280,
+      252
+     ]
+    ],
+    "w": 15
+   }
+  ]
+ }
+}

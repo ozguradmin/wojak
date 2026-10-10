@@ -1,0 +1,6 @@
+{
+ "aciklama": "1915 İngiliz eri, bıyıklı (A karakteri; B ile aynı kostüm ailesi: assets/kit/ingiliz_er_1915). Taban: klasik feels guy 'gülümsüyor' (assets/kit/klasik/gulumsuyor.png, 1,42x ölçekle klasik sakin koordinatına hizalandı, siluet IoU 0,98; taban_klasik_gulumsuyor.png). Kostüm + düz siyah MS-Paint bıyık: python assets/kit/ingiliz_er_1915/kostum.py assets/kit/ingiliz_er_1915_biyikli/taban_klasik_gulumsuyor.png assets/kit/ingiliz_er_1915_biyikli/gulumsuyor.png --biyik. Tuval 1029x1236, sağa bakar; B ile aynı miğfer rengi ve yerleşimi.",
+ "duygular": {
+  "gulumsuyor": "rahat, kendinden emin hafif gülümseme"
+ }
+}

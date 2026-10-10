@@ -1,7 +1,23 @@
 {
+ "00cbbfe73c1546b711b8987db1ededd32aa2fa35": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/sakin.png"
+ },
  "0dc88746faae6e9f9ea7cd70afa2e8c10821df52": {
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
+ },
+ "11dae8ba53213357f36ff37ee84aeaf97e6b7128": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/terli.png"
+ },
+ "15dc4258296d69446486182d99553f46e779d4f3": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/sakin.png"
+ },
+ "1a963172bf296a30623cf63c1aaebf305ff98233": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915_biyikli/gulumsuyor.png"
  },
  "1cc4bf39731e124e3aabb183c8d7deb075c4168b": {
   "faces": "right",
@@ -11,13 +27,29 @@
   "faces": "right",
   "file": "assets/kit/klasik/gulumsuyor.png"
  },
+ "28365e0a4d32b291f30d4b5643df7bff2e5dc025": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/terli.png"
+ },
+ "2adb11d433df6412a80f83cf7964cd70c08b24bf": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
+ "2d6e3968862a18111f9088fc3760ab0ca1b3d71a": {
+  "faces": "right",
+  "file": "episodes/kiz-kulesi-efsanesi/chars/prenses_bizans.png"
+ },
+ "2e3b8398528d58684e6daee245a8cc3b91b98ce0": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/cok_terli.png"
+ },
  "352072bb5d8d0a4bdcef95347d141923cf9a74b0": {
   "faces": "right",
   "file": "assets/characters/koylu_kasketli_biyikli.png"
  },
- "36a0bbbccb24412bd5e8678eb671fb168adc7960": {
+ "3927bd86a1fab885d6b28bfab0d5987f593098f9": {
   "faces": "right",
-  "file": "episodes/van-depremi-azra-bebek/img/kurtarmaci_tulum.png"
+  "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_gulumser.png"
  },
  "3bd087dffb2e0d19bf95a17f991530320b453437": {
   "faces": "right",
@@ -35,6 +67,10 @@
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/ingiliz_subay_tozluk.png"
  },
+ "483883e418949201367b8cdc676cd602ec6c9b55": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
+ },
  "498395ad191f2d60e1002883cb93094c0c549621": {
   "faces": "right",
   "file": "assets/kit/klasik/gozyasli.png"
@@ -47,6 +83,10 @@
   "faces": "right",
   "file": "assets/kit/klasik/terli.png"
  },
+ "4fae53564d3bbc3075a1e7f0902b0b32dc30fe35": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/korku.png"
+ },
  "51f7a3e469b7b28b2067f75a54ae3a61ac234fc7": {
   "faces": "right",
   "file": "assets/kit/klasik/agliyor.png"
@@ -55,9 +95,17 @@
   "faces": "right",
   "file": "assets/characters/muhendis_baretli.png"
  },
- "66b32714080cedffa37883588ac4218865fc5e65": {
-  "faces": "left",
-  "file": "episodes/van-depremi-azra-bebek/img/anne_bebekli_sade.png"
+ "548b7fdb3e12a46f298bf502844d415ad0dc6844": {
+  "faces": "right",
+  "file": "assets/kit/kurtarmaci_klasik/sakin.png"
+ },
+ "5a051ed0a6ffda9dbc875170b62a5f77664af1de": {
+  "faces": "right",
+  "file": "assets/kit/kurtarmaci_klasik/terli.png"
+ },
+ "5ea6f254badb2e7ae0ace53b1ee703663fbe78ff": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/korku.png"
  },
  "6973d2c0f4c37747e15e339aa05b32cee732cc5e": {
   "faces": "right",
@@ -67,9 +115,29 @@
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/gazi_yasli.png"
  },
+ "6cd8ca867ca109f4f214b87847e656d50a76350e": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
+ "704e7248577ef014136250807c5ef47d5cdb1800": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/cok_terli.png"
+ },
+ "71db8ef45e89e890e78de778e073c1c296a859a4": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/sakin.png"
+ },
+ "73dd126a3da7c095be71bca6ebf409ca158d244e": {
+  "faces": "right",
+  "file": "episodes/canakkale-kayip-tabur/chars/ingiliz_er_a.png"
+ },
  "744a6f80ad4b44c9191bb467e704d03c6b234c0e": {
   "faces": "right",
   "file": "episodes/nusret-mayin-gemisi/chars/itilaf_deniz_subayi.png"
+ },
+ "8ea8f18b5bc392bc7f1965091fd3a349e8b28367": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/korku.png"
  },
  "91fb03f1d106a284376c4d1f90b860169de90464": {
   "faces": "right",
@@ -83,6 +151,10 @@
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/papaz_urkek.png"
  },
+ "9ee47205a42655a50969c990a472702e3daa87de": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/terli.png"
+ },
  "ab795e0baa11a4983b1f7120475aff4af014f70a": {
   "faces": "right",
   "file": "assets/kit/klasik/cokkun.png"
@@ -91,9 +163,21 @@
   "faces": "left",
   "file": "assets/characters/sovyet_yuruyuscu_erkek.png"
  },
+ "b04222d664c5581bab9d8ff36984c858f521bcdf": {
+  "faces": "right",
+  "file": "episodes/van-depremi-azra-bebek/chars/kurtarmaci_baretli.png"
+ },
  "b071933bb660c7934d1b50f583e8677192cacc67": {
   "faces": "right",
   "file": "assets/kit/klasik/tek_gozyasi.png"
+ },
+ "b17e7d9c922e73169efabef67faa97abb518842c": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/terli.png"
+ },
+ "bd50e12661bdb6ad270f27953027b0bf226530cd": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/korku.png"
  },
  "c287cca6d4f3259e1c9308d7b7d6356ada721185": {
   "faces": "right",
@@ -103,12 +187,48 @@
   "faces": "right",
   "file": "assets/kit/klasik/terli.png"
  },
+ "cc48e5f2034f20fdd2d0ee443c38d5d35831aef5": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/sakin.png"
+ },
+ "ccdc4c88d0cddd67729d398e941c32ecb354c3eb": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/korku.png"
+ },
+ "d62d5e75b6e95d164c1a2f0e589ab00bb03df626": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/agliyor.png"
+ },
+ "daa5727f03e399eadb611bb4a4e09733e34034ed": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/terli.png"
+ },
+ "e32cf848ba632e585cd4a11e8cf9c89d72c9b30f": {
+  "faces": "right",
+  "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans.png"
+ },
  "e637ebcfbc4beb352d32c9e317000e3d701000f9": {
   "faces": "front",
   "file": "assets/characters/sovyet_kiz_gozluklu.png"
  },
+ "e7114a116a6e2770a3fb07c9aed18a858f4f8003": {
+  "faces": "right",
+  "file": "assets/kit/kurtarmaci_klasik/cok_terli.png"
+ },
  "e83e885e7670d492d5342d3c561b4ba6dc72701d": {
   "faces": "front",
   "file": "assets/kit/klasik/olum_karanlik.png"
+ },
+ "f7cfee5057b3dad41e6d928f7fc94070f3ac31be": {
+  "faces": "right",
+  "file": "episodes/van-depremi-azra-bebek/chars/anne_basortulu2_kaynak.png"
+ },
+ "f8cc2b9e912029ebe85cdf74c51ba2b8f9fe9b72": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/sakin.png"
+ },
+ "fdc398871daeea656233c259f2133f544b23bf81": {
+  "faces": "right",
+  "file": "assets/kit/bizans_prenses/cok_terli.png"
  }
 }

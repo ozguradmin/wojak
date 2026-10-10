@@ -1,0 +1,95 @@
+# Kız Kulesi efsanesi. Altın dönem "efsane kişi" kalıbı (C2P Kapalak kızı, C2-U Belkıs, C2VH Malatya balıkları):
+# AYNI YERDE (kule), AYNI ANDA (prensesin 18. yaş günü) iki kişi konuşur: A = imparator (baba) hep solda,
+# B = prenses hep sağda. Ters köşe: prenses aynı kutuda yüz varyantıyla (sakin -> korku) fark eder. Kart yok.
+# Kanıt en sonda: bugünkü kule, 1838 gravürü, TRT Haber başlığı. Kanıttan sonra hiçbir şey yok.
+# Doğrulanan anlatım (Üsküdar Belediyesi, Wikipedia EN, istanbul.com): kâhin/kehanet, kız 18. yaş gününde yılan
+# sokmasıyla ölecek; imparator onu yılanlardan uzak tutmak için denizdeki kuleye koyar, onu yalnız babası ziyaret
+# eder; 18. yaş gününde kehaneti atlattığına sevinip bir sepet meyve getirir, meyvelerin arasına gizlenmiş yılan
+# prensesi sokar. Türkçe anlatımlarda sepet üzüm sepetidir ve bazen hizmetçiler ya da âşık bir subay getirir.
+# Render: python -m wojak render episodes/kiz-kulesi-efsanesi
+id: kiz-kulesi-efsanesi
+title: "Yılan sokmasın diye denizin ortasındaki kuleye kapatılan prenses"
+
+music: kanal
+
+scenes:
+  # 1) KANCA — A (imparator, sol). Masum niyet, olay anı: 18. yaş günü, hediye sepeti.
+  - type: dialog
+    duration: 3.0
+    bg: img/arka_kiz_kulesi_sonse.jpg
+    chars:
+      - {img: chars/imparator_bizans_gulumser.png, side: left}
+    text: "İyi ki doğdun kızım, sana meyve sepeti getirdim"
+
+  # 2) CEVAP — B (prenses, sağ, sakin). Kehanet: 18 yaşında yılan sokması.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_kiz_kulesi_sonse.jpg
+    chars:
+      - {img: /home/user/wojak/assets/kit/bizans_prenses/sakin.png, side: right, height: 0.49}
+    text: "Ama kâhin 18 yaşımda yılan sokacak demişti"
+
+  # 3) DRAMATİK İRONİ — A (imparator, sol). Kuleyi denizin ortasında seçmesinin sebebi.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_kiz_kulesi_sonse.jpg
+    chars:
+      - {img: chars/imparator_bizans_gulumser.png, side: left}
+    text: "Korkma, denizin ortasına yılan gelemez"
+
+  # 4) TERS KÖŞE — B, aynı kutu, yüz varyantı (korku: ağzı açık, ter damlaları).
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_kiz_kulesi_sonse.jpg
+    chars:
+      - {img: /home/user/wojak/assets/kit/bizans_prenses/korku.png, side: right, height: 0.49}
+    text: "Bekle, sepette ne kıpırdıyor?"
+
+  # 5-7) KANIT — gerçek yer, 1838 gravürü, Türkçe haber başlığı. Tam genişlik, etiket/bant yok.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_kiz_kulesi_borabora704.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_bartlett_1838.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_3_trt_haber.jpg]
+
+caption: |
+  Kız Kulesi efsanesi
+  Olayın tamamı sabit yorumda 👇
+hashtags: [kizkulesi, efsane, istanbul]
+
+pinned_comment: |
+  Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde yaşanan ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir olaydır. Tarihî bir kayıt değil, bir efsanedir; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
+
+  En bilinen anlatıma göre bir imparatorun çok sevdiği kızı hakkında bir kehanette bulunulur: Prenses 18 yaşına girdiğinde bir yılan tarafından sokularak ölecektir. İmparator kızını yılanlardan uzak tutmak için onu denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
+
+  Prensesin 18. yaş gününde imparator, kehaneti atlattığını düşünerek kızına hediye olarak bir sepet meyve götürür. Meyvelerin arasına gizlenmiş bir yılan prensesi sokar ve prenses babasının kollarında hayatını kaybeder. Türkçe anlatımların bazılarında sepetteki meyve üzümdür; bazılarında ise sepeti hizmetçiler ya da prensese âşık genç bir subay getirir.
+
+  Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşık 200 metre uzaklıktaki adacıkta MÖ 408'de Atinalı komutan Alkibiades'in Karadeniz'den gelen gemileri denetlemek için bir istasyon kurduğu düşünülür; 1110'da Bizans İmparatoru I. Aleksios Komnenos buraya ahşap bir kule yaptırdı. Kule 1763'te taştan yeniden inşa edildi; 2021'de başlayan restorasyonun ardından Mayıs 2023'te yeniden ziyarete açıldı.
+
+  Sizce kaderden kaçmak mümkün mü?
+
+# CC BY (ve BY-SA) görseller atıf ister: açıklamalara "Görseller: ..." olarak eklenir
+credits: "Sonse (arka plan; Flickr/Wikimedia Commons, CC BY 2.0, https://creativecommons.org/licenses/by/2.0/; kırpıldı, çizim ve yazı eklendi), BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/), W. H. Bartlett gravürü 1838 (kamu malı), TRT Haber (YouTube küçük resmi)"
+ai_generated: false
+
+sources:
+  # Doğrulama (efsane + tarih)
+  - "Üsküdar Belediyesi — Maiden's Tower (resmî; efsane: kehanet, 18. yaş günü, imparatorun getirdiği meyve sepeti, meyvelerin arasındaki yılan, babasının kollarında; ~200 m, 1110 I. Aleksios Komnenos, 1509, 1721, 1763, 1829, 1832): https://www.uskudar.bel.tr/en/main/pages/maidens-tower/307"
+  - "Wikipedia (EN) — Maiden's Tower (efsane aynı; MÖ 408 Alkibiades; 2021-2023 restorasyon, Mayıs 2023'te yeniden açılış): https://en.wikipedia.org/wiki/Maiden%27s_Tower"
+  - "Vikipedi (TR) — Kız Kulesi (MÖ 408 Alkibiades, 1110 I. Aleksios, 1509 deprem, 1721 yangın, 1763 taş yapı, 11 Mayıs 2023 açılış): https://tr.wikipedia.org/wiki/K%C4%B1z_Kulesi"
+  - "TimeTürk, 09.04.2020 — Kız Kulesi'ne dair efsaneler (Bizans krallarından birinin kızı, 18 yaş; hizmetçilerin getirdiği üzüm sepeti ya da âşık subayın çiçek sepeti): https://www.timeturk.com/kultur/kiz-kulesi-ne-dair-efsaneler/haber-1428138"
+  - "Türk Dili ve Edebiyatı — Kız Kulesi Efsanesi (kral, on sekiz yaş, kuleye gönderilen üzüm sepeti): https://www.turkedebiyati.org/?p=41268"
+  - "istanbul.com — Kız Kulesi efsanesi (imparator, 18. yaş günü, meyve sepeti, babasının kollarında): https://istanbul.com/tr/blog/imagery-monuments-tower/legend-of-maiden-tower-istanbul"
+  - "For 91 Days — Kız Kulesi (sultan anlatımı: 'a sultan had received a prophecy'): https://istanbul.for91days.com/kiz-kulesi-the-maidens-tower"
+  # Görseller ve lisanslar
+  - "Arka plan: 'Kız Kulesi, Maiden's Tower (52396926549).jpg', Sonse, 2021-10-03, CC BY 2.0 (1920 px küçük resim, kare kırpıldı): https://commons.wikimedia.org/wiki/File:K%C4%B1z_Kulesi,_Maiden%27s_Tower_(52396926549).jpg"
+  - "Kanıt 1: 'İSTANBUL KIZKULESİ.jpg', BoraBora704, 2018-10-12, CC BY-SA 4.0 (1920 px küçük resim): https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_KIZKULES%C4%B0.jpg"
+  - "Kanıt 2: 'The Guz Couli, or Maiden's Tower', W. H. Bartlett / R. Brandard, Julia Pardoe 'The Beauties of the Bosphorus' (1838-39), kamu malı (yalnız gravür alanı kırpıldı, alt yazılar dışarıda): https://commons.wikimedia.org/wiki/File:The_Guz_Couli,_of_Maiden%27s_Tower_-_Pardoe_Julia_-_1838.jpg"
+  - "Kanıt 3: TRT Haber YouTube küçük resmi \"'Boğaz'ın incisi' Kız Kulesi'nin hikayesi\" (haber grafiği; telifli, hesap sahibinin onayına): https://www.youtube.com/watch?v=HJLjXTri_pM  (görsel: https://i.ytimg.com/vi/HJLjXTri_pM/maxresdefault.jpg)"
+  # Karakterler
+  - "İmparator: wojakland 'byzantine emperor wojak' (Theocrat3_1.png; chars/imparator_bizans_gulumser.png = aynı çizim, aşağı kıvrık ağız çizgisi gülümsemeyle değiştirildi): https://wojakland.com/gmedia/theocrat3_1-png/"
+  - "Prenses: wojakland 'Byzantine Trad Wife' (assets/kit/bizans_prenses; korku varyantı: ağız + ter damlaları eklendi): https://wojakland.com/gmedia/byzantine_trad_wife-png/"

@@ -1,0 +1,66 @@
+{
+ "aciklama": "Bizans prensesi / soylu genç kadın (wojakland 'Byzantine Trad Wife', https://wojakland.com/gmedia/byzantine_trad_wife-png/). Düz renk, temiz çizgi, beyaz wojak-kız yüzü; Bizans saray başlığı, kırmızı desenli elbise. Taban: sakin.png (831x900: orijinalin alt kısmı büst için kırpıldı, sağa bakar). terli/cok_terli tools/kit_varyant.py ile; korku = küçük açık ağız (gülümseme silindi) + cok_terli damlaları (Kız Kulesi bölümü için elle eklendi).",
+ "duygular": {
+  "sakin": "hafif gülümseme (ilk sahne)",
+  "terli": "tedirgin (2 ter damlası)",
+  "cok_terli": "panik (çok ter damlası)",
+  "korku": "dehşet: ağzı açık, ter damlaları (ters köşe)"
+ },
+ "variants": {
+  "terli": {
+   "drops": [
+    [
+     328,
+     548,
+     13
+    ],
+    [
+     602,
+     452,
+     12
+    ]
+   ]
+  },
+  "cok_terli": {
+   "drops": [
+    [
+     328,
+     548,
+     13
+    ],
+    [
+     602,
+     452,
+     12
+    ],
+    [
+     585,
+     585,
+     12
+    ],
+    [
+     352,
+     470,
+     11
+    ]
+   ]
+  }
+ },
+ "korku_agiz": {
+  "merkez": [
+   505,
+   643
+  ],
+  "yaricap": [
+   20,
+   18
+  ],
+  "sil": [
+   445,
+   615,
+   562,
+   668
+  ]
+ },
+ "korku_cizgiler": []
+}
