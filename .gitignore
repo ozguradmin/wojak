@@ -16,7 +16,3 @@ assets/music/ozel/
 # Herkese açık repo: telifli haber görselleri ve kanal sesi gömülü videolar repoya girmez (sohbetten teslim edilir)
 episodes/*/img/telifli/
 teslim/*/*.mp4
-# (geçici, img/telifli/ altına taşınana kadar) haber ajansı/gazete görselleri
-episodes/van-depremi-azra-bebek/img/kanit_1_azra_kurtarma_afp.jpg
-episodes/van-depremi-azra-bebek/img/kanit_2_takvim_baslik.png
-episodes/kiz-kulesi-efsanesi/img/kanit_3_trt_haber.jpg

@@ -4,7 +4,7 @@ Süre: 14.0 sn · 6 sahne · video: `van-depremi-azra-bebek.mp4` · kapak: `kapa
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1769/2200
+### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1790/2200
 
 ```
 Enkaz altında 47 saat annesinin kucağında hayatta kalan 14 günlük bebek
@@ -21,7 +21,7 @@ AFAD'ın açıkladığı bilançoya göre 23 Ekim depreminde 604 kişi hayatın�
 
 Van depreminin üzerinden 15 yıl geçti. Van depremini hatırlayanlar, o gün neredeydiniz?
 
-Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Adem Altan/AFP (fotoğraf), Takvim 26.10.2011 (haber)
+Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Takvim 26.10.2011 (haber sayfası ve fotoğrafı), Adem Altan/AFP (fotoğraf)
 
 #vandepremi #erciş #mucize #tarihselwojak #wojak
 ```
@@ -40,7 +40,7 @@ Enkaz altında 47 saat annesinin kucağında hayatta kalan 14 günlük bebek
 Van depremi ve Azra bebek mucizesi (2011)
 Olayın tamamı sabit yorumda 👇
 
-Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Adem Altan/AFP (fotoğraf), Takvim 26.10.2011 (haber)
+Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Takvim 26.10.2011 (haber sayfası ve fotoğrafı), Adem Altan/AFP (fotoğraf)
 
 #vandepremi #erciş #mucize #wojak #tarihselwojak #keşfet #olay #gizem #shorts
 ```
@@ -63,7 +63,7 @@ Van depreminin üzerinden 15 yıl geçti. Van depremini hatırlayanlar, o gün n
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 1790/4000
+### Açıklama — 1811/4000
 
 ```
 Enkaz altında 47 saat annesinin kucağında hayatta kalan 14 günlük bebek
@@ -80,7 +80,7 @@ AFAD'ın açıkladığı bilançoya göre 23 Ekim depreminde 604 kişi hayatın�
 
 Van depreminin üzerinden 15 yıl geçti. Van depremini hatırlayanlar, o gün neredeydiniz?
 
-Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Adem Altan/AFP (fotoğraf), Takvim 26.10.2011 (haber)
+Görseller: AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Takvim 26.10.2011 (haber sayfası ve fotoğrafı), Adem Altan/AFP (fotoğraf)
 
 #vandepremi #erciş #mucize #wojak #tarihselwojak #keşfet #olay #gizem
 ```
@@ -109,8 +109,8 @@ Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
 - TGRT Haber, 04.11.2020 — AFAD İzmir ekibi (eski İzmir Sivil Savunma) Azra'yı 47 saat sonra çıkardı: https://www.tgrthaber.com/gundem/azra-bebekten-sonra-aydanin-kurtarilmasina-da-elini-uzatti-2752020
 - Hürriyet, 13.11.2011 — İki depremde 644 ölü (AFAD: 23 Ekim'de 604 ölü, 222 sağ kurtarılan): https://www.hurriyet.com.tr/gundem/iki-depremde-644-olu-19232729
 - AFAD bilançosu ve deprem saati/merkezi (23.10.2011 13.41, Tabanlı, 7,2): ODTÜ Afet Yönetimi raporu https://www.metu.edu.tr/system/files/ODTUAYMVAN_rev3.pdf + https://en.wikipedia.org/wiki/2011_Van_earthquake
-- GÖRSEL img/arka_enkaz_akut_van3.jpg (tüm diyalog sahneleri) — AKUT Arama Kurtarma Derneği, 'AKUT 2011 Van-3', Van, 25.10.2011 ('2011 Van depremi sonrası arama kurtarma çalışmaları'), CC BY-SA 3.0 (VRT bileti #2011111710023241); orijinal 3872x2592 içinden kare kırpım x 1400-2735, y 620-1955 (1335 px: gökyüzü, sarı cepheli bina, katları çökmüş blok; sağdaki kurtarmacı ve soldaki arama köpeği kadraj dışında), renk doygunluğu x1,6 (PIL ImageEnhance.Color; parlaklık 116/255, doygunluk 0,15): https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-3.jpg
-- GÖRSEL img/kanit_1_azra_kurtarma_afp.jpg (kanıt 1) — HABER FOTOĞRAFI, telifli: Adem Altan/AFP/Getty Images, Erciş 25.10.2011 ('Rescue workers dug 2-week-old Azra ... from beneath the debris'); 1440x997 kopya Boston Globe'dan, 16:9'a kırpıldı (y 20-830 -> 1440x810): https://bostonglobe-prod.cdn.arcpublishing.com/resizer/v2/MHH45XX7CII6BISR5FF6L5DCZM.jpg?auth=f23778badc4959c7c56d15cc28b998f45a1525428dfbd6c9562d0f322440b84a&width=1440 (sayfa: yukarıdaki AP/Boston Globe haberi). Lisans yok: hesap sahibi karar verecek; serbest yedek: https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-2.jpg (CC BY-SA 3.0, aynı gün, arka plandaki aynı bina; Azra değil)
-- GÖRSEL img/kanit_2_takvim_baslik.png (kanıt 2) — HABER BAŞLIĞI, telifli: takvim.com.tr mobil sayfasının ekran görüntüsünden (10.10.2026) yalnız logo bandı ve başlık 'Anne, Azra'yı tükürüğüyle besledi' (1082x460); geri tuşu bant rengiyle örtüldü, gezinti satırı ve spot (46 saat) çıkarıldı, başlığın piksellerine dokunulmadı: https://www.takvim.com.tr/yasam/2011/10/26/anne-azrayi-tukuruguyle-besledi
-- KARAKTER anne (A, sol) — HF clayshoaf/Wojaks (wojakparadise.net arşivi) 5_Doomer_Girl/2341 'muslim doomer girl' (244x349) -> episodes/van-depremi-azra-bebek/chars/anne_basortulu2_kaynak.png; assets/kit/anne_basortulu2/ (uret.py: x1,6 büyütme + kenar yumuşatma, büst kırpımı, pembe gömlek -> kahverengi; tek_gozyasi = tools/kit_varyant.py gözyaşı; agliyor = iki gözden yaş + açık titreyen ağız)
+- GÖRSEL img/arka_enkaz_akut_van3.jpg (tüm diyalog sahneleri) — AKUT Arama Kurtarma Derneği, 'AKUT 2011 Van-3', Van, 25.10.2011 ('2011 Van depremi sonrası arama kurtarma çalışmaları'), CC BY-SA 3.0 (VRT bileti #2011111710023241); orijinal 3872x2592 içinden kare kırpım x 1400-2735, y 1150-2485 (1335 px: katları üst üste çökmüş beton döşemeler, üstte sarı cepheli kat; düz gökyüzü, sağdaki kurtarmacı ve arama köpeği kadraj dışında), PIL ImageEnhance.Color 1,25 + Brightness 1,36 (arka plan parlaklığı 112/255, doygunluk 0,20; diyalog kareleri 116-125 / 0,18-0,22; üst 300 satır std 67): https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-3.jpg
+- GÖRSEL img/kanit_1_azra_kurtarma_afp.jpg (kanıt 2, sahne 6, son kare) — HABER FOTOĞRAFI, telifli: Adem Altan/AFP/Getty Images, Erciş 25.10.2011 ('Rescue workers dug 2-week-old Azra ... from beneath the debris'); 1440x997 kopya Boston Globe'dan, 16:9'a kırpıldı (y 20-830 -> 1440x810): https://bostonglobe-prod.cdn.arcpublishing.com/resizer/v2/MHH45XX7CII6BISR5FF6L5DCZM.jpg?auth=f23778badc4959c7c56d15cc28b998f45a1525428dfbd6c9562d0f322440b84a&width=1440 (sayfa: yukarıdaki AP/Boston Globe haberi). Lisans yok: hesap sahibi karar verecek; serbest yedek: https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-2.jpg (CC BY-SA 3.0, aynı gün, arka plandaki aynı bina; Azra değil)
+- GÖRSEL img/kanit_2_takvim_baslik.png (kanıt 1, sahne 5) — HABER SAYFASI, telifli: takvim.com.tr masaüstü sayfasının (1280 px genişlik, 2x) ekran görüntüsü, 10.10.2026; logo bandı + menü + başlık 'Anne, Azra'yı tükürüğüyle besledi' + haberin kendi fotoğrafı (enkazdan çıkarılan ağlayan Azra, kurtarmacıların elinde; fotoğrafçı/ajans sayfada belirtilmemiş). Çerez penceresi reddedildi; reklam alanları, gezinti satırı, spot (46 saat), yazar/tarih satırı, Google bandı ve sağ sütun CSS ile gizlendi (sayfa kendi düzeniyle yeniden akıyor); başlığın ve fotoğrafın piksellerine dokunulmadı; css x 140-851, y 0-537 kırpıldı -> 1080x816: https://www.takvim.com.tr/yasam/2011/10/26/anne-azrayi-tukuruguyle-besledi
+- KARAKTER anne (A, sol) — wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) https://wojakland.com/gmedia/blushing_hijab_wojak-png/ -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png; assets/kit/anne_basortulu2/ (uret.py: boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı, pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek krem tona, başörtüsü altındaki gri alan koyu kahve saç, büst kırpımı 458x490; kaynak zaten 3/4 sağa dönük, aynalanmadı, 'right' kayıtlı). Kucaktaki kundaklı bebek: beyaz kundak kodla çizildi, yüz wojakland 'Baby Face Wojak' https://wojakland.com/gmedia/baby_face_wojak-png/ (emzik silindi, küçük ağız) -> chars/bebek_yuz_kaynak.png. Varyantlar: tek_gozyasi = tools/kit_varyant.py gözyaşı; agliyor = iki gözden yaş + açık, titreyen ağız
 - KARAKTER kurtarmacı (B, sağ) — baş: assets/kit/klasik/sakin.png (kütüphane 5_Tired_Wojak/10441, C3DeLN1sU7O'daki kurtarmacıyla aynı yüz); baret ve mont: wojakland 'Annoyed Construction Worker Wojak' https://wojakland.com/gmedia/annoyed_construction_worker_wojak-png/ (episodes/van-depremi-azra-bebek/chars/kurtarmaci_baretli.png) gövdesinden kesilip kanıt 1'deki İzmir Sivil Savunma ekibine göre renklendirildi (kırmızı mont, lacivert yaka/kol, gümüş reflektör, kırmızı baret + beyaz bant) -> assets/kit/kurtarmaci_klasik/ (sakin; cok_terli = 4 ter damlası + baretin altından inen mavi soğuk ter çizgileri, tools/kit_varyant.py)

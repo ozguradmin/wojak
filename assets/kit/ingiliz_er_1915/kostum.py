@@ -77,11 +77,27 @@ def stroke(d, pts, w=LW, closed=False):
 
 
 def mustache(d, dx, dy):
-    """Düz siyah gür bıyık (~235x50 px, uçları aşağı-dışa), burnun altında; yüz sağa baktığı için hafif sağda."""
-    top = [(556, 670), (582, 653), (620, 645), (660, 651), (702, 645), (744, 652), (774, 670)]
-    bot = [(774, 670), (786, 694), (752, 686), (716, 680), (682, 676), (660, 680), (638, 676), (604, 680), (570, 686), (546, 692)]
-    poly = catmull(top, 8)[:-1] + catmull(bot, 8)
-    d.polygon(S_(wob(poly, 0.8, 31), dx, dy), fill=BLACK)
+    """Düz siyah gür pala bıyık (v5: ~340x60 px, eskisinin 1,4 katı; C2fa A'daki gibi uçları aşağı sarkıp yukarı kıvrılır).
+
+    Burnun altında, yüz sağa baktığı için orta nokta hafif sağda; uzak (sağ) kanat kısaltılmış. Tek parça düz siyah
+    dolgu: kanat omurgası boyunca incelen dairelerle damgalanır (kontur boşluğu yok).
+    """
+    cx, cy = 662, 664
+    # kanat omurgaları (merkezden uca): yakın (sol) kanat uzun, uzak (sağ) kanat kısa; uçlar yukarı-içe kıvrılır
+    wings = [
+        [(cx, cy), (620, 665), (575, 671), (535, 683), (503, 693), (481, 688), (471, 672), (476, 656), (488, 650)],
+        [(cx, cy), (700, 664), (738, 669), (771, 679), (797, 686), (813, 678), (817, 662), (809, 652)],
+    ]
+    for k, sp in enumerate(wings):
+        pts = catmull(sp, 14)
+        n = len(pts)
+        for i, (x, y) in enumerate(pts):
+            t = i / (n - 1)
+            r = 5.0 + 25.0 * (1 - t) ** 1.1         # merkezde ~30 px yarıçap, uçta ~5
+            yy = y + 4 * (1 - t) ** 2               # merkez gövdesi biraz aşağı dolgun
+            X, Y = (x + dx) * SS, (yy + dy) * SS
+            R = r * SS
+            d.ellipse([X - R, Y - R * 0.92, X + R, Y + R * 0.92], fill=BLACK)
 
 
 def build(base_path, out_path, extra=None, biyik=False):
@@ -125,12 +141,15 @@ def build(base_path, out_path, extra=None, biyik=False):
 
     # ---------- MIĞFER (Wolseley) ----------
     brim_bot = [(958, 298), (880, 298), (700, 314), (500, 334), (300, 345), (150, 356), (48, 374)]
-    brim_top = [(48, 374), (85, 335), (165, 262), (500, 230), (836, 212), (912, 252), (958, 298)]
-    brim = catmull(brim_bot, 16)[:-1] + catmull(brim_top, 16)[:-1]
+    # v4: siperliğin üst kenarı dolguyla birebir aynı eğriden çizilir (konturu olmayan ten rengi şerit kalmasın)
+    brim_l_edge = [(48, 374), (85, 335), (130, 292), (170, 262)]
+    brim_r_edge = [(830, 228), (900, 254), (958, 298)]
+    brim = (catmull(brim_bot, 16)[:-1] + catmull(brim_l_edge, 10)
+            + [(300, 262), (500, 262), (700, 250)] + catmull(brim_r_edge, 10)[:-1])
     d.polygon(S_(H_(brim), dx, dy), fill=HELM)
     stroke(d, S_(wob(H_(catmull(brim_bot, 16)), 1.0, 9), dx, dy))
-    stroke(d, S_(wob(H_(catmull([(48, 374), (85, 335), (130, 292), (166, 266)], 10)), 1.0, 20), dx, dy))
-    stroke(d, S_(wob(H_(catmull([(834, 230), (900, 254), (958, 298)], 10)), 1.0, 21), dx, dy))
+    stroke(d, S_(H_(catmull(brim_l_edge, 10)), dx, dy))
+    stroke(d, S_(H_(catmull(brim_r_edge, 10)), dx, dy))
     dome = [(165, 268), (160, 150), (195, 40), (270, -50), (380, -108), (500, -126), (620, -108),
             (725, -50), (800, 40), (830, 140), (836, 232)]
     dome_bottom = [(836, 232), (700, 268), (500, 290), (300, 290), (165, 268)]

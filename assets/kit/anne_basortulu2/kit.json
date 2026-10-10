@@ -1,7 +1,7 @@
 {
- "aciklama": "Başörtülü genç anne, renkli yarı-anime yüz (kanalın C3DeLN1sU7O/C2FriLUM2DR'deki başörtülü kadınına en yakın kütüphane çizimi). Kaynak: HF clayshoaf/Wojaks 5_Doomer_Girl/2341 'muslim doomer girl' (244x349). x1,6 Lanczos büyütüldü, göğüs altı kesildi (büst), pembe gömlek kahverengi hırkaya çevrildi. Taban: sakin.png (390x480, sağa bakar). Hepsi uret.py ile yeniden üretilir: tek_gozyasi tools/kit_varyant.py ile; agliyor = iki gözden gözyaşı + alt kapakta ıslaklık + açık, titreyen ağız (üst dişler).",
+ "aciklama": "Başörtülü genç anne (kanalın C3DeLN1sU7O/C2FriLUM2DR'deki krem başörtülü, kahverengi örgülü kadınıyla aynı aile). Kaynak: wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png. Boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı (gülümseme yok), pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek hafif krem tona çekildi, büst kırpımı (458x490). Kaynak zaten 3/4 sağa dönük: aynalanmadı, 'right' kayıtlı. Kucağında kundaklı bebek (küçük wojak yüzü: wojakland 'Baby Face Wojak', emzik silindi -> chars/bebek_yuz_kaynak.png), üç varyantta aynı yerde. Hepsi uret.py ile yeniden üretilir: tek_gozyasi tools/kit_varyant.py ile; agliyor = iki gözden gözyaşı + açık, titreyen ağız.",
  "duygular": {
-  "sakin": "üzgün, endişeli (taban; gülümseme yok)",
+  "sakin": "üzgün, endişeli (taban; aralık ağız, gülümseme yok)",
   "tek_gozyasi": "sessiz hüzün: sol gözden tek gözyaşı (kanca sahnesi)",
   "agliyor": "ağlıyor: iki gözden gözyaşı, açık titreyen ağız (ters köşe)"
  },
@@ -11,163 +11,163 @@
     {
      "path": [
       [
-       186,
-       186
+       234,
+       151
       ],
       [
-       185,
-       208
+       233,
+       167
       ],
       [
-       182,
-       232
+       231,
+       184
       ],
       [
-       178,
-       256
+       228,
+       202
       ]
      ],
-     "w": 14
+     "w": 8
     }
    ]
   }
  },
  "agliyor": {
   "mouth": {
-   "box": [
-    205,
-    249,
-    260,
-    278
+   "patch": [
+    236,
+    204,
+    320,
+    252
+   ],
+   "cover": [
+    243,
+    211,
+    313,
+    246
    ],
    "skin": [
-    229,
-    172,
-    133
+    253,
+    253,
+    253
    ],
    "top": [
     [
-     207,
-     266
+     250,
+     230
     ],
     [
-     212,
-     261
+     255,
+     224
     ],
     [
-     217,
-     259
+     262,
+     221
     ],
     [
-     222,
-     256
+     269,
+     222
     ],
     [
-     227,
-     257
+     276,
+     220
     ],
     [
-     232,
-     254
+     283,
+     221
     ],
     [
-     237,
-     256
+     290,
+     220
     ],
     [
-     242,
-     255
+     297,
+     222
     ],
     [
-     247,
-     258
+     303,
+     225
     ],
     [
-     252,
-     260
-    ],
-    [
-     257,
-     266
+     308,
+     231
     ]
    ],
    "bottom": [
     [
-     207,
-     266
-    ],
-    [
-     214,
-     269
-    ],
-    [
-     222,
-     271
-    ],
-    [
-     232,
-     272
-    ],
-    [
-     242,
-     271
-    ],
-    [
      250,
-     269
+     230
     ],
     [
-     257,
-     266
+     256,
+     236
+    ],
+    [
+     265,
+     241
+    ],
+    [
+     276,
+     243
+    ],
+    [
+     287,
+     242
+    ],
+    [
+     297,
+     238
+    ],
+    [
+     308,
+     231
     ]
    ],
-   "teeth_h": 4.2,
-   "line": 2.6,
-   "lip_dy": 2.6,
-   "lip_w": 2.4
+   "teeth_h": 6.0,
+   "line": 2.6
   },
   "tears": [
    {
     "path": [
      [
-      176,
-      187
+      232,
+      151
      ],
      [
-      174,
-      208
+      231,
+      168
      ],
      [
-      170,
-      228
+      229,
+      186
      ],
      [
-      166,
-      247
+      226,
+      206
      ]
     ],
-    "w": 15
+    "w": 8
    },
    {
     "path": [
      [
-      279,
-      188
+      323,
+      152
      ],
      [
-      281,
-      210
+      324,
+      168
      ],
      [
-      282,
-      232
+      326,
+      185
      ],
      [
-      280,
-      252
+      328,
+      202
      ]
     ],
-    "w": 15
+    "w": 8
    }
   ]
  }

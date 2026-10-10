@@ -1,15 +1,15 @@
 # kiz-kulesi-efsanesi — paylaşım paketi
 
-Süre: 14.0 sn · 7 sahne · video: `kiz-kulesi-efsanesi.mp4` · kapak: `kapak.jpg`
+Süre: 14.0 sn · 6 sahne · video: `kiz-kulesi-efsanesi.mp4` · kapak: `kapak.jpg`
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1899/2200
+### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1908/2200
 
 ```
 Yılan sokmasın diye denizin ortasındaki kuleye kapatılan prenses
 
-Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde yaşanan ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir olaydır. Tarihî bir kayıt değil, bir efsanedir; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
+Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde geçen ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir efsanedir. Tarihî bir kayıtta geçmez; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
 
 En bilinen anlatıma göre bir imparatorun çok sevdiği kızı hakkında bir kehanette bulunulur: Prenses 18 yaşına girdiğinde bir yılan tarafından sokularak *lecektir. İmparator kızını yılanlardan uzak tutmak için onu denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
 
@@ -19,7 +19,7 @@ Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşı
 
 Sizce kaderden kaçmak mümkün mü?
 
-Görseller: Sonse (arka plan; Flickr/Wikimedia Commons, CC BY 2.0, https://creativecommons.org/licenses/by/2.0/; kırpıldı, çizim ve yazı eklendi), BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/), W. H. Bartlett gravürü 1838 (kamu malı), TRT Haber (YouTube küçük resmi)
+Görseller: BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/; kanıt: 16:9 kırpıldı; pencere: arka planın kapı açıklığındaki deniz manzarası aynı fotoğraftan), Satirdan kahraman (arka plan; Wikimedia Commons, CC0), İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi (YouTube küçük resmi)
 
 #kizkulesi #efsane #istanbul #tarihselwojak #wojak
 ```
@@ -38,15 +38,15 @@ Yılan sokmasın diye denizin ortasındaki kuleye kapatılan prenses
 Kız Kulesi efsanesi
 Olayın tamamı sabit yorumda 👇
 
-Görseller: Sonse (arka plan; Flickr/Wikimedia Commons, CC BY 2.0, https://creativecommons.org/licenses/by/2.0/; kırpıldı, çizim ve yazı eklendi), BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/), W. H. Bartlett gravürü 1838 (kamu malı), TRT Haber (YouTube küçük resmi)
+Görseller: BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/; kanıt: 16:9 kırpıldı; pencere: arka planın kapı açıklığındaki deniz manzarası aynı fotoğraftan), Satirdan kahraman (arka plan; Wikimedia Commons, CC0), İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi (YouTube küçük resmi)
 
 #kizkulesi #efsane #istanbul #wojak #tarihselwojak #keşfet #olay #gizem #shorts
 ```
 
-### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1465 karakter
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1453 karakter
 
 ```
-Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde yaşanan ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir olaydır. Tarihî bir kayıt değil, bir efsanedir; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
+Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde geçen ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir efsanedir. Tarihî bir kayıtta geçmez; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
 
 En bilinen anlatıma göre bir imparatorun çok sevdiği kızı hakkında bir kehanette bulunulur: Prenses 18 yaşına girdiğinde bir yılan tarafından sokularak *lecektir. İmparator kızını yılanlardan uzak tutmak için onu denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
 
@@ -59,12 +59,12 @@ Sizce kaderden kaçmak mümkün mü?
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 1920/4000
+### Açıklama — 1929/4000
 
 ```
 Yılan sokmasın diye denizin ortasındaki kuleye kapatılan prenses
 
-Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde yaşanan ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir olaydır. Tarihî bir kayıt değil, bir efsanedir; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
+Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde geçen ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir efsanedir. Tarihî bir kayıtta geçmez; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
 
 En bilinen anlatıma göre bir imparatorun çok sevdiği kızı hakkında bir kehanette bulunulur: Prenses 18 yaşına girdiğinde bir yılan tarafından sokularak *lecektir. İmparator kızını yılanlardan uzak tutmak için onu denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
 
@@ -74,7 +74,7 @@ Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşı
 
 Sizce kaderden kaçmak mümkün mü?
 
-Görseller: Sonse (arka plan; Flickr/Wikimedia Commons, CC BY 2.0, https://creativecommons.org/licenses/by/2.0/; kırpıldı, çizim ve yazı eklendi), BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/), W. H. Bartlett gravürü 1838 (kamu malı), TRT Haber (YouTube küçük resmi)
+Görseller: BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/; kanıt: 16:9 kırpıldı; pencere: arka planın kapı açıklığındaki deniz manzarası aynı fotoğraftan), Satirdan kahraman (arka plan; Wikimedia Commons, CC0), İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi (YouTube küçük resmi)
 
 #kizkulesi #efsane #istanbul #wojak #tarihselwojak #keşfet #olay #gizem
 ```
@@ -99,9 +99,8 @@ Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
 - Türk Dili ve Edebiyatı — Kız Kulesi Efsanesi (kral, on sekiz yaş, kuleye gönderilen üzüm sepeti): https://www.turkedebiyati.org/?p=41268
 - istanbul.com — Kız Kulesi efsanesi (imparator, 18. yaş günü, meyve sepeti, babasının kollarında): https://istanbul.com/tr/blog/imagery-monuments-tower/legend-of-maiden-tower-istanbul
 - For 91 Days — Kız Kulesi (sultan anlatımı: 'a sultan had received a prophecy'): https://istanbul.for91days.com/kiz-kulesi-the-maidens-tower
-- Arka plan: 'Kız Kulesi, Maiden's Tower (52396926549).jpg', Sonse, 2021-10-03, CC BY 2.0 (1920 px küçük resim, kare kırpıldı): https://commons.wikimedia.org/wiki/File:K%C4%B1z_Kulesi,_Maiden%27s_Tower_(52396926549).jpg
-- Kanıt 1: 'İSTANBUL KIZKULESİ.jpg', BoraBora704, 2018-10-12, CC BY-SA 4.0 (1920 px küçük resim): https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_KIZKULES%C4%B0.jpg
-- Kanıt 2: 'The Guz Couli, or Maiden's Tower', W. H. Bartlett / R. Brandard, Julia Pardoe 'The Beauties of the Bosphorus' (1838-39), kamu malı (yalnız gravür alanı kırpıldı, alt yazılar dışarıda): https://commons.wikimedia.org/wiki/File:The_Guz_Couli,_of_Maiden%27s_Tower_-_Pardoe_Julia_-_1838.jpg
-- Kanıt 3: TRT Haber YouTube küçük resmi "'Boğaz'ın incisi' Kız Kulesi'nin hikayesi" (haber grafiği; telifli, hesap sahibinin onayına): https://www.youtube.com/watch?v=HJLjXTri_pM  (görsel: https://i.ytimg.com/vi/HJLjXTri_pM/maxresdefault.jpg)
-- İmparator: wojakland 'byzantine emperor wojak' (Theocrat3_1.png; chars/imparator_bizans_gulumser.png = aynı çizim, aşağı kıvrık ağız çizgisi gülümsemeyle değiştirildi): https://wojakland.com/gmedia/theocrat3_1-png/
-- Prenses: wojakland 'Byzantine Trad Wife' (assets/kit/bizans_prenses; korku varyantı: ağız + ter damlaları eklendi): https://wojakland.com/gmedia/byzantine_trad_wife-png/
+- Arka plan (aynı türden yer: denize bakan taş kule odası; Kız Kulesi'nin iç mekânının özgür lisanslı fotoğrafı Commons'ta yok): 'Kızılkule 2021 01.jpg', Alanya Kızılkule (13. yy taş kule) iç mekânı, Satirdan kahraman, 2021-03-09, CC0 (3840 px küçük resim; kare kırpıldı, sarı müze ışığı beyaz dengesiyle nötrlendi, seviye germe + doygunluk azaltma ile parlaklık ~120 / doygunluk ~0,21'e getirildi, yerdeki modern spot lamba rötuşla silindi; tur 3: kalan mavi döküm giderildi (B-R taşlarda +27 -> +6, zeminde +29 -> +6), kontrast x1,15, aşırı pozlanmış kapı açıklığı Kanıt 1 fotoğrafının (BoraBora704, CC BY-SA 4.0) kulenin sağındaki gökyüzü + martı + karşı kıyı + deniz şeridiyle dolduruldu, +%15 aydınlatıldı): https://commons.wikimedia.org/wiki/File:K%C4%B1z%C4%B1lkule_2021_01.jpg
+- Kanıt 1: 'İSTANBUL KIZKULESİ.jpg', BoraBora704, 2018-10-12, CC BY-SA 4.0 (1920 px küçük resim, 16:9 kırpıldı, y 300-1380): https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_KIZKULES%C4%B0.jpg
+- Kanıt 2: YouTube küçük resmi 'KIZ KULESİ Sepetteki Yılan EFSANESİ' (İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi, küratör İsmail Erdoğan; telifli illüstrasyon + başlık, hesap sahibinin onayına): https://www.youtube.com/watch?v=fX0lzPWNx68  (görsel: https://i.ytimg.com/vi/fX0lzPWNx68/maxresdefault.jpg)
+- İmparator: wojakland 'byzantine emperor wojak' (Theocrat3_1.png; chars/imparator_bizans_sade.png = aynı çizim, ağız gülümsemeye çevrildi, taç düz sarı kamelaukion + 4 taş olarak sadeleştirildi, chars/imparator_uret.py): https://wojakland.com/gmedia/theocrat3_1-png/
+- Prenses: HF clayshoaf/Wojaks 5_Doomer_Girl/2481 'Your Japanese girlfriend' (assets/kit/prenses_genc; üniforma yerine düz mor elbise + altın yaka, küçük altın stemma, korku varyantı; assets/kit/prenses_genc/uret.py): https://huggingface.co/datasets/clayshoaf/Wojaks/blob/main/5_Doomer_Girl/2481.png
