@@ -75,8 +75,12 @@ def cmd_render(a) -> None:
     print(f"video -> {mp4}  ({time.time() - t0:.1f} sn)")
     if not a.preview:
         cover_idx = next((i for i, s in enumerate(ep.scenes) if s.type == "dialog"), 0)
+        if ep.cover_scene:
+            if not 1 <= ep.cover_scene <= len(ep.scenes):
+                raise SystemExit(f"cover_scene {ep.cover_scene}: 1-{len(ep.scenes)} arası olmalı")
+            cover_idx = ep.cover_scene - 1
         name = "kapak_kare.jpg" if a.square else ("kapak_dolgu.jpg" if a.dolgu else "kapak.jpg")
-        cover = render.still(ep, cover_idx, out_dir / name, at=0.9, square=a.square, fill=a.dolgu)
+        cover = render.still(ep, cover_idx, out_dir / name, at=ep.cover_at, square=a.square, fill=a.dolgu)
         print(f"kapak -> {cover}")
         if a.square or a.dolgu:  # metinler aynı; ana paketin üzerine yazma (teslim ek dosyaları kendisi alır)
             return

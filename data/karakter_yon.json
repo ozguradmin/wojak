@@ -11,11 +11,19 @@
   "faces": "right",
   "file": "assets/kit/klasik/mutlu.png"
  },
+ "211f1a7debd89927a18719000ba0d178c099ddf3": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
  "22b57f095dc4ce27dd8dd801bfb8ecc9d247bf35": {
   "faces": "right",
   "file": "assets/kit/klasik/gulumsuyor.png"
  },
  "28365e0a4d32b291f30d4b5643df7bff2e5dc025": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/terli.png"
+ },
+ "29dea8726b6f3785d50eb87317402f6e21af9ddb": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
  },
@@ -26,6 +34,10 @@
  "352072bb5d8d0a4bdcef95347d141923cf9a74b0": {
   "faces": "right",
   "file": "assets/characters/koylu_kasketli_biyikli.png"
+ },
+ "39357d8ce2356404243747c8313e8343a229d972": {
+  "faces": "left",
+  "file": "assets/kit/prenses_genc/korku.png"
  },
  "3bd087dffb2e0d19bf95a17f991530320b453437": {
   "faces": "right",
@@ -43,9 +55,21 @@
   "faces": "right",
   "file": "assets/kit/klasik/cok_terli.png"
  },
+ "449f847a279776d4333d44d02bf0ad31342b03cd": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/taban/kostumlu_nervous_temiz_ice.png"
+ },
  "46336da719d04b5b080ceda151fb58d0ba86dea4": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/ingiliz_subay_tozluk.png"
+ },
+ "46f20b9c013366045b44269afde651a08f7bedbd": {
+  "faces": "left",
+  "file": "assets/kit/prenses_genc/sakin.png"
+ },
+ "497a7a9066e0b011032e69f1ee68085d65e4e9ce": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/agliyor.png"
  },
  "498395ad191f2d60e1002883cb93094c0c549621": {
   "faces": "right",
@@ -71,13 +95,17 @@
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/sakin.png"
  },
+ "565587e5d5896778d12ffbdee1a79e69d83e44bc": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/agliyor.png"
+ },
+ "5874620547d9f263e7c440d6ccbe350df2cc949f": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/agliyor.png"
+ },
  "5a051ed0a6ffda9dbc875170b62a5f77664af1de": {
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/terli.png"
- },
- "5e8bf5f7670d6819dc08009d6e5388ac4281992e": {
-  "faces": "right",
-  "file": "assets/kit/anne_basortulu2/sakin.png"
  },
  "5ea6f254badb2e7ae0ace53b1ee703663fbe78ff": {
   "faces": "right",
@@ -87,17 +115,9 @@
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_gulumser.png"
  },
- "66dd15ad7b8aa43878581ea85b03e5d13c6b8bfd": {
-  "faces": "right",
-  "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
- },
  "6973d2c0f4c37747e15e339aa05b32cee732cc5e": {
   "faces": "right",
   "file": "assets/kit/klasik/sakin.png"
- },
- "6c9babe9782ea0fc1d29981e9b476ae3988169cc": {
-  "faces": "right",
-  "file": "assets/kit/anne_basortulu2/agliyor.png"
  },
  "6cc312cba452973ecae99211f7ec41155e4bdb89": {
   "faces": "right",
@@ -106,6 +126,10 @@
  "6cd8ca867ca109f4f214b87847e656d50a76350e": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
+ "7006644ceb4f6ce03457ecb1c4678e68f5257a7f": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/agliyor.png"
  },
  "704e7248577ef014136250807c5ef47d5cdb1800": {
   "faces": "right",
@@ -127,6 +151,14 @@
   "faces": "right",
   "file": "episodes/nusret-mayin-gemisi/chars/itilaf_deniz_subayi.png"
  },
+ "7acf9a9259bbb57dd483b30ceea719addd059dc1": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
+ },
+ "901a34b0015bc34d044a37feb1534fd12c9fe38c": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
  "91c6e930fc0f23f9f785b53ecd35d4853cb191be": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
@@ -139,13 +171,13 @@
   "faces": "front",
   "file": "assets/kit/klasik/korku_karanlik.png"
  },
- "9581dbabcb3e9789f1ddb9e38ffae88e0fd48d4b": {
-  "faces": "left",
-  "file": "assets/kit/prenses_genc/sakin.png"
- },
  "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/papaz_urkek.png"
+ },
+ "9d15b053823cdc1290e33af21ab3b55952a54385": {
+  "faces": "right",
+  "file": "assets/kit/kurtarmaci_klasik/cok_terli.png"
  },
  "ab795e0baa11a4983b1f7120475aff4af014f70a": {
   "faces": "right",
@@ -167,9 +199,17 @@
   "faces": "right",
   "file": "assets/kit/bizans_prenses/terli.png"
  },
+ "b2e2560974b261781d6a7052580474f02dc170ca": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/sakin.png"
+ },
  "b74600a78a78ea055a83f8a5cfc02a70506809f5": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
+ "c72f82d513a9e86b5a1bfdfd378339312593879a": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/sakin.png"
  },
  "ca74112f568126536d95ad0a7510f36daa49e97e": {
   "faces": "right",
@@ -183,17 +223,17 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/sakin.png"
  },
- "d5638bd9ede0a895cc5f6975fec6c0794a661c7e": {
+ "d2ad2568e7dc628f9dd56f78327f123469e73fa9": {
   "faces": "right",
-  "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_sade.png"
+  "file": "assets/kit/anne_basortulu2/sakin.png"
+ },
+ "d77d046cdb6aebf0154c90d6caee83a47be6224e": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
  },
  "daa5727f03e399eadb611bb4a4e09733e34034ed": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
- },
- "df044cc39a7bcb654a84a3ec2f9787e8f9271fba": {
-  "faces": "left",
-  "file": "assets/kit/prenses_genc/korku.png"
  },
  "e32cf848ba632e585cd4a11e8cf9c89d72c9b30f": {
   "faces": "right",
@@ -203,12 +243,20 @@
   "faces": "front",
   "file": "assets/characters/sovyet_kiz_gozluklu.png"
  },
- "e7114a116a6e2770a3fb07c9aed18a858f4f8003": {
-  "faces": "right",
-  "file": "assets/kit/kurtarmaci_klasik/cok_terli.png"
- },
  "e83e885e7670d492d5342d3c561b4ba6dc72701d": {
   "faces": "front",
   "file": "assets/kit/klasik/olum_karanlik.png"
+ },
+ "e928d7e8392936c903fd4a29bd43daa400f960d9": {
+  "faces": "right",
+  "file": "assets/kit/ingiliz_er_1915/terli.png"
+ },
+ "ec161ae5609fcdd12b714c564d031bd46972f2d9": {
+  "faces": "right",
+  "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
+ },
+ "fcb62cc249d8853528fac04717b2b86179cd5f00": {
+  "faces": "right",
+  "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_sade.png"
  }
 }

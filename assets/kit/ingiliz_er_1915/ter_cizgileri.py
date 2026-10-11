@@ -4,7 +4,7 @@
     python assets/kit/ingiliz_er_1915/kostum.py assets/kit/ingiliz_er_1915/taban/nervous_ter.png assets/kit/ingiliz_er_1915/kaygili.png
 
 v5 (2026-10-10): çizgiler siperliğin alt kenarının en az ~10 px altından başlar ve siperlik ile kaşlar arasındaki
-alın şeridine yayılır (5 çizgi, ~7 px kalınlık = ekranda ~3-4 px). Taban: taban/nervous_temiz.png (wojakland
+alın şeridine yayılır. final-2: 6 çizgi, ~11 px. final-3 (2026-10-11): 5 ince seyrek işaret, ~6,5 px (ekranda ~3 px), Nervous Wojak mavisi. Taban: taban/nervous_temiz.png (wojakland
 'Nervous Wojak', klasik koordinatına hizalı, kendi mavi çizgileri silinmiş). Koordinatlar taban pikselidir (899x1022).
 """
 import random
@@ -14,21 +14,19 @@ from PIL import Image, ImageDraw
 
 K = Path(__file__).resolve().parent
 SS = 4
-BLUE = (52, 164, 207, 255)
-W = 7.0
+BLUE = (92, 173, 211, 255)   # Nervous Wojak'ın kendi mavisi
+W = 6.5
 
-# siperlik alt kenarı (kostum.py, ölçek 0,86 ve -150 sonrası): x 230 -> y ~200, x 585 -> ~185, x 700 -> ~175, x 815 -> ~168
+# final-3 (2026-10-11, görsel hakem 7,5/10): 5 ince, seyrek, düzensiz işaret (~6,5 px; ekranda ~3 px, ~400-600 mavi px).
+# Orijinallerde (C4V3 S6 181 px / 3 px, C2kk S2 425 px / 4 px, C2fa S5 87 px / 2 px) çizgiler ince ve dağınık;
+# final-2'deki 6 x 11 px çizgi siperliğin altında "mavi tarak" gibi okunuyordu. Siperliğin alt kenarı
+# (yüzün başladığı y: x 240 -> 204, 350 -> 196, 460 -> 192, 580 -> 181, 700 -> 169) altından başlar, kaşların üstünde biter.
 STROKES = [
-    # sol uzun "ʃ" (kırışıkların solunda)
-    [(244, 214), (234, 222), (236, 246), (232, 274), (231, 298), (220, 305)],
-    # küçük çentik
-    [(338, 212), (344, 218), (343, 236)],
-    # orta "┘" (alt kırışığın altında, kaşların üstünde)
-    [(590, 276), (591, 300), (589, 318), (568, 320)],
-    # sağ uzun "ʃ" (iki kırışığı keser)
-    [(706, 192), (712, 198), (707, 226), (703, 256), (705, 282), (698, 300)],
-    # sağ küçük çentik
-    [(812, 196), (818, 203), (816, 224)],
+    [(250, 222), (242, 232), (240, 262), (242, 292), (236, 308), (226, 314)],
+    [(352, 214), (356, 220), (355, 238)],
+    [(470, 236), (476, 242), (474, 268), (477, 296), (470, 306)],
+    [(600, 206), (603, 214), (601, 232), (588, 236)],
+    [(697, 190), (704, 198), (700, 232), (697, 262), (701, 290), (692, 308)],
 ]
 
 

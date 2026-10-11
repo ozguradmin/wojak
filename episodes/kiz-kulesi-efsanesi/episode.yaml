@@ -1,53 +1,59 @@
 # Kız Kulesi efsanesi. Altın dönem "efsane kişi" kalıbı (C2P Kapalak kızı, C2-U Belkıs, C2VH Malatya balıkları):
-# AYNI YERDE (kulenin içindeki taş oda), AYNI ANDA (prensesin 18. yaş günü) iki kişi konuşur: A = imparator (baba)
-# hep solda, B = prenses hep sağda. Ters köşe: prenses aynı kutuda yüz varyantıyla (sakin -> korku) fark eder. Kart yok.
-# Kanıt en sonda: bugünkü kule (ilk kez burada görünür), sonra yılanlı sepet efsanesinin başlıklı görseli.
+# AYNI YERDE (Kız Kulesi'nin kendisi, denizin ortasında; STIL §6 "olayın gerçek yeri", C2VH/C3dO gibi: Türk izleyici
+# 1. saniyede tanır), AYNI ANDA (prensesin 18. yaş günü) iki kişi konuşur: A = imparator (baba) hep solda, B = prenses
+# hep sağda. Ters köşe: prenses aynı kutuda yüz varyantıyla (sakin -> korku) fark eder. Kart yok.
+# Kanıt en sonda: kulenin başka bir fotoğrafı (alacakaranlık, martı), sonra yılanlı sepet efsanesinin başlıklı görseli.
 # Doğrulanan anlatım (Üsküdar Belediyesi, Wikipedia EN, istanbul.com): kâhin/kehanet, kız 18. yaş gününde yılan
 # sokmasıyla ölecek; imparator onu yılanlardan uzak tutmak için denizdeki kuleye koyar, onu yalnız babası ziyaret
-# eder; 18. yaş gününde kehaneti atlattığına sevinip bir sepet meyve getirir, meyvelerin arasına gizlenmiş yılan
-# prensesi sokar. Türkçe anlatımlarda sepet üzüm sepetidir ve bazen hizmetçiler ya da âşık bir subay getirir.
+# eder; 18. yaş gününde kehaneti boşa çıkardığını düşünüp bir sepet meyve getirir, meyvelerin arasına gizlenmiş
+# yılan prensesi sokar. Türkçe anlatımlarda meyve üzümdür; bazı anlatımlarda sepeti hizmetçiler getirir, bazılarında
+# yılan âşık bir subayın getirdiği çiçek sepetinden çıkar.
 # Karakterler: imparator = chars/imparator_uret.py (sade taç), prenses = assets/kit/prenses_genc/uret.py.
+# Arka plan: arkaplan.py (img/kiz_kulesi_sonse_kaynak.jpg -> img/arka_kiz_kulesi_sonse.jpg).
 # Render: python -m wojak render episodes/kiz-kulesi-efsanesi
 id: kiz-kulesi-efsanesi
-title: "Yılan sokmasın diye denizin ortasındaki kuleye kapatılan prenses"
+title: "Kızını yılandan korumak için kuleye kapatan imparatorun doğum günü hediyesi"
 
 music: kanal
 
 scenes:
-  # 1) KANCA — A (imparator, sol). Olay anı, ilk saniyede risk: 18. yaş günü + hediye sepeti.
+  # 1) KANCA — A (imparator, sol). Olay anı: doğum günü kutlaması + hediye üzüm (ironik niyet; ölüm günü olduğu
+  #    2. replikte anlaşılır). "İyi ki doğdun" 1 sn'nin altında okunur; Türkçe anlatımlarda sepet üzüm sepeti.
   - type: dialog
     duration: 3.0
-    bg: img/arka_kule_odasi_kizilkule.jpg
+    bg: img/arka_kiz_kulesi_sonse.jpg
     chars:
       - {img: chars/imparator_bizans_sade.png, side: left, height: 0.53}
-    text: "Kızım bugün 18 oldun, sana meyve sepeti getirdim"
+    text: "İyi ki doğdun kızım, bak sana üzüm getirdim"
 
-  # 2) CEVAP — B (prenses, sağ, sakin). Hediyeye "Ama" ile cevap: kehanet, 18 yaşında yılan sokması.
+  # 2) CEVAP — B (prenses, sağ, sakin). Hediyeye "Ama baba" ile cevap: kehanet, 18 yaşında yılan sokması.
   - type: dialog
     duration: 3.0
-    bg: img/arka_kule_odasi_kizilkule.jpg
+    bg: img/arka_kiz_kulesi_sonse.jpg
     chars:
       - {img: /home/user/wojak/assets/kit/prenses_genc/sakin.png, side: right, height: 0.53}
-    text: "Ama kâhin 18 yaşımda beni yılan sokacak demişti"
+    text: "Ama baba, kâhin 18 yaşımda beni yılan sokacak demişti"
 
   # 3) DRAMATİK İRONİ — A (imparator, sol). Kuleyi denizin ortasında seçmesinin sebebi.
   - type: dialog
     duration: 2.5
-    bg: img/arka_kule_odasi_kizilkule.jpg
+    bg: img/arka_kiz_kulesi_sonse.jpg
     chars:
       - {img: chars/imparator_bizans_sade.png, side: left, height: 0.53}
     text: "Korkma, denizin ortasına yılan gelemez"
 
   # 4) TERS KÖŞE — B, aynı kutu, yüz varyantı (korku: kaynağın kapak/kirpik çizgisi korunur, göz aşağı doğru kocaman
-  #    açılır, koyu gri halkalı iris + küçük gözbebeği imparatora bakar, göz altı çizgileri, mavi ter, açık ağız).
+  #    açılır, koyu halkalı küçük iris + iğne ucu gözbebeği imparatora bakar (C2P şok yüzü), 3 koyu göz altı çizgisi,
+  #    uzun mavi ter çizgileri, ter damlaları, büyük açık ağız).
   - type: dialog
     duration: 2.5
-    bg: img/arka_kule_odasi_kizilkule.jpg
+    bg: img/arka_kiz_kulesi_sonse.jpg
     chars:
       - {img: /home/user/wojak/assets/kit/prenses_genc/korku.png, side: right, height: 0.53}
-    text: "Bekle, sepette ne kıpırdıyor?"
+    text: "Bekle, üzümler neden kıpırdıyor?"
 
-  # 5-6) KANIT — gerçek kule (ilk kez burada), sonra efsanenin kendi başlığıyla görseli (sepetteki yılan).
+  # 5-6) KANIT — kulenin başka bir fotoğrafı (C2VH gibi diyalog yerinin kanıtta tekrarı), sonra efsanenin kendi
+  #      başlığıyla görseli (sepetteki yılan; lisans kararı hesap sahibinde, yedek: img/kanit_2_yedek_sebah.jpg).
   - type: evidence
     duration: 1.5
     images: [img/kanit_1_kiz_kulesi_borabora704.jpg]
@@ -57,22 +63,25 @@ scenes:
 
 caption: |
   Kız Kulesi efsanesi
-  Olayın tamamı sabit yorumda 👇
+  Efsanenin tamamı sabit yorumda 👇
 hashtags: [kizkulesi, efsane, istanbul]
 
 pinned_comment: |
-  Kız Kulesi efsanesi, anlatılana göre yüzyıllar önce İstanbul Boğazı'nın girişindeki Kız Kulesi'nde geçen ve yılandan korunmak için kuleye kapatılan bir prensesin hikâyesi olarak bilinen bir efsanedir. Tarihî bir kayıtta geçmez; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
+  Kız Kulesi efsanesi, yılan sokmasın diye Üsküdar açıklarındaki kuleye kapatılan bir prensesin yüzyıllardır dilden dile dolaşan hikâyesidir. Yaşandığına dair tarihî bir kayıt yoktur; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
 
-  En bilinen anlatıma göre bir imparatorun çok sevdiği kızı hakkında bir kehanette bulunulur: Prenses 18 yaşına girdiğinde bir yılan tarafından sokularak ölecektir. İmparator kızını yılanlardan uzak tutmak için onu denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
+  En bilinen anlatıma göre bir kâhin, imparatorun çok sevdiği kızının 18 yaşına girdiğinde bir yılan tarafından sokularak öleceğini söyler. İmparator kızını yılanlardan uzak tutmak için denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
 
-  Prensesin 18. yaş gününde imparator, kehaneti atlattığını düşünerek kızına hediye olarak bir sepet meyve götürür. Meyvelerin arasına gizlenmiş bir yılan prensesi sokar ve prenses babasının kollarında hayatını kaybeder. Türkçe anlatımların bazılarında sepetteki meyve üzümdür; bazılarında ise sepeti hizmetçiler ya da prensese âşık genç bir subay getirir.
+  Prensesin 18. yaş gününde imparator, kehaneti boşa çıkardığını düşünerek kızına bir sepet meyve götürür; Türkçe anlatımlarda bu meyve genellikle üzümdür. Meyvelerin arasına gizlenmiş bir yılan prensesi sokar ve prenses babasının kollarında hayatını kaybeder. Bir rivayete göre imparator kızını demir bir tabuta koydurup Ayasofya'nın giriş kapısının üstüne yerleştirir; tabuttaki iki deliğin, yılanın prensesi ölümünden sonra bile rahat bırakmadığını gösterdiği anlatılır.
 
-  Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşık 200 metre uzaklıktaki adacıkta MÖ 408'de Atinalı komutan Alkibiades'in Karadeniz'den gelen gemileri denetlemek için bir istasyon kurduğu düşünülür; 1110'da Bizans İmparatoru I. Aleksios Komnenos buraya ahşap bir kule yaptırdı. Kule 1763'te taştan yeniden inşa edildi; 2021'de başlayan restorasyonun ardından Mayıs 2023'te yeniden ziyarete açıldı.
+  Bazı anlatımlarda sepeti hizmetçiler getirir, bazılarında ise yılan, prensese âşık genç bir subayın getirdiği çiçek sepetinden çıkar. Kuleye bağlanan tek efsane de bu değildir: Battal Gazi'nin, Üsküdar tekfurunun kuleye kapattığı kızını kurtarıp atıyla kaçtığı anlatılır; "Atı alan Üsküdar'ı geçti" sözünün buradan geldiği söylenir.
+
+  Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşık 200 metre uzaklıktaki adacıkta MÖ 408'de Atinalı komutan Alkibiades'in Karadeniz'den gelen gemiler için bir gümrük istasyonu kurduğu düşünülür. 1110'da Bizans İmparatoru I. Aleksios Komnenos buraya ahşap bir kule yaptırdı. Kule 1763'te taştan yeniden inşa edildi; 2021'de başlayan restorasyonun ardından Mayıs 2023'te yeniden ziyarete açıldı.
 
   Sizce kaderden kaçmak mümkün mü?
 
 # CC BY (ve BY-SA) görseller atıf ister: açıklamalara "Görseller: ..." olarak eklenir
-credits: "BoraBora704 (Wikimedia Commons, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/; kanıt: 16:9 kırpıldı; pencere: arka planın kapı açıklığındaki deniz manzarası aynı fotoğraftan), Satirdan kahraman (arka plan; Wikimedia Commons, CC0), İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi (YouTube küçük resmi)"
+# (ayrıntılı lisans ve düzenleme notları yalnız 'sources' altında; açıklamalara giden satır kısa ve herkese açık)
+credits: "Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pendik Belediyesi, İstanbul'un Efsaneleri Dijital Sergi"
 ai_generated: false
 
 sources:
@@ -80,14 +89,15 @@ sources:
   - "Üsküdar Belediyesi — Maiden's Tower (resmî; efsane: kehanet, 18. yaş günü, imparatorun getirdiği meyve sepeti, meyvelerin arasındaki yılan, babasının kollarında; ~200 m, 1110 I. Aleksios Komnenos, 1509, 1721, 1763, 1829, 1832): https://www.uskudar.bel.tr/en/main/pages/maidens-tower/307"
   - "Wikipedia (EN) — Maiden's Tower (efsane aynı; MÖ 408 Alkibiades; 2021-2023 restorasyon, Mayıs 2023'te yeniden açılış): https://en.wikipedia.org/wiki/Maiden%27s_Tower"
   - "Vikipedi (TR) — Kız Kulesi (MÖ 408 Alkibiades, 1110 I. Aleksios, 1509 deprem, 1721 yangın, 1763 taş yapı, 11 Mayıs 2023 açılış): https://tr.wikipedia.org/wiki/K%C4%B1z_Kulesi"
-  - "TimeTürk, 09.04.2020 — Kız Kulesi'ne dair efsaneler (Bizans krallarından birinin kızı, 18 yaş; hizmetçilerin getirdiği üzüm sepeti ya da âşık subayın çiçek sepeti): https://www.timeturk.com/kultur/kiz-kulesi-ne-dair-efsaneler/haber-1428138"
-  - "Türk Dili ve Edebiyatı — Kız Kulesi Efsanesi (kral, on sekiz yaş, kuleye gönderilen üzüm sepeti): https://www.turkedebiyati.org/?p=41268"
+  - "TimeTürk, 09.04.2020 — Kız Kulesi'ne dair efsaneler (Bizans krallarından birinin kızı, 18 yaş; hizmetçilerin getirdiği üzüm sepeti ya da âşık subayın çiçek sepeti; Battal Gazi'nin kuleye hapsedilen Üsküdar tekfurunun kızını kurtarması): https://www.timeturk.com/kultur/kiz-kulesi-ne-dair-efsaneler/haber-1428138"
+  - "Türk Dili ve Edebiyatı — Kız Kulesi Efsanesi (kral, on sekiz yaş, kuleye gönderilen üzüm sepeti; kralın kızı için yaptırdığı demir tabut Ayasofya'nın giriş kapısının üstünde, üzerindeki iki delik 'yılan ölümünden sonra da rahat bırakmadı' anlatısı; Battal Gazi kuleden tekfurun kızını ve hazineyi alıp atıyla Üsküdar'dan uzaklaşır, 'Atı alan Üsküdar'ı geçti' sözü buradan): https://www.turkedebiyati.org/?p=41268"
   - "istanbul.com — Kız Kulesi efsanesi (imparator, 18. yaş günü, meyve sepeti, babasının kollarında): https://istanbul.com/tr/blog/imagery-monuments-tower/legend-of-maiden-tower-istanbul"
   - "For 91 Days — Kız Kulesi (sultan anlatımı: 'a sultan had received a prophecy'): https://istanbul.for91days.com/kiz-kulesi-the-maidens-tower"
   # Görseller ve lisanslar
-  - "Arka plan (aynı türden yer: denize bakan taş kule odası; Kız Kulesi'nin iç mekânının özgür lisanslı fotoğrafı Commons'ta yok): 'Kızılkule 2021 01.jpg', Alanya Kızılkule (13. yy taş kule) iç mekânı, Satirdan kahraman, 2021-03-09, CC0 (3840 px küçük resim; kare kırpıldı, sarı müze ışığı beyaz dengesiyle nötrlendi, seviye germe + doygunluk azaltma ile parlaklık ~120 / doygunluk ~0,21'e getirildi, yerdeki modern spot lamba rötuşla silindi; tur 3: kalan mavi döküm giderildi (B-R taşlarda +27 -> +6, zeminde +29 -> +6), kontrast x1,15, aşırı pozlanmış kapı açıklığı Kanıt 1 fotoğrafının (BoraBora704, CC BY-SA 4.0) kulenin sağındaki gökyüzü + martı + karşı kıyı + deniz şeridiyle dolduruldu, +%15 aydınlatıldı): https://commons.wikimedia.org/wiki/File:K%C4%B1z%C4%B1lkule_2021_01.jpg"
-  - "Kanıt 1: 'İSTANBUL KIZKULESİ.jpg', BoraBora704, 2018-10-12, CC BY-SA 4.0 (1920 px küçük resim, 16:9 kırpıldı, y 300-1380): https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_KIZKULES%C4%B0.jpg"
+  - "Arka plan (final tur 3; olayın gerçek yeri): 'Kız Kulesi, Maiden's Tower (52396926549).jpg', Sonse, 3 Ekim 2021, CC BY 2.0, https://creativecommons.org/licenses/by/2.0/ (Flickr: https://www.flickr.com/photos/34585612@N00/52396926549 ; Commons: https://commons.wikimedia.org/wiki/File:K%C4%B1z_Kulesi,_Maiden%27s_Tower_(52396926549).jpg ; FlickreviewR 2 ile cc-by-2.0 doğrulanmış; Flickr 2048 px sürümü img/kiz_kulesi_sonse_kaynak.jpg). Değişiklikler (arkaplan.py): kare kırpım (182, 0, 1377, 1195), gama 1,35 (parlaklık 146 -> ~124), doygunluk x0,88. Önceki turların arka planı (Alanya Kızılkule iç mekânı, Satirdan kahraman, CC0, img/arka_kule_odasi_kizilkule.jpg) artık kullanılmıyor."
+  - "Kanıt 1: 'İSTANBUL KIZKULESİ.jpg', BoraBora704, 2018-10-12, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/ (1920 px küçük resim, 16:9 kırpıldı, y 300-1380; final tur 2: parlaklık x1,12, renk x1,05): https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_KIZKULES%C4%B0.jpg"
   - "Kanıt 2: YouTube küçük resmi 'KIZ KULESİ Sepetteki Yılan EFSANESİ' (İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi, küratör İsmail Erdoğan; telifli illüstrasyon + başlık, hesap sahibinin onayına): https://www.youtube.com/watch?v=fX0lzPWNx68  (görsel: https://i.ytimg.com/vi/fX0lzPWNx68/maxresdefault.jpg)"
+  - "Kanıt 2 yedeği (hesap sahibi Pendik görselini istemezse; videoda kullanılmıyor): 'Pascal Sébah - Kız Kulesi, Galata and Fındıklı Residential Areas - Google Art Project.jpg', Pascal Sébah (1823-1886), 19. yy sonu, albümin baskı, Pera Müzesi koleksiyonu; kamu malı (yazar 1886'da öldü; ABD'de 1931 öncesi yayın; Commons dosya sayfasında doğrulandı): https://commons.wikimedia.org/wiki/File:Pascal_S%C3%A9bah_-_K%C4%B1z_Kulesi,_Galata_and_F%C4%B1nd%C4%B1kl%C4%B1_Residential_Areas_-_Google_Art_Project.jpg (16:9 kırpım: img/kanit_2_yedek_sebah.jpg; yılan/sepet görünmez)"
   # Karakterler
-  - "İmparator: wojakland 'byzantine emperor wojak' (Theocrat3_1.png; chars/imparator_bizans_sade.png = aynı çizim, ağız gülümsemeye çevrildi, taç düz sarı kamelaukion + 4 taş olarak sadeleştirildi, chars/imparator_uret.py): https://wojakland.com/gmedia/theocrat3_1-png/"
-  - "Prenses: HF clayshoaf/Wojaks 5_Doomer_Girl/2481 'Your Japanese girlfriend' (assets/kit/prenses_genc; üniforma yerine düz mor elbise + altın yaka, küçük altın stemma, korku varyantı; assets/kit/prenses_genc/uret.py): https://huggingface.co/datasets/clayshoaf/Wojaks/blob/main/5_Doomer_Girl/2481.png"
+  - "İmparator: wojakland 'byzantine emperor wojak' (Theocrat3_1.png; chars/imparator_bizans_sade.png = aynı çizim, ağız gülümsemeye çevrildi, taç düz koyu altın kamelaukion + inci dizileri + 4 taş + haç olarak sadeleştirildi, inciler elle çizilmiş gibi düzensiz; final tur 2: tuval 586x862'ye uzatıldı, mor cüppe + yuvarlak iç omuz + altın loros şeridi eklendi; final tur 3: büst kanal oranına genişletildi, tuval 780x862, iç omuz alt kenara ~775'te iner; chars/imparator_uret.py): https://wojakland.com/gmedia/theocrat3_1-png/"
+  - "Prenses: HF clayshoaf/Wojaks 5_Doomer_Girl/2481 'Your Japanese girlfriend' (assets/kit/prenses_genc; üniforma yerine düz mor elbise + altın yaka, küçük altın stemma, korku varyantı; final tur 2: sol omuz eğimli çizildi (dikey elbise kesiği yok), yüz ile sağ saç tutamı arasındaki şeffaf yarık saç dolgusuyla kapatıldı, saç kenarındaki çentik silindi; final tur 3: korku yüzü güçlendirildi: daha iri açılmış gözler, küçük koyu halkalı iris + iğne ucu gözbebeği, 3 koyu göz altı çizgisi, daha uzun/kalın mavi ter çizgileri, daha büyük açık ağız; assets/kit/prenses_genc/uret.py): https://huggingface.co/datasets/clayshoaf/Wojaks/blob/main/5_Doomer_Girl/2481.png"

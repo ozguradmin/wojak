@@ -3,60 +3,68 @@
 # Render: python -m wojak render episodes/van-depremi-azra-bebek
 # Yayın: 23 Ekim 2026 (15. yıl dönümü), 20:00-20:15.
 id: van-depremi-azra-bebek
-title: "Enkaz altında 47 saat annesinin kucağında hayatta kalan 14 günlük bebek"
+title: "Van depreminde sütü kuruyan annesinin 47 saat hayatta tuttuğu 14 günlük bebek"
 
 music: kanal
 
 scenes:
   # Arka plan (tüm diyalog): AKUT_2011_Van-3, Van, 25.10.2011 — katları üst üste çökmüş (pancake) beton döşemeler.
-  # Anne: kucağında kundaklı bebekle (kit: anne_basortulu2, üç varyantta da aynı yerde).
+  # Kalıp A B A B (C2kkZ8BsngB / C3iXf2zsRvo mekanizması): son replik bir SORU, cevabı kanıttaki gerçek manşet verir.
+  # Anne: kucağında askılı bezde uyuyan bebekle (kit: anne_basortulu2, üç varyantta da aynı yerde).
   # 1) KANCA — A (anne, sol). Olay anı: ~47. saat, ekipler enkazın içine ulaşıyor.
-  #    Doğrulanan: annesi "Enkaz altında olduğumuz iki gün boyunca Azra'yı kucağımdan hiç bırakmadım" (Vatan);
-  #    kurtarılırken 16 günlüktü (Hürriyet: "14 günlükken altında kaldığı enkazdan 16 günlükken") -> "2 haftalık".
+  #    Doğrulanan: annesi "Enkaz altında olduğumuz iki gün boyunca Azra'yı kucağımdan hiç bırakmadım",
+  #    "yukarılarda çalışma olduğu halde, kimseler sesimizi duymuyordu" (Vatan) -> "yok mu?" (iki gündür duyulmayan
+  #    enkazdaki kişinin sesi; "var mı?" kurtarmacının sorusu); kurtarılırken 16 günlüktü (Hürriyet: "14 günlükken
+  #    altında kaldığı enkazdan 16 günlükken") -> "2 haftalık".
   - type: dialog
     duration: 3.0
     bg: img/arka_enkaz_akut_van3.jpg
     chars:
       - {img: /home/user/wojak/assets/kit/anne_basortulu2/tek_gozyasi.png, side: left, x: 0.225, height: 0.5}
-    text: "Sesimi duyan var mı?\nKucağımda 2 haftalık bebeğim var"   # elle kırım: cümle sınırında (C3iX "Ne demek istiyorsun? / Evet ...")
+    text: "Sesimi duyan yok mu?\nKucağımda 2 haftalık bebeğim var"   # elle kırım: cümle sınırında (C3iX "Ne demek istiyorsun? / Evet ...")
 
   # 2) CEVAP — B (kurtarmacı, sağ). Kurtarmacının kendi anlatımı: "Annesine bebeği uzatmasını söyledim",
-  #    "Ancak bebeği çıkartacak kadar bir boşluk vardı" (Sabah, 26.10.2011).
+  #    "Ancak bebeği çıkartacak kadar bir boşluk vardı"; Sabah: "Ekibin açtığı minik delikten ise sadece Azra
+  #    çıkabilecekti. Anneden 14 günlük bebeği uzatması istendi" (26.10.2011). Tek satır.
   - type: dialog
     duration: 2.5
     bg: img/arka_enkaz_akut_van3.jpg
     chars:
       - {img: /home/user/wojak/assets/kit/kurtarmaci_klasik/sakin.png, side: right, height: 0.49}
-    text: "Abla, bebeği bana uzatır mısın?"
+    text: "Abla, delik dar, bebeği uzat"
 
-  # 3) FARK ETME — B, aynı kutu, yüz varyantı (ter damlaları + alında mavi soğuk ter çizgileri).
-  #    Dramatizasyon: soru kurgu; "2 gündür" belgeli (~47 saat enkaz altında; tüm kaynaklar).
-  - type: dialog
-    duration: 2.5
-    bg: img/arka_enkaz_akut_van3.jpg
-    chars:
-      - {img: /home/user/wojak/assets/kit/kurtarmaci_klasik/cok_terli.png, side: right, height: 0.49}
-    text: "Bekle, bebek 2 gündür ne yedi?"
-
-  # 4) TERS KÖŞE — A, aynı kutu, yüz varyantı (iki gözden yaş, açık titreyen ağız). Annenin kendi sözü:
-  #    "Sütüm kuruyunca bebeğimi tükürüğümle besledim" (Vatan, Sabah; Hürriyet, Takvim aynı bilgi).
+  # 3) TIRMANIŞ — A, aynı kutu, yüz varyantı (kızarmış gözler, iki gözden kalın yaş, açık titreyen ağız). Annenin kendi anlatımı:
+  #    "Enkaz altında hiçbir şey yiyemediğimiz için sütüm de kurudu ... Çünkü açtı" (Vatan; Sabah/AA aynı).
+  #    "Al": bebeği uzatıyor (S2'ye cevap). Tek satır, olay anında, şimdiki zaman.
   - type: dialog
     duration: 2.5
     bg: img/arka_enkaz_akut_van3.jpg
     chars:
       - {img: /home/user/wojak/assets/kit/anne_basortulu2/agliyor.png, side: left, x: 0.225, height: 0.5}
-    text: "Sütüm kurudu, tükürüğümle besledim"
+    text: "Al, sütüm kurudu, kızım çok aç"
 
-  # 5-6) KANIT — önce gerçek haber sayfası (Takvim 26.10.2011: logo bandı + başlık + haberin kendi fotoğrafı;
-  #    S4'teki sözü hemen doğrular), sonra en güçlü kare: Azra kurtarıldıktan hemen sonra (AFP, 25.10.2011).
-  #    Fotoğrafla bitiş orijinallerde yaygın (C1Xe, C2P-J, C40z, C4Ga, C4_D). Son görsel 2,0 sn: toplam 14,0 sn,
-  #    imza ses kendi kadansında biter.
+  # 4) FARK ETME — B, aynı kutu, yüz varyantı (Nervous Wojak yüzü: yana kaçan bakış, endişeli kaşlar,
+  #    4 ter damlası + baretin altında mavi soğuk ter). "Bekle, ... nasıl ...?" fark etme sorusu (C4V3 "Bekle, ev neden
+  #    sallanıyor?"): süt yoksa bebek iki gün nasıl dayandı? Özne düşük (S3: "kızım çok aç"); 7 kelime, 2,5 sn'ye
+  #    sığar (okuma kuralı: 2,5 sn'de en fazla 7). Soru kurgu (dramatizasyon); "2 gündür" belgeli (~47 saat).
+  #    Cevabı reel söylemez, son kanıttaki gerçek manşet verir: "Anne, Azra'yı tükürüğüyle besledi".
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_enkaz_akut_van3.jpg
+    chars:
+      - {img: /home/user/wojak/assets/kit/kurtarmaci_klasik/cok_terli.png, side: right, height: 0.49}
+    text: "Bekle, sütün yoksa 2 gündür\nnasıl dayandı?"
+
+  # 5-6) KANIT — önce gerçek kurtarma anı (AFP, 25.10.2011: Azra kurtarmacıların elinde, oksijen maskesiyle),
+  #    sonra CEVAP: gerçek haber sayfası (Takvim 26.10.2011, telefonda açılmış hali: logo bandı + manşet
+  #    "Anne, Azra'yı tükürüğüyle besledi" + haberin kendi fotoğrafının üst kısmı; 1080x816, siyah bantlar görünür). Orijinallerde de son görsel manşet/küçük
+  #    resim (C2kk kupür, C3iX manşet, C2Fr haber küçük resmi). Son görsel 2,0 sn: toplam 14,0 sn.
   - type: evidence
     duration: 1.5
-    images: [img/telifli/kanit_2_takvim_baslik.png]
+    images: [img/telifli/kanit_1_azra_kurtarma_afp.jpg]
   - type: evidence
     duration: 2.0
-    images: [img/telifli/kanit_1_azra_kurtarma_afp.jpg]
+    images: [img/telifli/kanit_2_takvim_baslik_mobil_816.png]
 
 caption: |
   Van depremi ve Azra bebek mucizesi (2011)
@@ -64,59 +72,72 @@ caption: |
 hashtags: [vandepremi, erciş, mucize]
 
 pinned_comment: |
-  Azra bebek mucizesi, 2011 yılında Van'ın Erciş ilçesinde yaşanan ve 14 günlük bir bebeğin depremden yaklaşık 47 saat sonra annesinin kucağında bulunup enkazdan sağ çıkarılmasıyla bilinen bir olaydır.
+  Azra bebek mucizesi, 2011 yılında Van'ın Erciş ilçesinde yaşanan ve 14 günlük bir bebeğin, annesinin kucağında geçirdiği yaklaşık 47 saatin ardından enkazdan sağ çıkarılmasıyla bilinen bir olaydır.
 
-  23 Ekim 2011 Pazar günü saat 13.41'de Van'da 7,2 büyüklüğünde bir deprem meydana geldi. Erken doğan ve henüz 14 günlük olan Azra o gün annesi, babası ve babaannesiyle birlikte Erciş'te dedesinin evindeydi. Apartman çöktü, aile enkaz altında kaldı.
+  23 Ekim 2011 Pazar günü saat 13.41'de Van'da 7,2 büyüklüğünde bir deprem meydana geldi. Erken doğan Azra o gün annesi, babası ve babaannesiyle birlikte Erciş'te, çocuk doktoru olan dedesinin evindeydi. Beş katlı apartman çöktü, aile enkaz altında kaldı.
 
   Dinleme cihazlarıyla yapılan çalışmada anne, bebek ve babaannenin bir kanepenin oluşturduğu boşlukta sıkıştığı tespit edildi ve ekipler tünel kazmaya başladı. İzmir Sivil Savunma ekibinden bir kurtarmacı içeri ulaştığında Azra annesinin kucağındaydı. Açılan dar delikten yalnızca bebek geçebiliyordu; kurtarmacı anneden bebeği uzatmasını istedi. Azra 25 Ekim'de sağ olarak çıkarıldı, ardından annesi ve babaannesi de kurtarıldı.
 
-  Anne, iki gün boyunca kızını kucağından hiç bırakmadığını anlattı. İlk gün Azra'yı emzirmiş, hiçbir şey yiyemediği için sütü kuruyunca bebeğini tükürüğüyle beslemişti. Azra hava ambulansıyla Ankara'ya götürüldü ve sağlık durumu iyiydi. Babası ise enkazdan sağ çıkarılamadı.
+  Anne, iki gün boyunca kızını kucağından hiç bırakmadığını anlattı. İlk gün Azra'yı emzirdiğini, hiçbir şey yiyemediği için sütü kuruyunca da onu tükürüğüyle beslediğini söyledi: "Biz açlığa dayanabiliyorduk, fakat onun öyle bir durumu yoktu." Azra hava ambulansıyla Ankara'ya götürüldü; doktorlar hayati tehlikesinin olmadığını açıkladı. Babası ise enkazdan sağ çıkarılamadı.
 
   AFAD'ın açıkladığı bilançoya göre 23 Ekim depreminde 604 kişi hayatını kaybetti, 222 kişi enkazdan sağ kurtarıldı. Azra da o 222 kişiden biriydi.
 
-  Van depreminin üzerinden 15 yıl geçti. Van depremini hatırlayanlar, o gün neredeydiniz?
+  Dedesi 2017'de, o yıl ilkokula başlayan Azra'nın kendisi gibi çocuk doktoru olmak istediğini anlatmıştı. Van depreminin üzerinden 15 yıl geçti. Aranızda o gün Van'da ya da Erciş'te olan var mı?
 
 # CC BY-SA atfı (arka plan) + haber görsellerinin kaynağı
-credits: "AKUT Arama Kurtarma Derneği (arka plan: 'AKUT 2011 Van-3', Wikimedia Commons, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk düzeltildi, çizim ve yazı eklendi), Takvim 26.10.2011 (haber sayfası ve fotoğrafı), Adem Altan/AFP (fotoğraf)"
+# CC BY-SA 3.0 §4(a) lisans URI'sini, §4(c) eserin adını istiyor: ikisi kalır, yalnız https:// ve sondaki / atıldı.
+credits: "AKUT Arama Kurtarma Derneği, 'AKUT 2011 Van-3' / Wikimedia Commons (CC BY-SA 3.0 creativecommons.org/licenses/by-sa/3.0, düzenlendi) · Takvim · Adem Altan/AFP"
 ai_generated: false
 
 sources:
-  - "Sabah (Memurlar.net), 26.10.2011 — Azra mucizesinin detayları (kurtarmacı: 'Annesine bebeği uzatmasını söyledim', 'Ancak bebeği çıkartacak kadar bir boşluk vardı'; anne: 'Sütüm kuruyunca bebeğimi tükürüğümle besledim'; 45,5 saat): https://www.memurlar.net/haber/208556/azra-mucizesinin-detaylari-video.html"
-  - "Gazete Vatan, 26.10.2011 — Azra yaşama sıkı sıkı sarıldı (47 saat; 'iki gün boyunca Azra'yı kucağımdan hiç bırakmadım'; ilk gün emzirdi, sütü kuruyunca tükürüğüyle besledi; dinleme cihazı; kanepenin oluşturduğu yaşam alanı; tünel): https://www.gazetevatan.com/gundem/azra-yasama-siki-siki-sarildi-406880"
-  - "Hürriyet, 26.10.2011 — Doktor dedesi 'Ben daha iyi bakarım' dedi, depreme yakalandılar (47 saat; 9 Ekim prematüre; İzmir Sivil Savunma Arama ve Kurtarma ekibi; emzirme + tükürük; hava ambulansıyla Ankara): https://www.hurriyet.com.tr/gundem/doktor-dedesi-ben-daha-iyi-bakarim-dedi-depreme-yakalandilar-19089827"
+  - "Sabah (Memurlar.net), 26.10.2011 — Azra mucizesinin detayları (kurtarmacı: 'Annesine bebeği uzatmasını söyledim', 'Ancak bebeği çıkartacak kadar bir boşluk vardı'; 'Ekibin açtığı minik delikten ise sadece Azra çıkabilecekti. Anneden 14 günlük bebeği uzatması istendi'; anne, AA'ya: 'Sütüm kuruyunca bebeğimi tükürüğümle besledim. Çünkü açtı ... Biz açlığa dayanabiliyorduk. Onun öyle bir durumu yoktu'; 45,5 saat): https://www.memurlar.net/haber/208556/azra-mucizesinin-detaylari-video.html"
+  - "Gazete Vatan, 26.10.2011 — Azra yaşama sıkı sıkı sarıldı (47 saat; beş katlı apartman; anne: 'iki gün boyunca Azra'yı kucağımdan hiç bırakmadım', 'İlk gün Azra'yı emzirdim ... sütüm de kurudu. Sütüm kuruyunca bebeğimi tükürüğümle besledim. Çünkü açtı ve ateşi çıkmıştı. Biz açlığa dayanabiliyorduk, fakat onun öyle bir durumu yoktu', 'yukarılarda çalışma olduğu halde, kimseler sesimizi duymuyordu'; dinleme cihazı; kanepenin oluşturduğu yaşam alanı; tünel): https://www.gazetevatan.com/gundem/azra-yasama-siki-siki-sarildi-406880"
+  - "Hürriyet, 26.10.2011 — Doktor dedesi 'Ben daha iyi bakarım' dedi, depreme yakalandılar (47 saat; dede çocuk doktoru; 9 Ekim prematüre; İzmir Sivil Savunma Arama ve Kurtarma ekibi; emzirme + tükürük; hava ambulansıyla Ankara): https://www.hurriyet.com.tr/gundem/doktor-dedesi-ben-daha-iyi-bakarim-dedi-depreme-yakalandilar-19089827"
   - "Takvim, 26.10.2011 — Anne, Azra'yı tükürüğüyle besledi (46 saat; ambulans uçakla Ankara; başhekim: hayati tehlikesi yok): https://www.takvim.com.tr/Yasam/2011/10/26/anne-azrayi-tukuruguyle-besledi"
   - "AP (Boston Globe), 25.10.2011 — Miracle baby emerges from Turkish quake rubble (two-week-old; 'held tight against her mother's shoulder'; rescuer in an orange jumpsuit wriggling into a narrow slit): https://www.bostonglobe.com/news/world/2011/10/25/miracle-baby-emerges-from-turkish-quake-rubble/cqUWk1gQKKQr1lpwJzQG0H/story.html"
-  - "AA (Memurlar.net), 22.10.2017 — 'Mucize bebek' Azra'nın hayalini doktorluk süslüyor (47 saat; baba depremde hayatını kaybetti): https://www.memurlar.net/haber/702324/mucize-bebek-azra-nin-hayalini-doktorluk-susluyor.html"
+  - "AA (Memurlar.net), 22.10.2017 — 'Mucize bebek' Azra'nın hayalini doktorluk süslüyor (47 saat; baba depremde hayatını kaybetti; dede: 'Bana da özendiği için doktor olma ideali var', 'Çocuk doktorluğu onun nazarında bir iyilik yapmak'; 'çocuk doktoru olan dede', o yıl okula başladı): https://www.memurlar.net/haber/702324/mucize-bebek-azra-nin-hayalini-doktorluk-susluyor.html"
   - "NTV, 18.11.2011 — Mucize bebek Azra kimliğine kavuştu (babanın ölümü): https://www.ntv.com.tr/turkiye/mucize-bebek-azra-kimligine-kavustu,iogsVU_mEUaLHFsM8ygnww"
   - "DHA (Mynet), 18.09.2017 — Mucize bebek Azra ilkokula başladı (47 saat, baba): https://www.mynet.com/mucize-bebek-azra-ilkokula-basladi-180103714719"
   - "TGRT Haber, 04.11.2020 — AFAD İzmir ekibi (eski İzmir Sivil Savunma) Azra'yı 47 saat sonra çıkardı: https://www.tgrthaber.com/gundem/azra-bebekten-sonra-aydanin-kurtarilmasina-da-elini-uzatti-2752020"
   - "Hürriyet, 13.11.2011 — İki depremde 644 ölü (AFAD: 23 Ekim'de 604 ölü, 222 sağ kurtarılan): https://www.hurriyet.com.tr/gundem/iki-depremde-644-olu-19232729"
   - "AFAD bilançosu ve deprem saati/merkezi (23.10.2011 13.41, Tabanlı, 7,2): ODTÜ Afet Yönetimi raporu https://www.metu.edu.tr/system/files/ODTUAYMVAN_rev3.pdf + https://en.wikipedia.org/wiki/2011_Van_earthquake"
   - "GÖRSEL img/arka_enkaz_akut_van3.jpg (tüm diyalog sahneleri) — AKUT Arama Kurtarma Derneği, 'AKUT 2011 Van-3', Van, 25.10.2011 ('2011 Van depremi sonrası arama kurtarma çalışmaları'), CC BY-SA 3.0 (VRT bileti #2011111710023241); orijinal 3872x2592 içinden kare kırpım x 1400-2735, y 1150-2485 (1335 px: katları üst üste çökmüş beton döşemeler, üstte sarı cepheli kat; düz gökyüzü, sağdaki kurtarmacı ve arama köpeği kadraj dışında), PIL ImageEnhance.Color 1,25 + Brightness 1,36 (arka plan parlaklığı 112/255, doygunluk 0,20; diyalog kareleri 116-125 / 0,18-0,22; üst 300 satır std 67): https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-3.jpg"
-  - "GÖRSEL img/telifli/kanit_1_azra_kurtarma_afp.jpg (kanıt 2, sahne 6, son kare) — HABER FOTOĞRAFI, telifli: Adem Altan/AFP/Getty Images, Erciş 25.10.2011 ('Rescue workers dug 2-week-old Azra ... from beneath the debris'); 1440x997 kopya Boston Globe'dan, 16:9'a kırpıldı (y 20-830 -> 1440x810): https://bostonglobe-prod.cdn.arcpublishing.com/resizer/v2/MHH45XX7CII6BISR5FF6L5DCZM.jpg?auth=f23778badc4959c7c56d15cc28b998f45a1525428dfbd6c9562d0f322440b84a&width=1440 (sayfa: yukarıdaki AP/Boston Globe haberi). Lisans yok: hesap sahibi karar verecek; serbest yedek: https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-2.jpg (CC BY-SA 3.0, aynı gün, arka plandaki aynı bina; Azra değil)"
-  - "GÖRSEL img/telifli/kanit_2_takvim_baslik.png (kanıt 1, sahne 5) — HABER SAYFASI, telifli: takvim.com.tr masaüstü sayfasının (1280 px genişlik, 2x) ekran görüntüsü, 10.10.2026; logo bandı + menü + başlık 'Anne, Azra'yı tükürüğüyle besledi' + haberin kendi fotoğrafı (enkazdan çıkarılan ağlayan Azra, kurtarmacıların elinde; fotoğrafçı/ajans sayfada belirtilmemiş). Çerez penceresi reddedildi; reklam alanları, gezinti satırı, spot (46 saat), yazar/tarih satırı, Google bandı ve sağ sütun CSS ile gizlendi (sayfa kendi düzeniyle yeniden akıyor); başlığın ve fotoğrafın piksellerine dokunulmadı; css x 140-851, y 0-537 kırpıldı -> 1080x816: https://www.takvim.com.tr/yasam/2011/10/26/anne-azrayi-tukuruguyle-besledi"
-  - "KARAKTER anne (A, sol) — wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) https://wojakland.com/gmedia/blushing_hijab_wojak-png/ -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png; assets/kit/anne_basortulu2/ (uret.py: boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı, pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek krem tona, başörtüsü altındaki gri alan koyu kahve saç, büst kırpımı 458x490; kaynak zaten 3/4 sağa dönük, aynalanmadı, 'right' kayıtlı). Kucaktaki kundaklı bebek: beyaz kundak kodla çizildi, yüz wojakland 'Baby Face Wojak' https://wojakland.com/gmedia/baby_face_wojak-png/ (emzik silindi, küçük ağız) -> chars/bebek_yuz_kaynak.png. Varyantlar: tek_gozyasi = tools/kit_varyant.py gözyaşı; agliyor = iki gözden yaş + açık, titreyen ağız"
-  - "KARAKTER kurtarmacı (B, sağ) — baş: assets/kit/klasik/sakin.png (kütüphane 5_Tired_Wojak/10441, C3DeLN1sU7O'daki kurtarmacıyla aynı yüz); baret ve mont: wojakland 'Annoyed Construction Worker Wojak' https://wojakland.com/gmedia/annoyed_construction_worker_wojak-png/ (episodes/van-depremi-azra-bebek/chars/kurtarmaci_baretli.png) gövdesinden kesilip kanıt 1'deki İzmir Sivil Savunma ekibine göre renklendirildi (kırmızı mont, lacivert yaka/kol, gümüş reflektör, kırmızı baret + beyaz bant) -> assets/kit/kurtarmaci_klasik/ (sakin; cok_terli = 4 ter damlası + baretin altından inen mavi soğuk ter çizgileri, tools/kit_varyant.py)"
+  - "GÖRSEL img/telifli/kanit_1_azra_kurtarma_afp.jpg (kanıt 1, sahne 5) — HABER FOTOĞRAFI, telifli: Adem Altan/AFP/Getty Images, Erciş 25.10.2011 ('Rescue workers dug 2-week-old Azra ... from beneath the debris'); 1440x997 kopya Boston Globe'dan, 16:9'a kırpıldı (y 20-830 -> 1440x810): https://bostonglobe-prod.cdn.arcpublishing.com/resizer/v2/MHH45XX7CII6BISR5FF6L5DCZM.jpg?auth=f23778badc4959c7c56d15cc28b998f45a1525428dfbd6c9562d0f322440b84a&width=1440 (sayfa: yukarıdaki AP/Boston Globe haberi). Lisans yok: hesap sahibi karar verecek; serbest yedek: https://commons.wikimedia.org/wiki/File:AKUT_2011_Van-2.jpg (CC BY-SA 3.0, aynı gün, arka plandaki aynı bina; Azra değil)"
+  - "GÖRSEL img/telifli/kanit_2_takvim_baslik_mobil.png (kanıt 2, sahne 6, son kare: S4'teki soruya cevap) — HABER SAYFASI, telifli: takvim.com.tr haberinin telefonda açılmış hali (Chromium mobil görünüm, 412 css px genişlik, DPR 2,62 -> 1080 px; genel bir Android tarayıcı kimliği), 11.10.2026; logo bandı + büyük kalın manşet 'Anne, Azra'yı tükürüğüyle besledi' + haberin kendi fotoğrafı (enkazdan çıkarılan ağlayan Azra, kurtarmacıların elinde; fotoğrafçı/ajans sayfada belirtilmemiş). Çerez penceresi reddedildi; reklam alanları, gezinti yolu (breadcrumb), spot (46 saat), kaynak/tarih/paylaşım satırı, Google bandı ve KVKK alt bandı CSS ile gizlendi, başlık-fotoğraf arası boşluk daraltıldı, fotoğraf kutusu 380x223 css (object-fit: cover, sayfanın kendi görseli; üstten/alttan ~%8 kırpılır); başlığın ve fotoğrafın piksellerine dokunulmadı, kendi yazımız/grafiğimiz yok; sayfanın üstünden fotoğrafın altına kadar kırpıldı -> 1080x996 (kanit_2_takvim_baslik_mobil.png). Kullanılan sürüm kanit_2_takvim_baslik_mobil_816.png: telefonun '<' geri düğmesi bar rengiyle (190,9,15) boyandı, 1080x816'ya kırpıldı (fotoğrafın büyütülmüş alt 180 px'i atıldı; siyah bantlar görünür); başlık ve fotoğraf piksellerine dokunulmadı: https://www.takvim.com.tr/yasam/2011/10/26/anne-azrayi-tukuruguyle-besledi"
+  - "KARAKTER anne (A, sol) — wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) https://wojakland.com/gmedia/blushing_hijab_wojak-png/ -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png; assets/kit/anne_basortulu2/ (uret.py: boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı, pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek krem tona, başörtüsü altındaki gri alan koyu kahve saç, çenenin altındaki boyuna hafif sıcak gölge, büst kırpımı 458x490; kaynak zaten 3/4 sağa dönük, aynalanmadı, 'right' kayıtlı). Kucaktaki bebek (hazır çizim): wojakland 'Redhead Tradwife with Baby Wojak' https://wojakland.com/wp-content/grand-media/image/original/redhead_tradwife_with_baby_wojak.png -> chars/bebek_kucak_kaynak.png; askılı bezde uyuyan yenidoğan (gözleri kapalı, yeşil örgü bere) + onu tutan el kendi çizgileriyle alındı; kızıl annenin göğsü/boynu, omuz askısı, somon elbise ve çiçekli kol silindi, x0,47; bezin sol ucu annenin krem gömleğinin altına girer, yanakta hafif pembe allık. Ten: yüz, boyun ve bebeği tutan el kanalın kadını gibi şeftali (C3De/C2Fr yanak ölçümü 247,202,161; çarpan 252,207,163, gölge ve çizgiler korunur; gözyaşı, dişler ve bebek beyaz kalır). Varyantlar: tek_gozyasi = tools/kit_varyant.py tek ince gözyaşı (w 8); agliyor = kızarmış (pembe) göz akları + iki gözden kalın gözyaşı akıntısı (w 13) + sol gözden ince ikinci akıntı + açık, titreyen ağız (beyaz üst diş bandı, koyu iç); kaşlar ve kutu aynı"
+  - "KARAKTER kurtarmacı (B, sağ) — baş: assets/kit/klasik/sakin.png (kütüphane 5_Tired_Wojak/10441, C3DeLN1sU7O'daki kurtarmacıyla aynı yüz); baret ve mont: wojakland 'Annoyed Construction Worker Wojak' https://wojakland.com/gmedia/annoyed_construction_worker_wojak-png/ (episodes/van-depremi-azra-bebek/chars/kurtarmaci_baretli.png) gövdesinden kesilip kanıttaki İzmir Sivil Savunma ekibine göre renklendirildi (kırmızı mont, lacivert yaka/kol, gümüş reflektör, kırmızı baret + beyaz bant) -> assets/kit/kurtarmaci_klasik/ (sakin). Ters köşe yüzü cok_terli: wojakland 'Nervous Wojak' https://wojakland.com/wp-content/grand-media/image/original/nervous_wojak.png -> chars/kurtarmaci_gergin_kaynak.png (x1,39, aynı mont + baret, aynı kırpım kutusu; yana kaçan bakış, endişeli kaşlar: kanalın C2kkZ8BsngB S2 / C4V3eMFM6lF S6 yüzü) + 4 ter damlası + baretin altında mavi soğuk ter çizgileri (tools/kit_varyant.py)"
 
 notes: |
   Önerilen paylaşım: 23 Ekim 2026 (15. yıl dönümü), 20:00-20:15.
 
-  Replikler (hepsi olay anında, şimdiki zaman; hiçbiri doğrulanmış bilgiyle çelişmiyor):
-    1 Anne (tek gözyaşı, kucağında kundak): "Sesimi duyan var mı? / Kucağımda 2 haftalık bebeğim var"
-      -> anne iki gün kızını kucağından bırakmadı (Vatan); deprem anında 14, kurtarılırken 16 günlüktü (Hürriyet)
-      -> "2 haftalık" (AP: "two-week-old"). S2'deki "uzat" bu bilgiye dayanır.
-    2 Kurtarmacı: "Abla, bebeği bana uzatır mısın?" -> kurtarmacının kendi anlatımı: "Annesine bebeği uzatmasını
-      söyledim" (Sabah).
-    3 Kurtarmacı (çok terli, mavi soğuk ter): "Bekle, bebek 2 gündür ne yedi?" -> fark etme sorusu kurgudur
-      (dramatizasyon); "2 gündür" belgeli (~47 saat enkaz altında: Hürriyet, Vatan, AA, DHA).
-    4 Anne (ağlıyor, aynı kutu): "Sütüm kurudu, tükürüğümle besledim" -> annenin kendi sözü, kısaltılmış
-      ("Sütüm kuruyunca bebeğimi tükürüğümle besledim": Vatan, Sabah; Hürriyet, Takvim aynı bilgi). Anne hayatta;
-      söz kendi röportajlarından.
-  Kanıt sırası: önce Takvim sayfası (S4'ü doğrular), sonra AFP fotoğrafıyla biter (en güçlü kare).
-  Baba (depremde hayatını kaybetti) sahnede yok, ona replik verilmedi; dede ile ilgili 'ironi' kurulmadı.
+  Kalıp A B A B: son diyalog bir fark etme sorusu ("Bekle, sütün yoksa 2 gündür nasıl dayandı?"), cevabı en
+  sondaki gerçek manşet veriyor ("Anne, Azra'yı tükürüğüyle besledi"); C2kkZ8BsngB ("Neden vücudum yanıyor?!" -> kupür) ve
+  C3iXf2zsRvo mekanizması. İki karakter de aynı kutuda yüz değiştirir.
+  Replikler (hepsi olay anında, şimdiki zaman; hiçbiri doğrulanmış bilgiyle çelişmiyor), 9 + 5 + 6 + 7 = 27 kelime:
+    1 Anne (tek gözyaşı, kucağında uyuyan bebek): "Sesimi duyan yok mu? / Kucağımda 2 haftalık bebeğim var"
+      -> anne iki gün kızını kucağından bırakmadı; "yukarılarda çalışma olduğu halde, kimseler sesimizi duymuyordu"
+      (Vatan); deprem anında 14, kurtarılırken 16 günlüktü (Hürriyet) -> "2 haftalık" (AP: "two-week-old").
+    2 Kurtarmacı (sakin): "Abla, delik dar, bebeği uzat" -> "Ekibin açtığı minik delikten ise sadece Azra
+      çıkabilecekti. Anneden 14 günlük bebeği uzatması istendi"; kurtarmacı: "Annesine bebeği uzatmasını söyledim" (Sabah).
+    3 Anne (ağlıyor, aynı kutu): "Al, sütüm kurudu, kızım çok aç" -> annenin kendi anlatımı: "hiçbir şey
+      yiyemediğimiz için sütüm de kurudu ... Çünkü açtı" (Vatan; Sabah/AA). "Al": bebeği uzatıyor (S2'ye cevap).
+    4 Kurtarmacı (Nervous Wojak yüzü, ter, aynı kutu): "Bekle, sütün yoksa 2 gündür / nasıl dayandı?"
+      -> soru kurgudur (dramatizasyon); "2 gündür" belgeli (~47 saat enkaz altında: Hürriyet, Vatan, AA, DHA). Cevabı
+      reel söylemez: son kanıttaki gerçek manşet verir ("Anne, Azra'yı tükürüğüyle besledi", Takvim 26.10.2011).
+      Önceki "neyle besledin?" kanalda Uruguay 571 yamyamlık repliğini çağrıştırabiliyordu; yeni soru sütle bağlı.
+  Kanıt sırası: önce AFP kurtarma fotoğrafı (Azra sağ), sonra cevap olan manşet (son görsel, 2,0 sn).
+  Baba (depremde hayatını kaybetti) sahnede yok, ona replik verilmedi; dede ile ilgili 'ironi' kurulmadı (Erciş'e gelme
+  nedeni metinde yok: dolaylı olarak dedeyi suçlar).
   Kurtarmacının adı kaynaklarda farklı (Kadir Dilek / Kadir Direk), metinde ad yok. Babaanne adı da farklı yazılıyor, yok.
   Süre farkı: 45,5 (Sabah) / 46 (Takvim) / 47 (Hürriyet, Vatan, AA, DHA) / 48 saat (AP) -> "yaklaşık 47 saat".
+  Hikâye kapanışı: "Dedesi 2017'de, o yıl ilkokula başlayan Azra'nın kendisi gibi çocuk doktoru olmak istediğini
+  anlatmıştı" (AA 22.10.2017: "Bana da özendiği için doktor olma ideali var"; DHA 18.09.2017 ilkokul). Geçmiş zamanlı
+  "hayali ... olmaktı" kaldırıldı (yaşayan 15 yaşındaki çocuk için "Azra öldü mü?" sorusu doğurur). Okul adı, mahalle,
+  bugünkü hayatı hakkında iddia yok. Son soru yerel ("ben oralıyım") yorumlara çağrı: "Aranızda o gün Van'da ya da
+  Erciş'te olan var mı?"
+  İlk cümle düzeltildi: bebek tek başına delikten uzatıldı, anne ve babaanne ardından birer saat arayla çıkarıldı (Vatan); "annesinin
+  kucağında geçirdiği yaklaşık 47 saat" doğru, "annesinin kucağında enkazdan çıkarıldı" yanlıştı.
   Çocuk: Azra bugün 15 yaşında. Yalnız ilk adı (aile röportajlarla açıkladı) ve 2011'deki yenidoğan fotoğrafları;
-  soyadı, anne/baba/dede adı, şehir, okul, güncel fotoğraf yok. Takvim başlığında ve görünen sayfada soyadı yok.
+  soyadı, anne/baba/dede adı, şehir, okul, güncel fotoğraf yok. Takvim manşetinde ve görünen sayfada soyadı yok.
   Haber görselleri (Takvim sayfası + fotoğrafı, AFP fotoğrafı) telifli: kanalın altın dönem pratiği bu, ama hesap
   sahibi onaylamalı. AFP/Getty yerine CC BY-SA yedek: AKUT_2011_Van-2 (aynı gün, Azra değil).

@@ -116,15 +116,17 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None, denetim: list[s
     telifli = sorted({p.name for sc in ep.scenes for p in [sc.bg, *sc.images] if p and p.parent.name == "telifli"})
     lines += [
         "## Yükleme kontrol listesi", "",
-        *([f"- [ ] **Lisans kararı senin:** şu görseller haber ajansı/gazete malı (telifli): "
-           f"{', '.join(f'`{n}`' for n in telifli)}. Kanal eskiden de böyle kullanıyordu; istemezsen serbest "
-           "lisanslı yedekle değiştiririm (kaynaklar aşağıda)"] if telifli else []),
+        *([f"- [ ] **Lisans kararı senin:** " + (ep.telif_notu or
+           f"şu görseller haber ajansı/gazete malı (telifli): {', '.join(f'`{n}`' for n in telifli)}. Kanal eskiden "
+           "de böyle kullanıyordu; istemezsen serbest lisanslı yedekle değiştiririm (kaynaklar aşağıda)")]
+          if telifli or ep.telif_notu else []),
         "- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)",
         "- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır",
         "- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme",
         "- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)",
         ai,
         "- [ ] İlk 1-2 saat: yorumlara cevap (özellikle \"ben oralıyım\" yorumları), hakaret/isim ifşası içerenleri sil",
+        *[f"- [ ] {m}" for m in ep.ek_maddeler],
     ]
     if ep.gundem:
         lines.append("- [ ] **Güncel olay:** paylaşmadan hemen önce yayın yasağı yok mu? (RTÜK 'Mahkeme Yayın Yasakları')")

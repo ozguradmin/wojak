@@ -13,9 +13,10 @@
    Yön: kaynak zaten 3/4 SAĞA dönük (burun yüz ortasının sağında, sağ göz sağ kontura yakın; kanalın
    C3De/C2Fr kadını da aynı açıda, solda durup içeri bakıyor) -> aynalanmaz, 'right' kaydedilir. Renderer
    sol tarafta aynalamaz; sağ tarafta kullanılırsa kendisi aynalar.
-3. Kucaktaki bebek: beyaz kundak + küçük wojak yüzü (wojakland "Baby Face Wojak", emzik silindi), büstün iç
-   (sağ) alt kenarında; üç varyantta da aynı yerde (kutu sabit).
-4. tek_gozyasi: tools/kit_varyant.py ile (kit.json 'variants'); agliyor: iki gözden yaş + açık, titreyen ağız.
+3. Kucaktaki bebek (hazır çizim): wojakland "Redhead Tradwife with Baby Wojak" içindeki askılı bezde uyuyan
+   yenidoğan + onu tutan el (bkz. bebek_katmani); üç varyantta da aynı yerde (kutu sabit).
+4. tek_gozyasi: tools/kit_varyant.py ile (kit.json 'variants'); agliyor: iki gözden kalın yaş + açık, titreyen ağız.
+5. Ten (son adım, her PNG'de ayrı): yüz, boyun ve bebeği tutan el kanalın kadını gibi şeftali (ten_rengi()).
 """
 
 from __future__ import annotations
@@ -36,13 +37,15 @@ from wojak import facing  # noqa: E402
 
 CHARS = ROOT / "episodes" / "van-depremi-azra-bebek" / "chars"
 SRC = CHARS / "anne_hijab_kaynak.png"      # wojakland blushing_hijab_wojak.png
-BEBEK_SRC = CHARS / "bebek_yuz_kaynak.png"  # wojakland baby_face_wojak.png
+BEBEK_SRC = CHARS / "bebek_kucak_kaynak.png"  # wojakland redhead_tradwife_with_baby_wojak.png
 CROP_H = 490                                # büst: bu satırın altı kesilir (alt kenar düz ve opak kalır)
 BROWN = np.array((107, 74, 46), np.float32)  # #6B4A2E, C3De'deki kahverengi örgü
 WARM = np.array((1.0, 0.975, 0.935), np.float32)  # başörtüsü/gömlek: soğuk gri -> krem (C3De/C2Fr)
 DEBLUSH = 0.80
 HAIR = np.array((78, 58, 46), np.float32)       # görünen saç (kaynakta düz gri)
 SAC_TOHUM = (305, 40)                           # gri alanın içinden bir nokta
+BOYUN_TOHUM = (230, 280)                        # çene çizgisinin altındaki boyun (beyaz)
+BOYUN_SAG_TOHUM = (282, 271)                    # dikey boyun çizgisinin sağında kalan küçük beyaz cep
 
 
 def _lum(a: np.ndarray) -> np.ndarray:
@@ -152,112 +155,172 @@ def sac(a: np.ndarray) -> np.ndarray:
     return a
 
 
-def anne_taban() -> Image.Image:
+def boyun_maske(a: np.ndarray, tohumlar: tuple = (BOYUN_TOHUM,)) -> np.ndarray:
+    """Çene çizgisinin altındaki beyaz boyun bölgesi (sağdaki dikey boyun çizgisine ve başörtüsüne kadar)."""
+    lum = _lum(a)
+    wh = ((lum > 232) & (a[..., 3] > 200)).astype(np.uint8) * 255
+    m = Image.fromarray(wh).copy()
+    for t in tohumlar:
+        if wh[t[1], t[0]] != 255:
+            raise SystemExit(f"boyun_maske: tohum {t} beyaz boyun alanında değil")
+        ImageDraw.floodfill(m, t, 128)
+    return np.array(m) == 128
+
+
+def boyun_golge(a: np.ndarray) -> np.ndarray:
+    """Çene çizgisinin altındaki boyun (yüzle aynı saf beyaz olduğu için çene çizgisi 'maske kenarı' gibi
+    okunuyordu) çenenin hemen altında hafif sıcak gölge alır, aşağı doğru açılır (C3De/C2Fr kadınında boyun
+    çenenin altında koyulaşır). Çizgiler değişmez."""
+    neck = boyun_maske(a)
+    ust = np.full(a.shape[1], 10 ** 6)
+    ys, xs = np.where(neck)
+    np.minimum.at(ust, xs, ys)
+    yy, xx = np.mgrid[0:a.shape[0], 0:a.shape[1]]
+    d = np.clip((yy - ust[None, :]) / 30.0, 0, 1)
+    guc = np.where(neck, 1.0 - 0.6 * d, 0.0)[..., None]          # çenede 1, 30 px aşağıda 0,4
+    golge = np.array((0.93, 0.89, 0.86), np.float32)[None, None, :]
+    a[..., :3] = a[..., :3] * (1 - guc * (1 - golge))
+    return a
+
+
+def anne_taban() -> tuple[Image.Image, np.ndarray]:
+    """Anne tabanı (büst kırpımı) ve boyun maskesi (ten_rengi() için, aynı kırpımda)."""
     a = np.array(Image.open(SRC).convert("RGBA")).astype(np.float32)
     a = zincir_sil(a)
     a = allik_azalt(a)
     a = ust_kahve(a)
     a = sac(a)
     a = sicak_ton(a)
+    boyun = boyun_maske(a, (BOYUN_TOHUM, BOYUN_SAG_TOHUM))[:CROP_H]   # + dikey boyun çizgisinin sağındaki beyaz
+    a = boyun_golge(a)
     im = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
-    return im.crop((0, 0, im.width, CROP_H))
+    return im.crop((0, 0, im.width, CROP_H)), boyun
 
 
-# ---- kucaktaki bebek (kundak) -------------------------------------------------------------------------
-BEBEK = {"cx": 352, "top": 362, "w": 96, "egim": 7}      # anne görselinde (kırpım sonrası) kundağın yeri, piksel
-SS = 4
+# ---- ten rengi -----------------------------------------------------------------------------------------
+# Kanalın kadını (C3DeLN1sU7O, C2FriLUM2DR) şeftali tenli: yanak ölçüldü (247-253, 202-208, 161-163).
+# Saf beyaz yüz, gölgeli başörtüsünün yanında "maske" gibi okunuyordu. Son adım olarak (üç PNG'nin her
+# birinde ayrı ayrı; varyantlar boyanmamış tabandan üretilir, çift boyama olmaz) yüz, boyun ve bebeği tutan el
+# bu renkle ÇARPILIR: gölge ve çizgiler korunur. Mavi gözyaşı (doygunluk >= 40), çizgiyle kapalı beyaz diş
+# bandı ve bebek (beyaz, ayrı alan) dışarıda kalır; alfa değişmez (kutu aynı).
+TEN = np.array((252, 207, 163), np.float32) / 255.0
+YUZ_TOHUM = [(270, 100), (250, 200), (300, 250), (230, 240),
+             (337, 185)]                                # agliyor: kalın sağ gözyaşının sağında kalan yanak şeridi
+EL_TOHUM = [(300, 455), (380, 440)]                     # bebeği tutan el (bebek katmanıyla gelen)
 
 
-def bebek_yuz(w: int) -> Image.Image:
-    """Baby Face Wojak: emzik silinir, küçük ağız çizilir, çizgiler küçültmeye göre kalınlaştırılır."""
-    im = Image.open(BEBEK_SRC).convert("RGBA")
-    d = ImageDraw.Draw(im)
-    d.ellipse([132, 252, 222, 306], fill=(255, 255, 255, 255))           # emzik + dudak kenarları
-    d.line([(160, 281), (174, 283), (188, 281)], fill=(0, 0, 0, 255), width=6, joint="curve")
-    a = np.array(im)
-    rgb = Image.fromarray(a[..., :3]).filter(ImageFilter.MinFilter(5))     # siyah çizgiler kalınlaşır
-    out = Image.merge("RGBA", (*rgb.split(), im.getchannel("A")))
-    h = round(out.height * w / out.width)
-    return out.resize((w, h), Image.LANCZOS)
-
-
-def _kundak_kontur(cx: float, top: float, w: float, bot: float) -> list[tuple[float, float]]:
-    """Kundak silueti: üstte yarım elips kapüşon, yanlar aşağı doğru hafifçe genişler (yumuşak eğri)."""
-    rx, ry = w / 2, w * 0.52
-    cy = top + ry
-    pts = [(cx + rx * np.cos(t), cy - ry * np.sin(t)) for t in np.linspace(np.pi, 0, 40)]
-    right = [(cx + rx + 5 * (1 - np.cos(np.pi * u / 2)), cy + u * (bot - cy)) for u in np.linspace(0, 1, 12)[1:]]
-    left = [(cx - rx - 5 * (1 - np.cos(np.pi * u / 2)), cy + u * (bot - cy)) for u in np.linspace(1, 0, 12)[:-1]]
-    return pts + right + left
-
-
-def bebek_katmani(size: tuple[int, int]) -> Image.Image:
-    """Kundak: beyaz battaniye (yumuşak gri gölge, koyu ince kontur, çapraz sarma kıvrımları), kapüşon
-    içinde küçük bebek yüzü. Annenin çizimindeki gibi yumuşak gölgeli; kontur kalınlığı yüz çizgileri kadar."""
-    cx, top, w = BEBEK["cx"], BEBEK["top"], BEBEK["w"]
-    W, H = size
-    bot = H + 6
-    S = lambda pts: [(x * SS, y * SS) for x, y in pts]  # noqa: E731
-    line = (58, 52, 48, 255)
-    body = _kundak_kontur(cx, top, w, bot)
-    L = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
-    d = ImageDraw.Draw(L)
-    d.polygon(S(body), fill=(243, 244, 246, 255))
-    # hacim: dış (sol) kenarda ve altta yumuşak gölge
-    sh = Image.new("L", L.size, 0)
-    ImageDraw.Draw(sh).polygon(S([(x - 14 if x < cx else x - 4, y + 10) for x, y in body]), fill=0)
-    shade = Image.new("L", L.size, 0)
-    ImageDraw.Draw(shade).polygon(S(body), fill=70)
-    inner = Image.new("L", L.size, 0)
-    ImageDraw.Draw(inner).polygon(S([(cx + (x - cx) * 0.80 + 6, top + (y - top) * 0.9 + 10) for x, y in body]),
-                                  fill=255)
-    shade = Image.fromarray(np.where(np.array(inner) > 0, 0, np.array(shade)).astype(np.uint8))
-    shade = shade.filter(ImageFilter.GaussianBlur(7 * SS))
-    body_m = Image.new("L", L.size, 0)
-    ImageDraw.Draw(body_m).polygon(S(body), fill=255)
-    shade = Image.fromarray(np.minimum(np.array(shade), np.array(body_m)))
-    dark = Image.new("RGBA", L.size, (150, 146, 142, 255))
-    dark.putalpha(shade)
-    L.alpha_composite(dark)
-    # kapüşon içi: yüz oyuğu (gölgeli kenar)
-    fx0, fy0, fx1, fy1 = cx - 25, top + 13, cx + 27, top + 66
-    d = ImageDraw.Draw(L)
-    d.ellipse(S([(fx0 - 4, fy0 - 4), (fx1 + 4, fy1 + 4)]), fill=(206, 202, 198, 255))
-    L = L.resize((W, H), Image.LANCZOS)
-    face = bebek_yuz(round((fx1 - fx0) * 1.22))
-    fl = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    fl.alpha_composite(face, (round(cx - face.width / 2 + 3), round(fy0 - face.height * 0.20)))
-    mk = Image.new("L", (W * SS, H * SS), 0)
-    ImageDraw.Draw(mk).ellipse(S([(fx0, fy0), (fx1, fy1)]), fill=255)
-    mk = mk.resize((W, H), Image.LANCZOS)
-    fl.putalpha(Image.fromarray(np.minimum(np.array(fl.getchannel("A")), np.array(mk))))
-    L.alpha_composite(fl)
-    # konturlar ve sarma kıvrımları
-    K = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
-    d = ImageDraw.Draw(K)
-    d.line(S(body + body[:1]), fill=line, width=round(2.6 * SS), joint="curve")
-    d.ellipse(S([(fx0 - 1, fy0 - 1), (fx1 + 1, fy1 + 1)]), outline=line, width=round(2.2 * SS))
-    fold = (128, 122, 118, 255)
-    x0, x1 = cx - w / 2, cx + w / 2
-    # sarma: soldan sağa inen tek geniş kanat + karşı taraftan gelen kısa kanat (kundak)
-    d.line(S([(x0 - 2, top + 78), (x0 + 24, top + 76), (cx + 10, top + 86), (x1 - 6, top + 104), (x1 + 4, top + 112)]),
-           fill=fold, width=round(2.1 * SS), joint="curve")
-    d.line(S([(x1 + 3, top + 72), (x1 - 12, top + 82), (cx + 2, top + 98)]),
-           fill=fold, width=round(1.9 * SS), joint="curve")
-    K = K.resize((W, H), Image.LANCZOS)
-    L.alpha_composite(K)
-    # bebek annenin göğsüne yaslı: üst kısım içe değil anneye doğru hafifçe yatık
-    return L.rotate(BEBEK["egim"], resample=Image.BICUBIC, center=(cx, H))
-
-
-def ile_bebek(im: Image.Image) -> Image.Image:
-    out = im.copy()
-    out.alpha_composite(bebek_katmani(im.size))
-    out.putalpha(im.getchannel("A"))     # kutu sabit: kundak anne siluetinin içinde kalır
+def _dolgu(kosul: np.ndarray, tohumlar: list[tuple[int, int]]) -> np.ndarray:
+    m = Image.fromarray((kosul * 255).astype(np.uint8))
+    out = np.zeros(kosul.shape, bool)
+    for t in tohumlar:
+        if not kosul[t[1], t[0]]:
+            raise SystemExit(f"ten_rengi: tohum {t} beyaz ten alanında değil")
+        mm = m.copy()
+        ImageDraw.floodfill(mm, t, 128)
+        out |= np.array(mm) == 128
     return out
 
 
+def ten_rengi(im: Image.Image, boyun: np.ndarray) -> Image.Image:
+    a = np.array(im).astype(np.float32)
+    rgb, al = a[..., :3], a[..., 3]
+    mean = rgb.mean(-1)
+    sat = rgb.max(-1) - rgb.min(-1)
+    ten = (al > 200) & (mean >= 200) & (sat < 40)
+    m = _dolgu(ten, YUZ_TOHUM + EL_TOHUM) | (boyun & (sat < 40))
+    # kenar: maskeye 2 px komşu çizgi/yumuşatma pikselleri (doygunluğu düşük, saf beyazdan koyu) de çarpılır,
+    # böylece çizginin iç kenarında açık gri hale kalmaz; dişler (~247) ve bebek (~253) gibi saf beyaz alanlar
+    # (mean >= 240) dokunulmaz
+    gen = np.array(Image.fromarray((m * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5))) > 0
+    kenar = gen & ~m & (mean < 240) & (sat < 40) & (al > 0)
+    w = (m | kenar)[..., None]
+    a[..., :3] = np.where(w, rgb * TEN[None, None, :], rgb)
+    return Image.fromarray(np.clip(np.rint(a), 0, 255).astype(np.uint8))
+
+
+# ---- kucaktaki bebek (hazır çizim) ---------------------------------------------------------------------
+# wojakland "Redhead Tradwife with Baby Wojak": kızıl saçlı annenin göğsündeki askılı bezde (sling) uyuyan
+# yenidoğan (gözleri kapalı, yeşil örgü bere) ve onu tutan beyaz el. Annenin göğsü/boynu, omuz askısı, somon
+# elbise ve çiçekli kol silinir; kalan bez + bebek + el kendi çizgileriyle (kod çizimi yok) bu annenin göğsüne,
+# bebeğin başı kadrajın içine (sağa) bakacak şekilde konur. Bezin sol ucu annenin krem gömleğinin altına girer
+# (gömleğin kenarı doğal sınır; düz kesik kenar görünmez), alt kısmı büst kırpımıyla kesilir.
+BEBEK = {"olcek": 0.47, "yuz_x": 335, "yuz_y": 366}   # bebek yüzünün merkezi (anne görselinde, kırpım sonrası)
+BEBEK_KUTU = (262, 600, 980, 1180)                     # kaynakta bez + bebek + el
+BEBEK_YUZ = (705, 710)                                 # kaynakta bebek yüzünün merkezi
+# kaynakta silinecek bölge: kızıl annenin göğsü/boynu ve omuz askısı (bebeğin başının üstü ve solu)
+BEBEK_SIL = [(240, 590), (725, 590), (712, 630), (690, 650), (662, 690), (644, 712), (612, 713), (590, 718),
+             (572, 731), (556, 752), (541, 775), (536, 800), (470, 817), (300, 860), (270, 866), (240, 870)]
+GOMLEK_X, GOMLEK_Y = 163, 433                          # krem gömleğin kahverengi örgüyle sınırı (sol kenar, üst)
+
+
+def bebek_katmani() -> Image.Image:
+    im = Image.open(BEBEK_SRC).convert("RGBA")
+    a = np.array(im).astype(np.float32)
+    r, g, b, al = a[..., 0], a[..., 1], a[..., 2], a[..., 3]
+    somon = (r > 200) & (g > 130) & (g < 205) & (b > 110) & (b < 190) & (r - b > 45)
+    sil = Image.new("L", im.size, 0)
+    ImageDraw.Draw(sil).polygon(BEBEK_SIL, fill=255)
+    sil = np.array(sil) > 0
+    # çiçekli kol: bezin siyah sol kenar çizgisinin solu (satır satır)
+    lum = _lum(a)
+    kol = np.zeros_like(sil)
+    for y in range(860, 1180):
+        idx = np.where(lum[y, 255:300] < 70)[0]
+        if len(idx):
+            kol[y, :255 + idx[0]] = True
+    a[..., 3] = np.where(somon | sil | kol, 0, al)
+    # yanakta hafif pembe allık (kanalın kadın/çocuk ailesi gibi), çarpma karışımı
+    yy, xx = np.mgrid[0:a.shape[0], 0:a.shape[1]]
+    w = 0.22 * np.exp(-(((xx - 726) / 15.0) ** 2 + ((yy - 738) / 11.0) ** 2))
+    pembe = np.array((255, 196, 200), np.float32) / 255.0
+    beyaz = (lum > 200)[..., None]
+    a[..., :3] = np.where(beyaz, a[..., :3] * (1 - w[..., None] * (1 - pembe)), a[..., :3])
+    out = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).crop(BEBEK_KUTU)
+    s = BEBEK["olcek"]
+    return out.resize((round(out.width * s), round(out.height * s)), Image.LANCZOS)
+
+
+def ile_bebek(im: Image.Image) -> Image.Image:
+    """Bebeği anneye yerleştirir; bezin sol ucu krem gömleğin altına girer. Alfa = anne ∪ bebek
+    (üç varyant da bu görselden türediği için kutu üçünde aynı)."""
+    bl = bebek_katmani()
+    s = BEBEK["olcek"]
+    x0 = round(BEBEK["yuz_x"] - (BEBEK_YUZ[0] - BEBEK_KUTU[0]) * s)
+    y0 = round(BEBEK["yuz_y"] - (BEBEK_YUZ[1] - BEBEK_KUTU[1]) * s)
+    lay = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    lay.paste(bl, (x0, y0), bl)
+    out = im.copy()
+    out.alpha_composite(lay)
+    ta = np.array(im)
+    kahve = (ta[..., 0].astype(int) - ta[..., 2] > 35) & (ta[..., 0] < 170) & (ta[..., 1] < 120)
+    yy, xx = np.mgrid[0:im.height, 0:im.width]
+    on = (ta[..., 3] > 0) & ~kahve & (xx < GOMLEK_X) & (yy >= GOMLEK_Y)
+    oa = np.array(out)
+    oa[on] = ta[on]
+    return Image.fromarray(oa)
+
+
+# ---- ağlayan gözler (yalnız agliyor) -------------------------------------------------------------------
+def goz_aki_kizar(im: Image.Image, spec: dict) -> Image.Image:
+    """Göz aklarını pembeleştirir (kanalın ağlayan kadınları C4V3eMFM6lF / C3iXf2zsRvo: kızarmış gözler).
+    Yalnız göz elipslerinin içindeki beyaz (yüzün beyaz dolgusuna bağlı olmayan) pikseller çarpılır;
+    kirpik parlaklıkları ve başörtüsü elips dışında kalır."""
+    a = np.array(im).astype(np.float32)
+    rgb = a[..., :3]
+    mean = rgb.mean(-1)
+    sat = rgb.max(-1) - rgb.min(-1)
+    yy, xx = np.mgrid[0:a.shape[0], 0:a.shape[1]]
+    el = np.zeros(mean.shape, bool)
+    for cx, cy, rx, ry in spec["elips"]:
+        el |= ((xx - cx) / rx) ** 2 + ((yy - cy) / ry) ** 2 <= 1
+    yuz = _dolgu((a[..., 3] > 200) & (mean >= 200) & (sat < 40), YUZ_TOHUM[:4])
+    m = el & (mean >= 190) & (sat < 40) & ~yuz & (a[..., 3] > 200)
+    a[..., :3] = np.where(m[..., None], rgb * np.array(spec["carpan"], np.float32)[None, None, :], rgb)
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
+
+
 # ---- ağlayan ağız --------------------------------------------------------------------------------------
+SS = 4
 def acik_agiz(im: Image.Image, spec: dict) -> Image.Image:
     """Mevcut aralık ağzın yerine daha açık, titreyen (dalgalı) ağız; yalnız ağız bölgesi yeniden çizilir."""
     bx0, by0, bx1, by1 = spec["patch"]
@@ -269,7 +332,7 @@ def acik_agiz(im: Image.Image, spec: dict) -> Image.Image:
     d.ellipse(P([(x0, y0), (x1, y1)]), fill=tuple(spec["skin"]) + (255,))
     top, bot = P(spec["top"]), P(spec["bottom"])
     poly = top + bot[::-1]
-    d.polygon(poly, fill=(70, 20, 26, 255))
+    d.polygon(poly, fill=tuple(spec.get("ic", (70, 20, 26))) + (255,))
     mask = Image.new("L", big.size, 0)
     ImageDraw.Draw(mask).polygon(poly, fill=255)
     teeth = [(x, y + 0.5 * SS) for x, y in top] + [(x, y + spec["teeth_h"] * SS) for x, y in top[::-1]]
@@ -292,19 +355,29 @@ def acik_agiz(im: Image.Image, spec: dict) -> Image.Image:
 
 def main() -> None:
     cfg = json.loads((KIT / "kit.json").read_text(encoding="utf-8"))
-    taban = anne_taban()
-    sakin = ile_bebek(taban)
-    sakin.save(KIT / "sakin.png", optimize=True)
-    facing.register(KIT / "sakin.png", "right")
+    taban, boyun = anne_taban()
+    sakin = ile_bebek(taban)                       # boyanmamış taban: bütün varyantlar bundan üretilir
+    ham = KIT / ".sakin_ham.png"
+    sakin.save(ham)
+
+    def bitir(src: Path, name: str) -> None:       # son adım: ten rengi, kaydet, bakış yönünü kaydet
+        out = KIT / f"{name}.png"
+        ten_rengi(Image.open(src).convert("RGBA"), boyun).save(out, optimize=True)
+        facing.register(out, "right")
+
     for name, spec in cfg["variants"].items():
-        kit_varyant.make(KIT / "sakin.png", spec, KIT / f"{name}.png")
-        facing.register(KIT / f"{name}.png", "right")
+        tmp = KIT / f".{name}_tmp.png"
+        kit_varyant.make(ham, spec, tmp)
+        bitir(tmp, name)
+        tmp.unlink()
     ag = cfg["agliyor"]
     tmp = KIT / ".agliyor_tmp.png"
-    acik_agiz(sakin, ag["mouth"]).save(tmp)
-    kit_varyant.make(tmp, {"tears": ag["tears"]}, KIT / "agliyor.png")
+    goz_aki_kizar(acik_agiz(sakin, ag["mouth"]), ag["goz_aki"]).save(tmp)
+    kit_varyant.make(tmp, {"tears": ag["tears"]}, tmp)
+    bitir(tmp, "agliyor")
     tmp.unlink()
-    facing.register(KIT / "agliyor.png", "right")
+    bitir(ham, "sakin")
+    ham.unlink()
     for f in sorted(KIT.glob("*.png")):
         print("->", f.relative_to(ROOT), Image.open(f).size)
 

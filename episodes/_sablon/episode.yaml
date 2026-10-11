@@ -69,6 +69,9 @@ pinned_comment: |
 # CC BY (ve BY-SA) görseller atıf ister: açıklamalara "Görseller: ..." olarak eklenir
 credits: ""             # ör. "Wikimedia Commons CC BY-SA 4.0 — Kullanıcı1; Flickr CC BY 2.0 — Kullanıcı2"
 ai_generated: false     # fotogerçekçi yapay zekâ görseli (ör. gorsel_uret arkaplan) varsa true -> etiket hatırlatması
+# cover_scene: 4        # kapak sahnesi (1'den başlar; varsayılan ilk diyalog), cover_at: 0.9 sahne içindeki yeri
+# telif_notu: ""        # img/telifli/ görselleri için hesap sahibine özel lisans notu (yoksa genel not yazılır)
+# ek_maddeler: []       # paylaşım kontrol listesine bölüme özel maddeler (ör. ilk yorum önerisi)
 
 sources:                # doğrulama + görsel kaynak/lisans sayfaları (paylaşılmaz)
   - <kaynak linki 1>

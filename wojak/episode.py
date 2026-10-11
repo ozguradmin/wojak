@@ -94,6 +94,10 @@ class Episode:
     kesin_hukum: bool = False    # failin mahkûmiyeti kesinleşmiş mi (değilse "katil" vb. yasak)
     ai_generated: bool = False   # fotogerçekçi yapay zekâ görseli var mı (platformlarda etiket zorunlu)
     credits: str = ""            # görsel atfı (CC BY lisansı şart koşar); açıklamalara 'Görseller: ...' olarak eklenir
+    cover_scene: int | None = None  # kapak sahnesi (1'den başlar); yoksa ilk diyalog sahnesi
+    cover_at: float = 0.9        # kapak karesinin sahne içindeki yeri (0-1)
+    telif_notu: str = ""         # telifli görseller için hesap sahibine özel lisans notu (paylaşım paketinde)
+    ek_maddeler: list[str] = field(default_factory=list)  # paylaşım kontrol listesine bölüme özel maddeler
 
     @property
     def duration(self) -> float:
@@ -201,4 +205,8 @@ def load(path: str | Path) -> Episode:
         kesin_hukum=bool(raw.get("kesin_hukum", False)),
         ai_generated=bool(raw.get("ai_generated", False)),
         credits=str(raw.get("credits") or "").strip(),
+        cover_scene=raw.get("cover_scene"),
+        cover_at=float(raw.get("cover_at", 0.9)),
+        telif_notu=str(raw.get("telif_notu") or "").strip(),
+        ek_maddeler=[str(x) for x in raw.get("ek_maddeler") or []],
     )

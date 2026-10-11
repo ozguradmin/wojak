@@ -11,6 +11,15 @@ ile indirilen imparator_bizans.png.
    kamelaukion (koyu altın), siyah kontur, kenar bandı; iki dikiş yerine inci dizisi (siyah çizgili dikişler
    tacı inşaat baretine benzetiyordu), bandın ortasında da inci dizisi + 3 taş, kubbede 1 taş ve tepede haç.
    Taştan taşan küçük süsler silinir. Yüz, saç, sakal ve bakış aynı kalır (sağa bakar).
+   İnciler elle çizilmiş gibi: merkezler ±3 px oynar, yarıçap 6-8 px (sabit tohum; hakem: vektör gibi düzgündü).
+3. Omuzlar (hakem: yüzün altında yalnız yaka + ~15 px mor vardı; orijinallerde boyun/omuz figürün %25-35'i):
+   tuval 586x742 -> 586x862 uzatılır, mor cüppe aşağı devam eder. İçerideki (sağ) omuz yuvarlak bir eğriyle alt
+   kenara iner (dikey kesik yok); dış (sol) kenar kadraj kenarında kesilir. Ortada yakadan aşağı altın loros
+   şeridi, üstünde kırmızı + mavi taş.
+4. Geniş büst (final tur 3; hakem: büst ~400 px / %37 idi, C2P/C2VH/C3dO büstleri 560-600 px / %52-55):
+   tuval 586x862 -> 780x862 (yükseklik aynı: ölçek, baş üstü ve yazı yeri değişmez). İç (sağ) omuz
+   (430,723) -> (560,738) -> (660,765) -> (735,810) üzerinden alt kenara (~775) iner; aynı mor + 20 px kontur.
+   Loros yerinde kalır (x 262-318).
 """
 
 from __future__ import annotations
@@ -44,7 +53,9 @@ CIZGI = 6
 KUBBE_HAM = [(40, 322), (42, 230), (62, 140), (112, 66), (190, 24), (300, 10), (410, 22), (488, 64), (536, 138),
              (556, 220), (562, 298)]
 BASIK = 0.68   # kubbe yüksekliği bu oranda basıklaştırılır (taç yüzü bastırmasın)
-INCI_R = 7            # inci yarıçapı (beyaz, 3 px siyah kontur)
+INCI_R = 7            # inci yarıçapı (beyaz, 3 px siyah kontur); çizimde 6-8 arası oynar
+INCI_OYNA = 3         # inci merkezi ±px (elle çizilmiş görünüm)
+RNG = np.random.default_rng(1453)
 INCI_ARALIK_DIKIS = 32
 INCI_ARALIK_BANT = 34
 HAC_DIKEY = (292, 308)            # haç: dikey kol x aralığı, y = HAC_UST .. kubbe tepesi
@@ -120,7 +131,9 @@ def _bant_orta(n=200):
 
 
 def _inci(d, x, y):
-    r = INCI_R
+    x += float(RNG.uniform(-INCI_OYNA, INCI_OYNA))
+    y += float(RNG.uniform(-INCI_OYNA, INCI_OYNA))
+    r = float(RNG.uniform(INCI_R - 1, INCI_R + 1))
     d.ellipse([(x - r) * SS, (y - r) * SS, (x + r) * SS, (y + r) * SS], fill=PEARL, outline=INK, width=3 * SS)
 
 
@@ -200,12 +213,88 @@ def sade_tac(im: Image.Image) -> Image.Image:
     return out
 
 
+# --- omuzlar (uzatılmış tuval) ---------------------------------------------------------------------------
+YENI_H = 862
+YENI_W = 780                       # final tur 3: geniş büst (586 -> 780)
+MOR = (163, 73, 164, 255)          # kaynaktaki cüppe moru
+ALTIN_YAKA = (200, 162, 6, 255)    # kaynaktaki yaka altını
+# içteki (sağ) omuz konturu: eski omuz çizgisinin devamı, yuvarlak inip alt kenara ulaşır
+SAG_OMUZ = [(430, 723), (500, 729), (560, 738), (615, 750), (660, 765), (702, 785), (735, 810), (757, 836),
+            (771, 862), (777, 882)]
+# dıştaki (sol) omuz: kaynağın kendi konturu kalır; dolgu onun hemen altından başlar (y kaynakta 701-742)
+SOL_OMUZ_ALT = [(92, 702), (80, 712), (70, 720), (50, 733), (30, 740), (10, 743), (-10, 745)]
+LOROS_X = (262, 318)               # yakadan aşağı inen altın şerit
+LOROS_UST = 716
+LOROS_TAS = [(768, RED, 12), (812, BLUE, 12)]
+GRI_LEKE = (76, 668, 93, 687)      # yakanın solundaki küçük gri karalama
+
+
+def _dilate_np(m: np.ndarray, r: int) -> np.ndarray:
+    return np.array(Image.fromarray((m * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(2 * r + 1))) > 127
+
+
+def omuz(im: Image.Image) -> Image.Image:
+    W, H = im.size
+    a = np.array(im)
+    # küçük gri karalama
+    x0, y0, x1, y1 = GRI_LEKE
+    sub = a[y0:y1, x0:x1]
+    sub[sub[..., :3].max(-1) > 10, 3] = 0
+    # yeni siluet: solda tuval kenarı (kadrajda kesilir), altta alt kenar, sağda SAG_OMUZ eğrisi
+    sag = _curve(SAG_OMUZ, n=24)
+    sil = SOL_OMUZ_ALT + [(-10, YENI_H + 10)] + [(sag[-1][0], YENI_H + 10)] + sag[::-1] + [(430, 700)]
+    W2 = YENI_W
+    m = Image.new("L", (W2, YENI_H), 0)
+    ImageDraw.Draw(m).polygon(sil, fill=255)
+    ic = np.array(m) > 127
+    # eski cüppenin yeni siluetin dışında kalan kısmı (sağ omuzun düz ucu) silinir; sakal/saç y<715'te kalır
+    big = np.zeros((YENI_H, W2, 4), np.uint8)
+    big[:H, :W] = a
+    yy, xx = np.mgrid[0:YENI_H, 0:W2]
+    big[(~ic) & (yy >= 715) & (xx >= 430), 3] = 0
+    eski = Image.fromarray(big)
+    # alt katman: mor dolgu + sağ omuz konturu
+    lay = Image.new("RGBA", (W2 * SS, YENI_H * SS), (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    d.polygon(_ss(sil), fill=MOR)
+    _stroke(d, _ss(sag), CIZGI * SS, INK)
+    out = lay.resize((W2, YENI_H), Image.LANCZOS)
+    out.alpha_composite(eski)
+    # eski kaynağın omuz kenarındaki açık renkli kenar pikselleri yeni konturun altında kalsın: omzun üst
+    # kısmı (x <= 640) kontur bir kez daha üstten çizilir
+    ust = Image.new("RGBA", (W2 * SS, YENI_H * SS), (0, 0, 0, 0))
+    _stroke(ImageDraw.Draw(ust), _ss([q for q in sag if q[0] <= 640]), CIZGI * SS, INK)
+    out.alpha_composite(ust.resize((W2, YENI_H), Image.LANCZOS))
+    W = W2
+    # loros: yakanın altından alt kenara altın şerit (siyah yan konturlar), iki taş
+    lay2 = Image.new("RGBA", (W * SS, YENI_H * SS), (0, 0, 0, 0))
+    d2 = ImageDraw.Draw(lay2)
+    lx0, lx1 = LOROS_X
+    d2.rectangle([lx0 * SS, LOROS_UST * SS, lx1 * SS, (YENI_H + 5) * SS], fill=ALTIN_YAKA)
+    for x in (lx0, lx1):
+        _stroke(d2, _ss([(x, LOROS_UST), (x, YENI_H + 5)]), CIZGI * SS, INK)
+    cx = (lx0 + lx1) / 2
+    for y, col, r in LOROS_TAS:
+        d2.ellipse([(cx - r) * SS, (y - r) * SS, (cx + r) * SS, (y + r) * SS], fill=col, outline=INK, width=3 * SS)
+    lor = lay2.resize((W, YENI_H), Image.LANCZOS)
+    # şerit yakanın altında başlasın: yaka (altın + konturu) üstte kalır
+    yaka = np.array(eski).copy()
+    ea = yaka.astype(np.int32)
+    altin = (np.abs(ea[..., 0] - 200) < 30) & (np.abs(ea[..., 1] - 162) < 30) & (ea[..., 2] < 60)
+    koyu = ea[..., :3].max(-1) < 90
+    yaka_m = _dilate_np(altin, 1) | (koyu & _dilate_np(altin, CIZGI + 2))
+    yaka[~yaka_m | (yy > 740) | (yy < 640), 3] = 0
+    out.alpha_composite(lor)
+    out.alpha_composite(Image.fromarray(yaka))
+    return out
+
+
 def main() -> None:
     base = Image.open(SRC).convert("RGBA")
     g = gulumse(base)
     g.save(HERE / "imparator_bizans_gulumser.png", optimize=True)
     facing.register(HERE / "imparator_bizans_gulumser.png", "right")
-    s = sade_tac(g)
+    s = omuz(sade_tac(g))
     s.save(HERE / "imparator_bizans_sade.png", optimize=True)
     facing.register(HERE / "imparator_bizans_sade.png", "right")
     print("->", (HERE / "imparator_bizans_sade.png").relative_to(ROOT), s.size)

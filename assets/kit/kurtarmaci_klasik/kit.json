@@ -1,9 +1,9 @@
 {
- "aciklama": "Arama-kurtarma görevlisi, klasik 'feels guy' yüzüyle (C3DeLN1sU7O'daki kurtarmacıyla aynı aile). Baş: assets/kit/klasik/sakin.png (kütüphane 5_Tired_Wojak/10441). Baret ve mont: wojakland 'Annoyed Construction Worker Wojak' (https://wojakland.com/gmedia/annoyed_construction_worker_wojak-png/) gövdesinden kesildi ve kanıttaki İzmir Sivil Savunma ekibine göre yeniden renklendirildi: kırmızı mont (#C8202A), lacivert yaka ve kollar, gümüş reflektör, kırmızı baret + beyaz bant. Taban: sakin.png (1295x1357, sağa bakar), uret.py ile kaynaklardan yeniden üretilir. Varyantlar tools/kit_varyant.py ile tabandan üretilir; cok_terli'deki ince mavi çizgiler (alında soğuk ter, C4V3eMFM6lF 12 sn ve C2kkZ8BsngB 3 sn gibi) 'tears' katmanıyla ince yol olarak çizilir.",
+ "aciklama": "Arama-kurtarma görevlisi, klasik 'feels guy' yüzüyle (C3DeLN1sU7O'daki kurtarmacıyla aynı aile). Baş: assets/kit/klasik/sakin.png (kütüphane 5_Tired_Wojak/10441). Baret ve mont: wojakland 'Annoyed Construction Worker Wojak' (https://wojakland.com/gmedia/annoyed_construction_worker_wojak-png/) gövdesinden kesildi ve kanıttaki İzmir Sivil Savunma ekibine göre yeniden renklendirildi: kırmızı mont (#C8202A), lacivert yaka ve kollar, gümüş reflektör, kırmızı baret + beyaz bant. Taban: sakin.png (1295x1357, sağa bakar), uret.py ile kaynaklardan yeniden üretilir. Varyantlar tools/kit_varyant.py ile tabandan üretilir; cok_terli farklı bir yüz tabanından üretilir: wojakland 'Nervous Wojak' (https://wojakland.com/wp-content/grand-media/image/original/nervous_wojak.png -> episodes/van-depremi-azra-bebek/chars/kurtarmaci_gergin_kaynak.png), x1.39 ölçekle aynı mont ve baretin altına konur, aynı kırpım kutusu; ince mavi çizgiler (alında soğuk ter, C4V3eMFM6lF 12 sn ve C2kkZ8BsngB 3 sn gibi) 'tears' katmanıyla ince yol olarak çizilir.",
  "duygular": {
   "sakin": "yorgun, sakin (iş başında)",
   "terli": "tedirgin, bir şey fark ediyor (2 ter damlası)",
-  "cok_terli": "şaşkınlık / panik: 4 ter damlası + baretin altından inen mavi soğuk ter çizgileri"
+  "cok_terli": "ters köşe: Nervous Wojak yüzü (yana kaçan bakış, endişeli kaşlar) + 4 ter damlası + baretin altında mavi soğuk ter çizgileri (C2kkZ8BsngB S2, C4V3eMFM6lF S6)"
  },
  "variants": {
   "terli": {
@@ -19,108 +19,93 @@
      18
     ]
    ]
-  },
-  "cok_terli": {
-   "drops": [
-    [
-     418,
-     535,
-     22
-    ],
-    [
-     1012,
-     585,
-     18
-    ],
-    [
-     468,
-     690,
-     19
-    ],
-    [
-     1034,
-     712,
-     16
-    ]
-   ],
-   "tears": [
-    {
-     "path": [
-      [
-       478,
-       426
-      ],
-      [
-       480,
-       462
-      ],
-      [
-       477,
-       490
-      ],
-      [
-       462,
-       500
-      ]
-     ],
-     "w": 10
-    },
-    {
-     "path": [
-      [
-       562,
-       424
-      ],
-      [
-       564,
-       458
-      ],
-      [
-       560,
-       482
-      ]
-     ],
-     "w": 10
-    },
-    {
-     "path": [
-      [
-       800,
-       428
-      ],
-      [
-       802,
-       466
-      ],
-      [
-       797,
-       490
-      ],
-      [
-       782,
-       497
-      ]
-     ],
-     "w": 10
-    },
-    {
-     "path": [
-      [
-       952,
-       432
-      ],
-      [
-       954,
-       468
-      ],
-      [
-       949,
-       492
-      ]
-     ],
-     "w": 10
-    }
-   ]
   }
+ },
+ "cok_terli_gergin": {
+  "taban": "Nervous Wojak yüzü (uret.py: chars/kurtarmaci_gergin_kaynak.png x1.39, aynı mont + baret, sakin kırpım kutusu)",
+  "drops": [
+   [
+    418,
+    535,
+    22
+   ],
+   [
+    1012,
+    585,
+    18
+   ],
+   [
+    468,
+    690,
+    19
+   ],
+   [
+    1034,
+    712,
+    16
+   ]
+  ],
+  "tears": [
+   {
+    "path": [
+     [
+      478,
+      418
+     ],
+     [
+      480,
+      446
+     ],
+     [
+      472,
+      466
+     ]
+    ],
+    "w": 10
+   },
+   {
+    "path": [
+     [
+      560,
+      416
+     ],
+     [
+      562,
+      444
+     ]
+    ],
+    "w": 10
+   },
+   {
+    "path": [
+     [
+      792,
+      418
+     ],
+     [
+      794,
+      448
+     ],
+     [
+      786,
+      464
+     ]
+    ],
+    "w": 10
+   },
+   {
+    "path": [
+     [
+      1004,
+      424
+     ],
+     [
+      1006,
+      452
+     ]
+    ],
+    "w": 10
+   }
+  ]
  }
 }

@@ -4,7 +4,9 @@
 
 Kurtarmaci: klasik 'feels guy' basi (assets/kit/klasik/sakin.png) + wojakland 'Annoyed Construction
 Worker' govdesinden mont ve baret; renkler Izmir Sivil Savunma (kanit 1) gibi: kirmizi mont, lacivert
-yaka/kol, gumus reflektor, kirmizi baret + beyaz bant."""
+yaka/kol, gumus reflektor, kirmizi baret + beyaz bant.
+cok_terli (ters kose): ayni mont ve baretin altinda wojakland 'Nervous Wojak' yuzu (yan bakis, endiseli kaslar),
+ayni kirpim kutusu; ter damlalari ve mavi soguk ter cizgileri kit.json 'cok_terli_gergin'."""
 import sys
 from pathlib import Path
 
@@ -124,8 +126,31 @@ bbox = canvas.getchannel('A').point(lambda v: 255 if v > 8 else 0).getbbox()
 canvas = canvas.crop(bbox)
 canvas.save(OUT)
 print(OUT.relative_to(ROOT), canvas.size)
+
+# --- ters köşe yüzü: wojakland 'Nervous Wojak' (yan bakış, endişeli kaşlar, alında mavi soğuk ter; kanalın
+# C2kkZ8BsngB S2 / C4V3eMFM6lF S6 yüzü). Aynı mont + baret, aynı kırpım kutusu (kutu sabit, yalnız yüz değişir).
+NV = ROOT / 'episodes/van-depremi-azra-bebek/chars/kurtarmaci_gergin_kaynak.png'
+P2 = dict(scale=1.39, kx=int(sys.argv[1]) if len(sys.argv) > 1 else 181, ky=int(sys.argv[2]) if len(sys.argv) > 2 else 64)
+nv = Image.open(NV).convert('RGBA')
+nv = nv.resize((round(nv.width * P2['scale']), round(nv.height * P2['scale'])), Image.LANCZOS)
+canvas2 = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+canvas2.alpha_composite(nv, (P2['kx'], P2['ky']))
+canvas2.alpha_composite(Image.fromarray(layer_j.astype(np.uint8)))
+canvas2.alpha_composite(hel, (0, int(P['helmet_dy'])))
+canvas2 = canvas2.crop(bbox)
+GERGIN = KIT / '.gergin_taban.png'
+canvas2.save(GERGIN)
 sys.path.insert(0, str(ROOT))
 from wojak import facing  # noqa: E402
 facing.register(OUT, 'right')
 import subprocess  # noqa: E402
 subprocess.run([sys.executable, str(ROOT / 'tools' / 'kit_varyant.py'), str(OUT), '--kit', KIT.name], check=True)
+# cok_terli: gergin yüz tabanı + aynı 4 ter damlası ve baretin altından inen mavi soğuk ter çizgileri
+import json  # noqa: E402
+sys.path.insert(0, str(ROOT / 'tools'))
+import kit_varyant  # noqa: E402
+cfg = json.loads((KIT / 'kit.json').read_text(encoding='utf-8'))
+kit_varyant.make(GERGIN, cfg['cok_terli_gergin'], KIT / 'cok_terli.png')
+GERGIN.unlink()
+facing.register(KIT / 'cok_terli.png', 'right')
+print('cok_terli <- gergin yüz', Image.open(KIT / 'cok_terli.png').size)

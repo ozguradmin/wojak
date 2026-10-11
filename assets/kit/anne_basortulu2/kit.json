@@ -1,9 +1,9 @@
 {
- "aciklama": "Başörtülü genç anne (kanalın C3DeLN1sU7O/C2FriLUM2DR'deki krem başörtülü, kahverengi örgülü kadınıyla aynı aile). Kaynak: wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png. Boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı (gülümseme yok), pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek hafif krem tona çekildi, büst kırpımı (458x490). Kaynak zaten 3/4 sağa dönük: aynalanmadı, 'right' kayıtlı. Kucağında kundaklı bebek (küçük wojak yüzü: wojakland 'Baby Face Wojak', emzik silindi -> chars/bebek_yuz_kaynak.png), üç varyantta aynı yerde. Hepsi uret.py ile yeniden üretilir: tek_gozyasi tools/kit_varyant.py ile; agliyor = iki gözden gözyaşı + açık, titreyen ağız.",
+ "aciklama": "Başörtülü genç anne (kanalın C3DeLN1sU7O/C2FriLUM2DR'deki krem başörtülü, kahverengi örgülü kadınıyla aynı aile). Kaynak: wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png. Boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı (gülümseme yok), pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek hafif krem tona çekildi, büst kırpımı (458x490). Kaynak zaten 3/4 sağa dönük: aynalanmadı, 'right' kayıtlı. Kucağında askılı bezde uyuyan yenidoğan + onu tutan el (hazır çizim: wojakland 'Redhead Tradwife with Baby Wojak' -> chars/bebek_kucak_kaynak.png), üç varyantta aynı yerde. Ten: yüz, boyun ve bebeği tutan el kanalın kadını gibi şeftali (C3De/C2Fr yanak ölçümü 247-253,202-208,161-163; çarpan 252,207,163), son adım olarak her PNG'de. Hepsi uret.py ile yeniden üretilir: tek_gozyasi tools/kit_varyant.py ile; agliyor = kızarmış göz akları + iki gözden kalın gözyaşı (w 13) + sol gözden ince ikinci akıntı + açık, titreyen ağız.",
  "duygular": {
   "sakin": "üzgün, endişeli (taban; aralık ağız, gülümseme yok)",
   "tek_gozyasi": "sessiz hüzün: sol gözden tek gözyaşı (kanca sahnesi)",
-  "agliyor": "ağlıyor: iki gözden gözyaşı, açık titreyen ağız (ters köşe)"
+  "agliyor": "ağlıyor: kızarmış (pembe) göz akları, iki gözden kalın gözyaşı akıntısı (w 13) + sol gözden ince ikinci akıntı, açık titreyen ağız (ters köşe)"
  },
  "variants": {
   "tek_gozyasi": {
@@ -99,32 +99,53 @@
      230
     ],
     [
-     256,
-     236
+     255,
+     235.5
     ],
     [
-     265,
-     241
+     260,
+     239.5
     ],
     [
-     276,
+     266,
      243
     ],
     [
-     287,
-     242
+     272,
+     241.5
     ],
     [
-     297,
-     238
+     278,
+     244
+    ],
+    [
+     284,
+     242.5
+    ],
+    [
+     290,
+     243.5
+    ],
+    [
+     296,
+     239.5
+    ],
+    [
+     302,
+     236
     ],
     [
      308,
      231
     ]
    ],
-   "teeth_h": 6.0,
-   "line": 2.6
+   "teeth_h": 9.0,
+   "line": 2.6,
+   "ic": [
+    62,
+    40,
+    40
+   ]
   },
   "tears": [
    {
@@ -135,18 +156,18 @@
      ],
      [
       231,
-      168
+      172
      ],
      [
       229,
-      186
+      196
      ],
      [
       226,
-      206
+      220
      ]
     ],
-    "w": 8
+    "w": 13
    },
    {
     "path": [
@@ -156,19 +177,61 @@
      ],
      [
       324,
-      168
+      170
      ],
      [
-      326,
-      185
+      325,
+      189
      ],
      [
-      328,
-      202
+      323,
+      206
+     ],
+     [
+      319,
+      220
      ]
     ],
-    "w": 8
+    "w": 13
+   },
+   {
+    "path": [
+     [
+      216,
+      149
+     ],
+     [
+      213,
+      170
+     ],
+     [
+      210,
+      192
+     ]
+    ],
+    "w": 6
    }
-  ]
+  ],
+  "goz_aki": {
+   "elips": [
+    [
+     233,
+     141,
+     23,
+     8
+    ],
+    [
+     322,
+     142,
+     19,
+     7
+    ]
+   ],
+   "carpan": [
+    1.0,
+    0.74,
+    0.74
+   ]
+  }
  }
 }

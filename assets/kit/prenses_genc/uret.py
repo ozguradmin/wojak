@@ -321,13 +321,50 @@ def korku(im: Image.Image) -> Image.Image:
     return out
 
 
+def sac_yarik_maske(im: Image.Image) -> np.ndarray:
+    """Kaynakta yüzün sağ konturu ile sağ saç tutamı arasında kalan şeffaf yarık (arka plan görünüyordu):
+    pencere içinde aynı satırda solunda ve sağında opak piksel olan şeffaf pikseller. Kırpılmış (çıktı) düzlemde."""
+    a = np.array(im)
+    al = a[..., 3].astype(np.int32)
+    x0, y0, x1, y1 = P["sac_yarik"]["kutu"]
+    win = al[y0:y1, x0:x1]
+    op = win > 200
+    left = np.maximum.accumulate(op, axis=1)
+    right = np.maximum.accumulate(op[:, ::-1], axis=1)[:, ::-1]
+    gap = (win < 255) & left & right & ~op
+    m = np.zeros(al.shape, bool)
+    m[y0:y1, x0:x1] = gap
+    return _dilate(m, 2) & (al < 255)
+
+
+def sac_onar(im: Image.Image, maske: np.ndarray) -> Image.Image:
+    """Yarığı saç dolgusuyla kapatır (mevcut pikseller üstte kalır: kontur kenar yumuşatmaları korunur) ve saçın
+    dış kenarından taşan küçük siyah çentiği siler."""
+    W, H = im.size
+    alt = np.zeros((H, W, 4), np.uint8)
+    alt[maske] = list(P["sac_yarik"]["renk"]) + [255]
+    out = Image.fromarray(alt)
+    out.alpha_composite(im)
+    if P["sac_yarik"].get("mor_boya"):
+        boya = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        for poly in P["sac_yarik"]["mor_boya"]:
+            ImageDraw.Draw(boya).polygon([tuple(q) for q in poly], fill=PURPLE)
+        out.alpha_composite(boya)
+    a = np.array(out)
+    for x0, y0, x1, y1 in P["sac_yarik"].get("centik_sil", []):
+        a[y0:y1, x0:x1, 3] = 0
+    return Image.fromarray(a)
+
+
 def main() -> None:
     src = kaynak()
     base = tac(govde(src))
     sakin = kirp(base)
+    yarik = sac_yarik_maske(sakin)        # aynı maske iki yüze de: yüz varyantı kutusu dışında pikseller özdeş kalır
+    sakin = sac_onar(sakin, yarik)
     sakin.save(KIT / "sakin.png", optimize=True)
     facing.register(KIT / "sakin.png", "left")
-    kork = kirp(korku(base))
+    kork = sac_onar(kirp(korku(base)), yarik)
     kork.save(KIT / "korku.png", optimize=True)
     facing.register(KIT / "korku.png", "left")
     for f in ("sakin.png", "korku.png"):

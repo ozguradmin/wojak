@@ -6,7 +6,7 @@ Kaynak: img/suvla_bulutlu.jpg (Tevfik Teker, "Suvla Bay", CC BY 3.0, 2592x1944, 
 1. Renk: ImageEnhance.Color(1.35) ardından Brightness(1.10) (doğal gün ışığı, doygunluk ~0,15).
 2. Bulut katmanı bu düzeltilmiş görselden üretilir: sis_katmani.py --mode fog --seed 11 --col 222.
 3. İki görsel aynı kare kutuya kırpılır: (820, 644, 2120, 1944), 1300x1300 kaynak px.
-4. Yalnız bulutlu kareye: ovadan buluta yürüyen düz koyu (#2a2a24) asker siluetleri kolu (STIL §6 ek katman,
+4. Yalnız bulutlu kareye: ovadan buluta yürüyen 18 düz koyu (#2a2a24) asker siluetinden kol (24 -> 18 px) (STIL §6 ek katman,
    C1Xe/C2-U'daki yapıştırılmış hikâye öğeleri gibi); öndeki 3-4 asker bulutun içinde söner.
 Çıktılar: img/suvla_bulut_inmis_kare.jpg (sahne 1-3), img/suvla_bos_kare.jpg (sahne 5).
 """
@@ -26,7 +26,7 @@ BOX = (820, 644, 2120, 1944)
 SIL = (42, 42, 36)
 
 src = Image.open(IMG / "suvla_bulutlu.jpg").convert("RGB")
-enh = ImageEnhance.Brightness(ImageEnhance.Color(src).enhance(1.35)).enhance(1.10)
+enh = ImageEnhance.Brightness(ImageEnhance.Contrast(ImageEnhance.Color(src).enhance(1.6)).enhance(1.08)).enhance(1.05)
 enh_p = TMP / "suvla_renk.png"
 fog_p = TMP / "suvla_renk_bulut.png"
 enh.save(enh_p)
@@ -72,8 +72,10 @@ d = ImageDraw.Draw(lay)
 k = 1300 / 1080
 # kol: bulutun alt kenarındaki açık yamaçtan (kare ~ x 495, y 650) sağ-yukarı bulutun içine (kare ~ x 640, y 560);
 # iki karakter kutusunun (x 0-450 ve 650-1080) ve yazı bloğunun (y 321-434) arasında kalır.
-# Boy kırpımda 38 -> 30 px (ekranda ~32 -> 25 px): renderer'ın 2,5 px yumuşatmasından sonra da asker olarak okunur.
-N = 11
+# final-3 (görsel hakem 7,5/10): 18 siluet, boy kırpımda 24 -> 18 px (ekranda ~20 -> 15 px). Önceki 11 x 38 -> 30 px
+# siluet, çevresindeki 6-10 px'lik ağaç tepelerinin yanında 2x'te "yapıştırılmış dev" gibi duruyordu; daha uzun kol
+# "tabur" olarak da daha iyi okunur.
+N = 18
 start, end = np.array([495.0, 650.0]), np.array([640.0, 560.0])
 rng = np.random.default_rng(5)
 figs = []
@@ -82,7 +84,7 @@ for i in range(N):
     p = (start + (end - start) * t) * k
     p[1] += 6 * np.sin(t * np.pi * 1.6) * k      # yamaçta hafif kıvrılan patika
     p += rng.normal(0, 1.0, 2)
-    h = 38.0 - 8.0 * t + rng.normal(0, 0.5)   # uzaklaştıkça küçülür
+    h = 24.0 - 6.0 * t + rng.normal(0, 0.5)   # uzaklaştıkça küçülür
     figs.append((p[0], p[1], h, i % 4 != 2, rng.uniform(-0.6, 0.8), i))
 # uzaktakiler önce çizilir
 for x, y, h, rifle, step, i in sorted(figs, key=lambda f: f[1]):
