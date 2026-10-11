@@ -123,6 +123,10 @@
   "faces": "right",
   "file": "assets/kit/bizans_prenses/korku.png"
  },
+ "60e17cc128cf62788ab1ebc12d53ddd2efa97b61": {
+  "faces": "right",
+  "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_baba.png"
+ },
  "66815981ebde700466fa384e73b4a77c378c1898": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_gulumser.png"

@@ -26,6 +26,12 @@ ile indirilen imparator_bizans.png.
    koyu (120,78,30) dalgalı örgü + dikey çubuklar. Üzüm: 19 tane, r 17-19, (112,38,128), 4 px kontur, sol üstte
    küçük açık parlama; tepede sap + yeşil yaprak. Tuval, ölçek, baş üstü ve yazı yeri aynı kalır (alfa kutusu
    değişmez). Bakış kaydı bilerek elle yapılır (bak, sonra: python -m wojak yon <png> --yon sag).
+6. imparator_bizans_baba.png (final tur 5; takipçi hakemi: ağır göz kapaklı yan bakış + kalkık kaş + yarım
+   gülümseme kanalın yüz dilinde "sinsi" okunuyordu, oysa efsanedeki baba seven ve trajik): sepet + sevecen
+   yüz. Kalkık dış kaş ve eski gözler silinir; düz, hafif kavisli iki kaş; açık, yuvarlak gözler (gözbebeği
+   sağ kenarda: prensese bakar, küçük beyaz parıltı kaynağın sağ gözündeki gibi); ağız açık, gururlu gülüş
+   (üstte beyaz diş şeridi, koyu kırmızı ağız içi, pembe dil; tek tek diş çizgisi yok, "creepy grin" olmasın).
+   Tuval, alfa kutusu, baş üstü ve yazı yeri değişmez. Bakış kaydı yine elle (bak, sonra --yon sag).
 """
 
 from __future__ import annotations
@@ -370,6 +376,69 @@ def sepet(im: Image.Image) -> Image.Image:
     return out
 
 
+# --- sevecen baba yüzü (final tur 5) ------------------------------------------------------------------------
+BEYAZ = (255, 255, 255, 255)
+AGIZ_IC = (120, 28, 34, 255)
+DIL = (226, 112, 124, 255)
+# beyaza boyanan eski yüz çizgileri: sol göz, sol iç kaş, sağ göz, kalkık sağ kaş, eski gülümseme çizgisi
+YUZ_SIL = [(262, 362, 368, 420), (350, 330, 380, 366), (452, 372, 536, 432), (440, 316, 534, 346),
+           (334, 576, 480, 611)]
+# göz: (sol köşe, üst kapak kontrol, sağ köşe, alt kapak kontrol, gözbebeği merkezi, gözbebeği yarıçapı)
+GOZLER = [((276, 395), (313, 356), (352, 390), (314, 428), (333, 392), 14.5),
+          ((466, 403), (495, 368), (525, 399), (497, 432), (511, 400), 12.0)]
+KASLAR = [((274, 353), (312, 334), (352, 347)), ((464, 360), (494, 344), (526, 356))]
+AGIZ_SOL, AGIZ_SAG = (334, 581), (480, 579)
+AGIZ_UST_K, AGIZ_ALT_K = (407, 601), (407, 650)          # üst dudak / alt dudak kontrol noktaları
+DIS_ALT = ((330, 578), (407, 618), (484, 576))            # diş şeridinin alt çizgisi
+DIL_KUTU = (377, 606, 437, 626)
+
+
+def _maske_ile(lay: Image.Image, poly) -> Image.Image:
+    m = Image.new("L", lay.size, 0)
+    ImageDraw.Draw(m).polygon(_ss(poly), fill=255)
+    lay.putalpha(Image.fromarray(np.minimum(np.array(lay.getchannel("A")), np.array(m))))
+    return lay
+
+
+def sevecen_yuz(im: Image.Image) -> Image.Image:
+    a = np.array(im)
+    for x0, y0, x1, y1 in YUZ_SIL:
+        sub = a[y0:y1, x0:x1]
+        sub[(sub[..., 3] > 0) & (sub[..., :3].min(-1) < 235)] = BEYAZ
+    out = Image.fromarray(a)
+    W, H = out.size
+    lay = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    for sol, ust, sag, alt, (cx, cy), r in GOZLER:
+        up, lo = _bez(sol, ust, sag, 60), _bez(sol, alt, sag, 60)
+        goz = up + lo[::-1]
+        d.polygon(_ss(goz), fill=BEYAZ)
+        pl = Image.new("RGBA", lay.size, (0, 0, 0, 0))
+        pd = ImageDraw.Draw(pl)
+        pd.ellipse([(cx - r) * SS, (cy - r) * SS, (cx + r) * SS, (cy + r) * SS], fill=INK)
+        hr, hx, hy = r * 0.33, cx - r * 0.35, cy - r * 0.38
+        pd.ellipse([(hx - hr) * SS, (hy - hr) * SS, (hx + hr) * SS, (hy + hr) * SS], fill=BEYAZ)
+        lay.alpha_composite(_maske_ile(pl, goz))
+        d = ImageDraw.Draw(lay)
+        _stroke(d, _ss(up), 6.5 * SS, INK)
+        _stroke(d, _ss(lo), 4.5 * SS, INK)
+    for p0, p1, p2 in KASLAR:
+        _stroke(d, _ss(_bez(p0, p1, p2, 60)), 6 * SS, INK)
+    ust, alt = _bez(AGIZ_SOL, AGIZ_UST_K, AGIZ_SAG, 60), _bez(AGIZ_SOL, AGIZ_ALT_K, AGIZ_SAG, 60)
+    agiz = ust + alt[::-1]
+    ml = Image.new("RGBA", lay.size, (0, 0, 0, 0))
+    md = ImageDraw.Draw(ml)
+    md.polygon(_ss(agiz), fill=AGIZ_IC)
+    md.ellipse([v * SS for v in DIL_KUTU], fill=DIL)
+    dis = _bez(*DIS_ALT, 60)
+    md.polygon(_ss(ust + dis[::-1]), fill=BEYAZ)
+    md.line(_ss(dis), fill=INK, width=3 * SS)
+    lay.alpha_composite(_maske_ile(ml, agiz))
+    _stroke(ImageDraw.Draw(lay), _ss(agiz + [agiz[0]]), 5.5 * SS, INK)
+    out.alpha_composite(lay.resize((W, H), Image.LANCZOS))
+    return out
+
+
 def main() -> None:
     base = Image.open(SRC).convert("RGBA")
     g = gulumse(base)
@@ -382,6 +451,10 @@ def main() -> None:
     k = sepet(s)
     k.save(HERE / "imparator_bizans_sepet.png", optimize=True)
     print("->", (HERE / "imparator_bizans_sepet.png").relative_to(ROOT), k.size,
+          "(bak, sonra: python -m wojak yon <png> --yon sag)")
+    b = sevecen_yuz(k)
+    b.save(HERE / "imparator_bizans_baba.png", optimize=True)
+    print("->", (HERE / "imparator_bizans_baba.png").relative_to(ROOT), b.size,
           "(bak, sonra: python -m wojak yon <png> --yon sag)")
 
 
