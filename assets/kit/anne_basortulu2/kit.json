@@ -1,9 +1,9 @@
 {
- "aciklama": "Başörtülü genç anne (kanalın C3DeLN1sU7O/C2FriLUM2DR'deki krem başörtülü, kahverengi örgülü kadınıyla aynı aile). Kaynak: wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png. Boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı (gülümseme yok), pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek hafif krem tona çekildi, büst kırpımı (458x490). Kaynak zaten 3/4 sağa dönük: aynalanmadı, 'right' kayıtlı. Kucağında askılı bezde uyuyan yenidoğan + onu tutan el (hazır çizim: wojakland 'Redhead Tradwife with Baby Wojak' -> chars/bebek_kucak_kaynak.png), üç varyantta aynı yerde. Ten: yüz, boyun ve bebeği tutan el kanalın kadını gibi şeftali (C3De/C2Fr yanak ölçümü 247-253,202-208,161-163; çarpan 252,207,163), son adım olarak her PNG'de. Hepsi uret.py ile yeniden üretilir: tek_gozyasi tools/kit_varyant.py ile; agliyor = kızarmış göz akları + iki gözden kalın gözyaşı (w 13) + sol gözden ince ikinci akıntı + açık, titreyen ağız.",
+ "aciklama": "Başörtülü genç anne (kanalın C3DeLN1sU7O/C2FriLUM2DR'deki krem başörtülü, kahverengi örgülü kadınıyla aynı aile). Kaynak: wojakland 'Blushing Hijab Wojak' (458x538 RGBA, büyütülmedi) -> episodes/van-depremi-azra-bebek/chars/anne_hijab_kaynak.png. Boyun zinciri ve asma kilitli kolye silindi, yanak allığı %80 azaltıldı (gülümseme yok), pembe üst -> kahverengi örgü #6B4A2E, başörtüsü/gömlek hafif krem tona çekildi, büst kırpımı (458x490). Kaynak zaten 3/4 sağa dönük: aynalanmadı, 'right' kayıtlı. Kucağında askılı bezde uyuyan yenidoğan + onu tutan el (hazır çizim: wojakland 'Redhead Tradwife with Baby Wojak' -> chars/bebek_kucak_kaynak.png), üç varyantta aynı yerde. Ten: yüz, boyun ve bebeği tutan el kanalın kadını gibi şeftali (C3De/C2Fr yanak ölçümü 247-253,202-208,161-163; çarpan 252,207,163), son adım olarak her PNG'de. Hepsi uret.py ile yeniden üretilir: tek_gozyasi tools/kit_varyant.py ile; agliyor = kızarmış göz akları + iki gözden kalın gözyaşı (w 13) + sol gözden ince ikinci akıntı + açık ağız (düzgün Bézier dudak çizgileri, düzgün beyaz üst diş bandı). Askı bezi haki (161,148,116) yerine koyu sıcak kanvas (138,118,90): bebek krem başörtüsünden ayrışır.",
  "duygular": {
   "sakin": "üzgün, endişeli (taban; aralık ağız, gülümseme yok)",
   "tek_gozyasi": "sessiz hüzün: sol gözden tek gözyaşı (kanca sahnesi)",
-  "agliyor": "ağlıyor: kızarmış (pembe) göz akları, iki gözden kalın gözyaşı akıntısı (w 13) + sol gözden ince ikinci akıntı, açık titreyen ağız (ters köşe)"
+  "agliyor": "ağlıyor: kızarmış (pembe) göz akları, iki gözden kalın gözyaşı akıntısı (w 13) + sol gözden ince ikinci akıntı, açık ağız (düzgün üst diş bandı, koyu iç, eşit 2,6 px kontur) (ters köşe)"
  },
  "variants": {
   "tek_gozyasi": {
@@ -51,101 +51,72 @@
     253,
     253
    ],
-   "top": [
-    [
-     250,
-     230
-    ],
-    [
-     255,
-     224
-    ],
-    [
-     262,
-     221
-    ],
-    [
-     269,
-     222
-    ],
-    [
-     276,
-     220
-    ],
-    [
-     283,
-     221
-    ],
-    [
-     290,
-     220
-    ],
-    [
-     297,
-     222
-    ],
-    [
-     303,
-     225
-    ],
-    [
-     308,
-     231
+   "top": {
+    "bezier": [
+     [
+      249,
+      233
+     ],
+     [
+      256,
+      219
+     ],
+     [
+      302,
+      219
+     ],
+     [
+      309,
+      234
+     ]
     ]
-   ],
-   "bottom": [
-    [
-     250,
-     230
-    ],
-    [
-     255,
-     235.5
-    ],
-    [
-     260,
-     239.5
-    ],
-    [
-     266,
-     243
-    ],
-    [
-     272,
-     241.5
-    ],
-    [
-     278,
-     244
-    ],
-    [
-     284,
-     242.5
-    ],
-    [
-     290,
-     243.5
-    ],
-    [
-     296,
-     239.5
-    ],
-    [
-     302,
-     236
-    ],
-    [
-     308,
-     231
+   },
+   "bottom": {
+    "bezier": [
+     [
+      249,
+      233
+     ],
+     [
+      253,
+      250
+     ],
+     [
+      305,
+      250
+     ],
+     [
+      309,
+      234
+     ]
     ]
-   ],
-   "teeth_h": 9.0,
+   },
    "line": 2.6,
    "ic": [
     62,
     40,
     40
-   ]
+   ],
+   "teeth_bottom": {
+    "bezier": [
+     [
+      249,
+      233
+     ],
+     [
+      258,
+      231
+     ],
+     [
+      300,
+      231
+     ],
+     [
+      309,
+      234
+     ]
+    ]
+   }
   },
   "tears": [
    {

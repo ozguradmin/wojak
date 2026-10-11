@@ -138,6 +138,38 @@ canvas2.alpha_composite(nv, (P2['kx'], P2['ky']))
 canvas2.alpha_composite(Image.fromarray(layer_j.astype(np.uint8)))
 canvas2.alpha_composite(hel, (0, int(P['helmet_dy'])))
 canvas2 = canvas2.crop(bbox)
+
+
+def bakis_ice(im: Image.Image, tohumlar=((640, 490), (905, 505))) -> Image.Image:
+    """Nervous Wojak'ın göz bebekleri kaynakta gözlerin SOL ucunda: PNG 'right' kayıtlı, sağ tarafta aynalanınca
+    bakış dışarı (kadrajın dışına, anneden uzağa) kaçıyordu. STIL §4: bakış ortaya ve diğer konuşmacıya, ya da göz
+    ucuyla merkeze. Her göz (göz bebeği + kontur, siyaha yumuşayan kenar pikselleriyle) kendi kutusu içinde yatay
+    aynalanır: bebek gözün sağ ucuna geçer, render'da sola (anneye) bakar. Kaşlar, burun, baret ve kutu aynı kalır;
+    gözün içi yüzle aynı beyaz olduğu için boşalan yer beyazla doldurulur."""
+    a = np.array(im).astype(np.float32)
+    lum_ = 0.299 * a[..., 0] + 0.587 * a[..., 1] + 0.114 * a[..., 2]
+    dark_ = ((lum_ < 110) & (a[..., 3] > 128)).astype(np.uint8) * 255
+    for t in tohumlar:
+        if dark_[t[1], t[0]] != 255:
+            raise SystemExit(f'bakis_ice: tohum {t} göz bebeğinde değil')
+        m = Image.fromarray(dark_).copy()
+        ImageDraw.floodfill(m, t, 128)
+        core = np.array(m) == 128
+        ys, xs = np.where(core)
+        if core.sum() > 20000:
+            raise SystemExit(f'bakis_ice: {t} gözü yüz konturundan ayrılmıyor')
+        # göz maskesi: çekirdek + 2 px içindeki yumuşatma pikselleri (beyazdan koyu)
+        grow = np.array(Image.fromarray((core * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5))) > 0
+        eye = grow & (lum_ < 250) & (a[..., 3] > 128)
+        x0, x1 = xs.min() - 2, xs.max() + 2
+        vals = a[eye].copy()
+        ey, ex = np.where(eye)
+        a[eye, :3] = 255.0
+        a[ey, x0 + x1 - ex] = vals
+    return Image.fromarray(np.clip(np.rint(a), 0, 255).astype(np.uint8))
+
+
+canvas2 = bakis_ice(canvas2)
 GERGIN = KIT / '.gergin_taban.png'
 canvas2.save(GERGIN)
 sys.path.insert(0, str(ROOT))

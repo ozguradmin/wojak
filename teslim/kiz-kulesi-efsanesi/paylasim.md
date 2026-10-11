@@ -4,14 +4,14 @@ Süre: 14.0 sn · 6 sahne · video: `kiz-kulesi-efsanesi.mp4` · kapak: `kapak.j
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 2132/2200
+### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 2101/2200
 
 ```
-Kızını yılandan korumak için kuleye kapatan imparatorun doğum günü hediyesi
+Kız Kulesi'ndeki prensesin 18. doğum günü
 
 Kız Kulesi efsanesi, yılan sokmasın diye Üsküdar açıklarındaki kuleye kapatılan bir prensesin yüzyıllardır dilden dile dolaşan hikâyesidir. Yaşandığına dair tarihî bir kayıt yoktur; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
 
-En bilinen anlatıma göre bir kâhin, imparatorun çok sevdiği kızının 18 yaşına girdiğinde bir yılan tarafından sokularak *leceğini söyler. İmparator kızını yılanlardan uzak tutmak için denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
+En bilinen anlatıma göre bir kâhin, imparatorun çok sevdiği kızının 18 yaşına girdiğinde bir yılan tarafından sokularak *leceğini söyler. İmparator, kızını yılanlardan uzak tutmak için kıyı açığındaki küçük bir adacıkta bulunan kuleye kapatır. Prensesi yalnızca babası ziyaret eder.
 
 Prensesin 18. yaş gününde imparator, kehaneti boşa çıkardığını düşünerek kızına bir sepet meyve götürür; Türkçe anlatımlarda bu meyve genellikle üzümdür. Meyvelerin arasına gizlenmiş bir yılan prensesi sokar ve prenses babasının kollarında hayatını kaybeder. Bir rivayete göre imparator kızını demir bir tabuta koydurup Ayasofya'nın giriş kapısının üstüne yerleştirir; tabuttaki iki deliğin, yılanın prensesi *lümünden sonra bile rahat bırakmadığını gösterdiği anlatılır.
 
@@ -21,17 +21,17 @@ Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşı
 
 Sizce kaderden kaçmak mümkün mü?
 
-Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pendik Belediyesi, İstanbul'un Efsaneleri Dijital Sergi
+Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
 
-#kizkulesi #efsane #istanbul #tarihselwojak #wojak
+#kizkulesi #efsane #uskudar #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts
 
-### Başlık — 75/100
+### Başlık — 41/100
 
 ```
-Kızını yılandan korumak için kuleye kapatan imparatorun doğum günü hediyesi
+Kız Kulesi'ndeki prensesin 18. doğum günü
 ```
 
 ### Açıklama
@@ -40,17 +40,17 @@ Kızını yılandan korumak için kuleye kapatan imparatorun doğum günü hediy
 Kız Kulesi efsanesi
 Efsanenin tamamı sabit yorumda 👇
 
-Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pendik Belediyesi, İstanbul'un Efsaneleri Dijital Sergi
+Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
 
-#kizkulesi #efsane #istanbul #wojak #tarihselwojak #keşfet #olay #gizem #shorts
+#kizkulesi #efsane #uskudar #istanbul #wojak #tarihselwojak #keşfet #olay #shorts
 ```
 
-### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1825 karakter
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1822 karakter
 
 ```
 Kız Kulesi efsanesi, yılan sokmasın diye Üsküdar açıklarındaki kuleye kapatılan bir prensesin yüzyıllardır dilden dile dolaşan hikâyesidir. Yaşandığına dair tarihî bir kayıt yoktur; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
 
-En bilinen anlatıma göre bir kâhin, imparatorun çok sevdiği kızının 18 yaşına girdiğinde bir yılan tarafından sokularak *leceğini söyler. İmparator kızını yılanlardan uzak tutmak için denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
+En bilinen anlatıma göre bir kâhin, imparatorun çok sevdiği kızının 18 yaşına girdiğinde bir yılan tarafından sokularak *leceğini söyler. İmparator, kızını yılanlardan uzak tutmak için kıyı açığındaki küçük bir adacıkta bulunan kuleye kapatır. Prensesi yalnızca babası ziyaret eder.
 
 Prensesin 18. yaş gününde imparator, kehaneti boşa çıkardığını düşünerek kızına bir sepet meyve götürür; Türkçe anlatımlarda bu meyve genellikle üzümdür. Meyvelerin arasına gizlenmiş bir yılan prensesi sokar ve prenses babasının kollarında hayatını kaybeder. Bir rivayete göre imparator kızını demir bir tabuta koydurup Ayasofya'nın giriş kapısının üstüne yerleştirir; tabuttaki iki deliğin, yılanın prensesi *lümünden sonra bile rahat bırakmadığını gösterdiği anlatılır.
 
@@ -63,14 +63,14 @@ Sizce kaderden kaçmak mümkün mü?
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 2153/4000
+### Açıklama — 2125/4000
 
 ```
-Kızını yılandan korumak için kuleye kapatan imparatorun doğum günü hediyesi
+Kız Kulesi'ndeki prensesin 18. doğum günü
 
 Kız Kulesi efsanesi, yılan sokmasın diye Üsküdar açıklarındaki kuleye kapatılan bir prensesin yüzyıllardır dilden dile dolaşan hikâyesidir. Yaşandığına dair tarihî bir kayıt yoktur; anlatımlar birbirinden farklıdır, çoğu hikâyeyi Bizans dönemine, bazıları Osmanlı dönemine bağlar.
 
-En bilinen anlatıma göre bir kâhin, imparatorun çok sevdiği kızının 18 yaşına girdiğinde bir yılan tarafından sokularak *leceğini söyler. İmparator kızını yılanlardan uzak tutmak için denizin ortasındaki küçük adacıkta bulunan kuleye yerleştirir. Prensesi yalnızca babası ziyaret eder.
+En bilinen anlatıma göre bir kâhin, imparatorun çok sevdiği kızının 18 yaşına girdiğinde bir yılan tarafından sokularak *leceğini söyler. İmparator, kızını yılanlardan uzak tutmak için kıyı açığındaki küçük bir adacıkta bulunan kuleye kapatır. Prensesi yalnızca babası ziyaret eder.
 
 Prensesin 18. yaş gününde imparator, kehaneti boşa çıkardığını düşünerek kızına bir sepet meyve götürür; Türkçe anlatımlarda bu meyve genellikle üzümdür. Meyvelerin arasına gizlenmiş bir yılan prensesi sokar ve prenses babasının kollarında hayatını kaybeder. Bir rivayete göre imparator kızını demir bir tabuta koydurup Ayasofya'nın giriş kapısının üstüne yerleştirir; tabuttaki iki deliğin, yılanın prensesi *lümünden sonra bile rahat bırakmadığını gösterdiği anlatılır.
 
@@ -80,14 +80,14 @@ Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşı
 
 Sizce kaderden kaçmak mümkün mü?
 
-Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pendik Belediyesi, İstanbul'un Efsaneleri Dijital Sergi
+Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
 
-#kizkulesi #efsane #istanbul #wojak #tarihselwojak #keşfet #olay #gizem
+#kizkulesi #efsane #uskudar #istanbul #wojak #tarihselwojak #keşfet #olay
 ```
 
 ## Yükleme kontrol listesi
 
-- [ ] **Lisans kararı senin:** `kanit_2_sepetteki_yilan_pendik.jpg`, Pendik Belediyesi'nin "İstanbul'un Efsaneleri" dijital sergisinden telifli bir illüstrasyon (sol altta ressam imzası var). İstemezsen yerine Pascal Sébah'ın 19. yüzyıl Kız Kulesi fotoğrafını (Wikimedia Commons, 'Pascal Sébah - Kız Kulesi, Galata and Fındıklı Residential Areas - Google Art Project.jpg', kamu malı) koyarım; o durumda yılan görünmez. Yedek hazır: `episodes/kiz-kulesi-efsanesi/img/kanit_2_yedek_sebah.jpg` (episode.yaml'da son kanıtın `images:` satırını değiştirip yeniden render etmek yeter)
+- [ ] **Lisans kararı senin:** `kanit_2_sepetteki_yilan_boyaci.jpg` (son kanıt, 12,5-14,0 sn) telifli: Ömer Faruk Boyacı'nın YouTube kanalındaki (BOYACI, https://www.youtube.com/@omerfarukboyaci) "İSTANBUL'UN EFSANELERİ - Kız Kulesi ve Sepetteki Yılan Efsanesi" videosunun küçük resmi; Pendik Belediyesi'nin "İstanbul'un Efsaneleri" dijital sergisi için çizilmiş bir illüstrasyon (sol altta ressam imzası var, küratör İsmail Erdoğan). Kullanacaksan izni yalnız belediyeden değil, yükleyiciden/ressamdan (Ömer Faruk Boyacı) da iste; açıklamadaki atıf satırı hazır. İstemezsen bu kart çıkar, yılan ekranda görünmez: kanıtlar BoraBora704'ün modern kule fotoğrafı (Wikimedia Commons, CC BY-SA 4.0, hazır: `episodes/kiz-kulesi-efsanesi/img/kanit_1_kiz_kulesi_borabora704.jpg`) ve sonda Pascal Sébah'ın 19. yüzyıl fotoğrafı (kamu malı) olur. Bunun için episode.yaml'da iki kanıtın `images:` satırı ve `credits` (Boyacı yerine "BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı)") değişir, sonra yeniden render + teslim
 - [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
 - [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
 - [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
@@ -108,8 +108,8 @@ Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
 - istanbul.com — Kız Kulesi efsanesi (imparator, 18. yaş günü, meyve sepeti, babasının kollarında): https://istanbul.com/tr/blog/imagery-monuments-tower/legend-of-maiden-tower-istanbul
 - For 91 Days — Kız Kulesi (sultan anlatımı: 'a sultan had received a prophecy'): https://istanbul.for91days.com/kiz-kulesi-the-maidens-tower
 - Arka plan (final tur 3; olayın gerçek yeri): 'Kız Kulesi, Maiden's Tower (52396926549).jpg', Sonse, 3 Ekim 2021, CC BY 2.0, https://creativecommons.org/licenses/by/2.0/ (Flickr: https://www.flickr.com/photos/34585612@N00/52396926549 ; Commons: https://commons.wikimedia.org/wiki/File:K%C4%B1z_Kulesi,_Maiden%27s_Tower_(52396926549).jpg ; FlickreviewR 2 ile cc-by-2.0 doğrulanmış; Flickr 2048 px sürümü img/kiz_kulesi_sonse_kaynak.jpg). Değişiklikler (arkaplan.py): kare kırpım (182, 0, 1377, 1195), gama 1,35 (parlaklık 146 -> ~124), doygunluk x0,88. Önceki turların arka planı (Alanya Kızılkule iç mekânı, Satirdan kahraman, CC0, img/arka_kule_odasi_kizilkule.jpg) artık kullanılmıyor.
-- Kanıt 1: 'İSTANBUL KIZKULESİ.jpg', BoraBora704, 2018-10-12, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/ (1920 px küçük resim, 16:9 kırpıldı, y 300-1380; final tur 2: parlaklık x1,12, renk x1,05): https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_KIZKULES%C4%B0.jpg
-- Kanıt 2: YouTube küçük resmi 'KIZ KULESİ Sepetteki Yılan EFSANESİ' (İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi, küratör İsmail Erdoğan; telifli illüstrasyon + başlık, hesap sahibinin onayına): https://www.youtube.com/watch?v=fX0lzPWNx68  (görsel: https://i.ytimg.com/vi/fX0lzPWNx68/maxresdefault.jpg)
-- Kanıt 2 yedeği (hesap sahibi Pendik görselini istemezse; videoda kullanılmıyor): 'Pascal Sébah - Kız Kulesi, Galata and Fındıklı Residential Areas - Google Art Project.jpg', Pascal Sébah (1823-1886), 19. yy sonu, albümin baskı, Pera Müzesi koleksiyonu; kamu malı (yazar 1886'da öldü; ABD'de 1931 öncesi yayın; Commons dosya sayfasında doğrulandı): https://commons.wikimedia.org/wiki/File:Pascal_S%C3%A9bah_-_K%C4%B1z_Kulesi,_Galata_and_F%C4%B1nd%C4%B1kl%C4%B1_Residential_Areas_-_Google_Art_Project.jpg (16:9 kırpım: img/kanit_2_yedek_sebah.jpg; yılan/sepet görünmez)
-- İmparator: wojakland 'byzantine emperor wojak' (Theocrat3_1.png; chars/imparator_bizans_sade.png = aynı çizim, ağız gülümsemeye çevrildi, taç düz koyu altın kamelaukion + inci dizileri + 4 taş + haç olarak sadeleştirildi, inciler elle çizilmiş gibi düzensiz; final tur 2: tuval 586x862'ye uzatıldı, mor cüppe + yuvarlak iç omuz + altın loros şeridi eklendi; final tur 3: büst kanal oranına genişletildi, tuval 780x862, iç omuz alt kenara ~775'te iner; chars/imparator_uret.py): https://wojakland.com/gmedia/theocrat3_1-png/
+- Kanıt 1 (final tur 4; 11,0-12,5 sn): 'Pascal Sébah - Kız Kulesi, Galata and Fındıklı Residential Areas - Google Art Project.jpg' (kartondaki yazı: '51. La tour de Léandre', 'P. Sébah'), Pascal Sébah (1823-1886), 19. yüzyıl sonu, kâğıt üzerine albümin baskı, Pera Müzesi koleksiyonu; kamu malı (PD-Art, PD-old-100-expired: yazar 1886'da öldü; Commons dosya sayfasında doğrulandı): https://commons.wikimedia.org/wiki/File:Pascal_S%C3%A9bah_-_K%C4%B1z_Kulesi,_Galata_and_F%C4%B1nd%C4%B1kl%C4%B1_Residential_Areas_-_Google_Art_Project.jpg . Commons 1920 px küçük resmi; 16:9 kırpım (0, 300, 1920, 1381), 1080x608'e küçültüldü (alttaki yazılar kadraj dışında), renk/ton değişmedi: img/kanit_1_sebah_tarihi.jpg. Görünen: kule, önünde kayıkta şemsiyeli kadınlar ve kürekçiler, arkada Galata Kulesi ve Fındıklı sırtları.
+- Kanıt 2 (12,5-14,0 sn; telifli, git'e girmez, hesap sahibinin onayına): YouTube videosu 'İSTANBUL'UN EFSANELERİ - Kız Kulesi ve Sepetteki Yılan Efsanesi', yükleyen BOYACI (Ömer Faruk Boyacı, sanatçı ve endüstriyel tasarımcı; https://www.youtube.com/@omerfarukboyaci ; YouTube oEmbed ve kanal 'Hakkında' sayfasıyla doğrulandı), Pendik Belediyesi 'İstanbul'un Efsaneleri Dijital Sergi' (küratör İsmail Erdoğan) için illüstrasyon + başlık ('KIZ KULESİ Sepetteki Yılan EFSANESİ'), sol altta ressam imzası: https://www.youtube.com/watch?v=fX0lzPWNx68 (görsel: https://i.ytimg.com/vi/fX0lzPWNx68/maxresdefault.jpg, 1280x720, değiştirilmedi; img/telifli/kanit_2_sepetteki_yilan_boyaci.jpg). Önceki turlarda yanlışlıkla doğrudan 'Pendik Belediyesi' kaynaklı yazılmıştı.
+- Yedek kanıt (videoda kullanılmıyor; hesap sahibi kanıt 2'yi istemezse kanıt 1 olur, Sébah sona geçer): 'İSTANBUL KIZKULESİ.jpg', BoraBora704, 2018-10-12, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/ (1920 px küçük resim, 16:9 kırpıldı, y 300-1380; parlaklık x1,12, renk x1,05; img/kanit_1_kiz_kulesi_borabora704.jpg): https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_KIZKULES%C4%B0.jpg
+- İmparator: wojakland 'byzantine emperor wojak' (Theocrat3_1.png; chars/imparator_bizans_sade.png = aynı çizim, ağız gülümsemeye çevrildi, taç düz koyu altın kamelaukion + inci dizileri + 4 taş + haç olarak sadeleştirildi, inciler elle çizilmiş gibi düzensiz; final tur 2: tuval 586x862'ye uzatıldı, mor cüppe + yuvarlak iç omuz + altın loros şeridi eklendi; final tur 3: büst kanal oranına genişletildi, tuval 780x862, iç omuz alt kenara ~775'te iner; final tur 4: chars/imparator_bizans_sepet.png = sade + iç alt köşede alt kenardan kesilen düz MS-Paint hasır sepet ve mor üzüm yığını (yeşil yaprak), kendi çizimimiz; chars/imparator_uret.py): https://wojakland.com/gmedia/theocrat3_1-png/
 - Prenses: HF clayshoaf/Wojaks 5_Doomer_Girl/2481 'Your Japanese girlfriend' (assets/kit/prenses_genc; üniforma yerine düz mor elbise + altın yaka, küçük altın stemma, korku varyantı; final tur 2: sol omuz eğimli çizildi (dikey elbise kesiği yok), yüz ile sağ saç tutamı arasındaki şeffaf yarık saç dolgusuyla kapatıldı, saç kenarındaki çentik silindi; final tur 3: korku yüzü güçlendirildi: daha iri açılmış gözler, küçük koyu halkalı iris + iğne ucu gözbebeği, 3 koyu göz altı çizgisi, daha uzun/kalın mavi ter çizgileri, daha büyük açık ağız; assets/kit/prenses_genc/uret.py): https://huggingface.co/datasets/clayshoaf/Wojaks/blob/main/5_Doomer_Girl/2481.png

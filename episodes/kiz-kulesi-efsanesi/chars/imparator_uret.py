@@ -20,6 +20,12 @@ ile indirilen imparator_bizans.png.
    tuval 586x862 -> 780x862 (yükseklik aynı: ölçek, baş üstü ve yazı yeri değişmez). İç (sağ) omuz
    (430,723) -> (560,738) -> (660,765) -> (735,810) üzerinden alt kenara (~775) iner; aynı mor + 20 px kontur.
    Loros yerinde kalır (x 262-318).
+5. imparator_bizans_sepet.png (final tur 4; görsel hakem: kanca "bak sana üzüm getirdim" ekranda görünsün,
+   C2VH'nin ölü balığı gibi): iç alt köşede, alt kenardan kesilen düz MS-Paint hasır sepet + mor üzüm yığını.
+   Sepet x ~489-767, ağız y ~744 (elips), gövde alt kenarın altına iner; dolgu (176,118,52), 6 px siyah kontur,
+   koyu (120,78,30) dalgalı örgü + dikey çubuklar. Üzüm: 19 tane, r 17-19, (112,38,128), 4 px kontur, sol üstte
+   küçük açık parlama; tepede sap + yeşil yaprak. Tuval, ölçek, baş üstü ve yazı yeri aynı kalır (alfa kutusu
+   değişmez). Bakış kaydı bilerek elle yapılır (bak, sonra: python -m wojak yon <png> --yon sag).
 """
 
 from __future__ import annotations
@@ -289,6 +295,81 @@ def omuz(im: Image.Image) -> Image.Image:
     return out
 
 
+# --- üzüm sepeti (final tur 4) ----------------------------------------------------------------------------
+HASIR = (176, 118, 52, 255)
+HASIR_KOYU = (120, 78, 30, 255)
+YAPRAK = (70, 140, 50, 255)
+SAP = (96, 70, 30, 255)
+UZUM = (112, 38, 128, 255)
+PARLAK = (235, 220, 245, 255)
+SEPET_K = 1.1                     # genel ölçek
+SEPET_CX, SEPET_AGIZ_Y = 628, 744  # sepet merkezi x, ağız elipsinin merkezi y
+SEPET_RX, SEPET_RY = 126 * SEPET_K, 22 * SEPET_K
+SEPET_ALT = SEPET_AGIZ_Y + 150 * SEPET_K   # gövde tuvalin altına (862) iner: kadraj kenarında kesilir
+
+
+def sepet(im: Image.Image) -> Image.Image:
+    W, H = im.size
+    K, CX, Y, RX, RY = SEPET_K, SEPET_CX, SEPET_AGIZ_Y, SEPET_RX, SEPET_RY
+
+    def S(v):
+        return v * SS
+
+    def ell(d, x, y, r, **kw):
+        d.ellipse([S(x - r), S(y - r), S(x + r), S(y + r)], **kw)
+
+    lay = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    rng = np.random.default_rng(18)
+    # ağzın üstünde kubbe gibi üzüm yığını: alttan üste sıralar (y, adet, x kayması)
+    rows = [(Y - 2 * K, 7, 0.0), (Y - 26 * K, 6, 8.0 * K), (Y - 50 * K, 4, 2.0 * K), (Y - 72 * K, 2, 10.0 * K)]
+    grapes = []
+    for y, n, off in rows:
+        span = 2 * (RX - 26 * K) * ((n - 1) / 6)
+        for x in np.linspace(CX - span / 2, CX + span / 2, n) + off - 4:
+            grapes.append((x + rng.uniform(-3, 3), y + rng.uniform(-2, 2), rng.uniform(15.5, 17.5) * K))
+    top = min(g[1] for g in grapes)
+    sx, sy = CX + 10 * K, top - 14 * K               # sap + yaprak
+    d.line([(S(sx - 4), S(sy + 14)), (S(sx), S(sy - 2)), (S(sx + 10), S(sy - 12))], fill=SAP, width=S(7),
+           joint="curve")
+    leaf = [(sx + a * K, sy + b * K) for a, b in ((6, -6), (30, -34), (66, -34), (58, -10), (30, 2))]
+    d.polygon([(S(x), S(y)) for x, y in leaf], fill=YAPRAK, outline=INK, width=S(4))
+    d.line([(S(sx + 14 * K), S(sy - 6 * K)), (S(sx + 52 * K), S(sy - 26 * K))], fill=INK, width=S(3))
+    for x, y, r in sorted(grapes, key=lambda g: g[1]):
+        ell(d, x, y, r, fill=UZUM, outline=INK, width=S(4))
+        ell(d, x - r * 0.38, y - r * 0.38, r * 0.24, fill=PARLAK)
+    # gövde: ağız elipsinden aşağı yarım elips, örgü gövdeye kırpılır
+    body = [(CX - RX * np.cos(t), Y + (SEPET_ALT - Y) * np.sin(t)) for t in np.linspace(0, np.pi, 60)]
+    bm = Image.new("L", lay.size, 0)
+    ImageDraw.Draw(bm).polygon([(S(x), S(y)) for x, y in body], fill=255)
+    blay = Image.new("RGBA", lay.size, (0, 0, 0, 0))
+    bd = ImageDraw.Draw(blay)
+    bd.polygon([(S(x), S(y)) for x, y in body], fill=HASIR)
+    for k in range(1, 6):
+        yy = Y + (6 + k * 22) * K
+        bd.line([(S(x), S(yy + 5 * np.sin((x - CX) / 12))) for x in np.linspace(CX - RX, CX + RX, 60)],
+                fill=HASIR_KOYU, width=S(4), joint="curve")
+    for x in np.arange(CX - RX + 18 * K, CX + RX, 30 * K):
+        bd.line([(S(x), S(Y + 10)), (S(x + 4), S(SEPET_ALT))], fill=HASIR_KOYU, width=S(4))
+    blay.putalpha(Image.fromarray(np.minimum(np.array(blay.getchannel("A")), np.array(bm))))
+    lay.alpha_composite(blay)
+    d = ImageDraw.Draw(lay)
+    d.line([(S(x), S(y)) for x, y in body], fill=INK, width=S(6), joint="curve")
+    # ön ağız bandı (ağız elipsinin alt yarısı, üzümlerin önünde)
+    rim = Image.new("L", lay.size, 0)
+    ImageDraw.Draw(rim).chord([S(CX - RX), S(Y - RY), S(CX + RX), S(Y + RY)], 0, 180, fill=255)
+    rimlay = Image.new("RGBA", lay.size, (0, 0, 0, 0))
+    rd = ImageDraw.Draw(rimlay)
+    rd.ellipse([S(CX - RX), S(Y - RY), S(CX + RX), S(Y + RY)], fill=HASIR, outline=INK, width=S(6))
+    rd.ellipse([S(CX - RX + 13), S(Y - RY + 9), S(CX + RX - 13), S(Y + RY - 9)], fill=(0, 0, 0, 0), outline=INK,
+               width=S(4))
+    rimlay.putalpha(Image.fromarray(np.minimum(np.array(rimlay.getchannel("A")), np.array(rim))))
+    lay.alpha_composite(rimlay)
+    out = im.copy()
+    out.alpha_composite(lay.resize((W, H), Image.LANCZOS))
+    return out
+
+
 def main() -> None:
     base = Image.open(SRC).convert("RGBA")
     g = gulumse(base)
@@ -298,6 +379,10 @@ def main() -> None:
     s.save(HERE / "imparator_bizans_sade.png", optimize=True)
     facing.register(HERE / "imparator_bizans_sade.png", "right")
     print("->", (HERE / "imparator_bizans_sade.png").relative_to(ROOT), s.size)
+    k = sepet(s)
+    k.save(HERE / "imparator_bizans_sepet.png", optimize=True)
+    print("->", (HERE / "imparator_bizans_sepet.png").relative_to(ROOT), k.size,
+          "(bak, sonra: python -m wojak yon <png> --yon sag)")
 
 
 if __name__ == "__main__":

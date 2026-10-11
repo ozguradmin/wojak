@@ -245,12 +245,31 @@ def ten_rengi(im: Image.Image, boyun: np.ndarray) -> Image.Image:
 # bebeğin başı kadrajın içine (sağa) bakacak şekilde konur. Bezin sol ucu annenin krem gömleğinin altına girer
 # (gömleğin kenarı doğal sınır; düz kesik kenar görünmez), alt kısmı büst kırpımıyla kesilir.
 BEBEK = {"olcek": 0.47, "yuz_x": 335, "yuz_y": 366}   # bebek yüzünün merkezi (anne görselinde, kırpım sonrası)
+# askı bezi: kaynaktaki düz haki (161,148,116) krem başörtüsüne çok yakın kalıyordu (telefonda bebek ayrışmıyordu);
+# daha koyu, sıcak bir kanvas tonuna çarpılır. Yalnız bebek katmanındaki haki pikseller (bez ve onun siyaha
+# yumuşayan kenarları, aynı ton oranıyla); bebek, bere, el, çizgiler ve alfa aynı kalır.
+ASKI_KAYNAK = np.array((161, 148, 116), np.float32)
+ASKI_HEDEF = np.array((138, 118, 90), np.float32)
 BEBEK_KUTU = (262, 600, 980, 1180)                     # kaynakta bez + bebek + el
 BEBEK_YUZ = (705, 710)                                 # kaynakta bebek yüzünün merkezi
 # kaynakta silinecek bölge: kızıl annenin göğsü/boynu ve omuz askısı (bebeğin başının üstü ve solu)
 BEBEK_SIL = [(240, 590), (725, 590), (712, 630), (690, 650), (662, 690), (644, 712), (612, 713), (590, 718),
              (572, 731), (556, 752), (541, 775), (536, 800), (470, 817), (300, 860), (270, 866), (240, 870)]
 GOMLEK_X, GOMLEK_Y = 163, 433                          # krem gömleğin kahverengi örgüyle sınırı (sol kenar, üst)
+
+
+def aski_koyulastir(a: np.ndarray) -> np.ndarray:
+    """Haki askı bezini ASKI_HEDEF tonuna çarpar. Maske: renk oranı hakiye uyan (R:G:B ~ 161:148:116),
+    görünür pikseller; siyaha yumuşayan kenar pikselleri de aynı oranda koyulaşır (hale kalmaz)."""
+    rgb, al = a[..., :3], a[..., 3]
+    s = rgb.sum(-1, keepdims=True)
+    oran = rgb / np.maximum(s, 1)
+    hedef_oran = ASKI_KAYNAK / ASKI_KAYNAK.sum()
+    m = (np.abs(oran - hedef_oran[None, None, :]).max(-1) < 0.02) & (s[..., 0] > 120) & (al > 0)
+    m = m & (rgb[..., 0] < 185)                      # beyaz/açık (bebek yüzü, el) dışarıda
+    k = ASKI_HEDEF / ASKI_KAYNAK
+    a[..., :3] = np.where(m[..., None], rgb * k[None, None, :], rgb)
+    return a
 
 
 def bebek_katmani() -> Image.Image:
@@ -275,6 +294,7 @@ def bebek_katmani() -> Image.Image:
     pembe = np.array((255, 196, 200), np.float32) / 255.0
     beyaz = (lum > 200)[..., None]
     a[..., :3] = np.where(beyaz, a[..., :3] * (1 - w[..., None] * (1 - pembe)), a[..., :3])
+    a = aski_koyulastir(a)
     out = Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).crop(BEBEK_KUTU)
     s = BEBEK["olcek"]
     return out.resize((round(out.width * s), round(out.height * s)), Image.LANCZOS)
@@ -321,8 +341,26 @@ def goz_aki_kizar(im: Image.Image, spec: dict) -> Image.Image:
 
 # ---- ağlayan ağız --------------------------------------------------------------------------------------
 SS = 4
+
+
+def _egri(v) -> list[tuple[float, float]]:
+    """Nokta listesi ya da {"bezier": [başlangıç, kontrol..., bitiş]} (2. ya da 3. derece Bézier, 33 nokta:
+    düzgün eğri; 3. derecede köşeler yuvarlak kalır)."""
+    if isinstance(v, dict):
+        p = np.array(v["bezier"], np.float64)
+        t = np.linspace(0, 1, 33)[:, None]
+        if len(p) == 3:
+            q = (1 - t) ** 2 * p[0] + 2 * (1 - t) * t * p[1] + t ** 2 * p[2]
+        else:
+            q = (1 - t) ** 3 * p[0] + 3 * (1 - t) ** 2 * t * p[1] + 3 * (1 - t) * t ** 2 * p[2] + t ** 3 * p[3]
+        return [(float(x), float(y)) for x, y in q]
+    return [tuple(p) for p in v]
+
+
 def acik_agiz(im: Image.Image, spec: dict) -> Image.Image:
-    """Mevcut aralık ağzın yerine daha açık, titreyen (dalgalı) ağız; yalnız ağız bölgesi yeniden çizilir."""
+    """Mevcut aralık ağzın yerine açık, ağlayan ağız; yalnız ağız bölgesi yeniden çizilir. Üst/alt dudak çizgisi
+    ve diş bandının alt kenarı düzgün Bézier eğrileri (kit.json); diş bandı üst dudağın altında, köşelerde
+    incelen düzgün bir şerit."""
     bx0, by0, bx1, by1 = spec["patch"]
     patch = im.crop((bx0, by0, bx1, by1))
     big = patch.resize((patch.width * SS, patch.height * SS), Image.LANCZOS)
@@ -330,12 +368,15 @@ def acik_agiz(im: Image.Image, spec: dict) -> Image.Image:
     P = lambda pts: [((x - bx0) * SS, (y - by0) * SS) for x, y in pts]  # noqa: E731
     x0, y0, x1, y1 = spec["cover"]
     d.ellipse(P([(x0, y0), (x1, y1)]), fill=tuple(spec["skin"]) + (255,))
-    top, bot = P(spec["top"]), P(spec["bottom"])
+    top, bot = P(_egri(spec["top"])), P(_egri(spec["bottom"]))
     poly = top + bot[::-1]
     d.polygon(poly, fill=tuple(spec.get("ic", (70, 20, 26))) + (255,))
     mask = Image.new("L", big.size, 0)
     ImageDraw.Draw(mask).polygon(poly, fill=255)
-    teeth = [(x, y + 0.5 * SS) for x, y in top] + [(x, y + spec["teeth_h"] * SS) for x, y in top[::-1]]
+    if "teeth_bottom" in spec:
+        teeth = top + P(_egri(spec["teeth_bottom"]))[::-1]
+    else:
+        teeth = [(x, y + 0.5 * SS) for x, y in top] + [(x, y + spec["teeth_h"] * SS) for x, y in top[::-1]]
     tl = Image.new("RGBA", big.size, (0, 0, 0, 0))
     ImageDraw.Draw(tl).polygon(teeth, fill=(250, 248, 244, 255))
     tl.putalpha(Image.fromarray(np.minimum(np.array(tl.getchannel("A")), np.array(mask))))
