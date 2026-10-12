@@ -52,7 +52,8 @@ def texts(ep: Episode) -> dict[str, str]:
     return {
         "instagram_aciklama": "\n\n".join(x for x in (head, story, credit, instagram_tags(ep)) if x),
         "youtube_baslik": title,
-        "youtube_aciklama": "\n\n".join(x for x in (caption, credit, tags + " #shorts") if x),
+        "youtube_aciklama": "\n\n".join(x for x in (
+            caption, f"▶ Uzun hali: {ep.uzun_video}" if ep.uzun_video else "", credit, tags + " #shorts") if x),
         "youtube_sabit_yorum": story,
         "tiktok_aciklama": "\n\n".join(x for x in (head, story, credit, tags) if x),
     }
@@ -126,6 +127,9 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None, denetim: list[s
         "- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)",
         ai,
         "- [ ] İlk 1-2 saat: yorumlara cevap (özellikle \"ben oralıyım\" yorumları), hakaret/isim ifşası içerenleri sil",
+        *([f"- [ ] **Uzun video bağlantısı:** YouTube Studio → bu Short → Düzenle → **İlgili video** → uzun videoyu seç "
+            "(Short'u izleyen tek dokunuşla uzun videoya geçer). Açıklamadaki \"Uzun hali\" satırına uzun videonun "
+            "linkini koy"] if ep.uzun_video else []),
         *[f"- [ ] {m}" for m in ep.ek_maddeler],
     ]
     if ep.gundem:

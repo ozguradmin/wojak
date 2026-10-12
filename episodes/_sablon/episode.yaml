@@ -72,6 +72,7 @@ ai_generated: false     # fotogerçekçi yapay zekâ görseli (ör. gorsel_uret 
 # cover_scene: 4        # kapak sahnesi (1'den başlar; varsayılan ilk diyalog), cover_at: 0.9 sahne içindeki yeri
 # telif_notu: ""        # img/telifli/ görselleri için hesap sahibine özel lisans notu (yoksa genel not yazılır)
 # ek_maddeler: []       # paylaşım kontrol listesine bölüme özel maddeler (ör. ilk yorum önerisi)
+# uzun_video: ""        # aynı konunun uzun YouTube videosunun linki: Shorts açıklamasına + 'İlgili video' maddesi
 
 sources:                # doğrulama + görsel kaynak/lisans sayfaları (paylaşılmaz)
   - <kaynak linki 1>

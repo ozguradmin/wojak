@@ -98,6 +98,7 @@ class Episode:
     cover_at: float = 0.9        # kapak karesinin sahne içindeki yeri (0-1)
     telif_notu: str = ""         # telifli görseller için hesap sahibine özel lisans notu (paylaşım paketinde)
     ek_maddeler: list[str] = field(default_factory=list)  # paylaşım kontrol listesine bölüme özel maddeler
+    uzun_video: str = ""         # aynı konunun uzun YouTube videosu (bağlantı ya da "yakında"); Shorts açıklamasına eklenir
 
     @property
     def duration(self) -> float:
@@ -209,4 +210,5 @@ def load(path: str | Path) -> Episode:
         cover_at=float(raw.get("cover_at", 0.9)),
         telif_notu=str(raw.get("telif_notu") or "").strip(),
         ek_maddeler=[str(x) for x in raw.get("ek_maddeler") or []],
+        uzun_video=str(raw.get("uzun_video") or "").strip(),
     )
