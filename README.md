@@ -17,6 +17,8 @@
 | [`docs/STIL.md`](docs/STIL.md) | **Ölçü kaynağı:** 30 orijinal reel kare kare ölçüldü (yapı, yazı, karakter, ses, kanıt) |
 | [`docs/INSTAGRAM_ANALIZ.md`](docs/INSTAGRAM_ANALIZ.md) | 1M+ izlenen 75 reel: dönemler, düşüşün sebepleri, konu ve zamanlama kuralları |
 | [`docs/GEREKENLER.md`](docs/GEREKENLER.md) | **Çalışma düzeni:** teslim paketi, hesap sahibinin yapacakları, görsel üretim anahtarı, kararlar |
+| [`docs/UZUN_FORMAT.md`](docs/UZUN_FORMAT.md) | YouTube uzun video (8-10 dk, 16:9) kararları |
+| [`docs/UZUN_MOTOR.md`](docs/UZUN_MOTOR.md) | Uzun video motoru (`wojak/uzun/`, `python -m wojak uzun ...`): kullanım ve spesifikasyon başvurusu |
 | [`data/videos.csv`](data/videos.csv) | Tüm videolar: tarih, süre, izlenme, beğeni, yorum |
 | [`data/olay_metinleri.md`](data/olay_metinleri.md) | Hesabın sabit "olay" yorumları (üslup örnekleri) |
 
@@ -39,6 +41,9 @@ python -m wojak frames episodes/yeni-olay      # her sahneden 1 kare (hızlı ko
 python -m wojak render episodes/yeni-olay      # out/yeni-olay/: mp4 + kapak.jpg + paylasim.md + metinler/
 python -m wojak teslim episodes/yeni-olay      # onaya: teslim/yeni-olay/ (video, kapak, metinler)
 ```
+
+Uzun YouTube videosu (16:9): `uzun/_sablon/video.yaml` -> `python -m wojak uzun seslendir|onizle|render|kucukresim|teslim uzun/<id>`
+(ayrıntı: [`docs/UZUN_MOTOR.md`](docs/UZUN_MOTOR.md); testler: `python -m pytest tests/`).
 
 **Akış:** videoyu ben hazırlarım → `teslim/<bölüm>/` + sohbette dosya → hesap sahibi onaylar ve kendisi paylaşır
 (Instagram: hikâye açıklamada; YouTube: hikâye sabit yorumda). Ayrıntı: [`docs/GEREKENLER.md`](docs/GEREKENLER.md).

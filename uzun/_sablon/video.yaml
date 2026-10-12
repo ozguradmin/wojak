@@ -1,0 +1,181 @@
+# UZUN VIDEO ŞABLONU (YouTube, 16:9) — kopyala: cp -r uzun/_sablon uzun/<id>  ve aşağıyı doldur.
+# Kararlar: docs/UZUN_FORMAT.md (8-10 dk, 1920x1080 30 fps, -14 LUFS, Murat anlatıcı + Aylin ikinci ses,
+# en geç 4-6 sn'de bir ekranda yeni bir şey). Motor başvurusu: docs/UZUN_MOTOR.md. Çalışan örnek: uzun/demo/.
+#
+#   python -m wojak uzun kontrol    uzun/<id>        # zaman çizelgesi + hareket/bölüm/altyazı denetimi
+#   python -m wojak uzun seslendir  uzun/<id> --qa   # Cartesia TTS (önbellekli) + Whisper isim denetimi
+#   python -m wojak uzun onizle     uzun/<id> [--bas 1:10 --bit 2:00]
+#   python -m wojak uzun render     uzun/<id>        # out/<id>/<id>.mp4 + .srt + anlatım izi + olcum.json
+#   python -m wojak uzun kucukresim uzun/<id>
+#   python -m wojak uzun teslim     uzun/<id>        # teslim/<id>-uzun/
+#
+# YOLLAR: önce bu klasöre, sonra repo köküne göre çözülür (episodes/... görselleri doğrudan kullanılabilir).
+# TELİFLİ görseller img/telifli/ altına (git'e girmez). Videolar git'e girmez.
+# ZAMAN: sahnenin süresi satırlarının sesinden hesaplanır (bas + satır + ara + satır + ... + son);
+#   olay ve efektler bir satıra (satir: 1'den başlar) + ofset (sn) ile çapalanır; satır vermezsen t: (sahne başına göre sn).
+# Türkçe anahtarlar; YAML'da 'on/off/yes/no' kelimelerini tırnaksız değer olarak yazma (true/false'a döner).
+
+id: sablon                       # klasör adıyla aynı: küçük harf, rakam, - _
+baslik: "Videonun asıl başlığı"  # paylasim.md'de 1. alternatif
+
+# Cartesia sonic-3 sesleri (varsayılanlar zaten bunlar; yeni ses eklemek için ad: kimlik)
+sesler:
+  murat: 5a31e4fb-f823-4359-aa91-82c0ae9a991c   # anlatıcı (Türkçe derin erkek)
+  aylin: bb2347fe-69e9-4810-873f-ffd759fe8420   # alıntı, reklam sloganı, kadın karakter
+  leyla: fa7bfcdc-603c-4bf1-a600-a371400d2f8c   # ifadeli kadın (duygusal tanıklık)
+  azra: 0f95596c-09c4-4418-99fe-5c107e0713c0    # resmî kadın
+anlatici: {ses: murat, hiz: 0.95}   # düz metin satırları bu sesle okunur
+
+# Yalnız TTS'e giden metinde uygulanan yazım düzeltmeleri (altyazı ve ekranda asıl yazım kalır).
+# Kelime sınırına bakar: "Contergan'ın" da düzelir, "Contergani" düzelmez.
+telaffuz:
+  Contergan: Kontergan
+  Widukind Lenz: Vidukind Lents
+
+qa:                                # seslendir --qa: bu isimler (ve telaffuz anahtarları) duyulmazsa rapor
+  isimler: [Kaymakçalan, Süreyya Tahsin Aygün]
+
+# Müzik: kendi sentezimiz (Do minör, drone + seyrek vals motifi, videonun süresi kadar, döngü yok).
+#   seviye: konuşma varken anlatıma göre dB (UZUN_FORMAT: ~-22); acik: konuşma yokken (kartlar, aralar)
+#   başka bir dosya: {dosya: assets/music/x.mp3, seviye: -22}; müziksiz: muzik: false
+muzik: {uret: true, tohum: 1957, seviye: -22, acik: -15}
+
+zamanlama:                         # hepsi isteğe bağlı (varsayılanlar gösterildi)
+  bas: 0.35                        # sahne başı -> ilk satır
+  ara: 0.35                        # satırlar arası
+  son: 0.55                        # son satırdan sonra
+  min_sahne: 2.0                   # satırlı sahnenin en kısa süresi
+  kart: 2.6                        # bölüm kartı
+  sabit: 3.0                       # satırsız sahne
+  max_bos: 6.0                     # kontrol: bu kadar sn ekranda yeni bir şey yoksa uyar
+
+gecis: kesme                       # varsayılan sahne geçişi: kesme | gecis (8 kare crossfade) | kaydir (10 kare push)
+filigran: tarihselwojak            # sağ altta her karede (false: kapalı)
+otomatik_sfx: true                 # sahne tipine göre efektler (whoosh, deklanşör, daktilo, kalem, pop, boom...)
+
+bolumler:
+  # ---------------------------------------------------------------- 1. bölüm: soğuk açılış (kartsız)
+  - baslik: Soğuk açılış
+    youtube: "Giriş"               # açıklamadaki bölüm adı (verilmezse baslik). İlk bölüm 0:00'dan başlar.
+    kart: false                    # ilk bölüm varsayılan kartsız; sonrakiler kartlı
+    sahneler:
+      # WOJAK: gerçek fotoğraf + Ken Burns + 1-3 karakter (kenardan kayarak girer, nefes alır, içeri bakar)
+      - tip: wojak
+        arka: img/mekan.jpg
+        kirp: [0.0, 0.0, 0.9, 1.0]           # isteğe bağlı: fotoğrafın istenmeyen kenarını at (0..1)
+        kamera: {zoom: [1.0, 1.07], merkez: [[0.5, 0.5], [0.46, 0.46]]}   # başlangıç -> bitiş
+        karart: 0.12                         # bulanik: 1.6 (px), doygunluk: 0.85
+        etiket: "ANKARA · 1960"              # sol altta daktiloyla yazılan yer-tarih etiketi (isteğe bağlı)
+        karakterler:
+          - {id: a, gorsel: chars/a.png, taraf: sol}           # boy: 0.66 (kare yüksekliğine oran)
+          - {id: b, gorsel: chars/b.png, taraf: sag, giris: false}   # giris: false = baştan yerinde
+        satirlar:
+          - "Anlatıcının ilk cümlesi."                         # düz metin = anlatıcı
+          - {ses: aylin, metin: "Alıntı ya da kadın karakter.", duygu: content, balon: a}   # balon: a'nın balonunda
+          - {metin: "Uzun bir duraklamadan sonra.<break time=\"600ms\"/> Devam.", once: 0.8}
+        olaylar:
+          - {tip: giris, karakter: b, satir: 2}                         # b bu satırda kayarak girer
+          - {tip: balon, karakter: b, metin: "Yalnız görsel replik", satir: 3, ofset: 0.3, sure: 2.5}
+          - {tip: yuz, karakter: a, gorsel: chars/a_terli.png, satir: 3, ofset: 0.5}   # yüz varyantı + sıkışma
+          - {tip: kelime, metin: "REÇETESİZ", satir: 1, konum: ust}        # vurgu kelimesi (ust | orta | alt)
+          - {tip: isim, karakter: a, ad: "Ad Soyad", unvan: "Unvan (1900-1980)", satir: 1, ofset: 0.8}
+          - {tip: cikis, karakter: b, satir: 3, an: son}
+        sfx:
+          - {ad: hit, satir: 3, ofset: 0.5, db: -8}           # assets/sfx/<ad>.wav ya da dosya yolu
+
+      # FOTO: arşiv fotoğrafı "masaya konmuş baskı" (beyaz kenar, gölge, eğik), kayarak düşer, yavaşça büyür
+      - tip: foto
+        gorsel: img/arsiv.jpg
+        etiket: "YER · TARİH"
+        atif: "Fotoğraf: Ad Soyad, CC BY-SA 4.0"   # küçük atıf (isteğe bağlı; açıklamada da olmalı)
+        egim: -2.5                     # derece; giris: alt | ust | sag | sol; boy: 0.72; zoom: 1.05
+        gecis: kaydir
+        satirlar: ["Fotoğrafı anlatan cümle."]
+
+      # METİN: alıntı / anahtar söz kartı, kelime kelime belirir; çeviri sarı altı çizili gelir
+      - tip: metin
+        ust: "Almanya'daki reklamlardan"
+        metin: "„völlig ungiftig“"
+        ceviri: "tamamen zehirsiz"
+        arka: img/arsiv.jpg            # isteğe bağlı: bulanık doku
+        satirlar:
+          - "Reklamlardaki vaat:"
+          - {ses: aylin, metin: "Tamamen zehirsiz."}
+        olaylar: [{tip: ceviri, satir: 2}]
+
+  # ---------------------------------------------------------------- 2. bölüm (kartlı: siyah kart + numara + başlık)
+  - baslik: Bölüm adı
+    kart_sure: 2.6
+    sahneler:
+      # SAYAÇ: büyük sayı sayarak artar (deger) ya da yıl göstergesi odometre gibi akar (yil)
+      - tip: sayac
+        deger: 10000                   # onek/sonek: "+" (varsayılan); sure_say: 2.2
+        ust: "Dünya genelinde"
+        etiket: "bebek"
+        satirlar: ["Sayıyı söyleyen cümle."]
+        olaylar: [{tip: basla, satir: 1, ofset: 0.5}]  # saymaya başlama anı (yoksa 0.35 sn)
+      - tip: sayac
+        yil: [1957, 1961]
+        ust: "Raflarda"
+        etiket: "dört yıl"
+        satirlar: ["Dört yıl boyunca..."]
+
+      # HARİTA: Natural Earth (kamu malı); ülkeler sırayla yanar, vurgu ülkesi ayrı renk + etiket
+      - tip: harita
+        bolge: avrupa                  # avrupa | bati_avrupa | akdeniz | turkiye | dunya | {merkez: [lon, lat], sinir: [lon0, lat0, lon1, lat1]}
+        baslik: "Haritanın başlığı"
+        aciklama: "Lejant: kırmızı ülkeler ne?"
+        ulkeler: [DEU, GBR, SWE, ITA, ESP]    # ADM0_A3 kodları; sıra = yanma sırası (aralik: sn)
+        etiketler: [DEU, GBR]                 # ad etiketi basılacaklar (true: hepsi)
+        vurgu: {kod: TUR, etiket: "Ruhsat verilmedi"}   # renk: [70, 196, 118]
+        satirlar: ["Ülkeler...", "Ama Türkiye..."]
+        olaylar:
+          - {tip: basla, satir: 1}
+          - {tip: ulke, kod: TUR, satir: 2, ofset: 0.6}
+
+      # ZAMAN ÇİZELGESİ (takma ad: liste): 3-6 tarihli nokta sırayla belirir
+      - tip: zaman_cizelgesi
+        baslik: "Olayların takvimi"
+        noktalar:
+          - {tarih: "1 Ekim 1957", metin: "Satışa çıktı"}
+          - {tarih: "16 Kasım 1961", metin: "Uyarı"}
+          - {tarih: "27 Kasım 1961", metin: "Piyasadan çekildi"}
+        satirlar: ["...", "..."]
+        olaylar:
+          - {tip: nokta, indeks: 2, satir: 1, ofset: 0.4}
+          - {tip: nokta, indeks: 3, satir: 2}
+
+  # ---------------------------------------------------------------- 3. bölüm
+  - baslik: Türkiye neden kurtuldu?
+    sahneler:
+      # MANŞET / BELGE: fosforlu kalem kutuların üstünden geçer, kamera kalemi dikeyde izler ve yaklaşır
+      - tip: manset
+        gorsel: img/telifli/belge.png
+        etiket: "KAYNAK · YIL"
+        kutular:                       # [x0, y0, x1, y1]: görselin pikselinde (ya da 0..1 oranında)
+          - [217, 189, 1408, 226]
+        zoom: 1.18
+        satirlar: ["Belgeyi anlatan cümle."]
+        olaylar: [{tip: vurgula, kutu: 1, satir: 1, ofset: 1.0}]
+
+# KÜÇÜK RESİMLER (1280x720; 2-3 varyant, YouTube "Test ve karşılaştır")
+kucukresimler:
+  - ad: a
+    arka: img/mekan.jpg
+    karakterler: [{gorsel: chars/a_terli.png, taraf: sol, boy: 0.98}]
+    yazi: "TÜRKİYE'YE GİREMEDİ"      # 2-4 kelime
+    vurgu_kelime: "GİREMEDİ"          # sarı
+    ek: {gorsel: img/arsiv.jpg, konum: sag_alt, boy: 0.3}
+    daire: {x: 0.8, y: 0.8, r: 0.17}  # ya da ok: {bas: [0.5, 0.5], son: [0.7, 0.7]}
+
+# PAYLAŞIM PAKETİ (teslim/<id>-uzun/paylasim.md)
+paket:
+  baslik_alternatifleri: ["Alternatif başlık 1", "Alternatif başlık 2"]
+  aciklama: |
+    İlk 2-3 satır (aramada görünen kısım): merak boşluğu, ana gerçek.
+  short_url: ""                      # Short yayımlanmışsa bağlantısı (yoksa açıklamada yer tutucu kalır)
+  short_baglanti: "teslim/<kısa-bölüm>"
+  etiketler: [tarih, wojak, tarihselwojak]
+  sabit_yorum: "İzleyiciye soru?"
+  kaynaklar: ["Kaynak 1", "Kaynak 2"]
+  gorsel_atif: ["Görsel: Ad, Wikimedia Commons, CC BY-SA 4.0", "Harita verisi: Natural Earth (kamu malı)"]

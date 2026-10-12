@@ -15,4 +15,7 @@ assets/music/ozel/
 
 # Herkese açık repo: telifli haber görselleri ve kanal sesi gömülü videolar repoya girmez (sohbetten teslim edilir)
 episodes/*/img/telifli/
+uzun/*/img/telifli/
 teslim/*/*.mp4
+
+# Uzun format (wojak/uzun): videolar ve ses önbelleği out/ altında; teslim/<id>-uzun/*.mp4 yukarıdaki kuralla dışarıda

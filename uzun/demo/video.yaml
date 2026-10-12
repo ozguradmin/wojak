@@ -1,0 +1,195 @@
+# DEMO (~1 dk): uzun format motorunun bütün sahne tiplerini, iki sesi, müziği ve efektleri gösterir.
+# Konu: Talidomit ve Türkiye (kısa sürüm: episodes/talidomit-turkiye). Olgu sınırları kısa sürümle aynı:
+#   - Kaymakçalan'ın olumsuz görüşü meslektaşlarının tanıklığına dayanır ("meslektaşlarının anlattığına göre").
+#   - Aygün'ün tavuk embriyosu deneyi tek kaynağa dayanır ("anlatılana göre"); ikisi aynı sahnede gösterilmez.
+#   - Haritada bugünkü sınırlar var: Almanya tek parça görünür (1957'de ilaç Batı Almanya'da satıldı).
+# Render: python -m wojak uzun render uzun/demo   (önce: python -m wojak uzun seslendir uzun/demo --qa)
+id: demo
+baslik: "Türkiye'ye giremeyen ilaç: Talidomit (demo)"
+
+anlatici: {ses: murat, hiz: 0.95}
+telaffuz:
+  Contergan: Kontergan
+  Widukind Lenz: Vidukind Lents
+qa:
+  isimler: [Contergan, talidomit, Lenz, Kaymakçalan, Süreyya Tahsin Aygün]
+
+muzik: {uret: true, tohum: 1957, seviye: -22, acik: -15}
+zamanlama: {kart: 2.3}
+gecis: kesme
+
+bolumler:
+  - baslik: Soğuk açılış
+    youtube: "Giriş: reçetesiz bir uyku ilacı"
+    kart: false
+    sahneler:
+      - tip: wojak
+        arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
+        kirp: [0.0, 0.0, 0.86, 1.0]   # sağ kenardaki modern prizler kadraja girmesin
+        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.45, 0.46]]}
+        etiket: "BATI ALMANYA · 1957"
+        karakterler:
+          - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol}
+          - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag}
+        satirlar:
+          - "1957. Batı Almanya'da yeni bir uyku ilacı satışa çıkıyor."
+          - "Reçete gerekmiyor. Üstelik hamilelere bile öneriliyor."
+        olaylar:
+          - {tip: giris, karakter: b, satir: 2, ofset: 0.2}
+          - {tip: balon, karakter: a, metin: "Reçeteye gerek yok!", satir: 2, ofset: -0.1, sure: 2.4}
+          - {tip: kelime, metin: "REÇETESİZ", satir: 2, ofset: 0.1, konum: ust}
+
+      - tip: foto
+        gorsel: img/contergan_kutu.jpg
+        etiket: "CONTERGAN · BATI ALMANYA, 1957"
+        atif: "Fotoğraf: Kai Oesterreich, CC BY-SA 3.0"
+        egim: -2.5
+        gecis: kaydir
+        satirlar:
+          - "Adı Contergan. Etken maddesi, talidomit."
+
+      - tip: metin
+        ust: "Almanya'daki reklamlardan"
+        arka: img/contergan_kutu.jpg
+        metin: "„völlig ungiftig“"
+        ceviri: "tamamen zehirsiz"
+        gecis: gecis
+        satirlar:
+          - "Reklamlardaki vaat çok netti:"
+          - {ses: aylin, metin: "Tamamen zehirsiz.", duygu: content}
+        olaylar:
+          - {tip: ceviri, satir: 2, ofset: -0.05}
+
+  - baslik: Sessiz felaket
+    sahneler:
+      - tip: sayac
+        yil: [1957, 1961]
+        ust: "Raflarda"
+        etiket: "dört yıl"
+        satirlar:
+          - "Dört yıl boyunca ilaç raflarda kalıyor."
+
+      - tip: harita
+        bolge: avrupa
+        baslik: "Talidomit Avrupa'da"
+        aciklama: "Satıldığı ülkelerden bazıları"
+        ulkeler: [DEU, GBR, SWE, NOR, DNK, FIN, NLD, BEL, IRL, PRT, ESP, ITA, AUT, CHE]
+        etiketler: [DEU, GBR, ITA, ESP, SWE]
+        vurgu: {kod: TUR, etiket: "Ruhsat verilmedi"}
+        gecis: kaydir
+        satirlar:
+          - "İlaç onlarca ülkede satılıyor."
+          - "Ama Türkiye'de ruhsat alamıyor."
+        olaylar:
+          - {tip: basla, satir: 1, ofset: 0.1}
+          - {tip: ulke, kod: TUR, satir: 2, ofset: 0.7}
+
+      - tip: sayac
+        deger: 10000
+        sonek: "+"
+        ust: "Dünya genelinde"
+        etiket: "bebek etkilendi"
+        gecis: gecis
+        satirlar:
+          - "Dünyada on binden fazla bebek, ağır doğum kusurlarıyla dünyaya geliyor."
+        olaylar:
+          - {tip: basla, satir: 1, ofset: 0.6}
+
+      - tip: zaman_cizelgesi
+        baslik: "Felaketin takvimi"
+        arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
+        noktalar:
+          - {tarih: "1 Ekim 1957", metin: "Contergan satışa çıktı"}
+          - {tarih: "16 Kasım 1961", metin: "Dr. Lenz alarm verdi"}
+          - {tarih: "27 Kasım 1961", metin: "İlaç piyasadan çekildi"}
+        satirlar:
+          - "Kasım 1961'de Alman çocuk doktoru Widukind Lenz alarm veriyor."
+          - "On bir gün sonra ilaç piyasadan çekiliyor."
+        olaylar:
+          - {tip: nokta, indeks: 1, t: 0.6}
+          - {tip: nokta, indeks: 2, satir: 1, ofset: 0.4}
+          - {tip: nokta, indeks: 3, satir: 2, ofset: 0.2}
+
+  - baslik: Türkiye neden kurtuldu?
+    sahneler:
+      - tip: manset
+        gorsel: img/telifli/tfd_akcasu.png
+        etiket: "TÜRK FARMAKOLOJİ DERNEĞİ BÜLTENİ, 2012"
+        kutular:
+          - [217, 189, 1408, 226]
+          - [232, 323, 1411, 360]
+          - [41, 367, 269, 404]
+        satirlar:
+          - "Meslektaşlarının anlattığına göre farmakolog Şükrü Kaymakçalan, deneyleri yetersiz bulup olur vermedi."
+          - "Bakanlık da ilaca ruhsat vermedi."
+        olaylar:
+          - {tip: vurgula, kutu: 1, satir: 1, ofset: 1.2}
+          - {tip: vurgula, kutu: 2, satir: 2, ofset: 0.0}
+          - {tip: vurgula, kutu: 3, satir: 2, ofset: 0.55}
+
+      - tip: wojak
+        arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
+        kirp: [0.0, 0.0, 0.86, 1.0]   # sağ kenardaki modern prizler kadraja girmesin
+        kamera: {zoom: [1.04, 1.0], merkez: [[0.55, 0.48], [0.5, 0.5]]}
+        gecis: gecis
+        karakterler:
+          - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, giris: false}
+          - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag}
+        satirlar:
+          - "Anlatılana göre veteriner hekim Süreyya Tahsin Aygün de ilacı tavuk embriyolarında denemişti."
+          - "Türkiye, bu felaketi yaşamayan sayılı ülkelerden biri oldu."
+        olaylar:
+          - {tip: isim, karakter: b, ad: "Ord. Prof. Süreyya Tahsin Aygün", unvan: "Veteriner hekim (1895-1981)", satir: 1, ofset: 0.9, sure: 4.5}
+          - {tip: balon, karakter: b, metin: "Önce embriyoda deneyelim", satir: 1, ofset: 1.6, sure: 2.6}
+          - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 2, ofset: 0.4}
+        sfx:
+          - {ad: hit, satir: 2, ofset: 0.4, db: -8}
+
+kucukresimler:
+  - ad: a
+    arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
+    karakterler:
+      - {gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, taraf: sol, boy: 0.98}
+    yazi: "TÜRKİYE'YE GİREMEDİ"
+    vurgu_kelime: "GİREMEDİ"
+    ek: {gorsel: img/contergan_kutu.jpg, konum: sag_alt, boy: 0.30}
+    daire: {x: 0.80, y: 0.80, r: 0.17}
+  - ad: b
+    arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
+    karakterler:
+      - {gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sag, boy: 0.96}   # iddiayı satıcı söyler
+    yazi: "“TAMAMEN ZEHİRSİZ”"
+    vurgu_kelime: "ZEHİRSİZ"
+    ek: {gorsel: img/contergan_kutu.jpg, konum: sol_alt, boy: 0.36}
+    ok: {bas: [0.47, 0.50], son: [0.30, 0.66]}
+  - ad: c
+    arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
+    karart: 0.55
+    karakterler:
+      - {gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, boy: 0.9}
+      - {gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag, boy: 0.9}
+    yazi: "10.000+ BEBEK"
+    vurgu_kelime: "10.000+"
+
+paket:
+  baslik_alternatifleri:
+    - "Türkiye'ye giremeyen ilaç: Talidomit faciası"
+    - "Almanya'da hamilelere bile verilen ilaç Türkiye'ye neden giremedi?"
+    - "10.000 bebeği etkileyen ilaç ve onu durduran Türk bilim insanları"
+  aciklama: |
+    1957'de Batı Almanya'da reçetesiz satılan bir uyku ilacı, dört yıl içinde on binden fazla bebeğin ağır doğum
+    kusurlarıyla dünyaya gelmesine yol açtı. Türkiye ise bu faciayı yaşamayan sayılı ülkelerden biri oldu.
+    (Bu bir motor demosudur.)
+  etiketler: [talidomit, contergan, tarih, türkiye, ilaç faciası, şükrü kaymakçalan, süreyya tahsin aygün, wojak, tarihselwojak]
+  sabit_yorum: "Şükrü Kaymakçalan ve Süreyya Tahsin Aygün'ün adlarını daha önce duymuş muydunuz?"
+  kaynaklar:
+    - "Özdemir O., 'Türkiye'de Talidomid Gerçeği', Türk Farmakoloji Derneği E-Bülteni 114, 2012"
+    - "Pharmazeutische Zeitung 48/2011, '50 Jahre Marktrücknahme'"
+    - "Vargesson N., Birth Defects Res C 2015;105:140-156"
+  gorsel_atif:
+    - "Laboratuvar: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (düzenlendi)"
+    - "Contergan kutusu: Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0"
+    - "Belge: Türk Farmakoloji Derneği E-Bülteni 114 (2012), s. 10 (alıntı)"
+    - "Harita verisi: Natural Earth (kamu malı)"
+    - "Müzik ve efektler: kanalın kendi sentezi"
+  short_baglanti: "teslim/talidomit-turkiye (Short)"

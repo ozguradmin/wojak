@@ -9,6 +9,10 @@
     python -m wojak new <bolum-id>                     # şablondan yeni bölüm klasörü
     python -m wojak paket episodes/<bolum>             # sadece paylaşım metinlerini yeniden yaz
     python -m wojak teslim episodes/<bolum>            # video + kapak + metinler -> teslim/<bolum>/ (onaya)
+
+    python -m wojak uzun <komut> uzun/<id>             # UZUN FORMAT (YouTube 16:9): kontrol | seslendir |
+                                                       #   onizle | render | kare | kucukresim | paket | teslim
+                                                       #   ayrıntı: python -m wojak uzun --help, docs/UZUN_MOTOR.md
 """
 
 from __future__ import annotations
@@ -185,6 +189,10 @@ def cmd_new(a) -> None:
 
 
 def main(argv=None) -> None:
+    argv = sys.argv[1:] if argv is None else list(argv)
+    if argv and argv[0] == "uzun":   # uzun format motoru kendi alt komutlarını ayrıştırır
+        from .uzun.cli import main as uzun_main
+        return uzun_main(argv[1:])
     ap = argparse.ArgumentParser(prog="wojak", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sp = ap.add_subparsers(dest="cmd", required=True)
@@ -210,6 +218,7 @@ def main(argv=None) -> None:
     p = sp.add_parser("new")
     p.add_argument("id")
     p.set_defaults(fn=cmd_new)
+    sp.add_parser("uzun", help="uzun format (YouTube 16:9) motoru: python -m wojak uzun --help")
     a = ap.parse_args(argv)
     try:
         a.fn(a)
