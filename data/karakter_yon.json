@@ -143,6 +143,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
  },
+ "6f8ccdfb81a40c4cf6405b35392571e584766452": {
+  "faces": "right",
+  "file": "episodes/talidomit-turkiye/chars/veteriner.png"
+ },
  "7006644ceb4f6ce03457ecb1c4678e68f5257a7f": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/agliyor.png"
@@ -150,6 +154,10 @@
  "704e7248577ef014136250807c5ef47d5cdb1800": {
   "faces": "right",
   "file": "assets/kit/bizans_prenses/cok_terli.png"
+ },
+ "72c6a3a98826d49f06a960303f595096b2a73ce7": {
+  "faces": "right",
+  "file": "episodes/talidomit-turkiye/chars/temsilci_gergin.png"
  },
  "730a32a1b51a278d0a0ef1b68c6ed8697d0a71bd": {
   "faces": "right",
@@ -226,6 +234,10 @@
  "b74600a78a78ea055a83f8a5cfc02a70506809f5": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
+ "baf9fde2cf34ea557b9185e0cff52f26e02f95d1": {
+  "faces": "right",
+  "file": "episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png"
  },
  "c72f82d513a9e86b5a1bfdfd378339312593879a": {
   "faces": "right",
