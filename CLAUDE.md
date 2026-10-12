@@ -108,7 +108,7 @@ what the originals do. Full method and checklist: `docs/OGRENILENLER.md`.
 5. **Facts:** use at least 2 independent sources. Contested claims are written as "anlatılana göre" (as told),
    and a legend is called a legend. Record every image licence in `sources` and CC attribution in `credits`.
 6. **Git:**
-   - Commit or push only when asked.
+   - Commit and push finished work to the session's designated branch (the owner reviews there); no PR unless asked.
    - Never force-push or rewrite history without the owner's explicit approval.
    - During an episode fix loop, do not edit `wojak/` or `tools/`; report bugs instead.
 
