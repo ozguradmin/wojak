@@ -4,7 +4,7 @@ Süre: 14.0 sn · 6 sahne · video: `kiz-kulesi-efsanesi.mp4` · kapak: `kapak.j
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 2164/2200
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2113/2200
 
 ```
 Kız Kulesi'ne kapatılan prensesin 18. doğum günü
@@ -22,8 +22,6 @@ Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşı
 Sizce kaderden kaçmak mümkün mü?
 
 Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
-
-#kizkulesi #efsane #uskudar #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts

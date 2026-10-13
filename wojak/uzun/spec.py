@@ -45,7 +45,7 @@ GECIS_KARE = {"kesme": 0, "gecis": 8, "kaydir": 10}
 # sahne tipi -> izinli parametreler (ortak anahtarlar ayrıca)
 ZEMIN_PARAM = {"zemin", "arka", "arka_opak"}   # koyu "bilgi" sahnelerinin zemini (zemin.py)
 SAHNE_PARAMLARI: dict[str, set[str]] = {
-    "wojak": {"arka", "kamera", "karakterler", "karart", "bulanik", "doygunluk", "kirp", "odak", "etiket"},
+    "wojak": {"arka", "kamera", "karakterler", "karart", "bulanik", "doygunluk", "kirp", "odak", "etiket", "vinyet"},
     "foto": {"gorsel", "etiket", "egim", "zoom", "atif", "boy", "giris", "arka", "odak", "x"},
     "manset": {"gorsel", "kutular", "zoom", "arka", "renk", "boy", "etiket"},
     "harita": {"bolge", "ulkeler", "vurgu", "baslik", "aralik", "cozunurluk", "renk", "etiketler", "zoom",

@@ -70,7 +70,7 @@ bolumler:
         arka: img/mekan.jpg
         kirp: [0.0, 0.0, 0.9, 1.0]           # isteğe bağlı: fotoğrafın istenmeyen kenarını at (0..1)
         kamera: {zoom: [1.0, 1.07], merkez: [[0.5, 0.5], [0.46, 0.46]], it: 0.05, odak: 0.4}   # it: 0 = itme yok
-        karart: 0.12                         # bulanik: 1.6 (px), doygunluk: 0.85
+        karart: 0.12                         # bulanik: 1.6 (px), doygunluk: 0.85, vinyet: 0.42 (düz zeminde yakın çekim: 0.8)
         etiket: "ANKARA · 1960"              # sol altta daktiloyla yazılan yer-tarih etiketi (isteğe bağlı)
         muzik_db: -6                         # bu sahnede müzik kısık (0 = normal, +6 = açık)
         muzik_mod: gerilim                   # bu sahneden itibaren müzik kipi: drone | nabiz | gerilim | major

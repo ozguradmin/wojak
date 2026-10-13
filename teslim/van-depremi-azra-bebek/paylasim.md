@@ -4,7 +4,7 @@ Süre: 14.0 sn · 6 sahne · video: `van-depremi-azra-bebek.mp4` · kapak: `kapa
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1955/2200
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 1902/2200
 
 ```
 Van depreminde sütü kuruyan annesinin 47 saat hayatta tuttuğu 14 günlük bebek
@@ -22,8 +22,6 @@ AFAD'ın açıkladığı bilançoya göre 23 Ekim depreminde 604 kişi hayatın�
 Dedesi 2017'de, o yıl ilkokula başlayan Azra'nın kendisi gibi çocuk doktoru olmak istediğini anlatmıştı. Van depreminin üzerinden 15 yıl geçti. Aranızda o gün Van'da ya da Erciş'te olan var mı?
 
 Görseller: AKUT Arama Kurtarma Derneği, 'AKUT 2011 Van-3' / Wikimedia Commons (CC BY-SA 3.0 creativecommons.org/licenses/by-sa/3.0, düzenlendi) · Kanıt: Adem Altan/AFP, Takvim
-
-#vandepremi #erciş #azrabebek #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts

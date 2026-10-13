@@ -821,6 +821,73 @@ def buro():
     return t.done()
 
 
+def hekim_odasi():
+    """6. tur (izlenme hakemi S7: B2.5a düz mavi kâğıt zeminde "ucuz" görünüyordu): 1950'ler hekim çalışma odası,
+    düz çizim (2560x1440). Kitaplık (renkli sırtlar, yazısız), pencere, boş çerçeveli diploma, manzara tablosu,
+    masa lambası, kâğıtlı masa, kalorifer. Kişi/yazı/logo yok; orta parlaklık. Yer etiketi yok (Voss'un odası değil)."""
+    t = _zemin_tuval((214, 200, 170))
+    W, H = t.w, t.h
+    t.shape([(0, 930), (W, 930), (W, 1190), (0, 1190)], (112, 84, 58, 255), w=0, outline=None)      # lambri
+    for x in range(0, W, 240):
+        t.line([(x, 940), (x, 1180)], w=4, fill=(92, 68, 46, 255), amp=0)
+    t.line([(0, 930), (W, 930)], w=10, fill=(78, 56, 36, 255), amp=0)
+    _zemin(t, 1190, (128, 104, 82))
+    for x in range(-300, W + 600, 300):
+        t.line([(x, 1190), (x - 260, H)], w=4, fill=(108, 88, 70, 255), amp=0)
+    # kitaplık (solda): 4 raf, renkli sırtlar
+    t.shape([(120, 170), (860, 170), (860, 1210), (120, 1210)], (118, 78, 44, 255), w=10)
+    r = random.Random(31)
+    sirt = [(150, 52, 44), (52, 78, 120), (60, 104, 70), (182, 150, 84), (110, 60, 90), (196, 186, 160), (70, 70, 74)]
+    for y in (420, 670, 920, 1170):
+        t.shape([(140, y), (840, y), (840, y + 22), (140, y + 22)], (146, 100, 58, 255), w=5)
+        x = 160
+        while x < 800:
+            w, h = r.randint(36, 62), r.randint(170, 220)
+            if r.random() < 0.12:   # yatık kitap yığını
+                for k in range(3):
+                    t.shape([(x, y - 34 * (k + 1)), (x + 150, y - 34 * (k + 1)), (x + 150, y - 34 * k), (x, y - 34 * k)],
+                            sirt[r.randrange(len(sirt))] + (255,), w=4)
+                x += 165
+                continue
+            c = sirt[r.randrange(len(sirt))] + (255,)
+            t.shape([(x, y), (x + w, y), (x + w, y - h), (x, y - h)], c, w=4)
+            t.line([(x + 8, y - h + 30), (x + w - 8, y - h + 30)], w=4, fill=(230, 210, 150, 255), amp=0)
+            x += w + r.randint(2, 8)
+    # pencere (ortada) + perde
+    t.shape([(1080, 200), (1640, 200), (1640, 760), (1080, 760)], (200, 224, 236, 255), w=12)
+    t.line([(1360, 200), (1360, 760)], w=12)
+    t.line([(1080, 470), (1640, 470)], w=12)
+    for (x0, x1) in ((1000, 1110), (1610, 1720)):
+        t.shape([(x0, 160), (x1, 170), (x1 + 6, 820), (x0 - 6, 830)], (150, 120, 76, 255), w=8)
+    t.line([(980, 158), (1740, 158)], w=10)
+    # duvarda boş çerçeveli diploma ve manzara tablosu (sağda)
+    t.shape([(1860, 250), (2160, 250), (2160, 480), (1860, 480)], (238, 232, 212, 255), w=10)
+    t.shape([(1900, 290), (2120, 290), (2120, 440), (1900, 440)], (246, 242, 226, 255), w=4)
+    yazi_satirlari(t, 1930, 2090, 330, 3, gap=34, w=7, renk=(170, 160, 140, 255), seed=5)
+    t.shape([(2220, 230), (2480, 230), (2480, 560), (2220, 560)], (150, 112, 70, 255), w=10)          # manzara tablosu
+    t.shape([(2250, 260), (2450, 260), (2450, 530), (2250, 530)], (190, 218, 232, 255), w=4)
+    t.shape([(2250, 440), (2320, 380), (2390, 420), (2450, 370), (2450, 530), (2250, 530)], (112, 156, 98, 255), w=4)
+    t.ellipse(2400, 310, 22, 22, fill=(244, 214, 120, 255), w=3)
+    # masa (sağ önde) + lamba + kâğıtlar + mürekkep hokkası
+    t.shape([(1500, 1000), (2560, 1000), (2560, 1060), (1500, 1060)], (96, 64, 38, 255), w=8)
+    t.shape([(1540, 1060), (2520, 1060), (2520, 1380), (1540, 1380)], (120, 82, 50, 255), w=8)
+    for x0 in (1600, 2140):
+        t.shape([(x0, 1110), (x0 + 320, 1110), (x0 + 320, 1330), (x0, 1330)], (108, 72, 44, 255), w=6)
+        t.ellipse(x0 + 160, 1220, 14, 14, fill=(196, 166, 90, 255), w=4)
+    t.line([(1700, 1000), (1700, 760)], w=14, fill=(60, 74, 60, 255), amp=0)                # lamba
+    t.line([(1700, 760), (1800, 700)], w=12, fill=(60, 74, 60, 255), amp=0)
+    t.shape([(1760, 650), (1900, 650), (1940, 740), (1730, 740)], (44, 104, 70, 255), w=8)
+    t.shape([(1640, 990), (1760, 990), (1760, 1004), (1640, 1004)], (60, 74, 60, 255), w=5)
+    for k, (x, y) in enumerate(((1960, 960), (2010, 950), (2230, 970))):
+        t.shape([(x, y), (x + 220, y - 8), (x + 228, y + 34), (x + 6, y + 40)], (246, 244, 236, 255), w=5)
+    t.shape([(2400, 930), (2470, 930), (2480, 998), (2390, 998)], (40, 40, 52, 255), w=6)
+    # kalorifer (pencere altında)
+    t.shape([(1120, 960), (1600, 960), (1600, 1150), (1120, 1150)], (222, 222, 214, 255), w=8)
+    for x in range(1150, 1600, 50):
+        t.line([(x, 975), (x, 1135)], w=6, fill=(180, 180, 172, 255), amp=0)
+    return t.done()
+
+
 def doku_tebesir():
     """Kara tahta (yeşil, tebeşir lekeli, alt kenarda ahşap tebeşirlik): B5.13, B6.4a molekül/mekanizma."""
     W, H = 2560, 1440
@@ -991,6 +1058,8 @@ def hepsi(sec: list[str]):
         kaydet(doku_ahsap(), "../doku_ahsap.jpg")
         kaydet(kanun_sayfasi(), "kanun_1262_sayfa.jpg")
         kaydet(gazete_2008(), "gazete_2008_canlandirma.png", trim=False)
+    if on("hekim"):   # 6. tur
+        kaydet(hekim_odasi(), "../arka_hekim_odasi_cizim.jpg")
     if on("doku"):
         kaydet(mantar_pano(), "../arka_mantar_pano.jpg")
         kaydet(kagit_doku(False), "../doku_kagit.jpg")

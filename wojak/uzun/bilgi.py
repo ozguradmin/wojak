@@ -254,7 +254,7 @@ class IzgaraCizici(Cizici):
         self.ust = C.yazi(C.buyuk(str(p["ust"])), C.FONT_BOLD, 34 * S, pal.ikincil, aralik=0.2) if p.get("ust") else None
         self.etiket = C.yazi(str(p["etiket"]), C.FONT_DIALOG, 56 * S, pal.vurgu, max_w=1500 * S, max_lines=2,
                              align="center", golge=pal.golge_t(S, 4, 8)) if p.get("etiket") else None
-        self.alt = C.yazi(str(p["alt"]), C.FONT_BOLD, 26 * S, pal.ikincil) if p.get("alt") else None
+        self.alt = C.yazi(str(p["alt"]), C.FONT_BOLD, 30 * S, pal.ikincil) if p.get("alt") else None   # 6. tur: 26 -> 30
         self.son_etiketler = [(t0, C.yazi(str(et), C.FONT_DIALOG, 56 * S, (226, 80, 70) if pal.koyu else pal.vurgu,
                                           max_w=1500 * S, max_lines=2, align="center", golge=pal.golge_t(S, 4, 8)))
                               for t0, _, _, et in self.zt["sondur"] if et]
@@ -429,7 +429,7 @@ class PanoCizici(Cizici):
         bas = C.yazi(str(k["metin"]), C.FONT_BOLD, (52 if stil == "merkez" else 40) * S,
                      (84, 76, 68) if stil == "bos" else murekkep, max_w=en - 2 * pad, max_lines=5, align="center",
                      satir=1.12)
-        alt = C.yazi(str(k["alt"]), C.FONT_BOLD, 25 * S, (96, 86, 76), max_w=en - 2 * pad, max_lines=4,
+        alt = C.yazi(str(k["alt"]), C.FONT_BOLD, 28 * S, (84, 74, 64), max_w=en - 2 * pad, max_lines=4,   # 6. tur: 25 -> 28
                      align="center", satir=1.15) if k.get("alt") else None
         foto = None
         if k.get("gorsel"):

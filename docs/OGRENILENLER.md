@@ -8,6 +8,39 @@
 
 ---
 
+## Hesap sahibinin doğrudan geri bildirimi (hakemlerden önce gelir)
+
+| Tarih | Ne dedi | Bundan sonra kural |
+|---|---|---|
+| 09.10 | İlk parti 3/10: "tarihselwojak kalitesinde değil"; atıf yazıları ve dışarı bakan karakterler | STIL.md ölçüleri; etiket yok; karakter hep içeri bakar |
+| 11.10 | Yeniden yapılan 3 kısa video: "güzel duruyolar beğendim" | Bu üçü + talidomit = kısa reel referans seti |
+| 12.10 | Talidomit kısa: "çok iyi, uzmanlaştın" | Kısa reel hattı oturdu; uzun format başladı |
+| 13.10 | Uzun video: **videoyu beğendi, sesi beğenmedi** (Cartesia Murat) | Ses ElevenLabs kredisi gelince yeniden üretilecek; o zamana kadar ses değişmez. Yeni sağlayıcıda sesler yine ölçerek seçilir (§ uzun format) |
+| 13.10 | **Kendi çizdiğimiz kıyafetler kötü** (wojak başı + elle boyanmış tişört/yaka, boyun dikiş izleri) | Kıyafetli karakter **hazır** bulunur (wojakland, wojaksparadise, kütüphane: tek parça çizim). Kıyafet çizmek/yamamak son çare; yapılırsa hakem yakın plan kontrolü zorunlu. Hazır kıyafetliler "okay" |
+| 13.10 | Yüz ifadeleri beğenildi ama daha iyi olabilir | Varyant: aynı çizgi kalınlığı, temiz göz/ağız, telefonda okunur fark; yakın plan yüz sayfası her bölümde |
+| 13.10 | Animasyon kalitesi beğenildi ama **hatalar var**, daha iyisi yapılabilir | Uzun videoda ayrı bir "animasyon/karakter" hakemi: kare kare sıçrama, titreme, kırpılma, çakışma, katman sırası |
+| 13.10 | Bitiş ekranındaki 2 video kutusu gereksiz (kanalda henüz 2 uzun video yok) | Bitişte video kutusu yok (kanalda yeterli video olunca yeniden düşünülür). Abone/beğeni/yorum çağrısı **düz değil, ilgi çekici**: hikâyeye bağlı soru + wojak'lı animasyon |
+| 13.10 | Instagram açıklamalarında **hashtag kullanmıyoruz** | `pack.py` Instagram metnine hashtag koymaz. YouTube'da 2-3 hashtag serbest |
+| 13.10 | YouTube başlığı **"AI slop" gibi durmamalı**, ilgi çekici olmalı | Başlıkta abartı sıfatı, emoji, "şok" kalıbı yok; merak boşluğu + somut ayrıntı (yer, sayı, kişi) |
+| 13.10 | Teslim: videolar Telegram botuyla (kalite kaybı olmadan) | `tools/telegram_gonder.py`: 50 MB altı belge, üstü sıkıştırmasız 7-Zip parçaları. Sohbet dosya sınırı 30 MB |
+| 13.10 | "Yapayım geçeyim değil, sınırlarını zorla; benchmarktasın gibi düşün" | Her teslimden önce: hakemler 8+ VE kendi gözümüzle kare kare kontrol; bilinen bir kusurla teslim yok, varsa açıkça yazılır |
+
+### Uzun format: ilk videodan dersler (talidomit, 12-13.10)
+
+- **Kredi bütçesi:** 10 dk'lık anlatım ~8.600 karakter; düzeltmelerle video başına ~11-13 bin. Ses testleri ve
+  deneme videosu ayrıca ~6 bin harcadı. Önbellek şart: yalnız değişen satır yeniden seslendirilir.
+- **Wojak payı:** ilk kurguda karakterli sahne süresi %27'ydi ("wojak kanalı için az"); misafir wojak katmanı,
+  anlatıcı wojak ve sayaç/harita yanında tepki veren karakterlerle %50'nin üstüne çıktı. Hedef baştan %50+.
+- **Tekrar eden görsel:** aynı fotoğraf 5 kez kullanılınca hakem "dolgu" dedi; görsel başına en fazla 2 kullanım.
+- **Yazı çakışmaları:** damga/etiket/kelime katmanları yüzlere ve başka yazılara biniyordu; her turda kare taraması.
+- **Efekt tepe sesleri:** bölüm kartı boom/whoosh kulaklıkta irkiltiyordu; konuşma medyanının en fazla +3 dB üstü.
+- **Doruk anı:** başlığın cevabı (Ankara'daki "hayır") ilk kurguda zayıf kaldı; doruk sahnesi en güçlü kamera,
+  damga ve yüz değişimiyle kurulmalı, en az 1,2 sn okunur kalmalı.
+- **Puan seyri:** izlenme 7 → 6,5 → 7 → 8 → 7,5; Türkçe/olgu 6,5 → 8,5; teknik 8,5 → 9,5. İzlenme hakemi en zor
+  ikna olan; sahibin beğenisi geldi, kalan kusurlar yukarıdaki tabloda kural oldu.
+
+---
+
 ## 0. Tek bakışta: puanı yükselten 10 ders
 
 1. **Tahmin etme, orijinali ölç.** Puanı en çok yükselten adım 30 altın dönem reel'inin kare kare ölçülmesiydi
@@ -448,3 +481,21 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
     z uzatılmış eski çekim kaldı. Whisper "talidomit"i ara durak sonrası hep "Tali Domit" yazıyor (tanıyıcının dili).
   - Yeni duraklar ve yavaş okuma süreyi uzatır (+13 sn): 10:15 sınırı için sahne sonu 0,32 -> 0,26, damga sonrası
     1,2 -> 1,0 sn, bitiş ekranı 10,5 sn ve Türkiye sorusuna katkısı en az olan sahne (Alman davası) çıktı.
+- **6. tur (üç hakem + hesap sahibi):** yeni TTS yalnız metni/hızı değişen satırlara, satır başına bir çekim (9 istek).
+  Dersler:
+  - Tez damgası cümleyle yarışmasın: videonun vardığı cümlenin damgası cümle BİTİNCE iner, ardından 1,3 sn sessizlik
+    (`sonra: 1.3` + `muzik db:-40`); 0,55 sn'de "flaş" gibi geçiyordu. Süre bitiş ekranından (10,5 -> 9,3 sn) alındı.
+  - Whisper'ın her çözümde yanlış duyduğu kısaltma ("FDA" -> "FTA"), yeniden çekim yerine iki sessizliğin arasından
+    kesilebilir; bilgi ekranda kalır (altyazıda parantez içinde). Kelsey adını en net söyleyen çekim korunmuş olur.
+  - Cartesia `speed` her çekimde farklı tepki veriyor: 0,92 bir satırı %9 yavaşlattı, 0,9 öbürünü %2; 0,85 virgüle
+    0,7 sn durak koydu (0,45'e kısaltıldı). Yavaşlatılan bir çekim "faciayı"yı yuttu: eski çekim kaldı. Her yeni çekimi
+    iki Whisper çözümüyle dinle; bozuksa eskisini koru.
+  - Tekrarlanan kelimeyi metinden çıkarmak ("Talidomite" -> "İlaca") tanıyıcının bölme sorununu da bitirir.
+  - Damga sahnenin kendi yazısının (takvimdeki ay, şişe) üstüne basılmaz: yanına ya da üstüne; açık zeminde varsayılan
+    kırmızı soluk pembe görünüyor: `renk: [168, 0, 22]` + `kontur`. Yüze binen damga yasak (B5.3c'de ilk deneme yüze
+    biniyordu: kare kontrolüyle yakalandı).
+  - Aynı karakter art arda dört çekimde aynı kadrajda kalmasın: boyu değiştir (0,56 / 0,72 / 0,86), tarafı değil.
+  - Düz doku zemin (mavi kâğıt, karton) "ucuz" görünüyor: ya kendi çizimimiz bir oda (hekim odası) ya da bilinçli
+    yakın çekim (`vinyet: 0.8` + kamera 1,0 -> 1,3).
+  - Küçük resimde en çok üç öğe (yazı, karakter, bir simge); zemin doygun kırmızı-siyah radyal: açık ve koyu akışta
+    öne çıkar.

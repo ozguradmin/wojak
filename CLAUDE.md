@@ -72,6 +72,15 @@ python tools/kit_varyant.py ...                   # face variants of one base
 python -m pytest tests/ -q                        # or: python tests/test_uzun.py
 ```
 
+## The owner's standing preferences (latest first; details in docs/OGRENILENLER.md, top table)
+
+- Push for the best possible result ("benchmarktasın gibi"); never ship a known flaw silently.
+- Long videos: voice will be redone with ElevenLabs when credits arrive (owner disliked the Cartesia voice).
+- Characters: prefer ready-made clothed wojaks; do not paint clothes onto wojak heads. Face variants must be clean.
+- No end-screen video boxes for now; the subscribe/like/comment call must be engaging, tied to the story.
+- Instagram captions: no hashtags. YouTube: 2-3 hashtags allowed. Titles must not read like AI slop.
+- Deliver videos via Telegram (`tools/telegram_gonder.py`; creds in secrets.env), chat files are limited to 30 MB.
+
 ## Quality bar and workflow
 
 A short reel ships only when two independent judges both give it **at least 8/10** and no MUST fix remains.

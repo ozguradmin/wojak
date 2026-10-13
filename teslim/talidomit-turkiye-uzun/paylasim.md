@@ -1,7 +1,7 @@
 # Türkiye Bu İlaca Neden ‘Hayır’ Dedi? — uzun video paketi
 
-Süre: **10:14** (614.1 sn), 91 sahne, 8 bölüm.
-Video: `talidomit-turkiye.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
+Süre: **10:13** (613.4 sn), 92 sahne, 8 bölüm.
+Video: `talidomit-turkiye-uzun.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
 Ölçüm (mp4): -14.0 LUFS, tepe -2.0 dBTP; senkron: tamam
 
 ## Başlık alternatifleri
@@ -15,19 +15,19 @@ Video: `talidomit-turkiye.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
 ## Açıklama (kopyala-yapıştır)
 
 ```
-Talidomit (Almanya'daki adıyla Contergan) 1957-1961 arasında onlarca ülkede satıldı ve 10 binden fazla bebeğin ağır doğumsal kusurlarla dünyaya gelmesine yol açtı. Türkiye'de ise bu ilaca ruhsat verilmedi. Bu videoda o kararın bilinen ve bilinmeyen yanlarını, hikâyenin 2004'teki beklenmedik devamıyla birlikte anlatıyoruz. Türkiye bölümü hakkında not: Bu bölümün bir kısmı belgeye değil tanıklığa dayanıyor. Şükrü Kaymakçalan'ın olumsuz görüşünü meslektaşları anlatıyor (TFD Bülteni, 2012). Süreyya Tahsin Aygün'e atfedilen tavuk embriyosu deneyinin bilinen en eski kaynağı 2008 tarihli bir haber; haberin kaynağı belge sunamadı. Başvurunun yılı, başvuran firma ve Bakanlığın yazısı bugüne kadar yayımlanmadı. O yıllardan bir belgeniz varsa yorumlara yazın.
+Talidomit (Almanya'daki adıyla Contergan) 1957'den itibaren onlarca ülkede satıldı ve 10 binden fazla bebeğin ağır doğumsal kusurlarla dünyaya gelmesine yol açtı. Türkiye'de ise bu ilaca ruhsat verilmedi. Bu videoda o kararın bilinen ve bilinmeyen yanlarını, hikâyenin 2004'teki beklenmedik devamıyla birlikte anlatıyoruz. Türkiye bölümü hakkında not: Bu bölümün bir kısmı belgeye değil tanıklığa dayanıyor. Şükrü Kaymakçalan'ın olumsuz görüşünü meslektaşları anlatıyor (TFD Bülteni, 2012). Süreyya Tahsin Aygün'e atfedilen tavuk embriyosu deneyinin bilinen en eski kaynağı 2008 tarihli bir haber; haberin kaynağı belge sunamadı. Başvurunun yılı, başvuran firma ve Bakanlığın yazısı bugüne kadar yayımlanmadı. O yıllardan bir belgeniz varsa yorumlara yazın.
 
 Kısa hali (Short): [Short bağlantısı]
 
 Bölümler
 0:00 Giriş
 0:43 1 · Zehirsiz Mucize
-2:11 2 · Dünyayı Dolaşan Hap
+2:10 2 · Dünyayı Dolaşan Hap
 3:12 3 · On İki Gün
 4:50 4 · Hayır Diyen Kadın
-5:58 5 · Ankara'da Bir ‘Hayır’
-8:13 6 · Geri Dönen Hap
-9:35 Kapanış
+5:57 5 · Ankara'da Bir ‘Hayır’
+8:12 6 · Geri Dönen Hap
+9:34 Kapanış
 
 Kaynaklar
 - Özdemir O., 'Türkiye'de Talidomid Gerçeği', TFD E-Bülteni 114 (2012): http://www.tfd.org.tr/sites/default/files/Klasor/Dosyalar/ebultenler/114_2012_4_0.pdf
@@ -71,12 +71,12 @@ Seslendirme yapay zekâ ile üretilmiştir (Cartesia). Karakterler canlandırmad
 ```
 0:00 Giriş
 0:43 1 · Zehirsiz Mucize
-2:11 2 · Dünyayı Dolaşan Hap
+2:10 2 · Dünyayı Dolaşan Hap
 3:12 3 · On İki Gün
 4:50 4 · Hayır Diyen Kadın
-5:58 5 · Ankara'da Bir ‘Hayır’
-8:13 6 · Geri Dönen Hap
-9:35 Kapanış
+5:57 5 · Ankara'da Bir ‘Hayır’
+8:12 6 · Geri Dönen Hap
+9:34 Kapanış
 ```
 
 ## Etiketler
@@ -105,7 +105,7 @@ Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yet
 
 ## Altyazı
 
-`talidomit-turkiye.srt` (Türkçe, zamanlamalı): Studio > Altyazılar > Türkçe > Altyazı ekle > Dosya yükle > *Zamanlamalı*.
+`talidomit-turkiye-uzun.srt` (Türkçe, zamanlamalı): Studio > Altyazılar > Türkçe > Altyazı ekle > Dosya yükle > *Zamanlamalı*.
 
 ## Yükleme kontrol listesi
 
@@ -115,26 +115,28 @@ Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yet
 - [ ] Altyazı (.srt) yüklendi, dil: Türkçe
 - [ ] Etiketler yapıştırıldı; kategori: Eğitim (ya da Kişiler ve Bloglar), dil: Türkçe
 - [ ] Kitle: 'Çocuklara özel değil'
-- [ ] Bitiş ekranı (son ~10 sn): 'En son yüklenen' ya da ilgili video + Abone ol — öğeleri **10:04**'ten itibaren videodaki iki boş kutunun İKİSİNİ DE ve dairenin üstüne yerleştir, kutuyu tam örtecek kadar büyüt (boş kalan kutu yer tutucu gibi görünür; daha erken başlarsa kapanış sahnesinin üstüne biner)
+- [ ] Bitiş ekranı (son ~8 sn): 'En son yüklenen' ya da ilgili video + Abone ol — öğeleri **10:05**'ten itibaren videodaki iki boş kutunun İKİSİNİ DE ve dairenin üstüne yerleştir, kutuyu tam örtecek kadar büyüt (boş kalan kutu yer tutucu gibi görünür; daha erken başlarsa kapanış sahnesinin üstüne biner)
 - [ ] **Shorts > İlgili video**: kısa sürümün (Short) Studio düzenleme sayfasında 'İlgili video' olarak BU uzun video seçildi (Short izleyicisini uzun videoya taşır)
 - [ ] Short'un açıklamasına 'Uzun hali kanalda' satırı eklendi; bu açıklamadaki [Short bağlantısı] dolduruldu
 - [ ] Short henüz yayımlanmadıysa açıklamadaki 'Kısa hali (Short): [Short bağlantısı]' satırı silindi
 - [ ] Sabit yorum yazıldı ve sabitlendi
 - [ ] 'Değiştirilmiş ya da yapay içerik' sorusu: 'Hayır' öner. Seslendirme yapay zekâ (Cartesia) ama yalnız anlatıcı ile reklam sloganı ve ürün bilgisi alıntıları; gerçek bir kişinin sesi ya da görüntüsü üretilmedi, sahneler açıkça çizim. Açıklamadaki 'Seslendirme yapay zekâ ile üretilmiştir' satırı kalsın.
-- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:12 (3. bölüm kartı: 3:11.600–3:13.000), 5:58 (5. bölüm kartı: 5:57.467–5:58.867)** (otomatik ara reklam kapalı)
+- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:12 (3. bölüm kartı: 3:11.600–3:13.000), 5:57 (5. bölüm kartı: 5:56.400–5:57.800)** (otomatik ara reklam kapalı)
 - [ ] Görsel atıfları açıklamada (CC BY-SA görseller atıf ister); telif kararları verildi (aşağıdaki 'Telif notu' bölümü)
 - [ ] **Yayından önce kulakla dinle** (yapay zekâ seslendirmesi; satırın başladığı an). Kabul edilemeyen varsa yayımlama, bildir:
   - 0:16 «Ama ortada yayımlanmış tek bir belge yok.» — 'yayınlanmış' gibi duyulabilir (anlam farkı: yayım = basılıp duyurulma)
   - 2:00 «Asıl soruyu ise kimse araştırmamış: Hamile bir…» — yeni çekim (dil hakemi MUST 1): durak artık 'araştırmamış'tan sonra
+  - 2:19 «Kasım 1961'e kadar yalnız Grünenthal'in 300 milyonu aşkın günlük…» — izlenme hakemi (6. tur): Whisper 'Gülbünental'in' duydu; dil hakemi temiz stem'de doğru buldu
   - 3:42 «Ertesi gün aynı talebi taahhütlü bir mektupla tekrarlıyor.» — yeni çekim: 'taahhütlü' uzun a ile ('tâhütlü') okunuyor; kabul edilebilir mi
   - 3:45 «Firmanın yanıtı sert: Lenz'i iftirayla suçluyor, dava açmakla…» — yeni çekim: 'Lents'i, iftirayla' ekli mi
-  - 4:57 «1960'ta ABD'nin ilaç kurumu FDA, yeni bir uzmanı göreve…» — yeni çekim: FDA 'Ef De A' okunuyor; Kelsey adı net mi
-  - 6:27 «…da bu görüşe uyuyor. Talidomite ruhsat verilmiyor.» — 4 yeni çekimin en iyisi; Whisper 'Tali Domite' diye bölüyor (tanıyıcı da olabilir)
-  - 7:27 «Nejat Eczacıbaşı ise bir röportajında başarıyı bir kuruma…» — yeni metin ('söyleşisinde' 'söylesinde' duyuluyordu); Whisper 'Nejat'ı 'Necdet' yazıyor
-  - 8:13 «…Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor.» — z uzatılmış eski çekim (TTS ikiz zz'yi hâlâ 'cüzdan' okuyor)
-  - 8:26 «…yavaş geri dönüyor: önce cüzzamın bir komplikasyonu için, sonra bir kan…» — yeni çekim ('kan kanseri olan'): Whisper 'cüzzamın' duyuyor, açgözlü çözüm 'cüzdanımın'
-  - 8:36 «Brezilya'da cüzzam tedavisinde kullanıldığı için,…» — z uzatılmış eski çekim
-  - 9:02 «…Cerrahpaşa'da yapıldı ve 1998'de yayımlandı.» — 'yayınlandı' gibi duyulabilir
+  - 4:56 «1960'ta ABD'nin ilaç kurumu (FDA), yeni bir uzmanı göreve…» — 6. tur: 'FTA' duyulan ilk FDA sesten kesildi (ekranda; ikinci FDA 'Kural şu' satırında sesli); kesik doğal mı
+  - 6:15 «Aynı tanıklıklara göre Kaymakçalan, ilacın etkili…» — 6. tur yeni çekim (hız 0,85; virgüldeki durak 0,45 sn'ye kısaltıldı): doruk satırı
+  - 6:27 «…da bu görüşe uyuyor. İlaca ruhsat verilmiyor.» — 6. tur yeni çekim ('Talidomite' 'Talih domite' diye bölünüyordu)
+  - 7:26 «Nejat Eczacıbaşı ise bir röportajında başarıyı bir kuruma…» — yeni metin ('söyleşisinde' 'söylesinde' duyuluyordu); Whisper 'Nejat'ı 'Necdet' yazıyor
+  - 8:12 «…Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor.» — z uzatılmış eski çekim (TTS ikiz zz'yi hâlâ 'cüzdan' okuyor)
+  - 8:25 «…yavaş geri dönüyor: önce cüzzamın bir komplikasyonu için, sonra bir kan…» — onarımsız tek cüzzam satırı: dil hakemi ölçümü z ~120 ms (ikiz uzunluğu), m genizden, d kapanması yok; Whisper 5 çözümün 3'ünde 'cüzdanın'. 'cüzdan' duyuluyorsa bildir
+  - 8:35 «Brezilya'da cüzzam tedavisinde kullanıldığı için,…» — z uzatılmış eski çekim
+  - 9:01 «…Cerrahpaşa'da yapıldı ve 1998'de yayımlandı.» — 'yayınlandı' gibi duyulabilir
   - 9:50 «…‘hayır’ın ise bugün yayımlanmış tek bir belgesi bile yok.» — 'yayınlanmış' gibi duyulabilir (anlam farkı: yayım = basılıp duyurulma)
 - [ ] Küçük resim: K1 (zehirsiz) ANA küçük resim; 'Test ve karşılaştır' açılırsa sıra K1 / K3 / K2, başlık 1 ile. Studio başlık testini de açıyorsa başlık 1 ile başlık 2'yi (bedel: '10 binden fazla bebek') karşılaştır. Başlık 3 seçilirse K2'yi testten çıkar (yazısı başlık 3'ün '46 Ülkede Satıldı' kelimelerini tekrar eder).
 - [ ] Açıklama YouTube'un 5.000 bayt sınırına yakın: bağlantı ya da satır ekleme (Short bağlantısı payı hesapta). İstersen kalan ~150 baytla atıflara tek satır eklenebilir: 'Görsellerin dosya bağlantıları ve lisansları: <repodaki uzun/talidomit-turkiye/VARLIKLAR.md bağlantısı>'. Eklemedim: bağlantı GitHub hesabını kanala bağlar (gizlilik kararı senin).
@@ -148,6 +150,6 @@ Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yet
   - tfd_bulten26_1994_kapak.jpg, tfd_bulten26_1994_s2.jpg → B5.8 panodaki 'ANMA YAZILARI, 1994' kartı (şu an kendi bülten kartımız). Telifli (Türk Farmakoloji Derneği): izin ya da atıfla alıntı kararı.
   - tfd_bulten114_2012_kirpim.png → B5.8 'KAYMAKÇALAN' ya da 'BELGE SUNULAMADI' kartı. Telifli (TFD).
   - kub_bolum44_kesit.png / kub_bolum44_kesit_gri.png ve kub_ilk_ruhsat_2004.png → B6.7 KÜB kartı (şu an kendi yazı kartımız). TİTCK'te yayımlı ürün bilgisi (hak sahibi ruhsat sahibi firma). Atıf: 'Kısa Ürün Bilgisi: TİTCK'.
-- Açık lisansı olmayan karakter tabanları (topluluk wojak çizimleri, kanalın genel pratiği): Kelsey rolü (wojakparadise 'Secretary Daddy's Girl', yeniden boyandı), anne adayı (wojakland 'Trad Wife', değiştirilmeden), 2000'ler temsilcisi (wojakland 'Grey Suit Wojak').
+- Açık lisansı olmayan karakter tabanları (topluluk wojak çizimleri, kanalın genel pratiği): Kelsey rolü (wojakparadise 'Secretary Daddy's Girl', yeniden boyandı), anne adayı (wojakland 'Trad Wife', değiştirilmeden), 2000'ler temsilcisi (wojakland 'Grey Suit Wojak'), Short'tan gelen temsilci (gülümseyen/gergin; K1, K2 ve bitiş ekranının karakteri: wojakland '1950s Businessman Wojak') ve veteriner hoca rolü (wojakland 'Grandpa Wojak').
 
 Short: teslim/talidomit-turkiye (Short; 'İlgili video' olarak bu uzun video bağlanır). Uzun video yayımlanınca: episodes/talidomit-turkiye/episode.yaml uzun_video + python -m wojak paket episodes/talidomit-turkiye (Short'un açıklamasına 'Uzun hali kanalda' satırı)

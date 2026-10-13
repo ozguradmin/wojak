@@ -16,7 +16,14 @@ from .zaman import Zaman, zaman_str
 BASLIK_MAX = 100
 ETIKET_MAX = 500
 ACIKLAMA_MAX = 5000
+BINDIRME_PAYI = 0.1   # bindirme kartı tam saniyeden en çok bu kadar sonra başlıyorsa bölüm damgası aşağı yuvarlanır
 KISA_URL_PAYI = 45   # "[Short bağlantısı]" yerine gelecek https://youtube.com/shorts/... bağlantısının ek baytı
+
+
+def teslim_adi(v: Video, uzanti: str) -> str:
+    """Teslim klasöründeki video/altyazı adı: `<id>-uzun.mp4` / `.srt` (6. tur, teknik hakem: aynı id'li Short'un
+    teslimi de `<id>.mp4`; ikisi sohbetten indirilince biri ötekinin üstüne yazılabiliyordu)."""
+    return f"{v.id}-uzun{uzanti}"
 
 
 def yukari(t: float) -> int:
@@ -32,12 +39,23 @@ def bolum_damgalari(z: Zaman) -> list[tuple[int, str]]:
 
     Kartsız bölümde (ilk sahnesi bölüm kartı değil) AŞAĞI yuvarlanır: yukarı yuvarlanınca ilk kelime kesiliyordu
     (talidomit-turkiye 4. tur, teknik hakem: "Kapanış" 9:36'ya düştü, konuşma 9:35,53'te başlıyordu; "Peki" kırpıldı).
-    Aradaki kesir önceki sahnenin son sessiz payına düşer."""
+    Aradaki kesir önceki sahnenin son sessiz payına düşer.
+
+    Bindirme kartında kart, tam saniyeden en çok BINDIRME_PAYI sn sonra başlıyorsa da aşağı yuvarlanır (6. tur, teknik
+    hakem N4: yukarı yuvarlanan 2:11 ve 8:13 kartın son ~0,25 sn'sine düşüyordu; aşağıdaki an, bindirmenin dondurduğu
+    karenin kendisi, sessiz son pay)."""
     import math
     out = []
-    kartli = [b.sahneler[0].tip == "bolum_karti" for b in z.video.bolumler if b.sahneler]
-    for (ad, t), k in zip(z.bolum_baslari(), kartli):
-        s = 0 if not out else (yukari(t) if k else int(math.floor(t + 1e-6)))
+    ilkler = [b.sahneler[0] for b in z.video.bolumler if b.sahneler]
+    for (ad, t), s0 in zip(z.bolum_baslari(), ilkler):
+        kartli = s0.tip == "bolum_karti"
+        alt = int(math.floor(t + 1e-6))
+        if not out:
+            s = 0
+        elif not kartli or (s0.p.get("bindirme") and t - alt <= BINDIRME_PAYI):
+            s = alt
+        else:
+            s = yukari(t)
         out.append((s, ad))
     return out
 
@@ -183,7 +201,7 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
     L = [f"# {v.baslik} — uzun video paketi", ""]
     L += [f"Süre: **{zaman_str(z.sure)}** ({z.sure:.1f} sn), {len(z.sahneler)} sahne, {len(v.bolumler)} bölüm."]
     if mp4:
-        L.append(f"Video: `{mp4.name}` (1920x1080, 30 fps, H.264 + AAC 48 kHz)")
+        L.append(f"Video: `{teslim_adi(v, mp4.suffix)}` (1920x1080, 30 fps, H.264 + AAC 48 kHz)")
     if olcum:
         lufs = olcum.get("mp4_lufs", olcum.get("son_lufs"))
         tepe = olcum.get("mp4_tepe_dbtp", olcum.get("son_tepe_dbtp"))
@@ -203,7 +221,7 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
         L += ["", "## Küçük resimler", ""] + [f"- `{k.name}`" for k in kucukresimler]
         L.append("- YouTube Studio > Küçük resim > **Test ve karşılaştır**: hepsini yükle, kazananı YouTube seçer.")
     if srt:
-        L += ["", "## Altyazı", "", f"`{srt.name}` (Türkçe, zamanlamalı): Studio > Altyazılar > Türkçe > "
+        L += ["", "## Altyazı", "", f"`{teslim_adi(v, srt.suffix)}` (Türkçe, zamanlamalı): Studio > Altyazılar > Türkçe > "
               "Altyazı ekle > Dosya yükle > *Zamanlamalı*."]
     L += ["", "## Yükleme kontrol listesi", ""]
     L += [

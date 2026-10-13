@@ -279,21 +279,23 @@ def harita_zemini() -> None:
 
 
 def zehirsiz_zemini() -> None:
-    """K1: koyu kâğıt; solda adsız beyaz kutu, köşede genel 'gebelik yasağı' simgesi (kendi çizimimiz)."""
+    """K1: kırmızıdan siyaha radyal zemin (koyu kâğıt dokusuyla), solda yeşil Türkiye silueti + kırmızı "HAYIR" bloğu
+    (kendi çizimimiz; Natural Earth). 6. tur (izlenme hakemi N3): dört öğe yarışıyordu ve çamur kahve zemin açık/koyu
+    akışta kayboluyordu: gebelik piktogramı çıktı, Türkiye büyüdü, zemin doygun kırmızı-siyah."""
     W, H = 1920, 1080
-    im = kagit(W, H, koyu=True).convert("RGBA")
+    doku = np.asarray(kagit(W, H, koyu=True).convert("L"), np.float32)
+    doku = 0.82 + 0.36 * (doku - doku.mean()) / max(1.0, doku.std() * 4)
     yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
-    d = np.sqrt(((xx - W * 0.35) / W) ** 2 + ((yy - H * 0.55) / H) ** 2)
-    isik = Image.fromarray((np.clip(1 - d * 1.6, 0, 1) * 70).astype(np.uint8), "L")
-    im.paste((255, 214, 120, 255), (0, 0), isik)
-    # 3. hakem turu: adsız beyaz kutu yerine yeşil Türkiye silueti + kırmızı "HAYIR" bloğu (başlıktaki 'hayır'a
-    # bağlanır); piktogram yerinde
-    tr = turkiye_silueti(640)
-    im.alpha_composite(tr, (20, H - tr.height - 90))
-    hb = kirmizi_blok("HAYIR", 118, -7.0)
-    im.alpha_composite(hb, (20 + tr.width // 2 - hb.width // 2 - 20, H - tr.height - 90 + tr.height // 2 - hb.height // 2))
-    pk = Image.open(CIZ / "gebelik_yasak_piktogram.png").convert("RGBA").resize((360, 360), Image.LANCZOS)
-    im.alpha_composite(golge(pk, 14, 0.5, 6, 10), (680, H - 360 - 60))
+    d = np.clip(np.sqrt(((xx - W * 0.58) / (W * 0.62)) ** 2 + ((yy - H * 0.42) / (H * 0.78)) ** 2), 0, 1)
+    ic, dis = np.array([188, 26, 30], np.float32), np.array([16, 3, 5], np.float32)
+    k = (d ** 1.35)[..., None]
+    rgb = (ic * (1 - k) + dis * k) * doku[..., None]
+    im = Image.fromarray(np.clip(rgb, 0, 255).astype(np.uint8)).convert("RGBA")
+    tr = turkiye_silueti(860)
+    x0, y0 = 10, H - tr.height - 40
+    im.alpha_composite(tr, (x0, y0))
+    hb = kirmizi_blok("HAYIR", 150, -7.0)
+    im.alpha_composite(hb, (x0 + tr.width // 2 - hb.width // 2 - 30, y0 + tr.height // 2 - hb.height // 2))
     kaydet(im.convert("RGB"), "kr_zehirsiz.jpg")
 
 

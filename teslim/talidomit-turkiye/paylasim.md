@@ -4,7 +4,7 @@ Süre: 14.0 sn · 7 sahne · video: `talidomit-turkiye.mp4` · kapak: `kapak.jpg
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 2060/2200
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 1988/2200
 
 ```
 Almanya'da hamilelere bile reçetesiz satılan, Türkiye'ye hiç giremeyen ilaç
@@ -20,8 +20,6 @@ Aynı yıllarda Türkiye'de de ilaç için ruhsat başvurusu yapıldı, ancak ru
 Türkiye, talidomit faciasını yaşamayan sayılı ülkelerden biri olarak anılıyor. Şükrü Kaymakçalan ve Süreyya Tahsin Aygün'ün adlarını daha önce duymuş muydunuz?
 
 Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı); Sağlık Dünyası Dergisi
-
-#talidomit #şükrükaymakçalan #süreyyatahsinaygün #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts

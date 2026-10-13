@@ -16,7 +16,7 @@
 | Yedek kadın sesler | Leyla (`fa7bfcdc-…`, ifadeli), Azra (`0f95596c-…`, resmî) | Duygusal tanıklıkta Leyla denenebilir |
 | Müzik | Kendi sentezimiz (`tools/make_music.py` ailesi), anlatımın altında ~-22 dB, konuşmada otomatik kısılır | Kanalın Instagram "orijinal ses"i YouTube'da Content ID riski taşır; uzun videoda 13,75 sn'lik döngü de bıktırır |
 | Efekt | Kendi sentez efektlerimiz (`assets/sfx`): geçişte whoosh, fotoğrafta deklanşör, açılışta düşük boom, balonda hafif pop | Hareketli kurgunun ritmini sesle de verir; kısa reel'deki "efekt yok" kuralı uzun formatta geçerli değil |
-| Altyazı | `.srt` dosyası (YouTube'a yüklenir); ekranda yalnız vurgu kelimeleri | Tam altyazıyı YouTube kendisi gösterir; ekrana gömülü tam altyazı görseli kalabalıklaştırır |
+| Altyazı | `.srt` dosyası (YouTube'a yüklenir; alıntılar italik); ekranda yalnız vurgu kelimeleri | Tam altyazıyı YouTube kendisi gösterir; ekrana gömülü tam altyazı görseli kalabalıklaştırır |
 
 ## 2. Görsel dil: hareket şart
 
@@ -48,7 +48,7 @@ yeni bir hareket ya da görüntü görmeli.** Kullanılan yapı taşları:
 | 3-5 bölüm | ~1:30-2:30 her biri | Kronolojik anlatım; her bölüm küçük bir merak sorusuyla biter |
 | Türkiye bölümü | ~1:30 | Hikâyenin "neden giremedi" cevabı; ihtilaflı kısımlar "anlatılana göre" diliyle |
 | Ters köşe / bugün | ~1:00 | Hikâyenin beklenmedik devamı |
-| Kapanış | ~0:30 | İzleyiciye soru (yoruma çağrı) + kısa versiyona / sonraki videoya yönlendirme; son 15-20 sn bitiş ekranı alanı (`bitis` sahnesi: iki boş 16:9 kutu + abone dairesi) |
+| Kapanış | ~0:30 | İzleyiciye soru (yoruma çağrı) + kısa versiyona / sonraki videoya yönlendirme; son ~10 sn bitiş ekranı alanı (YouTube 5-20 sn ister; `bitis` sahnesi: iki boş 16:9 kutu + abone dairesi) |
 
 Kurallar: anlatıcı dili sade ve konuşur gibi; cümleler kısa; her bölüm sonunda "ama asıl şaşırtıcı olan…" türünden
 köprü; sayılar ve isimler araştırma notundan; tartışmalı her bilgi yumuşatılmış dille; mağdurlara saygı (engellilikle

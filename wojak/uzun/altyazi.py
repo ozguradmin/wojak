@@ -4,7 +4,9 @@ Kurallar: satır başına en fazla 42 karakter, parça başına en fazla 2 satı
 parçalar çakışmaz. Bir anlatım satırı cümle/virgül sınırlarından bölünür; sığmayan yan cümle kelime
 sınırlarından EŞİT parçalara bölünür (tek kelimelik yetim parça yok). Hiçbir kelime atılmaz: sığmayan
 birleşim yapılmaz, parça ayrı blok olur (`kelime_farki` bunu denetler). Parçanın süresi uzunluğuyla
-orantılıdır. Metin `metin`den gelir (telaffuz düzeltmeleri altyazıya girmez), UTF-8.
+orantılıdır. Metin `metin`den gelir (telaffuz düzeltmeleri altyazıya girmez), UTF-8. Anlatıcıdan başka sesin satırları
+(alıntılar: reklam sloganı, ürün bilgisi) `<i>…</i>` ile italik yazılır (YouTube SRT'de destekler); satır uzunluğu
+denetimi etiketsiz metne bakar, alıntı parçası önce 38 karakterle kırılır ki etiketlerle de 42'yi geçmesin.
 """
 
 from __future__ import annotations
@@ -119,6 +121,7 @@ class Parca:
     bas: float
     son: float
     metin: str
+    alinti: bool = False   # anlatıcıdan başka sesin satırı (alıntı: reklam, ürün bilgisi): SRT'de <i>…</i>
 
 
 def iki_satir(metin: str, genislik: int = MAX_SATIR) -> str | None:
@@ -280,9 +283,10 @@ def parcalar(z: Zaman) -> list[Parca]:
         agirlik = [len(p) + 6 for p in ps]
         top = sum(agirlik)
         t = sz.bas
+        alinti = sz.satir.ses != z.video.anlatici_ses
         for p, w in zip(ps, agirlik):
             d = sure * w / top
-            out.append(Parca(t, t + d, p))
+            out.append(Parca(t, t + d, p, alinti))
             t += d
     # uzatma, en az süre ve çakışmasızlık
     for i, p in enumerate(out):
@@ -295,7 +299,8 @@ def parcalar(z: Zaman) -> list[Parca]:
                 out[i + 1].son = max(out[i + 1].son, out[i + 1].bas + MIN_SURE)
                 p.son = p.bas + MIN_SURE
     for p in out:
-        iki = iki_satir(p.metin)
+        # alıntıda <i> etiketleri (3-4 karakter) satıra sığsın: önce dar genişlik
+        iki = (iki_satir(p.metin, MAX_SATIR - 4) if p.alinti else None) or iki_satir(p.metin)
         if iki is None:   # parcala() bunu engeller; yine de kelime atma, bölünmüş ama tam metin yaz
             raise ValueError(f"altyazı parçası iki satıra sığmıyor: {p.metin!r}")
         p.metin = iki
@@ -328,7 +333,8 @@ def zaman_damgasi(t: float) -> str:
 def srt(ps: list[Parca]) -> str:
     bloklar = []
     for i, p in enumerate(ps, 1):
-        bloklar.append(f"{i}\n{zaman_damgasi(p.bas)} --> {zaman_damgasi(p.son)}\n{p.metin}\n")
+        metin = f"<i>{p.metin}</i>" if p.alinti else p.metin   # 6. tur (dil hakemi N5): alıntı italik
+        bloklar.append(f"{i}\n{zaman_damgasi(p.bas)} --> {zaman_damgasi(p.son)}\n{metin}\n")
     return "\n".join(bloklar)
 
 

@@ -41,6 +41,11 @@ ONARIMLAR'da değiller (`ESKI`). Etkin kalanlar:
   z uzatılmış eski çekimler duruyor.
 - arada_r5, asil_r5, bosluk_r5, onemli_r5, fda_r5: yeni çekimlerin <break> durakları (0,59-1,03 sn) 0,5-0,55 sn'ye
   kısaltılır (öteki satırların cümle sonu durağı kadar; 10:15 sınırı).
+
+6. tur (13.10.2026): yalnız metni/hızı değişen 9 satır yeniden seslendirildi (satır başına bir çekim). Onarımlar:
+- fda_r6: fda_r5 + ilk "FDA," kesilir (dil hakemi S3: dört çözümlemede de "FTA"); yeni istek yok.
+- tanik_r6: doruk satırı "Aynı tanıklıklara göre Kaymakçalan," hız 0,85 çekiminde virgüldeki 0,70 sn'lik durak
+  0,45 sn'ye.
 """
 
 from __future__ import annotations
@@ -345,7 +350,18 @@ def durak(deneme: int, en_fazla: float):
     return fn
 
 
-# 5. tur: etkin onarımlar (yeni çekimlerle değişenler ESKI'de, tarihçe)
+def onar_fda_r6(st):
+    """6. tur (dil hakemi S3): ilk FDA bütün çözümlemelerde "FTA" duyuluyordu (patlama ~15 ms aspirasyonlu). Yeni
+    istek yerine 5. turun seçili çekimi (deneme 4: Kelsey adı en net; <break> durağı 0,5 sn'ye) alınır ve "FDA,"
+    iki sessizliğin içinden kesilir: [2.85, 3.80] sn ("kurumu" | FDA | "yeni" arası boşluklar 0,40 ve 0,30 sn;
+    birleşik durak ~0,3 sn). FDA ekranda (etiket, isim bandı, altyazıda parantez içinde) ve 'Kural şu: FDA…' satırında sesli."""
+    x, sr = tts.wav_oku(cekim(st, 4)[1])
+    y, kes = sessizlik_kisalt(x, sr, 0.5)
+    y = aradan_kes(y, sr, 2.85, 3.80)
+    return y, sr, {"kaynak": "deneme 4", "en_fazla": 0.5, "sessizlik": kes, "cikan": [2.85, 3.80]}
+
+
+# 5. tur: etkin onarımlar (yeni çekimlerle değişenler ESKI'de, tarihçe); 6. turda fda_r6 ve tanik_r6
 ONARIMLAR = {
     "cuzzam1": ("ağır bir cüzzam hastası", onar_cuzzam1),
     "cuzzam3": ("cüzzam tedavisinde kullanıldığı", onar_cuzzam3),
@@ -353,13 +369,15 @@ ONARIMLAR = {
     "asil_r5": ("Asıl soruyu ise kimse", durak(0, 0.5)),
     "bosluk_r5": ("Ama haritada bir boşluk var", durak(0, 0.55)),
     "onemli_r5": ("En önemlisi: İlaç", durak(2, 0.5)),
-    "fda_r5": ("ilaç kurumu FDA", durak(4, 0.5)),   # deneme 4: Kelsey adı en net (FDA "FTA" diye yazılıyor)
+    "fda_r6": ("ilaç kurumu (FDA)", onar_fda_r6),   # 6. tur: 5. turun fda_r5'i + "FDA," kesildi
     "grunenthal_r5": ("Grünenthal çalışanının kızı", durak(2, 0.45)),
+    "tanik_r6": ("Aynı tanıklıklara göre", durak(0, 0.45)),   # 6. tur: hız 0,85 çekimi, 'Kaymakçalan,' sonrası 0,70 sn
 }
 
 # ad -> (satırın 4. turdaki metninden bir parça, işlev). Kesim noktaları zarf çukurlarında; her biri Whisper ile
 # (ipucusuz) dinlenerek seçildi (scratchpad r3/kes_tara.py). 5. turda yeni çekimlerle değiştiler; çalıştırılmaz.
 ESKI = {
+    "fda_r5": ("ilaç kurumu FDA", durak(4, 0.5)),   # 5. tur; 6. turda fda_r6 (FDA kesildi)
     "fda": ("ilaç kurumu FDA", onar_fda),
     "recete": ("Reçetesiz bir uyku ve sakinleştirici", onar_recete),
     "lenz": ("Lenz'i iftirayla", onar_lenz),

@@ -90,7 +90,9 @@ SATIR_HEDEF_DB = -18.0   # konuşulan bölümün RMS hedefi (dBFS): sesler aras�
 # konuşma sürerken efekt veriyolu anlatımın en az bu kadar altında kalır (talidomit-turkiye 1. hakem turu: Türkiye
 # motifi, harita pop+hit ve damgalar tam da vurgulanan kelimenin üstüne düşüp onu örtüyordu)
 EFEKT_PAYI_DB = 9.0
-TUS_ADIMI = 2   # daktilo etiketlerinde her 2 harfte bir tuş sesi
+TUS_ADIMI = 2   # daktilo metninde (metin sahnesi, yazim: daktilo) her 2 harfte bir tuş sesi
+ETIKET_TUS_ADIMI = 4   # fotoğraf etiketinde her 4 harfte bir, daha alçak (6. tur, izlenme hakemi S9: anlatımın altında
+                       # saniyede ~10 tık; ilk dakikada ~67 efekt)
 
 
 def aktif_rms_db(x: np.ndarray) -> float:
@@ -173,10 +175,10 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
         elif s.tip == "foto":
             fz = foto_zamanlari(s)
             out.append((b + fz["oturma"] - 0.04, "shutter", -8.0))
-            # daktilo tuşu her harfte değil, her TUS_ADIMI harfte bir (uzun etikette 40+ tık yorucu)
+            # daktilo tuşu her harfte değil, her ETIKET_TUS_ADIMI harfte bir (uzun etikette 40+ tık yorucu)
             harfler = [i for i, ch in enumerate(fz["etiket_metni"]) if ch != " "]
-            for i in harfler[::TUS_ADIMI]:
-                out.append((b + fz["etiket"] + i / fz["harf_hizi"], "tus", float(rng.uniform(-23, -18))))
+            for i in harfler[::ETIKET_TUS_ADIMI]:
+                out.append((b + fz["etiket"] + i / fz["harf_hizi"], "tus", float(rng.uniform(-27, -22))))
         elif s.tip == "manset":
             for t in manset_zamanlari(s)[: len(s.p.get("kutular") or [])]:
                 out.append((b + t, "kalem", -9.0))
@@ -193,6 +195,8 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
                     n = abs(int(bl["b"]) - int(bl["a"]))
                     for k in range(1, n + 1):
                         out.append((b + t0 + (t1 - t0) * k / n - (t1 - t0) / n * 0.4, "tik", -10.0))
+                elif t1 - t0 < 0.15:      # anlık değişim (deger olayı sure: 0): tık yok, yalnız vuruş
+                    pass
                 elif bl["b"] < bl["a"]:   # azalan (geri sayım): eşit aralıklı tıklar
                     n = int(min(abs(bl["a"] - bl["b"]), 20))
                     for k in range(1, n + 1):

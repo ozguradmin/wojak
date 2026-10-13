@@ -4,7 +4,7 @@ Süre: 14.0 sn · 7 sahne · video: `canakkale-kayip-tabur.mp4` · kapak: `kapak
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye + en fazla 5 hashtag) — 1825/2200
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 1767/2200
 
 ```
 Çanakkale'de bulutun yuttuğu söylenen İngiliz taburu
@@ -20,8 +20,6 @@ Bulut efsanesi ise 1965'te ortaya çıktı. Üç Yeni Zelandalı eski asker, rü
 Sizce o gün Anafartalar'da gerçekten bir bulut var mıydı?
 
 Görseller: Tevfik Teker, “Suvla Bay” (Wikimedia Commons/Panoramio, CC BY 3.0; kırpıldı, renk düzeltildi, bulut katmanı eklendi)
-
-#çanakkalesavaşı #çanakkale #gizem #tarihselwojak #wojak
 ```
 
 ## YouTube Shorts

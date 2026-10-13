@@ -14,11 +14,12 @@ python -m wojak uzun onizle     uzun/<id>          # 960x540 hızlı ön izleme;
 python -m wojak uzun kare       uzun/<id> --t 1:05 --t 2:30   # tek kareler (PNG)
 python -m wojak uzun render     uzun/<id>          # out/<id>-uzun/<id>.mp4 (+ .srt, anlatım izi, olcum.json, paylasim.md)
 python -m wojak uzun kucukresim uzun/<id>          # out/<id>-uzun/kucukresim_*.jpg (1280x720)
-python -m wojak uzun teslim     uzun/<id>          # teslim/<id>-uzun/: video (git'e girmez), küçük resimler, paylasim.md, .srt
+python -m wojak uzun teslim     uzun/<id>          # teslim/<id>-uzun/: <id>-uzun.mp4 (git'e girmez), <id>-uzun.srt, küçük resimler, paylasim.md
 ```
 
 Çıktı klasörü `out/<id>-uzun/` (`Video.cikti`): aynı id'li Short `out/<id>/`'yi kullanır; ikisi aynı klasörü paylaşınca uzun
-videonun mp4'ü Short teslimine karışıyordu. `teslim` kopyalamadan önce mp4'ün 1920x1080, kare sayısının zaman
+videonun mp4'ü Short teslimine karışıyordu. Teslimde video ve altyazı `<id>-uzun.mp4` / `<id>-uzun.srt` adını alır (6. tur:
+Short'un teslimi de `<id>.mp4`; sohbetten ikisi indirilince biri ötekinin üstüne yazılabiliyordu). `teslim` kopyalamadan önce mp4'ün 1920x1080, kare sayısının zaman
 çizelgesiyle aynı ve senkronun tamam olduğunu doğrular; Whisper QA'da "KONTROL ET" satırı varsa uyarır (`--zorla`).
 
 Gizli anahtar: `CARTESIA_API_KEY` (yedekler `CARTESIA_API_KEY_2` … `_9`) ortamdan ya da `~/.config/wojak/secrets.env`'den
@@ -43,7 +44,7 @@ hiçbir dosyaya, loga, hata mesajına yazılmaz. HTTP isteklerinde genel tarayı
 | `render.py` | Paralel parça render (fork, varsayılan 3 işçi), aynı kodlayıcı ayarlı parçalar, concat `-c copy`, ses ekleme, senkron doğrulama |
 | `ses.py` | Anlatım zaman çizelgesi, müzik altlığı + yan zincirli kısma, otomatik efektler, iki geçişli loudnorm, anlatım izi |
 | `muzik.py` | Kendi müzik altlığımız (Do minör drone + seyrek vals motifi), `tools/uzun_muzik.py` ile dinlenebilir |
-| `altyazi.py` | SRT: <= 42 karakter/satır, <= 2 satır, >= 1 sn, çakışmasız |
+| `altyazi.py` | SRT: <= 42 karakter/satır, <= 2 satır, >= 1 sn, çakışmasız; anlatıcıdan başka sesin satırı (alıntı) `<i>…</i>` |
 | `kucukresim.py` | 1280x720 küçük resim varyantları |
 | `paket.py` | paylasim.md (başlık alternatifleri, açıklama + bölüm damgaları, kaynak, atıf, etiket, sabit yorum, kontrol listesi) |
 | `cli.py` | `python -m wojak uzun ...` |
@@ -122,7 +123,7 @@ hassasiyetinde, sahneler kare sınırında başlar: görüntü-ses kayması olma
 | `damga` | hepsi | `metin`, `renk` (kirmizi/yesil/mavi/... ya da [r,g,b]), `x`, `y` (0..1), `aci` (-8), `boy` (84), `sure` (yoksa sahne sonuna dek), `kontur` (true = beyaz ya da renk: harf ve çerçeve çevresine ince dolu kenar; koyu/desenli zeminde okunurluk), `kart` (pano), `kart_y` (kart merkezine göre, kart yüksekliği oranı; vars. görselli kartta görselin ortası, görselsizde 0.2: başlık okunur kalır), `inik` (true: sahne başında zaten basılı, iniş/ses yok: bölünmüş çekimin devamı) | lastik damga ekrana çarparak iner (mürekkep dokulu, çift çerçeve); efekt `damga` |
 | `kose` | hepsi | `deger`, `metin`, `sure` (0,6), `takili`, `renk`, `yil` | köşe göstergesi yeni değere sayar (sayı) ya da yuvarlanır (metin); `takili: true` basamaklar karışıp takılır ve ara ara titrer ("1961 -> ????"); yıl göstergesinde (`yil`) yüzyıl basamakları sabit kalır, yalnız son ikisi karışır ("19??" / "20??"; 5. tur: tam karışım "1781", "5940" gösteriyordu) |
 | `muzik` | hepsi | `db`, `gecis` (rampa sn, 0,5) | müzik seviyesi bu andan itibaren (incelme, bir an sessizlik: `db: -40`) |
-| `deger` | sayac | `deger`, `etiket`, `renk`, `sure` (1,2), `onek`, `sonek` | sayaç bir önceki değerden yenisine sayar; etiket ve renk değişebilir |
+| `deger` | sayac | `deger`, `etiket`, `renk`, `sure` (1,2), `onek`, `sonek` | sayaç bir önceki değerden yenisine sayar; etiket ve renk değişebilir. `sure: 0`: yeni değer bir anda (tık yok, yalnız vuruş; 6. tur: 20.000 -> 17 geri sayarken "en az 16.043" görünüyordu) |
 | `panel` | bolunmus | `taraf` (vars. sag) | panel kayarak açılır, ekran ikiye bölünür |
 | `soluk` | bolunmus | `taraf` | panel kararıp renksizleşir |
 | `buyut` | bolunmus | `taraf` | panel büyüyüp ekranı kaplar (1,2 sn) |
@@ -137,7 +138,7 @@ Sahne tipine özgü bir olayı başka tipte kullanmak hata verir (ör. `sondur` 
 
 | tip | Parametreler | Görüntü |
 |---|---|---|
-| `wojak` | `arka`*, `kirp` [x0,y0,x1,y1], `odak`, `kamera` {zoom: [a,b], merkez: [[x,y],[x,y]], `it` (0.05), `odak` (0.4)}, `karart`, `bulanik`, `doygunluk`, `etiket`, `karakterler` (1-4: `id`, `gorsel`*, `taraf` sol/sag/orta, `x`, `boy` 0.66, `giris` true/false/sn, `yon` sol/sag/alt (giriş yönü), `bakis`, `alt`, `derinlik` 0..1) | Ken Burns arka plan; karakterler kenardan out_back (%4-5 taşma) ile kayarak girer, nefes alır (±%1, 0,3 Hz) ve hafif sallanır, `data/karakter_yon.json`'a göre hep içeri bakar (gerekirse aynalanır). **Kamera** arka planı, karakterleri ve balonları birlikte taşır; biri konuşurken (`balon`/`konusan` satırı, `balon` olayı) konuşana doğru yumuşakça yaklaşır (`it`: zoom artışı, `odak`: merkezin kayma oranı; `it: 0` kapatır). **Konuşma sekmesi**: konuşan karakter satırın sesindeki hece başlarında (10 ms RMS'te > 6 dB yükseliş) küçük bir sekme ve dikey esneme yapar; ses yoksa yapay hece ritmi. **Derinlik** (3 karakterde arkadaki): küçülür (1 - 0,3·d), hafif sisli, az doygun, önce çizilir; taban kadraj altında kalır (kit görselleri göğüsten kesik) |
+| `wojak` | `arka`*, `kirp` [x0,y0,x1,y1], `odak`, `vinyet` (0.42; düz zeminde bilinçli yakın çekim için 0.7-0.8), `kamera` {zoom: [a,b], merkez: [[x,y],[x,y]], `it` (0.05), `odak` (0.4)}, `karart`, `bulanik`, `doygunluk`, `etiket`, `karakterler` (1-4: `id`, `gorsel`*, `taraf` sol/sag/orta, `x`, `boy` 0.66, `giris` true/false/sn, `yon` sol/sag/alt (giriş yönü), `bakis`, `alt`, `derinlik` 0..1) | Ken Burns arka plan; karakterler kenardan out_back (%4-5 taşma) ile kayarak girer, nefes alır (±%1, 0,3 Hz) ve hafif sallanır, `data/karakter_yon.json`'a göre hep içeri bakar (gerekirse aynalanır). **Kamera** arka planı, karakterleri ve balonları birlikte taşır; biri konuşurken (`balon`/`konusan` satırı, `balon` olayı) konuşana doğru yumuşakça yaklaşır (`it`: zoom artışı, `odak`: merkezin kayma oranı; `it: 0` kapatır). **Konuşma sekmesi**: konuşan karakter satırın sesindeki hece başlarında (10 ms RMS'te > 6 dB yükseliş) küçük bir sekme ve dikey esneme yapar; ses yoksa yapay hece ritmi. **Derinlik** (3 karakterde arkadaki): küçülür (1 - 0,3·d), hafif sisli, az doygun, önce çizilir; taban kadraj altında kalır (kit görselleri göğüsten kesik) |
 | `foto` | `gorsel`*, `etiket`, `atif`, `egim`, `giris` (alt/ust/sag/sol), `boy` 0.72, `zoom` 1.05, `arka`, `x` (baskının yatay merkezi, 0.5; ortada değilse atıf baskının altına yazılır: köşedeki konuğa binmesin) | aynı fotoğrafın bulanık-karartılmış hâli üzerinde beyaz kenarlı, gölgeli, eğik "baskı"; düşerek oturur, deklanşör sesi; yavaş yaklaşma; daktilo etiketi |
 | `manset` | `gorsel`*, `kutular` (piksel ya da 0..1), `zoom` 1.18, `renk`, `boy`, `arka`, `etiket` | belge/manşet; kutular sırayla fosforlu kalemle (çarpma karışımı, pürüzlü kenar) boyanır; kamera yaklaşır ve kalemi dikeyde izler |
 | `harita` | `bolge` (avrupa, bati_avrupa, akdeniz, turkiye, dunya ya da {merkez, sinir}), `ulkeler` (ADM0_A3), `aralik`, `etiketler`, `vurgu` {kod, etiket, renk, ad}, `baslik`, `aciklama` (lejant), `renk`, `zoom`, `cozunurluk` (50m/110m) | ülkeler sırayla parlayarak yanar; vurgu ülkesi farklı renk, nabız gibi atan halka ve çağrı kutusu |
@@ -149,7 +150,7 @@ Sahne tipine özgü bir olayı başka tipte kullanmak hata verir (ör. `sondur` 
 | `izgara` | `n` (10000), `sutun`, `ust`, `etiket`, `alt`, `renk`, `dolum` (2,5 sn), `say`, zemin | n nokta satır satır dolar (`basla`), noktalar yavaşça ışıldar; `sondur` olayında bir oranı sessizce söner; `say: true` canlı sayı |
 | `pano` | `kartlar`* (1-12: `id`, `metin`*, `alt`, `x`, `y` (0..1, kadraja göre), `en`, `egim`, `gorsel`, `stil` kagit/merkez/bos/foto, `asili` (true: sahne başında zaten iğnelenmiş, düşmez, ses yok: panoyu iki çekime bölünce ikincisinde)), `ipler` [[a, b]], `baslik`, `zoom` (1.2: tuvalin kaydırma payı), `yakin` (1.0; > 1 kamera kartlara yaklaşır, ör. 1.35: ilk kartlar büyük okunur), `doku` (mantar \| kece: koyu mavi-gri keçe; aynı pano üçüncü kez görünmesin) | kendi mantar dokumuz; kartlar `kart` olayında düşüp iğnelenir (raptiye sesi), ipler kırmızı ve sarkık çizilir, `damga` olayı `kart:` ile kartın üstüne; kamera 1:1'den %6 yaklaşır ve asılı kartların ağırlık merkezine kayar |
 | `marka` | `bindirme`, `karart` (0.72), `wojak`, `yuz` (imzada geçilen yüz), `yazi` (vars. filigran), `arka` | ~1,8 sn kanal imzası: yuvarlak wojak rozeti döner ve büyür, sarı şerit geçerken `tarihselwojak` yazısı açılır, rozet gülümser, sonunda yazı küçülüp filigranın yerine uçar (sahnede filigran yok, son karede gerçek filigranla değişir); efekt `marka` |
-| `bitis` | `arka` ya da `bindirme`, `karart` (0.62), `bulanik`, `baslik` (vars. ilk satır; `false`: yok), `kutular` (0-2), `abone` (true), `duzen` (yan_yana/sag/sol), `etiketler`, `karakter` {gorsel, boy, bakis} | YouTube bitiş ekranı: bulanık zemin, üstte kapanış cümlesi, iki boş 16:9 kutu + abone dairesi (`BITIS_DUZENLERI`: kenarlardan uzak, alt %10 oynatıcıya boş). YouTube 5-20 sn ister (§8); 12 sn yeterli (talidomit-turkiye); son sahne olmalı (`kontrol` uyarır) |
+| `bitis` | `arka` ya da `bindirme`, `karart` (0.62), `bulanik`, `baslik` (vars. ilk satır; `false`: yok), `kutular` (0-2), `abone` (true), `duzen` (yan_yana/sag/sol), `etiketler`, `karakter` {gorsel, boy, bakis} | YouTube bitiş ekranı: bulanık zemin, üstte kapanış cümlesi, iki boş 16:9 kutu + abone dairesi (`BITIS_DUZENLERI`: kenarlardan uzak, alt %10 oynatıcıya boş). YouTube 5-20 sn ister (§8); 9-12 sn yeterli (talidomit-turkiye: 9,3 sn); son sahne olmalı (`kontrol` uyarır) |
 
 **Zemin** (sayac, metin, zaman_cizelgesi, izgara ve metin panelleri): `zemin: koyu` (vars.; degrade + leke dokusu +
 vinyet; 4. turda aydınlatıldı: kare ortalaması ~55-65/255, eskiden ~20; harita denizi ve karası da: dünya haritası ~75), `kagit` (eski kâğıt; yazılar mürekkep rengi), `foto` (`arka`'nın kendisi bulanık-karartılmış); `arka` koyu
@@ -165,7 +166,7 @@ donmuş karenin parlaklığına göre artar (kâğıt gibi açık karede yazı o
 ### Otomatik efektler (`assets/sfx`, hepsi sentez: `tools/make_sfx.py`)
 
 kaydir geçişi -> `gecis` (süpürmeli whoosh, tepesi geçişin ortasında, soldan sağa); bölüm kartı -> `gecis` + `boom`
-(bindirmesizde öncesinde alçak `riser`); foto -> `shutter` + her 2 harfte bir `tus` (`ses.TUS_ADIMI`); manset -> kutu başına `kalem`; harita ->
+(bindirmesizde öncesinde alçak `riser`); foto -> `shutter` + etikette her 4 harfte bir alçak `tus` (`ses.ETIKET_TUS_ADIMI`; 6. tur: anlatımın altında saniyede ~10 tık yoruyordu); manset -> kutu başına `kalem`; harita ->
 ülke başına `blip`, vurguda `pop` + `hit`; sayaç -> `tik`'ler (azalanda eşit aralıklı) + her bitişte `hit`; zaman
 çizelgesi -> nokta başına `pop`; metin -> `whoosh_kisa` (daktiloda harf başına `tus`) + çeviride `pop` + üstünü çizmede
 `kalem`; wojak -> giriş/çıkışta `whoosh_kisa`, balonda `pop`; isim etiketi -> `whoosh_kisa`; vurgu kelimesi -> `pop`;
@@ -245,7 +246,7 @@ ilk tam saniye, ya da metin), `yapay_icerik` ("Değiştirilmiş ya da yapay içe
 (`[{ara: "cüzzam", not: "..."}]`: yayından önce kulakla dinlenecek satırlar; satırın başladığı an zaman çizelgesinden
 yazılır, süre değişince kayar), `ek_maddeler` (kontrol listesine). Dinleme listesi zamana göre sıralı yazılır.
 Açıklama YouTube API'sinin 5.000 **bayt** sınırına göre de denetlenir (Türkçe harf 2 bayt; Short bağlantısı payı dahil). Bölüm zaman damgaları zaman çizelgesinden hesaplanır
-(bölümün ilk sahnesinin, yani kartın başı, **yukarı** yuvarlanır: damga kartın içine düşer; ilki 0:00; kartsız bölümde **aşağı**: yukarı yuvarlanınca ilk kelime kesiliyordu, 5. tur). Bitiş ekranı
+(bölümün ilk sahnesinin, yani kartın başı, **yukarı** yuvarlanır: damga kartın içine düşer; ilki 0:00; kartsız bölümde **aşağı**: yukarı yuvarlanınca ilk kelime kesiliyordu, 5. tur; bindirme kartı tam saniyeden en çok 0,1 sn sonra başlıyorsa da **aşağı**: o an bindirmenin dondurduğu karenin kendisi, 6. tur: yukarı yuvarlanan damga kartın son ~0,25 sn'sine düşüyordu). Bitiş ekranı
 öğelerinin başlangıcı da yukarı yuvarlanır (daha erken başlarsa kapanış sahnesinin üstüne biner). Denetim: >= 3 bölüm, her biri >= 10 sn, artan sıra.
 Kontrol listesinde "Shorts > İlgili video" bağlantısı ve bitiş ekranı maddeleri var.
 

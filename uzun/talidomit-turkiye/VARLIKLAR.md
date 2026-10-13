@@ -57,6 +57,7 @@ zıplamaz). Önerilen `boy`: klasik kafalılar (K, L, S, E, müşteri) ~0,62; Ke
 | `arka_eczane_169.jpg`, `arka_eczane_raflar_169.jpg` | Eski eczane odası (kırmızı raflar, çekmeceler, terazi). Kapı yanındaki modern prizler yamalandı. **Yer etiketi yok** | `arppeanum_eczane_cc0.jpg` · https://commons.wikimedia.org/wiki/File:Apothecary_room_-_Arppeanum_-_DSC05136.JPG | Daderot | CC0 1.0 | (atıf gerekmez) Eczane: Daderot / Wikimedia Commons, CC0 |
 | `arka_muayenehane_169.jpg` | 1950'ler-60'lar köy hekimi muayenehanesi (göz tabloları, alet dolabı, muayene sedirinin kenarı). **Yer etiketi yok** | `arztpraxis_dorfmuseum_moenchhof_ccby3.jpg` · https://commons.wikimedia.org/wiki/File:Dorfmuseum_M%C3%B6nchhof,_Arztpraxis.jpg | Dguendel | CC BY 3.0 | Muayenehane: Dguendel / Wikimedia Commons, CC BY 3.0 (kırpıldı) |
 | `arka_ofis_169.jpg` | 1950'ler-60'lar bürosu (yeşil çuhalı masa, daktilolar, santral, raf). **Yer etiketi yok** | `buero_arbeitsplatz_cc0.jpg` · https://commons.wikimedia.org/wiki/File:B%C3%BCro-Arbeitsplatz_im_Werk.JPG | Wolf1949H | CC0 1.0 | (atıf gerekmez) Büro: Wolf1949H / Wikimedia Commons, CC0 |
+| `arka_hekim_odasi_cizim.jpg` | 6. tur: 1950'ler hekim çalışma odası (kitaplık, pencere, boş diploma çerçevesi, manzara tablosu, masa lambası, kalorifer); yazısız, kişisiz, yer etiketi yok. Düz mavi kâğıt zemin "ucuz" görünüyordu (izlenme hakemi S7) | kendi düz çizimimiz (`img/cizim_uret.py hekim`) | tarihselwojak | kendi | — |
 | `arka_hastane_odasi_cizim.jpg` | 1960'lar hastane odası, sağda boş yatak kenarı (hasta yok). Serbest ve hastasız bir fotoğraf bulunamadı (adaylarda balmumu hastalar vardı) | kendi düz çizimimiz (`img/cizim_uret.py`) | tarihselwojak | kendi | — |
 | `arka_mantar_pano.jpg` | Soruşturma panosu zemini (mantar + ahşap çerçeve) | kendi dokumuz | tarihselwojak | kendi | — |
 | `arka_koridor_cizim.jpg`, `arka_bakanlik_oda_cizim.jpg`, `arka_eczane_cizim.jpg`, `arka_buro_cizim.jpg` | 4. tur: bakanlık koridoru (SA.6, B6.6), 1950'ler bakanlık odası (B5.2, B5.3c), eczane (B1.8, B2.4b), 1960'lar ABD bürosu (B4.3, B4.5). Yazı, logo, portre, bayrak, kişi yok. Wikimedia bu turda HTTP 429 verdiği için yeni fotoğraf yerine | kendi düz çizimimiz (`img/cizim_uret.py zemin4`) | tarihselwojak | kendi | — (açıklamada "çizimler: tarihselwojak") |
@@ -119,7 +120,7 @@ Gerçek firma/gazete/dergi adı ya da logosu yok; kişi, bebek, hasta yok. Hepsi
 | `raptiye.png`, `buyutec.png` | Kırmızı raptiye, büyüteç | B1.7, B5.8, K3 |
 | `telefon_cerceve.png` | Akıllı telefon çerçevesi, ekran saydam (70,150)-(630,1290) | B5.11 viral iddia kartı |
 | `hap_simge.png` | Harita için beyaz tablet simgesi | SA.1, B2.1 |
-| `gebelik_yasak_piktogram.png` | Yandan hamile kadın silüeti + yasak çemberi (genel simge) | K1 (isteğe bağlı) |
+| `gebelik_yasak_piktogram.png` | Yandan hamile kadın silüeti + yasak çemberi (genel simge) | kullanılmıyor (6. tur: K1'den çıktı) |
 | `distaval_yedek_kart.jpg` | Kâğıt dokulu kart: "Distaval can be given with complete safety / to pregnant women and nursing mothers / without adverse effect on mother or child." + "İngiltere'deki Distaval reklamından (1958-61)". Kutular: `complete safety`, `pregnant women and nursing mothers` | B2.3 (varsayılan) |
 | `kub_bolum44_yedek_kart.jpg` | KÜB 4.4 cümlesi, atlanan kısım gri. Kutular: `gebe kadınlar`, `kesinlikle kullanılmamalıdır.` | B6.7 (yedek) |
 
@@ -128,12 +129,26 @@ yılı ve belgeli özü, gerçek Resmî Gazete künyesi yok) · `cizim/gazete_20
 kupürü, CANLANDIRMA; okunur tek yazı "2008", başlık ve sütunlar okunmaz çubuk; kutular: tarih [745, 214, 955, 287],
 başlık [140, 360, 1560, 530]).
 
+### 5b. Kompozitler (`img/kompozit/`, `kompozit_uret.py`)
+
+Hepsi betikle üretilir; dış kaynaklı olanların lisansı kaynağınınkidir (atıf açıklamada).
+
+| Dosya | Kaynak / lisans | Sahne |
+|---|---|---|
+| `baski_forte.png` | `foto_contergan_forte.jpg` (TobiToaster, CC BY-SA 4.0) üzerine beyaz kenarlı baskı uyarlaması | B1.6 |
+| `baski_kelsey.png`, `baski_kelsey_kennedy.png` | `foto_kelsey_masa.jpg` (U.S. FDA, kamu malı); Kennedy-Kelsey 1962 (Beyaz Saray, kamu malı) | B4.8 (ikincisi yedek) |
+| `serit_kan_duzeyi.png`, `serit_gebe_deney.png`, `kart_neredeyse_zehirsiz.jpg`, `kart_1262.png` | kendi yazı şeritlerimiz / kartlarımız | B1.5, B1.4, (yedek) |
+| `doz_1-3.png`, `yigin_1-3.png`, `dosya_bos_kagit.jpg`, `bulten_kagit.jpg`, `telefon_iddia.png` | kendi çizimlerimizin dizimi (`img/cizim/`) | B1.4, B4.4, SA.3/KP.2, B5.8, B5.11 |
+| `kr_zehirsiz.jpg`, `kr_harita.jpg`, `kr_dosya.jpg` | küçük resim zeminleri: kendi dokumuz + Natural Earth (kamu malı) | K1, K2, K3 |
+| `pano_son.jpg` | motorun pano karesi (yedek) | — |
+
 ## 6. Senaryo sahnesi → dosya
 
 Yollar `uzun/talidomit-turkiye/` köküne göre (`chars/...`, `img/...`); `ep/` = `episodes/talidomit-turkiye/chars/`.
 Harita, sayaç, nokta ızgarası, zaman çizelgesi, bölüm kartı, metin kartları motorun kendi sahneleridir (görsel dosyası yok).
 
-5. tur eşlemesi (video.yaml ile aynı; 4. turdan farkı: B3.14 dava sahnesi çıktı, B1.5/B1.7/B2.3/B5.4 karakterli). Kural: bir görsel (aynı fotoğrafın kırpımı ya da baskısı dahil) en çok 2 çekimde;
+6. tur eşlemesi (video.yaml ile aynı; 5. turdan farkı: B1.1 iki çekim (Stolberg 2/2), B2.5a kendi çizimimiz hekim
+odası, B5.8b ve KP.2'de anlatıcı erken; 4. turdan farkı: B3.14 dava sahnesi çıktı, B1.5/B1.7/B2.3/B5.4 karakterli). Kural: bir görsel (aynı fotoğrafın kırpımı ya da baskısı dahil) en çok 2 çekimde;
 `konuk` = bilgi sahnesinde köşeden giren karakter.
 
 | Sahne | Dosya(lar) |
@@ -145,7 +160,7 @@ Harita, sayaç, nokta ızgarası, zaman çizelgesi, bölüm kartı, metin kartla
 | SA.4b | `img/arka_eczane_raflar_169.jpg` (eczane fotoğrafı 1/2) · `chars/anne_adayi_sakin.png` · `img/cizim/numune_kutusu_tabletler.png` |
 | SA.5 | metin, kâğıt zemin · konuk anne adayı |
 | SA.6 | `img/arka_koridor_cizim.jpg` (1/2) · `img/cizim/kapi_kapali.png` · `chars/temsilci2000_sakin.png` → `temsilci2000_gergin.png` |
-| B1.1 | `img/foto_stolberg_grunenthal_169.jpg` (1/1, bulanık) · `takvim_aralik_1956.png`, `numune_kutusu_tabletler.png` · anlatıcı |
+| B1.1a, B1.1b | `img/foto_stolberg_grunenthal_169.jpg` (1/2, 2/2: aynı yerin geniş ve yakın çekimi, bulanık) · `takvim_aralik_1956.png`, `numune_kutusu_tabletler.png` · anlatıcı |
 | B1.2 | zaman çizelgesi, `img/foto_kupferhof_grunenthal_169.jpg` (1/2) · konuk anlatıcı |
 | B1.3 | `img/foto_kupferhof_grunenthal_169.jpg` (2/2) · `molekul_beyaz.png` · anlatıcı |
 | B1.4 | `img/doku_duvar_yesil.jpg` (1/2) · `fare_kafesi.png`, `kompozit/doz_*.png` · manşet `kompozit/kart_neredeyse_zehirsiz.jpg` |
@@ -159,7 +174,7 @@ Harita, sayaç, nokta ızgarası, zaman çizelgesi, bölüm kartı, metin kartla
 | B2.3 | `img/cizim/distaval_yedek_kart.jpg` (hesap sahibi onaylarsa `img/telifli/distaval_reklam_wellcome.jpg`) · konuk anne adayı (5. tur) |
 | B2.4 | `img/arka_eczane_raflar_169.jpg` (2/2) · eczacı + anne adayı |
 | B2.4b | `img/arka_eczane_cizim.jpg` (2/2) · `img/cizim/eczane_raf_turkiye_bos.png` · anlatıcı |
-| B2.5a / B2.5b | `img/doku_kagit_mavi.jpg` (1/2) · `chars/voss_sakin.png` → `voss_ciddi.png` · `img/cizim/zarf.png` / zaman çizelgesi (koyu zemin) + konuk Voss |
+| B2.5a / B2.5b | `img/arka_hekim_odasi_cizim.jpg` (1/1, 6. tur) · `chars/voss_sakin.png` → `voss_ciddi.png` · `img/cizim/zarf.png` / zaman çizelgesi (koyu zemin) + konuk Voss |
 | B2.6, B2.7 | `img/doku_karton.jpg` (1/2) · anlatıcı / metin (koyu, bilinçli düşüş) |
 | B3.1, B3.2 | Hint Okyanusu yarıküre haritası + konuk `chars/lenz_sakin.png`; Avustralya haritası |
 | B3.3, B3.5 | `img/arka_muayenehane_169.jpg` (1/2, 2/2) · `chars/lenz_*` · takvimler, `zarf_taahhutlu.png` |
@@ -183,10 +198,10 @@ Harita, sayaç, nokta ızgarası, zaman çizelgesi, bölüm kartı, metin kartla
 | B5.3a, B5.3b | `img/foto_ankara_bankalar_kartpostal_ust.jpg` (1/2, 2/2) · `chars/kaymakcalan_*` · `img/cizim/dosya_ruhsat_basvurusu.png` |
 | B5.4 | bölünmüş: sol arka `foto_kennedy_imza_1962.jpg` (2/2) \| sağ `foto_saglik_bakanligi.jpg` (2/2) · konuk `ep/temsilci_gergin.png` (5. tur) |
 | B5.7, KP.3b | `img/arka_lille_masa_169.jpg` (Lille fotoğrafı 1/2, 2/2) · `ep/veteriner.png` · `yumurta_tablasi.png` |
-| B5.8a, B5.8b | mantar pano (1/2, 2/2) · `kompozit/bulten_kagit.jpg` (aynı kart, iki çekim) · `img/foto_tavuk_embriyosu.jpg` · konuk Kaymakçalan (8a) |
+| B5.8a, B5.8b | mantar pano (1/2, 2/2) · `kompozit/bulten_kagit.jpg` (aynı kart, iki çekim) · `img/foto_tavuk_embriyosu.jpg` · konuk Kaymakçalan (8a), anlatıcı (8b, 6. tur) |
 | B5.8m | `img/cizim/gazete_2008_canlandirma.png` · konuk anlatıcı |
 | B5.9 | `img/foto_dogu_berlin_kacak_ilac_1961.jpg` · konuk anlatıcı |
-| B5.11 | `img/doku_kagit_mavi.jpg` (2/2) · `kompozit/telefon_iddia.png` · anlatıcı |
+| B5.11 | `img/doku_kagit_mavi.jpg` (1/1) · `kompozit/telefon_iddia.png` · anlatıcı |
 | B5.12, KP.1 | `img/foto_ankara_sergievi_kartpostal_alt.jpg` (1/2, 2/2) · Kaymakçalan / anlatıcı |
 | B5.13, B6.4a | `img/doku_tebesir.jpg` (1/2, 2/2) · `molekul_beyaz.png`, `cereblon.png`, `sall4*.png` · anlatıcı |
 | B6.1 | `img/arka_hastane_odasi_cizim.jpg` · `chars/sheskin_*` · `numune_kutusu.png` (komodinde) |
@@ -195,10 +210,10 @@ Harita, sayaç, nokta ızgarası, zaman çizelgesi, bölüm kartı, metin kartla
 | B6.4b, B6.5 | sayaç (kâğıt); `img/doku_kagit.jpg` (2/2) + `makale_behcet_1998_cizim.png` · anlatıcı |
 | B6.6, B6.6b | Türkiye haritası (2/2) + konuk `chars/temsilci2000_sakin.png`; `img/arka_koridor_cizim.jpg` (2/2) + kapı + temsilci2000 |
 | B6.7 | bölünmüş: sol arka `foto_contergan_teneke_169.jpg` (teneke 2/2) \| sağ metin (kâğıt) · manşet `img/cizim/kub_bolum44_yedek_kart.jpg` (onay: `img/telifli/kub_*`) |
-| KP.2 | `foto_kelsey_kennedy_1962.jpg` (2/2) \| `img/kompozit/dosya_bos_kagit.jpg` (2/2) |
+| KP.2 | `foto_kelsey_kennedy_1962.jpg` (2/2) \| `img/kompozit/dosya_bos_kagit.jpg` (2/2) · konuk anlatıcı (6. tur: 1. satırda girer) |
 | KP.3a | `img/foto_ankara_panorama_tam.jpg` (başka kırpım; panorama 2/2) · Kaymakçalan |
 | Bitiş | `img/foto_contergan_forte.jpg` (forte 2/2, bulanık) · `ep/temsilci_gulumsuyor.png` |
-| K1 / K3 / K2 | K1 (ana): zemin `img/kompozit/kr_zehirsiz.jpg` + `ep/temsilci_gergin.png` · K3: `img/kompozit/kr_dosya.jpg` + `chars/temsilci_notr.png` · K2: `img/kompozit/kr_harita.jpg` (4. tur: hap simgeleri yok) + `ep/temsilci_gergin.png`. Küçük resimde CC BY-SA fotoğraf yok (senaryo kuralı) |
+| K1 / K3 / K2 | K1 (ana): zemin `img/kompozit/kr_zehirsiz.jpg` (6. tur: kırmızı-siyah radyal, Türkiye + HAYIR; piktogram yok) + `ep/temsilci_gergin.png` · K3: `img/kompozit/kr_dosya.jpg` + `chars/temsilci_notr.png` · K2: `img/kompozit/kr_harita.jpg` (4. tur: hap simgeleri yok) + `ep/temsilci_gergin.png`. Küçük resimde CC BY-SA fotoğraf yok (senaryo kuralı) |
 
 Görsel sayılmayanlar: motorun kendi ürettiği koyu/kâğıt bilgi zemini (sayaç, metin, zaman çizelgesi; görsel dosyası yok).
 

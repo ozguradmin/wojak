@@ -47,7 +47,7 @@ konmaz:** repo herkese açık; videoda kanalın imza sesi ve bazen telifli haber
 | `<bölüm>.mp4` | Video (1080x1920, H.264 + AAC, Instagram/YouTube/TikTok uyumlu) |
 | `kapak.jpg` | Instagram'da "Kapağı düzenle → Galeriden ekle" |
 | `paylasim.md` | Bütün metinler + yükleme kontrol listesi |
-| `metinler/instagram_aciklama.txt` | Instagram açıklaması: **başlık + hikâyenin tamamı + görsel atfı + en fazla 5 hashtag** (≤2.200) |
+| `metinler/instagram_aciklama.txt` | Instagram açıklaması: **başlık + hikâyenin tamamı + görsel atfı**, hashtag yok (hesabın düzeni; ≤2.200) |
 | `metinler/youtube_baslik.txt` | YouTube Shorts başlığı (≤100) |
 | `metinler/youtube_aciklama.txt` | YouTube açıklaması (kısa + hashtag + #shorts) |
 | `metinler/youtube_sabit_yorum.txt` | YouTube'da yazıp **sabitleyeceğin** hikâye yorumu |

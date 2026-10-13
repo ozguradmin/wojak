@@ -296,7 +296,7 @@ class UstKatman:
     def _isim(self, ad: str, unvan: str | None) -> Image.Image:
         S = self.c.S
         a = C.yazi(ad, C.FONT_BOLD, 46 * S, C.BEYAZ)
-        u = C.yazi(unvan, C.FONT_BOLD, 27 * S, (206, 208, 214)) if unvan else None
+        u = C.yazi(unvan, C.FONT_BOLD, 31 * S, (214, 216, 222)) if unvan else None   # 6. tur (N6): 27 telefonda küçüktü
         padx, pady, bar = 30 * S, 18 * S, 10 * S
         w = int(max(a.width, u.width if u else 0) + 2 * padx + bar)
         h = int(a.height + (u.height + 10 * S if u else 0) + 2 * pady)
@@ -727,7 +727,8 @@ class WojakCizici(Cizici):
         bg = C.kapla(bg, round(W * zm), round(H * zm), tuple(p.get("odak", (0.5, 0.5))))
         self.bg = C.ayarla(bg, bulanik=float(p.get("bulanik", 1.6)) * S, karart=float(p.get("karart", 0.12)),
                            doygunluk=float(p.get("doygunluk", 0.85)))
-        C.vinyet_uygula(self.bg, 0.42)   # kaynağa bir kez (her karede maske bindirmek pahalı)
+        # kaynağa bir kez (her karede maske bindirmek pahalı); `vinyet` (6. tur): düz zeminde bilinçli yakın çekim
+        C.vinyet_uygula(self.bg, float(p.get("vinyet", 0.42)))
         self.balonlar = []
         for i, o in enumerate(bal):
             sure = float(o.p.get("sure") or 2.5)
@@ -1373,7 +1374,7 @@ class MetinCizici(Cizici):
             if p.get("ceviri") else None
         self.ust = C.yazi(C.buyuk(str(p["ust"])), C.FONT_BOLD, 30 * S, pal.ikincil, aralik=0.22) \
             if p.get("ust") else None
-        self.alt = C.yazi(str(p["alt"]), C.FONT_BOLD, 24 * S, pal.ikincil) if p.get("alt") else None
+        self.alt = C.yazi(str(p["alt"]), C.FONT_BOLD, 28 * S, pal.ikincil) if p.get("alt") else None   # 6. tur: 24 -> 28
         # süs tırnağı yalnız alıntıda (metin tırnakla başlıyorsa ya da `tirnak: true`); 5. tur: "Bir süre sonra"
         # kartında alıntı olmayan satırın üstünde 420 pt tırnak görünüyordu
         tirnak = p.get("tirnak")

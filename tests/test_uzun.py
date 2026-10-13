@@ -923,3 +923,43 @@ def test_bes_tur_motor_ekleri():
         mc = MetinCizici(z.sahneler[0], Baglam(v, 480, 270))
         mc.hazirla()
         assert (mc.tirnak is not None) == beklenen, metin
+
+
+def test_alti_tur_motor_ekleri():
+    """6. tur: teslim adı `<id>-uzun.*`, bindirme kartında tam saniyeye yakın damga aşağı, alıntı altyazısı italik,
+    anlık sayaç değişiminde tık yok, wojak sahnesinde `vinyet`, fotoğraf etiketinde seyrek tuş sesi."""
+    import tempfile
+    from wojak.uzun import ses
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": 2}]}])
+    assert paket.teslim_adi(v, ".mp4") == "test-uzun.mp4" and paket.teslim_adi(v, ".srt") == "test-uzun.srt"
+    # bindirme kartı 30,03'te: 30 (dondurulan kare); 30,5'te: 31 (kartın içi); siyah kart her zaman yukarı
+    for ilk, bind, beklenen in ((30.03, True, 30), (30.5, True, 31), (30.03, False, 31)):
+        v = _video([{"baslik": "Giriş", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": ilk}]},
+                    {"baslik": "İki", "kart_bindirme": bind, "sahneler": [{"tip": "metin", "metin": "y", "sure": 20}]},
+                    {"baslik": "Üç", "sahneler": [{"tip": "metin", "metin": "z", "sure": 20}]}])
+        z = zaman.hesapla(v)
+        t = z.sahne_basi(v.bolumler[1].sahneler[0])
+        assert paket.bolum_damgalari(z)[1][0] == beklenen, (ilk, bind, t)
+    # alıntı (anlatıcıdan başka ses) italik; satır uzunluğu etiketsiz metinle denetlenir
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "satirlar": [
+        "Reklamlarına göre bu ilaç…",
+        {"ses": "aylin", "metin": "Distaval, hamile kadınlara ve emziren annelere tam bir güvenle verilebilir."}]}]}])
+    _sureler(v, [1.5, 4.0])
+    z = zaman.hesapla(v)
+    ps = altyazi.parcalar(z)
+    metin = altyazi.srt(ps)
+    assert "<i>Reklam" not in metin and metin.count("<i>") == sum(p.alinti for p in ps) >= 1
+    assert all(len(s) <= altyazi.MAX_SATIR for s in metin.splitlines()) and not altyazi.denetle(ps)
+    assert not altyazi.kelime_farki(z, ps)
+    # anlık değişim (deger olayı sure: 0): tık yok, vuruş var
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [{"tip": "sayac", "deger": 1267, "sure": 6, "olaylar": [
+        {"tip": "deger", "deger": 17, "t": 3.0, "sure": 0}]}]}])
+    z = zaman.hesapla(v)
+    ef = ses.otomatik_efektler(z)
+    assert not [t for t, a, _ in ef if a == "tik" and t >= 3.0] and [t for t, a, _ in ef if a == "hit" and t >= 3.0]
+    # vinyet anahtarı wojak sahnesinde geçerli
+    _video([{"baslik": "a", "kart": False, "sahneler": [{"tip": "wojak", "arka": "uzun/demo/img/contergan_kutu.jpg",
+                                                          "vinyet": 0.7, "sure": 2, "karakterler": [
+                                                              {"id": "a", "gorsel": "assets/kit/klasik/sakin.png"}]}]}])
+    # fotoğraf etiketi: her 4 harfte bir tuş
+    assert ses.ETIKET_TUS_ADIMI == 4 and ses.TUS_ADIMI == 2

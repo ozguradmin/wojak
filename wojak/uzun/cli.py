@@ -7,7 +7,7 @@
     kare        tek kare(ler): --t 12.5 --t 1:03
     kucukresim  1280x720 küçük resim varyantları
     paket       paylasim.md + .srt (out/<id>-uzun/)
-    teslim      out/<id>-uzun/ -> teslim/<id>-uzun/ (önce mp4 doğrulanır; video git.e girmez)
+    teslim      out/<id>-uzun/ -> teslim/<id>-uzun/ (önce mp4 doğrulanır; video git.e girmez; `<id>-uzun.mp4/.srt` adıyla)
 """
 
 from __future__ import annotations
@@ -277,7 +277,10 @@ def cmd_teslim(a) -> None:
     if dst.exists():
         shutil.rmtree(dst)
     dst.mkdir(parents=True)
-    for f in [mp4, srt, od / "paylasim.md", *kr]:
+    # video ve altyazı `<id>-uzun.*` adıyla: aynı id'li Short'un teslimi `<id>.mp4` (6. tur, teknik hakem S1)
+    for f in [mp4, srt]:
+        shutil.copy2(f, dst / paket.teslim_adi(v, f.suffix))
+    for f in [od / "paylasim.md", *kr]:
         shutil.copy2(f, dst / f.name)
     for s in v.kucukresimler:
         if kucukresim.telifli_mi(v, s):

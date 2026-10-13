@@ -190,7 +190,7 @@ güncel olaylarda `python -m wojak check` dil denetimini ayrıca çalıştırır
 - Kronolojik; isim, yaş, tarih, yer net. Efsanede "iddiaya göre / anlatılana göre".
 - Son satır: duygu ya da izleyiciye soru (*"Sizce o gece çadırda ne oldu?"*) → yorum sayısı.
 - YouTube'da paylaşımdan sonraki **ilk dakika** içinde yazılıp sabitlenir. **Instagram'da (2026-10 kararı) hikâye
-  doğrudan açıklamaya** konur (başlık + hikâye + en fazla 5 hashtag, ≤2.200 karakter); paket metni hazırlar, sınırı
+  doğrudan açıklamaya** konur (başlık + hikâye + görsel atfı, hashtag yok: hesabın düzeni; ≤2.200 karakter); paket metni hazırlar, sınırı
   aşarsa uyarır.
   Not: 2.1'deki "yorumlara iniş" sinyali Instagram'da açıklamaya kayıyor; ilk haftalarda sonuçlar izlenip karşılaştırılır.
 

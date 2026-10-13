@@ -50,7 +50,8 @@ def texts(ep: Episode) -> dict[str, str]:
     head = _plain_title(title)
     credit = f"Görseller: {ep.credits}" if ep.credits else ""  # CC BY atfı
     return {
-        "instagram_aciklama": "\n\n".join(x for x in (head, story, credit, instagram_tags(ep)) if x),
+        # Hesap Instagram'da hashtag kullanmıyor (sahibin düzeni, 13.10.2026): başlık + hikâye + atıf
+        "instagram_aciklama": "\n\n".join(x for x in (head, story, credit) if x),
         "youtube_baslik": title,
         "youtube_aciklama": "\n\n".join(x for x in (
             caption, f"▶ Uzun hali: {ep.uzun_video}" if ep.uzun_video else "", credit, tags + " #shorts") if x),
@@ -100,7 +101,7 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None, denetim: list[s
         lines += [f"Ek: `{ep.id}_dolgu.mp4` + `kapak_dolgu.jpg`: siyah bantlar bulanık arka planla dolu sürüm. Kenarlık "
                   "A/B testi için Instagram'da **deneme reel** olarak paylaşılabilir (KONSEPT §3).", ""]
     lines += ["## Instagram Reels", ""]
-    lines += _block("Açıklama (başlık + hikâye + en fazla 5 hashtag)", t["instagram_aciklama"],
+    lines += _block("Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni)", t["instagram_aciklama"],
                     f"{n['instagram_aciklama']}/2200")
     lines += ["## YouTube Shorts", ""]
     lines += _block("Başlık", t["youtube_baslik"], f"{n['youtube_baslik']}/100")
