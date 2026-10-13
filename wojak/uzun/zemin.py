@@ -143,7 +143,9 @@ def _isik(cap: int) -> Image.Image:
 class Zemin:
     """Sahne zemini: taban görüntü (kamera payıyla) + boşta hareket katmanları. ciz(t) -> RGB kare."""
 
-    def __init__(self, c, p: dict, varsayilan: str = "koyu", zm: float = 1.08, ic=(30, 34, 42), dis=(7, 8, 11),
+    # 4. tur: koyu zemin aydınlatıldı (eski ic (30, 34, 42), dis (7, 8, 11): karelerin ortalama parlaklığı ~20/255,
+    # telefonda "kapkara" görünüyordu; hedef >= 45). Beyaz/sarı yazı kontrastı yeterli kalır
+    def __init__(self, c, p: dict, varsayilan: str = "koyu", zm: float = 1.08, ic=(66, 74, 92), dis=(26, 29, 38),
                  tohum: int = 0):
         self.c, self.W, self.H, self.S = c, c.W, c.H, c.S
         stil = p.get("zemin") or varsayilan
@@ -165,7 +167,7 @@ class Zemin:
         else:
             if stil == "foto":
                 g = C.ayarla(C.kapla(C.yukle(arka).convert("RGB"), W, H), bulanik=float(p.get("bulanik", 14)) * c.S,
-                             karart=0.52 if opak is None else 1 - float(opak), doygunluk=0.6)
+                             karart=0.42 if opak is None else 1 - float(opak), doygunluk=0.6)
                 g = Image.blend(g, C.gradyan_zemin(W, H, ic, dis), 0.22)
             else:
                 g = C.gradyan_zemin(W, H, ic, dis)

@@ -3,6 +3,10 @@
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
  },
+ "12a1346a4b4f1fc943deea4f258e5d6fc65d9b94": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/temsilci2000_gergin.png"
+ },
  "13fda137d0d10e11dd5dd23798d6ba3bdff81146": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
@@ -75,9 +79,17 @@
   "faces": "right",
   "file": "assets/kit/klasik/cok_terli.png"
  },
+ "40da4ab664ecb8405c65d95f805e7b4f4990bbf2": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_sakin.png"
+ },
  "41913db1ef904b17b10d0b45c3b6927cb63a4572": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_sakin.png"
+ },
+ "42bae1c5422264144a711f9480bf0f054612f4ec": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_terli.png"
  },
  "449f847a279776d4333d44d02bf0ad31342b03cd": {
   "faces": "right",
@@ -143,6 +155,10 @@
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_baba.png"
  },
+ "63e57287048f9d4891c4da5279f062d06fbb1956": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/voss_sakin.png"
+ },
  "66815981ebde700466fa384e73b4a77c378c1898": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_gulumser.png"
@@ -174,6 +190,10 @@
  "704e7248577ef014136250807c5ef47d5cdb1800": {
   "faces": "right",
   "file": "assets/kit/bizans_prenses/cok_terli.png"
+ },
+ "71b006f143837f5a05071df03860a7bdeb3162a9": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_dusunceli.png"
  },
  "72c6a3a98826d49f06a960303f595096b2a73ce7": {
   "faces": "right",
@@ -210,6 +230,10 @@
  "8aa0abe9e7c8757c13b48c39ef013ba707294bdb": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_supheci.png"
+ },
+ "8eb0e58c44eba67374904b779a6b6b0e4c8cd6bf": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_fark.png"
  },
  "901a34b0015bc34d044a37feb1534fd12c9fe38c": {
   "faces": "right",
@@ -255,6 +279,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_gazete.png"
  },
+ "ad0961d106e351c22a4222ce6aa9f1710941cd97": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/voss_ciddi.png"
+ },
  "ad12c792611141bb49f0b328249ad0dcc1f89ad0": {
   "faces": "left",
   "file": "assets/characters/sovyet_yuruyuscu_erkek.png"
@@ -283,6 +311,10 @@
   "faces": "right",
   "file": "episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png"
  },
+ "bb95713531bfc7e6a46ba704605d41796f39f18a": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/kelsey_kararli.png"
+ },
  "c63de61d756d066397ffb590f99ea19a2ab63bd2": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_ciddi.png"
@@ -298,6 +330,14 @@
  "cc48e5f2034f20fdd2d0ee443c38d5d35831aef5": {
   "faces": "right",
   "file": "assets/kit/bizans_prenses/sakin.png"
+ },
+ "d0f22cbac08bd394a5438d7841830e7d001f4c89": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_saskin.png"
+ },
+ "d12ae484767139d94ca31e96a82f09c0e3631fd6": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_gozyasli.png"
  },
  "d1f3aa04d3287ce79f3de8c43370e598063edb90": {
   "faces": "right",
@@ -342,6 +382,10 @@
  "e7289ad814fd5b72d103cc6815151efc17abdc3a": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/eczaci_sakin.png"
+ },
+ "e81b0ae551b0a08fdf2f090d30993c4ac3bdea4a": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_ciddi.png"
  },
  "e83e885e7670d492d5342d3c561b4ba6dc72701d": {
   "faces": "front",

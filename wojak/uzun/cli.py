@@ -156,7 +156,7 @@ def cmd_render(a, onizleme: bool = False) -> None:
     sessiz = od / (f".{v.id}_onizleme_video.mp4" if onizleme else f".{v.id}_video.mp4")
     t0 = time.time()
     rb = render.video_render(v, z, sessiz, W, H, isci=a.isci, onizleme=onizleme, aralik=aralik,
-                             preset=getattr(a, "preset", render.PRESET))
+                             preset=getattr(a, "preset", render.PRESET), crf=getattr(a, "crf", None) or 18)
     t_video = time.time() - t0
     sb = _ses(v, z)
     cikti = od / (f"{v.id}_onizleme.mp4" if onizleme else f"{v.id}.mp4")
@@ -309,6 +309,7 @@ def main(argv=None) -> None:
         p.add_argument("--isci", type=int, default=3, help="paralel çizim süreci (vars. 3)")
         p.add_argument("--tahmini", action="store_true", help="ses yoksa tahmini sürelerle (sessiz) render et")
         p.add_argument("--preset", default=render.PRESET, help="x264 hız ayarı (vars. faster; kalite için medium)")
+        p.add_argument("--crf", type=int, default=18, help="x264 kalite (vars. 18; yükleme kopyası için 16 ~8 Mb/sn)")
         if ad == "onizle":
             p.add_argument("--bas", help="başlangıç (sn ya da dk:sn)")
             p.add_argument("--bit", help="bitiş (sn ya da dk:sn)")

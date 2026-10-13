@@ -163,6 +163,7 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
         if not s.otomatik_sfx:
             continue
         b = z.sahne_basi(s)
+        n0 = len(out)
         if s.gecis == "kaydir":   # itme geçişi: tepe noktası geçişin ortasına denk gelen whoosh
             out.append((max(0.0, b - 0.22), "gecis", -10.0))
         if s.tip == "bolum_karti":
@@ -229,6 +230,11 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
                 out.append((b + o.zaman, "pop", -11.0))
         elif s.tip in ("bolunmus", "izgara", "pano", "marka", "bitis"):
             out += _ek_efektler(s, b)
+        if s.tip != "wojak" and s.p.get("konuk"):   # konuk karakterin girişi/çıkışı (wojak sahnesindeki gibi)
+            for v in karakter_zamanlari(s).values():
+                for t in (v["giris"], v["cikis"]):
+                    if t is not None:
+                        out.append((b + t, "whoosh_kisa", -18.0))
         for o in olaylar(s, "isim"):
             out.append((b + o.zaman, "whoosh_kisa", -15.0))
         for o in olaylar(s, "kelime"):
@@ -238,6 +244,9 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
                 out.append((b + o.zaman + 0.1, "damga", -5.0))
         for o in olaylar(s, "kose"):
             out.append((b + o.zaman, "static" if o.p.get("takili") else "tik", -18.0 if o.p.get("takili") else -12.0))
+        ek = float(s.p.get("sfx_db") or 0.0)
+        if ek:
+            out[n0:] = [(t, ad, db + ek) for t, ad, db in out[n0:]]
     return out
 
 
@@ -391,6 +400,49 @@ def kisma_zarfi(anlatim: np.ndarray, duk_db: float, acik_db: float, esik_db: flo
     return (10 ** (gs / 20)).astype(np.float32)
 
 
+TEPE_PAYI_DB = 2.0   # altlığın (müzik + efekt) 100 ms RMS'i medyan konuşma seviyesini en çok bu kadar aşar
+
+
+def tepe_siniri(anlatim: np.ndarray, altlik: np.ndarray, pay_db: float = TEPE_PAYI_DB, pencere: float = 0.1,
+                esik_db: float = -40.0) -> tuple[np.ndarray, dict]:
+    """Altlık (müzik + efekt) için geçici tepe sınırı (örnek başına doğrusal kazanç). Bölüm kartı boom/whoosh'u,
+    kanal imzası, damga ve doruk boom'u 100 ms pencerede medyan konuşma seviyesinin `pay_db` üstüne çıkmasın
+    (talidomit-turkiye 3. hakem turu: kartlarda +7,5-8,7 dB, kulaklıkta sıçratıyordu). Medyan konuşma seviyesi
+    anlatım izinin konuşulan 100 ms pencerelerinden (> esik_db) ölçülür; konuşma yoksa sınır uygulanmaz."""
+    hop = int(0.01 * SR)
+    n = len(anlatim) // hop + 1
+    k = max(1, int(round(pencere / 0.01)))
+
+    def e100(x):
+        pad = np.zeros((n * hop,) + x.shape[1:], np.float32)
+        pad[: len(x)] = x
+        e = (pad.reshape(n, hop, *x.shape[1:]).astype(np.float64) ** 2).mean(axis=1)
+        if e.ndim > 1:
+            e = e.mean(axis=1)
+        c = np.convolve(e, np.ones(k) / k, mode="same")   # 100 ms kayan pencere
+        return 10 * np.log10(c + 1e-12)
+
+    va = e100(anlatim)
+    konusma = va > esik_db
+    if not konusma.any():
+        return np.ones(len(anlatim), np.float32), {}
+    ref = float(np.median(va[konusma]))
+    ea = e100(altlik)
+    g_db = np.minimum(0.0, ref + pay_db - ea)
+    # ileri bakış + tutma (pencerenin tamamı), sonra yumuşat
+    gp = np.pad(g_db, (k, k), constant_values=0.0)
+    g_db = np.min(np.stack([gp[i:i + n] for i in range(2 * k + 1)]), axis=0)
+    ker = np.hanning(11)
+    ker /= ker.sum()
+    g_db = np.convolve(g_db, ker, mode="same")
+    t_pen = (np.arange(n) + 0.5) * hop
+    gs = np.interp(np.arange(len(anlatim)), t_pen, g_db)
+    bilgi = {"konusma_medyan_100ms_db": round(ref, 2), "tepe_payi_db": pay_db,
+             "tepe_siniri_en_cok_db": round(float(g_db.min()), 1),
+             "altlik_en_yuksek_ustu_db": round(float(ea.max() - ref), 1)}
+    return (10 ** (gs / 20)).astype(np.float32), bilgi
+
+
 # ---------------------------------------------------------------- ana miks
 
 def miks(v: Video, z: Zaman, klasor: Path, log=print) -> dict:
@@ -451,6 +503,9 @@ def miks(v: Video, z: Zaman, klasor: Path, log=print) -> dict:
             bus[i:j] += x[: j - i]
     ge = efekt_kismasi(anlatim, bus)
     altlik += bus * ge[:, None]
+    gt, tb = tepe_siniri(anlatim, altlik)
+    altlik *= gt[:, None]
+    bilgi.update(tb)
     mix += altlik
     bilgi["efekt_sayisi"] = len(efektler)
     bilgi["efekt_kisma_en_cok_db"] = round(float(20 * np.log10(ge.min() + 1e-9)), 1)
@@ -464,7 +519,12 @@ def miks(v: Video, z: Zaman, klasor: Path, log=print) -> dict:
     # doğrusal loudnorm için: ölçülen tepe + kalan kazanç <= WAV_TP olana dek sınırı indir. 4 deneme yetmeyebiliyor
     # (talidomit-turkiye 3. tur: müzik -18 dB'ye çıkınca 4 adımda koşul sağlanmadı, loudnorm dinamik kipe düştü)
     for _ in range(10):
-        sinir = f"volume={on_kazanc:.3f}dB,alimiter=limit={limit:.4f}:attack=4:release=60:level=0"
+        # latency=1: sınırlayıcının ileri bakış gecikmesi telafi edilir (yoksa ses 4 ms geride kalıyordu).
+        # 4x örnekleme: alimiter örnek tepesine bakar; 48 kHz'de gerçek (örnekler arası) tepe sınırın ~3 dB üstüne
+        # çıkıyordu, döngü de sınırı -9,7 dBFS'e indirip sesin ~4,6 LU'sunu sınırlayıcıda eziyordu (4. tur ölçümü:
+        # 100 ms pencerelerde medyan 2,9 dB kazanç düşümü). 192 kHz'de sınırlanınca tepe sınırda kalır, ezilme ~1 LU.
+        sinir = (f"volume={on_kazanc:.3f}dB,aresample={4 * SR},alimiter=limit={limit:.4f}:attack=4:release=60:level=0:"
+                 f"latency=1,aresample={SR}")
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ham), "-af", sinir, "-c:a", "pcm_f32le",
                         str(on)], check=True)
         m2 = loudnorm_olc(on)
@@ -487,8 +547,11 @@ def miks(v: Video, z: Zaman, klasor: Path, log=print) -> dict:
     # tepelerinden kestiği kısmı da altlık sanar (talidomit-turkiye: gerçek oran medyan ~23 dB iken fark yöntemi ~8 dB).
     stem = klasor / f"{v.id}_anlatim.wav"
     toplam = on_kazanc + lin_kazanc
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ham_anlatim), "-af", f"volume={toplam:.3f}dB",
-                    "-ar", str(SR), "-ac", "2", "-c:a", "pcm_f32le", str(stem)], check=True)
+    # mono -> stereo AYNI seviyede (pan): `-ac 2` merkez karışımında -3 dB uyguluyordu (teknik hakem, 3. tur: iz
+    # miksteki anlatımdan 3,01 dB alçaktı; izlerden ölçülen anlatım/altlık oranı 3 dB eksik çıkıyordu)
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ham_anlatim), "-af",
+                    f"volume={toplam:.3f}dB,pan=stereo|c0=c0|c1=c0", "-ar", str(SR), "-c:a", "pcm_f32le", str(stem)],
+                   check=True)
     ham_altlik = klasor / "altlik_ham.wav"
     wav_yaz(ham_altlik, altlik, float32=True)
     altlik_izi = klasor / f"{v.id}_altlik.wav"

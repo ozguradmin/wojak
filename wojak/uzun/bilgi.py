@@ -78,8 +78,8 @@ class _Panel:
         self.baslik = C.yazi(C.buyuk(str(d["baslik"])), C.FONT_CARD, 84 * S, C.BEYAZ if pal.koyu else pal.metin,
                              aralik=0.04, golge=(0, 4 * S, 10 * S, 0.7) if pal.koyu else None) \
             if d.get("baslik") else None
-        self.alt = C.yazi(str(d["alt"]), C.FONT_BOLD, 24 * S, (225, 225, 228), max_w=0.42 * W, max_lines=2,
-                          golge=(0, 2 * S, 4 * S, 0.8)) if d.get("alt") else None
+        # 5. tur (izlenme hakemi): 24 px alt yazı 1080p'de bile okunmuyordu: 40 px, koyu bant üstünde
+        self.alt = _alt_kutusu(str(d["alt"]), S, 0.42 * W) if d.get("alt") else None
 
     def tam_kare(self, t: float, dur: float) -> Image.Image:
         """Panelin tam ekran (W x H) hâli; görünür pencere sonra kırpılır."""
@@ -87,6 +87,17 @@ class _Panel:
             z = 1.0 + (self.zm - 1.0 - 0.01) * E.in_out_sine(t / max(dur, 1e-3))
             return C.kamera(self.img, self.W, self.H, z, self.odak)
         return self.zemin.ciz(t, dur)
+
+
+def _alt_kutusu(metin: str, S: float, max_w: float) -> Image.Image:
+    yz = C.yazi(metin, C.FONT_BOLD, 40 * S, (244, 242, 236), max_w=max_w, max_lines=2, satir=1.12)
+    padx, pady, bar = 22 * S, 14 * S, 8 * S
+    w, h = int(yz.width + 2 * padx + bar), int(yz.height + 2 * pady)
+    lay = C.yuvarlak_kutu(w, h, 6 * S, (8, 9, 12, 225))
+    ImageDraw.Draw(lay).rectangle((0, 0, int(bar) - 1, h), fill=C.SARI + (255,))
+    lay.alpha_composite(yz, (int(bar + padx), int(pady)))
+    spr, _, _ = C.golgeli(lay, 10 * S, 0.45, 0, 5 * S)
+    return spr
 
 
 def _etiket_kutusu(metin: str, S: float) -> Image.Image:
@@ -179,7 +190,7 @@ class BolunmusCizici(Cizici):
             ey = 52 * S if pn.baslik is None else 56 * S + pn.baslik.height + 22 * S
             C.bindir(im, pn.etiket, ex - (1 - a) * 30 * S, ey, a)
         if pn.alt is not None:
-            C.bindir(im, pn.alt, x0 + 40 * S, H - 96 * S - pn.alt.height, a * 0.92)
+            C.bindir(im, pn.alt, x0 + 36 * S, H - 84 * S - pn.alt.height, a)
 
 
 # ================================================================ nokta ızgarası
@@ -344,6 +355,21 @@ def mantar_dokusu(W: int, H: int, tohum: int = 21) -> Image.Image:
     return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGB")
 
 
+@lru_cache(maxsize=2)
+def kece_dokusu(W: int, H: int, tohum: int = 23) -> Image.Image:
+    """Koyu mavi-gri keçe pano (kendi dokumuz): ince lif gürültüsü, hafif leke, kenarda kararma, ahşap çerçeve yok."""
+    rng = np.random.default_rng(tohum)
+    taban = np.array([78, 92, 112], np.float32)
+    l1 = Z._gurultu(W, H, max(6, int(180 * W / 1920)), tohum)
+    l3 = rng.normal(0, 1, (H, W)).astype(np.float32)
+    lum = 1 + 0.07 * l1 + 0.05 * l3
+    arr = taban[None, None, :] * lum[..., None]
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    d = np.sqrt(((xx - W / 2) / (W / 2)) ** 2 + ((yy - H / 2) / (H / 2)) ** 2) / math.sqrt(2)
+    arr *= (1 - 0.3 * np.clip((d - 0.5) / 0.5, 0, 1) ** 1.5)[..., None]
+    return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGB")
+
+
 def _raptiye(r: float) -> Image.Image:
     n = int(r * 2 + 8)
     ss = 3
@@ -365,7 +391,8 @@ class PanoCizici(Cizici):
         self.zm = float(p.get("zoom", 1.2))
         CW, CH = round(W * self.zm), round(H * self.zm)
         self.CW, self.CH = CW, CH
-        self.taban = mantar_dokusu(CW, CH)
+        # doku: mantar (vars.) | kece (koyu mavi-gri keçe: aynı mantar pano üçüncü kez görünmesin)
+        self.taban = kece_dokusu(CW, CH) if p.get("doku") == "kece" else mantar_dokusu(CW, CH)
         self.zt = pano_zamanlari(self.sahne)
         self.raptiye = _raptiye(15 * S)
         rng = np.random.default_rng(77)
@@ -376,14 +403,19 @@ class PanoCizici(Cizici):
             y = float(k.get("y", yer[1]))
             cx, cy = (x - 0.5) * W + CW / 2, (y - 0.5) * H + CH / 2
             egim = float(k.get("egim", rng.uniform(-4, 4)))
-            spr = self._kart(k)
+            spr, foto_y = self._kart(k)
             self.kartlar[k["id"]] = {"spr": spr, "cx": cx, "cy": cy, "egim": egim, "t": self.zt["kartlar"][k["id"]],
+                                     "foto_y": foto_y,
                                      "pin": (cx, cy - spr.height / 2 + 16 * S)}
         self.damgalar = []
         for i, o in enumerate(damga_olaylari(self.sahne, kartli=True)):
             kt = self.kartlar[o.p["kart"]]
             dm = Damga(o, self.c, i)
-            self.damgalar.append((dm, kt))
+            # kart_y: kart merkezine göre (yükseklik oranı). Varsayılan: görselli kartta görselin ortası (başlık
+            # okunur kalsın; eskiden hep +0.2 idi ve görselli kartta tam başlığın üstüne düşüyordu), yoksa +0.2
+            ky = o.p.get("kart_y")
+            ky = float(ky) if ky is not None else (kt["foto_y"] if kt["foto_y"] is not None else 0.2)
+            self.damgalar.append((dm, kt, ky))
         self.baslik = C.yazi(str(p["baslik"]), C.FONT_DIALOG, 54 * S, C.BEYAZ, max_w=1100 * S, max_lines=2,
                              golge=(0, 3 * S, 8 * S, 0.8)) if p.get("baslik") else None
         self.sira = sorted(self.kartlar.values(), key=lambda k: k["t"])
@@ -422,9 +454,11 @@ class PanoCizici(Cizici):
             if stil == "merkez":
                 d.rectangle((0, 0, w, int(26 * S)), fill=(180, 34, 30, 255))
         y = pad + (36 * S if stil == "merkez" else 0)
+        foto_y = None
         if foto is not None:
             fx = (w - foto.width) // 2
             lay.paste(foto, (fx, int(y)))
+            foto_y = (y + foto.height / 2) / h - 0.5   # görselin ortası, kart merkezine göre (yükseklik oranı)
             y += foto.height + 16 * S
         lay.alpha_composite(bas, ((w - bas.width) // 2, int(y)))
         y += bas.height
@@ -433,8 +467,10 @@ class PanoCizici(Cizici):
             ImageDraw.Draw(lay).line((pad, y, w - pad, y), fill=(170, 156, 136, 255), width=max(1, int(2 * S)))
             y += 12 * S
             lay.alpha_composite(alt, ((w - alt.width) // 2, int(y)))
-        spr, _, _ = C.golgeli(lay, 12 * S, 0.55, 4 * S, 9 * S)
-        return spr
+        spr, ox, oy = C.golgeli(lay, 12 * S, 0.55, 4 * S, 9 * S)
+        if foto_y is not None:   # gölge payı sprite'ı büyütür: oranı sprite yüksekliğine çevir
+            foto_y = (oy + (foto_y + 0.5) * h - spr.height / 2) / spr.height
+        return spr, foto_y
 
     def _ip(self, d: ImageDraw.ImageDraw, a, b, q: float) -> None:
         S = self.S
@@ -475,8 +511,8 @@ class PanoCizici(Cizici):
                 px, py = k["pin"]
                 spr, x0, y0 = C.afin(self.raptiye, px, py, s, s)
                 C.bindir(cv, spr, x0, y0)
-        for dm, k in self.damgalar:   # kartın alt yarısına (başlık okunur kalsın)
-            dm.ciz(cv, t, k["cx"], k["cy"] + 0.2 * k["spr"].height)
+        for dm, k, ky in self.damgalar:
+            dm.ciz(cv, t, k["cx"], k["cy"] + ky * k["spr"].height)
         # kamera: 1:1'den yavaş yaklaşma + asılı kartların ağırlık merkezine kayma (yeni kart biraz daha ağır);
         # yalnız son karta gitmek üstteki kartları başlığın altına itiyordu
         # yakin > 1: kamera kartlara yaklaşır (pano iki çekime bölündüğünde ilk çekim; kartlar büyük okunur) ve

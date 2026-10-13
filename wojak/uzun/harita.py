@@ -191,8 +191,10 @@ class HaritaCizer:
         self.W, self.H = W, H
         self.ulkeler = yukle(r)
         self.proj = Projeksiyon(bolge, W, H)
-        self.renk = {"deniz": (13, 20, 30), "deniz2": (22, 34, 48), "kara": (60, 66, 76), "sinir": (28, 33, 41),
-                     "izgara": (26, 38, 52)}
+        # 4. tur: deniz ve kara aydınlatıldı (eski deniz (13, 20, 30), kara (60, 66, 76): dünya haritası karelerinin
+        # ortalama parlaklığı ~15-25/255'ti); kırmızı/yeşil/sarı vurgular okunur kalır
+        self.renk = {"deniz": (36, 56, 84), "deniz2": (56, 84, 116), "kara": (118, 124, 136), "sinir": (66, 72, 84),
+                     "izgara": (50, 72, 98)}
         self.renk.update(renk or {})
         self.ss = ss
         self._poli_cache: dict[str, list[list[tuple[float, float]]]] = {}

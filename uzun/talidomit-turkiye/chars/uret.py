@@ -526,6 +526,13 @@ HAIR = {
         renk=(192, 192, 190, 255), hacim=18, tepe=24, tutam=(22, 9, 16),
         teller=[[(300, 150), (240, 240), (205, 330)], [(600, 70), (460, 60), (340, 110)]],
         parlak=((222, 222, 220, 255), [(380, 30), (500, 16)])),
+    # 4. tur: Ralf Voss rolü (1959'da firmayı uyaran nörolog): yandan ayrılmış kumral-sarı saç, gözlüksüz
+    "voss": dict(
+        hairline=[(150, 520), (172, 430), (205, 330), (255, 252), (325, 206), (400, 214), (470, 204), (540, 198),
+                  (585, 236), (612, 210), (655, 246), (690, 222), (750, 238), (810, 262), (856, 306), (892, 372)],
+        renk=(196, 162, 96, 255), hacim=20, tepe=40, tutam=(26, 7, 12),
+        teller=[[(326, 206), (300, 120), (262, 40)], [(352, 160), (500, 120), (660, 150), (760, 200)]],
+        parlak=((226, 200, 140, 255), [(420, 40), (560, 28), (700, 70)])),
     # ortadan ayrılmış, yağla taranmış kır-kahve saç
     "eczaci": dict(
         hairline=[(150, 520), (172, 430), (205, 330), (265, 248), (360, 200), (455, 186), (500, 205), (545, 186),
@@ -567,6 +574,50 @@ def kaydet(im, ad, yon="sag"):
     facing.register(p, yon)
     print(f"{rel} {im.size} bakış={yon}")
     return p
+
+
+def kazak(canvas, renk=(214, 150, 62, 255), seed=120):
+    """Anlatıcı (izleyicinin yerine geçen 'feels guy'): hardal rengi bisiklet yaka kazak (önlük/takım yok). Klasik
+    omuz çizgisi kazağın altında kalır; boyun bandı iki çizgi."""
+    k = Kat(CW, CH, PADX, PADT)
+    yb = 1022 + EXT + 5
+    torso = [(NECK_L, 840), (205, 880), (150, 925), (40, 965), (-50, 1010), (-92, 1090), (-100, yb), (1005, yb),
+             (995, 1080), (950, 995), (850, 950), (740, 925), (NECK_R + 6, 895), (NECK_R, 860)]
+    k.poly(torso, renk)
+    k.line(torso[1:-1], w=LW, smooth=False, seed=seed, amp=0.6)
+    k.poly([(NECK_L + 4, 760), (NECK_R - 2, 850), (NECK_R - 6, 935), (NECK_L + 10, 935)], SKIN)   # boyun
+    koyu = tuple(int(c * 0.78) for c in renk[:3]) + (255,)
+    yaka = [(NECK_L - 6, 900), (330, 958), (450, 978), (560, 972), (NECK_R + 10, 918)]
+    alt = [(NECK_L + 4, 940), (330, 1000), (450, 1022), (560, 1016), (NECK_R + 4, 960)]
+    k.poly(yaka + alt[::-1], koyu)
+    k.line(yaka, w=LW, seed=seed + 1)
+    k.line(alt, w=7, seed=seed + 2)
+    for x in range(260, 660, 46):   # örgü çizgileri (yaka bandı)
+        k.line([(x, 912 + (x - 260) * 0.12), (x + 6, 958 + (x - 260) * 0.1)], w=4, fill=(0, 0, 0, 120), seed=seed + x,
+               smooth=False, amp=0.3)
+    canvas.alpha_composite(k.done())
+    return canvas
+
+
+KIT = ROOT / "assets/kit/klasik"
+
+
+def anlatici():
+    """4. tur: bilgi sahnelerinde (harita, sayaç, pano, belge) köşeden tepki veren anlatıcı/izleyici wojak. Klasik kafa
+    (saçsız), hardal kazak. Yüzler aynı tuvalde: sakin, dusunceli, ciddi, fark, saskin (bu betik) + terli, gozyasli
+    (assets/kit/klasik, aynı 899x1022 taban)."""
+    for v in ("sakin", "dusunceli", "ciddi", "fark", "saskin"):
+        kaydet(kazak(tuval(yuz(v))), f"anlatici_{v}")
+    for v in ("terli", "gozyasli"):
+        kaydet(kazak(tuval(Image.open(KIT / f"{v}.png").convert("RGBA"))), f"anlatici_{v}")
+
+
+def voss():
+    """4. tur: Ralf Voss rolü (nörolog, 1959'da firmayı sinir hasarı konusunda uyaran hekim): kumral-sarı saç,
+    gözlüksüz, beyaz önlük + açık gri gömlek + lacivert kravat. sakin, ciddi."""
+    kw = dict(gomlek=(228, 230, 234, 255), kravat=(40, 52, 92, 255))
+    for v in ("sakin", "ciddi"):
+        kaydet(erkek("voss", v, None, kw), f"voss_{v}")
 
 
 def kaymakcalan():
@@ -639,6 +690,13 @@ def kelsey():
     sakin.alpha_composite(k.done())
     kaydet(sakin, "kelsey_sakin")
     kaydet(supheci, "kelsey_supheci")
+    # 4. tur (izlenme hakemi S5): kararlı/sert yüz ("Onay da vermiyor."): iki kaş da alçak ve içe eğik, düz dudak
+    k = Kat(W, 1090)
+    k.line([(518, 346), (560, 344), (600, 352), (632, 364)], w=10, seed=95)
+    k.line([(750, 360), (782, 346), (822, 342)], w=10, seed=96)
+    kararli = Image.fromarray(b.astype(np.uint8))
+    kararli.alpha_composite(k.done())
+    kaydet(kararli, "kelsey_kararli")
 
 
 # ------------------------------------------------------------------------------------------------ anne adayı, A2, A nötr
@@ -672,7 +730,7 @@ def temsilci_notr():
 
 
 ALL = {"kaymakcalan": kaymakcalan, "lenz": lenz, "sheskin": sheskin, "eczaci": eczaci, "kelsey": kelsey,
-       "anne": anne, "temsilci2000": temsilci2000, "temsilci_notr": temsilci_notr}
+       "anne": anne, "temsilci2000": temsilci2000, "temsilci_notr": temsilci_notr, "anlatici": anlatici, "voss": voss}
 
 if __name__ == "__main__":
     for n in (sys.argv[1:] or ALL):

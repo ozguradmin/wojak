@@ -643,6 +643,296 @@ def hastane_odasi():
     return t.done()
 
 
+# ------------------------------------------------------------------------------------------------ 4. tur zeminleri
+# İzlenme hakemi + hesap sahibi (4. tur): hiçbir görsel 2'den çok çekimde kullanılmasın (Sağlık Bakanlığı fotoğrafı 5,
+# teneke 5, büro 5 çekimdeydi). Wikimedia bu turda HTTP 429 verdiği için yeni fotoğraf yerine kendi düz çizimlerimiz:
+# bakanlık koridoru, bakanlık odası, eczane, büro; doku: kara tahta, kraft karton, iki renkli duvar, mavi kâğıt.
+# Hepsi orta parlaklıkta (kare ortalaması >= ~60/255), yazısız/logosuz, kişisiz.
+def _zemin_tuval(duvar, W=2560, H=1440):
+    return Tuval(W, H, duvar + (255,))
+
+
+def _zemin(t, y, renk, cizgi=(90, 78, 64, 255)):
+    W, H = t.w, t.h
+    t.shape([(0, y), (W, y), (W, H), (0, H)], renk + (255,), w=0, outline=None)
+    t.line([(0, y), (W, y)], w=8, fill=cizgi, amp=0)
+
+
+def _kapi_kasasi(t, x0, y0, x1, y1, kanat=(146, 98, 58), cam=True, no=None):
+    t.shape([(x0 - 26, y0 - 26), (x1 + 26, y0 - 26), (x1 + 26, y1), (x0 - 26, y1)], (98, 64, 38, 255), w=8)
+    t.shape([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], kanat + (255,), w=8)
+    if cam:
+        t.shape([(x0 + 40, y0 + 40), (x1 - 40, y0 + 40), (x1 - 40, y0 + (y1 - y0) * 0.42), (x0 + 40, y0 + (y1 - y0) * 0.42)],
+                (214, 226, 228, 255), w=6)
+    t.shape([(x0 + 40, y0 + (y1 - y0) * 0.52), (x1 - 40, y0 + (y1 - y0) * 0.52), (x1 - 40, y1 - 50), (x0 + 40, y1 - 50)],
+            tuple(int(c * 0.86) for c in kanat) + (255,), w=6)
+    t.ellipse(x1 - 36, y0 + (y1 - y0) * 0.48, 13, 13, fill=(214, 176, 70, 255), w=5)
+    if no:
+        t.rect(x0 + (x1 - x0) / 2 - 60, y0 - 110, x0 + (x1 - x0) / 2 + 60, y0 - 46, (236, 230, 210, 255), w=5)
+        t.text((x0 + (x1 - x0) / 2, y0 - 78), no, ("mono", 40), fill=(40, 40, 40, 255), anchor="mm")
+
+
+def koridor():
+    """Bakanlık koridoru (dönem belirsiz; SA.6 ve B6.6 kapı sahneleri): krem duvar, ceviz lambri, iki kapı, bank,
+    tavan lambası, duyuru panosu (yazısız)."""
+    t = _zemin_tuval((228, 220, 196))
+    W, H = t.w, t.h
+    t.shape([(0, 860), (W, 860), (W, 1180), (0, 1180)], (138, 98, 62, 255), w=0, outline=None)     # lambri
+    for x in range(0, W, 220):
+        t.line([(x, 870), (x, 1170)], w=4, fill=(110, 76, 46, 255), amp=0)
+    t.line([(0, 860), (W, 860)], w=10, fill=(92, 62, 38, 255), amp=0)
+    _zemin(t, 1180, (150, 140, 124))
+    for x in range(-300, W + 600, 300):    # parke
+        t.line([(x, 1180), (x - 260, H)], w=4, fill=(126, 116, 102, 255), amp=0)
+    _kapi_kasasi(t, 1180, 330, 1560, 1180, no="12")
+    _kapi_kasasi(t, 2160, 330, 2500, 1180, kanat=(132, 88, 52), no="14")
+    # duyuru panosu (yazısız kâğıtlar)
+    t.shape([(240, 360), (820, 360), (820, 720), (240, 720)], (176, 132, 86, 255), w=8)
+    r = random.Random(4)
+    for (x, y) in ((290, 400), (470, 420), (640, 390), (330, 560), (560, 560)):
+        w, h = r.randint(120, 160), r.randint(110, 140)
+        t.shape([(x, y), (x + w, y + 6), (x + w - 4, y + h), (x - 4, y + h - 4)], (244, 240, 228, 255), w=5)
+        for j in range(3):
+            t.line([(x + 18, y + 30 + j * 26), (x + w - 24, y + 32 + j * 26)], w=6, fill=(150, 150, 150, 255), amp=0)
+    # tavan lambaları
+    for x in (700, 1900):
+        t.line([(x, 0), (x, 120)], w=6, fill=(60, 60, 60, 255), amp=0)
+        t.shape([(x - 110, 120), (x + 110, 120), (x + 70, 200), (x - 70, 200)], (240, 236, 214, 255), w=7)
+    # bank (lambri önünde)
+    t.shape([(1660, 1000), (2080, 1000), (2080, 1040), (1660, 1040)], (110, 74, 44, 255), w=7)
+    for x in (1690, 2040):
+        t.line([(x, 1040), (x, 1170)], w=12, fill=(70, 70, 70, 255), amp=0)
+    return t.done()
+
+
+def bakanlik_oda():
+    """1950'ler-60'lar bakanlık odası (B5.2, B5.3c): açık yeşil duvar, lambri, pencerede yalın şehir silueti, dosya
+    dolabı, yeşil çuhalı masa ve daktilo, portmanto. Portre/bayrak/yazı yok."""
+    t = _zemin_tuval((196, 212, 190))
+    W, H = t.w, t.h
+    t.shape([(0, 900), (W, 900), (W, 1200), (0, 1200)], (126, 96, 66, 255), w=0, outline=None)
+    t.line([(0, 900), (W, 900)], w=10, fill=(88, 64, 40, 255), amp=0)
+    _zemin(t, 1200, (138, 120, 100))
+    # pencere: gökyüzü + yalın bina siluetleri
+    t.shape([(860, 200), (1700, 200), (1700, 820), (860, 820)], (196, 222, 240, 255), w=12)
+    for (x0, x1, y) in ((880, 1040, 640), (1040, 1200, 560), (1200, 1330, 680), (1330, 1520, 600), (1520, 1690, 660)):
+        t.shape([(x0, y), (x1, y), (x1, 812), (x0, 812)], (168, 176, 186, 255), w=5)
+        for wy in range(y + 30, 800, 60):
+            for wx in range(x0 + 20, x1 - 30, 50):
+                t.rect(wx, wy, wx + 22, wy + 30, (120, 130, 146, 255), w=0, outline=None)
+    t.line([(1280, 200), (1280, 820)], w=12)
+    t.line([(860, 470), (1700, 470)], w=12)
+    t.shape([(780, 160), (900, 170), (890, 880), (770, 890)], (186, 64, 52, 255), w=8)      # perdeler
+    t.shape([(1660, 170), (1780, 160), (1790, 890), (1670, 880)], (186, 64, 52, 255), w=8)
+    t.line([(740, 160), (1820, 160)], w=10)
+    # dosya dolabı (solda)
+    t.shape([(160, 520), (560, 520), (560, 1220), (160, 1220)], (126, 140, 128, 255), w=9)
+    for y in (690, 860, 1030):
+        t.line([(160, y), (560, y)], w=7)
+    for y in (600, 770, 940, 1110):
+        t.rect(310, y, 410, y + 26, (210, 206, 190, 255), w=5)
+    for (x0, x1) in ((190, 300), (330, 420), (440, 540)):    # dolabın üstünde dosyalar
+        t.shape([(x0, 440), (x1, 440), (x1 - 6, 520), (x0 + 6, 520)], (214, 186, 120, 255), w=6)
+    # masa (sağda): yeşil çuha + daktilo
+    t.shape([(1860, 980), (2560, 980), (2560, 1040), (1860, 1040)], (64, 108, 76, 255), w=8)
+    t.shape([(1880, 1040), (2540, 1040), (2540, 1300), (1880, 1300)], (120, 82, 50, 255), w=8)
+    t.shape([(2020, 860), (2300, 860), (2340, 980), (1990, 980)], (52, 52, 56, 255), w=7)  # daktilo
+    t.shape([(2060, 800), (2260, 800), (2250, 862), (2070, 862)], (236, 234, 222, 255), w=5)
+    # portmanto
+    t.line([(1790, 330), (1790, 1200)], w=14, fill=(90, 60, 36, 255), amp=0)
+    for dx in (-60, 60):
+        t.line([(1790, 360), (1790 + dx, 420)], w=10, fill=(90, 60, 36, 255), amp=0)
+    t.line([(1720, 1200), (1860, 1200)], w=12, fill=(90, 60, 36, 255), amp=0)
+    return t.done()
+
+
+def eczane_zemin():
+    """Eczane (B1.8 ve B2.4b; ülke/yazı yok): arka duvar boyu ahşap raflar, kavanoz ve şişeler, önde tezgâh, terazi."""
+    t = _zemin_tuval((214, 204, 180))
+    W, H = t.w, t.h
+    t.shape([(80, 120), (W - 80, 120), (W - 80, 1000), (80, 1000)], (120, 80, 46, 255), w=10)
+    r = random.Random(11)
+    renkler = [(238, 236, 228), (196, 222, 236), (226, 206, 170), (206, 230, 206), (120, 150, 190), (176, 90, 70)]
+    for y in (340, 560, 780, 990):
+        t.shape([(100, y), (W - 100, y), (W - 100, y + 28), (100, y + 28)], (150, 104, 62, 255), w=6)
+    for y in (340, 560, 780):
+        x = 130
+        while x < W - 240:
+            w, h = r.randint(70, 130), r.randint(110, 170)
+            c = renkler[r.randrange(len(renkler))] + (255,)
+            if r.random() < 0.5:   # kavanoz (yuvarlak omuz + kapak)
+                t.shape([(x, y), (x + w, y), (x + w, y - h + 30), (x + w - 14, y - h + 14), (x + 14, y - h + 14),
+                         (x, y - h + 30)], c, w=5)
+                t.rect(x + 10, y - h - 10, x + w - 10, y - h + 16, (60, 60, 64, 255), w=4)
+            else:                  # şişe (dar boyun)
+                t.shape([(x, y), (x + w, y), (x + w, y - h + 50), (x + w * 0.65, y - h + 20), (x + w * 0.65, y - h),
+                         (x + w * 0.35, y - h), (x + w * 0.35, y - h + 20), (x, y - h + 50)], c, w=5)
+            t.rect(x + 10, y - h * 0.55, x + w - 10, y - h * 0.3, (248, 246, 236, 255), w=3)
+            x += w + r.randint(14, 34)
+    # tezgâh
+    t.shape([(0, 1080), (W, 1080), (W, H), (0, H)], (150, 100, 58, 255), w=0, outline=None)
+    t.shape([(-20, 1040), (W + 20, 1040), (W + 20, 1100), (-20, 1100)], (190, 150, 104, 255), w=8)
+    for x in range(200, W, 560):
+        t.shape([(x, 1150), (x + 360, 1150), (x + 360, 1380), (x, 1380)], (136, 90, 52, 255), w=6)
+    # terazi (sağda tezgâhta)
+    t.line([(2140, 1040), (2140, 860)], w=12, fill=(150, 120, 60, 255), amp=0)
+    t.line([(2000, 870), (2280, 870)], w=10, fill=(150, 120, 60, 255), amp=0)
+    for x in (2000, 2280):
+        t.line([(x, 870), (x, 940)], w=4, fill=(90, 90, 90, 255), amp=0)
+        t.shape([(x - 70, 940), (x + 70, 940), (x + 40, 980), (x - 40, 980)], (196, 160, 80, 255), w=6)
+    return t.done()
+
+
+def buro():
+    """1960'lar ABD bürosu (B4.3, B4.5; FDA değil, yer etiketi yok): jaluzili pencere, metal dosya dolapları, duvar saati,
+    dosya yığınlı masa."""
+    t = _zemin_tuval((206, 208, 200))
+    W, H = t.w, t.h
+    _zemin(t, 1160, (120, 116, 110))
+    # jaluzili pencere
+    t.shape([(900, 180), (1700, 180), (1700, 820), (900, 820)], (232, 236, 230, 255), w=12)
+    for y in range(210, 810, 34):
+        t.line([(910, y), (1690, y)], w=7, fill=(170, 172, 164, 255), amp=0)
+    t.line([(1300, 180), (1300, 820)], w=6, fill=(140, 140, 136, 255), amp=0)
+    # duvar saati
+    t.ellipse(560, 330, 120, 120, fill=(248, 246, 238, 255), w=10)
+    for k in range(12):
+        a = k * math.pi / 6
+        t.line([(560 + 92 * math.sin(a), 330 - 92 * math.cos(a)), (560 + 106 * math.sin(a), 330 - 106 * math.cos(a))],
+               w=6, amp=0)
+    t.line([(560, 330), (560, 262)], w=9, amp=0)
+    t.line([(560, 330), (612, 352)], w=7, amp=0)
+    # metal dosya dolapları (solda)
+    for x0 in (120, 460):
+        t.shape([(x0, 560), (x0 + 320, 560), (x0 + 320, 1170), (x0, 1170)], (150, 160, 166, 255), w=9)
+        for y in (710, 860, 1010):
+            t.line([(x0, y), (x0 + 320, y)], w=6)
+        for y in (620, 770, 920, 1070):
+            t.rect(x0 + 120, y, x0 + 200, y + 22, (214, 214, 206, 255), w=4)
+    # masa + dosya yığınları (sağda)
+    t.shape([(1860, 960), (2560, 960), (2560, 1010), (1860, 1010)], (110, 84, 60, 255), w=8)
+    t.shape([(1890, 1010), (2530, 1010), (2530, 1260), (1890, 1260)], (96, 72, 50, 255), w=8)
+    y = 960
+    for j, (w, c) in enumerate(((300, (232, 214, 160)), (280, (214, 196, 140)), (310, (236, 222, 176)),
+                                (270, (220, 200, 150)), (300, (232, 214, 160)))):
+        t.shape([(1960 + j * 6, y - 42), (1960 + j * 6 + w, y - 42), (1960 + j * 6 + w, y), (1960 + j * 6, y)],
+                c + (255,), w=5)
+        y -= 42
+    return t.done()
+
+
+def doku_tebesir():
+    """Kara tahta (yeşil, tebeşir lekeli, alt kenarda ahşap tebeşirlik): B5.13, B6.4a molekül/mekanizma."""
+    W, H = 2560, 1440
+    rng = np.random.default_rng(12)
+    base = np.array([50, 84, 70], np.float32)
+    big = rng.normal(0, 1, (H // 60, W // 60)).astype(np.float32)
+    big = np.array(Image.fromarray(((big * 30) + 128).clip(0, 255).astype(np.uint8)).resize((W, H), Image.BICUBIC)
+                   .filter(ImageFilter.GaussianBlur(40))).astype(np.float32) / 128 - 1
+    fine = rng.normal(0, 1, (H, W)).astype(np.float32)
+    img = base[None, None, :] * (1 + 0.10 * big[..., None] + 0.05 * fine[..., None])
+    im = Image.fromarray(img.clip(0, 255).astype(np.uint8))
+    lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    for _ in range(26):   # silinmiş tebeşir izleri
+        x, y = rng.uniform(0, W), rng.uniform(0, H * 0.85)
+        w, h = rng.uniform(200, 700), rng.uniform(40, 140)
+        d.ellipse((x, y, x + w, y + h), fill=(230, 236, 230, int(rng.uniform(8, 22))))
+    lay = lay.filter(ImageFilter.GaussianBlur(30))
+    im.paste(lay, (0, 0), lay)
+    d = ImageDraw.Draw(im)
+    d.rectangle((0, H - 70, W, H), fill=(132, 92, 56))
+    d.rectangle((0, H - 70, W, H - 60), fill=(92, 62, 36))
+    for x in (400, 1300, 2100):
+        d.rectangle((x, H - 92, x + 80, H - 70), fill=(240, 240, 232))
+    return im
+
+
+def doku_duz(renk, tohum, k1=0.06, k2=0.03, lambri=None):
+    """Düz boyalı duvar / karton: hafif leke + lif; lambri=(y, renk) iki renkli duvar."""
+    W, H = 2560, 1440
+    rng = np.random.default_rng(tohum)
+    big = rng.normal(0, 1, (H // 40, W // 40)).astype(np.float32)
+    big = np.array(Image.fromarray(((big * 30) + 128).clip(0, 255).astype(np.uint8)).resize((W, H), Image.BICUBIC)
+                   .filter(ImageFilter.GaussianBlur(30))).astype(np.float32) / 128 - 1
+    fine = rng.normal(0, 1, (H, W)).astype(np.float32)
+    tab = np.zeros((H, W, 3), np.float32) + np.array(renk, np.float32)
+    if lambri:
+        y, r2 = lambri
+        tab[y:] = np.array(r2, np.float32)
+    img = tab * (1 + k1 * big[..., None] + k2 * fine[..., None])
+    im = Image.fromarray(img.clip(0, 255).astype(np.uint8))
+    if lambri:
+        ImageDraw.Draw(im).rectangle((0, lambri[0] - 6, W, lambri[0] + 6), fill=tuple(int(c * 0.7) for c in lambri[1]))
+    return im
+
+
+def doku_ahsap():
+    """Ahşap masa yüzeyi (yatay damar, tahta ekleri): B3.11b tek tablet."""
+    W, H = 2560, 1440
+    rng = np.random.default_rng(24)
+    base = np.array([150, 104, 66], np.float32)
+    yy = np.arange(H, dtype=np.float32)[:, None]
+    xx = np.arange(W, dtype=np.float32)[None, :]
+    big = rng.normal(0, 1, (H // 8, W // 160)).astype(np.float32)
+    big = np.array(Image.fromarray(((big * 40) + 128).clip(0, 255).astype(np.uint8)).resize((W, H), Image.BICUBIC)
+                   ).astype(np.float32) / 128 - 1
+    damar = np.sin(yy / 9.0 + 3.0 * big) * 0.5 + 0.5
+    fine = rng.normal(0, 1, (H, W)).astype(np.float32)
+    img = base[None, None, :] * (0.86 + 0.16 * damar[..., None] + 0.03 * fine[..., None])
+    im = Image.fromarray(img.clip(0, 255).astype(np.uint8))
+    d = ImageDraw.Draw(im)
+    for y in (330, 700, 1080):
+        d.line((0, y, W, y), fill=(92, 62, 38), width=6)
+    return im
+
+
+def kanun_sayfasi():
+    """B1.7 sağ paneli: 1262 sayılı Kanun (1928), kendi çizimimiz: masada eski bir kanun sayfası. Yazılar: kanunun adı
+    ve belgeli özü (Bakanlık ruhsatı olmadan ilaç satılamaz); gerçek Resmî Gazete künyesi/logosu yok."""
+    t = Tuval(1920, 1080, (120, 88, 58, 255))
+    for y in range(0, 1080, 90):   # masa ahşabı
+        t.line([(0, y + 20), (1920, y + 34)], w=5, fill=(104, 74, 48, 255), amp=0.4)
+    # 4. tur: sayfa aşağıda (bölünmüş ekranın panel başlığı "TÜRKİYE" üstte, sayfanın başlığına binmesin)
+    x0, y0, x1, y1 = 630, 250, 1290, 1060
+    t.shape([(x0 + 14, y0 + 16), (x1 + 14, y0 + 16), (x1 + 14, y1 + 16), (x0 + 14, y1 + 16)], (70, 50, 34, 255), w=0,
+            outline=None)
+    t.shape([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], (240, 232, 212, 255), w=6)
+    ink = (34, 30, 28, 255)
+    t.text((960, 300), "1262 SAYILI KANUN", ("serif", 52), fill=ink, anchor="mt")
+    t.text((960, 370), "1928", ("anton", 120), fill=(168, 40, 34, 255), anchor="mt")
+    t.line([(710, 530), (1210, 530)], w=4, fill=ink, amp=0)
+    t.text((960, 560), "Bakanlık ruhsatı olmadan", ("serif_r", 44), fill=ink, anchor="mt")
+    t.text((960, 618), "ilaç satılamaz.", ("serif_r", 44), fill=ink, anchor="mt")
+    yazi_satirlari(t, 700, 1220, 720, 9, gap=34, w=9, renk=(150, 146, 136, 255), seed=31)
+    return t.done()
+
+
+def gazete_2008():
+    """B5.8: 2008 tarihli bir haber kupürü, kendi çizimimiz (CANLANDIRMA): adsız künye, okunmaz başlık ve sütunlar,
+    yalnız tarih satırı ('2008') okunur. Gerçek gazete adı, başlığı ya da alıntısı YOK. Kutular: tarih ve başlık."""
+    W, H = 1700, 1180
+    t = Tuval(W, H, (238, 236, 228, 255))
+    ink = (30, 30, 32, 255)
+    t.line([(60, 60), (W - 60, 60)], w=6, fill=ink, amp=0)
+    for (x0, x1) in ((520, 760), (800, 1180)):      # okunmaz künye
+        t.line([(x0, 128), (x1, 128)], w=44, fill=(70, 70, 74, 255), amp=0)
+    t.line([(60, 196), (W - 60, 196)], w=4, fill=ink, amp=0)
+    t.text((W // 2, 226), "2008", ("serif", 64), fill=ink, anchor="mt")
+    tarih = t.text_box("2008", ("serif", 64), (W // 2, 226), anchor="mt")
+    t.line([(60, 320), (W - 60, 320)], w=4, fill=ink, amp=0)
+    for j, x1 in enumerate((W - 160, W - 420)):      # başlık (okunmaz kalın çubuklar)
+        t.line([(160, 400 + j * 92), (x1, 400 + j * 92)], w=60, fill=(46, 46, 50, 255), amp=0)
+    baslik = (140, 360, W - 140, 530)
+    t.line([(60, 590), (W - 60, 590)], w=3, fill=ink, amp=0)
+    for ci, (x0, x1) in enumerate(((90, 560), (610, 1080), (1130, 1610))):
+        yazi_satirlari(t, x0, x1, 640, 15, gap=34, w=10, renk=(128, 128, 132, 255), seed=40 + ci)
+    im = t.done()
+    kutu = (tarih[0] - 16, tarih[1] - 12, tarih[2] + 16, tarih[3] + 12)
+    print("  gazete_2008 kutular (piksel): tarih", kutu, "başlık", baslik)
+    return im
+
+
 # ------------------------------------------------------------------------------------------------ hepsi
 def hepsi(sec: list[str]):
     def on(n):
@@ -689,6 +979,18 @@ def hepsi(sec: list[str]):
         kaydet(eczane_raf(False), "eczane_raf_dolu.png")
     if on("hastane"):
         kaydet(hastane_odasi(), "../arka_hastane_odasi_cizim.jpg")
+    if on("zemin4"):   # 4. tur zeminleri
+        kaydet(koridor(), "../arka_koridor_cizim.jpg")
+        kaydet(bakanlik_oda(), "../arka_bakanlik_oda_cizim.jpg")
+        kaydet(eczane_zemin(), "../arka_eczane_cizim.jpg")
+        kaydet(buro(), "../arka_buro_cizim.jpg")
+        kaydet(doku_tebesir(), "../doku_tebesir.jpg")
+        kaydet(doku_duz((178, 140, 98), 21, 0.07, 0.05), "../doku_karton.jpg")
+        kaydet(doku_duz((206, 222, 210), 22, 0.04, 0.02, lambri=(900, (122, 162, 140))), "../doku_duvar_yesil.jpg")
+        kaydet(doku_duz((152, 168, 186), 23, 0.05, 0.03), "../doku_kagit_mavi.jpg")
+        kaydet(doku_ahsap(), "../doku_ahsap.jpg")
+        kaydet(kanun_sayfasi(), "kanun_1262_sayfa.jpg")
+        kaydet(gazete_2008(), "gazete_2008_canlandirma.png", trim=False)
     if on("doku"):
         kaydet(mantar_pano(), "../arka_mantar_pano.jpg")
         kaydet(kagit_doku(False), "../doku_kagit.jpg")

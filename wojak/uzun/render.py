@@ -204,11 +204,12 @@ def _parca_isle(args) -> tuple[int, int, float]:
 
 def video_render(v: Video, z: Zaman, cikti: Path, W: int = W_TAM, H: int = H_TAM, isci: int = 3,
                  onizleme: bool = False, aralik: tuple[float, float] | None = None, preset: str = PRESET,
-                 log=print) -> dict:
+                 log=print, crf: int = 18) -> dict:
     """Sessiz videoyu üretir. aralik=(bas, bit) sn: yalnız o aralığa değen parçalar (ön izleme)."""
     if shutil.which("ffmpeg") is None:
         raise RuntimeError("ffmpeg bulunamadı")
-    kod = {"preset": "veryfast", "crf": 23} if onizleme else {"preset": preset, "crf": 18}
+    # crf: 18 vars.; yükleme kopyası için 16 (5. tur, teknik hakem: 18'de 5,7 Mb/sn, YouTube 1080p30 için 8 Mb/sn öneriyor)
+    kod = {"preset": "veryfast", "crf": 23} if onizleme else {"preset": preset, "crf": int(crf)}
     klasor = v.cikti / ("parca_onizleme" if onizleme else "parca")
     klasor.mkdir(parents=True, exist_ok=True)
     ps = parcalar(v, z, klasor, W, H, kod, filigran=v.filigran)
@@ -255,7 +256,7 @@ def birlestir(video: Path, ses: Path, cikti: Path, ss_v: float | None = None, ss
     """Videoya sesi ekler (AAC 48 kHz). ss_v/ss_a/sure verilirse (ön izleme aralığı) kırpılır, yeniden kodlanır."""
     if sure is None:
         cmd = ["ffmpeg", "-y", "-loglevel", "error", "-i", str(video), "-i", str(ses), "-map", "0:v", "-map", "1:a",
-               "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-metadata:s:a:0", "language=tur",
+               "-c:v", "copy", "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-metadata:s:a:0", "language=tur",
                "-movflags", "+faststart", str(cikti)]
     else:   # kare/örnek hassasiyetinde kırp (-ss ile kayan kesirli kare başlangıcı olmasın)
         k0, nk = int(round((ss_v or 0) * FPS)), int(round(sure * FPS))

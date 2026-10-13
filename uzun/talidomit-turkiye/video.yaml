@@ -15,8 +15,8 @@
 #
 # Akış: python -m wojak uzun kontrol uzun/talidomit-turkiye
 #       python -m wojak uzun seslendir uzun/talidomit-turkiye --qa
-#       python uzun/talidomit-turkiye/ses_onarim.py                 # önbellekteki çekimlerden kelime onarımı (13.10:
-#                                                                   # Cartesia kotası bitti; kota gelince bkz. rapor)
+#       python uzun/talidomit-turkiye/ses_onarim.py                 # önbellekteki çekimlerden onarım (5. tur: yalnız
+#                                                                   # cüzzam z'si ve <break> durak kısaltması)
 #       python uzun/talidomit-turkiye/img/kompozit_uret.py pano     # KP.2'nin pano karesi (seslendirmeden sonra)
 #       python -m wojak uzun render uzun/talidomit-turkiye           # -> out/talidomit-turkiye-uzun/
 #
@@ -27,6 +27,18 @@
 # vurgu damgaları en az 1,2 sn ekranda; çakışmalar; doruk (B5.3b) wojak sahnesi; B2.5 ve B5.8 bölündü/birleşti;
 # müzik -18/-12 + nefes araları; Cartesia kotası hâlâ yok: metni kısalan satırlar (Ama, Bilanço, 1962, Üstelik)
 # önbellekteki çekimden kesildi, "cüzzam" z'si uzatıldı (ses_onarim.py).
+# 4. tur (13.10.2026): hesap sahibi "wojak kanalı": bilgi sahnelerine köşeden tepki veren karakter (`konuk`: anlatıcı,
+# Lenz, Kelsey, Kaymakçalan, Voss, Sheskin...), karakterli süre %27 -> %50+; hiçbir görsel 2'den çok çekimde değil
+# (kendi çizimimiz bakanlık koridoru/odası, eczane, büro, dokular); kare parlaklığı >= ~45/255 (motor: harita ve koyu
+# zemin aydınlatıldı); sayılar ekranda ve altyazıda rakamla (`tts` eski kelimeli metin: önbellek anahtarı aynı); "Arada
+# bir boşluk var:" satırı çıktı; doruk ve çakışma düzeltmeleri (izlenme hakemi M1/M2). Hâlâ yeni TTS yok.
+# 5. tur (13.10.2026): hesap sahibinin yeni Cartesia anahtarlarıyla (secrets.env, CARTESIA_API_KEY_2/_3) 30 satır
+# yeniden seslendirildi: dil hakeminin MUST 1'i ("Asıl soruyu ise kimse araştırmamış."), kesik/uzatılmış çekimler
+# (Ama/Üstelik/Bilanço/1962, FDA, Lenz'i, Reçetesiz, hız_*), "yineliyor" -> "tekrarlıyor", "hakkı bir kuruma
+# veriyor" -> "başarıyı bir kuruma bağlıyor" (röportaj), "kan kanseri olan"; açıklayıcı iki noktalarda <break> (en çok
+# 0,5 sn: ses_onarim.py durak). Ritim araları (dil hakemi #2), izlenme S1-S9 (kapı yakın çekimi + terleyen temsilci,
+# "ANNE KARNINDA." sözle birlikte, B5.4/B2.3 konuk + Türkçe kelime, damga kontrastı/konturu, anlatıcı solda/büyük),
+# B3.14 (dava) çıktı ve sahne sonu 0,26 sn (10:15 sınırı). Cüzzam satırlarının ikisi z uzatılmış eski çekim.
 id: talidomit-turkiye
 baslik: "Türkiye Bu İlaca Neden ‘Hayır’ Dedi?"
 
@@ -41,27 +53,28 @@ telaffuz:                          # yalnız TTS metnine; uzun olan önce
   Contergan: Kontergan
   SALL4: Sal dört
   K 17: Ka on yedi
+  FDA: Ef De A                     # 5. tur (dil hakemi): "FTA" duyuluyordu
   Talidomid: Talidomit
 qa:
   isimler: [Kaymakçalan, Süreyya Tahsin Aygün, Contergan, talidomit, Talidomid, Grünenthal, Lenz, Kelsey, Kevadon,
             Distaval, Sheskin, Eczacıbaşı, Refik Saydam, Cerrahpaşa, Behçet, SALL4, miyelom, Kennedy, ABD, FDA]
 
 muzik: {uret: true, tohum: 1961, seviye: -18, acik: -12}   # 3. tur: -22/-15'te telefonda duyulmuyordu (sesin ~20 dB altı)
-zamanlama: {bas: 0.2, ara: 0.2, son: 0.32, bindirme: 1.2, max_bos: 6.0}
+zamanlama: {bas: 0.2, ara: 0.2, son: 0.26, bindirme: 1.2, max_bos: 6.0}   # 5. tur: son 0.32 -> 0.26 (10:15 sınırı)
 gecis: kesme
 kart_bindirme: true
 
 bolumler:
   # ================================================================================================ SOĞUK AÇILIŞ
+  # 4. tur: anlatıcı (hardal kazaklı 'feels guy', izleyicinin yerine geçer) kancanın ilk karesinden itibaren bilgi
+  # sahnelerinde köşeden tepki verir (`konuk`); hesap sahibi: "wojak kanalı, ekranda wojak olmalı"
   - baslik: Soğuk açılış
     youtube: "Giriş"
     kart: false
     sahneler:
       # SA.1a · dünya haritası: belgeli ülkeler satır boyunca tek tek kırmızı, köşede 1 -> 46 ÜLKE (Türkiye gri)
-      # (2. hakem turu: eskiden 12 ülke 1,5 sn'de boyanıp 2-8 sn arası yalnız köşe sayacı değişiyordu; kanca 3 çekime
-      # bölündü: harita / tam ekran 10.000+ sayaç / Akdeniz'de yeşil Türkiye + damga)
-      # 3. tur: kare 0'da "1 ÜLKE" yazarken iki ülke kırmızıydı: ilk kare yalnız Almanya (köşe 1), geri kalanlar köşe
-      # sayacıyla birlikte satır başında (büyükler önce: dünya ölçeğinde görünsün)
+      # (2. hakem turu: kanca 3 çekime bölündü; 3. tur: kare 0 yalnız Almanya). 4. tur: anlatıcı ilk karede altta
+      # (Güney Atlantik / Afrika'nın güneyi: boyalı ülke yok), sayaç 46'ya varınca terler
       - tip: harita
         bolge: dunya
         ulkeler: [DEU, CAN, BRA, GBR, AUS, ITA, JPN, AUT, CHE, BEL, NLD, LUX]
@@ -72,34 +85,38 @@ bolumler:
         son: 0.15
         muzik_db: -10
         kose: {metin: "{} ÜLKE", deger: 1}
+        konuk: [{id: z, gorsel: chars/anlatici_sakin.png, x: 0.56, boy: 0.4, giris: false}]
         satirlar:
-          - "Kırk altı ülkede satılan bir ilaç."
+          - {metin: "46 ülkede satılan bir ilaç.", tts: "Kırk altı ülkede satılan bir ilaç."}
         olaylar:
           - {tip: basla, satir: 1, ofset: -0.1}
           - {tip: ulke, kod: DEU, t: 0.0}
           - {tip: kose, deger: 46, satir: 1, ofset: 0.1, sure: 2.0}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_terli.png, satir: 1, ofset: 1.7}
         sfx:
           - {ad: boom, t: 0.0, db: -8}
 
-      # SA.1b · tam ekran sayaç: 10.000+ bebek (bebek/kişi görüntüsü yok)
+      # SA.1b · tam ekran sayaç: 10.000+ bebek (bebek/kişi görüntüsü yok); anlatıcı sağ altta, sayı bitince gözyaşı
       - tip: sayac
         deger: 10000
         sonek: "+"
         ust: "Dünyada"
         etiket: "bebek · ağır doğumsal kusur"
         renk: kirmizi
-        sure_say: 3.4              # 3. tur: 2,2'de bitip 2,5 sn duruyordu; satır boyunca sayar
+        sure_say: 3.4
         gecis: gecis
         bas: 0.1
         son: 0.2
         muzik_db: -10
+        konuk: [{id: z, gorsel: chars/anlatici_terli.png, x: 0.87, boy: 0.5, giris: false}]
         satirlar:
-          - "On binden fazla bebek, bu ilaç yüzünden ağır doğumsal kusurlarla dünyaya geldi."
-        olaylar: [{tip: basla, satir: 1, ofset: 0.05}]
+          - {metin: "10.000'den fazla bebek, bu ilaç yüzünden ağır doğumsal kusurlarla dünyaya geldi.",
+             tts: "On binden fazla bebek, bu ilaç yüzünden ağır doğumsal kusurlarla dünyaya geldi."}
+        olaylar:
+          - {tip: basla, satir: 1, ofset: 0.05}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_gozyasli.png, satir: 1, ofset: 3.3}
 
-      # SA.2 · Akdeniz: Türkiye yeşile döner, motif + "RUHSAT VERİLMEDİ" damgası cümle bitince (kelimeyi örtmesin).
-      # 3. tur: koyu kırmızı damga lacivert denizde okunmuyor, Türkiye'nin üstüne biniyor ve 0,8 sn'de kesiliyordu:
-      # beyaz, denizde (Türkiye'nin güneyi), 1,3 sn ekranda; çağrı kutusu yalnız "TÜRKİYE" (damgayı tekrar etmesin)
+      # SA.2 · Akdeniz: Türkiye yeşile döner, motif + "RUHSAT VERİLMEDİ" damgası cümle bitince (beyaz, denizde)
       - tip: harita
         bolge: akdeniz
         ulkeler: [DEU, GBR, AUT, CHE, BEL, NLD, LUX, ITA]
@@ -109,57 +126,63 @@ bolumler:
         gecis: gecis
         bas: 0.15
         muzik_db: -10
+        konuk: [{id: z, gorsel: chars/anlatici_gozyasli.png, x: 0.9, boy: 0.42, giris: false}]
         satirlar:
-          - {metin: "Ama Türkiye'de bu ilaca ruhsat verilmedi.", sonra: 1.3}
+          - {metin: "Ama Türkiye'de bu ilaca ruhsat verilmedi.", sonra: 1.1}
         olaylar:
           - {tip: basla, t: 0.0}
           - {tip: ulke, kod: TUR, satir: 1, ofset: 0.6}
-          - {tip: damga, metin: "RUHSAT VERİLMEDİ", renk: beyaz, satir: 1, an: son, ofset: 0.1, x: 0.62, y: 0.82, boy: 84, aci: -6}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 1, an: son, ofset: 0.0}
+          - {tip: damga, metin: "RUHSAT VERİLMEDİ", renk: beyaz, satir: 1, an: son, ofset: 0.1, x: 0.56, y: 0.82, boy: 84, aci: -6}
         sfx:
           - {ad: turkiye, satir: 1, an: son, ofset: 0.05, db: -11}
 
-      # SA.3 · Ankara'da kapı kapanır: ilk wojak 0:11'de (K1 küçük resmindeki temsilci). Sağlık Bakanlığı binası (bugün,
-      # bulanık); 3. tur: eskiden 4 sn'lik insansız panorama kaydırmasıydı, ilk wojak 0:30'da geliyordu
+      # SA.3 · Ankara'da kapı kapanır: ilk wojak hikâye karakteri (K1 küçük resmindeki temsilci). 4. tur: temsilci
+      # x 0.27 -> 0.40 (etiket çenesine biniyordu)
       - tip: wojak
         arka: img/foto_saglik_bakanligi.jpg
         odak: [0.5, 0.4]
         bulanik: 6
-        karart: 0.4
+        karart: 0.3
         etiket: "ANKARA · TEMSİLÎ GÖRÜNTÜ"
         kamera: {zoom: [1.0, 1.1], it: 0}
         gecis: kaydir
         muzik_db: -10
         karakterler:
-          - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, x: 0.27, giris: 0.1}
-          - {id: d, gorsel: img/cizim/kapi_acik.png, x: 0.72, boy: 0.85, alt: 0.04, bakis: on, giris: false}
+          - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, x: 0.40, giris: 0.1}
+          - {id: d, gorsel: img/cizim/kapi_acik.png, x: 0.74, boy: 0.85, alt: 0.04, bakis: on, giris: false}
         satirlar: [{metin: "Peki Ankara'da bu kapıyı kim kapattı?", sonra: 0.5}]
         olaylar:
           - {tip: yuz, karakter: d, gorsel: img/cizim/kapi_kapali.png, satir: 1, an: son, ofset: 0.05}
           - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 1, an: son, ofset: 0.15}
         sfx: [{ad: kapi, satir: 1, an: son, ofset: 0.05, db: -6}]
 
-      # SA.3 · üç soru kartı + boş dosya, BELGE: 0 (B5.8 panosunun habercisi)
+      # SA.3 · üç soru kartı + boş dosya, BELGE: 0 (B5.8 panosunun habercisi). 4. tur: keçe pano (mantar pano yalnız
+      # B5.8'in iki çekiminde); "BOŞ" damgası kartın görseline (eskiden başlığın üstündeydi), boy 80; anlatıcı düşünür
       - tip: pano
         zoom: 1.15
+        doku: kece
         kose: {metin: "BELGE: {}", deger: 0}
         muzik_db: -10
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.88, boy: 0.46, giris: 0.3, yon: alt}]
         kartlar:
           - {id: f, metin: "BİR FARMAKOLOG?", x: 0.2, y: 0.33, egim: -4}
           - {id: v, metin: "BİR VETERİNER HOCA?", x: 0.5, y: 0.27, egim: 3}
-          - {id: e, metin: "BİR ENSTİTÜ?", x: 0.8, y: 0.33, egim: -2}
-          - {id: d, metin: "YAYIMLANMIŞ BELGE", gorsel: img/kompozit/dosya_bos_kagit.jpg, x: 0.5, y: 0.71, en: 460, egim: 1.5}
+          - {id: e, metin: "BİR ENSTİTÜ?", x: 0.78, y: 0.33, egim: -2}
+          - {id: d, metin: "YAYIMLANMIŞ BELGE", gorsel: img/kompozit/dosya_bos_kagit.jpg, x: 0.47, y: 0.71, en: 460, egim: 1.5}
         satirlar:
-          - "Herkesin bir cevabı var."
-          - {metin: "Ama ortada yayımlanmış tek bir belge yok.", sonra: 1.2}
+          - {metin: "Herkesin bir cevabı var.", sonra: 0.4}
+          - {metin: "Ama ortada yayımlanmış tek bir belge yok.", sonra: 1.0}
         olaylar:
           - {tip: kart, id: f, satir: 1, ofset: 0.0}
           - {tip: kart, id: v, satir: 1, ofset: 0.4}
           - {tip: kart, id: e, satir: 1, ofset: 0.8}
           - {tip: kart, id: d, satir: 2, ofset: 0.3}
-          - {tip: damga, kart: d, metin: "BOŞ", satir: 2, an: son, ofset: 0.05, boy: 58, aci: -9}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_ciddi.png, satir: 2, an: son, ofset: 0.0}
+          - {tip: damga, kart: d, metin: "BOŞ", satir: 2, an: son, ofset: 0.05, boy: 80, aci: -9}
           - {tip: kose, deger: 0, satir: 2, an: son, ofset: 0.1}
 
-      # SA.4 · Contergan tenekesi (3. tur: ikinci cümle ayrı wojak sahnesine; teneke 8 sn ekranda kalıyordu)
+      # SA.4 · Contergan tenekesi (fotoğrafın 2 kullanımından biri; öbürü B6.7 aynası)
       - tip: foto
         gorsel: img/foto_contergan_teneke.jpg
         etiket: "CONTERGAN · BATI ALMANYA, 1957"
@@ -173,51 +196,60 @@ bolumler:
         olaylar:
           - {tip: kelime, metin: "REÇETESİZ", satir: 1, ofset: 1.9, sure: 1.6, konum: ust}
 
-      # SA.4b · eczanede anne adayı (yalnız sakin yüz; mağdur değil) + numune kutusu
+      # SA.4b · eczanede anne adayı (yalnız sakin yüz; mağdur değil) + numune kutusu (4. tur: kutu bütün görünür,
+      # tabletli; kesik kutu süt kutusu gibi okunuyordu)
       - tip: wojak
         arka: img/arka_eczane_raflar_169.jpg
         bulanik: 3
-        karart: 0.18
+        karart: 0.12
         kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.45, 0.5]], it: 0}
         gecis: kaydir
         muzik_db: -10
         karakterler:
           - {id: m, gorsel: chars/anne_adayi_sakin.png, taraf: sol, x: 0.3, boy: 0.74, giris: 0.05}
-          - {id: k, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.68, boy: 0.3, alt: 0.07, bakis: on, giris: 0.35}
+          - {id: k, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.68, boy: 0.26, alt: -0.1, bakis: on, giris: 0.35}
         satirlar: ["Kısa süre sonra hamileler bile kullanıyor."]
         olaylar:
           - {tip: kelime, metin: "HAMİLELER BİLE", satir: 1, ofset: 0.8, sure: 1.9, konum: ust}
 
-      # SA.5 · reklam vaadi; Aylin "Tamamen zehirsiz." (B6.7'de aynı kayıt)
+      # SA.5 · reklam vaadi; Aylin "Tamamen zehirsiz." (B6.7'de aynı kayıt). 4. tur: kâğıt zemin (eski reklam
+      # sayfası; teneke fotoğrafı 5. kez görünmesin) + reklama inanan anne adayı solda; Aylin'den önce nefes (dil hakemi)
       - tip: metin
+        zemin: kagit
         ust: "Almanya'daki reklamlardan"
         metin: "„völlig ungiftig“"
         ceviri: "tamamen zehirsiz"
-        arka: img/foto_contergan_teneke_169.jpg
         gecis: gecis
         muzik_db: -10
+        konuk: [{id: m, gorsel: chars/anne_adayi_sakin.png, x: 0.12, boy: 0.62, giris: 0.15, yon: sol}]
         satirlar:
           - "Reklamlarına göre bu ilaç…"
-          - {ses: aylin, metin: "Tamamen zehirsiz.", duygu: content}
+          - {ses: aylin, metin: "Tamamen zehirsiz.", duygu: content, once: 0.5}
         olaylar: [{tip: ceviri, satir: 2, ofset: -0.05}]
 
-      # SA.6-SA.7 · kısa videoya selam: A temsilci, adsız kutu, kapı vuruşu, gergin yüz
+      # SA.6-SA.7 · kısa videoya selam. 4. tur (izlenme hakemi S3: SA.3'ü tekrarlıyordu): kapının ikinci çalınışı;
+      # 2000'ler temsilcisi (B6.6'da kapı açılır), bakanlık koridoru (kendi çizimimiz), köşede yıl 1961 -> 20?? takılı
       - tip: wojak
-        arka: img/arka_lille_lab_169.jpg
-        kamera: {zoom: [1.0, 1.12], merkez: [[0.5, 0.5], [0.46, 0.56]], it: 0}
+        arka: img/arka_koridor_cizim.jpg
+        bulanik: 3
+        karart: 0.08
+        kamera: {zoom: [1.0, 1.24], merkez: [[0.55, 0.5], [0.42, 0.5]], it: 0}   # 5. tur: vuruş kapıya yakın
+        kose: {metin: "{}", deger: 1961, yil: true}
         muzik_db: -10
         karakterler:
-          - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, x: 0.28}
-          # 3. tur: kutu havada asılı duruyordu; alt kenarı kadrajın altına taşar (önde, tezgâhta gibi)
-          - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.56, boy: 0.24, alt: 0.07, bakis: on, giris: 0.6}
+          - {id: d, gorsel: img/cizim/kapi_kapali.png, x: 0.3, boy: 0.84, alt: 0.04, bakis: on, giris: false}
+          - {id: a, gorsel: chars/temsilci2000_sakin.png, taraf: sag, x: 0.72, boy: 0.62, giris: 0.4}
         satirlar:
           - "Bu hikâye 1961'de bitmedi."      # ses: 'Üstelik' kesildi (ses_onarim.py ustelik)
-          - {metin: "Aynı ilaç, kırk yılı aşkın bir süre sonra, Türkiye'nin kapısını bir kez daha çalacaktı.", sonra: 0.35}
+          - {metin: "Aynı ilaç, 40 yılı aşkın bir süre sonra, Türkiye'nin kapısını bir kez daha çalacaktı.",
+             tts: "Aynı ilaç, kırk yılı aşkın bir süre sonra, Türkiye'nin kapısını bir kez daha çalacaktı.", sonra: 0.25}
           - "Bu, o kapının hikâyesi."
         olaylar:
-          - {tip: kelime, metin: "KIRK YILI AŞKIN BİR SÜRE SONRA", satir: 2, ofset: 0.5, sure: 2.0, konum: ust}
-          - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 2, an: son, ofset: 0.1}
-        sfx:   # kapı vuruşu cümle bitince (kelimenin üstünde değil): iki tok vuruş + gergin yüz
+          - {tip: kelime, metin: "40+ YIL SONRA", satir: 2, ofset: 0.5, sure: 2.0, konum: ust}
+          - {tip: kose, deger: "20??", takili: true, satir: 2, ofset: 0.6, sure: 1.0}
+          - {tip: yuz, karakter: a, gorsel: chars/temsilci2000_gergin.png, satir: 2, an: son, ofset: 0.05}
+          - {tip: kelime, metin: "O KAPININ HİKÂYESİ", satir: 3, ofset: 0.2, sure: 1.8, konum: ust}
+        sfx:   # kapı vuruşu cümle bitince (kelimenin üstünde değil)
           - {ad: kapi, satir: 2, an: son, ofset: 0.02, db: -6}
 
   # ================================================================================================ BÖLÜM 1
@@ -226,31 +258,36 @@ bolumler:
     kart_marka: true
     kart_sure: 1.5
     sahneler:
-      # B1.1 · Aralık 1956; doğum yeri yok, bebek/anne çizimi yok
+      # B1.1 · Aralık 1956; doğum yeri yok, bebek/anne/baba çizimi yok. 4. tur: kelime altta (takvimin 1956 başlığına
+      # biniyordu), takvim alçak, kamera yarıya kadar yürür; zemin Stolberg (Kupferhof 2 çekimde kalsın); anlatıcı
+      # 3. satırda girer
       - tip: wojak
-        arka: img/foto_kupferhof_grunenthal_169.jpg
+        arka: img/foto_stolberg_grunenthal_169.jpg
         bulanik: 10
-        karart: 0.45
+        karart: 0.3
         doygunluk: 0.7
-        # 3. tur: kamera takvimden tabletlere yürür (13 sn'lik durağan takvim); anlatımı tekrarlayan etiket kalktı
-        kamera: {zoom: [1.0, 1.2], merkez: [[0.36, 0.55], [0.66, 0.58]], it: 0}
+        kamera: {zoom: [1.0, 1.25], merkez: [[0.36, 0.55], [0.58, 0.55]], it: 0}
         karakterler:
-          - {id: t, gorsel: img/cizim/takvim_aralik_1956.png, x: 0.3, boy: 0.56, alt: -0.2, bakis: on, giris: 0.15}
-          - {id: n, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.72, boy: 0.3, alt: -0.2, bakis: on}
+          - {id: t, gorsel: img/cizim/takvim_aralik_1956.png, x: 0.3, boy: 0.56, alt: -0.05, bakis: on, giris: 0.15}
+          - {id: n, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.64, boy: 0.3, alt: -0.2, bakis: on}
+          - {id: z, gorsel: chars/anlatici_sakin.png, x: 0.9, boy: 0.5, yon: alt}
         satirlar:
           - "Aralık 1956. Bir Grünenthal çalışanının kızı dünyaya geliyor."
           - "Babası, hamile eşine firmanın numune tabletlerinden getirmiş."
           - "Bebekte bir doğum kusuru var. O gün kimse bunu ilaçla ilişkilendirmiyor."
         olaylar:
           - {tip: giris, karakter: n, satir: 2, ofset: 1.0}
+          - {tip: giris, karakter: z, satir: 1, ofset: 1.2}   # 5. tur: takvim 6 sn tek başına kalıyordu
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_dusunceli.png, satir: 3, ofset: 1.8}
           - {tip: kelime, metin: "BAĞLANTI KURULMUYOR", satir: 3, ofset: 1.9, sure: 2.3, konum: ust}
 
-      # B1.2 · bilinen ilk vaka -> geri sar: 1954
+      # B1.2 · bilinen ilk vaka -> geri sar: 1954. 4. tur: geri sarma sesi soru bitince (hecelerin üstündeydi)
       - tip: zaman_cizelgesi
         baslik: "Bilinen ilk vaka"
         arka: img/foto_kupferhof_grunenthal_169.jpg
         gecis: gecis
         kose: {metin: "{}", deger: 1956, yil: true}
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.89, boy: 0.42, giris: false}]
         noktalar:
           - {tarih: "1954", metin: "?"}
           - {tarih: "Aralık 1956", metin: "bilinen ilk vaka"}
@@ -261,30 +298,33 @@ bolumler:
           - {tip: nokta, indeks: 2, t: 0.3}
           - {tip: nokta, indeks: 1, satir: 2, ofset: 0.3}
           - {tip: kose, deger: 1954, yil: true, satir: 2, ofset: 0.0, sure: 0.9}
-        sfx: [{ad: geri_sarma, satir: 2, ofset: 0.0, db: -6}]
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 2, ofset: 0.2}
+        sfx: [{ad: geri_sarma, satir: 2, an: son, ofset: 0.05, db: -8}]
 
-      # B1.3 · Kupferhof Grünenthal; molekül, K 17 damgası, TALİDOMİT
+      # B1.3 · Kupferhof Grünenthal; molekül, K 17 damgası, TALİDOMİT; anlatıcı sağda (B1.2'deki gibi)
       - tip: wojak
         arka: img/foto_kupferhof_grunenthal_169.jpg
         bulanik: 0.8
-        karart: 0.42
+        karart: 0.3
         kamera: {zoom: [1.0, 1.1], merkez: [[0.5, 0.5], [0.5, 0.45]], it: 0}
         etiket: "KUPFERHOF GRÜNENTHAL · STOLBERG"
         gecis: kaydir
         karakterler:
-          - {id: m, gorsel: img/cizim/molekul_beyaz.png, x: 0.5, boy: 0.42, alt: -0.26, bakis: on}
+          - {id: m, gorsel: img/cizim/molekul_beyaz.png, x: 0.44, boy: 0.42, alt: -0.26, bakis: on}
+          - {id: z, gorsel: chars/anlatici_fark.png, x: 0.88, boy: 0.52, giris: 0.3, yon: alt}
         satirlar:
-          - "1954'te Alman ilaç firması Grünenthal'in laboratuvarında yeni bir molekül sentezleniyor."
-          - "Kod adı: K 17."
+          - "1954'te Alman ilaç firması\nGrünenthal'in laboratuvarında yeni bir molekül sentezleniyor."
+          - {metin: "Kod adı: K 17.", sonra: 0.35}
           - "Bu molekülün adı: talidomit."
         olaylar:
           - {tip: giris, karakter: m, satir: 1, an: son, ofset: -1.6}
-          - {tip: damga, metin: "K 17 · 1954", satir: 2, ofset: 0.4, x: 0.8, y: 0.22, boy: 70, aci: 6}
-          - {tip: kelime, metin: "TALİDOMİT", satir: 3, ofset: 0.9, sure: 2.0, konum: alt}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_dusunceli.png, satir: 2, ofset: 0.0}
+          - {tip: damga, metin: "K 17 · 1954", renk: beyaz, satir: 2, ofset: 0.4, x: 0.22, y: 0.24, boy: 90, aci: -6}
+          - {tip: kelime, metin: "TALİDOMİT", satir: 3, ofset: 0.9, sure: 2.0, konum: ust}
 
-      # B1.4 · fareler; doz büyür, ölüm yok
+      # B1.4 · fareler; doz büyür, ölüm yok (4. tur: zemin iki renkli duvar; kâğıt dokusu 2 çekimde kalsın)
       - tip: wojak
-        arka: img/doku_kagit.jpg
+        arka: img/doku_duvar_yesil.jpg
         bulanik: 0
         karart: 0
         doygunluk: 1.0
@@ -295,7 +335,7 @@ bolumler:
           - {id: s, gorsel: img/kompozit/doz_1.png, x: 0.75, boy: 0.52, alt: -0.16, bakis: on}
         satirlar:
           - "Önce farelerde deneniyor."
-          - {metin: "Dozu ne kadar artırırlarsa artırsınlar, fareler ölmüyor.", sonra: 1.1}
+          - {metin: "Dozu ne kadar artırırlarsa artırsınlar, fareler ölmüyor.", sonra: 0.9}
         olaylar:
           - {tip: giris, karakter: s, satir: 2, ofset: 0.0}
           - {tip: yuz, karakter: s, gorsel: img/kompozit/doz_2.png, satir: 2, ofset: 0.9}
@@ -320,61 +360,73 @@ bolumler:
         bulanik: 0
         karart: 0.04
         doygunluk: 1.0
-        kamera: {zoom: [1.0, 1.04], it: 0}
-        karakterler:
-          - {id: a, gorsel: img/kompozit/serit_kan_duzeyi.png, x: 0.5, boy: 0.2, alt: -0.5, bakis: on, giris: 0.15}
-          - {id: b, gorsel: img/kompozit/serit_gebe_deney.png, x: 0.5, boy: 0.2, alt: -0.26, bakis: on}
+        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.52, 0.52]], it: 0}   # 5. tur: 1.04 neredeyse duruyordu
+        karakterler:   # 5. tur (izlenme S6b): boş kâğıtta karakter yoktu: anlatıcı sağ alttan yükselir, şeritler küçük ve yukarıda
+          - {id: a, gorsel: img/kompozit/serit_kan_duzeyi.png, x: 0.47, boy: 0.16, alt: -0.66, bakis: on, giris: 0.15}
+          - {id: b, gorsel: img/kompozit/serit_gebe_deney.png, x: 0.47, boy: 0.16, alt: -0.44, bakis: on}
+          - {id: z, gorsel: chars/anlatici_terli.png, x: 0.9, boy: 0.38, yon: alt, giris: 0.6}
         satirlar:
           - "Oysa kandaki ilaç düzeyini ölçen yok."
-          - {metin: "En önemlisi: İlaç hiçbir gebe hayvanda denenmiyor.", sonra: 1.2}   # damga >= 1,2 sn
+          - {metin: "En önemlisi: İlaç hiçbir gebe hayvanda denenmiyor.", sonra: 1.0,
+             tts: "En önemlisi: <break time=\"300ms\"/> İlaç hiçbir gebe hayvanda denenmiyor."}
         olaylar:
           - {tip: giris, karakter: b, satir: 2, ofset: 0.2}
-          - {tip: damga, metin: "YAPILMADI", satir: 2, an: son, ofset: 0.05, x: 0.74, y: 0.67, boy: 80, aci: -8}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_ciddi.png, satir: 2, an: son, ofset: 0.0}
+          - {tip: damga, metin: "YAPILMADI", satir: 2, an: son, ofset: 0.05, x: 0.64, y: 0.5, boy: 74, aci: -8}
         sfx: [{ad: boom, satir: 2, an: son, ofset: 0.05, db: -10}]
 
-      # B1.6 · Gießen 1957 + takvim + Contergan forte baskısı
+      # B1.6 · Gießen 1957 + takvim + Contergan forte baskısı; 4. tur: eczacı sağda (B1.8'deki gibi)
       - tip: wojak
         arka: img/foto_giessen_1957_169.jpg
         bulanik: 0.5
-        karart: 0.14
+        karart: 0.1
         doygunluk: 0.95
-        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.56, 0.48]], it: 0}
+        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.54, 0.48]], it: 0}
         etiket: "GIESSEN, BATI ALMANYA · 1957"
         gecis: kaydir
         karakterler:
-          - {id: t, gorsel: img/cizim/takvim_1_ekim_1957.png, x: 0.19, boy: 0.46, alt: -0.3, bakis: on, giris: 0.2}
-          - {id: f, gorsel: img/kompozit/baski_forte.png, x: 0.66, boy: 0.46, alt: -0.24, bakis: on}
+          - {id: t, gorsel: img/cizim/takvim_1_ekim_1957.png, x: 0.16, boy: 0.44, alt: -0.3, bakis: on, giris: 0.2}
+          - {id: f, gorsel: img/kompozit/baski_forte.png, x: 0.5, boy: 0.44, alt: -0.24, bakis: on}
+          - {id: e, gorsel: chars/eczaci_sakin.png, taraf: sag, x: 0.86, boy: 0.58}
         satirlar:
           - "1 Ekim 1957'de ilaç, Contergan adıyla piyasaya çıkıyor."
-          - "Reçetesiz bir uyku ve sakinleştirici olarak."
+          - "Reçetesiz satılan bir uyku ilacı ve sakinleştirici olarak."   # 5. tur: baş isim eklendi (dil hakemi)
         olaylar:
           - {tip: giris, karakter: f, satir: 1, ofset: 2.0}
+          - {tip: giris, karakter: e, satir: 2, ofset: 0.1}
           - {tip: kelime, metin: "„gefahrlos“ = TEHLİKESİZ", satir: 2, ofset: 0.5, sure: 2.2, konum: ust}
         sfx: [{ad: shutter, satir: 1, ofset: 2.1, db: -6}]
 
-      # B1.7 · bölünmüş ekran: Batı Almanya kayıt / Türkiye ruhsat (1262 sayılı Kanun, 1928)
+      # B1.7 · bölünmüş ekran: Batı Almanya kayıt / Türkiye ruhsat. 4. tur: sağ panel kendi çizimimiz (masada 1262
+      # sayılı Kanun sayfası); Bankalar Caddesi kartpostalı 2 çekimde kalsın
       - tip: bolunmus
         sol: {baslik: "BATI ALMANYA", metin: "Devlet onayı gerekmiyor", ceviri: "bugünkü anlamda ruhsat şartı yok",
               arka: img/foto_giessen_1957_169.jpg}
-        sag: {gorsel: img/foto_ankara_bankalar_kartpostal_ust.jpg, baslik: "TÜRKİYE", etiket: "1262 SAYILI KANUN · 1928",
-              odak: [0.42, 0.5]}
+        sag: {gorsel: img/cizim/kanun_1262_sayfa.jpg, baslik: "TÜRKİYE", odak: [0.5, 0.5]}
         gecis: gecis
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.92, boy: 0.4, giris: false, yon: sag}]   # 5. tur
         satirlar:
-          - {metin: "Bu arada bir ayrıntı: Batı Almanya'da o yıllarda bugünkü anlamda bir ilaç ruhsatı şartı yok.", sonra: 0.2}
-          - {metin: "Türkiye'de ise 1928'den beri bir kanun var: Bakanlıktan ruhsat almayan ilaç satılamaz.", sonra: 0.4}
+          - {metin: "Bu arada bir ayrıntı: Batı Almanya'da o yıllarda bugünkü anlamda bir ilaç ruhsatı şartı yok.", sonra: 0.2, hiz: 0.94,
+             tts: "Bu arada bir ayrıntı: <break time=\"250ms\"/> Batı Almanya'da o yıllarda bugünkü anlamda bir ilaç ruhsatı şartı yok."}
+          - {metin: "Türkiye'de ise 1928'den beri bir kanun var: Bakanlıktan ruhsat almayan ilaç satılamaz.", sonra: 0.4,
+             tts: "Türkiye'de ise bin dokuz yüz yirmi sekizden beri bir kanun var: <break time=\"300ms\"/> Bakanlıktan ruhsat almayan ilaç satılamaz."}
           - "Bu farkı aklınızda tutun."
         olaylar:
           - {tip: ceviri, taraf: sol, satir: 1, ofset: 2.6}
           - {tip: panel, taraf: sag, satir: 2, ofset: -0.45}
-          - {tip: damga, metin: "RUHSAT ŞART", renk: [20, 128, 62], satir: 2, an: son, ofset: 0.05, x: 0.75, y: 0.62, boy: 74, aci: -6}
+          - {tip: giris, karakter: z, satir: 2, ofset: 1.6}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 2, an: son, ofset: 0.0}
+          - {tip: damga, metin: "RUHSAT ŞART", renk: [20, 128, 62], satir: 2, an: son, ofset: 0.05, x: 0.68, y: 0.79, boy: 74, aci: -6}
           - {tip: soluk, taraf: sol, satir: 3, ofset: 0.0}
         sfx:
           - {ad: turkiye, satir: 2, an: son, ofset: 0.05, db: -11}
           - {ad: raptiye, satir: 3, an: son, ofset: 0.05, db: -8}
 
-      # B1.8 · eczane (gerçek fotoğraf, yer etiketi yok): eczacı + müşteri
+      # B1.8 · eczane (4. tur: kendi çizimimiz; eczane fotoğrafı SA.4b/B2.4'te): eczacı + müşteri
       - tip: wojak
-        arka: img/arka_eczane_169.jpg
+        arka: img/arka_eczane_cizim.jpg
+        bulanik: 2
+        karart: 0.08
         gecis: kaydir
         kose: {metin: "{}", deger: 1960, yil: true, konum: sol_ust}
         karakterler:
@@ -384,20 +436,24 @@ bolumler:
         olaylar:
           - {tip: balon, karakter: e, metin: "Reçeteye gerek yok!", satir: 1, ofset: 1.6, sure: 2.4}
 
-      # B1.9 · Köln 1960; asıl soru
+      # B1.9 · Köln 1960; asıl soru. 4. tur: baskı sola, anne adayı (sakin) sağdan girer
       - tip: foto
         gorsel: img/foto_koln_1960.jpg
         etiket: "KÖLN, 1960"
         atif: "Fotoğraf: Bundesarchiv, B 145 Bild-F008275-0003 / Unterberg, CC BY-SA 3.0 DE"
         egim: 2.0
-        boy: 0.74
+        boy: 0.7
+        x: 0.4
         gecis: kaydir
-        son: 0.6
+        son: 0.4
+        konuk: [{id: m, gorsel: chars/anne_adayi_sakin.png, x: 0.86, boy: 0.66, yon: sag}]
         satirlar:
           - "Milyonlarca insan bu hapa güveniyor."
-          - "Asıl soru hiç araştırılmamış: Hamile bir kadın bu ilacı alırsa, karnındaki bebeğe ne olur?"   # ses: 'Ama' kesildi
-        olaylar:   # 3. tur: B1.5'i tekrarlayan, fotoğraf kenarına ve atfa binen damga kaldırıldı
+          - {metin: "Asıl soruyu ise kimse araştırmamış: Hamile bir kadın bu ilacı alırsa, karnındaki bebeğe ne olur?",   # 5. tur: dil hakemi MUST 1
+             tts: "Asıl soruyu ise kimse araştırmamış. <break time=\"300ms\"/> Hamile bir kadın bu ilacı alırsa, karnındaki bebeğe ne olur?"}
+        olaylar:
           - {tip: muzik, db: -8, satir: 2}
+          - {tip: giris, karakter: m, satir: 2, ofset: 1.6}
           - {tip: kelime, metin: "HAMİLE BİR KADIN ALIRSA?", satir: 2, ofset: 2.0, sure: 2.6, konum: ust}
 
       # B1.10 · sınırları aşıyor (Avrupa)
@@ -417,18 +473,17 @@ bolumler:
     youtube: "2 · Dünyayı Dolaşan Hap"
     kart_muzik_db: 4
     sahneler:
-      # B2.1 · dünya: ticari adlar (yalnız ekranda), haritadaki boşluk: Türkiye
-      # 3. tur: Avrupa haritası (B1.10) boş dünya haritasına dönmesin: Avrupa ülkeleri ilk karede yanık, sonra öteki
-      # kıtalar
+      # B2.1 · dünya: ticari adlar (yalnız ekranda), haritadaki boşluk: Türkiye (dünya haritasının 2. ve son kullanımı)
       - tip: harita
         bolge: dunya
         ulkeler: [DEU, AUT, CHE, NLD, BEL, LUX, GBR, ITA, AUS, CAN, JPN, BRA]
         aralik: 0.55
-        vurgu: {kod: TUR, ad: "TÜRKİYE", etiket: "?", renk: [150, 154, 162]}
+        vurgu: {kod: TUR, ad: "TÜRKİYE", etiket: "?", renk: [206, 210, 218]}
         zoom: [1.0, 1.22]
+        konuk: [{id: z, gorsel: chars/anlatici_sakin.png, x: 0.56, boy: 0.38, giris: 0.4, yon: alt}]
         satirlar:
           - "Talidomit kısa sürede onlarca ülkeye yayılıyor, ülkeden ülkeye farklı adlarla."
-          - {metin: "Ama haritada bir boşluk var: Türkiye.", sonra: 0.4}
+          - {metin: "Ama haritada bir boşluk var: Türkiye.", sonra: 0.4, tts: "Ama haritada bir boşluk var: <break time=\"350ms\"/> Türkiye."}
         olaylar:
           - {tip: basla, t: 0.0}
           - {tip: ulke, kod: DEU, t: 0.0}
@@ -443,15 +498,16 @@ bolumler:
           - {tip: ulke, kod: AUS, t: 1.2}
           - {tip: ulke, kod: JPN, t: 1.8}
           - {tip: ulke, kod: BRA, t: 2.4}
-          - {tip: damga, metin: "CONTERGAN", renk: sari, t: 0.5, x: 0.5, y: 0.1, boy: 40, aci: -6, sure: 4.2}
-          - {tip: damga, metin: "DISTAVAL", renk: sari, t: 1.1, x: 0.33, y: 0.2, boy: 40, aci: 5, sure: 3.6}
-          - {tip: damga, metin: "SOFTENON", renk: sari, t: 1.7, x: 0.43, y: 0.31, boy: 40, aci: -4, sure: 3.0}
-          - {tip: damga, metin: "DISTAVAL", renk: sari, t: 2.3, x: 0.85, y: 0.68, boy: 40, aci: 6, sure: 2.4}
-          - {tip: damga, metin: "KEVADON", renk: sari, t: 2.9, x: 0.15, y: 0.26, boy: 40, aci: -5, sure: 1.8}
+          - {tip: damga, metin: "CONTERGAN", renk: sari, t: 0.5, x: 0.5, y: 0.1, boy: 48, aci: -6, sure: 4.2}
+          - {tip: damga, metin: "DISTAVAL", renk: sari, t: 1.1, x: 0.33, y: 0.2, boy: 48, aci: 5, sure: 3.6}
+          - {tip: damga, metin: "SOFTENON", renk: sari, t: 1.7, x: 0.43, y: 0.31, boy: 48, aci: -4, sure: 3.0}
+          - {tip: damga, metin: "DISTAVAL", renk: sari, t: 2.3, x: 0.85, y: 0.68, boy: 48, aci: 6, sure: 2.4}
+          - {tip: damga, metin: "KEVADON", renk: sari, t: 2.9, x: 0.15, y: 0.26, boy: 48, aci: -5, sure: 1.8}
           - {tip: ulke, kod: TUR, satir: 2, an: son, ofset: 0.05}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 2, an: son, ofset: 0.05}
         sfx: [{ad: turkiye, satir: 2, an: son, ofset: 0.05, db: -11}]
 
-      # B2.2 · sayaç: 300 milyon günlük doz (yalnız Grünenthal, hesap)
+      # B2.2 · sayaç: 300 milyon günlük doz (yalnız Grünenthal, hesap); eczacı sağdan girer
       - tip: sayac
         deger: 300000000
         ust: "Kasım 1961'e kadar · yalnız Grünenthal"
@@ -459,7 +515,10 @@ bolumler:
         arka: img/foto_koln_1960.jpg
         sure_say: 3.0
         gecis: gecis
-        satirlar: ["Kasım 1961'e kadar yalnız Grünenthal'in üç yüz milyonu aşkın günlük doz sattığı hesaplanıyor."]
+        konuk: [{id: e, gorsel: chars/eczaci_sakin.png, x: 0.9, boy: 0.46, giris: 0.4, yon: sag}]
+        satirlar:
+          - {metin: "Kasım 1961'e kadar yalnız Grünenthal'in 300 milyonu aşkın günlük doz sattığı hesaplanıyor.",
+             tts: "Kasım 1961'e kadar yalnız Grünenthal'in üç yüz milyonu aşkın günlük doz sattığı hesaplanıyor."}
         olaylar: [{tip: basla, satir: 1, ofset: 1.0}]
 
       # B2.3 · İngiltere'deki Distaval reklamı (kendi yazı kartımız; Wellcome görseli hesap sahibinin kararında)
@@ -467,14 +526,18 @@ bolumler:
         gorsel: img/cizim/distaval_yedek_kart.jpg
         kutular: [[229, 352, 1547, 440], [1151, 252, 1739, 340]]
         etiket: "İNGİLTERE · DISTAVAL REKLAMINDAN, 1958-61"
-        zoom: 1.2
+        zoom: 1.15
+        boy: 0.62                  # 5. tur: kart küçüldü, sağ boşlukta anne adayı (yazıya binmesin)
         gecis: kaydir
+        konuk: [{id: m, gorsel: chars/anne_adayi_sakin.png, x: 0.88, boy: 0.44, giris: false, yon: sag}]   # 5. tur
         satirlar:
-          - "İngiltere'deki bir reklam ise daha da ileri gidiyor:"
-          - {ses: aylin, metin: "Distaval, hamile kadınlara ve emziren annelere tam bir güvenle verilebilir. Anneye de çocuğa da olumsuz bir etkisi yoktur."}
+          - {metin: "İngiltere'deki bir reklam ise daha da ileri gidiyor:", hiz: 0.92}
+          - {ses: aylin, metin: "Distaval, hamile kadınlara ve emziren annelere tam bir güvenle verilebilir. Anneye de çocuğa da olumsuz bir etkisi yoktur.", once: 0.4}
         olaylar:
           - {tip: vurgula, kutu: 1, satir: 2, ofset: 1.0}
           - {tip: vurgula, kutu: 2, satir: 2, ofset: 3.4}
+          - {tip: giris, karakter: m, satir: 2, ofset: 0.5}
+          - {tip: kelime, metin: "HAMİLELERE ‘TAM GÜVENLE’", satir: 2, ofset: 3.8, sure: 2.4, konum: ust}
 
       # B2.4 · eczane: anne adayı (yalnız sakin yüz), eczacı
       - tip: wojak
@@ -484,78 +547,99 @@ bolumler:
           - {id: m, gorsel: chars/anne_adayi_sakin.png, taraf: sol, boy: 0.72, giris: 0.3}
           - {id: e, gorsel: chars/eczaci_sakin.png, taraf: sag, boy: 0.62, giris: false}
         satirlar:
-          - "Hamilelikteki bulantıya karşı da öneriliyor."
+          - {metin: "Hamilelikteki bulantıya karşı da öneriliyor.", hiz: 0.92}
           - "Pek çok anne adayı bu ilacı gönül rahatlığıyla alıyor."
         olaylar:
           - {tip: balon, karakter: e, metin: "Bulantıya da iyi gelir.", satir: 1, ofset: 0.5, sure: 2.2}
           - {tip: kelime, metin: "HAMİLELERDE TEST EDİLMEDİ", satir: 2, ofset: 0.8, sure: 2.4, konum: ust}
 
-      # B2.4 · Türkiye tezgâhı: rafta yeri boş
+      # B2.4 · Türkiye tezgâhı: rafta yeri boş. 4. tur: eczane çizimi zemin; anlatıcı solda; beyaz damga tezgâhta
+      # (kırmızı, renkli rafta okunmuyordu)
       - tip: wojak
-        arka: img/arka_eczane_raflar_169.jpg
-        bulanik: 12
-        karart: 0.5
-        doygunluk: 0.5
+        arka: img/arka_eczane_cizim.jpg
+        bulanik: 10
+        karart: 0.25
+        doygunluk: 0.6
         kamera: {zoom: [1.0, 1.06], it: 0}
-        gecis: kaydir             # 3. tur: anlatımı tekrarlayan "TÜRKİYE" daktilo etiketi kalktı (daha az tuş sesi)
+        gecis: kaydir
         karakterler:
-          - {id: r, gorsel: img/cizim/eczane_raf_turkiye_bos.png, x: 0.5, boy: 0.72, alt: -0.08, bakis: on, giris: 0.05}
-        satirlar: [{metin: "Türkiye'de ise bu ilaç eczanelerde satılamıyor: Ruhsatı yok.", sonra: 1.2}]
+          - {id: r, gorsel: img/cizim/eczane_raf_turkiye_bos.png, x: 0.58, boy: 0.72, alt: -0.08, bakis: on, giris: 0.05}
+          - {id: z, gorsel: chars/anlatici_sakin.png, taraf: sol, x: 0.13, boy: 0.56, giris: 0.3}
+        satirlar: [{metin: "Türkiye'de ise bu ilaç eczanelerde satılamıyor: Ruhsatı yok.", sonra: 1.0}]
         olaylar:
-          - {tip: damga, metin: "RUHSAT YOK", renk: kirmizi, satir: 1, an: son, ofset: 0.05, x: 0.5, y: 0.47, boy: 90, aci: -6}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 1, an: son, ofset: 0.0}
+          - {tip: damga, metin: "RUHSAT YOK", renk: beyaz, satir: 1, an: son, ofset: 0.05, x: 0.58, y: 0.86, boy: 100, aci: -6}
         sfx: [{ad: turkiye, satir: 1, an: son, ofset: 0.1, db: -11}]
 
-      # B2.5 · ilk işaret: sinir hasarı -> firmanın yanıtı -> bahar 1961. 3. tur: iki boş bej kart (15,8 sn) tek zaman
-      # çizelgesinde, Kupferhof fotoğrafının üstünde; firmanın yanıtı ve vaka sayısı damgayla
+      # B2.5a · ilk işaret: sinir hasarı. 4. tur (izlenme hakemi S2b: 16 sn'lik boş zaman çizelgesi bölündü): nörolog
+      # Ralf Voss (rol çizimi, yeni karakter) + firmaya giden mektup
+      - tip: wojak
+        arka: img/doku_kagit_mavi.jpg
+        bulanik: 0
+        karart: 0
+        doygunluk: 1.0
+        kamera: {zoom: [1.0, 1.07], merkez: [[0.5, 0.5], [0.55, 0.48]], it: 0}
+        gecis: gecis
+        karakterler:
+          - {id: v, gorsel: chars/voss_sakin.png, taraf: sag, x: 0.7, boy: 0.66, giris: 0.2}
+          - {id: z, gorsel: img/cizim/zarf.png, x: 0.28, boy: 0.24, alt: -0.32, bakis: on}
+        satirlar:
+          - "İlk işaret, beklenmedik bir yerden geliyor: sinir sisteminden."
+          - "1959'da ilacı uzun süre kullananlarda sinir hasarı görülüyor."
+        olaylar:
+          - {tip: kelime, metin: "SİNİR HASARI", satir: 1, an: son, ofset: -1.2, sure: 1.9, konum: ust}
+          - {tip: isim, karakter: v, ad: "Ralf Voss", unvan: "nörolog · 1959'da firmayı uyaran hekim", satir: 2, ofset: 0.3, sure: 3.6}
+          - {tip: giris, karakter: z, satir: 2, ofset: 1.6}
+          - {tip: yuz, karakter: v, gorsel: chars/voss_ciddi.png, satir: 2, ofset: 1.2}
+
+      # B2.5b · firmanın yanıtı -> bahar 1961 (zaman çizelgesi; Voss sağ altta)
       - tip: zaman_cizelgesi
         baslik: "İlk işaret: sinir hasarı"
-        zemin: foto
-        arka: img/foto_kupferhof_grunenthal_169.jpg
         gecis: gecis
+        konuk: [{id: v, gorsel: chars/voss_ciddi.png, x: 0.9, boy: 0.4, giris: false}]
         noktalar:
           - {tarih: "Ekim 1959", metin: "uzun kullanımda sinir hasarı · firmaya uyarı"}
           - {tarih: "Bahar 1961", metin: "vakalar artıyor"}
         satirlar:
-          - "İlk işaret, beklenmedik bir yerden geliyor: sinir sisteminden."
-          - "1959'da ilacı uzun süre kullananlarda sinir hasarı görülüyor."
           - "Firma, böyle bir yan etki duymadığını söylüyor."
-          - {metin: "1961 baharında vakalar bini aşıyor.", sonra: 1.2}   # ses: 'Ama' kesildi
+          - {metin: "1961 baharında vakalar bini aşıyor.", sonra: 1.0}
         olaylar:
-          - {tip: nokta, indeks: 1, satir: 1, ofset: 0.6}
-          - {tip: isim, ad: "Ralf Voss", unvan: "nörolog · 1959'da firmayı uyaran hekim", satir: 2, ofset: 0.4, sure: 4.0}
-          - {tip: damga, metin: "FİRMANIN YANITI: DUYULMADI", renk: beyaz, satir: 3, ofset: 0.9, x: 0.3, y: 0.78, boy: 50, aci: -4}
-          - {tip: nokta, indeks: 2, satir: 4, ofset: 0.2}
-          - {tip: damga, metin: "1.000+ VAKA", renk: sari, satir: 4, an: son, ofset: 0.05, x: 0.72, y: 0.8, boy: 96, aci: -7}
-        sfx: [{ad: hit, satir: 4, an: son, ofset: 0.05, db: -9}]
+          - {tip: nokta, indeks: 1, t: 0.2}
+          - {tip: damga, metin: "FİRMANIN YANITI: HABERİMİZ YOK", renk: beyaz, satir: 1, ofset: 0.9, x: 0.25, y: 0.79, boy: 50, aci: -4}
+          - {tip: nokta, indeks: 2, satir: 2, ofset: 0.2}
+          - {tip: damga, metin: "1.000+ VAKA", renk: sari, satir: 2, an: son, ofset: 0.05, x: 0.56, y: 0.87, boy: 74, aci: -7}
+        sfx: [{ad: hit, satir: 2, an: son, ofset: 0.05, db: -9}]
 
-      # B2.6 · kararan teneke
+      # B2.6 · uyarı ve asıl tehlike: anlatıcı terler (4. tur: kraft karton zemin; teneke 2 çekimde kalsın)
       - tip: wojak
-        arka: img/foto_contergan_teneke_169.jpg
-        bulanik: 0.5
-        karart: 0.5
-        doygunluk: 0.7
+        arka: img/doku_karton.jpg
+        bulanik: 0
+        karart: 0
+        doygunluk: 1.0
         kamera: {zoom: [1.0, 1.15], it: 0}
         gecis: gecis
         muzik_db: -9
         muzik_mod: gerilim         # tehlike: gerilim katmanı (B3.4'teki nabza dek; "Anne karnında." anında müzik susar)
+        karakterler:
+          - {id: z, gorsel: chars/anlatici_dusunceli.png, taraf: orta, x: 0.5, boy: 0.72, giris: 0.1}
         satirlar:
-          - "Sinir hasarı bir uyarıydı."
+          - {metin: "Sinir hasarı bir uyarıydı.", sonra: 0.35}
           - "Ama asıl tehlike, kimsenin bakmadığı bir yerdeydi:"
-        olaylar: [{tip: muzik, db: -40, satir: 2, an: son, ofset: 0.0, gecis: 0.35}]   # müzik susar: "Anne karnında."
+        olaylar:
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_terli.png, satir: 2, ofset: 0.6}
+          - {tip: muzik, db: -40, satir: 2, an: son, ofset: 0.0, gecis: 0.35}   # müzik susar: "Anne karnında."
 
-      # B2.7 · "anne karnında" (daktilo) — ARA REKLAM 1 bu sahnenin sonu
+      # B2.7 · "anne karnında" (daktilo; bilerek koyu, müzik susmuş) — ARA REKLAM 1 bu sahnenin sonu
       - tip: metin
-        zemin: foto
-        arka: img/foto_contergan_teneke_169.jpg
-        arka_opak: 0.25
         yazim: daktilo
-        metin: "anne karnında"
+        metin: "ANNE KARNINDA."
         gecis: gecis
         muzik_db: -40
-        bas: 0.5
+        bas: 0.1
+        otomatik_sfx: false        # 5. tur (izlenme S2): yazı sözle birlikte; tuş sesi sözün üstüne binmesin
         satirlar: ["Anne karnında."]
-        olaylar: [{tip: basla, satir: 1, an: son, ofset: 0.05}]   # daktilo sözden SONRA (kelimenin üstünde tık yok)
-        son: 1.75                  # 3. tur: yazı bölüm kartından 1-2 kare önce bitiyordu
+        olaylar: [{tip: basla, satir: 1, ofset: 0.0}]
+        son: 1.45
 
   # ================================================================================================ BÖLÜM 3
   - baslik: On İki Gün
@@ -564,20 +648,23 @@ bolumler:
     kart_sure: 1.4
     kart_muzik_db: 4           # sessizlikten sonra müzik kartla geri gelir
     sahneler:
-      # B3.1 · iki şehir, iki doktor
+      # B3.1 · iki şehir, iki doktor. 4. tur: dünya haritası yerine Hint Okyanusu merkezli yarıküre (Almanya + Avustralya
+      # aynı karede); Lenz Hamburg damgasıyla sağdan girer (McBride çizilmez)
       - tip: harita
-        bolge: dunya
+        bolge: {merkez: [80, 12], sinir: [-25, -50, 172, 80], proj: laea}
         baslik: "İki şehir, iki doktor"
         ulkeler: [AUS, DEU]
         etiketler: [AUS, DEU]
         renk: [242, 190, 58]
         aralik: 1.2
         zoom: [1.0, 1.06]
+        konuk: [{id: l, gorsel: chars/lenz_sakin.png, x: 0.1, boy: 0.46, yon: sol}]
         satirlar: ["1961'de dünyanın iki ucunda, iki doktor aynı şeyi fark ediyor."]
         olaylar:
           - {tip: basla, t: 0.5}
-          - {tip: damga, metin: "SİDNEY", renk: beyaz, t: 0.8, x: 0.73, y: 0.84, boy: 44, aci: -5}
-          - {tip: damga, metin: "HAMBURG", renk: beyaz, t: 2.0, x: 0.45, y: 0.08, boy: 44, aci: 4}
+          - {tip: damga, metin: "SİDNEY", renk: beyaz, t: 0.8, x: 0.86, y: 0.9, boy: 52, aci: -5}
+          - {tip: damga, metin: "HAMBURG", renk: beyaz, t: 2.0, x: 0.37, y: 0.27, boy: 52, aci: 4}
+          - {tip: giris, karakter: l, t: 2.2}
 
       # B3.2 · Avustralya, Sidney (McBride yalnız isim etiketiyle; portre ve övgü yok)
       - tip: harita
@@ -607,17 +694,19 @@ bolumler:
           - {tip: yuz, karakter: l, gorsel: chars/lenz_fark.png, satir: 2, ofset: 0.3}
           - {tip: kelime, metin: "İKİ ANNE, AYNI İLAÇ", satir: 2, ofset: 0.8, sure: 2.0, konum: ust}
 
-      # B3.4 · on iki gün (takvim; 30 Ekim yalnız zaman işareti)
+      # B3.4 · on iki gün (takvim; 30 Ekim yalnız zaman işareti). 4. tur: koyu zemin (muayenehane 2 çekimde kalsın),
+      # Lenz sağ altta
       - tip: zaman_cizelgesi
         baslik: "On iki gün"
         muzik_mod: nabiz           # on iki günlük geri sayım: alçak kalp atışı (B3.8 Türkiye haritasına dek)
-        zemin: foto
-        arka: img/arka_muayenehane_169.jpg
         gecis: gecis
-        noktalar:   # 3. tur: "30 Ekim · işgücü anlaşması" kaldırıldı (anlatılmıyordu; ilaçla bağ izlenimi veriyordu)
+        konuk: [{id: l, gorsel: chars/lenz_ciddi.png, x: 0.89, boy: 0.42, giris: 0.2, yon: alt}]
+        noktalar:
           - {tarih: "15 Kasım 1961", metin: "Lenz firmayı arıyor"}
           - {tarih: "27 Kasım 1961", metin: "ilaç raflardan çekiliyor"}
-        satirlar: ["Lenz'in ilk telefonundan ilacın raflardan çekilmesine kadar on iki gün geçecek."]
+        satirlar:
+          - {metin: "Lenz'in ilk telefonundan ilacın raflardan çekilmesine kadar 12 gün geçecek.",
+             tts: "Lenz'in ilk telefonundan ilacın raflardan çekilmesine kadar on iki gün geçecek."}
         olaylar:
           - {tip: nokta, indeks: 1, satir: 1, ofset: 0.5}
           - {tip: nokta, indeks: 2, satir: 1, ofset: 2.4}
@@ -636,7 +725,7 @@ bolumler:
           - {id: z, gorsel: img/cizim/zarf_taahhutlu.png, x: 0.43, boy: 0.2, alt: -0.36, bakis: on}
         satirlar:
           - "15 Kasım'da Lenz firmayı arıyor ve ilacın toplatılmasını istiyor."
-          - "Ertesi gün aynı talebi taahhütlü bir mektupla yineliyor."
+          - "Ertesi gün aynı talebi taahhütlü bir mektupla tekrarlıyor."   # 5. tur: 'yineliyor' 'iniliyor' duyuluyordu
         olaylar:
           - {tip: etiket, satir: 1, ofset: 1.3}
           - {tip: yuz, karakter: t, gorsel: img/cizim/takvim_16_kasim_1961.png, satir: 2, ofset: 0.1}
@@ -644,26 +733,25 @@ bolumler:
           - {tip: giris, karakter: z, satir: 2, ofset: 1.5}
         sfx: [{ad: telefon, t: 0.1, db: -12}]
 
-      # B3.6 · 20 Kasım: firmanın yanıtı (firma yüzü/logosu yok). 3. tur: Lenz önceki çekimdeki gibi sağda (taraf
-      # atlamasın), takvim solda; damga altta (Lenz'in başına ve takvimin altına binip 0,5 sn'de kesiliyordu)
+      # B3.6 · 20 Kasım: firmanın yanıtı (firma yüzü/logosu yok). 4. tur: iki renkli duvar zemin (muayenehane 2 çekimde)
       - tip: wojak
-        arka: img/arka_muayenehane_169.jpg
-        bulanik: 6
-        karart: 0.35
+        arka: img/doku_duvar_yesil.jpg
+        bulanik: 3
+        karart: 0.12
         kamera: {zoom: [1.0, 1.08], it: 0}
         kose: {metin: "GÜN {} / 12", deger: 1}
         gecis: gecis
         karakterler:
           - {id: l, gorsel: chars/lenz_ciddi.png, taraf: sag, x: 0.72, boy: 0.62, giris: false}
           - {id: t, gorsel: img/cizim/takvim_20_kasim_1961.png, x: 0.25, boy: 0.46, alt: -0.28, bakis: on, giris: 0.1}
-        satirlar: [{metin: "Firmanın yanıtı sert: Lenz'i iftirayla suçluyor, dava açmakla tehdit ediyor ve toplatmayı reddediyor.", sonra: 1.2}]
+        satirlar: [{metin: "Firmanın yanıtı sert: Lenz'i iftirayla suçluyor, dava açmakla tehdit ediyor ve toplatmayı reddediyor.", sonra: 1.0}]
         olaylar:
           - {tip: kose, deger: 5, t: 0.25}
           - {tip: kelime, metin: "FİRMA LENZ'İ SUÇLUYOR", satir: 1, ofset: 1.3, sure: 1.6, konum: ust}
           - {tip: kelime, metin: "DAVA TEHDİDİ", satir: 1, ofset: 3.3, sure: 1.7, konum: ust}
           - {tip: damga, metin: "TOPLATMA: RET", satir: 1, an: son, ofset: 0.05, x: 0.37, y: 0.86, boy: 84, aci: -6}
 
-      # B3.7 · 26 Kasım: pazar gazetesi (kendi çizimimiz, gerçek ad/logo yok)
+      # B3.7 · 26 Kasım: pazar gazetesi (kendi çizimimiz, gerçek ad/logo yok); 4. tur: gazeteli Lenz sağ altta
       - tip: manset
         gorsel: img/cizim/gazete_1961_canlandirma.png
         kutular: [[134, 368, 1277, 505]]
@@ -671,53 +759,65 @@ bolumler:
         zoom: 1.22
         kose: {metin: "GÜN {} / 12", deger: 5}
         gecis: kaydir
+        konuk: [{id: l, gorsel: chars/lenz_gazete.png, x: 0.87, boy: 0.5, giris: 0.3, yon: alt}]
         satirlar: ["26 Kasım'da haber bir pazar gazetesine düşüyor."]
         olaylar:
           - {tip: kose, deger: 11, t: 0.3, sure: 1.0}
           - {tip: vurgula, kutu: 1, satir: 1, ofset: 1.4}
 
-      # B3.8 · 27 Kasım 1961: piyasadan çekildi
+      # B3.8 · 27 Kasım 1961: piyasadan çekildi (4. tur: kraft zemin, Lenz sağda)
       - tip: wojak
-        arka: img/doku_kagit_koyu.jpg
+        arka: img/doku_karton.jpg
         bulanik: 0
         karart: 0
-        kamera: {zoom: [1.0, 1.2], it: 0}
+        kamera: {zoom: [1.0, 1.12], merkez: [[0.5, 0.5], [0.46, 0.52]], it: 0}
         kose: {metin: "GÜN {} / 12", deger: 11}
         gecis: gecis
-        karakterler:   # 3. tur: takvim yaprağı 26'dan 27'ye çevrilir (5 sn'lik durağan takvim)
-          - {id: t, gorsel: img/cizim/takvim_26_kasim_1961.png, x: 0.5, boy: 0.66, alt: -0.12, bakis: on, giris: 0.05}
-        satirlar: [{metin: "Ertesi gün, 27 Kasım 1961'de, Contergan Almanya'da piyasadan çekiliyor.", sonra: 1.2}]
+        karakterler:   # 3. tur: takvim yaprağı 26'dan 27'ye çevrilir
+          - {id: t, gorsel: img/cizim/takvim_26_kasim_1961.png, x: 0.36, boy: 0.64, alt: -0.12, bakis: on, giris: 0.05}
+          - {id: l, gorsel: chars/lenz_ciddi.png, taraf: sag, x: 0.8, boy: 0.6, giris: 0.2}
+        satirlar: [{metin: "Ertesi gün, 27 Kasım 1961'de, Contergan Almanya'da piyasadan çekiliyor.", sonra: 1.0}]
         olaylar:
           - {tip: yuz, karakter: t, gorsel: img/cizim/takvim_27_kasim_1961.png, satir: 1, ofset: 0.3}
           - {tip: kose, deger: 12, satir: 1, ofset: 0.6}
-          - {tip: damga, metin: "PİYASADAN ÇEKİLDİ", satir: 1, an: son, ofset: 0.05, x: 0.5, y: 0.6, boy: 88, aci: -9}
+          - {tip: yuz, karakter: l, gorsel: chars/lenz_sakin.png, satir: 1, an: son, ofset: 0.1}
+          - {tip: damga, metin: "PİYASADAN ÇEKİLDİ", satir: 1, an: son, ofset: 0.05, x: 0.36, y: 0.93, boy: 80, aci: -5, kontur: true}
         sfx: [{ad: hit, satir: 1, an: son, ofset: 0.05, db: -8}]
 
-      # B3.8 · Türkiye: toplatacak bir şey yok
+      # B3.8 · Türkiye: toplatacak bir şey yok; anlatıcı sağ altta
       - tip: harita
         bolge: turkiye
         vurgu: {kod: TUR, etiket: "ruhsat yok · toplatacak ilaç yok"}
         zoom: [1.0, 1.06]
         gecis: kaydir
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.11, boy: 0.46, giris: 0.2, yon: sol}]   # 5. tur: solda
         satirlar: [{metin: "Türkiye'nin ise toplatacak bir şeyi yok: Ruhsat hiç verilmemişti.", sonra: 0.45}]
-        olaylar: [{tip: ulke, kod: TUR, satir: 1, ofset: 0.3}]   # görüntü kelimeyle (pop+hit konuşma altında kısılır)
+        olaylar:
+          - {tip: ulke, kod: TUR, satir: 1, ofset: 0.3}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_sakin.png, satir: 1, an: son, ofset: 0.0}
         sfx: [{ad: turkiye, satir: 1, an: son, ofset: 0.05, db: -11}]
 
-      # B3.9-B3.10 · nokta ızgarası: 10.000 nokta, %40'ı sessizce söner (efekt yok)
+      # B3.9-B3.10 · nokta ızgarası: 10.000 nokta, %40'ı sessizce söner (efekt yok); anlatıcının gözyaşı (sağda)
       - tip: izgara
         n: 1000
         ust: "Dünya genelinde · 10.000+"
         etiket: "bebek etkilendi"
         alt: "her nokta ≈ 10 bebek · bazı tahminler: 20.000"
+        sutun: 42                  # 4. tur: daha dar (sağdaki anlatıcıya yer)
         dolum: 3.6                 # say: true KULLANMA: canlı sayı nokta sayısını (1.000) gösterir, bebek sayısını değil
         muzik_mod: drone
+        muzik_db: 3                # 5. tur: duygu kabarması (müzik konuşmanın ~20 dB altında hissedilmiyordu)
         gecis: gecis
+        konuk: [{id: z, gorsel: chars/anlatici_sakin.png, x: 0.9, boy: 0.66, giris: false}]   # 5. tur: büyük ön plan
         satirlar:
-          - "Dünyada on binden fazla bebek etkileniyor. Bazı tahminler yirmi bini buluyor."   # ses: 'Bilanço ağır.' kesildi
-          - "Bu bebeklerin tahminen yüzde kırkı, doğumda ya da kısa süre sonra hayatını kaybediyor."
+          - {metin: "Dünyada 10.000'den fazla bebek etkileniyor. Bazı tahminler 20.000'i buluyor.",
+             tts: "Dünyada on binden fazla bebek etkileniyor. Bazı tahminler yirmi bini buluyor."}   # ses: 'Bilanço ağır.' kesildi
+          - {metin: "Bu bebeklerin tahminen yüzde 40'ı, doğumda ya da kısa süre sonra hayatını kaybediyor.",
+             tts: "Bu bebeklerin tahminen yüzde kırkı, doğumda ya da kısa süre sonra hayatını kaybediyor.", sonra: 0.4}
         olaylar:
           - {tip: basla, satir: 1, ofset: 0.2}
           - {tip: muzik, db: -9, satir: 2}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_gozyasli.png, satir: 2, ofset: 1.3}
           - {tip: sondur, oran: 0.4, satir: 2, ofset: 1.3, sure: 2.4, etiket: "≈ %40 · doğumda ya da kısa süre sonra"}
 
       # B3.11 · en tehlikeli dönem (kâğıt)
@@ -732,20 +832,23 @@ bolumler:
           - "O dönemde tek bir tablet bile yetebiliyor."
         olaylar: [{tip: ceviri, satir: 2, ofset: 0.5}]
 
-      # B3.11 · tek tablet; yıl göstergesi 1961 -> ???? takılı kalır (B6.4'te kapanır)
+      # B3.11 · tek tablet; yıl göstergesi 1961 -> ???? takılı kalır (B6.4'te kapanır). 4. tur: ahşap masa (teneke
+      # fotoğrafı 3. kez görünmesin), anlatıcı solda düşünür, kamera tablete daha az yaklaşır (anlatıcı kadrajda kalsın)
       - tip: wojak
-        arka: img/foto_contergan_teneke_169.jpg
-        bulanik: 8
-        karart: 0.45
-        kamera: {zoom: [1.0, 1.6], merkez: [[0.5, 0.62], [0.5, 0.64]], it: 0}   # 3. tur: dev beyaz daire yerine küçük tablet + yaklaşma
+        arka: img/doku_ahsap.jpg
+        bulanik: 0
+        karart: 0.05
+        kamera: {zoom: [1.0, 1.3], merkez: [[0.5, 0.6], [0.56, 0.64]], it: 0}
         kose: {metin: "{}", deger: 1961, yil: true}
         karakterler:
-          - {id: t, gorsel: img/cizim/tablet.png, x: 0.5, boy: 0.28, alt: -0.22, bakis: on, giris: 0.05}
+          - {id: t, gorsel: img/cizim/tablet.png, x: 0.6, boy: 0.24, alt: -0.22, bakis: on, giris: 0.05}
+          - {id: z, gorsel: chars/anlatici_dusunceli.png, taraf: sol, x: 0.22, boy: 0.6, giris: 0.3}
         satirlar:
-          - "Peki tek bir tablet bu hasarı nasıl yapabiliyordu?"
+          - {metin: "Peki tek bir tablet bu hasarı nasıl yapabiliyordu?", sonra: 0.5}
           - "Bu sorunun cevabı için yarım asırdan fazla beklenecekti."
         olaylar:
           - {tip: kelime, metin: "NASIL?", satir: 1, an: son, ofset: -1.0, sure: 1.8, konum: ust}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_ciddi.png, satir: 2, ofset: 1.0}
           - {tip: kose, deger: "????", takili: true, satir: 2, ofset: 1.2, sure: 1.2}
         sfx: [{ad: tik, t: 0.25, db: -6}]
 
@@ -758,7 +861,7 @@ bolumler:
         gecis: kaydir
         satirlar: ["Hayatta kalan çocukların birçoğunda kollar ya da bacaklar tam gelişmemiş."]
 
-      # B3.13 · ≈2.400 yaşayan (2022), fotoğrafın üstünde
+      # B3.13 · ≈2.400 yaşayan (2022), fotoğrafın üstünde; anlatıcı ciddi (sağda)
       - tip: sayac
         deger: 2400
         onek: "≈"
@@ -768,44 +871,39 @@ bolumler:
         zemin: foto
         arka: img/foto_protez_kollar.jpg
         gecis: gecis
+        konuk: [{id: z, gorsel: chars/anlatici_ciddi.png, x: 0.88, boy: 0.48, yon: sag}]
         satirlar:
-          - "Almanya'da bu ilaçtan etkilenmiş yaklaşık iki bin dört yüz kişi bugün hâlâ yaşıyor."
-          - {metin: "Onlar için bu, bir tarih dersi değil.", sonra: 1.6}   # 3. tur: müzik nefesi
+          - {metin: "Almanya'da bu ilaçtan etkilenmiş yaklaşık 2.400 kişi bugün hâlâ yaşıyor.",
+             tts: "Almanya'da bu ilaçtan etkilenmiş yaklaşık iki bin dört yüz kişi bugün hâlâ yaşıyor."}
+          - {metin: "Onlar için bu, bir tarih dersi değil.", sonra: 1.3}   # 3. tur: müzik nefesi
         olaylar:
           - {tip: basla, satir: 1, ofset: 1.4}
+          - {tip: giris, karakter: z, satir: 2, ofset: 0.0}
           - {tip: muzik, db: 4, satir: 2, an: son, ofset: 0.1, gecis: 0.6}
 
-      # B3.14 · dava 1968 -> 1970 (yüz, logo, sanık adı yok)
-      - tip: foto
-        gorsel: img/foto_stolberg_grunenthal_169.jpg
-        etiket: "GRÜNENTHAL BİNASI, STOLBERG (2006)"
-        atif: "Fotoğraf: Norbert Schnitzler, CC BY-SA 3.0"
-        egim: 1.8
-        kose: {metin: "DAVA: {}", deger: 1968, yil: true}
-        gecis: kaydir
-        satirlar: ["Almanya'da açılan dava, 1970'te mahkûmiyet çıkmadan düşüyor."]
-        olaylar:
-          - {tip: kose, deger: 1970, satir: 1, ofset: 1.5, sure: 1.0}
-          - {tip: kelime, metin: "MAHKÛMİYET YOK", satir: 1, an: son, ofset: -1.4, sure: 1.8, konum: alt}
+      # B3.14 (dava 1968 -> 1970) 5. turda çıktı: 10:15 sınırı; Türkiye sorusuna dönüş daha doğrudan
 
-      # B3.15 · ruhsat alamadığı ülkeler: ABD ... Türkiye
+      # B3.15 · ruhsat alamadığı ülkeler: ABD ... Türkiye. 4. tur: Kuzey Atlantik görünümü (ABD ile Türkiye aynı karede;
+      # dünya haritası en çok 2 çekimde), anlatıcı altta ortada
       - tip: harita
-        bolge: dunya
-        ulkeler: [DEU, GBR, AUS, CAN, AUT, CHE, BEL, NLD, LUX, JPN, ITA, BRA]
+        bolge: {merkez: [-38, 42], sinir: [-128, 16, 48, 64], proj: laea}
+        ulkeler: [DEU, GBR, CAN, AUT, CHE, BEL, NLD, LUX, ITA]
         aralik: 0.08
-        vurgu: {kod: TUR, ad: "TÜRKİYE", etiket: "?", renk: [150, 154, 162]}
+        vurgu: {kod: TUR, ad: "TÜRKİYE", etiket: "?", renk: [206, 210, 218]}
         aciklama: "kırmızı: satıldığı belgelenen ülkelerden bazıları"
         zoom: [1.0, 1.1]
         gecis: kaydir
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.57, boy: 0.4, giris: 0.3, yon: alt}]
         satirlar:
           - "Peki ilacın hiç ruhsat alamadığı ülkelerde ne oldu?"
           - "Bunlardan biri ABD'ydi."
-          - {metin: "Bir diğeri… Türkiye.", once: 0.45, sonra: 0.6}
+          - {metin: "Bir diğeri… Türkiye.", once: 0.45, sonra: 0.5}
         olaylar:
           - {tip: basla, t: 0.2}
-          - {tip: damga, metin: "ABD ?", renk: beyaz, satir: 2, ofset: 0.7, x: 0.14, y: 0.3, boy: 64, aci: -6}
+          - {tip: damga, metin: "ABD ?", renk: beyaz, satir: 2, ofset: 0.7, x: 0.24, y: 0.5, boy: 72, aci: -6}
           - {tip: muzik, db: -40, satir: 3, ofset: -0.45, gecis: 0.3}   # bir an sessizlik, sonra "Türkiye."
           - {tip: ulke, kod: TUR, satir: 3, an: son, ofset: 0.05}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 3, an: son, ofset: 0.05}
         sfx: [{ad: turkiye, satir: 3, an: son, ofset: 0.05, db: -10}]
 
   # ================================================================================================ BÖLÜM 4
@@ -813,67 +911,84 @@ bolumler:
     youtube: "4 · Hayır Diyen Kadın"
     kart_muzik_db: 4
     sahneler:
-      # B4.1 · Frances Oldham Kelsey, FDA (kamu malı fotoğraf). 3. tur: altıncı dünya haritası (Türkiye -> ABD)
-      # kaldırıldı; iki satırı Kelsey fotoğrafının üstünde
+      # B4.1 · Frances Oldham Kelsey, FDA (kamu malı fotoğraf). 4. tur: baskı sola; adı söylenince Kelsey (rol çizimi)
+      # sağdan girer (bölüm boyunca sağda kalır)
       - tip: foto
         gorsel: img/foto_kelsey_masa.jpg
         etiket: "FDA · 1960'LAR"
         atif: "Fotoğraf: U.S. FDA (kamu malı)"
         egim: -2.0
         zoom: 1.12
+        x: 0.4
+        boy: 0.7
+        konuk:   # 5. tur: ilk 10 sn'de yalnız baskı vardı: anlatıcı merakla girer, Kelsey'nin adı söylenmeden çıkar
+          - {id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.87, boy: 0.5, yon: sag}
+          - {id: k, gorsel: chars/kelsey_sakin.png, x: 0.85, boy: 0.68, yon: sag}
         satirlar:
-          - "Türkiye'de ne olduğunu anlamak için önce Amerika'ya bakmamız gerek."   # ses: rubberband 0.92 (hızlıydı)
+          - {metin: "Türkiye'de ne olduğunu anlamak için önce Amerika'ya bakmamız gerek.", hiz: 0.92}
           - "Çünkü orada da biri ‘hayır’ demişti."
-          - "1960'ta ABD'nin ilaç kurumu FDA, yeni bir uzmanı göreve alıyor: Frances Oldham Kelsey."
+          - {metin: "1960'ta ABD'nin ilaç kurumu FDA, yeni bir uzmanı göreve alıyor: Frances Oldham Kelsey.",
+             tts: "1960'ta ABD'nin ilaç kurumu FDA, yeni bir uzmanı göreve alıyor: <break time=\"250ms\"/> Frances Oldham Kelsey."}
         olaylar:
+          - {tip: giris, karakter: z, satir: 1, ofset: 0.6}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 2, ofset: 0.3}
           - {tip: kelime, metin: "ORADA DA BİRİ ‘HAYIR’ DEMİŞTİ", satir: 2, ofset: 0.3, sure: 2.0, konum: ust}
+          - {tip: cikis, karakter: z, satir: 3, an: son, ofset: -2.6}   # Kelsey girmeden hemen önce
           - {tip: etiket, satir: 3, ofset: 0.2}
-          - {tip: isim, ad: "Frances Oldham Kelsey", unvan: "farmakolog ve hekim · FDA", satir: 3, an: son, ofset: -1.7, sure: 4.0, konum: sag}
+          - {tip: giris, karakter: k, satir: 3, an: son, ofset: -2.2}
+          - {tip: isim, karakter: k, ad: "Frances Oldham Kelsey", unvan: "farmakolog ve hekim · FDA", satir: 3, an: son, ofset: -1.7, sure: 4.0}
 
-      # B4.2 · Kelsey masada; KEVADON dosyası (büro fotoğrafı FDA değil: yer etiketi yok)
+      # B4.2 · Kelsey masada; KEVADON dosyası (büro fotoğrafı FDA değil: yer etiketi yok). 4. tur: Kelsey sağda
       - tip: wojak
         arka: img/arka_ofis_169.jpg
         kose: {metin: "{}", deger: "EYLÜL 1960"}
         gecis: kaydir
         karakterler:
-          - {id: k, gorsel: chars/kelsey_sakin.png, taraf: sol, x: 0.27, boy: 0.72, giris: 0.2}
-          - {id: d, gorsel: img/cizim/dosya_kevadon.png, x: 0.7, boy: 0.3, alt: -0.14, bakis: on}
+          - {id: k, gorsel: chars/kelsey_sakin.png, taraf: sag, x: 0.72, boy: 0.72, giris: false}
+          - {id: d, gorsel: img/cizim/dosya_kevadon.png, x: 0.3, boy: 0.3, alt: -0.14, bakis: on}
         satirlar:
-          - "Önüne gelen ilk dosyalardan biri tanıdık bir ilaç: talidomit."
-          - {metin: "Amerika'daki adı Kevadon.", sonra: 0.2}
+          - {metin: "Önüne gelen ilk dosyalardan biri tanıdık bir ilaç: talidomit.", tts: "Önüne gelen ilk dosyalardan biri tanıdık bir ilaç: <break time=\"300ms\"/> talidomit."}
+          - {metin: "Amerika'daki adı Kevadon.", sonra: 0.2, hiz: 0.82}
         olaylar:
           - {tip: giris, karakter: d, satir: 2, ofset: 0.4}
           - {tip: kelime, metin: "KEVADON", satir: 2, ofset: 0.9, sure: 1.6, konum: ust}
         sfx: [{ad: hit, satir: 2, an: son, ofset: 0.05, db: -9}]
 
-      # B4.3 · 60 gün kuralı (geri sayım)
-      - tip: sayac
-        deger: [60, 0]
-        muzik_mod: nabiz           # 60 günlük geri sayım
-        ust: "O dönemin kuralı"
-        etiket: "gün"
-        sure_say: 3.2
-        zemin: foto
-        arka: img/arka_ofis_169.jpg
-        gecis: gecis
-        satirlar: [{metin: "Kural şu: FDA altmış gün içinde yanıt vermezse, ilaç kendiliğinden onaylanmış sayılıyor.", sonra: 1.2}]
-        olaylar:
-          - {tip: basla, satir: 1, ofset: 0.8}
-          - {tip: damga, metin: "OTOMATİK ONAY", satir: 1, an: son, ofset: 0.05, x: 0.5, y: 0.83, boy: 84, aci: -6}
-
-      # B4.4 · Kelsey: eksik dosya, sinir hasarı raporları, gebelik sorusu, büyüyen dosya yığını
+      # B4.3 · 60 gün kuralı. 4. tur (izlenme hakemi S5): tam ekran sayaç yerine Kelsey'li büro sahnesi (kendi çizimimiz),
+      # köşe göstergesi 60 -> 0, takvim yaprağı, OTOMATİK ONAY damgası takvime
       - tip: wojak
-        arka: img/arka_ofis_169.jpg
-        kamera: {zoom: [1.02, 1.06], merkez: [[0.47, 0.5], [0.5, 0.49]], it: 0}
+        arka: img/arka_buro_cizim.jpg
+        bulanik: 2
+        karart: 0.04
+        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.44, 0.52]], it: 0}
+        muzik_mod: nabiz           # 60 günlük geri sayım
+        kose: {metin: "GÜN {}", deger: 60}
         gecis: gecis
         karakterler:
-          - {id: k, gorsel: chars/kelsey_sakin.png, taraf: sol, x: 0.27, boy: 0.72, giris: false}
-          - {id: r, gorsel: img/cizim/dosya_sinir_hasari_1961.png, x: 0.6, boy: 0.24, alt: -0.24, bakis: on}
-          - {id: y, gorsel: img/kompozit/yigin_1.png, x: 0.8, boy: 0.34, alt: -0.07, bakis: on}
+          - {id: k, gorsel: chars/kelsey_sakin.png, taraf: sag, x: 0.74, boy: 0.72, giris: false}
+          - {id: t, gorsel: img/cizim/takvim_eylul_1960.png, x: 0.32, boy: 0.5, alt: -0.24, bakis: on, giris: 0.15}
+        satirlar:
+          - {metin: "Kural şu: FDA 60 gün içinde yanıt vermezse, ilaç kendiliğinden onaylanmış sayılıyor.",
+             tts: "Kural şu: <break time=\"300ms\"/> FDA altmış gün içinde yanıt vermezse, ilaç kendiliğinden onaylanmış sayılıyor.", sonra: 1.0}
+        olaylar:
+          - {tip: kose, deger: 0, satir: 1, ofset: 1.0, sure: 3.2}
+          - {tip: yuz, karakter: k, gorsel: chars/kelsey_supheci.png, satir: 1, an: son, ofset: -0.6}
+          - {tip: damga, metin: "OTOMATİK ONAY", satir: 1, an: son, ofset: 0.05, x: 0.32, y: 0.62, boy: 80, aci: -6}
+
+      # B4.4 · Kelsey: eksik dosya, sinir hasarı raporları, gebelik sorusu, büyüyen dosya yığını. 4. tur: Kelsey sağda;
+      # "Onay da vermiyor."da kararlı yüz (izlenme hakemi S5: 22 sn tek yüz)
+      - tip: wojak
+        arka: img/arka_ofis_169.jpg
+        kamera: {zoom: [1.02, 1.06], merkez: [[0.53, 0.5], [0.5, 0.49]], it: 0}
+        gecis: gecis
+        karakterler:
+          - {id: k, gorsel: chars/kelsey_sakin.png, taraf: sag, x: 0.73, boy: 0.72, giris: false}
+          - {id: r, gorsel: img/cizim/dosya_sinir_hasari_1961.png, x: 0.4, boy: 0.24, alt: -0.24, bakis: on}
+          - {id: y, gorsel: img/kompozit/yigin_1.png, x: 0.2, boy: 0.34, alt: -0.07, bakis: on}
         satirlar:
           - "Kelsey dosyayı eksik buluyor."
           - "Derken sinir hasarı raporları geliyor. Hamilelikte güvenli mi? O da belirsiz."
-          - "Firma bastırıyor. Kelsey her seferinde daha fazla veri istiyor."
+          - {metin: "Firma bastırıyor. Kelsey her seferinde daha fazla veri istiyor.", sonra: 0.4}
           - "Onay da vermiyor."
         olaylar:
           - {tip: yuz, karakter: k, gorsel: chars/kelsey_supheci.png, satir: 1, ofset: 0.5}
@@ -883,87 +998,96 @@ bolumler:
           - {tip: giris, karakter: y, satir: 3, ofset: 0.0}
           - {tip: yuz, karakter: y, gorsel: img/kompozit/yigin_2.png, satir: 3, ofset: 1.6}
           - {tip: yuz, karakter: y, gorsel: img/kompozit/yigin_3.png, satir: 3, an: son, ofset: -0.6}
+          - {tip: yuz, karakter: k, gorsel: chars/kelsey_kararli.png, satir: 4, ofset: 0.0}
           - {tip: kelime, metin: "ONAY YOK", satir: 4, ofset: 0.2, sure: 1.8, konum: ust}
         sfx:
           - {ad: pop, satir: 3, ofset: 1.6, db: -8}
           - {ad: pop, satir: 3, an: son, ofset: -0.6, db: -8}
 
-      # B4.5 · 'klinik deneme' (Kevadon şişesi hesap sahibinin kararında; yedek: adsız şişe çizimi)
+      # B4.5 · 'klinik deneme' (Kevadon şişesi hesap sahibinin kararında; yedek: adsız şişe çizimi). 4. tur: "Arada bir
+      # boşluk var:" satırı çıktı (dil hakemi: deyim gibi duyuluyordu "arada bir = ara sıra"); büro çizimi zemin;
+      # kararlı Kelsey sağda
       - tip: wojak
-        arka: img/arka_ofis_169.jpg
+        arka: img/arka_buro_cizim.jpg
         bulanik: 8
-        karart: 0.42
+        karart: 0.22
         kamera: {zoom: [1.0, 1.08], it: 0}
         gecis: kaydir
         muzik_mod: drone
         karakterler:
           - {id: s, gorsel: img/cizim/doz_sisesi.png, x: 0.3, boy: 0.6, alt: -0.12, bakis: on, giris: 0.1}
+          - {id: k, gorsel: chars/kelsey_kararli.png, taraf: sag, x: 0.74, boy: 0.7, giris: 0.3}
         satirlar:
-          - "Arada bir boşluk var:"             # ses: 'Ama' kesildi
-          - {metin: "Onay beklenirken ilaç, ‘klinik deneme’ adı altında doktorlara dağıtılıyor.", sonra: 1.1}
+          - {metin: "Onay beklenirken ilaç, ‘klinik deneme’ adı altında doktorlara dağıtılıyor.", sonra: 0.9}
         olaylar:
-          - {tip: kelime, metin: "‘KLİNİK DENEME’", satir: 2, ofset: 1.5, sure: 2.4, konum: ust}
-          - {tip: damga, metin: "DOKTORLARA DAĞITIM", satir: 2, an: son, ofset: 0.05, x: 0.67, y: 0.6, boy: 66, aci: -7}
+          - {tip: kelime, metin: "‘KLİNİK DENEME’", satir: 1, ofset: 1.5, sure: 2.4, konum: ust}
+          - {tip: damga, metin: "DOKTORLARA DAĞITIM", satir: 1, an: son, ofset: 0.05, x: 0.36, y: 0.62, boy: 66, aci: -7}
 
-      # B4.6 · 1.267 doktor -> ~20.000 hasta -> en az 17 bebek (FDA sayımı)
+      # B4.6 · 1.267 doktor -> ~20.000 hasta -> en az 17 bebek (FDA sayımı); Kelsey sağ altta (hesap sahibi örneği)
       - tip: sayac
         deger: 1267
         sonek: ""
         etiket: "doktor"
         ust: "‘Klinik deneme’ · ABD"
         gecis: gecis
+        konuk: [{id: k, gorsel: chars/kelsey_kararli.png, x: 0.9, boy: 0.5, giris: false}]
         satirlar:
-          - "Bin iki yüz altmış yedi doktor."
-          - "Yaklaşık yirmi bin hasta."
-          - "Ve ABD'de de en az on yedi bebek etkileniyor."
+          - {metin: "1.267 doktor.", tts: "Bin iki yüz altmış yedi doktor."}
+          - {metin: "Yaklaşık 20.000 hasta.", tts: "Yaklaşık yirmi bin hasta."}
+          - {metin: "Ve ABD'de de en az 17 bebek etkileniyor.", tts: "Ve ABD'de de en az on yedi bebek etkileniyor."}
         olaylar:
           - {tip: basla, satir: 1, ofset: 0.1}
           - {tip: deger, deger: 20000, onek: "≈", etiket: "hasta", satir: 2, ofset: 0.1, sure: 1.2}
-          - {tip: deger, deger: 17, onek: "en az ", etiket: "bebek etkilendi · ABD (FDA sayımı)", renk: kirmizi, satir: 3, ofset: 0.9, sure: 0.4}
+          - {tip: deger, deger: 17, onek: "en az ", etiket: "bebek · ABD (FDA sayımı)", renk: kirmizi, satir: 3, ofset: 0.9, sure: 0.4}
+          - {tip: yuz, karakter: k, gorsel: chars/kelsey_supheci.png, satir: 3, an: son, ofset: 0.0}
 
       # B4.7 · Kennedy-Kelsey (7.8.1962) -> yasa imzası (10.10.1962), yalnız ekranda
       - tip: bolunmus
         sol: {gorsel: img/foto_kelsey_kennedy_1962.jpg, etiket: "7 AĞUSTOS 1962 · BEYAZ SARAY", odak: [0.5, 0.16]}
         sag: {gorsel: img/foto_kennedy_imza_1962.jpg, etiket: "EKİM 1962 · YENİ YASA: GÜVENLİ + ETKİLİ", odak: [0.45, 0.45]}
         gecis: kaydir
-        son: 1.1
+        son: 0.7
         satirlar:   # 3. tur: TTS "1962"yi "1960, iki" okuyordu; ses "Hikâye…"den kesildi, tarih ekranda
           - "Hikâye gazetelere düşüyor."
           - "Başkan Kennedy, Kelsey'yi bir devlet ödülüyle onurlandırıyor."
         olaylar:
-          - {tip: kelime, metin: "TEMMUZ 1962", satir: 1, ofset: 0.0, sure: 2.0, konum: ust}   # alt bantta JFK etiketine biniyordu
+          - {tip: kelime, metin: "TEMMUZ 1962", satir: 1, ofset: 0.0, sure: 2.0, konum: ust}
           - {tip: isim, ad: "John F. Kennedy", unvan: "ABD Başkanı (1961–1963)", satir: 1, ofset: 0.3, sure: 2.0, konum: sag}
           - {tip: kelime, metin: "BU ÖDÜLÜ ALAN 2. KADIN", satir: 2, ofset: 1.2, sure: 2.2, konum: alt}
           - {tip: panel, taraf: sag, satir: 2, an: son, ofset: -0.9}
 
-      # B4.8 · Kelsey baskısı çekilir, Ankara panoraması (2. ve son kullanım)
+      # B4.8 · Kelsey baskısı çekilir, Ankara panoraması (karartma 0.5 -> 0.2: ara reklam öncesi en koyu 10 sn'ydi);
+      # anlatıcı Ankara cümlesinde alttan yükselir + kelime
       - tip: wojak
         arka: img/foto_ankara_panorama_tam.jpg
         kirp: [0.765, 0.0, 0.995, 1.0]
         bulanik: 2
-        karart: 0.5
-        doygunluk: 0.6
+        karart: 0.2
+        doygunluk: 0.7
         kamera: {zoom: [1.2, 1.25], merkez: [[0.4, 0.5], [0.6, 0.5]], it: 0}
         gecis: gecis
         karakterler:
           - {id: p, gorsel: img/kompozit/baski_kelsey.png, x: 0.5, boy: 0.8, alt: -0.1, bakis: on, giris: false}
+          - {id: z, gorsel: chars/anlatici_dusunceli.png, taraf: sol, x: 0.25, boy: 0.62, yon: sol}   # 5. tur: solda
         satirlar:
           - "Kelsey'nin adı bugün dünyaca biliniyor."
           - {metin: "Ama aynı yıllarda Ankara'da da bir ‘hayır’ denmişti.", sonra: 0.3}
         olaylar:
           - {tip: cikis, karakter: p, satir: 2, ofset: 0.1}
+          - {tip: giris, karakter: z, satir: 2, ofset: 0.4}
+          - {tip: kelime, metin: "ANKARA'DA DA BİR ‘HAYIR’", satir: 2, ofset: 0.8, sure: 2.4, konum: ust}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 2, an: son, ofset: 0.0}
         sfx: [{ad: turkiye, satir: 2, an: son, ofset: 0.1, db: -11}]
 
-      # B4.9 · ANKARA (yıl yok) — ARA REKLAM 2 bu sahnenin sonu
+      # B4.9 · ANKARA (yıl yok) — ARA REKLAM 2 bu sahnenin sonu. 4. tur: kâğıda daktilo (panorama 2 çekimde kalsın;
+      # koyu zemin ara reklam öncesi en karanlık an idi)
       - tip: metin
-        zemin: foto
-        arka: img/foto_ankara_panorama_tam.jpg
-        arka_opak: 0.35
+        zemin: kagit
         yazim: daktilo
         metin: "ANKARA"
         gecis: gecis
         satirlar: ["Ve o hikâye, neredeyse unutuldu."]
-        son: 1.0
+        son: 0.85
 
   # ================================================================================================ BÖLÜM 5
   - baslik: Ankara'da Bir ‘Hayır’
@@ -979,22 +1103,21 @@ bolumler:
         atif: "SALT Araştırma"
         egim: -2.0
         satirlar: ["Aynı yıllar. Ankara."]
-        son: 0.6
+        son: 0.45
 
-      # B5.2 · başvuru: A temsilci (adsız), yer etiketi yok, "temsilî görüntü". 2. hakem turu: bölüm 5'in arka planı
-      # Lille laboratuvarı değil, Ankara (Sağlık Bakanlığı binası, bulanık); balonlar adsız temsilcinin (gerçek kişi değil)
+      # B5.2 · başvuru: A temsilci (adsız), "temsilî görüntü". 4. tur: bakanlık odası (kendi çizimimiz, dönem; Sağlık
+      # Bakanlığı'nın 2014 fotoğrafı 5 çekimdeydi), numune kutusu bütün ve tabletli
       - tip: wojak
-        arka: img/foto_saglik_bakanligi.jpg
-        odak: [0.5, 0.4]
-        bulanik: 8
-        karart: 0.4
+        arka: img/arka_bakanlik_oda_cizim.jpg
+        bulanik: 4
+        karart: 0.1
         etiket: "TEMSİLÎ GÖRÜNTÜ"
         kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.45, 0.5]]}
         gecis: kaydir
         muzik_mod: gerilim         # Ankara bölümü: tiz, titreyen gerilim (B5.4'e dek)
         karakterler:
           - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, x: 0.27, giris: 0.2}
-          - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.56, boy: 0.24, alt: 0.07, bakis: on, giris: 0.6}
+          - {id: k, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.58, boy: 0.26, alt: -0.1, bakis: on, giris: 0.6}
         satirlar:
           - "Bir gün Bakanlığa bu ilaç için bir ruhsat başvurusu geliyor."
           - "Hangi firma, hangi yıl, hangi adla? Bunu bugün bilmiyoruz."
@@ -1008,7 +1131,7 @@ bolumler:
       - tip: wojak
         arka: img/foto_ankara_bankalar_kartpostal_ust.jpg
         bulanik: 8
-        karart: 0.42
+        karart: 0.35
         doygunluk: 0.7
         kamera: {zoom: [1.0, 1.12], merkez: [[0.5, 0.5], [0.6, 0.47]], it: 0}
         gecis: gecis
@@ -1016,92 +1139,97 @@ bolumler:
           - {id: d, gorsel: img/cizim/dosya_ruhsat_basvurusu.png, x: 0.3, boy: 0.34, alt: 0.06, bakis: on, giris: 0.3}
           - {id: s, gorsel: chars/kaymakcalan_sakin.png, taraf: sag, x: 0.7, boy: 0.86}
         satirlar:
-          - "Meslektaşlarının anlattığına göre, başvuru hakkında görüş verenlerden biri genç bir farmakolog: Şükrü Kaymakçalan."
+          - {metin: "Meslektaşlarının anlattığına göre, başvuru hakkında görüş verenlerden biri genç bir farmakolog: Şükrü Kaymakçalan.", sonra: 0.4}
         olaylar:
           - {tip: kelime, metin: "MESLEKTAŞLARININ ANLATTIĞINA GÖRE", satir: 1, ofset: 0.2, sure: 2.4, konum: ust}
           - {tip: giris, karakter: s, satir: 1, ofset: 2.8}
           - {tip: isim, karakter: s, ad: "Şükrü Kaymakçalan", unvan: "farmakolog (1923–1984) · kaynak: meslektaş tanıklıkları", satir: 1, an: son, ofset: -1.6, sure: 4.0}
           - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_dusunceli.png, satir: 1, an: son, ofset: 0.1}
 
-      # B5.3b · DORUK: görüşün özeti, Kaymakçalan ekranda (konuşma balonu YOK: gerçek kişiye söz koymuyoruz; özet
-      # kelimelerle, "meslektaşlarının anlattığına göre"). 3. tur: eskiden bej kâğıt kart + köşede küçük damgaydı.
-      # Kaymakçalan B5.3a'daki gibi sağda (taraf atlamasın), başvuru dosyası solda; damga dosyanın üstüne iner,
-      # müzik bir an susar
+      # B5.3b · DORUK: görüşün özeti, Kaymakçalan ekranda (konuşma balonu YOK: gerçek kişiye söz koymuyoruz).
+      # 4. tur (izlenme hakemi M2): dosya bütün ve kadrajda, kamera dosyaya varırken damga iner (büyük), yüz düşünceli ->
+      # ciddi -> damgayla kollar kavuşur; damgadan sonra 1,6 sn
       - tip: wojak
         arka: img/foto_ankara_bankalar_kartpostal_ust.jpg
         bulanik: 8
-        karart: 0.45
+        karart: 0.38
         doygunluk: 0.7
         etiket: "MESLEKTAŞLARININ ANLATTIĞINA GÖRE"
-        kamera: {zoom: [1.04, 1.14], merkez: [[0.56, 0.48], [0.5, 0.5]], it: 0}
+        kamera: {zoom: [1.0, 1.2], merkez: [[0.6, 0.48], [0.42, 0.57]], it: 0}
         gecis: gecis
         karakterler:
-          - {id: s, gorsel: chars/kaymakcalan_ciddi.png, taraf: sag, x: 0.72, boy: 0.8, giris: false}
-          - {id: d, gorsel: img/cizim/dosya_ruhsat_basvurusu.png, x: 0.3, boy: 0.34, alt: 0.06, bakis: on, giris: false}
+          - {id: s, gorsel: chars/kaymakcalan_dusunceli.png, taraf: sag, x: 0.73, boy: 0.74, giris: false}
+          - {id: d, gorsel: img/cizim/dosya_ruhsat_basvurusu.png, x: 0.32, boy: 0.46, alt: -0.12, bakis: on, giris: false}
         satirlar:
-          - "Aynı tanıklıklara göre Kaymakçalan, ilacın etkili olabileceğini kabul ediyor."
-          - {metin: "Ama zehirlilik deneylerinin yetersiz olduğunu söylüyor ve olumsuz görüş veriyor.", sonra: 1.15}
+          - {metin: "Aynı tanıklıklara göre Kaymakçalan, ilacın etkili olabileceğini kabul ediyor.", sonra: 0.35}
+          - {metin: "Ama zehirlilik deneylerinin yetersiz olduğunu söylüyor\nve olumsuz görüş veriyor.", sonra: 1.6}
         olaylar:
           - {tip: etiket, t: 0.2}
+          - {tip: muzik, db: 3, t: 0.0, gecis: 1.5}   # 5. tur: dorukta kabarma
           - {tip: kelime, metin: "ETKİLİ OLABİLİR…", satir: 1, ofset: 2.2, sure: 2.2, konum: ust}
-          - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_kollar.png, satir: 2, ofset: 0.3}
+          - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_ciddi.png, satir: 2, ofset: 0.3}
           - {tip: kelime, metin: "…AMA ZEHİRLİLİK DENEYLERİ YETERSİZ", satir: 2, ofset: 0.6, sure: 2.8, konum: ust}
-          - {tip: damga, metin: "OLUMSUZ GÖRÜŞ", renk: kirmizi, satir: 2, an: son, ofset: 0.05, x: 0.3, y: 0.85, boy: 100, aci: -7}
+          - {tip: damga, metin: "OLUMSUZ GÖRÜŞ", renk: kirmizi, satir: 2, an: son, ofset: 0.05, x: 0.37, y: 0.6, boy: 130, aci: -7}
+          - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_kollar.png, satir: 2, an: son, ofset: 0.1}
           - {tip: muzik, db: -40, satir: 2, an: son, gecis: 0.2}
         sfx: [{ad: boom, satir: 2, an: son, ofset: 0.05, db: -8}]
 
-      # B5.3c · Bakanlık görüşe uyar: temsilcinin gülümsemesi söner, yeşil damga + Türkiye motifi cümle bitince
+      # B5.3c · Bakanlık görüşe uyar: temsilcinin gülümsemesi söner (4. tur: nötr yüz sırıtma gibi okunuyordu: K1'deki
+      # gergin yüz, "ruhsat verilmiyor" söylenirken), yeşil damga + Türkiye motifi cümle bitince; bakanlık odası
       - tip: wojak
-        arka: img/foto_saglik_bakanligi.jpg
-        odak: [0.5, 0.4]
-        bulanik: 8
-        karart: 0.45
+        arka: img/arka_bakanlik_oda_cizim.jpg
+        bulanik: 6
+        karart: 0.15
         kamera: {zoom: [1.04, 1.12], merkez: [[0.45, 0.5], [0.42, 0.52]], it: 0}
         gecis: gecis
         karakterler:
           - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, x: 0.3, giris: false}
-          - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.6, boy: 0.24, alt: 0.07, bakis: on, giris: false}
+          - {id: k, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.6, boy: 0.26, alt: -0.1, bakis: on, giris: false}
         satirlar:
-          - {metin: "Bakanlık da bu görüşe uyuyor. Talidomite ruhsat verilmiyor.", sonra: 1.5}   # damga + müzik nefesi
+          - {metin: "Bakanlık da bu görüşe uyuyor. Talidomite ruhsat verilmiyor.", sonra: 1.15}   # damga + müzik nefesi
         olaylar:
-          - {tip: yuz, karakter: a, gorsel: chars/temsilci_notr.png, satir: 1, ofset: 0.5}
-          - {tip: damga, metin: "RUHSAT VERİLMEDİ", renk: [20, 128, 62], satir: 1, an: son, ofset: 0.08, x: 0.69, y: 0.36, boy: 96, aci: -7}
+          - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 1, an: son, ofset: -1.5}
+          - {tip: damga, metin: "RUHSAT VERİLMEDİ", renk: [12, 104, 50], satir: 1, an: son, ofset: 0.08, x: 0.66, y: 0.36, boy: 96, aci: -7}
           - {tip: muzik, db: 4, satir: 1, an: son, ofset: 0.3, gecis: 0.6}
         sfx: [{ad: turkiye, satir: 1, an: son, ofset: 0.05, db: -11}]
 
-      # B5.4 · ABD 'deneme' kapısı / Türkiye: anlatılana göre numune bile giremiyor
+      # B5.4 · ABD 'deneme' kapısı / Türkiye: anlatılana göre numune bile giremiyor (4. tur: sol panel zemini yasa imzası
+      # fotoğrafı, büro 2 çekimde kalsın)
       - tip: bolunmus
         sol: {baslik: "ABD", metin: "1.267 doktor · ≈20.000 hasta", ceviri: "‘klinik deneme’ ile dağıtıldı",
-              arka: img/arka_ofis_169.jpg}
-        sag: {gorsel: img/foto_saglik_bakanligi.jpg, etiket: "TÜRKİYE · SIHHİYE, ANKARA (BUGÜN)",
-              alt: "anlatılana göre: ruhsatsız ilacın tanıtım numunesi bile giremiyor", odak: [0.5, 0.42]}
+              arka: img/foto_kennedy_imza_1962.jpg, zemin: kagit}   # 4. tur: koyu fotoğraf zemini 31/255 idi
+        sag: {gorsel: img/foto_saglik_bakanligi.jpg, etiket: "TÜRKİYE · SIHHİYE, ANKARA (BUGÜN)", odak: [0.5, 0.42]}
         gecis: kaydir
+        konuk: [{id: r, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, x: 0.92, boy: 0.34, giris: false, yon: sag}]
         satirlar:
-          - "İşte Amerika'yla aradaki büyük fark:"
-          - "Anlatılana göre ruhsatsız bir ilacın tanıtım numunesi bile Türkiye'ye giremiyor."
-          - {metin: "Amerika'da yirmi bin kişiye ulaşan o ‘deneme’ kapısı, burada baştan kapalı.", sonra: 1.2}
+          - {metin: "İşte Amerika'yla aradaki büyük fark:", sonra: 0.35}
+          - {metin: "Anlatılana göre\nruhsatsız bir ilacın tanıtım numunesi bile Türkiye'ye giremiyor.", sonra: 0.4, hiz: 0.92}
+          - {metin: "Amerika'da 20.000 kişiye ulaşan o ‘deneme’ kapısı, burada baştan kapalı.",
+             tts: "Amerika'da yirmi bin kişiye ulaşan o ‘deneme’ kapısı, burada baştan kapalı.", sonra: 1.0}
         olaylar:
           - {tip: ceviri, taraf: sol, satir: 1, ofset: 0.6}
           - {tip: panel, taraf: sag, satir: 2, ofset: 0.0}
+          - {tip: giris, karakter: r, satir: 2, ofset: 0.5}
+          - {tip: kelime, metin: "ANLATILANA GÖRE: NUMUNE BİLE GİREMİYOR", satir: 2, ofset: 0.4, sure: 3.2, konum: alt}
           - {tip: soluk, taraf: sol, satir: 3, ofset: 0.2}
-          - {tip: damga, metin: "KAPI KAPALI", renk: [200, 30, 40], satir: 3, an: son, ofset: 0.05, x: 0.75, y: 0.64, boy: 84, aci: -6}
+          - {tip: damga, metin: "KAPI KAPALI", renk: [160, 8, 26], satir: 3, an: son, ofset: 0.05, x: 0.72, y: 0.6, boy: 100, aci: -6, kontur: true}
         sfx: [{ad: kapi, satir: 3, an: son, ofset: 0.0, db: -7}]
 
       # B5.5 · "Bir süre sonra" (kısa videodaki ara kart; sessiz)
       - tip: metin
         metin: "Bir süre sonra"
-        sure: 1.4
+        sure: 1.2
         muzik_mod: drone
 
       # B5.6 · ters köşe (kısa videonun repliği)
       - tip: wojak
         arka: img/foto_ankara_bankalar_caddesi.jpg
         bulanik: 8
-        karart: 0.45
+        karart: 0.38
         kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.42, 0.48]]}
         karakterler:
           - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, taraf: sol, x: 0.3, giris: 0.1}
-          - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.57, boy: 0.24, alt: 0.07, bakis: on, giris: false}
+          - {id: k, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.6, boy: 0.26, alt: -0.1, bakis: on, giris: false}
         satirlar: ["Kasım 1961'de Almanya'dan gelen haberler, bu ‘hayır’a bambaşka bir anlam katıyor."]
         olaylar:
           - {tip: balon, karakter: a, metin: "Bekle, Almanya'da bebeklere ne oluyor?", satir: 1, ofset: 1.4, sure: 3.2}
@@ -1115,128 +1243,154 @@ bolumler:
           - {id: y, gorsel: img/cizim/yumurta_tablasi.png, x: 0.3, boy: 0.28, alt: 0.06, bakis: on, giris: 0.4}
           - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag, x: 0.72, boy: 0.78, giris: 0.1}
         satirlar:
-          - "Sık anlatılan, ama kimsenin belgeleyemediği ikinci bir hikâye daha var."
-          - "Anlatılana göre Ankara Veteriner Fakültesi'nden virolog Süreyya Tahsin Aygün, ilacı tavuk embriyolarında denemiş ve Bakanlığı uyarmış."
+          - {metin: "Sık anlatılan,\nama kimsenin belgeleyemediği ikinci bir hikâye daha var.", sonra: 0.4}
+          - {metin: "Anlatılana göre Ankara Veteriner Fakültesi'nden virolog Süreyya Tahsin Aygün, ilacı tavuk embriyolarında denemiş ve Bakanlığı uyarmış.", sonra: 0.4}
         olaylar:   # 2. hakem turu: gerçek kişiye balon (uydurma söz) yok; isim önce, özet "anlatılana göre" ile
-          # 3. tur: yıllar fakülteye ait gibi okunuyordu: kişinin adına
           - {tip: isim, karakter: b, ad: "Ord. Prof. Süreyya Tahsin Aygün (1895–1981)", unvan: "virolog · Ankara Üniv. Veteriner Fakültesi", satir: 1, ofset: 1.2, sure: 5.2}
           - {tip: kelime, metin: "ANLATILANA GÖRE", satir: 2, ofset: 0.1, sure: 2.0, konum: ust}
           - {tip: kelime, metin: "TAVUK EMBRİYOSU DENEYİ?", satir: 2, an: son, ofset: -3.6, sure: 2.4, konum: ust}
 
-      # B5.8a · soruşturma panosu, 1. çekim: yakın (ilk üç kart büyük okunur). 3. tur: 30 sn'lik tek pano ikiye
-      # bölündü; "ANMA YAZILARINDA…" kelimesi karta ve köşe göstergesine biniyordu: kartın üstüne damga
+      # B5.8a · soruşturma panosu, 1. çekim: yakın (ilk üç kart büyük okunur). 4. tur: "TALİDOMİT: YOK" damgası kartın
+      # görseline (başlığın üstündeydi: "TALİ… 1994: YOK"); köşe göstergesi sağ üstte; Kaymakçalan sağ altta
       - tip: pano
         baslik: "Elimizdekiler"
         muzik_mod: gerilim
         zoom: 1.2
-        yakin: 1.2
-        kose: {metin: "YAYIMLANMIŞ BELGE: {}", deger: 0, konum: sag_alt}
+        yakin: 1.12
+        kose: {metin: "YAYIMLANMIŞ BELGE: {}", deger: 0, konum: sag_ust}
         gecis: kaydir
+        konuk: [{id: s, gorsel: chars/kaymakcalan_dusunceli.png, x: 0.87, boy: 0.58, yon: sag}]
         kartlar:
           - {id: m, metin: "BAKANLIK: RUHSAT YOK", stil: merkez, x: 0.385, y: 0.37, en: 380, egim: 0}
           - {id: k, metin: "KAYMAKÇALAN", alt: "kaynak: meslektaş tanıklıkları", x: 0.14, y: 0.38, en: 330, egim: -3}
           - {id: b, metin: "ANMA YAZILARI, 1994", alt: "danışmanlık: var", gorsel: img/kompozit/bulten_kagit.jpg, x: 0.15, y: 0.71, en: 300, egim: 2}
         ipler: [[k, m]]
         satirlar:
-          - "Şimdi elimizdekilere bakalım."    # ses: rubberband 0.87 (9,3 hece/sn idi)
-          - "Kaymakçalan'ın rolü, meslektaşlarının tanıklığına dayanıyor."
+          - {metin: "Şimdi elimizdekilere bakalım.", hiz: 0.86}
+          - {metin: "Kaymakçalan'ın rolü, meslektaşlarının tanıklığına dayanıyor.", sonra: 0.4}
           - {metin: "Ölümünün onuncu yılındaki anma yazıları, Bakanlığa ilaç konusunda danışmanlık yaptığını anlatıyor; ama talidomitten söz etmiyor.", sonra: 0.6}
         olaylar:
           - {tip: kart, id: m, satir: 1, ofset: 0.2}
           - {tip: kart, id: k, satir: 2, ofset: 0.2}
+          - {tip: giris, karakter: s, satir: 2, ofset: 0.4}
           - {tip: kart, id: b, satir: 3, ofset: 1.2}
-          - {tip: damga, kart: b, metin: "TALİDOMİT: YOK", satir: 3, an: son, ofset: 0.05, boy: 50, aci: -6}
+          - {tip: damga, kart: b, metin: "TALİDOMİT: YOK", satir: 3, an: son, ofset: 0.05, boy: 56, aci: -6}
 
-      # B5.8b · panonun tamamı: ilk üç kart asılı (devam), öteki kartlar iner
+      # B5.8m · 2008 haberi (4. tur, izlenme hakemi S1: 32 sn'lik pano bölündü): kendi çizimimiz adsız haber kupürü
+      # (CANLANDIRMA; gerçek gazete adı/başlığı yok), tarih ve başlık boyanır, "belge gösterilemedi" damgası
+      - tip: manset
+        gorsel: img/cizim/gazete_2008_canlandirma.png
+        kutular: [[745, 214, 955, 287], [140, 360, 1560, 530]]
+        etiket: "2008 · CANLANDIRMA"
+        zoom: 1.15
+        gecis: gecis
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.88, boy: 0.5, giris: 0.3, yon: alt}]
+        satirlar:
+          - "Tavuk embriyosu deneyinin bilinen en eski kaynağı, 2008'de çıkan bir haber."
+          - {metin: "Haberin kaynağı da, sorulduğunda belge gösteremedi.", sonra: 1.0}
+        olaylar:
+          - {tip: vurgula, kutu: 2, satir: 1, ofset: 0.6}
+          - {tip: vurgula, kutu: 1, satir: 1, an: son, ofset: -1.4}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_ciddi.png, satir: 2, ofset: 0.8}
+          - {tip: damga, metin: "BELGE GÖSTERİLEMEDİ", satir: 2, an: son, ofset: 0.05, x: 0.45, y: 0.66, boy: 84, aci: -7}
+
+      # B5.8b · panonun tamamı: ilk üç kart asılı (devam), öteki kartlar iner; köşe göstergesi sağ üstte (kart n'nin
+      # üstüne biniyordu)
       - tip: pano
         baslik: "Elimizdekiler"
         zoom: 1.05
-        kose: {metin: "YAYIMLANMIŞ BELGE: {}", deger: 0, konum: sag_alt}
+        kose: {metin: "YAYIMLANMIŞ BELGE: {}", deger: 0, konum: sag_ust}
         gecis: gecis
         kartlar:
           - {id: m, metin: "BAKANLIK: RUHSAT YOK", stil: merkez, x: 0.385, y: 0.37, en: 380, egim: 0, asili: true}
           - {id: k, metin: "KAYMAKÇALAN", alt: "kaynak: meslektaş tanıklıkları", x: 0.14, y: 0.38, en: 330, egim: -3, asili: true}
           - {id: g, metin: "AYGÜN", alt: "ilk kaynak: 2008 tarihli haber · görsel temsilî", gorsel: img/foto_tavuk_embriyosu.jpg, x: 0.625, y: 0.41, en: 300, egim: 2}
-          - {id: r, metin: "REFİK SAYDAM ENSTİTÜSÜ", alt: "kaynak: Nejat Eczacıbaşı söyleşisi", x: 0.86, y: 0.38, en: 340, egim: -2}
+          - {id: r, metin: "REFİK SAYDAM ENSTİTÜSÜ", alt: "kaynak: Nejat Eczacıbaşı söyleşisi", x: 0.86, y: 0.4, en: 340, egim: -2}
           - {id: b, metin: "ANMA YAZILARI, 1994", alt: "danışmanlık: var", gorsel: img/kompozit/bulten_kagit.jpg, x: 0.15, y: 0.71, en: 300, egim: 2, asili: true}
-          - {id: n, metin: "BELGE SUNULAMADI", alt: "TFD Bülteni, 2012", stil: merkez, x: 0.85, y: 0.665, en: 290, egim: 6}
+          - {id: n, metin: "BELGE SUNULAMADI", alt: "TFD Bülteni, 2012", stil: merkez, x: 0.85, y: 0.72, en: 290, egim: 6}
           - {id: y, metin: "YIL ?", stil: bos, x: 0.36, y: 0.73, en: 200, egim: -3}
           - {id: z, metin: "BAKANLIK YAZISI ?", stil: bos, x: 0.52, y: 0.8, en: 260, egim: 2}
           - {id: f, metin: "FİRMA ?", stil: bos, x: 0.68, y: 0.74, en: 220, egim: -2}
         ipler: [[k, m], [g, m], [r, m]]
         satirlar:
-          - "Tavuk embriyosu deneyinin bilinen en eski kaynağı, 2008'de çıkan bir haber."
-          - "Haberin kaynağı da, sorulduğunda belge gösteremedi."
-          - "Nejat Eczacıbaşı ise bir söyleşisinde hakkı bir kuruma veriyor: Refik Saydam Enstitüsü."
-          - {metin: "Başvurunun yılı, firması, Bakanlığın yazısı… Hiçbiri bugüne kadar yayımlanmadı.", sonra: 1.2}
+          - {metin: "Nejat Eczacıbaşı ise bir röportajında başarıyı bir kuruma bağlıyor: Refik Saydam Enstitüsü.",   # 5. tur
+             tts: "Nejat Eczacıbaşı ise bir röportajında başarıyı bir kuruma bağlıyor: <break time=\"250ms\"/> Refik Saydam Enstitüsü."}
+          - {metin: "Başvurunun yılı, firması, Bakanlığın yazısı… Hiçbiri bugüne kadar yayımlanmadı.", sonra: 1.0}
         olaylar:
-          - {tip: damga, kart: b, metin: "TALİDOMİT: YOK", t: 0.0, boy: 50, aci: -6, inik: true}
-          - {tip: kart, id: g, satir: 1, ofset: 0.3}
-          - {tip: kart, id: n, satir: 2, ofset: 0.5}
-          - {tip: kart, id: r, satir: 3, ofset: 0.6}
-          - {tip: kart, id: y, satir: 4, ofset: 0.3}
-          - {tip: kart, id: f, satir: 4, ofset: 0.9}
-          - {tip: kart, id: z, satir: 4, ofset: 1.5}
-          - {tip: kose, deger: 0, satir: 4, an: son, ofset: -0.6}
-          - {tip: muzik, db: 4, satir: 4, an: son, ofset: 0.2, gecis: 0.6}
+          - {tip: damga, kart: b, metin: "TALİDOMİT: YOK", t: 0.0, boy: 56, aci: -6, inik: true}
+          - {tip: kart, id: g, t: 0.25}
+          - {tip: kart, id: n, t: 0.8}
+          - {tip: kart, id: r, satir: 1, ofset: 0.6}
+          - {tip: kart, id: y, satir: 2, ofset: 0.3}
+          - {tip: kart, id: f, satir: 2, ofset: 0.9}
+          - {tip: kart, id: z, satir: 2, ofset: 1.5}
+          - {tip: kose, deger: 0, satir: 2, an: son, ofset: -0.6}
+          - {tip: muzik, db: 4, satir: 2, an: son, ofset: 0.2, gecis: 0.6}
 
-      # B5.9 · Doğu Berlin: ruhsat yok ama kaçak ilaçla vaka
+      # B5.9 · Doğu Berlin: ruhsat yok ama kaçak ilaçla vaka; 4. tur: baskı sola, anlatıcı sağda
       - tip: foto
         gorsel: img/foto_dogu_berlin_kacak_ilac_1961.jpg
         etiket: "DOĞU BERLİN · ARALIK 1961"
         muzik_mod: drone
         atif: "Fotoğraf: Bundesarchiv, Bild 183-89187-0002 / Hochneder, CC BY-SA 3.0 DE"
-        boy: 0.66
+        boy: 0.62
+        x: 0.4
         egim: 2.0
         gecis: kaydir
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.9, boy: 0.48, giris: 0.4, yon: sag}]
         satirlar:
           - "Peki ruhsat vermemek yeterli miydi? Her zaman değil."
           - "Doğu Almanya da ilaca ruhsat vermemişti. Kaçak getirilen ilaçla orada da vakalar görüldü."   # ses: 'Ama' kesildi
         olaylar:
-          - {tip: kelime, metin: "DOĞU ALMANYA: RUHSAT YOK · GEREKÇE: ‘GEREKLİ GÖRÜLMEDİ’", satir: 2, ofset: 0.2, sure: 3.0, konum: ust}
-          - {tip: kelime, metin: "RUHSAT YOK ≠ VAKA YOK", satir: 2, an: son, ofset: -2.3, sure: 2.5, konum: alt}
+          - {tip: kelime, metin: "DOĞU ALMANYA: RUHSAT YOK · GEREKÇE: ‘GEREKLİ GÖRÜLMEDİ’", satir: 2, ofset: 0.2, sure: 2.3, konum: ust}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_ciddi.png, satir: 2, an: son, ofset: -2.3}
+          - {tip: kelime, metin: "RUHSAT YOK ≠ VAKA YOK", satir: 2, an: son, ofset: -2.3, sure: 2.5, konum: orta}
 
-      # B5.10 · ABD (turuncu: ruhsat yok, vaka var), Doğu Almanya notu, Türkiye yeşil
+      # B5.10 · ABD (turuncu: ruhsat yok, vaka var), Doğu Almanya notu, Türkiye yeşil. 4. tur: Kuzey Atlantik görünümü
+      # (B3.15 ile aynı bölge), Kaymakçalan sağ altta (hesap sahibi örneği), damga büyük
       - tip: harita
-        bolge: dunya
+        bolge: {merkez: [-38, 42], sinir: [-128, 16, 48, 64], proj: laea}
         ulkeler: [USA]
         renk: [232, 128, 40]
         vurgu: {kod: TUR, etiket: "ruhsat yok · bilinen vaka yok"}
         aciklama: "turuncu: ruhsat yok ama vaka var"
-        zoom: [1.0, 1.15]
+        zoom: [1.0, 1.12]
         gecis: gecis
+        konuk: [{id: s, gorsel: chars/kaymakcalan_sakin.png, x: 0.89, boy: 0.46, giris: 0.4, yon: sag}]
         satirlar:
           - {metin: "Türkiye'de ise talidomite bağlanmış bilinen bir vaka yok.", sonra: 0.2}
           - {metin: "Bu yüzden Türkiye, faciayı yaşamayan sayılı ülkelerden biri olarak anılıyor.", sonra: 0.3}
         olaylar:
           - {tip: basla, t: 0.1}
-          # 3. tur: Atlantik'in ortasında yüzüyordu: Almanya'nın yanına (harita bugünkü sınırlar; Almanya boyanmaz)
-          - {tip: damga, metin: "DOĞU ALMANYA: VAKA VAR", renk: turuncu, t: 0.5, x: 0.49, y: 0.21, boy: 40, aci: -5, sure: 2.6}
+          - {tip: damga, metin: "DOĞU ALMANYA: VAKA VAR", renk: turuncu, t: 0.5, x: 0.62, y: 0.2, boy: 56, aci: -5, sure: 2.6}
           - {tip: ulke, kod: TUR, satir: 1, an: son, ofset: 0.0}
-          - {tip: kelime, metin: "SAYILI ÜLKELERDEN BİRİ", satir: 2, ofset: 1.6, sure: 2.4, konum: alt}
+          - {tip: kelime, metin: "SAYILI ÜLKELERDEN BİRİ", satir: 2, ofset: 1.6, sure: 2.4, konum: ust}
         sfx: [{ad: turkiye, satir: 2, an: son, ofset: 0.1, db: -11}]
 
-      # B5.11 · viral iddia: "tek iki ülke" yanlış (kaynak gösterilmez)
+      # B5.11 · viral iddia: "tek iki ülke" yanlış (kaynak gösterilmez). 4. tur: mavi kâğıt zemin, anlatıcı telefona
+      # bakar, kamera iddiaya yaklaşır
       - tip: wojak
-        arka: img/doku_kagit_koyu.jpg
+        arka: img/doku_kagit_mavi.jpg
         bulanik: 0
-        karart: 0.1
-        kamera: {zoom: [1.0, 1.06], it: 0}
+        karart: 0
+        kamera: {zoom: [1.0, 1.18], merkez: [[0.5, 0.5], [0.56, 0.46]], it: 0}
         gecis: kaydir
         karakterler:
-          - {id: t, gorsel: img/kompozit/telefon_iddia.png, x: 0.5, boy: 0.85, alt: -0.07, bakis: on, giris: 0.05}
+          - {id: t, gorsel: img/kompozit/telefon_iddia.png, x: 0.6, boy: 0.85, alt: -0.07, bakis: on, giris: 0.05}
+          - {id: z, gorsel: chars/anlatici_dusunceli.png, taraf: sol, x: 0.18, boy: 0.6, giris: 0.3}
         satirlar:
-          - {metin: "İnternette sık duyduğunuz ‘etkilenmeyen tek iki ülke Türkiye ve ABD’ sözü ise yanlış.", sonra: 1.2}
-          - "ABD'de en az on yedi bebek etkilendi."
+          - {metin: "İnternette sık duyduğunuz ‘etkilenmeyen tek iki ülke Türkiye ve ABD’ sözü ise yanlış.", sonra: 1.0}
+          - {metin: "ABD'de en az 17 bebek etkilendi.", tts: "ABD'de en az on yedi bebek etkilendi."}
         olaylar:
-          - {tip: damga, metin: "YANLIŞ", satir: 1, an: son, ofset: 0.0, x: 0.5, y: 0.72, boy: 120, aci: -10}
-          - {tip: damga, metin: "ABD: EN AZ 17 BEBEK", renk: sari, satir: 2, ofset: 0.4, x: 0.5, y: 0.3, boy: 64, aci: 4}
+          - {tip: damga, metin: "YANLIŞ", satir: 1, an: son, ofset: 0.0, x: 0.6, y: 0.72, boy: 120, aci: -10}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 1, an: son, ofset: 0.05}
+          - {tip: damga, metin: "ABD: EN AZ 17 BEBEK", renk: sari, satir: 2, ofset: 0.4, x: 0.6, y: 0.3, boy: 64, aci: 4}
 
       # B5.12 · Kaymakçalan yalnız: "mutlu sonlu bir ders"
       - tip: wojak
         arka: img/foto_ankara_sergievi_kartpostal_alt.jpg
         bulanik: 6
-        karart: 0.4
+        karart: 0.35
         doygunluk: 0.75
         kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.6, 0.5]], it: 0}
         muzik_db: -6
@@ -1245,18 +1399,21 @@ bolumler:
           - {id: s, gorsel: chars/kaymakcalan_sakin.png, taraf: sag, x: 0.68, boy: 0.62, giris: 0.1}
         satirlar: ["Hikâye burada bitseydi, mutlu sonlu bir ders olurdu."]
 
-      # B5.13 · "Ama talidomit geri döndü."
+      # B5.13 · "Ama talidomit geri döndü." (4. tur: kara tahta; anlatıcı solda şaşırır)
       - tip: wojak
-        arka: img/doku_kagit_koyu.jpg
+        arka: img/doku_tebesir.jpg
         bulanik: 0
-        karart: 0.2
+        karart: 0
         kamera: {zoom: [1.0, 1.1], it: 0}
         muzik_db: -6
         karakterler:
-          - {id: m, gorsel: img/cizim/molekul_beyaz.png, x: 0.5, boy: 0.5, alt: -0.25, bakis: on, giris: 0.2}
+          - {id: m, gorsel: img/cizim/molekul_beyaz.png, x: 0.56, boy: 0.5, alt: -0.25, bakis: on, giris: 0.2}
+          - {id: z, gorsel: chars/anlatici_sakin.png, taraf: sol, x: 0.15, boy: 0.56, giris: false}
         satirlar: ["Ama talidomit geri döndü."]
-        son: 1.6                   # 3. tur: müzik nefesi (bölüm sonu)
-        olaylar: [{tip: muzik, db: 4, satir: 1, an: son, ofset: 0.3, gecis: 0.6}]
+        son: 1.25                  # 3. tur: müzik nefesi (bölüm sonu)
+        olaylar:
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_saskin.png, satir: 1, an: son, ofset: -0.4}
+          - {tip: muzik, db: 4, satir: 1, an: son, ofset: 0.3, gecis: 0.6}
         sfx: [{ad: boom, satir: 1, an: son, ofset: 0.05, db: -8}]
 
   # ================================================================================================ BÖLÜM 6
@@ -1264,7 +1421,7 @@ bolumler:
     youtube: "6 · Geri Dönen Hap"
     kart_muzik_db: 4
     sahneler:
-      # B6.1 · Kudüs 1964: Sheskin (hasta çizilmez: boş yatak)
+      # B6.1 · Kudüs 1964: Sheskin (hasta çizilmez: boş yatak). 4. tur: numune kutusu komodinin üstünde (havada değil)
       - tip: wojak
         arka: img/arka_hastane_odasi_cizim.jpg
         bulanik: 0
@@ -1272,11 +1429,11 @@ bolumler:
         doygunluk: 1.0
         kose: {metin: "{}", deger: "KUDÜS · 1964"}
         karakterler:
-          - {id: s, gorsel: chars/sheskin_sakin.png, taraf: sol, x: 0.3, boy: 0.76, giris: 0.2}
-          - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.6, boy: 0.22, alt: 0.07, bakis: on}
+          - {id: s, gorsel: chars/sheskin_sakin.png, taraf: sol, x: 0.28, boy: 0.76, giris: 0.2}
+          - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.5, boy: 0.13, alt: -0.395, bakis: on}
         satirlar:
           - "1964, Kudüs. Dermatolog Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor."
-          - "Elinde kalan eski bir uyku ilacını veriyor: talidomit."
+          - {metin: "Elinde kalan eski bir uyku ilacını veriyor: talidomit.", tts: "Elinde kalan eski bir uyku ilacını veriyor: <break time=\"300ms\"/> talidomit."}
           - "Beklenmedik bir şey oluyor: Birkaç gün içinde hastanın yaraları iyileşmeye başlıyor."
         olaylar:
           - {tip: isim, karakter: s, ad: "Jacob Sheskin", unvan: "dermatolog, Kudüs", satir: 1, ofset: 1.6, sure: 4.0}
@@ -1285,67 +1442,72 @@ bolumler:
           - {tip: yuz, karakter: s, gorsel: chars/sheskin_saskin.png, satir: 3, ofset: 0.5}
           - {tip: kelime, metin: "YARALAR İYİLEŞİYOR", satir: 3, an: son, ofset: -2.0, sure: 2.2, konum: ust}
 
-      # B6.2 · geri dönüş (yıllar yalnız ekranda)
+      # B6.2 · geri dönüş (yıllar yalnız ekranda); Sheskin sol altta (B6.1'deki gibi solda)
       - tip: zaman_cizelgesi
         baslik: "Geri dönüş"
         zemin: kagit
         gecis: gecis
+        konuk: [{id: s, gorsel: chars/sheskin_saskin.png, x: 0.08, boy: 0.34, giris: false}]
         noktalar:
           - {tarih: "1964", metin: "Kudüs · cüzzamda ilk gözlem"}
           - {tarih: "1998", metin: "ABD · cüzzam komplikasyonu (ENL)"}
           - {tarih: "2006", metin: "ABD · multipl miyelom"}
           - {tarih: "2008", metin: "Avrupa · multipl miyelom"}
-        satirlar: ["Talidomit yavaş yavaş geri dönüyor: önce cüzzamın bir komplikasyonu için, sonra bir kan kanseri türü olan multipl miyelom için."]
+        satirlar: ["Talidomit yavaş yavaş geri dönüyor: önce cüzzamın bir komplikasyonu için, sonra bir kan kanseri olan multipl miyelom için."]
         olaylar:
           - {tip: nokta, indeks: 1, t: 0.3}
           - {tip: nokta, indeks: 2, satir: 1, ofset: 2.4}
           - {tip: nokta, indeks: 3, satir: 1, an: son, ofset: -2.4}
           - {tip: nokta, indeks: 4, satir: 1, an: son, ofset: -1.0}
+          - {tip: yuz, karakter: s, gorsel: chars/sheskin_sakin.png, satir: 1, ofset: 2.4}
 
-      # B6.3 · Brezilya: geri dönüşün bedeli (kutudaki uyarı: çarpılı kadın başı)
+      # B6.3 · Brezilya: geri dönüşün bedeli (kutudaki uyarı: çarpılı kadın başı); 4. tur: baskı sola, anlatıcı sağda
       - tip: foto
         gorsel: img/foto_brezilya_kutu.jpg
         etiket: "BREZİLYA, 2009 · TALİDOMİT KUTUSU"
         atif: "Fotoğraf: Gadogado123, CC BY-SA 4.0"
-        boy: 0.86
+        boy: 0.76
+        x: 0.4
         egim: -2.0
-        zoom: 1.14
+        zoom: 1.12
         gecis: kaydir
+        konuk: [{id: z, gorsel: chars/anlatici_ciddi.png, x: 0.87, boy: 0.52, giris: 0.4, yon: sag}]
         satirlar:
-          - "Geri dönüşün bir bedeli de oldu."   # ses: 'Ama' kesildi, rubberband 0.92
+          - {metin: "Geri dönüşün bir bedeli de oldu.", hiz: 0.94}
           - "Brezilya'da cüzzam tedavisinde kullanıldığı için, 1965'ten sonra da etkilenen bebekler doğdu."
         olaylar:
           - {tip: kelime, metin: "CÜZZAM TEDAVİSİNDE", satir: 2, ofset: 0.4, sure: 1.9, konum: ust}
-          - {tip: kelime, metin: "1965'TEN SONRA DA", satir: 2, an: son, ofset: -2.8, sure: 2.4, konum: alt}
+          - {tip: kelime, metin: "1965'TEN SONRA DA", satir: 2, an: son, ofset: -2.3, sure: 2.3, konum: ust}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_gozyasli.png, satir: 2, an: son, ofset: -1.6}
 
       # B6.4a · mekanizma: tablet -> molekül, cereblon, SALL4 kırılır; köşe ???? -> 2018 (B3.11'deki takılı yıl
-      # cevabını bulur). Kamera tabletten SALL4'e doğru yürür
+      # cevabını bulur). 4. tur: kara tahta zemin; cereblon 1. satırda (molekül tek başına 6 sn kalıyordu); anlatıcı sağda
       - tip: wojak
-        arka: img/doku_kagit_koyu.jpg
+        arka: img/doku_tebesir.jpg
         bulanik: 0
-        karart: 0.1
-        kamera: {zoom: [1.05, 1.18], merkez: [[0.42, 0.56], [0.6, 0.56]], it: 0}
+        karart: 0
+        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.56], [0.54, 0.56]], it: 0}
         kose: {metin: "{}", deger: "????"}
         gecis: gecis
         karakterler:
-          # 3. tur: siyah üstünde 3 sn'lik dev beyaz daire yerine baştan molekül
-          - {id: t, gorsel: img/cizim/molekul_beyaz.png, x: 0.24, boy: 0.36, alt: -0.28, bakis: on, giris: 0.1}
-          - {id: c, gorsel: img/cizim/cereblon.png, x: 0.53, boy: 0.36, alt: -0.28, bakis: on}
-          - {id: s, gorsel: img/cizim/sall4.png, x: 0.79, boy: 0.2, alt: -0.36, bakis: on}
+          - {id: t, gorsel: img/cizim/molekul_beyaz.png, x: 0.24, boy: 0.3, alt: -0.3, bakis: on, giris: 0.1}
+          - {id: c, gorsel: img/cizim/cereblon.png, x: 0.48, boy: 0.3, alt: -0.3, bakis: on}
+          - {id: s, gorsel: img/cizim/sall4.png, x: 0.7, boy: 0.17, alt: -0.38, bakis: on}
+          - {id: z, gorsel: chars/anlatici_dusunceli.png, taraf: sag, x: 0.9, boy: 0.54, giris: 0.3}
         satirlar:
-          - "Ya o soru? Tek bir tablet bu hasarı nasıl yapıyordu?"
+          - {metin: "Ya o soru? Tek bir tablet bu hasarı nasıl yapıyordu?", sonra: 0.4}
           - "Bilinen mekanizmalardan biri ancak 2018'de gösterildi:"
           - {metin: "İlaç, uzuv gelişiminde rol oynayan SALL4 adlı bir proteinin yıkılmasına yol açıyor.", sonra: 0.2}
         olaylar:
+          - {tip: giris, karakter: c, satir: 1, an: son, ofset: -1.0}
           - {tip: kose, deger: 2018, yil: true, satir: 2, ofset: 1.6, sure: 1.2}
-          - {tip: giris, karakter: c, satir: 2, ofset: 1.0}
-          - {tip: damga, metin: "CEREBLON", renk: beyaz, satir: 2, an: son, ofset: -0.6, x: 0.5, y: 0.82, boy: 50, aci: -3, sure: 2.4}
+          - {tip: damga, metin: "CEREBLON", renk: beyaz, satir: 2, an: son, ofset: -0.6, x: 0.48, y: 0.84, boy: 72, aci: -3, sure: 2.4}
           - {tip: giris, karakter: s, satir: 3, ofset: 0.8}
           - {tip: yuz, karakter: s, gorsel: img/cizim/sall4_kirik.png, satir: 3, an: son, ofset: 0.0}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 3, an: son, ofset: 0.05}
         sfx: [{ad: hit, satir: 3, an: son, ofset: 0.02, db: -9}]
 
-      # B6.4b · "yarım asırdan uzun": 1957 (piyasaya çıkış) -> 2018 (mekanizma) = 61 yıl. 1. hakem turu: köşe 1961 ->
-      # 2018 (57 yıl) gösterirken anlatım "altmış yıldan uzun" diyordu; ekran artık anlatımın saydığı aralığı gösterir
+      # B6.4b · "yarım asırdan uzun": 1957 (piyasaya çıkış) -> 2018 (mekanizma) = 61 yıl; anlatıcı sağda
       - tip: sayac
         deger: 61
         sonek: ""
@@ -1354,14 +1516,16 @@ bolumler:
         sure_say: 4.2
         zemin: kagit
         gecis: gecis
+        konuk: [{id: z, gorsel: chars/anlatici_fark.png, x: 0.1, boy: 0.4, giris: false, yon: sol}]   # 5. tur: solda
         satirlar:
           - "Bu, tablonun yalnız bir parçası."
-          - "Bu kadarını anlamak bile altmış yıldan uzun sürdü."   # ses: 'Ama' kesildi
+          - {metin: "Bu kadarını anlamak bile 60 yıldan uzun sürdü.", tts: "Bu kadarını anlamak bile altmış yıldan uzun sürdü."}   # ses: 'Ama' kesildi
         olaylar:
-          - {tip: damga, metin: "TEK AÇIKLAMA DEĞİL", renk: kirmizi, satir: 1, ofset: 0.3, x: 0.5, y: 0.86, boy: 56, aci: -4, sure: 2.6}
+          - {tip: damga, metin: "TEK AÇIKLAMA DEĞİL", renk: kirmizi, satir: 1, ofset: 0.3, x: 0.45, y: 0.86, boy: 56, aci: -4, sure: 2.6}
           - {tip: basla, satir: 1, ofset: 0.1}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_dusunceli.png, satir: 2, ofset: 0.3}
 
-      # B6.5 · İstanbul'un payı: Cerrahpaşa, Ann Intern Med 1998 (dergi logosu yok)
+      # B6.5 · İstanbul'un payı: Cerrahpaşa, Ann Intern Med 1998 (dergi logosu yok); anlatıcı sağda
       - tip: wojak
         arka: img/doku_kagit.jpg
         bulanik: 0
@@ -1371,19 +1535,21 @@ bolumler:
         etiket: "İSTANBUL · CERRAHPAŞA"
         gecis: kaydir
         karakterler:
-          - {id: m, gorsel: img/cizim/makale_behcet_1998_cizim.png, x: 0.7, boy: 0.86, alt: 0.02, bakis: on}
+          - {id: m, gorsel: img/cizim/makale_behcet_1998_cizim.png, x: 0.62, boy: 0.84, alt: 0.02, bakis: on}
+          - {id: z, gorsel: chars/anlatici_sakin.png, taraf: sag, x: 0.91, boy: 0.5, giris: 0.3}
         satirlar:
           - "Bu geri dönüşte İstanbul'un da payı var:"
-          - "Talidomitin Behçet hastalığındaki etkisini gösteren önemli bir çalışma Cerrahpaşa'da yapıldı ve 1998'de yayımlandı."
-          - "Çalışmadaki doksan altı hastanın hepsi erkekti."
+          - "Talidomitin Behçet hastalığındaki etkisini gösteren\nönemli bir çalışma Cerrahpaşa'da yapıldı ve 1998'de yayımlandı."   # \n: altyazı blok kırma ipucu
+          - {metin: "Çalışmadaki 96 hastanın hepsi erkekti.", tts: "Çalışmadaki doksan altı hastanın hepsi erkekti."}
         olaylar:
           - {tip: etiket, t: 0.3}
           - {tip: giris, karakter: m, satir: 1, ofset: 0.5}
-          - {tip: damga, metin: "ADINI VEREN: HULUSİ BEHÇET (1889–1948)", renk: siyah, satir: 2, ofset: 2.0, x: 0.28, y: 0.2, boy: 46, aci: -3, sure: 3.8}
-          - {tip: damga, metin: "ANN INTERN MED · 1998", renk: mavi, satir: 2, an: son, ofset: -1.0, x: 0.3, y: 0.42, boy: 48, aci: -5}
-          - {tip: damga, metin: "96 HASTA · HEPSİ ERKEK", renk: kirmizi, satir: 3, ofset: 1.2, x: 0.3, y: 0.6, boy: 52, aci: 4}
+          - {tip: damga, metin: "ADINI VEREN: HULUSİ BEHÇET (1889–1948)", renk: siyah, satir: 2, ofset: 2.0, x: 0.26, y: 0.2, boy: 46, aci: -3, sure: 3.8}
+          - {tip: damga, metin: "ANN INTERN MED · 1998", renk: mavi, satir: 2, an: son, ofset: -1.0, x: 0.26, y: 0.42, boy: 48, aci: -5}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 3, ofset: 1.0}
+          - {tip: damga, metin: "96 HASTA · HEPSİ ERKEK", renk: kirmizi, satir: 3, ofset: 1.2, x: 0.26, y: 0.6, boy: 52, aci: 4}
 
-      # B6.6 · 31 Mayıs 2004: Türkiye'de ruhsat (majör motif)
+      # B6.6 · 31 Mayıs 2004: Türkiye'de ruhsat (majör motif); 2000'ler temsilcisi sağdan girer
       - tip: harita
         bolge: turkiye
         ulkeler: [TUR]
@@ -1393,37 +1559,38 @@ bolumler:
         kose: {metin: "{}", deger: 1961, yil: true}
         gecis: kaydir
         muzik_mod: major           # 2004: motifin majör çözülüşü (ayna sahnesinin sonuna dek)
+        konuk: [{id: a, gorsel: chars/temsilci2000_sakin.png, x: 0.88, boy: 0.5, yon: sag}]
         satirlar:
           - {metin: "31 Mayıs 2004.", sonra: 0.3}
           - {metin: "Ankara'nın bir zamanlar kapıdan çevirdiği ilaç, Türkiye'de ruhsat alıyor.", sonra: 0.5}
         olaylar:
           - {tip: basla, t: 0.05}
           - {tip: kose, deger: 2004, yil: true, t: 0.15, sure: 1.3}
-          - {tip: kelime, metin: "BİR ZAMANLAR KAPIDAN ÇEVRİLEN İLAÇ", satir: 2, ofset: 0.5, sure: 2.4, konum: alt}
+          - {tip: giris, karakter: a, satir: 2, ofset: 0.2}
+          - {tip: kelime, metin: "BİR ZAMANLAR KAPIDAN ÇEVRİLEN İLAÇ", satir: 2, ofset: 0.5, sure: 2.4, konum: ust}
           - {tip: ulke, kod: TUR, satir: 2, an: son, ofset: 0.05}
         sfx:
           - {ad: boom, satir: 1, an: son, ofset: 0.05, db: -10}
           - {ad: turkiye_major, satir: 2, an: son, ofset: 0.1, db: -9}
 
-      # B6.6 · ayna: 2000'ler adsız temsilci (A değil), RUHSAT
+      # B6.6 · ayna: 2000'ler adsız temsilci (A değil), RUHSAT. 4. tur: SA.6'daki koridor (kapı orada çalınmıştı);
+      # RUHSAT damgası büyük, koyu yeşil, kapı ile temsilcinin arasında
       - tip: wojak
-        arka: img/foto_saglik_bakanligi.jpg
-        odak: [0.5, 0.4]
-        bulanik: 6
-        karart: 0.35
+        arka: img/arka_koridor_cizim.jpg
+        bulanik: 3
+        karart: 0.08
         doygunluk: 0.95
         gecis: gecis
-        # 3. tur: SA.3'te kapanan kapı burada 2004'te açılır (dosya yerine); RUHSAT damgası büyük
         karakterler:
           - {id: d, gorsel: img/cizim/kapi_kapali.png, x: 0.28, boy: 0.82, alt: 0.04, bakis: on, giris: false}
           - {id: a, gorsel: chars/temsilci2000_sakin.png, taraf: sag, x: 0.74, boy: 0.62, giris: 0.1}
         satirlar: ["Bugün bir kanser ilacı olarak kullanılıyor; yalnız sıkı bir gebelik önleme programıyla."]
         olaylar:
           - {tip: yuz, karakter: d, gorsel: img/cizim/kapi_acik.png, satir: 1, ofset: 0.5}
-          - {tip: damga, metin: "RUHSAT", renk: mavi, satir: 1, ofset: 1.8, x: 0.5, y: 0.6, boy: 90, aci: -8}
+          - {tip: damga, metin: "RUHSAT", renk: [0, 70, 30], satir: 1, ofset: 1.8, x: 0.47, y: 0.62, boy: 110, aci: -8, kontur: true}
           - {tip: kelime, metin: "BUGÜN: GEBELİK ÖNLEME PROGRAMI", satir: 1, an: son, ofset: -2.4, sure: 2.4, konum: ust}
 
-      # B6.7 · ayna: "Tamamen zehirsiz." (SA.5'teki kaydın aynısı) / bugünkü ürün bilgisi
+      # B6.7 · ayna: "Tamamen zehirsiz." (SA.5'teki kaydın aynısı) / bugünkü ürün bilgisi; Aylin'den önce nefes
       - tip: bolunmus
         sol: {baslik: "O REKLAM", metin: "„völlig ungiftig“", ceviri: "tamamen zehirsiz", arka: img/foto_contergan_teneke_169.jpg}
         sag: {baslik: "BUGÜN", metin: "Kısa Ürün Bilgisi", ceviri: "bölüm 4.4", zemin: kagit}
@@ -1431,7 +1598,7 @@ bolumler:
         muzik_mod: drone
         satirlar:
           - {metin: "O reklamı hatırlayın:", db: 1.5}
-          - {ses: aylin, metin: "Tamamen zehirsiz.", duygu: content, db: -1.0}
+          - {ses: aylin, metin: "Tamamen zehirsiz.", duygu: content, db: -1.0, once: 0.45}
           - "Bugün Türkiye'deki resmî ürün bilgisinde ise şu cümle var:"
         olaylar:
           - {tip: ceviri, taraf: sol, satir: 2, ofset: -0.05}
@@ -1444,7 +1611,8 @@ bolumler:
         etiket: "THALIDOMIDE CELGENE · KÜB, BÖLÜM 4.4"
         zoom: 1.15
         gecis: gecis
-        son: 0.9
+        son: 0.75
+        sfx_db: -6                 # 5. tur (dil #17): kalem sesi "gebe kadınlar"ın 10-12 dB altındaydı
         satirlar:
           - {ses: aylin, metin: "Talidomid, gebe kadınlar tarafından kesinlikle kullanılmamalıdır."}
         olaylar:
@@ -1457,70 +1625,87 @@ bolumler:
     youtube: "Kapanış"
     kart: false
     sahneler:
-      # KP.1 · kahraman mı, kural mı, şans mı? (Sergi Evi kartpostalı; panorama değil)
+      # KP.1 · kahraman mı, kural mı, şans mı? (Sergi Evi kartpostalı). 4. tur: anlatıcı ortada, her soruda yüz
+      # değişir; kelimeler üstte; daha açık ve daha çok yaklaşan kamera (9 sn'lik durağan kartpostaldı)
       - tip: wojak
         arka: img/foto_ankara_sergievi_kartpostal_alt.jpg
-        bulanik: 0.8
-        karart: 0.4
+        bulanik: 2
+        karart: 0.22
         doygunluk: 0.8
-        kamera: {zoom: [1.05, 1.15], merkez: [[0.45, 0.5], [0.58, 0.5]], it: 0}
+        kamera: {zoom: [1.0, 1.22], merkez: [[0.45, 0.5], [0.55, 0.55]], it: 0}
         gecis: kaydir
-        son: 1.5
+        son: 1.1
+        muzik_db: 3                # 5. tur: kapanışta müzik kabarması
+        karakterler:
+          - {id: z, gorsel: chars/anlatici_dusunceli.png, taraf: orta, x: 0.52, boy: 0.62, giris: 0.2}
         satirlar:
-          - "Peki Türkiye'yi bu felaketten koruyan neydi?"
-          - "Tek bir kahraman mı?"
-          - "‘Kanıt yoksa ruhsat yok’ diyen bir kural mı?"
+          - {metin: "Peki Türkiye'yi bu felaketten koruyan neydi?", sonra: 0.5}
+          - {metin: "Tek bir kahraman mı?", sonra: 0.4}
+          - {metin: "‘Kanıt yoksa ruhsat yok’ diyen bir kural mı?", sonra: 0.45}
           - "Yoksa biraz da şans mı?"
         olaylar:
-          - {tip: kelime, metin: "TEK BİR KAHRAMAN?", satir: 2, ofset: 0.1, sure: 1.5, konum: orta}
-          - {tip: kelime, metin: "‘KANIT YOKSA RUHSAT YOK’ DİYEN BİR KURAL?", satir: 3, ofset: 0.1, sure: 1.8, konum: orta}
-          - {tip: kelime, metin: "BİRAZ DA ŞANS?", satir: 4, ofset: 0.25, sure: 2.0, konum: orta}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_fark.png, satir: 2, ofset: 0.0}
+          - {tip: kelime, metin: "TEK BİR KAHRAMAN?", satir: 2, ofset: 0.1, sure: 1.2, konum: ust}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_ciddi.png, satir: 3, ofset: 0.0}
+          - {tip: kelime, metin: "‘KANIT YOKSA RUHSAT YOK’ DİYEN BİR KURAL?", satir: 3, ofset: 0.1, sure: 1.8, konum: ust}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_saskin.png, satir: 4, ofset: 0.0}
+          - {tip: kelime, metin: "BİRAZ DA ŞANS?", satir: 4, ofset: 0.25, sure: 2.0, konum: ust}
 
-      # KP.2 · ABD ödüllendirdi / Ankara: yayımlanmış belge yok (B5.8 panosunun son karesi büyür)
+      # KP.2 · ABD ödüllendirdi / Ankara: yayımlanmış belge yok. 4. tur: sağ panel SA.3'teki boş dosya (pano 3. kez
+      # görünmesin)
       - tip: bolunmus
         sol: {gorsel: img/foto_kelsey_kennedy_1962.jpg, odak: [0.5, 0.16]}
-        sag: {gorsel: img/kompozit/pano_son.jpg, odak: [0.5, 0.5]}
+        sag: {gorsel: img/kompozit/dosya_bos_kagit.jpg, odak: [0.5, 0.5]}
         gecis: gecis
+        konuk: [{id: z, gorsel: chars/anlatici_dusunceli.png, x: 0.89, boy: 0.46, giris: false, yon: sag}]   # 5. tur
         satirlar:
-          - "Amerika, ‘hayır’ diyen uzmanını ödüllendirdi; adını tarihe yazdı."
+          - {metin: "Amerika, ‘hayır’ diyen uzmanını ödüllendirdi; adını tarihe yazdı.", sonra: 0.5}
           - "Ankara'daki ‘hayır’ın ise bugün yayımlanmış tek bir belgesi bile yok."
         olaylar:
           - {tip: panel, taraf: sag, satir: 2, ofset: 0.0}
+          - {tip: giris, karakter: z, satir: 2, ofset: 0.5}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_ciddi.png, satir: 2, an: son, ofset: -0.2}
           - {tip: soluk, taraf: sol, satir: 2, ofset: 1.0}
           - {tip: buyut, taraf: sag, satir: 2, an: son, ofset: -1.6}
+          - {tip: damga, metin: "YAYIMLANMIŞ BELGE: 0", satir: 2, an: son, ofset: -0.2, x: 0.5, y: 0.5, boy: 92, aci: -6}
 
-      # KP.3 · çağrı: iki AYRI kare (birlikte çalışıyormuş gibi kare yok)
+      # KP.3 · çağrı: iki AYRI kare (birlikte çalışıyormuş gibi kare yok). 4. tur: Kaymakçalan Ankara panoramasının
+      # başka bir kesitinde (kartpostal 2 çekimde kalsın)
       - tip: wojak
-        arka: img/foto_ankara_bankalar_kartpostal_ust.jpg
-        bulanik: 8
-        karart: 0.42
+        arka: img/foto_ankara_panorama_tam.jpg
+        kirp: [0.28, 0.0, 0.51, 1.0]
+        bulanik: 6
+        karart: 0.3
         doygunluk: 0.7
         gecis: kaydir
         karakterler:
           - {id: s, gorsel: chars/kaymakcalan_sakin.png, taraf: sol, x: 0.3, boy: 0.84, giris: 0.1}
-        satirlar: ["O yıllardan bir belge, bir gazete kupürü ya da ailenizden dinlediğiniz bir anı varsa yorumlara yazın."]
+        satirlar: ["O yıllardan bir belge, bir gazete kupürü\nya da ailenizden dinlediğiniz bir anı varsa yorumlara yazın."]
         olaylar:
           - {tip: isim, karakter: s, ad: "Şükrü Kaymakçalan", unvan: "farmakolog (1923–1984)", satir: 1, ofset: 0.5, sure: 3.4}
           - {tip: kelime, metin: "YORUMLARA YAZIN", satir: 1, an: son, ofset: -1.6, sure: 2.0, konum: ust}
+      # 4. tur: isim etiketi Aygün'ün ağzına biniyordu: sol alt (karakterden ayrı)
       - tip: wojak
         arka: img/arka_lille_masa_169.jpg
         gecis: kaydir
-        son: 0.6
+        son: 0.4
         karakterler:
           - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag, x: 0.7, boy: 0.64, giris: 0.1}
         satirlar: ["Belki eksik parçayı birlikte buluruz."]
         olaylar:
-          - {tip: isim, karakter: b, ad: "Süreyya Tahsin Aygün", unvan: "virolog (1895–1981)", satir: 1, ofset: 0.2, sure: 2.4}
+          - {tip: isim, ad: "Süreyya Tahsin Aygün", unvan: "virolog (1895–1981)", satir: 1, ofset: 0.2, sure: 2.4, konum: sol}
           - {tip: kelime, metin: "EKSİK PARÇA?", satir: 1, ofset: 0.9, sure: 1.8, konum: ust}
 
-      # KP.4-KP.5 · bitiş ekranı (iki boş kutu + abone dairesi; Short'a değil kanalın başka bir videosuna)
+      # KP.4-KP.5 · bitiş ekranı (iki boş kutu + abone dairesi). 4. tur: 15 -> 12 sn (izlenme hakemi), zemin Contergan
+      # forte kutusu (teneke 2 çekimde kalsın), daha açık
       - tip: bitis
-        arka: img/foto_contergan_teneke_169.jpg
-        sure: 15.0
+        arka: img/foto_contergan_forte.jpg
+        karart: 0.3
+        sure: 10.5                 # 5. tur: 12 -> 10,5 (10:15 sınırı; YouTube 5-20 sn)
         muzik_db: 6              # bitiş ekranında müzik açık (telefonda ölü sessizlik gibi duyulmasın)
         muzik_mod: major
-        karakter: {gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, boy: 0.36}   # 3. tur: şapka sol kutuya değiyordu
-        satirlar: ["Bir sonraki unutulmuş hikâyede görüşmek üzere."]
+        karakter: {gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, boy: 0.36}
+        satirlar: [{metin: "Bir sonraki unutulmuş hikâyede görüşmek üzere.", hiz: 0.92}]
 
 kucukresimler:
   # YouTube "Test ve karşılaştır" sırası: K1 / K3 / K2 (başlık 1 ile; 2. hakem turunda K1 en güçlü bulundu, K2
@@ -1539,9 +1724,10 @@ kucukresimler:
     karart: 0.02
     karakterler:
       - {gorsel: uzun/talidomit-turkiye/chars/temsilci_notr.png, taraf: sol, x: 0.2, boy: 0.92}
-    yazi: "BELGE YOK"
-    vurgu_kelime: "YOK"
-  - ad: k2_harita   # harita varyantı: Türkiye büyük ve yeşil, kırmızı blok; 3. tur: sağ altta gergin temsilci (yüz)
+    yazi: "BELGE NEREDE?"   # 5. tur (dil #14): yalnız yayımlanmamış olduğu biliniyor
+    vurgu_kelime: "NEREDE?"
+  - ad: k2_harita   # harita varyantı: Türkiye büyük ve yeşil, kırmızı blok; 3. tur: sağ altta gergin temsilci (yüz);
+    # 4. tur: hap simgeleri kaldırıldı (feed boyunda bozuk piksel gibiydi)
     arka: img/kompozit/kr_harita.jpg
     bulanik: 0
     karart: 0.02
@@ -1554,13 +1740,13 @@ kucukresimler:
 paket:
   baslik_alternatifleri:
     - "46 Ülkede Satılan Bu İlaca Türkiye Neden ‘Hayır’ Dedi?"
+    - "10 Binden Fazla Bebeği Etkileyen İlaca Türkiye Neden ‘Hayır’ Dedi?"
     - "46 Ülkede Satıldı, Türkiye Kapıyı Kapattı: Talidomit (Contergan) Faciası"
-    - "Türkiye'yi Bir İlaç Faciasından Koruyan, Belgesi Bulunamayan Karar"
+    - "Türkiye'yi Bir İlaç Faciasından Koruyan ‘Hayır’ın Peşinde"   # 5. tur (dil #13): belge var izlenimi vermesin
   aciklama: |
     Talidomit (Almanya'daki adıyla Contergan) 1957-1961 arasında onlarca ülkede satıldı ve 10 binden fazla bebeğin ağır
     doğumsal kusurlarla dünyaya gelmesine yol açtı. Türkiye'de ise bu ilaca ruhsat verilmedi. Bu videoda o kararın
-    bilinen ve bilinmeyen yanlarını anlatıyoruz: kim görüş verdi, ne anlatılıyor, elimizde hangi belge var,
-    hangisi yok. Bir de hikâyenin 2004'teki beklenmedik devamını. Türkiye bölümü hakkında not: Bu bölümün bir kısmı
+    bilinen ve bilinmeyen yanlarını, hikâyenin 2004'teki beklenmedik devamıyla birlikte anlatıyoruz. Türkiye bölümü hakkında not: Bu bölümün bir kısmı
     belgeye değil tanıklığa dayanıyor. Şükrü Kaymakçalan'ın olumsuz görüşünü meslektaşları anlatıyor (TFD Bülteni,
     2012). Süreyya Tahsin Aygün'e atfedilen tavuk embriyosu deneyinin bilinen en eski kaynağı 2008 tarihli bir
     haber; haberin kaynağı belge sunamadı. Başvurunun yılı, başvuran firma ve Bakanlığın yazısı bugüne kadar yayımlanmadı. O yıllardan
@@ -1575,50 +1761,41 @@ paket:
     alıntıları; gerçek bir kişinin sesi ya da görüntüsü üretilmedi, sahneler açıkça çizim. Açıklamadaki
     'Seslendirme yapay zekâ ile üretilmiştir' satırı kalsın.
   ek_maddeler:
-    - "Küçük resim 'Test ve karşılaştır' sırası: K1 (zehirsiz) / K3 (belge) / K2 (harita), başlık 1 ile. Studio
-      başlık testini de açıyorsa başlık 1 ile başlık 2'yi (54 karakter: sayı + 'hayır' sorusu) karşılaştır. Başlık 3
-      seçilirse K2'yi testten çıkar (yazısı başlık 3'ün '46 Ülkede Satıldı' kelimelerini tekrar eder)."
-  # Yayından önce kulakla dinlenecek satırlar (Cartesia kotası bitti: yeniden seslendirilemedi). Paket her satırın
-  # başladığı anı zaman çizelgesinden yazar. Not: kısa açıklama; ayrıntı üretici raporunda.
+    - "Küçük resim: K1 (zehirsiz) ANA küçük resim; 'Test ve karşılaştır' açılırsa sıra K1 / K3 / K2, başlık 1 ile.
+      Studio başlık testini de açıyorsa başlık 1 ile başlık 2'yi (bedel: '10 binden fazla bebek') karşılaştır.
+      Başlık 3 seçilirse K2'yi testten çıkar (yazısı başlık 3'ün '46 Ülkede Satıldı' kelimelerini tekrar eder)."
+    - "Açıklama YouTube'un 5.000 bayt sınırına yakın: bağlantı ya da satır ekleme (Short bağlantısı payı hesapta).
+      İstersen kalan ~150 baytla atıflara tek satır eklenebilir: 'Görsellerin dosya bağlantıları ve lisansları:
+      <repodaki uzun/talidomit-turkiye/VARLIKLAR.md bağlantısı>'. Eklemedim: bağlantı GitHub hesabını kanala bağlar
+      (gizlilik kararı senin)."
+  # Yayından önce kulakla dinlenecek satırlar. 5. tur: hesap sahibinin yeni Cartesia anahtarlarıyla 30 satır yeniden
+  # seslendirildi (kesik/uzatılmış çekimler temiz çekimle değişti); listede yalnız hâlâ kulak isteyenler var.
   dinle:
-    - {ara: "cüzzam hastası", not: "onarıldı (z uzatıldı); Whisper artık 'cüzzam' duyuyor, önce 'cüzdan'"}
-    - {ara: "cüzzamın bir komplikasyonu", not: "onarıldı; önce 'cüzağımın'"}
-    - {ara: "cüzzam tedavisinde", not: "onarıldı; önce 'cüzdan'"}
-    - {ara: "Hikâye gazetelere düşüyor", not: "'1962 yazında' kesildi ('1960, iki' okunuyordu): başlangıç doğal mı"}
-    - {ara: "Dünyada on binden fazla", not: "'Bilanço ağır.' kesildi ('Blancho' okunuyordu)"}
-    - {ara: "Grünenthal çalışanının", not: "'çalışanın' gibi duyulabilir"}
-    - {ara: "gebe hayvanda denenmiyor", not: "'denemiyor' gibi duyulabilir"}
-    - {ara: "Kelsey'yi bir devlet", not: "'Kelsey bir' gibi duyulabilir"}
-    - {ara: "ilaç kurumu FDA", not: "'FTA' gibi duyulabilir (çekim birleştirildi)"}
-    - {ara: "Lenz'i iftirayla", not: "ek onarıldı ('Lentsi'); dinle"}
-    - {ara: "taahhütlü bir mektupla", not: "'tahütlü … iniliyor' gibi duyulabilir"}
-    - {ara: "ruhsat almayan ilaç", not: "'ruhsatılmayan' gibi duyulabilir"}
-    - {ara: "kasım başında", not: "'kasın' gibi duyulabilir"}
-    - {ara: "doksan altı hastanın", not: "'aslanın' gibi duyulabilir"}
-    - {ara: "Bu kadarını anlamak", not: "'Ama' kesildi; 'kaderini' gibi duyulabilir"}
-    - {ara: "söyleşisinde", not: "'söyleştisinde' gibi duyulabilir; 'Nejat' 'Necat' gibi"}
-    - {ara: "Talidomite ruhsat", not: "'talih domit' gibi bölünüyor olabilir (Whisper'ın bölmesi de olabilir)"}
-    - {ara: "talidomit geri döndü", not: "'talih domit' gibi bölünüyor olabilir"}
-    - {ara: "Asıl soru hiç", not: "'Ama' kesildi: başlangıç doğal mı"}
-    - {ara: "Kaçak getirilen", not: "'Ama' kesildi: geçiş doğal mı"}
+    - {ara: "Asıl soruyu ise kimse", not: "yeni çekim (dil hakemi MUST 1): durak artık 'araştırmamış'tan sonra"}
+    - {ara: "Lenz'i iftirayla", not: "yeni çekim: 'Lents'i, iftirayla' ekli mi"}
+    - {ara: "taahhütlü bir mektupla", not: "yeni çekim: 'taahhütlü' uzun a ile ('tâhütlü') okunuyor; kabul edilebilir mi"}
+    - {ara: "ilaç kurumu FDA", not: "yeni çekim: FDA 'Ef De A' okunuyor; Kelsey adı net mi"}
+    - {ara: "Talidomite ruhsat", not: "4 yeni çekimin en iyisi; Whisper 'Tali Domite' diye bölüyor (tanıyıcı da olabilir)"}
+    - {ara: "röportajında", not: "yeni metin ('söyleşisinde' 'söylesinde' duyuluyordu); Whisper 'Nejat'ı 'Necdet' yazıyor"}
+    - {ara: "cüzzam hastası", not: "z uzatılmış eski çekim (TTS ikiz zz'yi hâlâ 'cüzdan' okuyor)"}
+    - {ara: "cüzzamın bir komplikasyonu", not: "yeni çekim ('kan kanseri olan'): Whisper 'cüzzamın' duyuyor, açgözlü çözüm 'cüzdanımın'"}
+    - {ara: "cüzzam tedavisinde", not: "z uzatılmış eski çekim"}
     - {ara: "yayımlanmış tek bir", not: "'yayınlanmış' gibi duyulabilir (anlam farkı: yayım = basılıp duyurulma)"}
     - {ara: "1998'de yayımlandı", not: "'yayınlandı' gibi duyulabilir"}
-    - {ara: "Şimdi elimizdekilere", not: "yavaşlatıldı (rubberband 0,87): tını doğal mı"}
-    - {ara: "Bir sonraki unutulmuş", not: "yavaşlatıldı (0,92)"}
   telif_notu:
     - "Videoda ve küçük resimlerde telifli görsel YOK: fotoğrafların hepsi CC lisanslı ya da kamu malı (atıfları
       açıklamada), geri kalanı kendi çizimimiz. Fotoğraflar kırpıldı; laboratuvar fotoğrafında rötuş yapıldı."
     - "Hazır bekleyen telifli yükseltmeler (uzun/talidomit-turkiye/img/telifli/, git'e girmez; kullanmak istersen
       hangi sahneye girdiği ve gereken atıf):"
-    - "kevadon_1960_fda.jpg → B4.5 (adsız şişe çizimi yerine). Commons'ta PD-USGov etiketli ama EXIF'te 'All Rights
-      Reserved' yazıyor. Atıf: 'Kevadon şişesi: U.S. FDA / Wikimedia Commons'."
-    - "distaval_reklam_wellcome.jpg → B2.3 (İngiltere reklamı; şu an kendi yazı kartımız). Telifli (The Distillers
-      Company / Wellcome Collection): izin gerekir."
-    - "tfd_bulten26_1994_kapak.jpg, tfd_bulten26_1994_s2.jpg → B5.8 panodaki 'ANMA YAZILARI, 1994' kartı (şu an kendi
-      bülten kartımız). Telifli (Türk Farmakoloji Derneği): izin ya da atıfla alıntı kararı."
-    - "tfd_bulten114_2012_kirpim.png → B5.8 'KAYMAKÇALAN' ya da 'BELGE SUNULAMADI' kartı. Telifli (TFD)."
-    - "kub_bolum44_kesit.png / kub_bolum44_kesit_gri.png ve kub_ilk_ruhsat_2004.png → B6.7 KÜB kartı (şu an kendi
-      yazı kartımız). TİTCK'te yayımlı ürün bilgisi (hak sahibi ruhsat sahibi firma). Atıf: 'Kısa Ürün Bilgisi: TİTCK'."
+    - - "kevadon_1960_fda.jpg → B4.5 (adsız şişe çizimi yerine). Commons'ta PD-USGov etiketli ama EXIF'te 'All Rights
+        Reserved' yazıyor. Atıf: 'Kevadon şişesi: U.S. FDA / Wikimedia Commons'."
+      - "distaval_reklam_wellcome.jpg → B2.3 (İngiltere reklamı; şu an kendi yazı kartımız). Telifli (The Distillers
+        Company / Wellcome Collection): izin gerekir."
+      - "tfd_bulten26_1994_kapak.jpg, tfd_bulten26_1994_s2.jpg → B5.8 panodaki 'ANMA YAZILARI, 1994' kartı (şu an kendi
+        bülten kartımız). Telifli (Türk Farmakoloji Derneği): izin ya da atıfla alıntı kararı."
+      - "tfd_bulten114_2012_kirpim.png → B5.8 'KAYMAKÇALAN' ya da 'BELGE SUNULAMADI' kartı. Telifli (TFD)."
+      - "kub_bolum44_kesit.png / kub_bolum44_kesit_gri.png ve kub_ilk_ruhsat_2004.png → B6.7 KÜB kartı (şu an kendi
+        yazı kartımız). TİTCK'te yayımlı ürün bilgisi (hak sahibi ruhsat sahibi firma). Atıf: 'Kısa Ürün Bilgisi: TİTCK'."
     - "Açık lisansı olmayan karakter tabanları (topluluk wojak çizimleri, kanalın genel pratiği): Kelsey rolü
       (wojakparadise 'Secretary Daddy's Girl', yeniden boyandı), anne adayı (wojakland 'Trad Wife', değiştirilmeden),
       2000'ler temsilcisi (wojakland 'Grey Suit Wojak')."
@@ -1632,12 +1809,12 @@ paket:
 
     Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yeterli. Kaynaklar açıklamada.
   kaynaklar:
-    - "Özdemir O., 'Türkiye'de Talidomid Gerçeği', Türk Farmakoloji Derneği E-Bülteni 114 (2012): http://www.tfd.org.tr/sites/default/files/Klasor/Dosyalar/ebultenler/114_2012_4_0.pdf"
+    - "Özdemir O., 'Türkiye'de Talidomid Gerçeği', TFD E-Bülteni 114 (2012): http://www.tfd.org.tr/sites/default/files/Klasor/Dosyalar/ebultenler/114_2012_4_0.pdf"
     - "TFD Bülteni 26 (Temmuz 1994), Kaymakçalan anma yazıları: http://www.tfd.org.tr/sites/default/files/Klasor/Dosyalar/ebultenler/26_1994.pdf"
-    - "1262 sayılı İspençiyari ve Tıbbi Müstahzarlar Kanunu (1928): https://mevzuat.gov.tr"
+    - "1262 sayılı İspençiyari ve Tıbbi Müstahzarlar Kanunu (1928): https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=1262&MevzuatTur=1&MevzuatTertip=3"
     - "TİTCK, THALIDOMIDE CELGENE 50 mg Kısa Ürün Bilgisi (ilk ruhsat 31.05.2004): https://titck.gov.tr/storage/kubKtAttachments/eaz5rIWQcA6im.pdf"
     - "Hamuryudan V. ve ark., Ann Intern Med 1998;128:443-450 (Behçet): https://doi.org/10.7326/0003-4819-128-6-199803150-00004"
-    - "Botting J., 'The History of Thalidomide', Animals and Medicine, Open Book Publishers 2015: https://doi.org/10.11647/OBP.0055.18"
+    - "Botting J., 'The History of Thalidomide', Animals and Medicine (OBP, 2015): https://doi.org/10.11647/OBP.0055.18"
     - "Science Museum, 'Thalidomide': https://www.sciencemuseum.org.uk/objects-and-stories/medicine/thalidomide"
     - "Planet Wissen (WDR), 'Der Fall Contergan': https://planet-wissen.de/gesellschaft/medizin/pharmaindustrie/pwiederfallcontergan102.html"
     - "Deutsches Ärzteblatt, 17.05.2016 (Lenhard-Schramm çalışması): https://aerzteblatt.de/nachrichten/67696"
@@ -1647,19 +1824,17 @@ paket:
     - "Sheskin J., Clin Pharmacol Ther 1965;6:303-306: https://doi.org/10.1002/cpt196563303"
     - "Vianna F.S.L. ve ark., PLoS ONE 2011 (Brezilya): https://pmc.ncbi.nlm.nih.gov/articles/PMC3130769/"
     - "Donovan K.A. ve ark., eLife 2018 (SALL4): https://doi.org/10.7554/eLife.38430"
-  gorsel_atif:
-    - "Contergan tenekesi: Kai Oesterreich / Wikimedia Commons, CC BY-SA 3.0"
-    - "Contergan forte kutusu: TobiToaster / Wikimedia Commons, CC BY-SA 4.0"
-    - "Kupferhof Grünenthal, Stolberg: ArthurMcGill / Wikimedia Commons, CC BY 3.0"
-    - "Grünenthal binası, Stolberg: Norbert Schnitzler / Wikimedia Commons, CC BY-SA 3.0"
-    - "Gießen, 1957: Manfred & Barbara Aulbach / Wikimedia Commons, CC BY-SA 4.0"
+    - "Vargesson N., 2015 (20–36. günler, %40): https://pmc.ncbi.nlm.nih.gov/articles/PMC4737249/"
+    - "NLM, Frances Kelsey biyografisi: https://www.nlm.nih.gov/exhibition/changing-the-face-of-medicine/physicians/biography_frances_kelsey.html"
+  gorsel_atif:   # 4. tur: açıklama 5.000 bayt sınırını aştığı için kısaltıldı (her fotoğrafın yazarı ve lisansı duruyor)
+    - "Contergan tenekesi: Kai Oesterreich, CC BY-SA 3.0; Contergan forte kutusu: TobiToaster, CC BY-SA 4.0 (Wikimedia Commons)"
+    - "Stolberg: Kupferhof Grünenthal, ArthurMcGill, CC BY 3.0; Grünenthal binası, Norbert Schnitzler, CC BY-SA 3.0 (Commons)"
+    - "Gießen, 1957: Manfred & Barbara Aulbach, CC BY-SA 4.0 (Commons)"
     - "Köln 1960 ve Doğu Berlin 1961: Bundesarchiv (B 145 Bild-F008275-0003 / R. Unterberg; Bild 183-89187-0002 / C. Hochneder), CC BY-SA 3.0 DE"
     - "Yapay kollar: Science Museum London / Science & Society Picture Library, CC BY-SA 2.0"
-    - "Laboratuvar arka planı: Pierre André Leclercq / Wikimedia Commons, CC BY-SA 4.0"
-    - "Muayenehane: Dguendel / Wikimedia Commons, CC BY 3.0; eczane (Daderot) ve büro (Wolf1949H): Wikimedia Commons, CC0"
-    - "Sağlık Bakanlığı binası, Sıhhiye: Vikiçizer / Wikimedia Commons, CC BY-SA 3.0"
-    - "Brezilya'daki talidomit kutusu: Gadogado123 / Wikimedia Commons, CC BY-SA 4.0"
-    - "Ankara kartpostalları ve panorama: SALT Araştırma / Wikimedia Commons (bilinen telif kısıtlaması yok)"
-    - "Kamu malı: Frances Kelsey (U.S. FDA); Kennedy ve Kelsey, 1962 (Beyaz Saray); 1962 ilaç yasası imzası (Abbie Rowe); tavuk embriyosu (CDC PHIL 10149); talidomit formülü (Wikimedia Commons)"
+    - "Laboratuvar: Pierre André Leclercq, CC BY-SA 4.0; muayenehane: Dguendel, CC BY 3.0; eczane (Daderot) ve büro (Wolf1949H): CC0 (Commons)"
+    - "Sağlık Bakanlığı binası, Sıhhiye: Vikiçizer, CC BY-SA 3.0; Brezilya'daki talidomit kutusu: Gadogado123, CC BY-SA 4.0 (Commons)"
+    - "Ankara kartpostalları ve panorama: SALT Araştırma / Commons (bilinen telif kısıtlaması yok)"
+    - "Kamu malı: Frances Kelsey (U.S. FDA); Kennedy ve Kelsey, 1962 (Beyaz Saray); 1962 ilaç yasası imzası (Abbie Rowe); tavuk embriyosu (CDC PHIL 10149); talidomit formülü (Commons)"
     - "Haritalar: Natural Earth (kamu malı) üzerine kendi çizimimiz; bugünkü sınırlar. Karakterler (klasik wojak ve wojakland çizimleri üzerine), çizimler, müzik ve ses efektleri: tarihselwojak"
     - "Fotoğraflar kırpıldı; laboratuvar fotoğrafında rötuş yapıldı. CC lisans metinleri: creativecommons.org/licenses"

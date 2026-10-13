@@ -43,7 +43,7 @@ def basla_zamani(sahne: Sahne, varsayilan: float) -> float:
 def karakter_zamanlari(sahne: Sahne) -> dict[str, dict]:
     """id -> {giris: t|None, cikis: t|None, yuz: [(t, gorsel)]}"""
     out = {}
-    for i, c in enumerate(sahne.p.get("karakterler", [])):
+    for i, c in enumerate(sahne.p.get("karakterler", []) + sahne.p.get("konuk", [])):
         g = c.get("giris", True)
         giris = None if g is False else (float(g) if isinstance(g, (int, float)) and g is not True else 0.05 + 0.22 * i)
         out[c["id"]] = {"giris": giris, "cikis": None, "yuz": []}
@@ -220,6 +220,9 @@ def vuruslar(sahne: Sahne) -> list[float]:
     elif tip in ("marka", "bitis"):
         from . import kanal
         t += kanal.vuruslar(sahne)
+    if tip != "wojak" and sahne.p.get("konuk"):
+        for v in karakter_zamanlari(sahne).values():
+            t += [x for x in (v["giris"], v["cikis"]) if x is not None] + [y for y, _ in v["yuz"]]
     return sorted(x for x in t if 0 <= x <= max(sahne.sure_hesap, 0.01))
 
 
@@ -265,11 +268,18 @@ class UstKatman:
     def __init__(self, sahne: Sahne, c: Baglam):
         self.c = c
         S = c.S
+        # konuk: wojak dışı sahnede köşeden/kenardan giren tepki karakteri (kamerasız, ekran koordinatında; yazı
+        # katmanlarının ALTINDA çizilir)
+        self.konuklar = []
+        if sahne.tip != "wojak" and sahne.p.get("konuk"):
+            zam = karakter_zamanlari(sahne)
+            for i, cs in enumerate(sahne.p["konuk"]):
+                self.konuklar.append(Karakter(cs, zam[cs["id"]], c, i + 3))
         self.isimler = []
         for o in olaylar(sahne, "isim"):
             konum = str(o.p.get("konum", "sol"))
             if o.p.get("karakter") is not None:   # adı verilen karakterin tarafına
-                for c_ in sahne.p.get("karakterler", []):
+                for c_ in sahne.p.get("karakterler", []) + sahne.p.get("konuk", []):
                     if c_["id"] == str(o.p["karakter"]):
                         cx = float(c_["x"]) if c_.get("x") is not None else {"sol": 0.25, "sag": 0.75, "orta": 0.5}[c_["taraf"]]
                         konum = "sag" if cx > 0.5 else "sol"
@@ -300,6 +310,8 @@ class UstKatman:
 
     def uygula(self, im: Image.Image, t: float) -> None:
         S, W, H = self.c.S, self.c.W, self.c.H
+        for k in self.konuklar:
+            k.ciz(im, t)
         if self.kose is not None:
             self.kose.ciz(im, t)
         for t0, sure, spr, konum in self.isimler:
@@ -517,6 +529,7 @@ class Karakter:
         ys = np.where((a > 60).any(axis=1))[0]
         self.ust_y = self.taban - self.h + (ys[0] if len(ys) else 0)
         self.ic_yon = 1 if self.cx < W / 2 else -1   # kadrajın ortasına doğru
+        self.yon = spec.get("yon")   # giriş/çıkış yönü (sol | sag | alt); yoksa tarafına göre
         self._onbellek: dict = {}
 
     def odak(self) -> tuple[float, float]:
@@ -525,6 +538,12 @@ class Karakter:
 
     def _mesafe(self) -> tuple[float, float]:
         W, H = self.c.W, self.c.H
+        if self.yon == "alt":   # alttan yükselir (köşedeki konuk)
+            return 0.0, self.h * 1.06 + 40 * self.c.S
+        if self.yon == "sol":
+            return -(self.cx + self.w / 2 + 40 * self.c.S), 0.0
+        if self.yon == "sag":
+            return W - self.cx + self.w / 2 + 40 * self.c.S, 0.0
         if self.taraf == "sol":
             return -(self.cx + self.w / 2 + 40 * self.c.S), 0.0
         if self.taraf == "sag":
@@ -796,13 +815,17 @@ class FotoCizici(Cizici):
         self.z = foto_zamanlari(self.sahne)
         self.etiket = DaktiloEtiket(p.get("etiket"), self.c, olaylar(self.sahne, "etiket"), self.z["etiket"], None)
         self.atif = C.yazi(str(p["atif"]), C.FONT_BOLD, 19 * S, (230, 230, 230)) if p.get("atif") else None
+        # x: baskının yatay merkezi (0..1; konuk karakter için yer açmak: ör. 0.4 + konuk sağda). Ortada değilse
+        # atıf ekran köşesine değil baskının altına, sağ kenarına hizalı yazılır (köşedeki konuğa binmesin)
+        self.x = float(p.get("x", 0.5))
+        self.pr_w, self.pr_h = pr.width, pr.height
 
     def ciz(self, t):
         W, H, S = self.W, self.H, self.S
         im = C.kamera(self.arka, W, H, 1.0 + 0.06 * E.in_out_sine(t / self.dur), (0.5, 0.5))
         u = (t - self.z["inis"]) / 0.72
         e = E.out_back(u, 1.0)
-        cx, cy = W / 2, H * 0.455
+        cx, cy = W * self.x, H * 0.455
         yon = {"alt": (0, 1), "ust": (0, -1), "sag": (1, 0), "sol": (-1, 0)}.get(self.giris, (0, 1))
         cx += (1 - e) * yon[0] * W * 0.9
         cy += (1 - e) * yon[1] * H * 0.95
@@ -813,7 +836,12 @@ class FotoCizici(Cizici):
             C.bindir(im, spr, x0, y0)
         self.etiket.ciz(im, t)
         if self.atif is not None:
-            C.bindir(im, self.atif, W - 70 * S - self.atif.width, H - 82 * S - self.atif.height, 0.65)
+            if abs(self.x - 0.5) < 1e-3:
+                C.bindir(im, self.atif, W - 70 * S - self.atif.width, H - 82 * S - self.atif.height, 0.65)
+            else:
+                ax = W * self.x + self.pr_w / 2 - self.atif.width
+                ay = min(H * 0.455 + self.pr_h / 2 + 14 * S, H - 40 * S - self.atif.height)
+                C.bindir(im, self.atif, ax, ay, 0.65)
         return im
 
 
@@ -954,8 +982,9 @@ class HaritaCizici(Cizici):
                                  golge=(0, 3 * S, 6 * S, 0.6))
         self.aciklama = None
         if p.get("aciklama"):
-            yz = C.yazi(str(p["aciklama"]), C.FONT_BOLD, 26 * S, (226, 228, 232))
-            sq = int(22 * S)
+            # 4. tur: 26 -> 34 pt (izlenme hakemi: telefonda ~14 px, okunmuyordu; olgu çekincesi taşıyor)
+            yz = C.yazi(str(p["aciklama"]), C.FONT_BOLD, 34 * S, (232, 234, 238))
+            sq = int(28 * S)
             w, h = int(sq + 14 * S + yz.width + 36 * S), int(max(sq, yz.height) + 24 * S)
             lay = C.yuvarlak_kutu(w, h, 5 * S, (8, 10, 14, 200))
             ImageDraw.Draw(lay).rectangle((int(18 * S), (h - sq) // 2, int(18 * S) + sq, (h - sq) // 2 + sq),
@@ -1299,7 +1328,7 @@ class MetinCizici(Cizici):
 
     def hazirla(self):
         p, S = self.p, self.S
-        self.zemin = Z.Zemin(self.c, p, ic=(38, 32, 30), dis=(9, 8, 8))
+        self.zemin = Z.Zemin(self.c, p, ic=(80, 70, 64), dis=(30, 26, 25))
         pal = self.pal = self.zemin.palet
         self.renk = Z.renk(p.get("renk"), pal.metin)
         self.daktilo = p.get("yazim", "kelime") == "daktilo"
@@ -1345,7 +1374,12 @@ class MetinCizici(Cizici):
         self.ust = C.yazi(C.buyuk(str(p["ust"])), C.FONT_BOLD, 30 * S, pal.ikincil, aralik=0.22) \
             if p.get("ust") else None
         self.alt = C.yazi(str(p["alt"]), C.FONT_BOLD, 24 * S, pal.ikincil) if p.get("alt") else None
-        self.tirnak = C.yazi("“", C.FONT_DIALOG, 420 * S, pal.metin) if not self.daktilo else None
+        # süs tırnağı yalnız alıntıda (metin tırnakla başlıyorsa ya da `tirnak: true`); 5. tur: "Bir süre sonra"
+        # kartında alıntı olmayan satırın üstünde 420 pt tırnak görünüyordu
+        tirnak = p.get("tirnak")
+        if tirnak is None:
+            tirnak = metin.lstrip()[:1] in "„“\"‘«‹'"
+        self.tirnak = C.yazi("“", C.FONT_DIALOG, 420 * S, pal.metin) if tirnak and not self.daktilo else None
         self._dk: dict = {}
         self.cizikler = [(o.zaman, Z.renk(o.p.get("renk"), (206, 30, 36))) for o in olaylar(self.sahne, "ustunu_ciz")]
 

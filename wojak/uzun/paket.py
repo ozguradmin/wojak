@@ -28,10 +28,16 @@ def bolum_damgalari(z: Zaman) -> list[tuple[int, str]]:
     """(saniye, ad): bölümün ilk sahnesinin (kart dahil) başı, YUKARI yuvarlanmış; ilki her zaman 0.
 
     Yukarı: damga bölüm kartının içine düşer. Aşağı yuvarlanınca (talidomit-turkiye 3. hakem turu) 3:00.9'da başlayan
-    kartın damgası 3:00 oluyor, bölüme tıklayan izleyici önceki bölümün son cümlesinin ortasına düşüyordu."""
+    kartın damgası 3:00 oluyor, bölüme tıklayan izleyici önceki bölümün son cümlesinin ortasına düşüyordu.
+
+    Kartsız bölümde (ilk sahnesi bölüm kartı değil) AŞAĞI yuvarlanır: yukarı yuvarlanınca ilk kelime kesiliyordu
+    (talidomit-turkiye 4. tur, teknik hakem: "Kapanış" 9:36'ya düştü, konuşma 9:35,53'te başlıyordu; "Peki" kırpıldı).
+    Aradaki kesir önceki sahnenin son sessiz payına düşer."""
+    import math
     out = []
-    for ad, t in z.bolum_baslari():
-        s = 0 if not out else yukari(t)
+    kartli = [b.sahneler[0].tip == "bolum_karti" for b in z.video.bolumler if b.sahneler]
+    for (ad, t), k in zip(z.bolum_baslari(), kartli):
+        s = 0 if not out else (yukari(t) if k else int(math.floor(t + 1e-6)))
         out.append((s, ad))
     return out
 
@@ -145,7 +151,7 @@ def ara_reklam_yerleri(v: Video, z: Zaman) -> list[str]:
 def dinlenecekler(v: Video, z: Zaman) -> list[str]:
     """paket.dinle: [{ara: 'satırda geçen metin', not: '...'}] -> 'm:ss «satır» — not' (satırın başı zaman
     çizelgesinden; süre değişince kayar). Bulunamayan arama da yazılır (elle bakılsın)."""
-    out = []
+    out = []   # (sıralama anı, satır): 4. tur: hesap sahibi videoyu baştan sona dinlerken sırayla gitsin
     satirlar = z.satirlar()
     for d in v.paket.get("dinle") or []:
         d = d if isinstance(d, dict) else {"ara": str(d)}
@@ -153,7 +159,7 @@ def dinlenecekler(v: Video, z: Zaman) -> list[str]:
         bul = [sz for sz in satirlar if ara and ara.casefold() in sz.satir.altyazi.casefold()]
         notu = f" — {d['not']}" if d.get("not") else ""
         if not bul:
-            out.append(f"'{ara}' (satır bulunamadı){notu}")
+            out.append((-1.0, f"'{ara}' (satır bulunamadı){notu}"))
             continue
         for sz in bul:
             m = sz.satir.altyazi
@@ -165,8 +171,8 @@ def dinlenecekler(v: Video, z: Zaman) -> list[str]:
                 j = m.rfind(" ", i + len(ara), b)
                 b = j if j != -1 else b
             parca = ("…" if a else "") + m[a:b] + ("…" if b < len(m) else "")
-            out.append(f"{zaman_str(sz.bas)} «{parca}»{notu}")
-    return out
+            out.append((sz.bas, f"{zaman_str(sz.bas)} «{parca}»{notu}"))
+    return [x for _, x in sorted(out, key=lambda x: x[0])]
 
 
 def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, kucukresimler: list[Path],
@@ -207,7 +213,9 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
         "- [ ] Altyazı (.srt) yüklendi, dil: Türkçe",
         "- [ ] Etiketler yapıştırıldı; kategori: Eğitim (ya da Kişiler ve Bloglar), dil: Türkçe",
         "- [ ] Kitle: 'Çocuklara özel değil'",
-        "- [ ] Bitiş ekranı (son 20 sn): 'En son yüklenen' ya da ilgili video + Abone ol"
+        (f"- [ ] Bitiş ekranı (son ~{z.sure - yukari(z.sahne_basi([s for s in z.sahneler if s.tip == 'bitis'][-1])):.0f} sn)"
+         if any(s.tip == "bitis" for s in z.sahneler) else "- [ ] Bitiş ekranı (son 5-20 sn)")
+        + ": 'En son yüklenen' ya da ilgili video + Abone ol"
         + (f" — öğeleri **{zaman_str(yukari(z.sahne_basi([s for s in z.sahneler if s.tip == 'bitis'][-1])))}**'ten "
            "itibaren videodaki iki boş kutunun İKİSİNİ DE ve dairenin üstüne yerleştir, kutuyu tam örtecek kadar "
            "büyüt (boş kalan kutu yer tutucu gibi görünür; daha erken başlarsa kapanış sahnesinin üstüne biner)"
@@ -237,7 +245,11 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
     if p.get("telif_notu"):
         tn = p["telif_notu"]
         L += ["", "## Telif notu / lisans kararları (hesap sahibi karar verir)", ""]
-        L += [f"- {x}" for x in tn] if isinstance(tn, list) else [str(tn).strip()]
+        if isinstance(tn, list):   # liste içindeki liste: bir önceki maddenin alt maddeleri (5. tur)
+            for x in tn:
+                L += [f"  - {y}" for y in x] if isinstance(x, list) else [f"- {x}"]
+        else:
+            L += [str(tn).strip()]
     if p.get("short_baglanti"):
         L += ["", f"Short: {p['short_baglanti']}"]
     klasor.mkdir(parents=True, exist_ok=True)

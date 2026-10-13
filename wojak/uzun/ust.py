@@ -23,8 +23,9 @@ KIRMIZI_DAMGA = (196, 34, 38)
 
 # ---------------------------------------------------------------- damga
 
-def damga_sprite(metin: str, renk, boy: float, S: float, tohum: int = 0) -> Image.Image:
-    """Lastik damga katmanı (RGBA): büyük harf Anton, çift çerçeve, mürekkep boşlukları."""
+def damga_sprite(metin: str, renk, boy: float, S: float, tohum: int = 0, kontur=None) -> Image.Image:
+    """Lastik damga katmanı (RGBA): büyük harf Anton, çift çerçeve, mürekkep boşlukları.
+    `kontur` (renk): harflerin ve çerçevenin çevresine ince dolu kenar (koyu/renkli zeminde okunurluk; 5. tur)."""
     renk = tuple(renk)
     yz = C.yazi(C.buyuk(metin), C.FONT_CARD, boy, renk, max_w=1300 * S, max_lines=2, align="center",
                 aralik=0.05, satir=1.0)
@@ -50,6 +51,19 @@ def damga_sprite(metin: str, renk, boy: float, S: float, tohum: int = 0) -> Imag
     doku = np.clip(0.62 + 0.55 * g1, 0, 1) * np.where(g2 < 0.06, 0.35, 1.0)
     doku[g1 < 0.16] *= 0.25
     lay.putalpha(Image.fromarray(np.clip(a * doku * 0.94, 0, 255).astype(np.uint8), "L"))
+    if kontur is not None:
+        from PIL import ImageFilter
+        kal = max(3, int(round(0.07 * boy)) | 1)
+        pay = kal
+        tuval = Image.new("RGBA", (w + 2 * pay, h + 2 * pay), (0, 0, 0, 0))
+        maske = Image.new("L", tuval.size, 0)
+        maske.paste(Image.fromarray(a.astype(np.uint8), "L"), (pay, pay))
+        maske = maske.filter(ImageFilter.MaxFilter(kal)).filter(ImageFilter.GaussianBlur(0.6 * S))
+        kenar = Image.new("RGBA", tuval.size, tuple(kontur) + (0,))
+        kenar.putalpha(maske.point(lambda v: int(v * 0.92)))
+        tuval.alpha_composite(kenar)
+        tuval.alpha_composite(lay, (pay, pay))
+        return tuval
     return lay
 
 
@@ -61,8 +75,11 @@ class Damga:
         p = o.p
         self.c, self.t0 = c, (-10.0 if p.get("inik") else o.zaman)   # inik: önceki çekimden basılı gelir
         self.sure = None if p.get("sure") is None else float(p["sure"])
+        kontur = p.get("kontur")
+        if kontur is True:
+            kontur = C.BEYAZ
         self.spr = damga_sprite(str(p["metin"]), renk_coz(p.get("renk"), KIRMIZI_DAMGA), float(p.get("boy", 84)) * S,
-                                S, tohum)
+                                S, tohum, renk_coz(kontur, C.BEYAZ) if kontur else None)
         self.x, self.y = float(p.get("x", 0.5)) * c.W, float(p.get("y", 0.5)) * c.H
         self.aci = float(p.get("aci", -8))
 
@@ -150,14 +167,24 @@ class KoseGostergesi:
         if takili:
             rng = np.random.default_rng(int(t * 30) + 7)
             ornek = _bicim(eski, yil) if eski is not None else "0000"
-            kar = "".join(str(rng.integers(10)) if ch.isdigit() or ch == "?" else ch for ch in ornek.ljust(4, "0"))
+            ornek = ornek.ljust(4, "0")
+            # yıl göstergesinde yüzyıl basamakları sabit kalır, yalnız son iki basamak karışır ("19??" / "20??");
+            # 5. tur: tam karışım "1781", "5940" gibi anlamsız yıllar gösteriyordu
+            yeni_s = _bicim(yeni, yil)
+            sabit = 2 if yil and len(ornek) == 4 else 0
+            if sabit and u >= 0.5 and len(yeni_s) == 4 and yeni_s[:2].isdigit():
+                ornek = yeni_s[:2] + ornek[2:]
+            kar = "".join(ch if j < sabit else (str(rng.integers(10)) if ch.isdigit() or ch == "?" else ch)
+                          for j, ch in enumerate(ornek))
+            if sabit and kar[:2] == "20":   # gelecek yıl görünmesin ("2076"): 2000-2019
+                kar = kar[:2] + str(rng.integers(2)) + kar[3:]
             if u < 1.0:
                 return sablon.replace("{}", kar), rk, nabiz
             # takılı kaldı: ara ara 0,12 sn titrer
             faz = (t - t0 - sure) % 1.35
             if faz < 0.12:
                 return sablon.replace("{}", kar), rk, 0.0
-            return sablon.replace("{}", _bicim(yeni, yil)), rk, nabiz
+            return sablon.replace("{}", yeni_s), rk, nabiz
         if u >= 1.0 or eski is None:
             return sablon.replace("{}", _bicim(yeni, yil) if yeni is not None else ""), rk, nabiz
         if _sayi_mi(eski) and _sayi_mi(yeni):

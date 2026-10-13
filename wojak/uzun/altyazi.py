@@ -13,6 +13,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from .spec import temiz_metin
 from .zaman import Zaman
 
 MAX_SATIR = 42
@@ -24,6 +25,19 @@ UZATMA = 0.35    # satır sesi bittikten sonra yazının ekranda kalabileceği e
 SAYI = {"bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on", "yirmi", "otuz", "kırk", "elli",
         "altmış", "yetmiş", "seksen", "doksan", "yüz", "bin", "milyon", "milyar"}
 EKLER = {"da", "de", "ta", "te", "mi", "mı", "mu", "mü", "ki"}   # ayrı yazılan ek/edat: satır başına düşmesin
+# soru eki ve çekimli hâlleri ('yeterli | miydi?'): satır başına düşmesin (5. tur, dil hakemi)
+SORU = re.compile(r"^(mi|mı|mu|mü)(ydi|ydı|ydu|ydü|ymiş|ymış|ymuş|ymüş|dir|dır|dur|dür|sin|sın|sun|sün|yim|yım|yum|yüm|"
+                  r"yiz|yız|yuz|yüz|siniz|sınız|sunuz|sünüz)?$")
+# belirleyici / niteleyici: arkasından kırılmasın ('her | seferinde', 'en | eski', 'yarım | asırdan', 'o | ‘deneme’')
+BELIRLEYICI = {"o", "bu", "şu", "en", "her", "yarım", "hiçbir", "birkaç", "pek", "aynı", "bütün", "tüm"}
+# ek-fiil / yardımcı: önünden kırılmasın ('yetersiz | olduğunu', 'sakinleştirici | olarak')
+YARDIMCI = {"olduğunu", "olduğu", "olduğunda", "olan", "olarak", "olur", "oldu", "olmuş", "olmadığını", "değil",
+            "değildi"}
+# rakamla sayı + ek ('1928'den', '300'), kesme işaretli ya da değil
+RAKAM = re.compile(r"^[≈~]?\d[\d.,]*(['’]\w+)?$")
+# ilgi hâli (tamlayan) eki: arkasından kırılmasın ('Grünenthal'in | laboratuvarında', 'ilacın | tanıtım')
+TAMLAYAN = re.compile(r"(ın|in|un|ün)$")
+TAMLAYAN_DEGIL = {"için", "önce", "sonra", "bin", "gün", "dün", "kin", "din", "tün", "yün", "un", "şimdin", "neden"}
 NOKTALAMA = ".,;:!?…"
 ACAN, KAPAYAN = "‘„“«", "’“”»"
 
@@ -69,8 +83,24 @@ def kirma_cezalari(kel: list[str]) -> list[float]:
             continue
         x = 0.0
         ay, by = _yalin(a), _yalin(b)
-        if ay in SAYI or ay.replace(".", "").isdigit():
+        if ay in SAYI or ay.replace(".", "").isdigit() or RAKAM.match(ay) or \
+                any(ay.startswith(r) and 0 < len(ay) - len(r) <= 3 for r in ("milyon", "milyar", "bin", "yüz")
+                    if len(r) > 3):
             x += 40
+        if ay in BELIRLEYICI or ay == "bir":
+            x += 50
+        if SORU.match(by):
+            x += 60
+        if ay.endswith(("lık", "lik", "luk", "lük", "sal", "sel")) and not _buyuk_mu(b):
+            x += 20   # sıfat + ad ('günlük | doz', 'doğumsal | kusur')
+        if by in YARDIMCI:
+            x += 30
+        if (TAMLAYAN.search(ay) and ay not in TAMLAYAN_DEGIL and len(ay) > 3 and not _buyuk_mu(b)
+                and not SORU.match(by)):
+            x += 25
+        if _buyuk_mu(a) and not _buyuk_mu(b) and re.search(r"(ı|i|u|ü)(n(da|de|dan|den|ın|in|a|e)(ki)?)?$", by) \
+                and len(by) > 6:
+            x += 25   # özel ad + iyelikli ad ('Behçet | hastalığındaki')
         if tirnak[i - 1]:
             x += 80
         if _buyuk_mu(a) and _buyuk_mu(b):
@@ -229,7 +259,13 @@ def parcalar(z: Zaman) -> list[Parca]:
     out: list[Parca] = []
     for i, sz in enumerate(satirlar):
         metin = sz.satir.altyazi
-        ps = parcala(metin)
+        # metindeki satır sonu ("\n") blok kırma ipucudur (4. tur, dil hakemi: 'önemli | bir çalışma',
+        # 'kimsenin | belgeleyemediği' gibi kırılmalar); TTS metninden ve ekrandan çıkarılır, önbellek anahtarı değişmez
+        ham = sz.satir.metin
+        if "\n" in ham.strip():
+            ps = [x for seg in ham.split("\n") if seg.strip() for x in parcala(temiz_metin(seg))]
+        else:
+            ps = parcala(metin)
         if not ps:
             continue
         sure = max(sz.son - sz.bas, 0.01)

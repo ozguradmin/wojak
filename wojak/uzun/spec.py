@@ -46,17 +46,17 @@ GECIS_KARE = {"kesme": 0, "gecis": 8, "kaydir": 10}
 ZEMIN_PARAM = {"zemin", "arka", "arka_opak"}   # koyu "bilgi" sahnelerinin zemini (zemin.py)
 SAHNE_PARAMLARI: dict[str, set[str]] = {
     "wojak": {"arka", "kamera", "karakterler", "karart", "bulanik", "doygunluk", "kirp", "odak", "etiket"},
-    "foto": {"gorsel", "etiket", "egim", "zoom", "atif", "boy", "giris", "arka", "odak"},
+    "foto": {"gorsel", "etiket", "egim", "zoom", "atif", "boy", "giris", "arka", "odak", "x"},
     "manset": {"gorsel", "kutular", "zoom", "arka", "renk", "boy", "etiket"},
     "harita": {"bolge", "ulkeler", "vurgu", "baslik", "aralik", "cozunurluk", "renk", "etiketler", "zoom",
                "aciklama"},
     "sayac": {"deger", "yil", "etiket", "ust", "onek", "sonek", "sure_say", "renk"} | ZEMIN_PARAM,
     "bolum_karti": {"numara", "baslik", "ust", "bindirme", "marka", "karart"},
-    "metin": {"metin", "ceviri", "ust", "alt", "ceviri_t", "yazim", "renk"} | ZEMIN_PARAM,
+    "metin": {"metin", "ceviri", "ust", "alt", "ceviri_t", "yazim", "renk", "tirnak"} | ZEMIN_PARAM,
     "zaman_cizelgesi": {"noktalar", "baslik"} | ZEMIN_PARAM,
     "bolunmus": {"sol", "sag", "acik", "cizgi"},
     "izgara": {"n", "sutun", "ust", "etiket", "alt", "renk", "dolum", "say"} | ZEMIN_PARAM,
-    "pano": {"kartlar", "ipler", "baslik", "zoom", "yakin"},
+    "pano": {"kartlar", "ipler", "baslik", "zoom", "yakin", "doku"},
     "marka": {"bindirme", "karart", "wojak", "yuz", "yazi", "arka"},
     "bitis": {"arka", "bindirme", "karart", "bulanik", "baslik", "kutular", "abone", "duzen", "etiketler",
               "karakter"},
@@ -69,7 +69,12 @@ ZORUNLU = {"wojak": ["arka"], "foto": ["gorsel"], "manset": ["gorsel"], "sayac":
            "metin": ["metin"], "zaman_cizelgesi": ["noktalar"], "harita": [], "bolunmus": ["sol", "sag"],
            "izgara": [], "pano": ["kartlar"], "marka": [], "bitis": []}
 ORTAK = {"tip", "satirlar", "olaylar", "sfx", "gecis", "gecis_kare", "sure", "min_sure", "bas", "ara", "son",
-         "isim_etiketi", "kelime", "not", "otomatik_sfx", "kose", "muzik_db", "filigran", "muzik_mod"}
+         "isim_etiketi", "kelime", "not", "otomatik_sfx", "kose", "muzik_db", "filigran", "muzik_mod", "konuk",
+         "sfx_db"}
+# sfx_db: bu sahnenin OTOMATİK efektlerine ek kazanç (dB, -24..+6; ör. sessiz altlıkta fosforlu kalem sesi -6)
+# konuk: wojak dışındaki sahnelere (harita, sayaç, pano, belge...) köşeden/kenardan giren tepki karakteri (1-2);
+# `yuz` / `giris` / `cikis` olayları ve `isim {karakter}` konuk kimliğiyle her sahne tipinde kullanılabilir
+KONUK_OLAYLARI = {"yuz", "giris", "cikis"}
 ZEMINLER = ("koyu", "kagit", "foto")
 KOSE_KONUM = ("sag_ust", "sol_ust", "sag_alt", "sol_alt")
 PANEL_ANAHTAR = {"gorsel", "metin", "ceviri", "etiket", "alt", "arka", "odak", "zemin", "baslik", "zoom"}
@@ -90,7 +95,9 @@ OLAY_TIPLERI: dict[str, set[str]] = {
     "etiket": set(),                          # foto: yer-tarih etiketi yazılmaya başlar
     "ceviri": {"taraf"},                      # metin (bolunmus: taraf): çeviri satırı belirir
     # --- 2. tur
-    "damga": {"metin", "renk", "x", "y", "aci", "boy", "sure", "kart", "inik"},   # lastik damga (pano: kart'ın üstüne;
+    "damga": {"metin", "renk", "x", "y", "aci", "boy", "sure", "kart", "inik", "kart_y", "kontur"},   # lastik damga (pano: kart'ın üstüne;
+    # kart_y: kartın merkezine göre dikey yer, kart yüksekliği oranında (-0.5 üst .. 0.5 alt; görselli kartta
+    # varsayılan görselin ortası, başlık okunur kalsın; görselsiz kartta 0.2)
     # inik: true = sahne başında zaten basılı, iniş ve ses yok: bölünmüş çekimin devamında)
     "kose": {"deger", "metin", "sure", "takili", "renk", "yil"},   # köşe göstergesi yeni değere döner (sayar / takılır)
     "muzik": {"db", "gecis"},                 # müzik seviyesi bu andan itibaren (dB, 0 = normal), gecis: rampa sn
@@ -389,22 +396,28 @@ def _sfx(d, yer: str, n_satir: int, base: Path) -> Sfx:
     return Sfx(ad=ad, yol=yol, db=_sayi(d.get("db", 0.0), yer, "db", -60, 12), **_capa(d, yer, n_satir))
 
 
-def _karakterler(lst, yer: str, base: Path) -> list[dict]:
+def _karakterler(lst, yer: str, base: Path, ne: str = "karakterler") -> list[dict]:
     out = []
     if lst is None:
         return out
-    if not isinstance(lst, list) or not 1 <= len(lst) <= 3:
-        _hata(yer, "karakterler 1-3 öğelik liste olmalı")
+    if isinstance(lst, dict) and ne == "konuk":
+        lst = [lst]
+    en_cok = 2 if ne == "konuk" else 4   # 4. tur: 3 nesne + bir karakter (ör. molekül, cereblon, SALL4 + anlatıcı)
+    if not isinstance(lst, list) or not 1 <= len(lst) <= en_cok:
+        _hata(yer, f"{ne} 1-{en_cok} öğelik liste olmalı")
     for i, c in enumerate(lst):
         if isinstance(c, str):
             c = {"gorsel": c}
-        _bilinmeyen(c, {"id", "gorsel", "taraf", "x", "boy", "giris", "bakis", "alt", "derinlik"}, yer, "karakter")
+        _bilinmeyen(c, {"id", "gorsel", "taraf", "x", "boy", "giris", "bakis", "alt", "derinlik", "yon"}, yer,
+                    "karakter")
+        if c.get("yon") is not None and c["yon"] not in ("sol", "sag", "alt"):
+            _hata(yer, f"karakter yon '{c['yon']}': sol | sag | alt (giriş/çıkış yönü)")
         if "gorsel" not in c:
             _hata(yer, f"{i + 1}. karakterde 'gorsel' yok")
         c = dict(c)
         c.setdefault("id", chr(ord("a") + i))
         c["id"] = str(c["id"])
-        taraf = c.get("taraf", ["sol", "sag", "orta"][i] if len(lst) > 1 else "sol")
+        taraf = c.get("taraf", ["sol", "sag", "orta", "orta"][i] if len(lst) > 1 else "sol")
         if taraf not in ("sol", "sag", "orta"):
             _hata(yer, f"taraf '{taraf}': sol | sag | orta")
         c["taraf"] = taraf
@@ -513,6 +526,12 @@ def _sahne(d: dict, video_ctx: dict, yer: str, base: Path) -> Sahne:
         if d.get(k) in (None, "", []):
             _hata(yer, f"'{tip}' sahnesinde '{k}' zorunlu")
     p = {k: v for k, v in d.items() if k not in ORTAK}
+    if d.get("sfx_db") is not None:
+        p["sfx_db"] = _sayi(d["sfx_db"], yer, "sfx_db", -24, 6)
+    if d.get("konuk") is not None:
+        if tip == "wojak":
+            _hata(yer, "wojak sahnesinde konuk yok: karakterler listesini kullan")
+        p["konuk"] = _karakterler(d["konuk"], yer, base, "konuk")
     satirlar = [_satir(v, video_ctx["ses"], video_ctx["hiz"], video_ctx["sesler"], f"{yer}, satır {i + 1}")
                 for i, v in enumerate(d.get("satirlar") or [])]
     n = len(satirlar)
@@ -530,8 +549,9 @@ def _sahne(d: dict, video_ctx: dict, yer: str, base: Path) -> Sahne:
                   otomatik_sfx=bool(d.get("otomatik_sfx", video_ctx["otomatik_sfx"])))
     for o in olaylar:
         izin = OLAY_SAHNE.get(o.tip)
-        if izin and tip not in izin:
-            _hata(yer, f"'{o.tip}' olayı yalnız {' / '.join(sorted(izin))} sahnesinde kullanılır")
+        if izin and tip not in izin and not (o.tip in KONUK_OLAYLARI and p.get("konuk")):
+            _hata(yer, f"'{o.tip}' olayı yalnız {' / '.join(sorted(izin))} sahnesinde (ya da konuklu sahnede) "
+                       f"kullanılır")
     if d.get("kose") is not None:
         sahne.kose = _kose(d["kose"], yer)
     if d.get("muzik_db") is not None:
@@ -578,6 +598,12 @@ def _sahne(d: dict, video_ctx: dict, yer: str, base: Path) -> Sahne:
         for s in satirlar:
             if s.balon or s.konusan:
                 _hata(yer, "satır balonu / konusan yalnız wojak sahnesinde kullanılır")
+        kids = {c["id"] for c in p.get("konuk", [])}
+        for o in olaylar:
+            if "karakter" in o.p and o.p["karakter"] is not None:
+                if str(o.p["karakter"]) not in kids:
+                    _hata(yer, f"olay '{o.tip}': konuk '{o.p['karakter']}' yok ({', '.join(sorted(kids)) or 'konuk yok'})")
+                o.p["karakter"] = str(o.p["karakter"])
     if tip == "zaman_cizelgesi":
         nk = p["noktalar"]
         if not isinstance(nk, list) or not 2 <= len(nk) <= 8:
@@ -625,7 +651,7 @@ def _sahne(d: dict, video_ctx: dict, yer: str, base: Path) -> Sahne:
     for k in ("arka", "gorsel", "wojak", "yuz"):
         if p.get(k):
             p[k] = yol_coz(p[k], base)
-    for c in p.get("karakterler", []):
+    for c in p.get("karakterler", []) + p.get("konuk", []):
         c["gorsel"] = yol_coz(c["gorsel"], base)
     for o in olaylar:
         if o.tip == "yuz":
@@ -751,7 +777,7 @@ def yukle_sozluk(raw: dict, base: Path) -> Video:
 def sahne_dosyalari(s: Sahne) -> list:
     """Sahnenin kullandığı bütün görsel dosyaları (önbellek imzası ve eksik dosya denetimi için)."""
     paths = [s.p.get(k) for k in ("arka", "gorsel", "wojak", "yuz")]
-    paths += [c["gorsel"] for c in s.p.get("karakterler", [])]
+    paths += [c["gorsel"] for c in s.p.get("karakterler", []) + s.p.get("konuk", [])]
     for taraf in ("sol", "sag"):
         if isinstance(s.p.get(taraf), dict):
             paths += [s.p[taraf].get("gorsel"), s.p[taraf].get("arka")]

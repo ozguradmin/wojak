@@ -773,3 +773,153 @@ if __name__ == "__main__":
             print(f"  HATA  {n}: {type(e).__name__}: {e}")
     print(f"{len(testler) - hata}/{len(testler)} geçti")
     sys.exit(1 if hata else 0)
+
+
+# ---------------------------------------------------------------- 4. tur (talidomit-turkiye 3. hakem turu)
+
+def test_konuk_karakter_her_sahnede():
+    """Wojak dışı sahnede köşeden giren tepki karakteri: spec, yüz olayı, hareket vuruşu, efekt, kare (4. tur)."""
+    from wojak.uzun import render, ses
+    from wojak.uzun.sahneler import vuruslar
+    kl = "assets/kit/klasik/"
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [
+        {"tip": "sayac", "deger": 100, "sure": 4,
+         "konuk": {"id": "z", "gorsel": kl + "sakin.png", "x": 0.87, "boy": 0.5, "yon": "alt", "giris": 0.4},
+         "olaylar": [{"tip": "yuz", "karakter": "z", "gorsel": kl + "terli.png", "t": 2.0},
+                     {"tip": "isim", "karakter": "z", "ad": "X", "t": 1.0}]},
+        {"tip": "harita", "bolge": "akdeniz", "vurgu": {"kod": "TUR"}, "sure": 3,
+         "konuk": [{"id": "l", "gorsel": kl + "sakin.png", "x": 0.1}],
+         "olaylar": [{"tip": "giris", "karakter": "l", "t": 1.5}]}]}])
+    z = zaman.hesapla(v, tahmin=True)
+    s0, s1 = z.sahneler
+    assert s0.p["konuk"][0]["yon"] == "alt" and Path(s0.p["konuk"][0]["gorsel"]).is_absolute()
+    assert 0.4 in vuruslar(s0) and 2.0 in vuruslar(s0) and 1.5 in vuruslar(s1)
+    ef = ses.otomatik_efektler(z)
+    assert any(ad == "whoosh_kisa" and abs(t - 0.4) < 1e-6 for t, ad, _ in ef)
+    assert any(ad == "whoosh_kisa" and abs(t - (z.sahne_basi(s1) + 1.5)) < 1e-6 for t, ad, _ in ef)
+    W, H = 320, 180
+    ku = render.KareUretici(v, z, 0, W, H)
+    once, sonra = np.asarray(ku.kare(3), np.float32), np.asarray(ku.kare(60), np.float32)
+    # konuk sağ altta: girişten sonra o köşede beyaz kafa görünür
+    assert sonra[110:, 250:, :].mean() > once[110:, 250:, :].mean() + 20
+    # hata: wojak sahnesinde konuk yok; olmayan konuğa yüz olayı
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [
+        {"tip": "wojak", "arka": "uzun/demo/img/contergan_kutu.jpg", "konuk": {"gorsel": kl + "sakin.png"}}]}]), "konuk")
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [
+        {"tip": "sayac", "deger": 1, "olaylar": [{"tip": "yuz", "karakter": "q", "gorsel": kl + "terli.png"}]}]}]),
+        "yalnız")
+
+
+def test_pano_damga_gorselli_kartta_gorselin_ortasina():
+    """Görselli kartta damga başlığın üstüne değil görselin ortasına iner; kart_y elle verilebilir (4. tur)."""
+    from wojak.uzun import bilgi
+    from wojak.uzun.sahneler import Baglam
+    v = _video([{"baslik": "a", "sahneler": [{
+        "tip": "pano", "sure": 4,
+        "kartlar": [{"id": "b", "metin": "ANMA YAZILARI, 1994", "alt": "x", "gorsel": "uzun/demo/img/contergan_kutu.jpg"},
+                    {"id": "m", "metin": "BAKANLIK"}],
+        "olaylar": [{"tip": "damga", "kart": "b", "metin": "YOK", "t": 0.5},
+                    {"tip": "damga", "kart": "m", "metin": "YOK", "t": 0.5},
+                    {"tip": "damga", "kart": "b", "metin": "Z", "t": 0.5, "kart_y": 0.3}]}]}])
+    z = zaman.hesapla(v, tahmin=True)
+    cz = bilgi.PanoCizici(z.sahneler[0], Baglam(v, 480, 270))
+    ky = [k for _, _, k in cz.damgalar]
+    assert ky[0] < -0.05            # görselli kart: görselin ortası, kart merkezinin üstünde
+    assert abs(ky[1] - 0.2) < 1e-6  # görselsiz kart: eski yer
+    assert abs(ky[2] - 0.3) < 1e-6  # elle
+
+
+def test_tepe_siniri_ve_anlatim_izi_seviyesi():
+    """Altlığın 100 ms tepesi medyan konuşmanın en çok TEPE_PAYI_DB üstünde; konuşma yoksa dokunulmaz (4. tur)."""
+    from wojak.uzun import ses
+    sr = ses.SR
+    n = sr * 6
+    t = np.arange(n) / sr
+    an = np.zeros(n, np.float32)
+    an[: 3 * sr] = 0.18 * np.sin(2 * np.pi * 180 * t[: 3 * sr])          # konuşma ~ -18 dBFS
+    alt = np.zeros((n, 2), np.float32)
+    alt[4 * sr: 4 * sr + sr // 2] = 0.9 * np.sin(2 * np.pi * 60 * t[: sr // 2])[:, None]   # boom ~ -4 dBFS
+    g, bilgi = ses.tepe_siniri(an, alt)
+    y = alt * g[:, None]
+    def db100(x):
+        h = int(0.1 * sr)
+        k = len(x) // h
+        e = (x[: k * h].reshape(k, h, *x.shape[1:]) ** 2).mean(axis=1)
+        e = e.mean(axis=1) if e.ndim > 1 else e
+        return 10 * np.log10(e + 1e-12)
+    ref = np.median(db100(an)[db100(an) > -40])
+    assert db100(y).max() <= ref + ses.TEPE_PAYI_DB + 0.6, (db100(y).max(), ref)
+    assert g[: 3 * sr].min() > 0.999                                    # sessiz altlık kısılmaz
+    assert bilgi["altlik_en_yuksek_ustu_db"] > 10
+    g2, b2 = ses.tepe_siniri(np.zeros(n, np.float32), alt)
+    assert g2.min() == 1.0 and b2 == {}
+
+
+def test_bes_tur_motor_ekleri():
+    """5. tur: yıl göstergesinde yüzyıl sabit, kartsız bölüm damgası aşağı, Türkçe kırma cezaları, iç içe telif
+    notu, sahne `sfx_db`, damga `kontur`, metinde süs tırnağı yalnız alıntıda."""
+    import tempfile
+    from wojak.uzun import ses
+    from wojak.uzun.sahneler import Baglam, MetinCizici
+    from wojak.uzun.ust import KoseGostergesi, damga_sprite, kose_olaylari
+    # yıl karışımı: "19??" / "20??", gelecek yıl yok
+    v = _yeni_tipler_video()
+    z = zaman.hesapla(v, tahmin=True)
+    c = Baglam(v, 480, 270)
+    s = z.sahneler[5]
+    kg = KoseGostergesi(s, c, kose_olaylari(s))
+    for k in range(40):
+        m = kg._metin(0.4 + k * 0.02)[0]
+        assert m == "????" or m.startswith("19"), m
+    s.olaylar = [o for o in s.olaylar if o.tip != "kose"] + [
+        spec.Olay(tip="kose", p={"deger": "20??", "takili": True}, zaman=0.4)]
+    kg = KoseGostergesi(s, c, kose_olaylari(s))
+    for k in range(60):
+        m = kg._metin(0.4 + k * 0.02)[0]
+        assert m[:2] in ("19", "20") and (m[:2] == "19" or m == "20??" or int(m) <= 2019), m
+    # kartsız bölüm: aşağı yuvarlanır (ilk kelime kesilmesin); kartlı: yukarı
+    v = _video([
+        {"baslik": "Giriş", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": 41.7}]},
+        {"baslik": "İki", "sahneler": [{"tip": "metin", "metin": "x", "sure": 30}]},
+        {"baslik": "Kapanış", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": 20}]}])
+    z = zaman.hesapla(v)
+    d = paket.bolum_damgalari(z)
+    import math
+    t3 = z.sahne_basi(v.bolumler[2].sahneler[0])
+    assert d[1][0] == math.ceil(41.7 - 1e-6) and d[2][0] == math.floor(t3) and t3 % 1 > 0
+    # Türkçe kırma cezaları
+    ceza = altyazi.kirma_cezalari("yeterli miydi? her seferinde yetersiz olduğunu Grünenthal'in laboratuvarı".split())
+    assert ceza[1] >= 60 and ceza[3] >= 50 and ceza[5] >= 30 and ceza[7] >= 25 and ceza[2] == 0
+    assert altyazi.kirma_cezalari("1928'den beri".split())[1] >= 40
+    # iç içe telif notu
+    v = _video([{"baslik": "Giriş", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": 20}]},
+                {"baslik": "Bir", "sahneler": [{"tip": "metin", "metin": "y", "sure": 20}]},
+                {"baslik": "İki", "sahneler": [{"tip": "metin", "metin": "z", "sure": 20}]}],
+               paket={"telif_notu": ["Üst madde:", ["alt bir", "alt iki"], "Son madde."]})
+    z = zaman.hesapla(v)
+    with tempfile.TemporaryDirectory() as dd:
+        md = paket.yaz(v, z, Path(dd), None, None, []).read_text(encoding="utf-8")
+    assert "- Üst madde:\n  - alt bir\n  - alt iki\n- Son madde." in md
+    # sfx_db: yalnız o sahnenin otomatik efektleri kayar
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [
+        {"tip": "metin", "metin": "x", "sure": 3, "ceviri": "y"},
+        {"tip": "metin", "metin": "x", "sure": 3, "ceviri": "y", "sfx_db": -6}]}])
+    z = zaman.hesapla(v)
+    ef = ses.otomatik_efektler(z)
+    b2 = z.sahne_basi(z.sahneler[1])
+    pop1 = [db for t, a, db in ef if a == "pop" and t < b2]
+    pop2 = [db for t, a, db in ef if a == "pop" and t >= b2]
+    assert pop1 and pop2 and abs(pop2[0] - (pop1[0] - 6)) < 1e-6
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "sfx_db": 30}]}]),
+                "sfx_db")
+    # damga konturu: sprite büyür, kenarda beyaz piksel
+    a = damga_sprite("RUHSAT", (0, 70, 30), 60, 0.5)
+    b = damga_sprite("RUHSAT", (0, 70, 30), 60, 0.5, kontur=(255, 255, 255))
+    assert b.width > a.width and np.asarray(b)[..., :3][np.asarray(b)[..., 3] > 200].max() == 255
+    # süs tırnağı: alıntıda var, düz metinde yok
+    for metin, beklenen in (("„völlig ungiftig“", True), ("Bir süre sonra", False)):
+        v = _video([{"baslik": "a", "kart": False, "sahneler": [{"tip": "metin", "metin": metin, "sure": 2}]}])
+        z = zaman.hesapla(v)
+        mc = MetinCizici(z.sahneler[0], Baglam(v, 480, 270))
+        mc.hazirla()
+        assert (mc.tirnak is not None) == beklenen, metin

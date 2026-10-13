@@ -419,3 +419,32 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
   uzatılarak düzeltilebilir, hızlı satır rubberband ile yavaşlatılabilir; her sonuç iki Whisper çözümlemesiyle
   doğrulanır ve hesap sahibine zaman damgalı dinleme listesi verilir. Whisper nadir adları bağlama göre böler
   ("talih domit"): temiz bir çekimi nakletmek de bunu her zaman düzeltmez, kulak karar verir.
+- **4. tur (hesap sahibi + üç hakem):** "Wojak kanalı": harita/sayaç/pano/belge sahneleri tek başına karakter taşımaz.
+  Bilgi sahnelerine köşeden tepki veren karakter (`konuk`) eklendi; anlatıcı (hardal kazaklı klasik wojak) ya da
+  sahnenin kişisi (Lenz haritada, Kelsey FDA sayacında, Kaymakçalan Türkiye haritasında). Ölçüm (zaman çizelgesi,
+  kişi karakterin görünür olduğu süre / toplam): %26 -> %68. Yazıyla çakışmaması için konuk köşede, kelime üstte,
+  fotoğraf baskısı yana (`x`).
+- **Görsel tekrarı:** aynı fotoğraf (kırpımı ya da baskısı dahil) en çok 2 çekimde. 5 kez görünen Sağlık Bakanlığı,
+  teneke, büro yerine kendi düz çizimlerimiz (koridor, bakanlık odası, eczane, büro, kara tahta, karton, duvar). Aynı
+  dünya haritası da "görsel"dir: bölgesel görünümler (Kuzey Atlantik, Hint Okyanusu yarıküresi) kullan.
+- **Karanlık kare:** koyu bilgi zemini ve harita denizi telefonda "kapkara" (kare ortalaması ~15-25/255). Hedef
+  >= 45 (bölüm kartı ve bilinçli düşüşler hariç): motor paletini aç, `karart` 0,2-0,3.
+- **Efekt tepesi 100 ms pencerede ölçülür:** bölüm kartı boom'u ve imza, medyan konuşmanın +7-9 dB üstündeydi;
+  motor artık altlığı medyan konuşma +2 dB ile sınırlar (`tepe_siniri`).
+- **Sayılar altyazıda rakamla** (Türkçe altyazı geleneği: ondan büyük sayılar rakam): `metin` rakamla, `tts` eski
+  kelimeli metin (önbellek anahtarı TTS metninden: yeniden seslendirme gerekmez).
+- **Sınırlayıcı 4x örneklemede:** 48 kHz'de alimiter örnekler arası tepeyi kaçırıyordu (gerçek tepe sınırın ~3 dB
+  üstü); doğrusal loudnorm koşulu için döngü sınırı -9,7 dBFS'e indiriyor, sesin ~4,6 LU'sunu eziyordu. 192 kHz'de
+  sınırlama: 100 ms pencerelerde medyan kazanç düşümü 2,9 -> 0,0 dB.
+- **5. tur (yeni Cartesia anahtarlarıyla):** kesik/uzatılmış çekimler temiz çekimle değişince dinleme listesi 22 -> 11
+  satır, Whisper "KONTROL ET" 17 -> 2. Dersler:
+  - Açıklayıcı iki noktada TTS durmuyor ("bir boşluk var:|Türkiye"): `tts` alanında `<break time="300ms"/>`. Cartesia
+    araya 0,5-1,0 sn koyuyor; öteki cümle sonları kadar olsun diye en çok ~0,5 sn'ye kısaltıldı (`ses_onarim.py durak`).
+  - Durak yeri anlamı değiştirir: "Asıl soru, hiç araştırılmamış hamile bir kadın…" (yanlış). Durak gereken yerde
+    cümleyi böl ("…kimse araştırmamış. <break/> Hamile bir kadın…").
+  - Cartesia `speed` 0,9 hece hızını az düşürür (9,3 -> 8,1 hece/sn); 0,82-0,86 gerekti. Hız değişince anahtar da değişir.
+  - Her yeniden çekim zar atmak: 2-6 deneme üretip iki Whisper çözümlemesiyle seç ("En önemlisi" 3 denemenin
+    1'inde 'denenmiyor'). İkiz zz ("cüzzam") hiçbir yazımla düzelmedi ('cüz-zam', 'cüzzzam'; 'cüzam' tek z okunur):
+    z uzatılmış eski çekim kaldı. Whisper "talidomit"i ara durak sonrası hep "Tali Domit" yazıyor (tanıyıcının dili).
+  - Yeni duraklar ve yavaş okuma süreyi uzatır (+13 sn): 10:15 sınırı için sahne sonu 0,32 -> 0,26, damga sonrası
+    1,2 -> 1,0 sn, bitiş ekranı 10,5 sn ve Türkiye sorusuna katkısı en az olan sahne (Alman davası) çıktı.

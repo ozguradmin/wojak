@@ -95,6 +95,8 @@ müzik kipi), `youtube` (açıklamadaki bölüm adı), `sahneler`.
 | `muzik_db` | bu sahnede müzik seviyesi (dB; 0 = normal, -8 = kısık, +6 = açık). Sahne başında 0,6 sn rampa; kısma zarfının üstüne çarpılır |
 | `muzik_mod` | bu sahneden itibaren müzik kipi: `drone` (vars.), `nabiz` (alçak kalp atışı: geri sayım, takip), `gerilim` (tiz titreyen yarım ton kümesi, crescendo: soruşturma), `major` (Do majör: çözülme). Kip değişimleri 3 sn çapraz geçişle, aynı RMS'te |
 | `filigran` | `false`: bu sahnede filigran yok (`marka`da varsayılan) |
+| `sfx_db` | bu sahnenin OTOMATİK efektlerine ek kazanç (dB, -24..+6). 5. tur: KÜB alıntısında fosforlu kalem sesi sessiz altlıkta sözün 10-12 dB altındaydı: `sfx_db: -6` |
+| `konuk` | (wojak dışı her tip) köşeden/kenardan giren **tepki karakteri** (1-2): `{id, gorsel, x, boy, alt, giris, yon: alt\|sol\|sag, bakis}`; `yuz` / `giris` / `cikis` olayları ve `isim {karakter}` konuk kimliğiyle her tipte kullanılır; kamerasız (ekran koordinatı), yazı katmanlarının altında çizilir; giriş/çıkışta `whoosh_kisa`. 4. tur (talidomit-turkiye): hesap sahibi "wojak kanalı: harita/sayaç/pano tek başına yetmez" dedi; karakterli süre %26 -> %68. Yazıyla çakışmasın: konuk köşedeyken `kelime` `konum: ust`, foto baskısı `x` ile yana |
 
 **Süre:** `bas + satır1 + ara + satır2 + ... + son`, en az `min_sure`; kare sayısına yuvarlanır. Satır sesleri örnek
 hassasiyetinde, sahneler kare sınırında başlar: görüntü-ses kayması olmaz.
@@ -106,9 +108,9 @@ hassasiyetinde, sahneler kare sınırında başlar: görüntü-ses kayması olma
 
 | tip | Sahne | Parametreler | Ne yapar |
 |---|---|---|---|
-| `yuz` | wojak | `karakter`, `gorsel` | yüz varyantına geçer (kısa sıkışma) |
+| `yuz` | wojak (ya da konuklu sahne) | `karakter`, `gorsel` | yüz varyantına geçer (kısa sıkışma) |
 | `balon` | wojak | `karakter`, `metin`, `sure` | konuşma balonu (pop ile açılır; kuyruk konuşana) |
-| `giris` / `cikis` | wojak | `karakter` | karakter kenarından kayarak girer / çıkar |
+| `giris` / `cikis` | wojak (ya da konuklu sahne) | `karakter` | karakter kenarından (ya da `yon: alt` ise alttan) kayarak girer / çıkar |
 | `isim` | hepsi | `ad`, `unvan`, `sure`, `konum` (sol/sag) ya da `karakter` | alt bant (lower third), kayarak girer/çıkar |
 | `kelime` | hepsi | `metin`, `sure`, `konum` (ust/orta/alt) | ekranda vurgu kelimesi (pop) |
 | `etiket` | wojak, foto, manset | — | daktilo etiketinin başlama anı |
@@ -117,8 +119,8 @@ hassasiyetinde, sahneler kare sınırında başlar: görüntü-ses kayması olma
 | `ulke` | harita | `kod` | o ülke (ya da vurgu ülkesi) bu anda yanar |
 | `nokta` | zaman_cizelgesi | `indeks` (1'den) | o nokta bu anda belirir |
 | `ceviri` | metin, bolunmus | `taraf` (bolunmus) | çeviri satırı belirir |
-| `damga` | hepsi | `metin`, `renk` (kirmizi/yesil/mavi/... ya da [r,g,b]), `x`, `y` (0..1), `aci` (-8), `boy` (84), `sure` (yoksa sahne sonuna dek), `kart` (pano), `inik` (true: sahne başında zaten basılı, iniş/ses yok: bölünmüş çekimin devamı) | lastik damga ekrana çarparak iner (mürekkep dokulu, çift çerçeve); efekt `damga` |
-| `kose` | hepsi | `deger`, `metin`, `sure` (0,6), `takili`, `renk`, `yil` | köşe göstergesi yeni değere sayar (sayı) ya da yuvarlanır (metin); `takili: true` basamaklar karışıp takılır ve ara ara titrer ("1961 -> ????") |
+| `damga` | hepsi | `metin`, `renk` (kirmizi/yesil/mavi/... ya da [r,g,b]), `x`, `y` (0..1), `aci` (-8), `boy` (84), `sure` (yoksa sahne sonuna dek), `kontur` (true = beyaz ya da renk: harf ve çerçeve çevresine ince dolu kenar; koyu/desenli zeminde okunurluk), `kart` (pano), `kart_y` (kart merkezine göre, kart yüksekliği oranı; vars. görselli kartta görselin ortası, görselsizde 0.2: başlık okunur kalır), `inik` (true: sahne başında zaten basılı, iniş/ses yok: bölünmüş çekimin devamı) | lastik damga ekrana çarparak iner (mürekkep dokulu, çift çerçeve); efekt `damga` |
+| `kose` | hepsi | `deger`, `metin`, `sure` (0,6), `takili`, `renk`, `yil` | köşe göstergesi yeni değere sayar (sayı) ya da yuvarlanır (metin); `takili: true` basamaklar karışıp takılır ve ara ara titrer ("1961 -> ????"); yıl göstergesinde (`yil`) yüzyıl basamakları sabit kalır, yalnız son ikisi karışır ("19??" / "20??"; 5. tur: tam karışım "1781", "5940" gösteriyordu) |
 | `muzik` | hepsi | `db`, `gecis` (rampa sn, 0,5) | müzik seviyesi bu andan itibaren (incelme, bir an sessizlik: `db: -40`) |
 | `deger` | sayac | `deger`, `etiket`, `renk`, `sure` (1,2), `onek`, `sonek` | sayaç bir önceki değerden yenisine sayar; etiket ve renk değişebilir |
 | `panel` | bolunmus | `taraf` (vars. sag) | panel kayarak açılır, ekran ikiye bölünür |
@@ -135,22 +137,22 @@ Sahne tipine özgü bir olayı başka tipte kullanmak hata verir (ör. `sondur` 
 
 | tip | Parametreler | Görüntü |
 |---|---|---|
-| `wojak` | `arka`*, `kirp` [x0,y0,x1,y1], `odak`, `kamera` {zoom: [a,b], merkez: [[x,y],[x,y]], `it` (0.05), `odak` (0.4)}, `karart`, `bulanik`, `doygunluk`, `etiket`, `karakterler` (1-3: `id`, `gorsel`*, `taraf` sol/sag/orta, `x`, `boy` 0.66, `giris` true/false/sn, `bakis`, `alt`, `derinlik` 0..1) | Ken Burns arka plan; karakterler kenardan out_back (%4-5 taşma) ile kayarak girer, nefes alır (±%1, 0,3 Hz) ve hafif sallanır, `data/karakter_yon.json`'a göre hep içeri bakar (gerekirse aynalanır). **Kamera** arka planı, karakterleri ve balonları birlikte taşır; biri konuşurken (`balon`/`konusan` satırı, `balon` olayı) konuşana doğru yumuşakça yaklaşır (`it`: zoom artışı, `odak`: merkezin kayma oranı; `it: 0` kapatır). **Konuşma sekmesi**: konuşan karakter satırın sesindeki hece başlarında (10 ms RMS'te > 6 dB yükseliş) küçük bir sekme ve dikey esneme yapar; ses yoksa yapay hece ritmi. **Derinlik** (3 karakterde arkadaki): küçülür (1 - 0,3·d), hafif sisli, az doygun, önce çizilir; taban kadraj altında kalır (kit görselleri göğüsten kesik) |
-| `foto` | `gorsel`*, `etiket`, `atif`, `egim`, `giris` (alt/ust/sag/sol), `boy` 0.72, `zoom` 1.05, `arka` | aynı fotoğrafın bulanık-karartılmış hâli üzerinde beyaz kenarlı, gölgeli, eğik "baskı"; düşerek oturur, deklanşör sesi; yavaş yaklaşma; daktilo etiketi |
+| `wojak` | `arka`*, `kirp` [x0,y0,x1,y1], `odak`, `kamera` {zoom: [a,b], merkez: [[x,y],[x,y]], `it` (0.05), `odak` (0.4)}, `karart`, `bulanik`, `doygunluk`, `etiket`, `karakterler` (1-4: `id`, `gorsel`*, `taraf` sol/sag/orta, `x`, `boy` 0.66, `giris` true/false/sn, `yon` sol/sag/alt (giriş yönü), `bakis`, `alt`, `derinlik` 0..1) | Ken Burns arka plan; karakterler kenardan out_back (%4-5 taşma) ile kayarak girer, nefes alır (±%1, 0,3 Hz) ve hafif sallanır, `data/karakter_yon.json`'a göre hep içeri bakar (gerekirse aynalanır). **Kamera** arka planı, karakterleri ve balonları birlikte taşır; biri konuşurken (`balon`/`konusan` satırı, `balon` olayı) konuşana doğru yumuşakça yaklaşır (`it`: zoom artışı, `odak`: merkezin kayma oranı; `it: 0` kapatır). **Konuşma sekmesi**: konuşan karakter satırın sesindeki hece başlarında (10 ms RMS'te > 6 dB yükseliş) küçük bir sekme ve dikey esneme yapar; ses yoksa yapay hece ritmi. **Derinlik** (3 karakterde arkadaki): küçülür (1 - 0,3·d), hafif sisli, az doygun, önce çizilir; taban kadraj altında kalır (kit görselleri göğüsten kesik) |
+| `foto` | `gorsel`*, `etiket`, `atif`, `egim`, `giris` (alt/ust/sag/sol), `boy` 0.72, `zoom` 1.05, `arka`, `x` (baskının yatay merkezi, 0.5; ortada değilse atıf baskının altına yazılır: köşedeki konuğa binmesin) | aynı fotoğrafın bulanık-karartılmış hâli üzerinde beyaz kenarlı, gölgeli, eğik "baskı"; düşerek oturur, deklanşör sesi; yavaş yaklaşma; daktilo etiketi |
 | `manset` | `gorsel`*, `kutular` (piksel ya da 0..1), `zoom` 1.18, `renk`, `boy`, `arka`, `etiket` | belge/manşet; kutular sırayla fosforlu kalemle (çarpma karışımı, pürüzlü kenar) boyanır; kamera yaklaşır ve kalemi dikeyde izler |
 | `harita` | `bolge` (avrupa, bati_avrupa, akdeniz, turkiye, dunya ya da {merkez, sinir}), `ulkeler` (ADM0_A3), `aralik`, `etiketler`, `vurgu` {kod, etiket, renk, ad}, `baslik`, `aciklama` (lejant), `renk`, `zoom`, `cozunurluk` (50m/110m) | ülkeler sırayla parlayarak yanar; vurgu ülkesi farklı renk, nabız gibi atan halka ve çağrı kutusu |
 | `sayac` | `deger` (ya da azalan `[60, 0]`) ya da `yil` [a, b], `onek`, `sonek` ("+"; azalanda yok), `ust`, `etiket`, `sure_say`, `renk`, zemin | sabit genişlikli rakamlarla sayma (artan out_cubic, azalan doğrusal); yıl modunda odometre gibi dönen basamaklar; bitişte vuruş + çizgi; `deger` olaylarıyla yeni değerlere (1.267 doktor -> 20.000 hasta -> EN AZ 17); bitince sayı nefes alır |
 | `bolum_karti` | (bölümden) `numara`, `baslik`, `ust`; `bindirme`, `marka`, `karart` (0.45) | siyah zemin + gren (ya da bindirme: donmuş son kare kararır ve bulanır, hafif yaklaşır), ortadan açılan sarı çizgi, "BÖLÜM n", soldan silinerek açılan başlık; kısa kartta animasyon orantılı sıkışır |
-| `metin` | `metin`*, `ceviri`, `ust`, `alt`, `ceviri_t`, `yazim` (kelime/daktilo), `renk`, zemin | kelime kelime beliren büyük alıntı (daktilo: harf harf, imleçli, tuş sesli); çeviri koyu zeminde sarı + altı sarı şerit, kâğıtta mürekkep + fosforlu kalem; satırlar hafifçe süzülür |
+| `metin` | `metin`*, `ceviri`, `ust`, `alt`, `ceviri_t`, `yazim` (kelime/daktilo), `renk`, `tirnak` (süs tırnağı; vars. yalnız metin tırnakla başlıyorsa), zemin | kelime kelime beliren büyük alıntı (daktilo: harf harf, imleçli, tuş sesli); çeviri koyu zeminde sarı + altı sarı şerit, kâğıtta mürekkep + fosforlu kalem; satırlar hafifçe süzülür |
 | `zaman_cizelgesi` | `noktalar`* (2-8; `tarih`, `metin`), `baslik`, zemin | eksen çizilir, noktalar sırayla pop'lar, ilerleme çizgisi, etkin nokta nabız; yazılar süzülür |
-| `bolunmus` | `sol`*, `sag`* (panel: `gorsel` ya da `metin` + `ceviri`, `etiket`, `baslik`, `alt`, `odak`, `zoom`, `zemin`, `arka`), `acik`, `cizgi` | sol panel ekranı kaplar; `panel` olayında sağ panel kayarak açılır (ayraç: koyu + sarı çizgi). Görsel paneller kendi Ken Burns'üyle oynar ve pencereden görünür (kırpılır, ölçeklenmez); metin paneli kendi zemininde, görünen yarıda ortalı |
+| `bolunmus` | `sol`*, `sag`* (panel: `gorsel` ya da `metin` + `ceviri`, `etiket`, `baslik`, `alt` (40 px, koyu bantta, panelin sol altında; 5. tur: 24 px okunmuyordu), `odak`, `zoom`, `zemin`, `arka`), `acik`, `cizgi` | sol panel ekranı kaplar; `panel` olayında sağ panel kayarak açılır (ayraç: koyu + sarı çizgi). Görsel paneller kendi Ken Burns'üyle oynar ve pencereden görünür (kırpılır, ölçeklenmez); metin paneli kendi zemininde, görünen yarıda ortalı |
 | `izgara` | `n` (10000), `sutun`, `ust`, `etiket`, `alt`, `renk`, `dolum` (2,5 sn), `say`, zemin | n nokta satır satır dolar (`basla`), noktalar yavaşça ışıldar; `sondur` olayında bir oranı sessizce söner; `say: true` canlı sayı |
-| `pano` | `kartlar`* (1-12: `id`, `metin`*, `alt`, `x`, `y` (0..1, kadraja göre), `en`, `egim`, `gorsel`, `stil` kagit/merkez/bos/foto, `asili` (true: sahne başında zaten iğnelenmiş, düşmez, ses yok: panoyu iki çekime bölünce ikincisinde)), `ipler` [[a, b]], `baslik`, `zoom` (1.2: tuvalin kaydırma payı), `yakin` (1.0; > 1 kamera kartlara yaklaşır, ör. 1.35: ilk kartlar büyük okunur) | kendi mantar dokumuz; kartlar `kart` olayında düşüp iğnelenir (raptiye sesi), ipler kırmızı ve sarkık çizilir, `damga` olayı `kart:` ile kartın üstüne; kamera 1:1'den %6 yaklaşır ve asılı kartların ağırlık merkezine kayar |
+| `pano` | `kartlar`* (1-12: `id`, `metin`*, `alt`, `x`, `y` (0..1, kadraja göre), `en`, `egim`, `gorsel`, `stil` kagit/merkez/bos/foto, `asili` (true: sahne başında zaten iğnelenmiş, düşmez, ses yok: panoyu iki çekime bölünce ikincisinde)), `ipler` [[a, b]], `baslik`, `zoom` (1.2: tuvalin kaydırma payı), `yakin` (1.0; > 1 kamera kartlara yaklaşır, ör. 1.35: ilk kartlar büyük okunur), `doku` (mantar \| kece: koyu mavi-gri keçe; aynı pano üçüncü kez görünmesin) | kendi mantar dokumuz; kartlar `kart` olayında düşüp iğnelenir (raptiye sesi), ipler kırmızı ve sarkık çizilir, `damga` olayı `kart:` ile kartın üstüne; kamera 1:1'den %6 yaklaşır ve asılı kartların ağırlık merkezine kayar |
 | `marka` | `bindirme`, `karart` (0.72), `wojak`, `yuz` (imzada geçilen yüz), `yazi` (vars. filigran), `arka` | ~1,8 sn kanal imzası: yuvarlak wojak rozeti döner ve büyür, sarı şerit geçerken `tarihselwojak` yazısı açılır, rozet gülümser, sonunda yazı küçülüp filigranın yerine uçar (sahnede filigran yok, son karede gerçek filigranla değişir); efekt `marka` |
-| `bitis` | `arka` ya da `bindirme`, `karart` (0.62), `bulanik`, `baslik` (vars. ilk satır; `false`: yok), `kutular` (0-2), `abone` (true), `duzen` (yan_yana/sag/sol), `etiketler`, `karakter` {gorsel, boy, bakis} | YouTube bitiş ekranı: bulanık zemin, üstte kapanış cümlesi, iki boş 16:9 kutu + abone dairesi (`BITIS_DUZENLERI`: kenarlardan uzak, alt %10 oynatıcıya boş). En az 15 sn; son sahne olmalı (`kontrol` uyarır) |
+| `bitis` | `arka` ya da `bindirme`, `karart` (0.62), `bulanik`, `baslik` (vars. ilk satır; `false`: yok), `kutular` (0-2), `abone` (true), `duzen` (yan_yana/sag/sol), `etiketler`, `karakter` {gorsel, boy, bakis} | YouTube bitiş ekranı: bulanık zemin, üstte kapanış cümlesi, iki boş 16:9 kutu + abone dairesi (`BITIS_DUZENLERI`: kenarlardan uzak, alt %10 oynatıcıya boş). YouTube 5-20 sn ister (§8); 12 sn yeterli (talidomit-turkiye); son sahne olmalı (`kontrol` uyarır) |
 
 **Zemin** (sayac, metin, zaman_cizelgesi, izgara ve metin panelleri): `zemin: koyu` (vars.; degrade + leke dokusu +
-vinyet), `kagit` (eski kâğıt; yazılar mürekkep rengi), `foto` (`arka`'nın kendisi bulanık-karartılmış); `arka` koyu
+vinyet; 4. turda aydınlatıldı: kare ortalaması ~55-65/255, eskiden ~20; harita denizi ve karası da: dünya haritası ~75), `kagit` (eski kâğıt; yazılar mürekkep rengi), `foto` (`arka`'nın kendisi bulanık-karartılmış); `arka` koyu
 zemine `arka_opak` (0.5) oranında karışır. Hepsinde boşta hareket: yavaş itme + yanal süzülme, toz zerreleri ve gezinen
 ışık (koyu), gren. Ölçüm (demo, 2 sn arayla bulanık karelerin ortalama farkı): bütün sahnelerde > 1.
 
@@ -193,13 +195,20 @@ Elle kullanılacak yeni efektler (sahnenin `sfx` listesiyle): `turkiye` (Türkiy
    Müzik seviyesi eğrisi: sahne `muzik_db` ve `muzik` olayları kısma zarfıyla çarpılır (soğuk açılışta kısık, B3'te
    incelme, bir an sessizlik, bitiş ekranında açık).
 3. Efektler ayrı veriyolunda toplanır, anlatımın altında yan zincirle kısılır (`efekt_kismasi`) ve eklenir.
+   **Tepe sınırı** (4. tur, `tepe_siniri`): altlığın (müzik + efekt) 100 ms RMS'i medyan konuşma seviyesinin (anlatımın
+   konuşulan 100 ms pencereleri) en çok `TEPE_PAYI_DB` (2 dB) üstüne çıkar; bölüm kartı boom/whoosh'u, imza, damga ve
+   doruk boom'u kulaklıkta sıçratmasın (talidomit-turkiye 3. tur: +7,5-8,7 dB). `olcum.json`: `altlik_en_yuksek_ustu_db`
+   (sınırdan önce), `tepe_siniri_en_cok_db`.
 4. Normalizasyon: ölç -> kazanç + tepe sınırlayıcı (alimiter) -> ölç -> `loudnorm ... linear=true` -> -14 LUFS.
    WAV'ın tepe hedefi -2 dBTP (`ses.WAV_TP` = `HEDEF_TP` - `KODEK_PAYI`): AAC kodlaması gerçek tepeyi iki yöne de
    ~0,5-1 dB oynatıyor (talidomit-turkiye'de WAV -1,5 -> mp4 -0,9 dBTP çıktı). Render sonunda mp4'ün kendisi ölçülür
    (`mp4_lufs`, `mp4_tepe_dbtp`; paketteki "Ölçüm (mp4)" satırı); teslim edilen dosya -14 LUFS / <= -1 dBTP olmalı.
    `olcum.json`'da `loudnorm_turu: linear` olmalı.
 5. `out/<id>-uzun/<id>_anlatim.wav` (yalnız anlatım) ve `<id>_altlik.wav` (müzik + kısılmış efektler): ikisi de miksle
-   aynı toplam kazançta, sınırlayıcısız, 32 bit kayan nokta. **Anlatım / altlık oranını bu ikisinden ölç**; "miks -
+   aynı toplam kazançta, sınırlayıcısız, 32 bit kayan nokta. (4. tur: anlatım izi mono -> stereo `pan` ile yazılır;
+   `-ac 2` -3 dB merkez karışımı uyguluyordu, iz miksten 3 dB alçaktı.) Sınırlayıcı `latency=1` (4 ms gecikme yok) ve
+   4x örneklemede (192 kHz) çalışır: 48 kHz'de örnekler arası tepe sınırın ~3 dB üstüne çıkıyor, döngü sınırı
+   -9,7 dBFS'e indirip sesin ~4,6 LU'sunu eziyordu; şimdi ~1 LU. AAC 320 kb/sn. **Anlatım / altlık oranını bu ikisinden ölç**; "miks -
    anlatım" farkı miksin sınırlayıcısının sesin tepelerinden kestiğini de altlık sayar (talidomit-turkiye 2. tur:
    gerçek oran 50 ms karelerde medyan 23 dB, %5'lik dilim 7 dB; fark yöntemiyle medyan 8 dB çıkıyordu).
 
@@ -234,14 +243,18 @@ içeren varyant için `teslim` uyarır (teslim/ repoya girer).
 hesap sahibinin lisans kararları için "Telif notu" bölümü), `ara_reklam` (bölüm numarası -> o bölüm kartının İÇİNDEKİ
 ilk tam saniye, ya da metin), `yapay_icerik` ("Değiştirilmiş ya da yapay içerik" maddesinin önerisi), `dinle`
 (`[{ara: "cüzzam", not: "..."}]`: yayından önce kulakla dinlenecek satırlar; satırın başladığı an zaman çizelgesinden
-yazılır, süre değişince kayar), `ek_maddeler` (kontrol listesine).
+yazılır, süre değişince kayar), `ek_maddeler` (kontrol listesine). Dinleme listesi zamana göre sıralı yazılır.
 Açıklama YouTube API'sinin 5.000 **bayt** sınırına göre de denetlenir (Türkçe harf 2 bayt; Short bağlantısı payı dahil). Bölüm zaman damgaları zaman çizelgesinden hesaplanır
-(bölümün ilk sahnesinin, yani kartın başı, **yukarı** yuvarlanır: damga kartın içine düşer; ilki 0:00). Bitiş ekranı
+(bölümün ilk sahnesinin, yani kartın başı, **yukarı** yuvarlanır: damga kartın içine düşer; ilki 0:00; kartsız bölümde **aşağı**: yukarı yuvarlanınca ilk kelime kesiliyordu, 5. tur). Bitiş ekranı
 öğelerinin başlangıcı da yukarı yuvarlanır (daha erken başlarsa kapanış sahnesinin üstüne biner). Denetim: >= 3 bölüm, her biri >= 10 sn, artan sıra.
 Kontrol listesinde "Shorts > İlgili video" bağlantısı ve bitiş ekranı maddeleri var.
 
 ## 8. Denetimler (`kontrol`)
 
+- **Altyazı blok ipucu:** satır `metin`indeki satır sonu (`"…gösteren\nönemli bir çalışma…"`) SRT bloğunu orada
+  böler; ekrandan ve TTS metninden çıkarılır (önbellek anahtarı değişmez). Sayılar altyazıda rakamla: `metin`
+  rakamlı, `tts` kelimeli (anahtar TTS metninden).
+- **Altyazı kırılma kuralları** (`altyazi.kirma_cezalari`, 5. tur dil hakemi): soru ekinden (mi/mı/miydi…) önce, belirleyiciden (bir/o/bu/en/her/yarım/aynı…) sonra, sayı (rakamlı ekli sayılar ve 'milyonu' dahil) ile birimi arasında, ilgi hâli ekinden ('Grünenthal'in | laboratuvarında') sonra, ek-fiilden ('yetersiz | olduğunu') önce, sıfat + ad ('günlük | doz') ve özel ad + iyelikli ad ('Behçet | hastalığındaki') arasında kırmak cezalıdır (yasak değil).
 - **Altyazı kelime farkı:** SRT'nin kelimeleri satır metinleriyle birebir aynı olmalı (`altyazi.kelime_farki`). Bölme
   hiçbir zaman kelime atmaz: sığmayan birleşim yapılmaz; uzun yan cümle kelime sınırlarından EŞİT parçalara bölünür
   (tek kelimelik yetim parça yok).

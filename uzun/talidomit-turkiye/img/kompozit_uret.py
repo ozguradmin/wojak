@@ -252,19 +252,19 @@ def harita_zemini() -> None:
     W, H = 1920, 1080
     # 3. tur: Türkiye biraz sola (sağ altta gergin temsilciye yer), damga yerine kırmızı blok
     bolge = {"merkez": (32.0, 39.0), "sinir": (2.0, 24.0, 64.0, 52.0), "proj": "laea"}
-    hc = HaritaCizer(bolge, W, H, "50m")
+    # küçük resim koyu kalır (4. turda videodaki haritalar aydınlatıldı; küçük resmin kontrastı için eski koyu palet)
+    hc = HaritaCizer(bolge, W, H, "50m", renk={"deniz": (13, 20, 30), "deniz2": (22, 34, 48), "kara": (60, 66, 76),
+                                               "sinir": (28, 33, 41), "izgara": (26, 38, 52)})
     im = hc.taban().convert("RGBA")
     kirmizi = (205, 62, 52)
-    hap = Image.open(CIZ / "hap_simge.png").convert("RGBA").resize((54, 54), Image.LANCZOS)
+    # 4. tur (izlenme hakemi S8): Almanya, Avusturya ve İtalya'daki beyaz hap simgeleri 168x94'te bozuk piksel gibi
+    # okunuyordu: kaldırıldı (kırmızı ülkeler yeterli)
     for kod in ("DEU", "AUT", "CHE", "BEL", "NLD", "LUX", "ITA", "GBR"):
         mk = hc.maske(kod)
         if not mk:
             continue
         m, bb = mk
         im.paste(kirmizi + (255,), bb[:2], m)
-        pt = hc.etiket_noktasi(kod)
-        if pt and kod in ("DEU", "ITA", "AUT") and 0 < pt[0] < W and 0 < pt[1] < H:
-            im.alpha_composite(hap, (int(pt[0] - 27), int(pt[1] - 27)))
     m, bb = hc.maske("TUR")
     kont = Image.new("L", (W, H), 0)
     kont.paste(m, bb[:2])

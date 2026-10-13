@@ -6,6 +6,7 @@ mevcut çekimlerle çalışır: onarılmış sesi `onarim_<ad>.wav` olarak yazar
 `secim`ine bağlar (motor o dosyayı çalar). Kesimler sessizlikte ya da kapantı (stop) boşluğunda, kısa eşit güçlü
 çapraz geçişle; her sonuç Whisper ile (ipucusuz, iki farklı çözümleme) yeniden dinlenir ve manifeste yazılır.
 
+4. tur: sayılar ekranda rakamla (`metin` "10.000'den"), TTS metni (`tts`) eski kelimeli hâli: önbellek anahtarı aynı.
 Satırlar YERİNE göre değil METNİNE göre bulunur (sahne eklenip çıkınca "bölüm 5, sahne 2" kayıyordu). Metni
 kısaltılan satırlarda (`eski`) kaynak çekim, satırın eski metninin önbellek anahtarından bulunur; yeni metnin
 anahtarı onarım dosyasına bağlanır.
@@ -32,6 +33,14 @@ Onarımlar
 - ustelik:   "Üstelik bu hikâye…": mantıksız bağlaç atılır ("Bu hikâye 1961'de bitmedi.").
 - hiz_*:     hızlı okunan satırlar (dil hakemi: 8,4-9,3 hece/sn) rubberband ile perde/formant korunarak yavaşlatılır.
 Kota yenilenince bu satırlar senaryo metniyle yeniden seslendirilmeli (uretici_raporu.md, "Kota gelince").
+
+5. tur (13.10.2026, hesap sahibinin yeni Cartesia anahtarlarıyla): yukarıdaki onarımların çoğu temiz yeni çekimlerle
+değişti (fda, recete, lenz, cuzzam2, yil1962, bilanco, ama_*, ustelik, hiz_*); işlevleri tarihçe olarak duruyor ama
+ONARIMLAR'da değiller (`ESKI`). Etkin kalanlar:
+- cuzzam1, cuzzam3: TTS ikiz zz'yi hâlâ "cüzdan" okuyor (5. tur: 'cüz-zam', 'cüzzzam' yazımları da; 'cüzam' tek z);
+  z uzatılmış eski çekimler duruyor.
+- arada_r5, asil_r5, bosluk_r5, onemli_r5, fda_r5: yeni çekimlerin <break> durakları (0,59-1,03 sn) 0,5-0,55 sn'ye
+  kısaltılır (öteki satırların cümle sonu durağı kadar; 10:15 sınırı).
 """
 
 from __future__ import annotations
@@ -326,9 +335,31 @@ def yavas(tempo):
     return fn
 
 
-# ad -> (satırın ŞİMDİKİ metninden bir parça, işlev). Kesim noktaları zarf çukurlarında; her biri Whisper ile
-# (ipucusuz) dinlenerek seçildi (scratchpad r3/kes_tara.py).
+def durak(deneme: int, en_fazla: float):
+    """5. tur: yeni çekimin <break> duraklarını diğer satırlarla aynı düzeye (en çok `en_fazla` sn) indirir:
+    ara dil hakeminin istediği 0,25-0,35 sn + doğal cümle sonu; 0,65-1,03 sn'lik duraklar 10:15 sınırına sığmıyordu."""
+    def fn(st):
+        x, sr = tts.wav_oku(cekim(st, deneme)[1])
+        y, kes = sessizlik_kisalt(x, sr, en_fazla)
+        return y, sr, {"kaynak": f"deneme {deneme}", "en_fazla": en_fazla, "sessizlik": kes}
+    return fn
+
+
+# 5. tur: etkin onarımlar (yeni çekimlerle değişenler ESKI'de, tarihçe)
 ONARIMLAR = {
+    "cuzzam1": ("ağır bir cüzzam hastası", onar_cuzzam1),
+    "cuzzam3": ("cüzzam tedavisinde kullanıldığı", onar_cuzzam3),
+    "arada_r5": ("Bu arada bir ayrıntı", durak(1, 0.5)),
+    "asil_r5": ("Asıl soruyu ise kimse", durak(0, 0.5)),
+    "bosluk_r5": ("Ama haritada bir boşluk var", durak(0, 0.55)),
+    "onemli_r5": ("En önemlisi: İlaç", durak(2, 0.5)),
+    "fda_r5": ("ilaç kurumu FDA", durak(4, 0.5)),   # deneme 4: Kelsey adı en net (FDA "FTA" diye yazılıyor)
+    "grunenthal_r5": ("Grünenthal çalışanının kızı", durak(2, 0.45)),
+}
+
+# ad -> (satırın 4. turdaki metninden bir parça, işlev). Kesim noktaları zarf çukurlarında; her biri Whisper ile
+# (ipucusuz) dinlenerek seçildi (scratchpad r3/kes_tara.py). 5. turda yeni çekimlerle değiştiler; çalıştırılmaz.
+ESKI = {
     "fda": ("ilaç kurumu FDA", onar_fda),
     "recete": ("Reçetesiz bir uyku ve sakinleştirici", onar_recete),
     "lenz": ("Lenz'i iftirayla", onar_lenz),
@@ -336,16 +367,17 @@ ONARIMLAR = {
     "cuzzam2": ("önce cüzzamın bir komplikasyonu", onar_cuzzam2),
     "cuzzam3": ("cüzzam tedavisinde kullanıldığı", onar_cuzzam3),
     "yil1962": ("Hikâye gazetelere düşüyor.", bas_kes("1962 yazında hikâye gazetelere düşüyor.", 1.788)),
-    "bilanco": ("Dünyada on binden fazla bebek", bas_kes("Bilanço ağır. Dünyada on binden fazla bebek etkileniyor. "
+    "bilanco": ("Dünyada 10.000'den fazla bebek", bas_kes("Bilanço ağır. Dünyada on binden fazla bebek etkileniyor. "
                                                          "Bazı tahminler yirmi bini buluyor.", 1.177)),
     "ama_1961": ("1961 baharında vakalar", bas_kes("Ama 1961 baharında vakalar bini aşıyor.", 0.278)),
-    "ama_arada": ("Arada bir boşluk var:", bas_kes("Ama arada bir boşluk var:", 0.238)),
+    # 4. tur: "Arada bir boşluk var:" satırı videodan çıktı (dil hakemi: deyim gibi duyuluyordu); ama_arada onarımı yok
     "ama_asil": ("Asıl soru hiç araştırılmamış", bas_kes("Ama asıl soru hiç araştırılmamış: Hamile bir kadın bu "
                                                          "ilacı alırsa, karnındaki bebeğe ne olur?", 0.46)),
     "ama_kacak": ("Kaçak getirilen ilaçla", orta_kes("Doğu Almanya da ilaca ruhsat vermemişti. Ama kaçak getirilen "
                                                     "ilaçla orada da vakalar görüldü.", 2.79, 3.125)),
     "ama_geri": ("Geri dönüşün bir bedeli", bas_kes("Ama geri dönüşün bir bedeli de oldu.", 0.273, tempo=0.92)),
-    "ama_bu": ("Bu kadarını anlamak bile", bas_kes("Ama bu kadarını anlamak bile altmış yıldan uzun sürdü.", 0.238)),
+    # 4. tur (dil hakemi): kesim "b"nin kapantısının içindeydi ("Bu" 60 ms, b kırpılıyordu): 30 ms ön pay
+    "ama_bu": ("Bu kadarını anlamak bile", bas_kes("Ama bu kadarını anlamak bile altmış yıldan uzun sürdü.", 0.208)),
     "ustelik": ("Bu hikâye 1961'de bitmedi.", bas_kes("Üstelik bu hikâye 1961'de bitmedi.", 0.448)),
     "hiz_pano": ("Şimdi elimizdekilere bakalım.", yavas(0.87)),
     "hiz_amerika": ("önce Amerika'ya bakmamız gerek", yavas(0.92)),
