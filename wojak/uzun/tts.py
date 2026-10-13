@@ -67,40 +67,65 @@ def istek_govdesi(v: Video, satir: Satir) -> dict:
             "generation_config": gc}
 
 
-def _api_anahtari() -> str:
+def _api_anahtarlari() -> list[str]:
+    """CARTESIA_API_KEY, sonra CARTESIA_API_KEY_2 ... _9 (kota dolunca sıradakine geçilir)."""
     config.load_secrets()
-    k = os.environ.get("CARTESIA_API_KEY", "").strip()
-    if not k:
+    adlar = ["CARTESIA_API_KEY"] + [f"CARTESIA_API_KEY_{i}" for i in range(2, 10)]
+    ks = []
+    for a in adlar:
+        k = os.environ.get(a, "").strip()
+        if k and k not in ks:
+            ks.append(k)
+    if not ks:
         raise TTSHatasi("CARTESIA_API_KEY yok (ortam değişkeni ya da ~/.config/wojak/secrets.env)")
-    return k
+    return ks
+
+
+_KOTASI_DOLAN: set[str] = set()  # bu süreçte 402 dönen anahtarlar (tekrar denenmez)
+
+
+def _api_anahtari() -> str:
+    return _api_anahtarlari()[0]
+
+
+def _maskele(metin: str, anahtarlar: list[str]) -> str:
+    for k in anahtarlar:
+        metin = metin.replace(k, "***")
+    return metin
 
 
 def _istek(govde: dict, deneme_sayisi: int = 5) -> bytes:
     import requests
-    key = _api_anahtari()
-    headers = {"X-API-Key": key, "Cartesia-Version": API_VERSION, "Content-Type": "application/json",
-               "User-Agent": UA}
-    bekle = 2.0
+    anahtarlar = _api_anahtarlari()
     son_hata = ""
-    for i in range(deneme_sayisi):
-        try:
-            r = requests.post(URL, headers=headers, json=govde, timeout=120)
-        except requests.RequestException as e:
-            son_hata = type(e).__name__
+    for key in [k for k in anahtarlar if k not in _KOTASI_DOLAN]:
+        headers = {"X-API-Key": key, "Cartesia-Version": API_VERSION, "Content-Type": "application/json",
+                   "User-Agent": UA}
+        bekle = 2.0
+        for i in range(deneme_sayisi):
+            try:
+                r = requests.post(URL, headers=headers, json=govde, timeout=120)
+            except requests.RequestException as e:
+                son_hata = type(e).__name__
+            else:
+                if r.status_code == 200 and r.content[:4] == b"RIFF":
+                    return r.content
+                son_hata = f"HTTP {r.status_code}: {r.text[:200]}"
+                if r.status_code == 402:  # kota doldu: sıradaki anahtara geç
+                    _KOTASI_DOLAN.add(key)
+                    break
+                if r.status_code not in (408, 409, 425, 429, 500, 502, 503, 504):
+                    raise TTSHatasi(f"Cartesia isteği başarısız: {_maskele(son_hata, anahtarlar)}")
+                ra = r.headers.get("Retry-After")
+                if ra and ra.replace(".", "", 1).isdigit():
+                    bekle = max(bekle, float(ra))
+            if i < deneme_sayisi - 1:
+                time.sleep(bekle)
+                bekle = min(bekle * 2, 30)
         else:
-            if r.status_code == 200 and r.content[:4] == b"RIFF":
-                return r.content
-            son_hata = f"HTTP {r.status_code}: {r.text[:200]}"
-            if r.status_code not in (408, 409, 425, 429, 500, 502, 503, 504):
-                break
-            ra = r.headers.get("Retry-After")
-            if ra and ra.replace(".", "", 1).isdigit():
-                bekle = max(bekle, float(ra))
-        if i < deneme_sayisi - 1:
-            time.sleep(bekle)
-            bekle = min(bekle * 2, 30)
+            break  # geçici hatalar tükendi: başka anahtarı harcamaya gerek yok
     # anahtar mesaja girmesin
-    raise TTSHatasi(f"Cartesia isteği başarısız: {son_hata.replace(key, '***')}")
+    raise TTSHatasi(f"Cartesia isteği başarısız: {_maskele(son_hata, anahtarlar)}")
 
 
 def wav_oku(p: Path) -> tuple[np.ndarray, int]:

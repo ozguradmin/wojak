@@ -21,7 +21,8 @@ python -m wojak uzun teslim     uzun/<id>          # teslim/<id>-uzun/: video (g
 videonun mp4'ü Short teslimine karışıyordu. `teslim` kopyalamadan önce mp4'ün 1920x1080, kare sayısının zaman
 çizelgesiyle aynı ve senkronun tamam olduğunu doğrular; Whisper QA'da "KONTROL ET" satırı varsa uyarır (`--zorla`).
 
-Gizli anahtar: `CARTESIA_API_KEY` ortamdan ya da `~/.config/wojak/secrets.env`'den (`wojak.config.load_secrets`) okunur;
+Gizli anahtar: `CARTESIA_API_KEY` (yedekler `CARTESIA_API_KEY_2` … `_9`) ortamdan ya da `~/.config/wojak/secrets.env`'den
+(`wojak.config.load_secrets`) okunur; bir anahtar HTTP 402 (kota doldu) dönerse sıradakine geçilir;
 hiçbir dosyaya, loga, hata mesajına yazılmaz. HTTP isteklerinde genel tarayıcı kimliği kullanılır.
 
 ## 2. Mimari
