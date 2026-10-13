@@ -252,9 +252,41 @@ def sfx_marka():
     return st / (np.abs(st).max() + 1e-9) * 0.85
 
 
+def sfx_klik():
+    """Fare tıkı (kapanış çağrısı, 7. tur): basma + bırakma, iki kuru plastik tık (0 ve 0,07 sn)."""
+    np = _np()
+    t = _zaman(0.16)
+    rng = np.random.default_rng(11)
+    x = np.zeros(len(t))
+    for t0, g, f in ((0.0, 1.0, 3800), (0.07, 0.55, 3100)):
+        u = np.clip(t - t0, 0, None) * (t >= t0)
+        gur = rng.normal(0, 1, len(t)) * np.exp(-900 * u) * (t >= t0)
+        ton = np.sin(2 * np.pi * f * u) * np.exp(-260 * u) * (t >= t0)
+        x += g * (0.7 * np.diff(np.concatenate([[0], gur])) + 0.35 * ton)
+    x = x.astype(np.float32)
+    st = np.stack([x, x], axis=1)
+    return st / (np.abs(st).max() + 1e-9) * 0.75
+
+
+def sfx_zil():
+    """Bildirim zili (kapanış çağrısı, 7. tur): küçük çan, uyumsuz kısmi tonlar (1 : 2,76 : 5,4), yumuşak sönüm."""
+    np = _np()
+    t = _zaman(1.4)
+    f0 = 1318.5   # Mi6
+    x = (np.sin(2 * np.pi * f0 * t) * np.exp(-3.2 * t) + 0.45 * np.sin(2 * np.pi * f0 * 2.76 * t) * np.exp(-6 * t)
+         + 0.22 * np.sin(2 * np.pi * f0 * 5.4 * t) * np.exp(-11 * t))
+    # ikinci, daha alçak vuruş (zil sallanınca): 0,16 sn
+    u = np.clip(t - 0.16, 0, None)
+    x += 0.5 * (t >= 0.16) * (np.sin(2 * np.pi * f0 * 0.75 * u) * np.exp(-4 * u)
+                             + 0.4 * np.sin(2 * np.pi * f0 * 0.75 * 2.76 * u) * np.exp(-7 * u))
+    x *= np.minimum(1, t / 0.004)
+    st = _yanki(x.astype(np.float32), 1.0, 0.9, 0.25)[: len(t)]
+    return st / (np.abs(st).max() + 1e-9) * 0.7
+
+
 NP_SFX = {"gecis": sfx_gecis, "turkiye": sfx_turkiye, "turkiye_major": sfx_turkiye_major, "kapi": sfx_kapi,
           "damga": sfx_damga, "geri_sarma": sfx_geri_sarma, "raptiye": sfx_raptiye, "telefon": sfx_telefon,
-          "marka": sfx_marka}
+          "marka": sfx_marka, "klik": sfx_klik, "zil": sfx_zil}
 
 
 def _wav_yaz(yol: Path, st) -> None:

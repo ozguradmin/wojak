@@ -46,7 +46,7 @@ def karakter_zamanlari(sahne: Sahne) -> dict[str, dict]:
     for i, c in enumerate(sahne.p.get("karakterler", []) + sahne.p.get("konuk", [])):
         g = c.get("giris", True)
         giris = None if g is False else (float(g) if isinstance(g, (int, float)) and g is not True else 0.05 + 0.22 * i)
-        out[c["id"]] = {"giris": giris, "cikis": None, "yuz": []}
+        out[c["id"]] = {"giris": giris, "cikis": None, "yuz": [], "sik": [], "buyu": [], "agiz": []}
     for o in sahne.olaylar:
         k = o.p.get("karakter")
         if k not in out:
@@ -57,6 +57,14 @@ def karakter_zamanlari(sahne: Sahne) -> dict[str, dict]:
             out[k]["cikis"] = o.zaman
         elif o.tip == "yuz":
             out[k]["yuz"].append((o.zaman, Path(o.p["gorsel"])))
+            if o.p.get("sik", True) is not False:   # 8. tur: sik: false = sıkışmasız geçiş (kapı kanadı ara kareleri)
+                out[k]["sik"].append(o.zaman)
+            if o.p.get("buyu"):   # 9. tur: yeni görsel eski boyundan büyüyerek oturur (doz şişesi)
+                out[k]["buyu"].append(o.zaman)
+        elif o.tip == "balon" and o.p.get("agiz"):
+            # 9. tur (animasyon hakemi S10): balon açıkken hecelerde açık ağızlı yüz (balon repliklerinde oyunculuk yoktu)
+            sure = min(float(o.p.get("sure") or 2.5), 1.6)
+            out[k]["agiz"].append((o.zaman, o.zaman + sure, Path(o.p["agiz"])))
     for v in out.values():
         v["yuz"].sort(key=lambda x: x[0])
     return out
@@ -111,6 +119,11 @@ def harita_zamanlari(sahne: Sahne) -> tuple[list[tuple[str, float]], tuple[str, 
     return [(k, ts[k]) for k in kodlar], ((vk, vt) if vk else None)
 
 
+def rota_zamanlari(sahne: Sahne) -> list[tuple[float, float, dict]]:
+    """Harita rotaları: [(başlangıç, çizim süresi, olay p)] (7. tur)."""
+    return [(o.zaman, float(o.p.get("sure", 1.2)), o.p) for o in olaylar(sahne, "rota")]
+
+
 def sayac_bolumleri(sahne: Sahne) -> list[dict]:
     """Sayacın sayım bölümleri: [{t0, t1, a, b, yil, etiket, renk, onek, sonek}]. İlki sahnenin `deger`/`yil`'ından
     (`deger: [60, 0]` azalan), sonrakiler `deger` olaylarından (bir önceki değerden yenisine)."""
@@ -128,7 +141,8 @@ def sayac_bolumleri(sahne: Sahne) -> list[dict]:
     a, b = (float(d[0]), float(d[1])) if liste else (0.0, float(d))
     sure = float(p.get("sure_say", 2.2))
     out = [{"t0": bas, "t1": bas + sure, "a": a, "b": b, "yil": False, "etiket": p.get("etiket"), "renk": renk0,
-            "onek": str(p.get("onek", "")), "sonek": str(p.get("sonek", "" if liste else "+"))}]
+            "onek": str(p.get("onek", "")), "sonek": str(p.get("sonek", "" if liste else "+")),
+            "log": p.get("olcek") == "log"}]
     for o in olaylar(sahne, "deger"):
         q, onc = o.p, out[-1]
         t0 = max(o.zaman, onc["t0"] + 0.05)
@@ -136,6 +150,15 @@ def sayac_bolumleri(sahne: Sahne) -> list[dict]:
                     "yil": False, "etiket": q.get("etiket", onc["etiket"]),
                     "renk": Z.renk(q.get("renk"), onc["renk"]) if q.get("renk") is not None else onc["renk"],
                     "onek": str(q.get("onek", "")), "sonek": str(q.get("sonek", ""))})
+    # 8. tur: tekerlekli sayaçta basamak sayısı sabit: art arda sayan bölümler (1.267 -> 20.000) en büyük değerin
+    # basamak sayısını baştan ayırır; bir anda gelen değer (sure: 0) kendi basamak sayısıyla yeniden yerleşir
+    zincir = [b for b in out if not b["yil"] and b["t1"] - b["t0"] >= 1e-3]
+    D = max([len(str(int(max(abs(b["a"]), abs(b["b"]))))) for b in zincir] or [1])
+    for b in out:
+        if not b["yil"]:
+            ani = b["t1"] - b["t0"] < 1e-3
+            b["basamak"] = len(str(int(abs(b["b"])))) if ani else D
+            b["ani"] = ani
     return out
 
 
@@ -167,6 +190,9 @@ def metin_zamanlari(sahne: Sahne) -> dict:
     kel = metin.split()
     bas = basla_zamani(sahne, 0.3)
     daktilo = sahne.p.get("yazim") == "daktilo"
+    if daktilo and sahne.gecis != "kesme" and sahne.gecis_kare:
+        # 9. tur (animasyon S1): daktilo geçiş bitince başlar (imleç ve ilk harfler sönen önceki karenin üstündeydi)
+        bas = max(bas, (sahne.gecis_kare + 1) / 30.0)
     if daktilo:   # kelime anı = o kelimenin ilk harfinin yazıldığı an
         kt, i = [], 0
         for k in kel:
@@ -204,6 +230,7 @@ def vuruslar(sahne: Sahne) -> list[float]:
     elif tip == "harita":
         u, v = harita_zamanlari(sahne)
         t += [x for _, x in u] + ([v[1]] if v else [])
+        t += [a + b for a, b, _ in rota_zamanlari(sahne)]
     elif tip == "sayac":
         for b in sayac_bolumleri(sahne):
             t += [b["t0"], b["t1"]]
@@ -220,6 +247,9 @@ def vuruslar(sahne: Sahne) -> list[float]:
     elif tip in ("marka", "bitis"):
         from . import kanal
         t += kanal.vuruslar(sahne)
+    elif tip == "kapanis":
+        from . import kapanis
+        t += kapanis.vuruslar(sahne)
     if tip != "wojak" and sahne.p.get("konuk"):
         for v in karakter_zamanlari(sahne).values():
             t += [x for x in (v["giris"], v["cikis"]) if x is not None] + [y for y, _ in v["yuz"]]
@@ -256,18 +286,76 @@ class Cizici:
     def kare(self, t: float) -> Image.Image:
         im = self.ciz(t)
         self.katman.uygula(im, t)
-        return im
+        return sarsinti_uygula(im, self.sarsintilar, t, self.S) if self.sarsintilar else im
+
+    @property
+    def sarsintilar(self) -> list:
+        if not hasattr(self, "_sars"):
+            self._sars = [(o.zaman, float(o.p.get("guc", 7.0)), float(o.p.get("sure", 0.1)))
+                          for o in olaylar(self.sahne, "sarsinti")]
+        return self._sars
 
     def px(self, v: float) -> float:
         return v * self.S
 
 
+def sarsinti_uygula(im: Image.Image, sarsintilar: list, t: float, S: float) -> Image.Image:
+    """8. tur (animasyon hakemi S4): kapı çarpmasında 2-3 karelik kamera sarsıntısı. Bütün kare (yazılar dahil)
+    sönümlü, yön değiştiren bir ötelemeyle kayar; kenar boşluğu kalmasın diye kare o kadar büyütülür. Filigran
+    render'da sonra eklenir (sarsılmaz)."""
+    dx = dy = 0.0
+    for t0, guc, sure in sarsintilar:
+        u = (t - t0) / max(sure, 1e-3)
+        if 0 <= u <= 1.0:
+            k = guc * S * (1 - u) ** 1.5
+            dx += k * math.cos(1.0 + 9.0 * u)
+            dy += k * math.sin(2.3 + 11.0 * u)
+    if abs(dx) < 0.3 and abs(dy) < 0.3:
+        return im
+    W, H = im.size
+    m = abs(dx) + abs(dy) + 2
+    zz = 1 + 2 * m / min(W, H)
+    return C.kamera(im, W, H, zz, (0.5 - dx / (W * zz), 0.5 - dy / (H * zz)))
+
+
 # ================================================================ üst katmanlar
+
+def kesmeyle_biter(sahne: Sahne, v: Video | None) -> str | None:
+    """Sahneden sonra ne geliyor: 'kesme' | 'donuk' (sonraki sahne bu sahnenin son karesini dondurup üstüne çizer:
+    bindirme kart/imza/kapanış) | None (çapraz geçiş ya da itme: bu sahne geçiş boyunca çizilmeye devam eder)."""
+    if v is None:
+        return "kesme"
+    ss = v.sahneler
+    i = sahne.no
+    if not (0 <= i < len(ss) and ss[i] is sahne) or i + 1 >= len(ss):
+        return "kesme"
+    n = ss[i + 1]
+    if n.p.get("bindirme") and n.tip in ("bolum_karti", "marka", "bitis", "kapanis"):
+        return "donuk"
+    return "kesme" if n.gecis == "kesme" else None
+
+
+def kesmede_yarim_kalmasin(t0: float, sure: float, cikis: float, dur: float, kesme) -> float:
+    """7. tur: çıkış animasyonu (söndürme / kayarak çıkma) sahne sonunda yarıda kalmasın (talidomit-turkiye: 8 vurgu
+    kelimesi kesmede %18-95 saydam kesiliyordu). Kesmede öğe kesmeye dek tam görünür kalır; donmuş kare bindirmesinde
+    (bölüm kartı) çıkışını kesmeden önce bitirir: donan karede yarı saydam yazı kartın başlığıyla yarışmasın (en az
+    0,6 sn görünmüşse; yoksa tam görünür kalır)."""
+    if kesme and t0 + sure < dur < t0 + sure + cikis:
+        if kesme == "donuk" and dur - cikis - 0.04 - t0 >= 0.6:
+            return dur - cikis - 0.04 - t0
+        return dur - t0 + 1.0
+    if kesme == "donuk" and t0 + sure >= dur and dur - cikis - 0.04 - t0 >= 0.6:
+        return dur - cikis - 0.04 - t0      # kesmeyi aşan öğe de donmadan önce söner
+    return sure
+
 
 class UstKatman:
     def __init__(self, sahne: Sahne, c: Baglam):
         self.c = c
         S = c.S
+        dur = max(sahne.sure_hesap, 1e-3)
+        kesme = kesmeyle_biter(sahne, getattr(c, "v", None))
+        self.bulanik = bool((getattr(c.v, "hareket", None) or {}).get("bulaniklik", False))
         # konuk: wojak dışı sahnede köşeden/kenardan giren tepki karakteri (kamerasız, ekran koordinatında; yazı
         # katmanlarının ALTINDA çizilir)
         self.konuklar = []
@@ -283,13 +371,18 @@ class UstKatman:
                     if c_["id"] == str(o.p["karakter"]):
                         cx = float(c_["x"]) if c_.get("x") is not None else {"sol": 0.25, "sag": 0.75, "orta": 0.5}[c_["taraf"]]
                         konum = "sag" if cx > 0.5 else "sol"
-            self.isimler.append((o.zaman, float(o.p.get("sure", 4.2)), self._isim(o.p["ad"], o.p.get("unvan")), konum))
+            sure = kesmede_yarim_kalmasin(o.zaman, float(o.p.get("sure", 4.2)), 0.38, dur, kesme)
+            self.isimler.append((o.zaman, sure, self._isim(o.p["ad"], o.p.get("unvan")), konum))
         self.vurgular = []
         for o in olaylar(sahne, "kelime"):
             spr = C.yazi(str(o.p["metin"]), C.FONT_DIALOG, 92 * S, C.BEYAZ, stroke=7 * S, max_w=1500 * S,
                          max_lines=2, align="center", golge=(0, 5 * S, 9 * S, 0.55))
-            self.vurgular.append((o.zaman, float(o.p.get("sure", 2.3)), spr, str(o.p.get("konum", "alt"))))
+            sure = kesmede_yarim_kalmasin(o.zaman, float(o.p.get("sure", 2.3)), 0.3, dur, kesme)
+            self.vurgular.append((o.zaman, sure, spr, str(o.p.get("konum", "alt"))))
         self.damgalar = [Damga(o, c, i) for i, o in enumerate(damga_olaylari(sahne))]
+        for d in self.damgalar:
+            if d.sure is not None:
+                d.sure = kesmede_yarim_kalmasin(d.t0, d.sure, 0.25, dur, kesme)
         ko = kose_olaylari(sahne)
         self.kose = KoseGostergesi(sahne, c, ko) if (sahne.kose is not None or ko) else None
 
@@ -319,9 +412,17 @@ class UstKatman:
             if u < 0 or u > sure + 0.4:
                 continue
             x_dur = 64 * S if konum == "sol" else W - 64 * S - spr.width
-            git = (spr.width + x_dur + 20 * S) if konum == "sol" else -(W - x_dur + 20 * S)
-            x = x_dur - (1 - E.out_cubic(u / 0.5)) * git - E.in_cubic((u - sure) / 0.38) * git
-            C.bindir(im, spr, x, H - 92 * S - spr.height)
+
+            def _x(u_):
+                git = (spr.width + x_dur + 20 * S) if konum == "sol" else -(W - x_dur + 20 * S)
+                return x_dur - (1 - E.out_cubic(u_ / 0.5)) * git - E.in_cubic((u_ - sure) / 0.38) * git
+            x, y = _x(u), H - 92 * S - spr.height
+            dx = x - _x(u - 1 / self.c.fps)
+            if self.bulanik and abs(dx) > 10 * S:   # hızlı kayan etiket: hareket bulanıklığı (keskin etiketin altında)
+                spr2, ox, oy = C.hareket_izi(spr, dx, 0.0, en_cok=C.IZ_EN_COK * S)
+                C.bindir(im, spr2, x + ox, y + oy)
+            else:
+                C.bindir_alt(im, spr, x, y)
         for t0, sure, spr, konum in self.vurgular:
             u = t - t0
             if u < 0 or u > sure + 0.3:
@@ -480,14 +581,56 @@ class Kam:
         return ((x / self.W - self.cx) * self.z + 0.5) * self.W, ((y / self.H - self.cy) * self.z + 0.5) * self.H
 
 
+@lru_cache(maxsize=8)
+def yay_egrisi(k: float = 1.1, frekans: float = 1.8, sonum: float = 0.36, giris: float = 0.75,
+               uzunluk: float = 2.6, n: int = 1600) -> tuple[np.ndarray, np.ndarray]:
+    """İkincil hareketin şekli (7. tur): out_back girişinin normalize ivmesine (e''(u)) sönümlü yay tepkisi.
+    (u ekseni, tepki) döner; en büyük |tepki| = 1. Yandan girişte gövdenin eğilmesi (kayarak duran gövdenin üstü
+    öne gider, sonra geri yaylanıp oturur), alttan/üstten girişte esneme-basılma bu eğriden okunur.
+    frekans Hz, giris sn (u = t / giris)."""
+    us = np.linspace(0.0, uzunluk, n)
+    du = float(us[1] - us[0])
+    w = 2 * math.pi * frekans * giris
+    th = v = 0.0
+    out = np.zeros(n)
+    for i, u in enumerate(us):
+        acc = 6 * (k + 1) * (u - 1) + 2 * k if u < 1 else 0.0
+        a = acc - w * w * th - 2 * sonum * w * v
+        v += a * du
+        th += v * du
+        out[i] = th
+    return us, out / (np.abs(out).max() + 1e-12)
+
+
+def _tohum01(*parca) -> list[float]:
+    """Karaktere özgü kararlı sözde rastgele sayılar (0..1): ad + görsel adından."""
+    import zlib
+    h = zlib.crc32("|".join(str(x) for x in parca).encode())
+    rng = np.random.default_rng(h)
+    return [float(x) for x in rng.random(8)]
+
+
 class Karakter:
     GIRIS = 0.75
     CIKIS = 0.45
+    POP = 0.45          # yon: pop -> yerinde büyüyerek belirme süresi
+    EGIM = 2.6          # ikincil hareket: yandan girişte en büyük eğilme (derece)
+    ESNEME = 0.055      # alttan/üstten girişte en büyük esneme (oran)
+    CIKIS_EGIM = 2.2    # çıkışta hızlanırken geriye eğilme (derece)
+    BULANIK_ESIK = 10.0  # px/kare: bunun üstündeki hızda hareket bulanıklığı (8. tur: 7 -> 10; yavaşta iz yok)
 
     def __init__(self, spec: dict, zam: dict, c: Baglam, sira: int, konusma: Konusma | None = None):
         S, W, H = c.S, c.W, c.H
         self.c = c
+        hk = getattr(c.v, "hareket", None) or {}
+        self.bulanik = bool(hk.get("bulaniklik", False))
+        self.ikincil = bool(hk.get("ikincil", False))
+        self.canli = bool(hk.get("canli", False)) and spec.get("canli", True) is not False
+        self.sabit = spec.get("canli", True) is False      # canli: false -> nefes/salınım yok (dekor, kapı, şişe)
         yollar = [Path(spec["gorsel"])] + [p for _, p in zam["yuz"]]
+        n_yuz = len(yollar)
+        agiz = zam.get("agiz", [])
+        yollar += [p for _, _, p in agiz]
         ims = [C.yukle(p).convert("RGBA") for p in yollar]
         if len({im.size for im in ims}) == 1:
             ims = C.kirp_alfa(ims)
@@ -516,11 +659,31 @@ class Karakter:
         self.cx = cxn * W
         # taban kadrajın altında kalır (kit görselleri göğüsten kesik): arkadaki karakteri küçüklüğü, sisi ve
         # önce çizilmesi uzağa iter; yükseltmek kesik kenarı gösterirdi
-        self.taban = H + float(spec.get("alt", 0.0)) * H + 0.04 * self.h
+        self.alt = float(spec.get("alt", 0.0))
+        self.taban = H + self.alt * H + 0.04 * self.h
         self.giris, self.cikis = zam["giris"], zam["cikis"]
         self.yuz_t = [t for t, _ in zam["yuz"]]
+        self.sik_t = list(zam.get("sik", self.yuz_t))
+        # 9. tur: açık ağız görselleri (balon) yüz listesinin sonunda; (t0, t1, görsel indeksi)
+        self.agiz = [(a, b, n_yuz + j) for j, (a, b, _) in enumerate(agiz)]
+        # 9. tur: büyüyerek gelen yüz: (an, eski/yeni görünür boy oranı)
+        self.buyu = []
+        for tb in zam.get("buyu", []):
+            j = sum(1 for ts in self.yuz_t if ts <= tb)
+            if 1 <= j < n_yuz:
+                h0, h1 = (self._gorunen_boy(self.ims[j - 1]), self._gorunen_boy(self.ims[j]))
+                if h1 > 0:
+                    self.buyu.append((tb, min(1.0, h0 / h1)))
         self.konusma = konusma or Konusma()
         self.faz = 1.7 * sira
+        r = _tohum01(spec.get("id"), Path(spec["gorsel"]).name, sira)
+        # canlı boşta hareket: karakter başına nefes/salınım ritmi ve küçük baş eğimi (hepsi aynı anda nefes almasın)
+        self.f_nefes = 0.3 * (0.84 + 0.32 * r[0]) if self.canli else 0.3
+        self.f_salin = 0.21 * (0.82 + 0.36 * r[1]) if self.canli else 0.21
+        self.a_salin = 3.0 * (0.75 + 0.5 * r[2]) if self.canli else 3.0
+        self.egim_a = 0.42 * (0.7 + 0.6 * r[3]) if self.canli else 0.0
+        self.f_egim = 0.085 * (0.8 + 0.5 * r[4])
+        self.faz2 = 6.283 * r[5]
         # baş: üst %18'lik bandın yatay merkezi
         a = np.asarray(self.ims[0].getchannel("A"))
         band = a[: max(2, int(self.h * 0.18))] > 60
@@ -529,8 +692,25 @@ class Karakter:
         ys = np.where((a > 60).any(axis=1))[0]
         self.ust_y = self.taban - self.h + (ys[0] if len(ys) else 0)
         self.ic_yon = 1 if self.cx < W / 2 else -1   # kadrajın ortasına doğru
-        self.yon = spec.get("yon")   # giriş/çıkış yönü (sol | sag | alt); yoksa tarafına göre
+        self.yon = spec.get("yon")   # giriş/çıkış yönü (sol | sag | alt | ust | pop); yoksa tarafına göre
+        # pop'ta pivot: yerdeki (göğüsten kesik) karakter tabandan, havadaki nesne ortasından büyür
+        self.pop_orta = self.alt < -0.05
         self._onbellek: dict = {}
+        self._pm: dict = {}
+        # 8. tur (animasyon hakemi S3): havada duran nesne (zarf, numune kutusu, yumurta tablası) zemine "basmıyordu":
+        # golge: true -> sağ alta düşen yumuşak gölge (fotoğraf baskısıyla aynı dil: masaya konmuş çıkartma)
+        self.golge = None
+        if spec.get("golge"):
+            gl = []
+            for im in self.ims:
+                g, gx, gy = C.golge_katmani(im, 12 * S, 0.58)
+                gl.append((C.alt_piksel_hazirla(g), gx, gy, g.convert("RGBa")))
+            self.golge = {"ims": gl, "dx": 13 * S, "dy": 22 * S}
+
+    @staticmethod
+    def _gorunen_boy(im: Image.Image) -> float:
+        bb = im.getchannel("A").point(lambda v: 255 if v > 40 else 0).getbbox()
+        return float(bb[3] - bb[1]) if bb else 0.0
 
     def odak(self) -> tuple[float, float]:
         """Kamera itmesinin hedefi (sahne 0..1): başın biraz altı."""
@@ -538,8 +718,12 @@ class Karakter:
 
     def _mesafe(self) -> tuple[float, float]:
         W, H = self.c.W, self.c.H
+        if self.yon == "pop":
+            return 0.0, 0.0
         if self.yon == "alt":   # alttan yükselir (köşedeki konuk)
             return 0.0, self.h * 1.06 + 40 * self.c.S
+        if self.yon == "ust":   # üstten düşer
+            return 0.0, -(self.taban + 40 * self.c.S)
         if self.yon == "sol":
             return -(self.cx + self.w / 2 + 40 * self.c.S), 0.0
         if self.yon == "sag":
@@ -557,49 +741,147 @@ class Karakter:
             return False
         return True
 
-    def ciz(self, im: Image.Image, t: float, kam: Kam | None = None) -> None:
-        if not self.gorunur(t):
-            return
-        S = self.c.S
+    def _yer(self, t: float) -> tuple[float, float]:
+        """Giriş/çıkış ötelemesi (dx, dy), sahne pikseli."""
         mx, my = self._mesafe()
         dx = dy = 0.0
-        if self.giris is not None:
+        if self.giris is not None and self.yon != "pop":
             e = E.out_back((t - self.giris) / self.GIRIS, 1.1)
             dx += (1 - e) * mx
             dy += (1 - e) * my
         if self.cikis is not None and t > self.cikis:
+            if self.yon == "pop":
+                mx, my = (self._mesafe_kenar())
             e = E.in_cubic((t - self.cikis) / self.CIKIS)
             dx += e * mx
             dy += e * my
+        return dx, dy
+
+    def _mesafe_kenar(self) -> tuple[float, float]:
+        """pop girişli karakterin çıkışı: en yakın kenardan."""
+        W = self.c.W
+        if self.cx < W / 2:
+            return -(self.cx + self.w / 2 + 40 * self.c.S), 0.0
+        return W - self.cx + self.w / 2 + 40 * self.c.S, 0.0
+
+    def poz(self, t: float) -> dict:
+        """t anındaki duruş: taban ortası (x, y; sahne pikseli), ölçek (sx, sy), eğim (derece), yüz, opaklık,
+        pivot ('taban' | 'orta')."""
+        S = self.c.S
+        dx, dy = self._yer(t)
+        mx, my = self._mesafe()
         vi = sum(1 for ts in self.yuz_t if t >= ts)
-        sx = sy = 1 + 0.01 * math.sin(2 * math.pi * 0.3 * t + self.faz)
-        for ts in self.yuz_t:
+        nefes = 1 + 0.01 * math.sin(2 * math.pi * self.f_nefes * t + self.faz) if not self.sabit else 1.0
+        sx = sy = nefes
+        for tb, oran in self.buyu:   # 9. tur: eski boydan out_back ile büyüyerek oturur (tek karede sıçrama yok)
+            if 0 <= t - tb < 0.3:
+                k_ = oran + (1 - oran) * E.out_back((t - tb) / 0.3, 1.6)
+                sx *= k_
+                sy *= k_
+        for a_, b_, vj in self.agiz:   # 9. tur: balon açıkken hece vuruşlarında ağız açık
+            if a_ <= t <= b_ and self.konusma.deger(t) > 0.3:
+                vi = vj
+                break
+        aci = 0.0
+        alfa = 1.0
+        pivot = "taban"
+        for ts in self.sik_t:
             b = E.tumsek((t - ts + 0.13) / 0.26)
             if b:
                 sy *= 1 - 0.075 * b
                 sx *= 1 + 0.05 * b
+        if self.giris is not None:
+            u = (t - self.giris) / self.GIRIS
+            if self.yon == "pop":
+                q = (t - self.giris) / self.POP
+                k = max(0.0, E.out_back(q, 1.7))
+                sx *= k
+                sy *= k
+                alfa = min(1.0, max(0.0, q) / 0.3)
+                pivot = "orta" if self.pop_orta else "taban"
+            elif self.ikincil and 0 <= u < 2.6:
+                us, yay = yay_egrisi(1.1, 1.8, 0.36, self.GIRIS)
+                y_ = float(np.interp(u, us, yay))
+                if abs(mx) > 1:    # yandan: soldan giren (mx < 0, sağa gider) frenlenirken üstü sağa (aci < 0)
+                    aci += self.EGIM * y_ * (1 if mx < 0 else -1)
+                elif abs(my) > 1:  # alttan: yukarı giderken frenlenince esner; üstten: aşağı inerken basılır
+                    es = self.ESNEME * y_ * (-1 if my > 0 else 1)
+                    sy *= 1 + es
+                    sx *= 1 - 0.5 * es
+        if self.cikis is not None and t > self.cikis and self.ikincil:
+            u = (t - self.cikis) / self.CIKIS
+            cmx, _ = self._mesafe_kenar() if self.yon == "pop" else (mx, my)
+            if abs(cmx) > 1:   # hızlanarak çıkarken üstü geride kalır
+                aci += self.CIKIS_EGIM * E.out_cubic(min(1.0, u / 0.6)) * (1 if cmx > 0 else -1)
         # konuşma: hece başlarında küçük sekme + dikey esneme (sesle eş zamanlı)
         k = self.konusma.deger(t)
         if k:
             dy -= 9 * S * k * (1 - 0.3 * self.derinlik)
             sy *= 1 + 0.016 * k
             sx *= 1 - 0.005 * k
-        dy += 3 * S * math.sin(2 * math.pi * 0.21 * t + self.faz * 0.6)
+        if not self.sabit:
+            dy += self.a_salin * S * math.sin(2 * math.pi * self.f_salin * t + self.faz * 0.6)
+            if self.egim_a:
+                aci += self.egim_a * math.sin(2 * math.pi * self.f_egim * t + self.faz2)
+        return {"x": self.cx + dx, "y": self.taban + dy, "sx": sx, "sy": sy, "aci": aci, "vi": vi, "alfa": alfa,
+                "pivot": pivot}
+
+    def ciz(self, im: Image.Image, t: float, kam: Kam | None = None) -> None:
+        if not self.gorunur(t):
+            return
+        p = self.poz(t)
+        if p["sx"] <= 0.01 or p["alfa"] <= 0.003:
+            return
+        vi = p["vi"]
         z = 1.0
-        x, y = self.cx + dx, self.taban + dy
+        x, y = p["x"], p["y"]
         if kam is not None:
             z = kam.z
             x, y = kam.nokta(x, y)
-        # alt piksel yerleştirme: ölçek (nefes, sıkışma, kamera) ve konum tek bir örneklemeyle, kesirli olarak
-        # uygulanır (C.alt_piksel). Eskiden sprite 0.001 adımla ölçeklenip tam piksele yuvarlanıyordu: arka plan
-        # kamerayla alt pikselde kayarken büyük karakter 3-10 karede bir ~1 px sıçrıyordu (yavaş itmede titreme).
-        # Önceden çarpılmış alfa (RGBa) ile örneklenir: saydam kenarda koyu saçak olmaz.
-        src = self._onbellek.get(vi)
-        if src is None:
-            src = self._onbellek[vi] = C.alt_piksel_hazirla(self.ims[vi])
         w0, h0 = self.ims[vi].size
-        spr, x0, y0 = C.alt_piksel(src, x - w0 * sx * z / 2, y - h0 * sy * z, sx * z, sy * z)
-        C.bindir(im, spr, x0, y0)
+        sx, sy = p["sx"] * z, p["sy"] * z
+        orta = p["pivot"] == "orta"
+        if self.golge is not None:
+            gsrc, gx, gy, gpm = self.golge["ims"][vi]
+            gdx, gdy = self.golge["dx"] * z, self.golge["dy"] * z
+            if abs(p["aci"]) < 0.01:
+                ust_g = (y - h0 * z / 2 - h0 * sy / 2) if orta else (y - h0 * sy)
+                g_spr, gx0, gy0 = C.alt_piksel(gsrc, x - w0 * sx / 2 - gx * sx + gdx, ust_g - gy * sy + gdy, sx, sy)
+            elif orta:
+                g_spr, gx0, gy0 = C.afin_pm(gpm, x + gdx, y - h0 * z / 2 + gdy, sx, sy, p["aci"], gx + w0 / 2, gy + h0 / 2)
+            else:
+                g_spr, gx0, gy0 = C.afin_pm(gpm, x + gdx, y + gdy, sx, sy, p["aci"], gx + w0 / 2, gy + h0)
+            C.bindir(im, g_spr, gx0, gy0, p["alfa"])
+        if abs(p["aci"]) < 0.01:
+            # alt piksel yerleştirme: ölçek (nefes, sıkışma, kamera) ve konum tek bir örneklemeyle, kesirli olarak
+            # uygulanır (C.alt_piksel). Eskiden sprite 0.001 adımla ölçeklenip tam piksele yuvarlanıyordu: arka plan
+            # kamerayla alt pikselde kayarken büyük karakter 3-10 karede bir ~1 px sıçrıyordu (yavaş itmede titreme).
+            # Önceden çarpılmış alfa (RGBa) ile örneklenir: saydam kenarda koyu saçak olmaz.
+            src = self._onbellek.get(vi)
+            if src is None:
+                src = self._onbellek[vi] = C.alt_piksel_hazirla(self.ims[vi])
+            ust = (y - h0 * z / 2 - h0 * sy / 2) if orta else (y - h0 * sy)
+            spr, x0, y0 = C.alt_piksel(src, x - w0 * sx / 2, ust, sx, sy)
+        else:
+            # eğimli: tabandan (ya da ortadan) döndürme, önceden çarpılmış alfa ile
+            pm = self._pm.get(vi)
+            if pm is None:
+                pm = self._pm[vi] = self.ims[vi].convert("RGBa")
+            if orta:
+                spr, x0, y0 = C.afin_pm(pm, x, y - h0 * z / 2, sx, sy, p["aci"], w0 / 2, h0 / 2)
+            else:
+                spr, x0, y0 = C.afin_pm(pm, x, y, sx, sy, p["aci"], w0 / 2, h0)
+        if self.bulanik:
+            dt = 1.0 / max(self.c.fps, 1)
+            if self.gorunur(t - dt):
+                dx0, dy0 = self._yer(t - dt)
+                dx1, dy1 = self._yer(t)
+                vx, vy = (dx1 - dx0) * z, (dy1 - dy0) * z
+                if math.hypot(vx, vy) > self.BULANIK_ESIK * self.c.S:
+                    # 8. tur: iz keskin ve tam opak karakterin ALTINDA, en çok 40 px (yüz bulanıp 'hayalet' olmaz)
+                    spr, ox, oy_ = C.hareket_izi(spr, vx, vy, en_cok=C.IZ_EN_COK * self.c.S)
+                    x0, y0 = x0 + ox, y0 + oy_
+        C.bindir(im, spr, x0, y0, p["alfa"])
 
 
 def _derinlik_uygula(im: Image.Image, d: float, S: float) -> Image.Image:
@@ -683,7 +965,7 @@ class Balon:
             uy = max(uy, 24 * S + self.ay * z)
         s *= z
         if abs(s - 1) < 1e-3:
-            C.bindir(im, self.spr, ux - self.ax, uy - self.ay, a)
+            C.bindir_alt(im, self.spr, ux - self.ax, uy - self.ay, a)
         else:
             spr, x0, y0 = C.afin(self.spr, ux, uy, s, s, 0, self.ax, self.ay)
             C.bindir(im, spr, x0, y0, a)
@@ -718,7 +1000,13 @@ class WojakCizici(Cizici):
             fx, fy = k.odak()
             for a, b in k.konusma.birlesik():
                 self.itmeler.append((a, b, fx, fy))
-        zm = max(z) * (1 + self.it) + 0.01
+        # 9. tur: `it` olayı: kamera vurgu itmesi (zoom x(1+guc), sure sn; x/y verilirse merkez oraya kayar); kalıcı
+        self.vurgu_it = [(o.zaman, float(o.p.get("guc", 0.08)), max(0.05, float(o.p.get("sure", 0.5))),
+                          o.p.get("x"), o.p.get("y")) for o in olaylar(self.sahne, "it")]
+        ek = 1.0
+        for _, g_, _, _, _ in self.vurgu_it:
+            ek *= 1 + max(0.0, g_)
+        zm = max(z) * (1 + self.it) * ek + 0.01
         bg = C.yukle(p["arka"]).convert("RGB")
         if p.get("kirp"):   # [x0, y0, x1, y1] (0..1): fotoğrafın istenmeyen kenarını at
             k_ = [float(v) for v in p["kirp"]]
@@ -736,6 +1024,13 @@ class WojakCizici(Cizici):
             if sonraki:
                 sure = min(sure, sonraki[0] - o.zaman - 0.05)
             self.balonlar.append(Balon(str(o.p["metin"]), kmap[o.p["karakter"]], o.zaman, sure, self.c))
+        # 7. tur: paralaks (arka plan kamerayı daha az izler: itmede karakterler arka plandan çok büyür, derinlik
+        # hissi) ve arka plan dokusu (gren + toz; karakterler net kalır). Video `hareket` ayarı, sahne üstüne yazar.
+        hk = getattr(self.c.v, "hareket", None) or {}
+        self.paralaks = float(kam.get("paralaks", hk.get("paralaks", 0.0)) or 0.0)
+        dk = p.get("doku") if p.get("doku") is not None else hk.get("doku", False)
+        self.doku = dk if isinstance(dk, dict) else ({"gren": 0.035, "toz": 18} if dk else None)
+        self.toz = Z.Toz(int(self.doku["toz"]), self.c.S, tohum=self.sahne.no) if self.doku else None
 
     def itme(self, t: float) -> tuple[float, tuple[float, float] | None]:
         """(itme miktarı 0..1, konuşanın odak noktası) — konuşma aralıklarının yumuşak pencereleri."""
@@ -760,13 +1055,34 @@ class WojakCizici(Cizici):
                 z *= 1 + self.it * q
                 mx += (f[0] - mx) * self.odak_g * q
                 my += (f[1] - my) * self.odak_g * q
+        for t0, g_, su, x_, y_ in self.vurgu_it:
+            q = E.out_cubic((t - t0) / su) if t > t0 else 0.0
+            if q > 0:
+                z *= 1 + g_ * q
+                if x_ is not None:
+                    mx += (float(x_) - mx) * q
+                if y_ is not None:
+                    my += (float(y_) - my) * q
         return Kam(z, mx, my, self.W, self.H)
+
+    def kam_derin(self, k: Kam, d: float) -> Kam:
+        """Paralaks: d (0 = ön plan, 1 = arka plan düzlemi) derinliğindeki katmanın kamerası."""
+        f = 1 - self.paralaks * d
+        if f >= 0.999:
+            return k
+        return Kam(1 + (k.z - 1) * f, 0.5 + (k.cx - 0.5) * f, 0.5 + (k.cy - 0.5) * f, self.W, self.H)
 
     def ciz(self, t):
         k = self.kam(t)
-        im = C.kamera(self.bg, self.W, self.H, k.z, (k.cx, k.cy))
+        kb = self.kam_derin(k, 1.0)
+        im = C.kamera(self.bg, self.W, self.H, kb.z, (kb.cx, kb.cy))
+        if self.doku:
+            if self.doku.get("gren"):
+                C.gren_uygula(im, t, float(self.doku["gren"]))
+            if self.toz is not None:
+                self.toz.ciz(im, t)
         for kr in self.cizim_sirasi:
-            kr.ciz(im, t, k)
+            kr.ciz(im, t, self.kam_derin(k, 0.8 * kr.derinlik) if kr.derinlik else k)
         for b in self.balonlar:
             b.ciz(im, t, k)
         self.etiket.ciz(im, t)
@@ -809,6 +1125,16 @@ class FotoCizici(Cizici):
                                      width=max(1, int(S)))
         self.spr, ox, oy = C.golgeli(pr, 22 * S, 0.62, 9 * S, 16 * S)
         self.ax, self.ay = ox + pr.width / 2, oy + pr.height / 2
+        # 7. tur: gölge ayrı katman: baskı havadayken (iniş) gölge daha uzak, yumuşak ve soluk; oturunca sıkılaşır
+        hk = getattr(self.c.v, "hareket", None) or {}
+        self.bulanik = bool(hk.get("bulaniklik", False))
+        self.canli_golge = bool(hk.get("ikincil", False))
+        if self.canli_golge:
+            self.baski = pr
+            self.golgeler = []
+            for h in (0.0, 0.33, 0.66, 1.0):
+                g, gx, gy = C.golge_katmani(pr, (22 + 26 * h) * S, 0.62 * (1 - 0.4 * h))
+                self.golgeler.append((h, g, gx, gy))
         self.egim = float(p.get("egim", -2.2))
         self.giris = str(p.get("giris", "alt"))
         z = p.get("zoom", 1.05)
@@ -821,9 +1147,8 @@ class FotoCizici(Cizici):
         self.x = float(p.get("x", 0.5))
         self.pr_w, self.pr_h = pr.width, pr.height
 
-    def ciz(self, t):
-        W, H, S = self.W, self.H, self.S
-        im = C.kamera(self.arka, W, H, 1.0 + 0.06 * E.in_out_sine(t / self.dur), (0.5, 0.5))
+    def _poz(self, t):
+        W, H = self.W, self.H
         u = (t - self.z["inis"]) / 0.72
         e = E.out_back(u, 1.0)
         cx, cy = W * self.x, H * 0.455
@@ -831,17 +1156,49 @@ class FotoCizici(Cizici):
         cx += (1 - e) * yon[0] * W * 0.9
         cy += (1 - e) * yon[1] * H * 0.95
         aci = self.egim + (1 - E.out_cubic(u)) * (7.0 if yon[0] >= 0 else -7.0)
-        s = (1.0 + 0.07 * (1 - E.out_cubic(u))) * (1 + (self.zoom - 1) * E.in_out_sine(t / self.dur))
-        if u > 0:
+        kalk = 1 - E.out_cubic(u)                         # 1: havada, 0: masaya oturdu
+        s = (1.0 + 0.07 * kalk) * (1 + (self.zoom - 1) * E.in_out_sine(t / self.dur))
+        return u, cx, cy, aci, s, kalk
+
+    def ciz(self, t):
+        W, H, S = self.W, self.H, self.S
+        im = C.kamera(self.arka, W, H, 1.0 + 0.06 * E.in_out_sine(t / self.dur), (0.5, 0.5))
+        u, cx, cy, aci, s, kalk = self._poz(t)
+        if u > 0 and self.canli_golge:
+            # gölge: yükseklikle uzaklaşır (sağ alta), büyür, yumuşar, solar
+            h = min(1.0, max(0.0, kalk * 1.6))
+            hh, g, gx, gy = min(self.golgeler, key=lambda q: abs(q[0] - h))
+            ox, oy = (9 + 34 * h) * S, (16 + 48 * h) * S
+            gs = s * (1 + 0.03 * h)
+            spr, x0, y0 = C.afin(g, cx + ox, cy + oy, gs, gs, aci, gx + self.baski.width / 2, gy + self.baski.height / 2)
+            C.bindir(im, spr, x0, y0)
+            spr, x0, y0 = C.afin(self.baski, cx, cy, s, s, aci)
+            if self.bulanik:
+                _, px, py, _, _, _ = self._poz(t - 1 / self.c.fps)
+                if math.hypot(cx - px, cy - py) > 10 * S:
+                    spr, ox_, oy_ = C.hareket_izi(spr, cx - px, cy - py, en_cok=C.IZ_EN_COK * S)
+                    x0, y0 = x0 + ox_, y0 + oy_
+            C.bindir(im, spr, x0, y0)
+        elif u > 0:
             spr, x0, y0 = C.afin(self.spr, cx, cy, s, s, aci, self.ax, self.ay)
+            if self.bulanik:
+                _, px, py, _, _, _ = self._poz(t - 1 / self.c.fps)
+                if math.hypot(cx - px, cy - py) > 10 * S:
+                    spr, ox_, oy_ = C.hareket_izi(spr, cx - px, cy - py, en_cok=C.IZ_EN_COK * S)
+                    x0, y0 = x0 + ox_, y0 + oy_
             C.bindir(im, spr, x0, y0)
         self.etiket.ciz(im, t)
         if self.atif is not None:
             if abs(self.x - 0.5) < 1e-3:
                 C.bindir(im, self.atif, W - 70 * S - self.atif.width, H - 82 * S - self.atif.height, 0.65)
             else:
-                ax = W * self.x + self.pr_w / 2 - self.atif.width
-                ay = min(H * 0.455 + self.pr_h / 2 + 14 * S, H - 40 * S - self.atif.height)
+                # 8. tur: baskının SON (yakınlaşmış, eğik) alt kenarına göre: zoom > 1,04'te baskı atıfın üstüne
+                # büyüyordu (7. tur raporu, motor hatası 2)
+                th = math.radians(abs(self.egim))
+                yari_h = (self.pr_h * math.cos(th) + self.pr_w * math.sin(th)) / 2 * self.zoom
+                yari_w = (self.pr_w * math.cos(th) + self.pr_h * math.sin(th)) / 2 * self.zoom
+                ax = W * self.x + yari_w - self.atif.width
+                ay = min(H * 0.455 + yari_h + 12 * S, H - 40 * S - self.atif.height)
                 C.bindir(im, self.atif, ax, ay, 0.65)
         return im
 
@@ -883,6 +1240,13 @@ class MansetCizici(Cizici):
             bx = [int(round(v)) for v in bx]
             self.kutular.append((bx, self._kalem_maske(bx[2] - bx[0], bx[3] - bx[1], len(self.kutular))))
         self.ts = manset_zamanlari(self.sahne)
+        # 7. tur: vurgu stili kutu başına (vurgula olayının `stil`/`renk`i): kalem (fosforlu, vars.) | daire (elle
+        # çizilmiş kırmızı çember) | alt_cizgi (elle çizilmiş dalgalı alt çizgi)
+        self.stiller = {}
+        for o in olaylar(self.sahne, "vurgula"):
+            k = int(o.p["kutu"]) - 1
+            st = str(o.p.get("stil", "kalem"))
+            self.stiller[k] = (st, tuple(Z.renk(o.p.get("renk"), (206, 30, 36))) if st != "kalem" else None)
         # kamera: sırayla her kutunun merkezine doğru kayar (kalem nereden geçiyorsa oraya)
         self.hedefler = [((b[0] + b[2]) / 2 / BW, (b[1] + b[3]) / 2 / BH) for b, _ in self.kutular]
 
@@ -901,9 +1265,67 @@ class MansetCizici(Cizici):
         doku = 0.86 + 0.1 * rng.random((1, w)).astype(np.float32).repeat(h, 0)
         return np.clip(m * doku, 0, 1)
 
+    def _el_cizimi(self, pg: Image.Image, bx, stil: str, renk, pr: float, tohum: int) -> None:
+        """Elle çizilmiş işaret (7. tur): çember kutunun çevresinde ~380° döner (uçları üst üste biner, hafif
+        eğik, yarıçapı dalgalı), alt çizgi kutunun altında hafif dalgalı ve sonunda yukarı kıvrık. Kalınlık
+        uçlarda incelir (kalem basıncı). 2x örneklemeyle çizilip küçültülür."""
+        S = self.S
+        rng = np.random.default_rng(300 + tohum)
+        x0, y0, x1, y1 = bx
+        cx, cy, rx, ry = (x0 + x1) / 2, (y0 + y1) / 2, (x1 - x0) / 2, (y1 - y0) / 2
+        if stil == "daire":
+            # geniş kutuda (belge satırı) elips komşu satırları üstü çizilmiş gibi keser: süperelips, kutuya yakın
+            # (dikeyde satır aralığında kalır); kare kutuda düz elips
+            rx, ry = rx + 16 * S, ry + 5 * S
+            us_ = 2 + min(4.0, (rx / max(ry, 1)) / 3)
+            f1, f2 = rng.uniform(0, 6.28, 2)
+            n = 200
+            th0 = math.radians(-160)
+            tam = math.radians(385)
+            egim = math.radians(rng.uniform(-1.2, 1.2))
+            pts = []
+            for i in range(n + 1):
+                u = i / n
+                th = th0 + tam * u
+                c_, s_ = math.cos(th), math.sin(th)
+                r_ = 1 + 0.02 * math.sin(2 * th + f1) + 0.012 * math.sin(3 * th + f2) + 0.03 * u
+                px = rx * r_ * math.copysign(abs(c_) ** (2 / us_), c_)
+                py = ry * r_ * math.copysign(abs(s_) ** (2 / us_), s_)
+                pts.append((cx + px * math.cos(egim) - py * math.sin(egim), cy + px * math.sin(egim) + py * math.cos(egim)))
+        else:
+            n = 60
+            yb = y1 + 3 * S
+            f1 = rng.uniform(0, 6.28)
+            pts = [(x0 - 10 * S + (x1 - x0 + 20 * S) * i / n,
+                    yb + 3 * S * math.sin(6.28 * 1.3 * i / n + f1) - 2 * S * i / n) for i in range(n + 1)]
+            pts += [(pts[-1][0] + 10 * S, pts[-1][1] - 9 * S)]
+        k = max(2, int(round(len(pts) * pr)))
+        yol = pts[:k]
+        xs, ys = [p_[0] for p_ in pts], [p_[1] for p_ in pts]
+        pad = 20 * S
+        L, T = min(xs) - pad, min(ys) - pad
+        w, h = int(max(xs) - L + pad) + 1, int(max(ys) - T + pad) + 1
+        ss = 2
+        lay = Image.new("RGBA", (w * ss, h * ss), (0, 0, 0, 0))
+        d = ImageDraw.Draw(lay)
+        kal = 7 * S * ss
+        for i, ((xa, ya), (xb, yb)) in enumerate(zip(yol, yol[1:])):
+            u = i / max(1, len(pts) - 2)
+            bas = 0.55 + 0.45 * min(1.0, u / 0.08, (1 - u) / 0.1 if u < 1 else 0)
+            d.line([((xa - L) * ss, (ya - T) * ss), ((xb - L) * ss, (yb - T) * ss)], fill=tuple(renk) + (235,),
+                   width=max(1, int(kal * bas)), joint="curve")
+        lay = lay.resize((w, h), Image.LANCZOS)
+        C.bindir(pg, lay, L, T)
+
     def ciz(self, t):
         pg = self.page.copy()
-        for (bx, mask), t0 in zip(self.kutular, self.ts):
+        for i, ((bx, mask), t0) in enumerate(zip(self.kutular, self.ts)):
+            st = self.stiller.get(i, ("kalem", None))
+            if st[0] != "kalem":
+                pr = E.in_out_sine((t - t0) / 0.7)
+                if pr > 0:
+                    self._el_cizimi(pg, bx, st[0], st[1], pr, i)
+                continue
             pr = E.in_out_cubic((t - t0) / 0.6)
             if pr <= 0:
                 continue
@@ -977,6 +1399,29 @@ class HaritaCizici(Cizici):
                 self.vurgu = (vz[1], mask, bbox, vr, halka, pt, kutu)
                 mrk = (E.karistir(0.5, pt[0] / BW, 0.35), E.karistir(0.5, pt[1] / BH, 0.35))
         self.merkez = mrk
+        # 7. tur: rotalar (a'dan b'ye çizilerek uzanan yay; uçta parlayan nokta, varışta halka)
+        self.rotalar = []
+        for i, (t0, sure, q) in enumerate(rota_zamanlari(self.sahne)):
+            a_, b_ = self._rota_noktasi(hc, q["a"]), self._rota_noktasi(hc, q["b"])
+            if a_ is None or b_ is None:
+                raise ValueError(f"{self.sahne.yer}: rota noktası bulunamadı ({q['a']} -> {q['b']})")
+            kavis = float(q.get("kavis", 0.22))
+            (x0, y0), (x1, y1) = a_, b_
+            L = math.hypot(x1 - x0, y1 - y0)
+            nx, ny = (-(y1 - y0) / max(L, 1e-6), (x1 - x0) / max(L, 1e-6))
+            if ny > 0:   # yay yukarı doğru kabarsın
+                nx, ny = -nx, -ny
+            cx_, cy_ = (x0 + x1) / 2 + nx * kavis * L, (y0 + y1) / 2 + ny * kavis * L
+            us = np.linspace(0, 1, 120)
+            pts = np.stack([(1 - us) ** 2 * x0 + 2 * (1 - us) * us * cx_ + us ** 2 * x1,
+                            (1 - us) ** 2 * y0 + 2 * (1 - us) * us * cy_ + us ** 2 * y1], axis=1)
+            uz = np.concatenate([[0], np.cumsum(np.hypot(*np.diff(pts, axis=0).T))])
+            renk = tuple(Z.renk(q.get("renk"), C.SARI))
+            et = None
+            if q.get("etiket"):
+                et = C.yazi(str(q["etiket"]), C.FONT_BOLD, 28 * S, C.BEYAZ, stroke=3 * S, stroke_fill=(10, 12, 16))
+            self.rotalar.append({"t0": t0, "sure": sure, "pts": pts, "uz": uz, "renk": renk,
+                                 "kesik": bool(q.get("kesik", False)), "et": et, "i": i})
         self.baslik = None
         if p.get("baslik"):
             self.baslik = C.yazi(str(p["baslik"]), C.FONT_DIALOG, 54 * S, C.BEYAZ, max_w=1100 * S, max_lines=2,
@@ -992,6 +1437,88 @@ class HaritaCizici(Cizici):
                                           fill=renk + (255,))
             lay.alpha_composite(yz, (int(18 * S + sq + 14 * S), (h - yz.height) // 2))
             self.aciklama = lay
+
+    @staticmethod
+    def _rota_noktasi(hc, v):
+        """ISO3 kodu (ülkenin etiket noktası) ya da [boylam, enlem] -> taban pikseli."""
+        if isinstance(v, (list, tuple)) and len(v) == 2:
+            px, py, _ = hc.proj(np.array([float(v[0])]), np.array([float(v[1])]))
+            return float(px[0]), float(py[0])
+        k = str(v)
+        if k not in hc.ulkeler:
+            return None
+        pt = hc.etiket_noktasi(k)
+        if pt is None:
+            mk = hc.maske(k)
+            if mk is None:
+                return None
+            bb = mk[1]
+            pt = ((bb[0] + bb[2]) / 2, (bb[1] + bb[3]) / 2)
+        return pt
+
+    def _rota_ciz(self, base: Image.Image, r: dict, t: float) -> None:
+        """Rotayı tabana çiz (kamera öncesi; kamera örneklemesi kenarı yumuşatır). İlerleme in_out_cubic, kesik
+        çizgi seçeneği, uçta parlayan nokta, varışta genişleyen halka."""
+        S = self.S
+        q = E.in_out_cubic((t - r["t0"]) / r["sure"])
+        if q <= 0:
+            return
+        pts, uz = r["pts"], r["uz"]
+        hedef = q * uz[-1]
+        n = int(np.searchsorted(uz, hedef))
+        yol = [tuple(p_) for p_ in pts[:max(1, n)]]
+        if n < len(pts):
+            k = max(1, n)
+            f = (hedef - uz[k - 1]) / max(uz[k] - uz[k - 1], 1e-6) if k < len(uz) else 1.0
+            yol.append(tuple(pts[k - 1] + (pts[min(k, len(pts) - 1)] - pts[k - 1]) * min(1.0, f)))
+        xs, ys = [p_[0] for p_ in yol], [p_[1] for p_ in yol]
+        pad = 40 * S
+        L, T = min(xs) - pad, min(ys) - pad
+        w, h = int(max(xs) - L + pad) + 1, int(max(ys) - T + pad) + 1
+        ss = 2
+        lay = Image.new("RGBA", (w * ss, h * ss), (0, 0, 0, 0))
+        d = ImageDraw.Draw(lay)
+        yy = [((x - L) * ss, (y - T) * ss) for x, y in yol]
+        kal = max(2, int(6 * S * ss))
+        if len(yy) > 1:
+            d.line([(x + 3 * S * ss, y + 4 * S * ss) for x, y in yy], fill=(8, 10, 14, 120), width=kal + 2 * ss,
+                   joint="curve")
+            if r["kesik"]:
+                ac = True
+                adim = 22 * S * ss
+                birikim = 0.0
+                for (xa, ya), (xb, yb) in zip(yy, yy[1:]):
+                    birikim += math.hypot(xb - xa, yb - ya)
+                    if ac:
+                        d.line([(xa, ya), (xb, yb)], fill=r["renk"] + (255,), width=kal)
+                    if birikim >= adim * (0.62 if ac else 0.38):
+                        ac, birikim = not ac, 0.0
+            else:
+                d.line(yy, fill=r["renk"] + (255,), width=kal, joint="curve")
+        # başlangıç noktası
+        x0, y0 = yy[0]
+        rr = 7 * S * ss
+        d.ellipse((x0 - rr, y0 - rr, x0 + rr, y0 + rr), fill=r["renk"] + (255,), outline=(10, 12, 16, 255),
+                  width=max(1, int(2 * S * ss)))
+        lay = lay.resize((w, h), Image.LANCZOS)
+        C.bindir(base, lay, L, T)
+        xe, ye = yol[-1]
+        if q < 1:   # uçta parlayan nokta
+            gl = Z._yumusak_nokta(max(2, int(16 * S)))
+            self._renk_bas(base, (255, 250, 220), (xe - gl.width / 2, ye - gl.height / 2), gl, 0.9)
+            r2 = 6 * S
+            ImageDraw.Draw(base).ellipse((xe - r2, ye - r2, xe + r2, ye + r2), fill=(255, 255, 255))
+        else:       # varış: genişleyen halka + kalıcı nokta
+            u = (t - r["t0"] - r["sure"]) / 0.7
+            if u < 1:
+                rh = (8 + 46 * E.out_cubic(u)) * S
+                lay2 = Image.new("RGBA", (int(2 * rh + 10), int(2 * rh + 10)), (0, 0, 0, 0))
+                ImageDraw.Draw(lay2).ellipse((5, 5, 5 + 2 * rh, 5 + 2 * rh), outline=r["renk"] + (255,),
+                                             width=max(1, int(5 * S * (1 - u) + 1)))
+                C.bindir(base, lay2, xe - rh - 5, ye - rh - 5, 1 - u)
+            r3 = 9 * S
+            ImageDraw.Draw(base).ellipse((xe - r3, ye - r3, xe + r3, ye + r3), fill=r["renk"], outline=(10, 12, 16),
+                                         width=max(1, int(2 * S)))
 
     def _parilti(self, mask, bbox, r):
         pad = int(r * 3)
@@ -1065,6 +1592,8 @@ class HaritaCizici(Cizici):
             if u < 1.0:
                 gm, gxy = glow
                 self._renk_bas(base, self.parlak, gxy, gm, 0.55 * (1 - E.out_cubic(u / 1.0)))
+        for r in self.rotalar:
+            self._rota_ciz(base, r, t)
         if self.vurgu:
             t0, mask, bbox, vr, (halka, hxy), pt, kutu = self.vurgu
             u = t - t0
@@ -1080,7 +1609,12 @@ class HaritaCizici(Cizici):
                 (px, py), spr = lab
                 x, y = self._nokta((px, py), zoom, self.merkez)
                 a = E.out_cubic((t - t0 - 0.1) / 0.3)
-                C.bindir(im, spr, x - spr.width / 2, y - spr.height / 2 + (1 - a) * 8 * S, a)
+                C.bindir_alt(im, spr, x - spr.width / 2, y - spr.height / 2 + (1 - a) * 8 * S, a)
+        for r in self.rotalar:
+            if r["et"] is not None and t >= r["t0"] + r["sure"]:
+                a = E.out_cubic((t - r["t0"] - r["sure"]) / 0.3)
+                x, y = self._nokta(tuple(r["pts"][-1]), zoom, self.merkez)
+                C.bindir_alt(im, r["et"], x + 14 * S, y - r["et"].height - 10 * S + (1 - a) * 8 * S, a)
         if self.vurgu:
             t0, mask, bbox, vr, _, pt, kutu = self.vurgu
             u = t - t0 - 0.25
@@ -1089,11 +1623,11 @@ class HaritaCizici(Cizici):
                 a = E.out_cubic(u / 0.3)
                 bx = min(x + 110 * S, W - kutu.width - 40 * S)
                 by = max(y - 150 * S, 140 * S)
-                d = ImageDraw.Draw(im)
                 lu = E.out_cubic(u / 0.25)
-                d.line((x, y, x + (bx + 12 * S - x) * lu, y + (by - y) * lu), fill=(245, 255, 248),
-                       width=max(1, int(4 * S)))
-                d.ellipse((x - 8 * S, y - 8 * S, x + 8 * S, y + 8 * S), fill=(245, 255, 248))
+                # 7. tur: çizgi + nokta kenarı yumuşatılmış katman, alt pikselde (kamerayla kayarken basamaklanmasın)
+                cz, lx, ly = C.cizgi_katmani(x, y, x + (bx + 12 * S - x) * lu, y + (by - y) * lu, max(1.0, 4 * S),
+                                             (245, 255, 248), nokta=8 * S)
+                C.bindir_alt(im, cz, lx, ly)
                 s = 0.7 + 0.3 * E.out_back((u - 0.12) / 0.3, 1.5)
                 if u > 0.12:
                     spr, x0, y0 = C.afin(kutu, bx, by, s, s, 0, 0, kutu.height * 0.5)
@@ -1132,6 +1666,7 @@ class SayacCizici(Cizici):
         self._et: dict = {}
         self.ust = C.yazi(C.buyuk(str(p["ust"])), C.FONT_BOLD, 32 * S, self.pal.ikincil, aralik=0.22) \
             if p.get("ust") else None
+        self.yuvarla = bool((getattr(self.c.v, "hareket", None) or {}).get("bulaniklik", False))
 
     def _etiket(self, metin):
         if not metin:
@@ -1155,6 +1690,75 @@ class SayacCizici(Cizici):
             self._rk[key] = lay
         return self._rk[key]
 
+    BULANIK_SEVIYE = (0.0, 0.08, 0.16, 0.26, 0.38)   # hücre cinsinden dikey iz (fazlası rakamı gri çubuğa çevirir)
+
+    def _serit(self, renk, seviye: float, bos: bool = False) -> np.ndarray:
+        """0-9-0 rakam şeridi (11 hücre, dikey), dikeyde `seviye` hücre boyu kutu bulanık; önceden çarpılmış alfa.
+        bos (8. tur): 0 hücresi boş (öndeki basamak: sayı o basamağa ulaşınca boştan 1'e döner)."""
+        key = ("serit", tuple(renk), seviye, bos)
+        if key in self._rk:
+            return self._rk[key]
+        hucreler = [np.asarray(self._rakam(str(d % 10), renk).convert("RGBa"), np.float32) for d in range(10)]
+        if bos:
+            hucreler[0] = np.zeros_like(hucreler[0])
+        h = hucreler[0].shape[0]
+        a = np.concatenate(hucreler, axis=0)            # döngüsel 10 hücre
+        n = int(round(seviye * h))
+        if n >= 2:
+            pad = np.concatenate([a[-(n // 2 + 1):], a, a[:n - n // 2]], axis=0)
+            c = np.cumsum(pad, axis=0)
+            a = (c[n:n + 10 * h] - c[:10 * h]) / n
+        a = np.concatenate([a, a[:h]], axis=0)          # 11. hücre (sarma için)
+        self._rk[key] = a
+        return a
+
+    def _teker(self, renk, konum: float, hiz: float, bos: bool = False) -> Image.Image:
+        """Sayaç tekerleği: konum (0..10, kesirli: yuvarlanma), hiz (hücre / kare) -> hücre katmanı.
+        bos: öndeki boş basamak (0 yerine boşluk)."""
+        iz = min(0.38, 0.5 * hiz)                         # 180° obtüratör, rakam okunur kalacak kadar
+        sev = min(self.BULANIK_SEVIYE, key=lambda x: abs(x - iz))
+        a = self._serit(renk, sev, bos)
+        h = a.shape[0] // 11
+        y0 = int(round((konum % 10) * h))
+        parca = a[y0:y0 + h]
+        return Image.fromarray(np.clip(parca + 0.5, 0, 255).astype(np.uint8), "RGBa").convert("RGBA")
+
+    def _yuvarlanan(self, v: float, hiz: float, b: dict) -> tuple[list, str]:
+        """7. tur: sayım tekerlekli sayaç gibi akar. Eskiden her kare yeni bir tam sayı basılıyordu: hızlı sayımda
+        alt basamaklar her karede değişip titreşiyordu (talidomit-turkiye 2:20, 0 -> 20.000). Şimdi her basamak
+        bir tekerlek: birler sürekli döner, üstteki basamak alttakiler 9'dan 0'a geçerken döner (kilometre
+        sayacı); hızlı dönen tekerlek dikeyde bulanık (hareket izi). Dönen: [(karakter | (konum, hiz))], sonek."""
+        n = max(0, int(math.floor(abs(v) + 1e-6)))
+        # 8. tur (izlenme hakemi S1): basamak sayısı baştan bölümün en büyük değerine göre sabit. Eskiden 9.999 ->
+        # 10.000 geçişinde 4 basamak önce "0.000"a dönüyor, sonra 5. basamak eklenip sayı yana kayıyordu (0:06, 4
+        # kare; 5:37'de "≈0.007"). Şimdi öndeki boş tekerlek alttakiler 9'dan 0'a dönerken boştan 1'e döner;
+        # yerleşim ilk kareden son genişlikte (sayı kaymaz).
+        basamak = max(len(str(n)), int(b.get("basamak", 0) or 0))
+        out = []
+        for p_ in range(basamak - 1, -1, -1):
+            g = 10 ** p_
+            bos = p_ > 0 and n < g          # öndeki sıfır: boş tekerlek
+            if bos and (hiz / g > 0.6 or abs(v) < g - 1):
+                # 9. tur (izlenme N1): boş tekerlek, sayı o basamağa varana dek boş kalır (hızlıyken bulanık şeritteki
+                # 9/1 komşuları "0" gibi görünüyordu: "01.500.000")
+                out.append((0.0, 0.0, True))
+                if p_ and p_ % 3 == 0:
+                    out.append((".", 0.0))
+                continue
+            if hiz / g > 0.6:     # kare başına yarım hücreden hızlı: tekerlek "döner" görünür, rakam bulanık
+                konum = float((n // g) % 10)
+            elif p_ == 0:
+                konum = abs(v) % 10
+            else:
+                taban = (n // g) % 10
+                alt = abs(v) % g
+                konum = taban + max(0.0, alt - (g - 1))
+            out.append((konum, hiz / g, bos))
+            if p_ and p_ % 3 == 0:
+                # binlik ayracı: solundaki basamak boşsa görünmez, boştan 1'e dönerken onunla belirir
+                out.append((".", 1.0 if not bos else min(1.0, max(0.0, konum))))
+        return out
+
     def _bolum(self, t: float) -> tuple[int, dict]:
         i = 0
         for j, b in enumerate(self.bolumler):
@@ -1174,6 +1778,31 @@ class SayacCizici(Cizici):
             y0 = int(math.floor(v)) if v < c else c
             frac = E.in_out_cubic(min(1.0, (v - y0) * 1.6)) if y0 < c else 0.0
             s0, s1 = str(y0), str(min(y0 + 1, c))
+        elif self.yuvarla:
+            # 8. tur: rakamlar sabit sayıda tekerlekte, sağa yaslı (öndeki boş tekerlekler solda). Önek (≈) görünen
+            # ilk rakamın hemen solunda ve sayının görünen genişliği 0,27 sn'lik ortalamayla değişir: basamak
+            # eklenince sayı zıplamadan, yumuşakça sola açılır (eskiden 940 -> 1.005'te bir karede kayıyordu)
+            dig = self._yuvarlanan_katman(t, b, min(u, 1.0))
+            sonek = b["sonek"]
+            son_w = self.f.getlength(sonek) if sonek else 0.0
+            onek_w = sum(self._w(ch) for ch in b["onek"])
+            gorunen = self._gorunen_w(t, b)
+            Wt = int(math.ceil(max(dig.width, onek_w + gorunen + son_w + 4)))
+            lay = Image.new("RGBA", (Wt, dig.height), (0, 0, 0, 0))
+            lay.alpha_composite(dig, (Wt - dig.width, 0))
+            x = Wt - 4 - son_w - gorunen - onek_w
+            for ch in b["onek"]:
+                lay.alpha_composite(self._rakam(ch, renk), (int(round(x)), 0))
+                x += self._w(ch)
+            if sonek and u >= 1.0:   # sonek ('+') sayım bitince belirir; yeri baştan ayrılmıştı
+                a = E.out_cubic((t - b["t1"]) / 0.25)
+                sk = self._rakam(sonek, renk)
+                if a < 1:
+                    sk = sk.copy()
+                    sk.putalpha(sk.getchannel("A").point(C._alfa_lut(int(255 * a))))
+                lay.alpha_composite(sk, (int(round(Wt - 4 - son_w)), int(-(1 - a) * 20 * S) if a < 1 else 0))
+            lay.info["ax"] = Wt - (onek_w + gorunen + son_w + 4) / 2      # görünen sayının ortası
+            return lay
         else:
             k = E.lineer(u) if b["b"] < b["a"] else E.out_cubic(u)
             v = b["a"] + (b["b"] - b["a"]) * k
@@ -1204,13 +1833,74 @@ class SayacCizici(Cizici):
             lay.alpha_composite(sk, (int(round(x)), int(-(1 - a) * 20 * S)) if a < 1 else (int(round(x)), 0))
         return lay
 
+    def _deger(self, t: float, b: dict) -> float:
+        if b["t1"] - b["t0"] < 1e-3:   # sure: 0 -> yeni değer bir anda
+            return b["b"] if t >= b["t0"] else b["a"]
+        u = (t - b["t0"]) / max(b["t1"] - b["t0"], 1e-3)
+        if b.get("log") and b["b"] > b["a"] >= 0 and t > b["t0"]:
+            # 9. tur (izlenme N1): olcek: log -> 0'dan 300 milyona out_cubic ilk karede 8 basamağa sıçrıyordu ("0"
+            # 1 sn bekleyip 9 basamağa açılıyordu); geometrik sayımda her basamak eşit sürede eklenir
+            a0 = max(1.0, b["a"])
+            k = E.in_out_sine(E.kirp(u)) if u < 1 else 1.0
+            return a0 * (b["b"] / a0) ** k
+        k = E.lineer(u) if b["b"] < b["a"] else E.out_cubic(u)
+        return b["a"] + (b["b"] - b["a"]) * k
+
+    def _rakam_w(self, v: float) -> float:
+        """v'nin rakamlarının (binlik ayraçlarıyla) genişliği."""
+        d = len(str(max(0, int(math.floor(abs(v) + 1e-6)))))
+        return d * self.hucre + ((d - 1) // 3) * self._w(".")
+
+    def _gorunen_w(self, t: float, b: dict) -> float:
+        """Görünen rakamların genişliği, son 0,27 sn'nin ortalaması (basamak eklenince yumuşak açılma)."""
+        if b.get("ani"):
+            return self._rakam_w(b["b"])
+        dt = 1 / self.c.fps
+        ws = [self._rakam_w(self._deger(t - k * dt, b)) for k in range(9)]
+        return sum(ws) / len(ws)
+
+    def _yuvarlanan_katman(self, t: float, b: dict, u: float) -> Image.Image:
+        v = self._deger(t, b)
+        hiz = 0.0 if b.get("ani") else abs(v - self._deger(t - 1 / self.c.fps, b))   # birim / kare
+        renk = b["renk"]
+        parcalar = self._yuvarlanan(v, hiz, b)                       # önek _say_katmani'nde (rakamlara yapışık)
+        sonek = b["sonek"]
+        son_w = self.f.getlength(sonek) if sonek else 0.0
+        Wt = int(sum(self._w(q[0]) if isinstance(q[0], str) else self.hucre for q in parcalar) + son_w) + 4
+        Hh = int(math.ceil(self.yuk))
+        lay = Image.new("RGBA", (Wt, Hh), (0, 0, 0, 0))
+        x = 0.0
+        for q in parcalar:
+            if isinstance(q[0], str):
+                ch, al = q
+                if al > 0.01:
+                    spr = self._rakam(ch, renk)
+                    if al < 0.99:
+                        spr = spr.copy()
+                        spr.putalpha(spr.getchannel("A").point(C._alfa_lut(int(255 * al))))
+                    lay.alpha_composite(spr, (int(round(x)), 0))
+                x += self._w(ch)
+            else:
+                konum, h_, bos = q
+                lay.alpha_composite(self._teker(renk, konum, h_, bos), (int(round(x)), 0))
+                x += self.hucre
+        return lay
+
     def ciz(self, t):
         S, W, H = self.S, self.W, self.H
         im = self.zemin.ciz(t, self.dur)
         i, b = self._bolum(t)
         lay = self._say_katmani(t, b)
         bit = t - b["t1"]
-        if bit >= 0:
+        ani = i > 0 and b["t1"] - b["t0"] < 1e-3      # sure: 0 -> yeni değer bir anda
+        if bit >= 0 and ani:
+            # 8. tur (animasyon hakemi S4): bir anda gelen değer "yumruk" gibi iner (1,15 -> 1) ve rengiyle kısa bir
+            # parlama yapar (eskiden ≈20.000 tek karede kırmızı "en az 17"ye dönüyordu)
+            s = 1.0 + 0.15 * (1 - E.out_cubic(bit / 0.3))
+            fl = 0.2 * (1 - E.out_cubic(bit / 0.35))
+            if fl > 0.004:
+                im = Image.blend(im, Image.new("RGB", im.size, tuple(int(c) for c in b["renk"][:3])), fl)
+        elif bit >= 0:
             s = 1.0 + 0.06 * E.tumsek(bit / 0.3)
         elif i == 0:
             s = 0.94 + 0.06 * E.out_cubic(t / 0.45)
@@ -1222,24 +1912,33 @@ class SayacCizici(Cizici):
         etiketler = [x["etiket"] for x in self.bolumler]
         et_var = any(etiketler)
         cy = H * (0.45 if et_var else 0.5) + Z.suzul(t, 0.4, 2.0) * S
-        spr, x0, y0 = C.afin(lay, W / 2, cy, s, s, 0)
+        spr, x0, y0 = C.afin(lay, W / 2, cy, s, s, 0, lay.info.get("ax"), lay.height / 2)
         C.bindir(im, spr, x0, y0, a)
         if self.ust is not None:
-            C.bindir(im, self.ust, W / 2 - self.ust.width / 2, cy - self.yuk / 2 - 40 * S - self.ust.height, a)
+            C.bindir_alt(im, self.ust, W / 2 - self.ust.width / 2, cy - self.yuk / 2 - 40 * S - self.ust.height, a)
         # etiket: ilk bölümde sayım başlarken belirir; değiştiğinde eskisi söner, yenisi gelir
         et = self._etiket(b["etiket"])
         ey = cy + self.yuk / 2 + 52 * S
+        sonraki = self.bolumler[i + 1] if i + 1 < len(self.bolumler) else None
+        on_son = 1.0
+        if sonraki is not None and sonraki["t1"] - sonraki["t0"] < 1e-3 and sonraki["etiket"] != b["etiket"]:
+            # 9. tur (animasyon S2): bir anda gelen değerden ÖNCE eski etiket söner ("en az 17 hasta" 3 kare okunuyordu)
+            on_son = 1 - E.out_cubic((t - (sonraki["t0"] - 0.2)) / 0.18)
         if i == 0:
-            ae = E.out_cubic((t - self.t0 - 0.35) / 0.45)
+            ae = E.out_cubic((t - self.t0 - 0.35) / 0.45) * on_son
         else:
-            ae = E.out_cubic((t - b["t0"]) / 0.35) if b["etiket"] != self.bolumler[i - 1]["etiket"] else 1.0
+            # 8. tur: eski etiket önce yukarı kayıp söner (0,16 sn), yenisi ondan sonra gelir (iki etiket üst üste
+            # binmesin: "hasta" ile "bebek · ABD" 5 kare çakışıyordu)
+            degisti = b["etiket"] != self.bolumler[i - 1]["etiket"]
+            ani_b = b["t1"] - b["t0"] < 1e-3
+            ae = (E.out_cubic((t - b["t0"] - (0.06 if ani_b else 0.13)) / 0.3) if degisti else 1.0) * on_son
             onceki = self._etiket(self.bolumler[i - 1]["etiket"])
-            if onceki is not None and b["etiket"] != self.bolumler[i - 1]["etiket"]:
-                ao = 1 - E.out_cubic((t - b["t0"]) / 0.25)
+            if onceki is not None and degisti and not ani_b:   # anide eski etiket zaten sönmüş
+                ao = 1 - E.out_cubic((t - b["t0"]) / 0.14)
                 if ao > 0:
-                    C.bindir(im, onceki, W / 2 - onceki.width / 2, ey - (1 - ao) * 18 * S, ao)
+                    C.bindir_alt(im, onceki, W / 2 - onceki.width / 2, ey - (1 - ao) * 26 * S, ao)
         if et is not None:
-            C.bindir(im, et, W / 2 - et.width / 2, ey + (1 - ae) * 24 * S, ae)
+            C.bindir_alt(im, et, W / 2 - et.width / 2, ey + (1 - ae) * 24 * S, ae)
         # ilk bitişte sayının altında çizgi
         bit0 = t - self.bolumler[0]["t1"]
         if bit0 >= 0:
@@ -1284,7 +1983,9 @@ class BolumKartiCizici(Cizici):
     def ciz(self, t):
         S, W, H = self.S, self.W, self.H
         if self.bindirme and self.donuk is not None:
-            a = E.out_cubic(t / 0.18)
+            # 7. tur: kararma 0,18 sn out_cubic -> 0,3 sn in_out_sine: ikinci karede bir anda %46 kararıp bulanıyordu
+            # (kare farkı 37/255, "flaş" gibi); şimdi 9 kareye yayılır
+            a = E.in_out_sine(t / 0.3)
             im = Image.blend(self.donuk, self.donuk_k, a) if a < 0.999 else self.donuk_k.copy()
             z = 1.0 + 0.025 * E.in_out_sine(t / self.dur)
             if z > 1.0005:
@@ -1363,7 +2064,7 @@ class MetinCizici(Cizici):
             self.satirlar.append((" ".join(s), x, top + si * lh, sw))
             if not self.daktilo:
                 for k in s:
-                    spr = C.yazi(k, C.FONT_DIALOG, f.size, self.renk, golge=golge)
+                    spr = C.yazi(k, C.FONT_DIALOG, f.size, self.renk, golge=golge, dikey_kirp=False)
                     self.kelimeler.append((spr, x, top + si * lh, si))
                     x += f.getlength(k + " ")
         self.blok_h = len(satirlar) * lh
@@ -1382,12 +2083,31 @@ class MetinCizici(Cizici):
             tirnak = metin.lstrip()[:1] in "„“\"‘«‹'"
         self.tirnak = C.yazi("“", C.FONT_DIALOG, 420 * S, pal.metin) if tirnak and not self.daktilo else None
         self._dk: dict = {}
+        self._satirlar_k: dict = {}
         self.cizikler = [(o.zaman, Z.renk(o.p.get("renk"), (206, 30, 36))) for o in olaylar(self.sahne, "ustunu_ciz")]
+
+    def _satir_katmani(self, si: int):
+        """si. satırın kelimeleri tek katmanda: (katman, x ofseti (W/2'ye göre), y ofseti (satır y'sine göre), y)."""
+        if si in self._satirlar_k:
+            return self._satirlar_k[si]
+        ks = [(spr, x, y) for spr, x, y, s_ in self.kelimeler if s_ == si]
+        x0 = min(x for _, x, _ in ks)
+        y_ = ks[0][2]
+        ofs = [(spr, x - x0, -spr.height * 0.5) for spr, x, _ in ks]
+        y0 = min(o for _, _, o in ofs)
+        w = int(math.ceil(max(xx + spr.width for spr, xx, _ in ofs))) + 2
+        h = int(math.ceil(max(o - y0 + spr.height for spr, _, o in ofs))) + 2
+        lay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        for spr, xx, o in ofs:
+            lay.alpha_composite(spr, (int(round(xx)), int(round(o - y0))))
+        self._satirlar_k[si] = (lay, x0, y0, y_)
+        return self._satirlar_k[si]
 
     def _daktilo_satiri(self, metin: str) -> Image.Image:
         spr = self._dk.get(metin)
         if spr is None:
-            spr = C.yazi(metin, C.FONT_MONO, self.f.size, self.renk, golge=self.pal.golge_t(self.S)) if metin else None
+            spr = C.yazi(metin, C.FONT_MONO, self.f.size, self.renk, golge=self.pal.golge_t(self.S),
+                         dikey_kirp=False) if metin else None
             self._dk[metin] = spr
         return spr
 
@@ -1410,25 +2130,35 @@ class MetinCizici(Cizici):
                 yy = cy + y + Z.suzul(t, i * 1.3, 2.0) * S
                 spr = self._daktilo_satiri(parca)
                 if spr is not None:
-                    C.bindir(im, spr, W / 2 + x, yy - spr.height * 0.42)
+                    C.bindir_alt(im, spr, W / 2 + x, yy - spr.height * 0.5)
                 imlec = (W / 2 + x + self.f.getlength(parca) + 6 * S, yy)
                 if kalan <= len(satir):
                     break
                 kalan -= len(satir) + 1
             bitti = t >= bas + sum(len(s_[0]) + 1 for s_ in self.satirlar) / hiz
-            if imlec and t >= bas - 0.4 and (not bitti or int(t * 2.2) % 2 == 0):
+            gecis_son = (self.sahne.gecis_kare + 1) / self.c.fps if self.sahne.gecis != "kesme" else 0.0
+            if imlec and t >= max(bas - 0.4, gecis_son) and (not bitti or int(t * 2.2) % 2 == 0):
                 ix, iy = imlec
                 asc, desc = self.f.getmetrics()
                 ImageDraw.Draw(im).rectangle((ix, iy - self.f.size * 0.4, ix + 0.33 * self.f.size,
                                               iy - self.f.size * 0.4 + asc + desc * 0.25), fill=self.renk)
         else:
+            # 7. tur: kelimeleri belirmesi biten satır tek katman olarak alt pikselde süzülür (124 pt yazı tam pikselde
+            # 0,3-0,4 sn'de bir 1 px zıplıyordu); belirme animasyonundaki kelime ayrı çizilir
+            bitti = {}
+            for (spr, x, y, si), tk in zip(self.kelimeler, self.z["kelimeler"]):
+                bitti[si] = bitti.get(si, True) and t >= tk + 0.32
+            for si, tamam in bitti.items():
+                if tamam:
+                    lay, ox, oy, y = self._satir_katmani(si)
+                    C.bindir_alt(im, lay, W / 2 + ox, cy + y + Z.suzul(t, si * 1.3, 2.5) * S + oy)
             for (spr, x, y, si), tk in zip(self.kelimeler, self.z["kelimeler"]):
                 u = (t - tk) / 0.32
-                if u <= 0:
+                if u <= 0 or bitti.get(si):
                     continue
                 a = E.out_cubic(u)
                 yy = cy + y + Z.suzul(t, si * 1.3, 2.5) * S
-                C.bindir(im, spr, W / 2 + x, yy - spr.height * 0.42 + (1 - a) * 26 * S, a)
+                C.bindir_alt(im, spr, W / 2 + x, yy - spr.height * 0.5 + (1 - a) * 26 * S, a)
         # üstünü çiz: satır satır soldan sağa
         for tc, rk in self.cizikler:
             u = (t - tc) / 0.5
@@ -1460,7 +2190,7 @@ class MetinCizici(Cizici):
                         isaret = Image.new("RGB", (int(lw + 24 * S), int(self.ceviri.height * 0.62)),
                                            self.pal.isaret)
                         C.bindir(im, isaret, W / 2 - cw / 2 - 12 * S, y + self.ceviri.height * 0.3, 0.8)
-                C.bindir(im, self.ceviri, W / 2 - cw / 2, y + (1 - a) * 22 * S, a)
+                C.bindir_alt(im, self.ceviri, W / 2 - cw / 2, y + (1 - a) * 22 * S, a)
         if self.alt is not None:
             C.bindir(im, self.alt, W / 2 - self.alt.width / 2, H - 140 * S, 0.8 * E.out_cubic((t - 0.5) / 0.5))
         return im
@@ -1484,7 +2214,7 @@ class ZamanCizelgesiCizici(Cizici):
         for nk in self.noktalar:
             tarih = C.yazi(str(nk["tarih"]), C.FONT_CARD, 66 * S, pal.vurgu, max_w=aralik - 20 * S, max_lines=2,
                            align="center", golge=pal.golge_t(S, 3, 6))
-            yz = C.yazi(str(nk.get("metin", "")), C.FONT_BOLD, 36 * S, pal.metin, max_w=aralik - 30 * S,
+            yz = C.yazi(str(nk.get("metin", "")), C.FONT_BOLD, 42 * S, pal.metin, max_w=aralik - 30 * S,   # 8. tur: 36 -> 42
                         max_lines=3, align="center", satir=1.18, golge=pal.golge_t(S, 3, 6)) if nk.get("metin") else None
             self.spr.append((tarih, yz))
         self.baslik = C.yazi(str(p["baslik"]), C.FONT_DIALOG, 58 * S, pal.metin, max_w=1500 * S, max_lines=1,
@@ -1523,10 +2253,10 @@ class ZamanCizelgesiCizici(Cizici):
             d.ellipse((x - r, self.y - r, x + r, self.y + r), fill=dolgu, outline=pal.vurgu, width=max(1, int(4 * S)))
             a = E.out_cubic(u / 0.4) * kis
             sz = Z.suzul(t, i * 0.9, 2.5 if aktif else 1.5) * S   # yazılar hafifçe süzülür (boşta hareket)
-            C.bindir(im, tarih, x - tarih.width / 2,
-                     self.y - 44 * S - tarih.height - (1 - E.out_cubic(u / 0.4)) * 14 * S + sz, a)
+            C.bindir_alt(im, tarih, x - tarih.width / 2,
+                         self.y - 44 * S - tarih.height - (1 - E.out_cubic(u / 0.4)) * 14 * S + sz, a)
             if yz is not None:
-                C.bindir(im, yz, x - yz.width / 2, self.y + 46 * S + (1 - E.out_cubic(u / 0.4)) * 14 * S + sz, a)
+                C.bindir_alt(im, yz, x - yz.width / 2, self.y + 46 * S + (1 - E.out_cubic(u / 0.4)) * 14 * S + sz, a)
         if self.baslik is not None:
             a = E.out_cubic(t / 0.5)
             C.bindir(im, self.baslik, 80 * S, 64 * S - (1 - a) * 12 * S, a)
@@ -1542,9 +2272,10 @@ CIZICILER = {"wojak": WojakCizici, "foto": FotoCizici, "manset": MansetCizici, "
 
 def cizici(sahne: Sahne, c: Baglam) -> Cizici:
     if sahne.tip not in CIZICILER:   # 2. tur tipleri ayrı modüllerde (sahneler'i içe aktarırlar)
-        from . import bilgi, kanal
+        from . import bilgi, kanal, kapanis
         CIZICILER.update({"bolunmus": bilgi.BolunmusCizici, "izgara": bilgi.IzgaraCizici, "pano": bilgi.PanoCizici,
-                          "marka": kanal.MarkaCizici, "bitis": kanal.BitisCizici})
+                          "marka": kanal.MarkaCizici, "bitis": kanal.BitisCizici,
+                          "kapanis": kapanis.KapanisCizici})
     return CIZICILER[sahne.tip](sahne, c)
 
 

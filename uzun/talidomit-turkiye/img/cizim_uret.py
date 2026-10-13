@@ -281,6 +281,56 @@ def sall4(kirik=False):
     return t.done()
 
 
+def zarlar():
+    """7. tur (kapanış çağrısı, 'ŞANS' seçeneği): iki düz çizim zar (numune kutusuyla aynı küp çizimi, siyah kontur,
+    fildişi yüzler, siyah noktalar). Yazı/logo yok."""
+    t = Tuval(1180, 820)
+
+    def zar(x, y, a, d, on_nokta, ust_nokta, yan_nokta):
+        # x, y: ön yüzün sol üst köşesi; a: ön yüz kenarı; d: derinlik (üst/yan yüzün kayması)
+        front = [(x, y), (x + a, y), (x + a, y + a), (x, y + a)]
+        top = [(x, y), (x + d, y - d * 0.8), (x + a + d, y - d * 0.8), (x + a, y)]
+        side = [(x + a, y), (x + a + d, y - d * 0.8), (x + a + d, y + a - d * 0.8), (x + a, y + a)]
+        t.shape(top, (236, 230, 214, 255))
+        t.shape(side, (206, 198, 180, 255))
+        t.shape(front, (250, 246, 234, 255))
+        t.line(front, w=8, closed=True)
+        t.line(side, w=8, closed=True)
+        t.line(top, w=8, closed=True)
+        r = a * 0.085
+        for u, v in on_nokta:      # ön yüz: yuvarlak noktalar (0..1 yüz koordinatı)
+            t.ellipse(x + u * a, y + v * a, r, r, fill=(18, 18, 18, 255), outline=None)
+        for u, v in ust_nokta:     # üst yüz: basık (perspektif)
+            cx = x + u * a + v * d
+            cy = y - v * d * 0.8
+            t.ellipse(cx, cy, r * 0.95, r * 0.5, fill=(18, 18, 18, 255), outline=None)
+        for u, v in yan_nokta:     # yan yüz: dar
+            cx = x + a + u * d
+            cy = y + v * a - u * d * 0.8
+            t.ellipse(cx, cy, r * 0.5, r * 0.9, fill=(18, 18, 18, 255), outline=None)
+
+    bes = [(0.25, 0.25), (0.75, 0.25), (0.5, 0.5), (0.25, 0.75), (0.75, 0.75)]
+    uc_yan = [(0.25, 0.25), (0.5, 0.5), (0.75, 0.75)]
+    zar(90, 300, 440, 170, bes, [(0.5, 0.5)], uc_yan)
+    iki = [(0.27, 0.27), (0.73, 0.73)]
+    alti_ust = [(0.27, 0.25), (0.27, 0.5), (0.27, 0.75), (0.73, 0.25), (0.73, 0.5), (0.73, 0.75)]
+    zar(720, 420, 300, 120, iki, alti_ust, [(0.5, 0.5)])
+    return t.done()
+
+
+def sall4_cift():
+    """7. tur (animasyon B9): sağlam ve kırık SALL4 aynı tuvalde (motor aynı tuvaldeki yüzleri ortak kutuyla kırpar;
+    ayrı tuvalde kırılma anında nesne ~%2 büyüyüp kayıyordu)."""
+    a, b = sall4(False), sall4(True)
+    kutu = None
+    for im in (a, b):
+        bb = im.getchannel("A").point(lambda v: 255 if v > 4 else 0).getbbox()
+        kutu = bb if kutu is None else (min(kutu[0], bb[0]), min(kutu[1], bb[1]), max(kutu[2], bb[2]), max(kutu[3], bb[3]))
+    pad = 6
+    kutu = (max(0, kutu[0] - pad), max(0, kutu[1] - pad), min(a.width, kutu[2] + pad), min(a.height, kutu[3] + pad))
+    return a.crop(kutu), b.crop(kutu)
+
+
 def kapi(acik: bool):
     """Düz çizim kapı (kasa + kanat). acik: kanat içeri açık, arkası karanlık."""
     t = Tuval(700, 1100)
@@ -295,6 +345,34 @@ def kapi(acik: bool):
         for (x0, y0, x1, y1) in ((170, 150, 530, 520), (170, 600, 530, 1000)):
             t.shape([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], dark, w=6)
         t.ellipse(530, 590, 16, 16, fill=(214, 176, 70, 255), w=5)
+    return t.done()
+
+
+def kapi_ara(g: float):
+    """8. tur (animasyon hakemi S4): kanadın kapanırken ara hâli (g: 0 = açık, 1 = kapalı). Kanat menteşeden (sol)
+    döner: serbest kenarı perspektifle sağa gelir, üst/alt kenarı kasaya yaklaşır; panolar kanatla birlikte daralır.
+    Kasa aynı: açık/kapalı çizimlerle aynı tuval ve kırpım (motorda yüz varyantı gibi art arda geçer)."""
+    t = Tuval(700, 1100)
+    wood, dark = (150, 98, 58, 255), (120, 76, 44, 255)
+    t.shape([(80, 60), (620, 60), (620, 1060), (80, 1060)], (96, 62, 36, 255), w=9)          # kasa
+    t.shape([(120, 100), (580, 100), (580, 1060), (120, 1060)], (24, 22, 26, 255), w=6)      # karanlık boşluk
+    xe = 250 + (580 - 250) * g
+    yt, yb = 150 - 50 * g, 1010 + 50 * g
+
+    def P(u, v):   # kapalı kanattaki (u, v) -> ara hâl
+        sx = (u - 120) / 460.0
+        r = (v - 100) / 960.0
+        X = 120 + sx * (xe - 120)
+        top = 100 + sx * (yt - 100)
+        bot = 1060 + sx * (yb - 1060)
+        return (X, top + r * (bot - top))
+
+    t.shape([P(120, 100), P(580, 100), P(580, 1060), P(120, 1060)], wood, w=8)
+    if g > 0.35:
+        for (x0, y0, x1, y1) in ((170, 150, 530, 520), (170, 600, 530, 1000)):
+            t.shape([P(x0, y0), P(x1, y0), P(x1, y1), P(x0, y1)], dark, w=6)
+    kx, ky = P(530, 590)
+    t.ellipse(kx, ky, 10 + 6 * g, 16, fill=(214, 176, 70, 255), w=5)
     return t.done()
 
 
@@ -1020,11 +1098,18 @@ def hepsi(sec: list[str]):
             kaydet(b, "molekul_beyaz.png")
             kaydet(s, "molekul_siyah.png")
         kaydet(cereblon(), "cereblon.png")
-        kaydet(sall4(False), "sall4.png")
-        kaydet(sall4(True), "sall4_kirik.png")
+    if on("molekul") or on("sall4"):   # 7. tur: iki hâl aynı tuvalde
+        a, b = sall4_cift()
+        kaydet(a, "sall4.png", trim=False)
+        kaydet(b, "sall4_kirik.png", trim=False)
+    if on("zar"):
+        kaydet(zarlar(), "zarlar.png")
     if on("kapi"):
         kaydet(kapi(True), "kapi_acik.png")
         kaydet(kapi(False), "kapi_kapali.png")
+    if on("kapi") or on("kapi_ara"):   # 8. tur: kapanırken ara kareler (açık ve kapalı çizimlere dokunmaz)
+        kaydet(kapi_ara(0.4), "kapi_ara_1.png")
+        kaydet(kapi_ara(0.78), "kapi_ara_2.png")
     if on("gazete"):
         im, kutu = gazete_1961()
         kaydet(im, "gazete_1961_canlandirma.png", trim=False)

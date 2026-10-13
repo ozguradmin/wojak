@@ -1,849 +1,849 @@
 1
-00:00:00,600 --> 00:00:02,660
+00:00:00,300 --> 00:00:02,360
 46 ülkede satılan bir ilaç.
 
 2
-00:00:02,700 --> 00:00:07,677
+00:00:02,400 --> 00:00:07,377
 10.000'den fazla bebek, bu ilaç yüzünden
 ağır doğumsal kusurlarla dünyaya geldi.
 
 3
-00:00:07,717 --> 00:00:10,249
+00:00:07,417 --> 00:00:09,949
 Ama Türkiye'de bu ilaca ruhsat verilmedi.
 
 4
-00:00:11,467 --> 00:00:14,082
+00:00:11,167 --> 00:00:13,782
 Peki Ankara'da bu kapıyı kim kapattı?
 
 5
-00:00:14,700 --> 00:00:16,310
+00:00:14,400 --> 00:00:16,010
 Herkesin bir cevabı var.
 
 6
-00:00:16,560 --> 00:00:19,239
+00:00:16,260 --> 00:00:18,939
 Ama ortada yayımlanmış tek bir belge yok.
 
 7
-00:00:20,333 --> 00:00:22,091
+00:00:20,033 --> 00:00:21,453
 1957. Batı Almanya.
 
 8
-00:00:22,131 --> 00:00:25,645
+00:00:21,493 --> 00:00:25,345
 Reçetesiz satılan yeni bir uyku ilacı.
 
 9
-00:00:25,767 --> 00:00:28,641
+00:00:25,467 --> 00:00:28,341
 Kısa süre sonra hamileler bile kullanıyor.
 
 10
-00:00:28,767 --> 00:00:30,904
+00:00:28,467 --> 00:00:30,604
 Reklamlarına göre bu ilaç…
 
 11
-00:00:31,054 --> 00:00:32,661
+00:00:30,754 --> 00:00:32,361
 <i>Tamamen zehirsiz.</i>
 
 12
-00:00:32,767 --> 00:00:35,384
+00:00:32,467 --> 00:00:35,084
 Bu hikâye 1961'de bitmedi.
 
 13
-00:00:35,424 --> 00:00:37,624
+00:00:35,124 --> 00:00:37,744
 Aynı ilaç, 40 yılı aşkın bir süre sonra,
 
 14
-00:00:37,664 --> 00:00:40,448
+00:00:37,784 --> 00:00:40,148
 Türkiye'nin kapısını
 bir kez daha çalacaktı.
 
 15
-00:00:40,548 --> 00:00:42,372
+00:00:40,248 --> 00:00:42,072
 Bu, o kapının hikâyesi.
 
 16
-00:00:43,967 --> 00:00:48,509
+00:00:43,667 --> 00:00:48,209
 Aralık 1956. Bir Grünenthal
 çalışanının kızı dünyaya geliyor.
 
 17
-00:00:48,549 --> 00:00:52,193
+00:00:48,249 --> 00:00:51,904
 Babası, hamile eşine firmanın numune
 tabletlerinden getirmiş.
 
 18
-00:00:52,233 --> 00:00:53,910
+00:00:51,944 --> 00:00:53,824
 Bebekte bir doğum kusuru var.
 
 19
-00:00:53,950 --> 00:00:56,653
+00:00:53,864 --> 00:00:56,364
 O gün kimse bunu ilaçla ilişkilendirmiyor.
 
 20
-00:00:56,767 --> 00:01:00,104
-Bugün o bebek, facianın bilinen
+00:00:56,467 --> 00:00:59,892
+O bebek, bugün facianın bilinen
 ilk vakası sayılıyor.
 
 21
-00:01:00,144 --> 00:01:01,547
+00:00:59,932 --> 00:01:01,334
 Peki o ilaç neydi?
 
 22
-00:01:01,667 --> 00:01:03,434
+00:01:01,433 --> 00:01:02,693
 1954'te Alman ilaç firması
 
 23
-00:01:03,474 --> 00:01:07,419
+00:01:02,733 --> 00:01:07,185
 Grünenthal'in laboratuvarında
 yeni bir molekül sentezleniyor.
 
 24
-00:01:07,459 --> 00:01:09,011
+00:01:07,225 --> 00:01:08,778
 Kod adı: K 17.
 
 25
-00:01:09,211 --> 00:01:11,084
+00:01:08,978 --> 00:01:10,850
 Bu molekülün adı: talidomit.
 
 26
-00:01:11,200 --> 00:01:12,812
+00:01:10,967 --> 00:01:12,578
 Önce farelerde deneniyor.
 
 27
-00:01:12,852 --> 00:01:16,360
+00:01:12,618 --> 00:01:16,126
 Dozu ne kadar artırırlarsa
 artırsınlar, fareler ölmüyor.
 
 28
-00:01:17,367 --> 00:01:21,375
+00:01:17,133 --> 00:01:21,142
 Firma bundan bir sonuç çıkarıyor:
 Bu ilaç neredeyse zehirsiz.
 
 29
-00:01:21,500 --> 00:01:23,892
+00:01:21,267 --> 00:01:23,659
 Oysa kandaki ilaç düzeyini ölçen yok.
 
 30
-00:01:23,932 --> 00:01:27,450
+00:01:23,699 --> 00:01:27,217
 En önemlisi: İlaç hiçbir gebe
 hayvanda denenmiyor.
 
 31
-00:01:28,567 --> 00:01:32,409
+00:01:28,333 --> 00:01:32,366
 1 Ekim 1957'de ilaç,
 Contergan adıyla piyasaya çıkıyor.
 
 32
-00:01:32,449 --> 00:01:36,219
-Reçetesiz satılan bir uyku
-ilacı ve sakinleştirici olarak.
-
-33
-00:01:36,333 --> 00:01:37,866
+00:01:33,167 --> 00:01:34,987
 Bu arada bir ayrıntı:
 
-34
-00:01:37,906 --> 00:01:42,683
+33
+00:01:35,027 --> 00:01:39,517
 Batı Almanya'da o yıllarda bugünkü
 anlamda bir ilaç ruhsatı şartı yok.
 
-35
-00:01:42,733 --> 00:01:45,899
+34
+00:01:39,567 --> 00:01:42,867
 Türkiye'de ise
 1928'den beri bir kanun var:
 
-36
-00:01:45,939 --> 00:01:49,430
+35
+00:01:42,907 --> 00:01:46,263
 Bakanlıktan ruhsat almayan ilaç satılamaz.
 
-37
-00:01:49,680 --> 00:01:51,532
+36
+00:01:46,513 --> 00:01:48,366
 Bu farkı aklınızda tutun.
 
-38
-00:01:51,633 --> 00:01:53,894
+37
+00:01:48,467 --> 00:01:50,507
 1960'a gelindiğinde Contergan,
 
-39
-00:01:53,934 --> 00:01:57,991
+38
+00:01:50,547 --> 00:01:54,824
 Batı Almanya'nın en çok
 tüketilen ilaçlarından biri.
 
-40
-00:01:58,100 --> 00:02:00,268
+39
+00:01:54,933 --> 00:01:57,102
 Milyonlarca insan bu hapa güveniyor.
 
-41
-00:02:00,308 --> 00:02:04,681
+40
+00:01:57,142 --> 00:02:01,942
 Asıl soruyu ise kimse araştırmamış:
 Hamile bir kadın bu ilacı alırsa,
 
-42
-00:02:04,721 --> 00:02:06,954
+41
+00:02:01,982 --> 00:02:03,788
 karnındaki bebeğe ne olur?
 
-43
-00:02:07,200 --> 00:02:10,126
+42
+00:02:04,033 --> 00:02:06,959
 Üstelik ilaç çoktan
 sınırları aşmaya başlamıştı.
 
-44
-00:02:11,433 --> 00:02:16,033
+43
+00:02:08,267 --> 00:02:12,867
 Talidomit kısa sürede onlarca ülkeye
 yayılıyor, ülkeden ülkeye farklı adlarla.
 
-45
-00:02:16,073 --> 00:02:18,865
+44
+00:02:12,907 --> 00:02:15,699
 Ama haritada bir boşluk var: Türkiye.
 
-46
-00:02:19,367 --> 00:02:21,719
+45
+00:02:16,400 --> 00:02:18,753
 Kasım 1961'e kadar yalnız Grünenthal'in
 
-47
-00:02:21,759 --> 00:02:25,087
+46
+00:02:18,793 --> 00:02:22,120
 300 milyonu aşkın günlük doz
 sattığı hesaplanıyor.
 
-48
-00:02:25,200 --> 00:02:28,131
+47
+00:02:22,233 --> 00:02:25,164
 İngiltere'deki bir reklam
 ise daha da ileri gidiyor:
 
-49
-00:02:28,181 --> 00:02:32,710
+48
+00:02:25,214 --> 00:02:29,954
 <i>Distaval, hamile kadınlara ve emziren
 annelere tam bir güvenle verilebilir.</i>
 
-50
-00:02:32,750 --> 00:02:36,033
+49
+00:02:29,994 --> 00:02:33,067
 <i>Anneye de çocuğa da
 olumsuz bir etkisi yoktur.</i>
 
-51
-00:02:36,133 --> 00:02:38,633
+50
+00:02:33,167 --> 00:02:35,667
 Hamilelikteki bulantıya
 karşı da öneriliyor.
 
-52
-00:02:38,673 --> 00:02:42,273
+51
+00:02:35,707 --> 00:02:39,307
 Pek çok anne adayı bu ilacı
 gönül rahatlığıyla alıyor.
 
-53
-00:02:42,400 --> 00:02:46,310
+52
+00:02:39,433 --> 00:02:43,343
 Türkiye'de ise bu ilaç eczanelerde
 satılamıyor: Ruhsatı yok.
 
-54
-00:02:47,433 --> 00:02:51,004
+53
+00:02:44,467 --> 00:02:48,038
 İlk işaret, beklenmedik bir yerden
 geliyor: sinir sisteminden.
 
-55
-00:02:51,044 --> 00:02:56,184
+54
+00:02:48,078 --> 00:02:53,218
 1959'da ilacı uzun süre
 kullananlarda sinir hasarı görülüyor.
 
-56
-00:02:56,300 --> 00:02:59,375
+55
+00:02:53,333 --> 00:02:56,408
 Firma, böyle bir yan etki
 duymadığını söylüyor.
 
-57
-00:02:59,415 --> 00:03:02,584
+56
+00:02:56,448 --> 00:02:59,617
 1961 baharında vakalar bini aşıyor.
 
-58
-00:03:03,700 --> 00:03:05,525
+57
+00:03:00,733 --> 00:03:02,558
 Sinir hasarı bir uyarıydı.
 
-59
-00:03:05,725 --> 00:03:09,193
+58
+00:03:02,758 --> 00:03:06,227
 Ama asıl tehlike,
 kimsenin bakmadığı bir yerdeydi:
 
-60
-00:03:09,233 --> 00:03:10,499
+59
+00:03:06,267 --> 00:03:07,532
 Anne karnında.
 
-61
-00:03:13,200 --> 00:03:18,240
+60
+00:03:10,233 --> 00:03:15,274
 1961'de dünyanın iki ucunda,
 iki doktor aynı şeyi fark ediyor.
 
-62
-00:03:18,367 --> 00:03:19,953
+61
+00:03:15,400 --> 00:03:16,986
 Avustralya, Sidney.
 
-63
-00:03:19,993 --> 00:03:24,643
+62
+00:03:17,026 --> 00:03:21,676
 Bir kadın doğum uzmanı, birkaç hafta
 içinde üç bebekte ağır kusurlar görüyor.
 
-64
-00:03:24,767 --> 00:03:27,217
+63
+00:03:21,800 --> 00:03:24,220
 Hamburg'da ise
 çocuk doktoru Widukind Lenz,
 
-65
-00:03:27,257 --> 00:03:30,517
+64
+00:03:24,260 --> 00:03:27,551
 kasım başında iki yeni vakada
 aynı ayrıntıyı yakalıyor:
 
-66
-00:03:30,557 --> 00:03:33,197
+65
+00:03:27,591 --> 00:03:30,231
 İki anne de hamileyken Contergan almış.
 
-67
-00:03:33,300 --> 00:03:37,760
+66
+00:03:30,333 --> 00:03:34,793
 Lenz'in ilk telefonundan ilacın raflardan
 çekilmesine kadar 12 gün geçecek.
 
-68
-00:03:37,867 --> 00:03:41,986
+67
+00:03:34,900 --> 00:03:39,020
 15 Kasım'da Lenz firmayı arıyor
 ve ilacın toplatılmasını istiyor.
 
-69
-00:03:42,026 --> 00:03:45,367
+68
+00:03:39,060 --> 00:03:42,665
 Ertesi gün aynı talebi taahhütlü
 bir mektupla tekrarlıyor.
 
-70
-00:03:45,467 --> 00:03:47,987
+69
+00:03:42,767 --> 00:03:45,367
 Firmanın yanıtı sert:
 Lenz'i iftirayla suçluyor,
 
-71
-00:03:48,027 --> 00:03:51,127
+70
+00:03:45,407 --> 00:03:48,427
 dava açmakla tehdit ediyor
 ve toplatmayı reddediyor.
 
-72
-00:03:52,233 --> 00:03:55,833
+71
+00:03:49,533 --> 00:03:53,133
 26 Kasım'da haber bir pazar
 gazetesine düşüyor.
 
-73
-00:03:55,933 --> 00:04:02,103
+72
+00:03:53,233 --> 00:03:59,403
 Ertesi gün, 27 Kasım 1961'de,
 Contergan Almanya'da piyasadan çekiliyor.
 
-74
-00:04:02,667 --> 00:04:06,331
+73
+00:03:59,967 --> 00:04:03,631
 Türkiye'nin ise toplatacak bir şeyi
 yok: Ruhsat hiç verilmemişti.
 
-75
-00:04:06,900 --> 00:04:09,348
+74
+00:04:04,200 --> 00:04:06,760
 Dünyada 10.000'den fazla
 bebek etkileniyor.
 
-76
-00:04:09,388 --> 00:04:11,478
+75
+00:04:06,800 --> 00:04:08,778
 Bazı tahminler 20.000'i buluyor.
 
-77
-00:04:11,518 --> 00:04:16,744
+76
+00:04:08,818 --> 00:04:14,044
 Bu bebeklerin tahminen yüzde 40'ı, doğumda
 ya da kısa süre sonra hayatını kaybediyor.
 
-78
-00:04:17,267 --> 00:04:19,772
+77
+00:04:14,567 --> 00:04:17,072
 En tehlikeli dönem
 hamileliğin ilk haftaları.
 
-79
-00:04:19,812 --> 00:04:22,392
+78
+00:04:17,112 --> 00:04:19,692
 O dönemde tek bir tablet bile yetebiliyor.
 
-80
-00:04:22,500 --> 00:04:25,507
+79
+00:04:19,800 --> 00:04:22,807
 Peki tek bir tablet bu hasarı
 nasıl yapabiliyordu?
 
-81
-00:04:25,857 --> 00:04:29,307
+80
+00:04:23,157 --> 00:04:26,607
 Bu sorunun cevabı için
 yarım asırdan fazla beklenecekti.
 
-82
-00:04:29,433 --> 00:04:33,471
+81
+00:04:26,733 --> 00:04:30,771
 Hayatta kalan çocukların birçoğunda
 kollar ya da bacaklar tam gelişmemiş.
 
-83
-00:04:33,567 --> 00:04:37,906
+82
+00:04:30,867 --> 00:04:35,206
 Almanya'da bu ilaçtan etkilenmiş
 yaklaşık 2.400 kişi bugün hâlâ yaşıyor.
 
-84
-00:04:37,946 --> 00:04:40,436
+83
+00:04:35,246 --> 00:04:37,736
 Onlar için bu, bir tarih dersi değil.
 
-85
-00:04:41,833 --> 00:04:44,769
+84
+00:04:39,133 --> 00:04:42,069
 Peki ilacın hiç ruhsat
 alamadığı ülkelerde ne oldu?
 
-86
-00:04:44,809 --> 00:04:46,820
+85
+00:04:42,109 --> 00:04:44,120
 Bunlardan biri ABD'ydi.
 
-87
-00:04:46,920 --> 00:04:48,934
+86
+00:04:44,220 --> 00:04:46,234
 Bir diğeri… Türkiye.
 
-88
-00:04:50,733 --> 00:04:54,442
+87
+00:04:48,033 --> 00:04:51,742
 Türkiye'de ne olduğunu anlamak için
 önce Amerika'ya bakmamız gerek.
 
-89
-00:04:54,482 --> 00:04:56,529
+88
+00:04:51,782 --> 00:04:53,829
 Çünkü orada da biri ‘hayır’ demişti.
 
-90
-00:04:56,569 --> 00:05:00,945
+89
+00:04:53,869 --> 00:04:58,829
 1960'ta ABD'nin ilaç kurumu (FDA),
 yeni bir uzmanı göreve alıyor:
 
-91
-00:05:00,985 --> 00:05:03,076
+90
+00:04:58,869 --> 00:05:00,376
 Frances Oldham Kelsey.
 
-92
-00:05:03,200 --> 00:05:07,036
+91
+00:05:00,500 --> 00:05:04,336
 Önüne gelen ilk dosyalardan biri
 tanıdık bir ilaç: talidomit.
 
-93
-00:05:07,076 --> 00:05:09,068
+92
+00:05:04,376 --> 00:05:06,368
 Amerika'daki adı Kevadon.
 
-94
-00:05:09,367 --> 00:05:12,340
+93
+00:05:06,667 --> 00:05:11,247
 Kural şu: FDA 60 gün
 içinde yanıt vermezse,
 
-95
-00:05:12,380 --> 00:05:15,559
+94
+00:05:11,287 --> 00:05:13,698
 ilaç kendiliğinden onaylanmış sayılıyor.
 
-96
-00:05:16,667 --> 00:05:18,377
+95
+00:05:14,800 --> 00:05:16,510
 Kelsey dosyayı eksik buluyor.
 
-97
-00:05:18,417 --> 00:05:20,812
+96
+00:05:16,550 --> 00:05:18,970
 Derken sinir hasarı raporları geliyor.
 
-98
-00:05:20,852 --> 00:05:23,447
+97
+00:05:19,010 --> 00:05:21,580
 Hamilelikte güvenli mi? O da belirsiz.
 
-99
-00:05:23,487 --> 00:05:27,657
+98
+00:05:21,620 --> 00:05:25,790
 Firma bastırıyor. Kelsey
 her seferinde daha fazla veri istiyor.
 
-100
-00:05:27,907 --> 00:05:29,134
-Onay da vermiyor.
+99
+00:05:26,040 --> 00:05:28,500
+Reddetmiyor ama onay da vermiyor.
 
-101
-00:05:29,233 --> 00:05:33,676
+100
+00:05:28,600 --> 00:05:33,043
 Onay beklenirken ilaç, ‘klinik deneme’
 adı altında doktorlara dağıtılıyor.
 
-102
-00:05:34,700 --> 00:05:36,574
+101
+00:05:34,067 --> 00:05:35,941
 1.267 doktor.
 
-103
-00:05:36,614 --> 00:05:37,981
+102
+00:05:35,981 --> 00:05:37,347
 Yaklaşık 20.000 hasta.
 
-104
-00:05:38,021 --> 00:05:41,581
+103
+00:05:37,387 --> 00:05:40,947
 Ve ABD'de de en az 17 bebek etkileniyor.
 
-105
-00:05:41,700 --> 00:05:43,248
+104
+00:05:41,067 --> 00:05:42,615
 Hikâye gazetelere düşüyor.
 
-106
-00:05:43,288 --> 00:05:46,918
+105
+00:05:42,655 --> 00:05:46,285
 Başkan Kennedy, Kelsey'yi
 bir devlet ödülüyle onurlandırıyor.
 
-107
-00:05:47,867 --> 00:05:50,049
+106
+00:05:47,233 --> 00:05:49,415
 Kelsey'nin adı bugün dünyaca biliniyor.
 
-108
-00:05:50,089 --> 00:05:53,172
+107
+00:05:49,455 --> 00:05:52,538
 Ama aynı yıllarda Ankara'da da
 bir ‘hayır’ denmişti.
 
-109
-00:05:53,567 --> 00:05:55,896
+108
+00:05:52,933 --> 00:05:55,262
 Ve o hikâye, neredeyse unutuldu.
 
-110
-00:05:58,000 --> 00:05:59,975
+109
+00:05:57,367 --> 00:05:59,342
 Aynı yıllar. Ankara.
 
-111
-00:06:00,267 --> 00:06:03,355
+110
+00:05:59,633 --> 00:06:02,722
 Bir gün Bakanlığa bu ilaç için
 bir ruhsat başvurusu geliyor.
 
-112
-00:06:03,395 --> 00:06:06,085
+111
+00:06:02,762 --> 00:06:06,082
 Hangi firma, hangi yıl, hangi adla?
 
-113
-00:06:06,125 --> 00:06:08,339
+112
+00:06:06,122 --> 00:06:07,705
 Bunu bugün bilmiyoruz.
 
-114
-00:06:08,433 --> 00:06:10,311
+113
+00:06:07,800 --> 00:06:09,860
 Meslektaşlarının anlattığına göre,
 
-115
-00:06:10,351 --> 00:06:14,777
+114
+00:06:09,900 --> 00:06:14,144
 başvuru hakkında görüş verenlerden biri
 genç bir farmakolog: Şükrü Kaymakçalan.
 
-116
-00:06:15,300 --> 00:06:20,404
+115
+00:06:14,667 --> 00:06:19,771
 Aynı tanıklıklara göre Kaymakçalan,
 ilacın etkili olabileceğini kabul ediyor.
 
-117
-00:06:20,604 --> 00:06:23,445
+116
+00:06:19,971 --> 00:06:22,811
 Ama zehirlilik deneylerinin
 yetersiz olduğunu söylüyor
 
-118
-00:06:23,485 --> 00:06:25,324
+117
+00:06:22,851 --> 00:06:24,691
 ve olumsuz görüş veriyor.
 
-119
-00:06:27,033 --> 00:06:28,785
+118
+00:06:26,400 --> 00:06:28,420
 Bakanlık da bu görüşe uyuyor.
 
-120
-00:06:28,825 --> 00:06:30,711
+119
+00:06:28,460 --> 00:06:30,078
 İlaca ruhsat verilmiyor.
 
-121
-00:06:31,967 --> 00:06:34,177
+120
+00:06:31,333 --> 00:06:33,543
 İşte Amerika'yla aradaki büyük fark:
 
-122
-00:06:34,377 --> 00:06:35,377
+121
+00:06:33,743 --> 00:06:34,743
 Anlatılana göre
 
-123
-00:06:35,457 --> 00:06:38,848
+122
+00:06:34,823 --> 00:06:38,215
 ruhsatsız bir ilacın tanıtım
 numunesi bile Türkiye'ye giremiyor.
 
-124
-00:06:39,098 --> 00:06:43,412
+123
+00:06:38,465 --> 00:06:42,778
 Amerika'da 20.000 kişiye ulaşan
 o ‘deneme’ kapısı, burada baştan kapalı.
 
-125
-00:06:45,733 --> 00:06:51,386
+124
+00:06:43,900 --> 00:06:49,553
 Kasım 1961'de Almanya'dan gelen haberler,
 bu ‘hayır’a bambaşka bir anlam katıyor.
 
-126
-00:06:51,500 --> 00:06:52,500
-Sık anlatılan,
-
-127
-00:06:52,580 --> 00:06:55,770
-ama kimsenin belgeleyemediği
+125
+00:06:49,667 --> 00:06:53,937
+Sık anlatılan ama kimsenin belgeleyemediği
 ikinci bir hikâye daha var.
 
-128
-00:06:56,020 --> 00:06:58,377
+126
+00:06:54,187 --> 00:06:58,827
 Anlatılana göre
-Ankara Veteriner Fakültesi'nden
+Ankara'daki Veteriner Fakültesi'nden
 
-129
-00:06:58,417 --> 00:06:59,960
+127
+00:06:58,867 --> 00:06:59,867
 virolog Süreyya Tahsin Aygün,
 
-130
-00:07:00,000 --> 00:07:03,153
+128
+00:06:59,947 --> 00:07:02,627
 ilacı tavuk embriyolarında
 denemiş ve Bakanlığı uyarmış.
 
-131
-00:07:03,667 --> 00:07:05,362
+129
+00:07:03,133 --> 00:07:04,829
 Şimdi elimizdekilere bakalım.
 
-132
-00:07:05,402 --> 00:07:08,915
+130
+00:07:04,869 --> 00:07:08,382
 Kaymakçalan'ın rolü,
 meslektaşlarının tanıklığına dayanıyor.
 
-133
-00:07:09,165 --> 00:07:11,516
+131
+00:07:08,632 --> 00:07:11,012
 Ölümünün onuncu yılındaki anma yazıları,
 
-134
-00:07:11,556 --> 00:07:14,790
+132
+00:07:11,052 --> 00:07:14,252
 Bakanlığa ilaç konusunda
-danışmanlık yaptığını anlatıyor;
+danışmanlık yaptığını anlatıyor.
 
-135
-00:07:14,830 --> 00:07:16,999
-ama talidomitten söz etmiyor.
+133
+00:07:14,292 --> 00:07:17,242
+Ama bu yazılarda talidomitten
+hiç söz edilmiyor.
 
-136
-00:07:17,700 --> 00:07:22,240
+134
+00:07:17,967 --> 00:07:22,507
 Tavuk embriyosu deneyinin bilinen
 en eski kaynağı, 2008'de çıkan bir haber.
 
-137
-00:07:22,280 --> 00:07:25,131
+135
+00:07:22,547 --> 00:07:25,397
 Haberin kaynağı ise
 sorulduğunda belge gösteremedi.
 
-138
-00:07:26,233 --> 00:07:30,116
+136
+00:07:26,500 --> 00:07:30,540
 Nejat Eczacıbaşı ise bir röportajında
 başarıyı bir kuruma bağlıyor:
 
-139
-00:07:30,156 --> 00:07:31,874
+137
+00:07:30,580 --> 00:07:32,141
 Refik Saydam Enstitüsü.
 
-140
-00:07:31,914 --> 00:07:34,760
+138
+00:07:32,181 --> 00:07:35,501
 Başvurunun yılı, firması,
 Bakanlığın yazısı…
 
-141
-00:07:34,800 --> 00:07:37,460
+139
+00:07:35,541 --> 00:07:37,726
 Hiçbiri bugüne kadar yayımlanmadı.
 
-142
-00:07:38,567 --> 00:07:42,063
+140
+00:07:38,833 --> 00:07:42,329
 Peki ruhsat vermemek
 yeterli miydi? Her zaman değil.
 
-143
-00:07:42,103 --> 00:07:44,540
+141
+00:07:42,369 --> 00:07:45,069
 Doğu Almanya da ilaca ruhsat vermemişti.
 
-144
-00:07:44,580 --> 00:07:47,839
+142
+00:07:45,109 --> 00:07:48,106
 Kaçak getirilen ilaçla
 orada da vakalar görüldü.
 
-145
-00:07:47,933 --> 00:07:51,203
+143
+00:07:48,200 --> 00:07:51,470
 Türkiye'de ise bu ilaca
 bağlanmış bilinen bir vaka yok.
 
-146
-00:07:51,253 --> 00:07:55,713
+144
+00:07:51,520 --> 00:07:55,980
 Bu yüzden Türkiye, faciayı yaşamayan
 sayılı ülkelerden biri olarak anılıyor.
 
-147
-00:07:56,133 --> 00:07:57,536
+145
+00:07:56,400 --> 00:07:57,803
 İnternette sık duyduğunuz
 
-148
-00:07:57,576 --> 00:08:00,951
+146
+00:07:57,843 --> 00:08:01,218
 ‘etkilenmeyen tek iki ülke Türkiye ve ABD’
 sözü ise yanlış.
 
-149
-00:08:01,801 --> 00:08:04,330
+147
+00:08:02,068 --> 00:08:04,597
 ABD'de en az 17 bebek etkilendi.
 
-150
-00:08:04,433 --> 00:08:08,243
+148
+00:08:04,700 --> 00:08:08,509
 Hikâye burada bitseydi,
 mutlu sonlu bir ders olurdu.
 
-151
-00:08:08,367 --> 00:08:10,189
+149
+00:08:08,633 --> 00:08:10,456
 Ama talidomit geri döndü.
 
-152
-00:08:12,500 --> 00:08:17,674
+150
+00:08:12,767 --> 00:08:17,940
 1964, Kudüs. Dermatolog Jacob Sheskin'in
 ağır bir cüzzam hastası uyuyamıyor.
 
-153
-00:08:17,714 --> 00:08:21,017
+151
+00:08:17,980 --> 00:08:21,284
 Elinde kalan eski bir uyku
 ilacını veriyor: talidomit.
 
-154
-00:08:21,057 --> 00:08:22,527
+152
+00:08:21,324 --> 00:08:23,244
 Beklenmedik bir şey oluyor:
 
-155
-00:08:22,567 --> 00:08:25,754
+153
+00:08:23,284 --> 00:08:26,542
 Birkaç gün içinde hastanın yaraları
 iyileşmeye başlıyor.
 
-156
-00:08:25,867 --> 00:08:29,922
+154
+00:08:26,667 --> 00:08:31,267
 Talidomit yavaş yavaş geri dönüyor:
-önce cüzzamın bir komplikasyonu için,
+önce bu hastalığın bir komplikasyonu için,
 
-157
-00:08:29,962 --> 00:08:33,111
-sonra bir kan kanseri olan
-multipl miyelom için.
+155
+00:08:31,307 --> 00:08:33,914
+sonra bir kan kanseri olan miyelom için.
 
-158
-00:08:33,233 --> 00:08:35,063
+156
+00:08:34,033 --> 00:08:35,863
 Geri dönüşün bir bedeli de oldu.
 
-159
-00:08:35,103 --> 00:08:38,296
+157
+00:08:35,903 --> 00:08:40,463
 Brezilya'da cüzzam
 tedavisinde kullanıldığı için,
 
-160
-00:08:38,336 --> 00:08:41,565
+158
+00:08:40,503 --> 00:08:42,365
 1965'ten sonra da
 etkilenen bebekler doğdu.
 
-161
-00:08:41,667 --> 00:08:45,327
+159
+00:08:42,467 --> 00:08:46,127
 Ya o soru? Tek bir tablet
 bu hasarı nasıl yapıyordu?
 
-162
-00:08:45,577 --> 00:08:49,127
+160
+00:08:46,377 --> 00:08:49,927
 Bilinen mekanizmalardan biri
 ancak 2018'de gösterildi:
 
-163
-00:08:49,167 --> 00:08:54,207
-İlaç, uzuv gelişiminde rol oynayan SALL4
-adlı bir proteinin yıkımına yol açıyor.
+161
+00:08:49,967 --> 00:08:52,612
+İlaç, kol ve
+bacakların gelişiminde rol oynayan
 
-164
-00:08:54,533 --> 00:08:56,687
+162
+00:08:52,652 --> 00:08:55,587
+SALL4 adlı bir proteinin yıkımına
+yol açıyor.
+
+163
+00:08:55,900 --> 00:08:58,053
 Bu, tablonun yalnız bir parçası.
 
-165
-00:08:56,727 --> 00:08:59,547
+164
+00:08:58,093 --> 00:09:00,914
 Bu kadarını anlamak bile
 60 yıldan uzun sürdü.
 
-166
-00:08:59,667 --> 00:09:01,943
+165
+00:09:01,033 --> 00:09:03,310
 Bu geri dönüşte İstanbul'un da payı var:
 
-167
-00:09:01,983 --> 00:09:05,037
+166
+00:09:03,350 --> 00:09:07,950
 Talidomitin Behçet hastalığındaki
 etkisini gösteren
 
-168
-00:09:05,077 --> 00:09:08,982
+167
+00:09:07,990 --> 00:09:10,349
 önemli bir çalışma Cerrahpaşa'da yapıldı
 ve 1998'de yayımlandı.
 
-169
-00:09:09,022 --> 00:09:11,764
-Çalışmadaki 96 hastanın hepsi erkekti.
+168
+00:09:10,389 --> 00:09:13,143
+Çalışmadaki 96 kişinin hepsi erkekti.
 
-170
-00:09:11,867 --> 00:09:13,796
+169
+00:09:13,267 --> 00:09:15,196
 31 Mayıs 2004.
 
-171
-00:09:13,946 --> 00:09:18,206
+170
+00:09:15,346 --> 00:09:19,606
 Ankara'nın bir zamanlar kapıdan
 çevirdiği ilaç, Türkiye'de ruhsat alıyor.
 
-172
-00:09:18,800 --> 00:09:20,997
+171
+00:09:20,200 --> 00:09:22,540
 Bugün bir kanser
 ilacı olarak kullanılıyor;
 
-173
-00:09:21,037 --> 00:09:23,625
+172
+00:09:22,580 --> 00:09:25,025
 yalnız sıkı bir gebelik önleme
 programıyla.
 
-174
-00:09:23,733 --> 00:09:25,162
+173
+00:09:25,133 --> 00:09:26,562
 O reklamı hatırlayın:
 
-175
-00:09:25,262 --> 00:09:26,679
+174
+00:09:26,662 --> 00:09:28,079
 <i>Tamamen zehirsiz.</i>
 
-176
-00:09:26,719 --> 00:09:30,001
+175
+00:09:28,119 --> 00:09:31,401
 Bugün Türkiye'deki resmî
 ürün bilgisinde ise şu uyarı var:
 
-177
-00:09:30,100 --> 00:09:34,316
-<i>Talidomid, gebe kadınlar tarafından
+176
+00:09:31,500 --> 00:09:35,716
+<i>Talidomid, gebe kadınlar (…) tarafından
 kesinlikle kullanılmamalıdır.</i>
 
-178
-00:09:34,900 --> 00:09:38,010
+177
+00:09:36,300 --> 00:09:39,410
 Peki Türkiye'yi
 bu felaketten koruyan neydi?
 
-179
-00:09:38,360 --> 00:09:39,735
+178
+00:09:39,760 --> 00:09:41,135
 Tek bir kahraman mı?
 
-180
-00:09:39,985 --> 00:09:42,368
+179
+00:09:41,385 --> 00:09:43,768
 ‘Kanıt yoksa ruhsat yok’
 diyen bir kural mı?
 
-181
-00:09:42,668 --> 00:09:44,228
+180
+00:09:44,068 --> 00:09:45,628
 Yoksa biraz da şans mı?
 
-182
-00:09:45,167 --> 00:09:49,749
+181
+00:09:46,567 --> 00:09:51,149
 Amerika, ‘hayır’ diyen uzmanını
 ödüllendirdi; adını tarihe yazdı.
 
-183
-00:09:50,099 --> 00:09:53,895
+182
+00:09:51,499 --> 00:09:55,295
 Ankara'daki ‘hayır’ın ise bugün
 yayımlanmış tek bir belgesi bile yok.
 
-184
-00:09:55,300 --> 00:09:57,767
-O yıllardan bir belge, bir gazete kupürü
+183
+00:09:56,700 --> 00:09:59,180
+O yıllardan bir belge, bir gazete haberi
 
-185
-00:09:57,807 --> 00:10:01,753
+184
+00:09:59,220 --> 00:10:02,599
 ya da ailenizden dinlediğiniz
 bir anı varsa yorumlara yazın.
 
-186
-00:10:01,867 --> 00:10:04,091
+185
+00:10:02,700 --> 00:10:04,924
 Belki eksik parçayı birlikte buluruz.
 
+186
+00:10:05,967 --> 00:10:07,340
+Sizce hangisi?
+
 187
-00:10:04,333 --> 00:10:07,068
+00:10:09,890 --> 00:10:12,625
 Bir sonraki unutulmuş
 hikâyede görüşmek üzere.

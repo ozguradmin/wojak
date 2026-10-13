@@ -51,12 +51,24 @@ zamanlama:                         # hepsi isteğe bağlı (varsayılanlar göst
   bindirme: 1.2                    # bindirme bölüm kartının süresi
 
 gecis: kesme                       # varsayılan sahne geçişi: kesme | gecis (8 kare crossfade) | kaydir (10 kare push)
+                                   # | karart (10 kare karanlıktan geçiş: aynı karakter / yazıdan yazıya / parlaklık sıçraması)
 filigran: tarihselwojak            # sağ altta her karede (false: kapalı)
 otomatik_sfx: true                 # sahne tipine göre efektler (whoosh, deklanşör, daktilo, kalem, pop, boom...)
 kart_bindirme: true                # bölüm kartları önceki sahnenin donmuş, kararmış karesi üstünde (siyah ekran yok);
                                    # false: klasik siyah kart (2,6 sn). Bölümde kart_bindirme ile tek tek değişir.
 # Elle eklenebilecek efektler (sahnenin sfx listesi): turkiye (Türkiye ses motifi), turkiye_major, kapi, geri_sarma,
-# telefon, raptiye, damga, gecis, marka, boom, hit, riser, drone, heartbeat, static (assets/sfx/<ad>.wav)
+# telefon, raptiye, damga, gecis, marka, boom, hit, riser, drone, heartbeat, static, klik, zil (assets/sfx/<ad>.wav)
+
+# HAREKET DİLİ (7. tur; hepsi isteğe bağlı, varsayılanlar gösterildi). Ayrıntı: docs/UZUN_MOTOR.md §3 "Hareket dili".
+hareket:
+  bulaniklik: true      # hızlı giriş/çıkış, kayan isim etiketi, düşen fotoğraf, itme geçişi: hareket bulanıklığı;
+                        # hızlı sayan sayaç tekerlek gibi yuvarlanır (rakamlar her karede titreşmez)
+  ikincil: true         # yandan giren karakter kayıp dururken eğilir ve yaylanarak oturur; alttan girende esneme;
+                        # inen fotoğraf baskısının / pano kartının gölgesi havadayken uzak ve yumuşak
+  canli: true           # karakter başına farklı nefes/salınım ritmi + çok hafif baş eğimi (dekorda karakter: canli: false)
+  paralaks: 0.0         # wojak sahnesinde arka plan kamerayı daha az izler (öneri 0.3-0.45); masaya "konmuş" nesne
+                        # karakter olarak çiziliyorsa o sahnede kamera: {paralaks: 0}
+  doku: false           # wojak sahnesinde arka plana gren + toz (true | {gren: 0.035, toz: 18}); sahne `doku` ile değişir
 
 bolumler:
   # ---------------------------------------------------------------- 1. bölüm: soğuk açılış (kartsız)
@@ -75,10 +87,13 @@ bolumler:
         muzik_db: -6                         # bu sahnede müzik kısık (0 = normal, +6 = açık)
         muzik_mod: gerilim                   # bu sahneden itibaren müzik kipi: drone | nabiz | gerilim | major
         kose: {metin: "GÜN {} / 12", deger: 0}   # köşe göstergesi (konum: sag_ust | sol_ust | sag_alt | sol_alt)
+        # kamera: {paralaks: 0.4} bu sahnede arka plan kamerayı daha az izler; doku: true -> arka plana gren + toz
         karakterler:
           - {id: a, gorsel: chars/a.png, taraf: sol}           # boy: 0.66 (kare yüksekliğine oran)
           - {id: b, gorsel: chars/b.png, taraf: sag, giris: false}   # giris: false = baştan yerinde
           - {id: c, gorsel: chars/c.png, x: 0.52, derinlik: 0.6}     # arkada: küçük, sisli, önce çizilir
+          - {id: d, gorsel: img/cizim/kapi.png, x: 0.8, canli: false, yon: pop}   # dekor/nesne: nefes ve eğim yok;
+            # yon: sol | sag | alt | ust | pop (yerinde büyüyerek belirir; havadaki nesne ortasından büyür)
         satirlar:
           - "Anlatıcının ilk cümlesi."                         # düz metin = anlatıcı
           - {ses: aylin, metin: "Alıntı ya da kadın karakter.", duygu: content, balon: a}   # balon: a'nın balonunda, a seker
@@ -88,7 +103,10 @@ bolumler:
         olaylar:
           - {tip: giris, karakter: b, satir: 2}                         # b bu satırda kayarak girer
           - {tip: balon, karakter: b, metin: "Yalnız görsel replik", satir: 3, ofset: 0.3, sure: 2.5}
+            # agiz: chars/b_konusuyor.png -> balon açıkken hecelerde açık ağızlı yüz (aynı tuval)
           - {tip: yuz, karakter: a, gorsel: chars/a_terli.png, satir: 3, ofset: 0.5}   # yüz varyantı + sıkışma
+            # (buyu: true -> yeni görsel eski boyundan büyüyerek oturur; sik: false -> sıkışmasız)
+          - {tip: it, satir: 3, an: son, guc: 0.08, sure: 0.5}            # kamera vurgu itmesi (x/y: hedef; kalıcı)
           - {tip: kelime, metin: "REÇETESİZ", satir: 1, konum: ust}        # vurgu kelimesi (ust | orta | alt)
           - {tip: isim, karakter: a, ad: "Ad Soyad", unvan: "Unvan (1900-1980)", satir: 1, ofset: 0.8}
           - {tip: cikis, karakter: b, satir: 3, an: son}
@@ -176,6 +194,9 @@ bolumler:
         olaylar:
           - {tip: basla, satir: 1}
           - {tip: ulke, kod: TUR, satir: 2, ofset: 0.6}
+          # ROTA: a'dan b'ye çizilerek uzanan yay (ülke kodu ya da [boylam, enlem]); kavis 0.22, sure 1.2 sn,
+          # kesik: true (kesik çizgi), renk, etiket (varışta yazı). Çizimde hafif whoosh, varışta blip
+          - {tip: rota, a: DEU, b: GBR, satir: 1, ofset: 0.8, etiket: "1958"}
 
       # ZAMAN ÇİZELGESİ (takma ad: liste): 3-6 tarihli nokta sırayla belirir
       - tip: zaman_cizelgesi
@@ -213,7 +234,8 @@ bolumler:
           - [217, 189, 1408, 226]
         zoom: 1.18
         satirlar: ["Belgeyi anlatan cümle."]
-        olaylar: [{tip: vurgula, kutu: 1, satir: 1, ofset: 1.0}]
+        olaylar: [{tip: vurgula, kutu: 1, satir: 1, ofset: 1.0}]   # stil: kalem (fosforlu, vars.) | daire (elle
+        # çizilmiş kırmızı çember) | alt_cizgi (elle çizilmiş alt çizgi); renk: [r, g, b] (daire/alt_cizgi)
 
       # BÖLÜNMÜŞ EKRAN: sol panel ekranı kaplar; panel olayıyla sağ panel kayarak açılır
       - tip: bolunmus
@@ -241,12 +263,31 @@ bolumler:
           - {tip: kart, id: y, satir: 2, an: son}
           - {tip: damga, kart: k, metin: "BELGE YOK", satir: 2, an: son, boy: 52}
 
-      # BİTİŞ EKRANI (son sahne, 15-20 sn): iki boş 16:9 kutu + abone dairesi; üstte kapanış cümlesi
-      - tip: bitis
-        arka: img/arsiv.jpg            # ya da bindirme: true
-        sure: 15
-        duzen: yan_yana                # yan_yana | sag | sol; kutular: 2; abone: true; etiketler: [..., ...]
+      # KAPANIŞ ÇAĞRISI (son sahne, ~8-12 sn; 7. tur): video kutusu YOK. Hikâyenin açık sorusu + 0-3 seçenek kartı
+      # (wojak ya da görsel; birbirine bağlanmaz), solda çağrıyı yapan wojak; imleci ABONE OL'a, zile ve BEĞEN'e
+      # tıklar, yorum balonunda soru yazılır, sonra kartlar tek tek vurgulanır (hiçbiri işaretli kalmaz).
+      - tip: kapanis
+        bindirme: true                 # önceki sahnenin donmuş karesi üstünde (ya da arka: img/arsiv.jpg)
+        sure: 10                       # varsayılan 10; 10'dan kısada animasyon orantılı sıkışır
+        ust: "SON SORU"
+        soru: "Türkiye'yi bu ilaçtan ne korudu?"   # yoksa ilk satırın metni
+        secenekler:                    # metin, alt (küçük), gorsel (karakter ya da resim), harf (vars. A/B/C)
+          - {metin: "Kişi A", alt: "farmakolog", gorsel: chars/a.png}
+          - {metin: "Kişi B", alt: "virolog", gorsel: chars/b.png}
+          - {metin: "Kural", alt: "ruhsat şartı", gorsel: img/cizim/kanun.jpg}
+        karakter: {gorsel: chars/anlatici.png, yuz: chars/anlatici_mutlu.png}   # boy 0.34, taraf: sol | sag
+        # yorum: "A mı, B mi, yoksa C mi?\nCevabını yorumlara yaz"   # varsayılan bu (\n: satır sonu)
+        # dugmeler: [abone, zil, begen, yorum]   # sıra ve seçim
+        # bos_alan: true               # sağ üstte ~280x280 px YouTube 'Abone ol' öğesine boş (sol_ust da olur)
         satirlar: ["Bir sonraki unutulmuş hikâyede görüşmek üzere."]
+        # olaylar: [{tip: tikla, hedef: abone, satir: 1, ofset: 0.4}, {tip: secenek, indeks: 2, t: 7.5}]
+
+      # (Eski) BİTİŞ EKRANI: iki boş 16:9 kutu + abone dairesi (kanalda yeterli uzun video olunca)
+      # - tip: bitis
+      #   arka: img/arsiv.jpg            # ya da bindirme: true
+      #   sure: 15
+      #   duzen: yan_yana                # yan_yana | sag | sol; kutular: 2; abone: true; etiketler: [..., ...]
+      #   satirlar: ["Bir sonraki unutulmuş hikâyede görüşmek üzere."]
 
 # KÜÇÜK RESİMLER (1280x720; 2-3 varyant, YouTube "Test ve karşılaştır")
 kucukresimler:

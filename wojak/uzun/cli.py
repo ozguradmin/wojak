@@ -80,6 +80,39 @@ def hareket_denetimi(v, z) -> list[str]:
     return out
 
 
+def karakter_ailesi(gorsel) -> str | None:
+    """'chars/anlatici_v2_sakin.png' -> 'anlatici_v2' (yüz varyantları aynı aile). chars/ dışındaki görseller (nesne,
+    kapı, şişe) aile sayılmaz."""
+    yol = Path(str(gorsel))
+    if "chars" not in yol.parts:
+        return None
+    return yol.stem.rsplit("_", 1)[0] if "_" in yol.stem else yol.stem
+
+
+def sahne_aileleri(s) -> set[str]:
+    p = s.p
+    yollar = [c["gorsel"] for c in (p.get("karakterler") or []) + (p.get("konuk") or [])]
+    yollar += [o.p["gorsel"] for o in s.olaylar if o.tip == "yuz"]
+    if s.tip == "kapanis" and isinstance(p.get("karakter"), dict):
+        yollar += [p["karakter"].get("gorsel")] if p["karakter"].get("gorsel") else []
+    return {a for a in (karakter_ailesi(y) for y in yollar) if a}
+
+
+def gecis_denetimi(z) -> list[str]:
+    """8. tur (animasyon hakemi M2): çapraz geçişte (gecis) iki sahnede aynı karakter varsa geçiş boyunca iki kez
+    görünür (biri sönerken öbürü belirir; 18 yerde). Kesme ya da itme kullan, ya da aynı yer/boyda eşleşen kesme."""
+    out = []
+    for i in range(1, len(z.sahneler)):
+        s, o = z.sahneler[i], z.sahneler[i - 1]
+        if s.gecis != "gecis":
+            continue
+        ortak = sahne_aileleri(s) & sahne_aileleri(o)
+        if ortak:
+            out.append(f"{zaman.zaman_str(z.sahne_basi(s))}: çapraz geçişte aynı karakter iki kez görünür "
+                       f"({', '.join(sorted(ortak))}) — gecis: kesme ya da kaydir")
+    return out
+
+
 def cmd_kontrol(a) -> None:
     v, z = _yukle(a.yol)
     ozet(v, z)
@@ -87,7 +120,7 @@ def cmd_kontrol(a) -> None:
     for g in tekrar:
         print(f"  aynı kayıt ({len(g)} kez, tek seslendirme): " + " = ".join(g))
     ps = altyazi.parcalar(z)
-    u = (hareket_denetimi(v, z) + paket.uyarilar(v, z) + altyazi.denetle(ps)
+    u = (hareket_denetimi(v, z) + gecis_denetimi(z) + paket.uyarilar(v, z) + altyazi.denetle(ps)
          + [f"altyazı kelime farkı: {x}" for x in altyazi.kelime_farki(z, ps)] + tekrar_uyari)
     for x in u:
         print(f"  ⚠ {x}")

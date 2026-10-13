@@ -152,8 +152,27 @@ class KoseGostergesi:
             yeni = p["deger"]
             self.durumlar.append((o.zaman, metin, deger, yeni, sure, takili, rk, yil))
             deger = yeni
-        self.f_boy = 52 * S
+        self.f_boy = 58 * S   # 8. tur (izlenme hakemi N2): 52 telefonda küçüktü
         self._cache: dict = {}
+        # 7. tur: rakamlar sabit genişlikte (tabular) ve kutu genişliği bütün durumların en genişine sabit: sayarken
+        # ("GÜN 3 / 12" -> "GÜN 11 / 12") ya da takılınca kutu her karede 5-9 px genişleyip daralıyordu (titreme)
+        f = C.font(C.FONT_CARD, self.f_boy)
+        self.rakam_en = max(f.getlength(str(d)) for d in range(10)) * 1.03
+        self._dikey = None
+        metinler = []
+        for _, sablon, eski, yeni, _, takili, _, yil in self.durumlar:
+            metinler += [sablon.replace("{}", _bicim(v, yil)) for v in (eski, yeni) if v is not None]
+            if takili:
+                metinler.append(sablon.replace("{}", "0000"))
+        en, ust, alt = 0.0, 10 ** 9, -1
+        for m in metinler or ["0"]:
+            yz = self._yazi(m, C.BEYAZ)
+            en = max(en, yz.width)
+            bb = yz.getchannel("A").getbbox()
+            if bb:
+                ust, alt = min(ust, bb[1]), max(alt, bb[3])
+        self.min_w = en
+        self._dikey = (ust, alt) if alt > ust else None
 
     def _metin(self, t: float) -> tuple[str, tuple, float]:
         """(gösterilecek yazı, renk, nabız 0..1)."""
@@ -164,6 +183,28 @@ class KoseGostergesi:
         t0, sablon, eski, yeni, sure, takili, rk, yil = d
         u = (t - t0) / sure if sure > 0 else 1.0
         nabiz = E.tumsek((t - t0) / 0.32) if t0 >= 0 else 0.0
+        if takili and yil and _sayi_mi(eski):
+            # 9. tur (izlenme S1): yıl göstergesi takılırken geriye gitmez: eski yıldan ileri doğru hızla akar ("1961 ->
+            # 20??" altında 1948 ve 1987 görünüp zamanda geri gidiyor gibi okunuyordu), sonra takılır; titreşimde de
+            # yalnız eski yıldan sonraki yıllar
+            rng = np.random.default_rng(int(t * 30) + 7)
+            yeni_s = _bicim(yeni, yil)
+            e0 = int(round(eski))
+            if len(yeni_s) == 4 and yeni_s[:2].isdigit():
+                ust_y = int(yeni_s[:2]) * 100
+                if ust_y <= e0:
+                    ust_y = e0 + 40
+            else:
+                ust_y = e0 + 45
+            if u < 1.0:
+                yv = int(e0 + (ust_y - e0) * E.out_cubic(max(0.0, u)))
+                return sablon.replace("{}", str(yv)), rk, nabiz
+            faz = (t - t0 - sure) % 1.35
+            if faz < 0.12:
+                lo = ust_y if ust_y > e0 + 1 and len(yeni_s) == 4 and yeni_s[:2].isdigit() else e0 + 1
+                hi = lo + 19 if lo == ust_y else ust_y
+                return sablon.replace("{}", str(int(rng.integers(lo, max(lo + 1, hi + 1))))), rk, 0.0
+            return sablon.replace("{}", yeni_s), rk, nabiz
         if takili:
             rng = np.random.default_rng(int(t * 30) + 7)
             ornek = _bicim(eski, yil) if eski is not None else "0000"
@@ -193,14 +234,24 @@ class KoseGostergesi:
             return sablon.replace("{}", _bicim(v, yil)), rk, nabiz
         return sablon.replace("{}", _bicim(yeni if u > 0.5 else eski, yil)), rk, nabiz
 
+    def _yazi(self, metin: str, rk) -> Image.Image:
+        yz = C.tabular_yazi(metin, C.FONT_CARD, self.f_boy, tuple(rk) + (255,), rakam_en=self.rakam_en)
+        bb = yz.getchannel("A").getbbox()
+        if bb:   # yükseklik sabit kalsın (yazı kutusu: yalnız yatayda sıkı)
+            yz = yz.crop((bb[0], 0, bb[2], yz.height))
+        return yz
+
     def _kutu(self, metin: str, rk) -> Image.Image:
         key = (metin, rk)
         spr = self._cache.get(key)
         if spr is None:
             S = self.c.S
-            yz = C.yazi(metin, C.FONT_CARD, self.f_boy, rk, aralik=0.03)
+            yz = self._yazi(metin, rk)
+            bb = yz.getchannel("A").getbbox() or (0, 0, yz.width, yz.height)
+            yz = yz.crop((0, bb[1], yz.width, bb[3])) if self._dikey is None else \
+                yz.crop((0, self._dikey[0], yz.width, self._dikey[1]))
             padx, pady, bar = 22 * S, 12 * S, 8 * S
-            w, h = int(yz.width + 2 * padx + bar), int(yz.height + 2 * pady)
+            w, h = int(max(yz.width, getattr(self, "min_w", 0)) + 2 * padx + bar), int(yz.height + 2 * pady)
             lay = C.yuvarlak_kutu(w, h, 6 * S, (10, 12, 16, 222))
             ImageDraw.Draw(lay).rectangle((0, 0, int(bar) - 1, h), fill=C.SARI + (255,))
             lay.alpha_composite(yz, (int(bar + padx), int(pady)))

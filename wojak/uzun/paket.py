@@ -85,9 +85,9 @@ def aciklama(v: Video, z: Zaman) -> str:
     if p.get("aciklama"):
         parcalar.append(" ".join(str(p["aciklama"]).split("\n")).replace("  ", " ").strip())
     if p.get("short_url"):
-        parcalar.append(f"Kısa hali (Short): {p['short_url']}")
+        parcalar.append(f"Kısa hâli (Short): {p['short_url']}")
     else:
-        parcalar.append("Kısa hali (Short): [Short bağlantısı]")
+        parcalar.append("Kısa hâli (Short): [Short bağlantısı]")
     parcalar.append("Bölümler\n" + bolum_metni(bolum_damgalari(z)))
     if p.get("kaynaklar"):
         parcalar.append("Kaynaklar\n" + "\n".join(f"- {k}" for k in p["kaynaklar"]))
@@ -128,20 +128,44 @@ def uyarilar(v: Video, z: Zaman) -> list[str]:
     return u
 
 
+BITIS_TIPLERI = ("bitis", "kapanis")
+
+
 def bitis_denetle(z: Zaman) -> list[str]:
-    """YouTube bitiş ekranı: son 5-20 sn'ye konabilir; `bitis` sahnesi videonun son sahnesi olmalı."""
+    """YouTube bitiş ekranı: son 5-20 sn'ye konabilir; `bitis` / `kapanis` sahnesi videonun son sahnesi olmalı."""
     u = []
-    bitisler = [s for s in z.sahneler if s.tip == "bitis"]
+    bitisler = [s for s in z.sahneler if s.tip in BITIS_TIPLERI]
     if not bitisler:
         return u
-    if z.sahneler[-1].tip != "bitis":
-        u.append("bitis sahnesi videonun son sahnesi olmalı (YouTube bitiş ekranı son 5-20 sn'de)")
+    tip = bitisler[-1].tip
+    if z.sahneler[-1].tip not in BITIS_TIPLERI:
+        u.append(f"{tip} sahnesi videonun son sahnesi olmalı (YouTube bitiş ekranı son 5-20 sn'de)")
     if len(bitisler) > 1:
-        u.append(f"{len(bitisler)} bitis sahnesi var: bir tane yeter")
+        u.append(f"{len(bitisler)} bitiş sahnesi (bitis/kapanis) var: bir tane yeter")
     s = bitisler[-1]
     if not 5.0 <= s.sure_hesap <= 20.0 + 1e-6:
-        u.append(f"bitis sahnesi {s.sure_hesap:.1f} sn: YouTube bitiş ekranı 5-20 sn (önerilen 15-20)")
+        u.append(f"{tip} sahnesi {s.sure_hesap:.1f} sn: YouTube bitiş ekranı 5-20 sn (kapanis için 8-12 sn yeterli)")
     return u
+
+
+def bitis_maddesi(z: Zaman) -> str:
+    """Kontrol listesindeki bitiş ekranı maddesi (bitis: iki kutu + daire; kapanis: video kutusu yok)."""
+    bit = [s for s in z.sahneler if s.tip in BITIS_TIPLERI]
+    if not bit:
+        return "- [ ] Bitiş ekranı (son 5-20 sn): 'En son yüklenen' ya da ilgili video + Abone ol"
+    s = bit[-1]
+    t0 = yukari(z.sahne_basi(s))
+    if s.tip == "bitis":
+        return (f"- [ ] Bitiş ekranı (son ~{z.sure - t0:.0f} sn): 'En son yüklenen' ya da ilgili video + Abone ol — "
+                f"öğeleri **{zaman_str(t0)}**'ten itibaren videodaki iki boş kutunun İKİSİNİ DE ve dairenin üstüne "
+                "yerleştir, kutuyu tam örtecek kadar büyüt (boş kalan kutu yer tutucu gibi görünür; daha erken "
+                "başlarsa kapanış sahnesinin üstüne biner)")
+    bos = s.p.get("bos_alan")
+    yer = {"sol_ust": "sol üstteki", True: "sağ üstteki", "sag_ust": "sağ üstteki"}.get(bos)
+    return (f"- [ ] Bitiş ekranı (son ~{z.sure - t0:.0f} sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz "
+            "yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). "
+            + (f"İstersen yalnız 'Abone ol' öğesini **{zaman_str(t0)}**'ten itibaren videodaki {yer} boş alana koy"
+               if yer else "Abone ol öğesi de gerekmez (eklenirse sahnenin düğmelerinin üstüne binmesin)"))
 
 
 def ara_reklam_yerleri(v: Video, z: Zaman) -> list[str]:
@@ -231,17 +255,11 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
         "- [ ] Altyazı (.srt) yüklendi, dil: Türkçe",
         "- [ ] Etiketler yapıştırıldı; kategori: Eğitim (ya da Kişiler ve Bloglar), dil: Türkçe",
         "- [ ] Kitle: 'Çocuklara özel değil'",
-        (f"- [ ] Bitiş ekranı (son ~{z.sure - yukari(z.sahne_basi([s for s in z.sahneler if s.tip == 'bitis'][-1])):.0f} sn)"
-         if any(s.tip == "bitis" for s in z.sahneler) else "- [ ] Bitiş ekranı (son 5-20 sn)")
-        + ": 'En son yüklenen' ya da ilgili video + Abone ol"
-        + (f" — öğeleri **{zaman_str(yukari(z.sahne_basi([s for s in z.sahneler if s.tip == 'bitis'][-1])))}**'ten "
-           "itibaren videodaki iki boş kutunun İKİSİNİ DE ve dairenin üstüne yerleştir, kutuyu tam örtecek kadar "
-           "büyüt (boş kalan kutu yer tutucu gibi görünür; daha erken başlarsa kapanış sahnesinin üstüne biner)"
-           if any(s.tip == "bitis" for s in z.sahneler) else ""),
+        bitis_maddesi(z),
         "- [ ] **Shorts > İlgili video**: kısa sürümün (Short) Studio düzenleme sayfasında 'İlgili video' olarak "
         "BU uzun video seçildi (Short izleyicisini uzun videoya taşır)",
-        "- [ ] Short'un açıklamasına 'Uzun hali kanalda' satırı eklendi; bu açıklamadaki [Short bağlantısı] dolduruldu",
-        "- [ ] Short henüz yayımlanmadıysa açıklamadaki 'Kısa hali (Short): [Short bağlantısı]' satırı silindi"
+        "- [ ] Short'un açıklamasına 'Uzun hâli kanalda' satırı eklendi; bu açıklamadaki [Short bağlantısı] dolduruldu",
+        "- [ ] Short henüz yayımlanmadıysa açıklamadaki 'Kısa hâli (Short): [Short bağlantısı]' satırı silindi"
         if not p.get("short_url") else "- [ ] Short bağlantısı açıklamada doğru",
         "- [ ] Sabit yorum yazıldı ve sabitlendi",
         "- [ ] 'Değiştirilmiş ya da yapay içerik' sorusu: "

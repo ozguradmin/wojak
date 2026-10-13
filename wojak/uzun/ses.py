@@ -24,8 +24,9 @@ import numpy as np
 from .. import config
 from . import muzik
 from .sahneler import (foto_zamanlari, harita_zamanlari, karakter_zamanlari, manset_zamanlari, metin_zamanlari,
-                       olaylar, sayac_bolumleri, zc_zamanlari)
+                       olaylar, rota_zamanlari, sayac_bolumleri, zc_zamanlari)
 from .spec import SFX_DIR, Video
+from .ust import Damga
 from .zaman import Zaman, balon_olaylari, tum_sfx
 
 SR = 48000
@@ -174,7 +175,9 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
                 out.append((max(0.0, b - 2.35), "riser", -20.0))
         elif s.tip == "foto":
             fz = foto_zamanlari(s)
-            out.append((b + fz["oturma"] - 0.04, "shutter", -8.0))
+            # 7. tur: deklanşör baskının ilk değdiği an (out_back(u, 1.0) u = 0,5'te hedefe varır); eskiden oturma
+            # anında (0,22 sn geç) çalıyordu
+            out.append((b + fz["inis"] + 0.36, "shutter", -8.0))
             # daktilo tuşu her harfte değil, her ETIKET_TUS_ADIMI harfte bir (uzun etikette 40+ tık yorucu)
             harfler = [i for i, ch in enumerate(fz["etiket_metni"]) if ch != " "]
             for i in harfler[::ETIKET_TUS_ADIMI]:
@@ -188,6 +191,8 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
                 out.append((b + t, "blip", -17.0))
             if v:
                 out += [(b + v[1], "pop", -8.0), (b + v[1], "hit", -14.0)]
+            for t0, sure, _ in rota_zamanlari(s):   # 7. tur: rota çizilirken hafif whoosh, varışta blip
+                out += [(max(0.0, b + t0 - 0.05), "whoosh_kisa", -19.0), (b + t0 + sure, "blip", -13.0)]
         elif s.tip == "sayac":
             for bl in sayac_bolumleri(s):
                 t0, t1 = bl["t0"], bl["t1"]
@@ -225,32 +230,45 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
             for o in olaylar(s, "ustunu_ciz"):
                 out.append((b + o.zaman, "kalem", -7.0))
         elif s.tip == "wojak":
-            for v in karakter_zamanlari(s).values():
-                if v["giris"] is not None:
-                    out.append((b + v["giris"], "whoosh_kisa", -16.0))
-                if v["cikis"] is not None:
-                    out.append((b + v["cikis"], "whoosh_kisa", -16.0))
+            out += _karakter_efektleri(s, b, -16.0)
             for o in balon_olaylari(s):
                 out.append((b + o.zaman, "pop", -11.0))
-        elif s.tip in ("bolunmus", "izgara", "pano", "marka", "bitis"):
+        elif s.tip in ("bolunmus", "izgara", "pano", "marka", "bitis", "kapanis"):
             out += _ek_efektler(s, b)
         if s.tip != "wojak" and s.p.get("konuk"):   # konuk karakterin girişi/çıkışı (wojak sahnesindeki gibi)
-            for v in karakter_zamanlari(s).values():
-                for t in (v["giris"], v["cikis"]):
-                    if t is not None:
-                        out.append((b + t, "whoosh_kisa", -18.0))
-        for o in olaylar(s, "isim"):
-            out.append((b + o.zaman, "whoosh_kisa", -15.0))
+            out += _karakter_efektleri(s, b, -18.0)
+        for o in olaylar(s, "isim"):   # whoosh tepesi (0,22 sn) etiketin en hızlı kaydığı ilk kareye
+            out.append((max(0.0, b + o.zaman - WHOOSH_TEPE + 0.08), "whoosh_kisa", -15.0))
         for o in olaylar(s, "kelime"):
             out.append((b + o.zaman, "pop", -12.0))
         for o in olaylar(s, "damga"):
-            if not o.p.get("inik"):
-                out.append((b + o.zaman + 0.1, "damga", -5.0))
+            if not o.p.get("inik"):   # damga.wav'ın vuruşu 0 ms'de: damganın kâğıda değdiği an (Damga.INIS)
+                out.append((b + o.zaman + Damga.INIS, "damga", -5.0))
         for o in olaylar(s, "kose"):
             out.append((b + o.zaman, "static" if o.p.get("takili") else "tik", -18.0 if o.p.get("takili") else -12.0))
         ek = float(s.p.get("sfx_db") or 0.0)
         if ek:
             out[n0:] = [(t, ad, db + ek) for t, ad, db in out[n0:]]
+    return out
+
+
+WHOOSH_TEPE = 0.22   # whoosh_kisa.wav'ın tepe anı (sn)
+
+
+def _karakter_efektleri(s, b: float, db: float) -> list[tuple[float, str, float]]:
+    """Karakter giriş/çıkış efektleri (7. tur: ses ile görüntünün en hızlı anı aynı karede). Giriş out_back: en hızlı
+    ilk karelerde -> whoosh tepesi girişin ~0,1 sn sonrasına; çıkış in_cubic: en hızlı sonda -> tepe ~0,35 sn'ye.
+    `yon: pop` girişi kayma değil büyüme: 'pop'."""
+    out = []
+    yonler = {c["id"]: c.get("yon") for c in s.p.get("karakterler", []) + s.p.get("konuk", [])}
+    for kid, v in karakter_zamanlari(s).items():
+        if v["giris"] is not None:
+            if yonler.get(kid) == "pop":
+                out.append((b + v["giris"], "pop", db + 4.0))
+            else:
+                out.append((max(0.0, b + v["giris"] + 0.1 - WHOOSH_TEPE), "whoosh_kisa", db))
+        if v["cikis"] is not None:
+            out.append((b + v["cikis"] + 0.35 - WHOOSH_TEPE, "whoosh_kisa", db))
     return out
 
 
@@ -283,6 +301,9 @@ def _ek_efektler(s, b: float) -> list[tuple[float, str, float]]:
         z = bitis_zamanlari(s)
         for t in z["kutular"] + [z["abone"]]:
             out.append((b + t, "pop", -14.0))
+    elif s.tip == "kapanis":
+        from .kapanis import efektler
+        out += efektler(s, b)
     # izgara: bilerek sessiz (noktalar sessizce dolar ve söner)
     return out
 
@@ -292,16 +313,25 @@ def muzik_egrisi(z: Zaman) -> list[tuple[float, float, float]]:
     ({db, gecis}); 0 dB = normal (kısma zarfı ayrıca uygulanır)."""
     out: list[tuple[float, float, float]] = []
     son = 0.0
+
+    def rampa(r: float, eski: float, yeni: float) -> float:
+        # 7. tur: bir an sessizlikten (<= -30 dB) dönen müzik 0,6 sn'de 40 dB yükselince "patlayarak" geliyordu;
+        # dönüş en az SESSIZLIK_DONUS sn
+        return max(r, SESSIZLIK_DONUS) if eski <= -30 and yeni - eski >= 20 else r
+
     for s in z.sahneler:
         b = z.sahne_basi(s)
         if abs(s.muzik_db - son) > 1e-6:
-            out.append((b, s.muzik_db, 0.6))
+            out.append((b, s.muzik_db, rampa(0.6, son, s.muzik_db)))
             son = s.muzik_db
         for o in olaylar(s, "muzik"):
             db = float(o.p["db"])
-            out.append((b + o.zaman, db, float(o.p.get("gecis", 0.5))))
+            out.append((b + o.zaman, db, rampa(float(o.p.get("gecis", 0.5)), son, db)))
             son = db
     return out
+
+
+SESSIZLIK_DONUS = 1.6
 
 
 def muzik_kazanci(egri: list[tuple[float, float, float]], n: int) -> np.ndarray | None:

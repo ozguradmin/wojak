@@ -17,6 +17,7 @@ pano: mantar pano (kendi dokumuz), kartlar (`kartlar`: id, metin, alt, x, y, sti
 from __future__ import annotations
 
 import math
+import re
 from functools import lru_cache
 
 import numpy as np
@@ -50,12 +51,32 @@ def bolunmus_zamanlari(sahne) -> dict:
     return out
 
 
+SAYI_RE = re.compile(r"\d{1,3}(?:\.\d{3})+|\d+")
+
+
+def _hizali_sayi(son: str, deger: int) -> str:
+    """deger'i son'un (ör. '1.267') rakam/ayraç düzenine sağdan hizalar; boş rakam hücresi U+2007, boş ayraç
+    U+2008 (C.tabular_yazi ikisini de çizmeden genişliğiyle geçer): sayarken satır genişliği sabit kalır."""
+    cs = C.say_bicimle(deger)
+    out = []
+    j = len(cs) - 1
+    for ch in reversed(son):
+        if j >= 0:
+            out.append(cs[j])
+            j -= 1
+        else:
+            out.append("\u2008" if ch == "." else "\u2007")
+    return "".join(reversed(out))
+
+
 class _Panel:
     def __init__(self, d: dict, c, tohum: int):
         S, W, H = c.S, c.W, c.H
         self.c, self.S, self.W, self.H = c, S, W, H
         self.d = d
         self.zm = float(d.get("zoom", 1.06))
+        # 9. tur (izlenme S7): metin panelinin kendi itmesi (`zoom`: zemin daha çok yaklaşır, yazı bloğu hafifçe büyür)
+        self.metin_zoom = float(d["zoom"]) if (d.get("zoom") and not d.get("gorsel")) else None
         self.odak = d.get("odak", (0.5, 0.5))
         self.odak = (float(self.odak[0]), float(self.odak[1])) if isinstance(self.odak, (list, tuple)) else (0.5, 0.5)
         if d.get("gorsel"):
@@ -66,20 +87,74 @@ class _Panel:
             pal = Z.KOYU
         else:
             self.img = None
-            self.zemin = Z.Zemin(c, {"zemin": d.get("zemin"), "arka": d.get("arka")}, tohum=tohum)
+            self.zemin = Z.Zemin(c, {"zemin": d.get("zemin"), "arka": d.get("arka")}, tohum=tohum,
+                                 zm=max(1.08, self.metin_zoom or 1.08))
             pal = self.zemin.palet
         self.pal = pal
         self.metin = C.yazi(str(d["metin"]), C.FONT_DIALOG, 92 * S, pal.metin, max_w=0.40 * W, max_lines=4,
                             align="center", golge=pal.golge_t(S)) if d.get("metin") else None
+        # 9. tur (izlenme S7): `say: true` -> metindeki sayılar panel açılınca 0'dan sayar (satırlar "\n" ile;
+        # rakamlar sabit genişlikte, satır kaymaz)
+        self.say = bool(d.get("say")) and bool(d.get("metin"))
+        self.say_sure = float(d.get("say_sure", 1.5))
+        self._say_cache: dict = {}
+        if self.say:
+            self.say_satirlar = [ln.strip() for ln in str(d["metin"]).split("\n") if ln.strip()]
+            self.metin = self._say_katmani([1.0] * 16)
         self.ceviri = C.yazi(str(d["ceviri"]), C.FONT_DIALOG, 64 * S, C.SARI if pal.koyu else pal.metin,
                              max_w=0.40 * W, max_lines=3, align="center", golge=pal.golge_t(S, 4, 8)) \
             if d.get("ceviri") else None
+        # 8. tur (izlenme hakemi N2): fotoğraflı koyu panelde sarı çeviri gri fotoğrafın üstünde silik kalıyordu:
+        # arkasına koyu, yuvarlak bir bant
+        if self.ceviri is not None and pal.koyu and d.get("arka"):
+            px_, py_ = 26 * S, 10 * S
+            bant = C.yuvarlak_kutu(int(self.ceviri.width + 2 * px_), int(self.ceviri.height + 2 * py_), 10 * S,
+                                   (8, 9, 12, 196))
+            bant.alpha_composite(self.ceviri, (int(px_), int(py_)))
+            self.ceviri = bant
+        self.ceviri_bant = self.ceviri is not None and pal.koyu and bool(d.get("arka"))
         self.etiket = _etiket_kutusu(str(d["etiket"]), S) if d.get("etiket") else None
         self.baslik = C.yazi(C.buyuk(str(d["baslik"])), C.FONT_CARD, 84 * S, C.BEYAZ if pal.koyu else pal.metin,
                              aralik=0.04, golge=(0, 4 * S, 10 * S, 0.7) if pal.koyu else None) \
             if d.get("baslik") else None
         # 5. tur (izlenme hakemi): 24 px alt yazı 1080p'de bile okunmuyordu: 40 px, koyu bant üstünde
         self.alt = _alt_kutusu(str(d["alt"]), S, 0.42 * W) if d.get("alt") else None
+
+    def _say_katmani(self, kler: list[float]) -> Image.Image:
+        """Satırlar alt alta, ortalı; her sayı kendi k (0..1) oranında."""
+        S = self.S
+        satirlar, j = [], 0
+        for ln in self.say_satirlar:
+            def deg(m):
+                nonlocal j
+                k = kler[min(j, len(kler) - 1)]
+                j += 1
+                son = m.group(0)
+                return _hizali_sayi(son, int(round(int(son.replace(".", "")) * k)))
+            satirlar.append(SAYI_RE.sub(deg, ln))
+        key = tuple(satirlar)
+        if key in self._say_cache:
+            return self._say_cache[key]
+        f_boy = 92 * S
+        ims = [C.tabular_yazi(x, C.FONT_DIALOG, f_boy, self.pal.metin, golge=self.pal.golge_t(S)) for x in satirlar]
+        lh = f_boy * 1.18
+        w = max(im.width for im in ims)
+        h = int(lh * (len(ims) - 1) + ims[-1].height)
+        lay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        for i, im in enumerate(ims):
+            lay.alpha_composite(im, (int((w - im.width) / 2), int(i * lh)))
+        if len(self._say_cache) > 96:
+            self._say_cache.pop(next(iter(self._say_cache)))
+        self._say_cache[key] = lay
+        return lay
+
+    def metin_katmani(self, u: float) -> Image.Image:
+        """u: panel açılışından beri sn. Sayılar sırayla (0,45 sn arayla) out_cubic ile sayar."""
+        if not self.say:
+            return self.metin
+        n = len(SAYI_RE.findall(" ".join(self.say_satirlar)))
+        kler = [E.out_cubic((u - 0.2 - 0.45 * i) / self.say_sure) for i in range(n)]
+        return self._say_katmani(kler or [1.0])
 
     def tam_kare(self, t: float, dur: float) -> Image.Image:
         """Panelin tam ekran (W x H) hâli; görünür pencere sonra kırpılır."""
@@ -168,21 +243,31 @@ class BolunmusCizici(Cizici):
         cx = x0 + pw / 2
         if pn.metin is not None:
             yy = H * (0.44 if pn.ceviri is not None else 0.5) - pn.metin.height / 2 + Z.suzul(t, 1.1, 2.5) * S
-            C.bindir(im, pn.metin, cx - pn.metin.width / 2, yy + (1 - a) * 20 * S, a)
+            mk = pn.metin_katmani(t - acilis)
+            sz = 1.0 + ((pn.metin_zoom - 1.0) * 0.5 * E.in_out_sine(t / max(self.dur, 1e-3)) if pn.metin_zoom else 0.0)
+            if abs(sz - 1.0) > 1e-4:
+                src = C.alt_piksel_hazirla(mk)
+                spr, x0_, y0_ = C.alt_piksel(src, cx - mk.width * sz / 2,
+                                             yy + mk.height * (1 - sz) / 2 + (1 - a) * 20 * S, sz, sz)
+                C.bindir(im, spr, x0_, y0_, a)
+            else:
+                C.bindir_alt(im, mk, cx - mk.width / 2, yy + (1 - a) * 20 * S, a)
             tc = self.z["ceviri"].get(taraf)
             if pn.ceviri is not None and tc is not None and t >= tc:
                 ac = E.out_cubic((t - tc) / 0.45)
                 yc = yy + pn.metin.height + 40 * S
                 lw = pn.ceviri.width * E.in_out_cubic((t - tc - 0.15) / 0.5)
                 if lw > 1:
-                    if pn.pal.koyu:
+                    if pn.ceviri_bant:
+                        pass   # koyu bant zaten çeviriyi taşıyor
+                    elif pn.pal.koyu:
                         ImageDraw.Draw(im).rectangle((cx - pn.ceviri.width / 2, yc + pn.ceviri.height - 3 * S,
                                                       cx - pn.ceviri.width / 2 + lw, yc + pn.ceviri.height + 6 * S),
                                                      fill=C.SARI)
                     else:
                         isaret = Image.new("RGB", (int(lw + 20 * S), int(pn.ceviri.height * 0.6)), pn.pal.isaret)
                         C.bindir(im, isaret, cx - pn.ceviri.width / 2 - 10 * S, yc + pn.ceviri.height * 0.3, 0.8)
-                C.bindir(im, pn.ceviri, cx - pn.ceviri.width / 2, yc + (1 - ac) * 16 * S, ac)
+                C.bindir_alt(im, pn.ceviri, cx - pn.ceviri.width / 2, yc + (1 - ac) * 16 * S, ac)
         if pn.baslik is not None:
             C.bindir(im, pn.baslik, cx - pn.baslik.width / 2, 56 * S - (1 - a) * 14 * S, a)
         if pn.etiket is not None:
@@ -395,6 +480,7 @@ class PanoCizici(Cizici):
         self.taban = kece_dokusu(CW, CH) if p.get("doku") == "kece" else mantar_dokusu(CW, CH)
         self.zt = pano_zamanlari(self.sahne)
         self.raptiye = _raptiye(15 * S)
+        self.canli_golge = bool((getattr(self.c.v, "hareket", None) or {}).get("ikincil", False))
         rng = np.random.default_rng(77)
         self.kartlar = {}
         for i, k in enumerate(p["kartlar"]):
@@ -407,6 +493,9 @@ class PanoCizici(Cizici):
             self.kartlar[k["id"]] = {"spr": spr, "cx": cx, "cy": cy, "egim": egim, "t": self.zt["kartlar"][k["id"]],
                                      "foto_y": foto_y,
                                      "pin": (cx, cy - spr.height / 2 + 16 * S)}
+            if self.canli_golge:   # 7. tur: düşen kartın havadaki gölgesi (uzak, yumuşak; oturunca kaybolur)
+                g, gx, gy = C.golge_katmani(spr, 16 * S, 0.5)
+                self.kartlar[k["id"]]["golge"] = (g, gx, gy)
         self.damgalar = []
         for i, o in enumerate(damga_olaylari(self.sahne, kartli=True)):
             kt = self.kartlar[o.p["kart"]]
@@ -429,7 +518,7 @@ class PanoCizici(Cizici):
         bas = C.yazi(str(k["metin"]), C.FONT_BOLD, (52 if stil == "merkez" else 40) * S,
                      (84, 76, 68) if stil == "bos" else murekkep, max_w=en - 2 * pad, max_lines=5, align="center",
                      satir=1.12)
-        alt = C.yazi(str(k["alt"]), C.FONT_BOLD, 28 * S, (84, 74, 64), max_w=en - 2 * pad, max_lines=4,   # 6. tur: 25 -> 28
+        alt = C.yazi(str(k["alt"]), C.FONT_BOLD, 33 * S, (84, 74, 64), max_w=en - 2 * pad, max_lines=4,   # 8. tur: 28 -> 33 (telefon)
                      align="center", satir=1.15) if k.get("alt") else None
         foto = None
         if k.get("gorsel"):
@@ -497,6 +586,12 @@ class PanoCizici(Cizici):
                 continue
             s = 1.22 - 0.22 * E.out_back(u, 1.4)
             aci = k["egim"] + 7 * (1 - E.out_cubic(u))
+            h = min(1.0, max(0.0, (s - 1) / 0.22))
+            if h > 0.02 and "golge" in k:
+                g, gx, gy = k["golge"]
+                gs, x0, y0 = C.afin(g, k["cx"] + (10 + 34 * h) * S, k["cy"] + (14 + 50 * h) * S, s, s, aci,
+                                    gx + k["spr"].width / 2, gy + k["spr"].height / 2)
+                C.bindir(cv, gs, x0, y0, h * min(1.0, u * 2.5))
             spr, x0, y0 = C.afin(k["spr"], k["cx"], k["cy"], s, s, aci)
             C.bindir(cv, spr, x0, y0, min(1.0, u * 2.5))
         d = ImageDraw.Draw(cv)

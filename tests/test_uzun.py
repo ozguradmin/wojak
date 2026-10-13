@@ -795,8 +795,9 @@ def test_konuk_karakter_her_sahnede():
     assert s0.p["konuk"][0]["yon"] == "alt" and Path(s0.p["konuk"][0]["gorsel"]).is_absolute()
     assert 0.4 in vuruslar(s0) and 2.0 in vuruslar(s0) and 1.5 in vuruslar(s1)
     ef = ses.otomatik_efektler(z)
-    assert any(ad == "whoosh_kisa" and abs(t - 0.4) < 1e-6 for t, ad, _ in ef)
-    assert any(ad == "whoosh_kisa" and abs(t - (z.sahne_basi(s1) + 1.5)) < 1e-6 for t, ad, _ in ef)
+    on = 0.1 - ses.WHOOSH_TEPE    # 7. tur: whoosh tepesi girişin en hızlı karelerine (girişten 0,1 sn sonra)
+    assert any(ad == "whoosh_kisa" and abs(t - (0.4 + on)) < 1e-6 for t, ad, _ in ef)
+    assert any(ad == "whoosh_kisa" and abs(t - (z.sahne_basi(s1) + 1.5 + on)) < 1e-6 for t, ad, _ in ef)
     W, H = 320, 180
     ku = render.KareUretici(v, z, 0, W, H)
     once, sonra = np.asarray(ku.kare(3), np.float32), np.asarray(ku.kare(60), np.float32)
@@ -867,16 +868,30 @@ def test_bes_tur_motor_ekleri():
     z = zaman.hesapla(v, tahmin=True)
     c = Baglam(v, 480, 270)
     s = z.sahneler[5]
+    # 9. tur (izlenme S1): takılı yıl geriye gitmez: eski yıldan ileri akar, sonra takılır; titreşimde de eski yıldan
+    # önceki bir yıl görünmez
     kg = KoseGostergesi(s, c, kose_olaylari(s))
-    for k in range(40):
-        m = kg._metin(0.4 + k * 0.02)[0]
-        assert m == "????" or m.startswith("19"), m
+    t_e, eski = [(d[0], d[2]) for d in kg.durumlar if d[5]][0]
+    onceki = int(eski)
+    for k in range(80):
+        t_ = t_e + k * 0.02
+        m = kg._metin(t_)[0]
+        if m == "????":
+            continue
+        assert m.isdigit() and int(m) >= int(eski), m
+        if t_ < t_e + 0.8:
+            assert int(m) >= onceki, (m, onceki)
+            onceki = int(m)
     s.olaylar = [o for o in s.olaylar if o.tip != "kose"] + [
         spec.Olay(tip="kose", p={"deger": "20??", "takili": True}, zaman=0.4)]
     kg = KoseGostergesi(s, c, kose_olaylari(s))
+    onceki = 0
     for k in range(60):
         m = kg._metin(0.4 + k * 0.02)[0]
-        assert m[:2] in ("19", "20") and (m[:2] == "19" or m == "20??" or int(m) <= 2019), m
+        assert m == "20??" or (m.isdigit() and int(m) <= 2019), m
+        if m != "20??" and 0.4 + k * 0.02 < 1.2:
+            assert int(m) >= onceki, (m, onceki)
+            onceki = int(m)
     # kartsız bölüm: aşağı yuvarlanır (ilk kelime kesilmesin); kartlı: yukarı
     v = _video([
         {"baslik": "Giriş", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": 41.7}]},
@@ -963,3 +978,375 @@ def test_alti_tur_motor_ekleri():
                                                               {"id": "a", "gorsel": "assets/kit/klasik/sakin.png"}]}]}])
     # fotoğraf etiketi: her 4 harfte bir tuş
     assert ses.ETIKET_TUS_ADIMI == 4 and ses.TUS_ADIMI == 2
+
+
+# ---------------------------------------------------------------- 7. tur (animasyon: hata avı, hareket dili, kapanış)
+
+KL = "assets/kit/klasik/"
+
+
+def test_hareket_spec_ve_varsayilanlar():
+    """`hareket` bloğu: varsayılanlar (bulanıklık, ikincil, canlı açık; paralaks 0, doku kapalı), aralık ve anahtar
+    denetimi; yeni karakter yönleri (ust, pop) ve `canli: false`; sahne `doku` ve kamera `paralaks`."""
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x"}]}])
+    assert v.hareket == spec.HAREKET_VARSAYILAN
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x"}]}],
+               hareket={"paralaks": 0.4, "doku": True, "canli": False})
+    assert v.hareket["paralaks"] == 0.4 and v.hareket["doku"] == {"gren": 0.035, "toz": 18} and not v.hareket["canli"]
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x"}]}],
+                               hareket={"titreme": 1}), "hareket")
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x"}]}],
+                               hareket={"paralaks": 2}), "paralaks")
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "wojak", "arka": KUTU, "doku": {"gren": 0.05},
+                                              "kamera": {"paralaks": 0.3}, "karakterler": [
+        {"id": "a", "gorsel": KL + "sakin.png", "yon": "pop"},
+        {"id": "b", "gorsel": KL + "sakin.png", "yon": "ust", "canli": False}]}]}])
+    s = v.sahneler[0]
+    assert s.p["doku"] == {"gren": 0.05, "toz": 18} and s.p["kamera"]["paralaks"] == 0.3
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [{"tip": "wojak", "arka": KUTU, "karakterler": [
+        {"id": "a", "gorsel": KL + "sakin.png", "yon": "zipla"}]}]}]), "yon")
+
+
+def test_hareket_bulanikligi_ve_alt_piksel():
+    from PIL import Image
+    from wojak.uzun import cizim as C
+    spr = Image.new("RGBA", (40, 30), (0, 0, 0, 0))
+    spr.paste((255, 255, 255, 255), (10, 5, 30, 25))
+    out, ox, oy = C.hareket_izi(spr, 60, 0)      # sağa 60 px/kare: sola 30 px iz (180° obtüratör)
+    assert out.width - spr.width in (29, 30, 31) and ox < 0 and oy == 0
+    # 8. tur: keskin katman ÜSTTE ve tam opak (yüz 'hayalet' olmaz), iz altta ve yarı saydam
+    A = np.asarray(out.getchannel("A"), float)
+    asil = A[5:25, -ox + 10:-ox + 30]
+    assert asil.min() >= 254                               # sprite'ın kendi alanı tam opak
+    iz = A[5:25, :-ox + 10]
+    assert 0 < iz.max() <= 255 * C.IZ_OPAKLIK + 2          # iz yarı saydam, sprite'ın arkasında
+    RGB = np.asarray(out.convert("RGB"), float)
+    assert RGB[15, -ox + 20].min() >= 250                  # keskin beyaz bozulmadı
+    # iz 40 px ile sınırlı (200 px/kare -> 100 px değil)
+    uzun, ox2, _ = C.hareket_izi(spr, 200, 0)
+    assert uzun.width - spr.width <= 41 and ox2 >= -41
+    same, *_ = C.hareket_izi(spr, 1, 0)
+    assert same is spr                                     # yavaşta dokunulmaz
+    # alt piksel: 0,5 px kayan katman iki komşu sütuna yarı yarıya dağılır
+    dst = Image.new("RGB", (20, 10), (0, 0, 0))
+    nokta = Image.new("RGBA", (1, 10), (255, 255, 255, 255))
+    C.bindir_alt(dst, nokta, 5.5, 0)
+    satir = np.asarray(dst, float)[5, :, 0]
+    assert 90 < satir[5] < 165 and 90 < satir[6] < 165
+    # yatay bulanıklık: ortalama korunur
+    im = Image.fromarray((np.random.default_rng(1).random((20, 60, 3)) * 255).astype(np.uint8))
+    b = C.yatay_bulanik(im, 9)
+    assert abs(np.asarray(b, float).mean() - np.asarray(im, float).mean()) < 2
+
+
+def test_yay_egrisi_ve_karakter_ikincil_hareket():
+    from wojak.uzun import render
+    from wojak.uzun.sahneler import yay_egrisi
+    us, y = yay_egrisi()
+    assert abs(np.abs(y).max() - 1) < 1e-9 and abs(y[-1]) < 0.05     # en büyük 1, sonunda oturmuş
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "wojak", "arka": KUTU, "sure": 4, "karakterler": [
+        {"id": "a", "gorsel": KL + "sakin.png", "taraf": "sol", "giris": 0.2},
+        {"id": "b", "gorsel": KL + "sakin.png", "taraf": "sag", "yon": "pop", "giris": 1.0},
+        {"id": "c", "gorsel": KL + "sakin.png", "x": 0.5, "yon": "alt", "giris": 0.5, "canli": False}]}]}])
+    z = zaman.hesapla(v, tahmin=True)
+    ku = render.KareUretici(v, z, 0, 320, 180)
+    a, b, c = ku.cz.karakterler
+    acilar = [a.poz(0.2 + 0.75 * u)["aci"] for u in np.linspace(0.05, 1.6, 30)]
+    assert max(abs(x) for x in acilar) > 1.0                  # yandan girişte belirgin eğilme
+    assert abs(a.poz(3.9)["aci"]) < 0.6                       # oturduktan sonra yalnız canlı salınım (<0,6°)
+    assert b.poz(1.0)["sx"] < 0.05 and abs(b.poz(1.6)["sx"] - 1) < 0.03   # pop: sıfırdan büyür
+    sy = [c.poz(0.5 + 0.75 * u)["sy"] for u in np.linspace(0.05, 1.5, 30)]
+    assert max(sy) > 1.02                                     # alttan girişte esneme
+    assert c.poz(3.9)["sy"] == 1.0 and c.poz(3.9)["aci"] == 0.0   # canli: false -> nefes/eğim yok
+    for k in (6, 10, 40, 100):                                # kareler hatasız (bulanıklık + eğim yolları)
+        assert ku.kare(k).size == (320, 180)
+    # kapalı hareket dili: eski davranış (eğim yok)
+    v2 = _video(v.raw["bolumler"], hareket={"ikincil": False, "canli": False, "bulaniklik": False})
+    z2 = zaman.hesapla(v2, tahmin=True)
+    a2 = render.KareUretici(v2, z2, 0, 320, 180).cz.karakterler[0]
+    assert all(a2.poz(t)["aci"] == 0.0 for t in np.linspace(0, 4, 20))
+
+
+def test_kesmede_yarim_kalmasin_ve_kose_sabit_genislik():
+    from wojak.uzun.sahneler import Baglam, kesmede_yarim_kalmasin
+    from wojak.uzun.ust import KoseGostergesi, kose_olaylari
+    assert kesmede_yarim_kalmasin(1.0, 2.0, 0.3, 3.1, "kesme") == 3.1 - 1.0 + 1.0  # kesmede yarıda: sonuna dek tam
+    assert kesmede_yarim_kalmasin(1.0, 2.0, 0.3, 3.1, None) == 2.0                  # çapraz geçişte söner
+    assert kesmede_yarim_kalmasin(1.0, 1.0, 0.3, 5.0, "kesme") == 1.0               # erken biten: dokunulmaz
+    d = kesmede_yarim_kalmasin(1.0, 5.0, 0.3, 3.1, "donuk")                        # donan karede yazı kalmasın
+    assert abs(1.0 + d + 0.3 - (3.1 - 0.04)) < 1e-9
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "sure": 4,
+                 "kose": {"metin": "GÜN {} / 12", "deger": 0},
+                 "olaylar": [{"tip": "kose", "deger": 11, "t": 0.5, "sure": 1.0},
+                             {"tip": "kose", "deger": "????", "takili": True, "t": 2.5}]}]}])
+    z = zaman.hesapla(v, tahmin=True)
+    s = z.sahneler[0]
+    k = KoseGostergesi(s, Baglam(v, 1920, 1080), kose_olaylari(s))
+    boylar = {k._kutu(*k._metin(i / 30)[:2]).size for i in range(120)}
+    assert len(boylar) == 1, boylar                          # sayarken/takılırken kutu boyu değişmez
+
+
+def test_sayac_tekerlek_yuvarlanma():
+    from wojak.uzun import render
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "sayac", "deger": 20000, "sure": 4}]}])
+    z = zaman.hesapla(v, tahmin=True)
+    cz = render.KareUretici(v, z, 0, 480, 270).cz
+    b = cz.bolumler[0]
+    # 8. tur: basamak sayısı baştan hedefinki (20.000 -> 5 tekerlek); öndekiler boş
+    assert b["basamak"] == 5
+    teker = [q for q in cz._yuvarlanan(19.5, 0.01, b) if not isinstance(q[0], str)]
+    assert len(teker) == 5 and all(q[2] for q in teker[:3]) and not teker[3][2]
+    # kilometre sayacı: 19,5'te onlar tekerleği 1,5'te (alttakiler 9'dan 0'a geçerken döner)
+    assert abs(teker[3][0] - 1.5) < 1e-9 and abs(teker[4][0] - 9.5) < 1e-9
+    # 9.999,5 -> öndeki boş tekerlek boştan 1'e yarı yolda (eskiden 4 basamak "0.000"a dönüyordu)
+    t9 = [q for q in cz._yuvarlanan(9999.5, 0.01, b) if not isinstance(q[0], str)]
+    assert t9[0][2] and abs(t9[0][0] - 0.5) < 1e-6
+    ayrac = [q for q in cz._yuvarlanan(1234.0, 0.01, b) if q[0] == "."]
+    assert ayrac and ayrac[0][1] == 1.0                     # binlik ayırıcı (solu dolu: görünür)
+    # sayarken katman genişliği hiç değişmez (sayı yana kaymaz); görünen ortası yumuşakça kayar
+    ws = {cz._say_katmani(b["t0"] + (b["t1"] - b["t0"]) * i / 40, b).width for i in range(41)}
+    assert max(ws) - min(ws) <= 1, ws
+    axs = [cz._say_katmani(b["t0"] + (b["t1"] - b["t0"]) * i / 120, b).info["ax"] for i in range(121)]
+    assert max(abs(a_ - b_) for a_, b_ in zip(axs, axs[1:])) < cz.hucre * 0.25   # hiçbir karede yarım hücre sıçrama yok
+    assert cz.kare(1.0).size == (480, 270)
+
+
+def test_ses_senkronu_ve_sessizlikten_donus():
+    """Efekt vuruşu görüntüdeki an ile aynı karede: damga kâğıda değdiğinde (INIS), deklanşör baskı değdiğinde,
+    whoosh tepesi girişin en hızlı karelerinde; sessizlikten dönen müzik en az 1,6 sn'de açılır."""
+    from wojak.uzun import ses
+    from wojak.uzun.ust import Damga
+    v = _video([{"baslik": "a", "sahneler": [
+        {"tip": "foto", "gorsel": KUTU, "sure": 3, "olaylar": [{"tip": "damga", "metin": "X", "t": 1.0},
+                                                             {"tip": "muzik", "db": -40, "t": 2.0}]},
+        {"tip": "wojak", "arka": KUTU, "sure": 3, "karakterler": [{"id": "a", "gorsel": KL + "sakin.png",
+                                                                    "giris": 0.5}]}]}])
+    z = zaman.hesapla(v, tahmin=True)
+    ef = ses.otomatik_efektler(z)
+    assert any(a == "damga" and abs(t - (1.0 + Damga.INIS)) < 1e-6 for t, a, _ in ef)
+    assert any(a == "shutter" and abs(t - 0.48) < 1e-6 for t, a, _ in ef)
+    b = z.sahne_basi(z.sahneler[1])
+    assert any(a == "whoosh_kisa" and abs(t - (b + 0.5 + 0.1 - ses.WHOOSH_TEPE)) < 1e-6 for t, a, _ in ef)
+    eg = ses.muzik_egrisi(z)
+    donus = [r for t, db, r in eg if db == 0.0]
+    assert donus and donus[0] >= ses.SESSIZLIK_DONUS
+
+
+def test_kapanis_sahnesi():
+    from wojak.uzun import render, ses
+    from wojak.uzun.kapanis import kapanis_zamanlari, varsayilan_yorum
+    from wojak.uzun.sahneler import vuruslar
+    sahne = {"tip": "kapanis", "arka": KUTU, "ust": "SON SORU", "soru": "Türkiye'yi ne korudu?",
+             "secenekler": [{"metin": "A kişi", "gorsel": KL + "sakin.png"}, "B kişi",
+                            {"metin": "Kural", "gorsel": KUTU}],
+             "karakter": {"gorsel": KL + "sakin.png", "yuz": KL + "mutlu.png"},
+             "satirlar": ["Bir sonraki hikâyede görüşmek üzere."],
+             "olaylar": [{"tip": "tikla", "hedef": "zil", "t": 4.4}, {"tip": "secenek", "indeks": 2, "t": 8.0}]}
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "sure": 2}, sahne]}])
+    z = zaman.hesapla(v, tahmin=True)
+    s = z.sahneler[1]
+    assert abs(s.sure_hesap - 10.0) < 0.05                  # varsayılan en az 10 sn
+    zt = kapanis_zamanlari(s)
+    assert zt["tik"]["zil"] == 4.4 and zt["vurgu"] == [(8.0, 2)] and zt["tik"]["abone"] < zt["tik"]["zil"]
+    assert varsayilan_yorum(3) == "A mı, B mi, yoksa C mi?\nCevabını yorumlara yaz"
+    vu = vuruslar(s)
+    assert 4.4 in vu and 8.0 in vu
+    ef = [a for t, a, _ in ses.otomatik_efektler(z) if t >= z.sahne_basi(s)]
+    assert "klik" in ef and "zil" in ef and "pop" in ef and "tus" in ef
+    assert not paket.bitis_denetle(z)                       # son sahne, 5-20 sn: uyarı yok
+    assert "video kutusu EKLEME" in paket.bitis_maddesi(z)
+    ku = render.KareUretici(v, z, 1, 480, 270)
+    kareler = [np.asarray(ku.kare(k), np.float32) for k in (3, 60, 100, 130, 200, 290)]
+    for a, b in zip(kareler, kareler[1:]):
+        assert np.abs(a - b).mean() > 0.3                   # sahne boyunca hareket var
+    # bindirme: ilk karesi önceki sahnenin son karesi
+    sahne2 = dict(sahne, bindirme=True)
+    sahne2.pop("arka")
+    v2 = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "sure": 2}, sahne2]}])
+    z2 = zaman.hesapla(v2, tahmin=True)
+    onceki = np.asarray(render.son_kare(v2, z2, 0, 320, 180), np.float32)
+    ilk = np.asarray(render.KareUretici(v2, z2, 1, 320, 180).cz.kare(0.0), np.float32)
+    assert np.abs(onceki - ilk).mean() < 8
+    # hatalar
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [dict(sahne, secenekler=["a", "b", "c", "d"])]}]),
+                "0-3")
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [dict(sahne, olaylar=[{"tip": "tikla", "hedef": "x"}])]}]),
+                "tikla")
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [dict(sahne, dugmeler=["abone"], olaylar=[
+        {"tip": "tikla", "hedef": "begen"}])]}]), "dugmeler")
+
+
+def test_harita_rota_ve_belge_isaretleri():
+    from wojak.uzun import render, ses
+    v = _video([{"baslik": "a", "sahneler": [
+        {"tip": "harita", "bolge": "avrupa", "ulkeler": ["DEU"], "sure": 4,
+         "olaylar": [{"tip": "rota", "a": "DEU", "b": "TUR", "t": 1.0, "kesik": True, "etiket": "yol"},
+                     {"tip": "rota", "a": [13.4, 52.5], "b": [32.9, 39.9], "t": 1.5, "sure": 0.8}]},
+        {"tip": "manset", "gorsel": KUTU, "kutular": [[0.1, 0.1, 0.5, 0.3], [0.2, 0.5, 0.6, 0.6]], "sure": 3,
+         "olaylar": [{"tip": "vurgula", "kutu": 1, "t": 0.5, "stil": "daire"},
+                     {"tip": "vurgula", "kutu": 2, "t": 1.0, "stil": "alt_cizgi", "renk": "mavi"}]}]}])
+    z = zaman.hesapla(v, tahmin=True)
+    ef = ses.otomatik_efektler(z)
+    assert any(a == "blip" and abs(t - 2.2) < 1e-6 for t, a, _ in ef)     # varışta blip
+    ku = render.KareUretici(v, z, 0, 480, 270)
+    once, sonra = np.asarray(ku.kare(25), np.float32), np.asarray(ku.kare(90), np.float32)
+    assert np.abs(once - sonra).max() > 60                  # rota çizildi
+    km = render.KareUretici(v, z, 1, 480, 270)
+    assert np.abs(np.asarray(km.kare(10), np.float32) - np.asarray(km.kare(80), np.float32)).max() > 60
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [{"tip": "sayac", "deger": 1, "olaylar": [
+        {"tip": "rota", "a": "DEU", "b": "TUR"}]}]}]), "yalnız")
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [{"tip": "manset", "gorsel": KUTU, "kutular": [[0, 0, 1, 1]],
+                                                              "olaylar": [{"tip": "vurgula", "kutu": 1, "stil": "x"}]}]}]),
+                "stil")
+
+
+def test_metin_kelimeleri_ortak_taban():
+    """Kelime kelime dizilen yazıda her kelime satır yüksekliğinde: çıkıntısız kelime ('ne') yukarı kaymaz."""
+    from wojak.uzun import cizim as C
+    a = C.yazi("Türkiye'yi", C.FONT_DIALOG, 80, C.BEYAZ, dikey_kirp=False)
+    b = C.yazi("ne", C.FONT_DIALOG, 80, C.BEYAZ, dikey_kirp=False)
+    assert a.height == b.height
+    assert C.yazi("ne", C.FONT_DIALOG, 80, C.BEYAZ).height < b.height
+
+
+def test_tur8_animasyon_duzeltmeleri():
+    """8. tur: sıkışmasız yüz geçişi (kapı ara kareleri), kamera sarsıntısı, havadaki nesneye gölge, aynı karakterli
+    çapraz geçiş uyarısı, kapanışta nötr bitiş, sayaçta bir anda gelen değer."""
+    from wojak.uzun import render
+    from wojak.uzun.cli import gecis_denetimi, karakter_ailesi
+    from wojak.uzun.kapanis import KapanisCizici, kapanis_zamanlari
+    from wojak.uzun.sahneler import Baglam, Karakter, karakter_zamanlari
+    AN = "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png"
+    sah = {"tip": "wojak", "arka": KUTU, "sure": 2.0,
+           "karakterler": [{"id": "a", "gorsel": KL + "sakin.png", "x": 0.3, "giris": False},
+                           {"id": "k", "gorsel": KL + "sakin.png", "x": 0.7, "alt": -0.3, "bakis": "on",
+                            "giris": False, "canli": False, "golge": True}],
+           "olaylar": [{"tip": "yuz", "karakter": "a", "gorsel": KL + "mutlu.png", "sik": False, "t": 0.5},
+                       {"tip": "yuz", "karakter": "a", "gorsel": KL + "sakin.png", "t": 1.0},
+                       {"tip": "sarsinti", "t": 1.5, "guc": 10, "sure": 0.2}]}
+    v = _video([{"baslik": "a", "sahneler": [sah]}])
+    z = zaman.hesapla(v, tahmin=True)
+    s = z.sahneler[0]
+    zam = karakter_zamanlari(s)
+    assert zam["a"]["sik"] == [1.0] and len(zam["a"]["yuz"]) == 2     # sik: false sıkışma listesine girmez
+    k = Karakter(s.p["karakterler"][0], zam["a"], Baglam(v, 480, 270), 0)
+    assert k.poz(0.5)["sy"] == k.poz(0.5)["sx"] or abs(k.poz(0.5)["sy"] - 1) < 0.02   # 0,5'te sıkışma yok
+    assert k.poz(1.0)["sy"] < 0.95                                    # 1,0'da var
+    ku = render.KareUretici(v, z, 0, 480, 270)
+    a0 = np.asarray(ku.cz.kare(1.45), np.float32)
+    a1 = np.asarray(ku.cz.kare(1.52), np.float32)                    # sarsıntı: kare kayar
+    a2 = np.asarray(ku.cz.kare(1.8), np.float32)                     # sarsıntı bitti
+    assert np.abs(a1 - a0).mean() > np.abs(a2 - a0).mean() + 0.5
+    # gölge: aynı nesne gölgesiz çizilince sağ altı daha açık
+    sah2 = dict(sah, karakterler=[sah["karakterler"][0], dict(sah["karakterler"][1], golge=False)])
+    v2 = _video([{"baslik": "a", "sahneler": [sah2]}])
+    z2 = zaman.hesapla(v2, tahmin=True)
+    b0 = np.asarray(render.KareUretici(v2, z2, 0, 480, 270).cz.kare(0.2), np.float32)
+    g0 = np.asarray(ku.cz.kare(0.2), np.float32)
+    assert (b0 - g0).mean() > 0.2                                     # gölge kareyi koyulaştırır
+    # aynı karakter ailesi çapraz geçişte uyarı verir (chars/ dışındaki nesne aile sayılmaz)
+    assert karakter_ailesi(AN) == "anlatici_v2" and karakter_ailesi(KL + "sakin.png") is None
+    w = lambda g: {"tip": "wojak", "arka": KUTU, "sure": 2.0, "gecis": g,
+                   "karakterler": [{"id": "z", "gorsel": AN.replace("sakin", "fark")}]}
+    for g, n in (("gecis", 1), ("kesme", 0), ("kaydir", 0)):
+        v3 = _video([{"baslik": "a", "sahneler": [{"tip": "wojak", "arka": KUTU, "sure": 2.0,
+                                                     "karakterler": [{"id": "z", "gorsel": AN}]}, w(g)]}])
+        assert len(gecis_denetimi(zaman.hesapla(v3, tahmin=True))) == n
+    # kapanış: son karede hiçbir seçenek tek başına vurgulu değil (üçü eşit)
+    kap = {"tip": "kapanis", "arka": KUTU, "soru": "Ne korudu?", "secenekler": ["A", "B", "C"], "sure": 9.5,
+           "satirlar": ["Sizce hangisi?"]}
+    v4 = _video([{"baslik": "a", "sahneler": [kap]}])
+    z4 = zaman.hesapla(v4, tahmin=True)
+    zt = kapanis_zamanlari(z4.sahneler[0])
+    assert zt["hepsi"] is not None and zt["hepsi"] <= 9.5 - 0.4
+    kc = KapanisCizici(z4.sahneler[0], Baglam(v4, 480, 270))
+    son = [kc._vurgu(9.45, i) for i in range(3)]
+    assert max(son) - min(son) < 1e-6 and son[0] < 0.6
+    # sayaç: bir anda gelen değer (sure: 0) bulanık dönmez, yumruk gibi büyükten iner
+    say = {"tip": "sayac", "deger": 20000, "sure": 4, "sure_say": 1.0,
+           "olaylar": [{"tip": "deger", "deger": 17, "onek": "en az ", "renk": "kirmizi", "t": 2.0, "sure": 0}]}
+    v5 = _video([{"baslik": "a", "sahneler": [say]}])
+    cz = render.KareUretici(v5, zaman.hesapla(v5, tahmin=True), 0, 480, 270).cz
+    b = cz.bolumler[1]
+    assert b["ani"] and cz._deger(2.0, b) == 17 and b["basamak"] == 2
+    tek = [q for q in cz._yuvarlanan(17, 0.0, b) if not isinstance(q[0], str)]
+    assert [round(q[0]) for q in tek] == [1, 7]
+
+
+def test_dokuz_tur_motor_ekleri():
+    """9. tur: karanlıktan geçiş, kâğıt zemin karartması, panelde sayan sayılar (sabit genişlik), log sayaç ve boş
+    tekerlek, `it` olayı (kamera vurgu itmesi), `yuz {buyu}`, balon `agiz`, SRT bölmesinin sessizliğe oturması,
+    sure: 0'dan önce eski etiketin sönmesi, daktilonun geçişten sonra başlaması."""
+    from PIL import Image
+    from wojak.uzun import render
+    from wojak.uzun.bilgi import _Panel, _hizali_sayi
+    from wojak.uzun.sahneler import Baglam, cizici, metin_zamanlari
+    # karart geçişi: ortada koyu, iki görüntü üst üste binmez
+    a = Image.new("RGB", (64, 36), (240, 240, 240))
+    b = Image.new("RGB", (64, 36), (200, 40, 40))
+    orta = np.asarray(render.gecis_uygula("karart", a, b, 4, 10), np.float32).mean()
+    assert orta < 60
+    assert np.asarray(render.gecis_uygula("karart", a, b, 9, 10), np.float32)[..., 1].mean() < 80   # sonda yeni kare
+    assert spec.GECIS_KARE["karart"] == 10
+    # panel sayısı: sağdan hizalı, sayarken genişlik sabit
+    assert _hizali_sayi("1.267", 999) == "  999"
+    assert _hizali_sayi("20.000", 1500) == " 1.500"
+    v = _yeni_tipler_video()
+    c = Baglam(v, 480, 270)
+    pn = _Panel({"metin": "1.267 doktor\n≈20.000 hasta", "zemin": "kagit", "say": True, "zoom": 1.12}, c, 1)
+    ws = {pn.metin_katmani(u).size for u in (0.0, 0.4, 0.9, 1.3, 3.0)}
+    assert len(ws) == 1 and pn.metin_zoom == 1.12
+    # kâğıt zemin karartması
+    from wojak.uzun import zemin as Z
+    acik = np.asarray(Z.Zemin(c, {"zemin": "kagit"}).taban, np.float32).mean()
+    koyu = np.asarray(Z.Zemin(c, {"zemin": "kagit", "karart": 0.2}).taban, np.float32).mean()
+    assert koyu < acik * 0.85
+    # log sayaç + boş tekerlek
+    say = {"tip": "sayac", "deger": 300000000, "olcek": "log", "sure": 4, "sure_say": 3.0, "satirlar": []}
+    v5 = _video([{"baslik": "a", "sahneler": [say]}])
+    cz = render.KareUretici(v5, zaman.hesapla(v5, tahmin=True), 0, 480, 270).cz
+    b0 = cz.bolumler[0]
+    vs = [cz._deger(b0["t0"] + k * 0.3, b0) for k in range(11)]
+    assert all(y >= x for x, y in zip(vs, vs[1:])) and vs[-1] == 300000000
+    assert 1 <= vs[1] <= 1e5 and vs[5] < 1e6                          # ilk anlarda küçük sayılar (8 basamak sıçraması yok)
+    parca = cz._yuvarlanan(1500000, 3e6, b0)
+    tek = [q for q in parca if not isinstance(q[0], str)]
+    assert tek[0] == (0.0, 0.0, True) and tek[1] == (0.0, 0.0, True)    # öndeki iki tekerlek boş ("01.500.000" yok)
+    # `it` olayı ve yuz `buyu`, balon `agiz`
+    AN = "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png"
+    ACIK = "uzun/talidomit-turkiye/chars/anlatici_v2_saskin.png"
+    KUTU = "uzun/talidomit-turkiye/img/doku_kagit.jpg"
+    DOZ = "uzun/talidomit-turkiye/img/kompozit/doz_"
+    sah = {"tip": "wojak", "arka": KUTU, "sure": 4.0, "kamera": {"zoom": [1.0, 1.0], "it": 0},
+           "karakterler": [{"id": "z", "gorsel": AN, "x": 0.7}, {"id": "s", "gorsel": DOZ + "1.png", "x": 0.3,
+                                                                  "bakis": "on", "canli": False}],
+           "olaylar": [{"tip": "it", "t": 1.0, "guc": 0.1, "sure": 0.5, "x": 0.7},
+                       {"tip": "yuz", "karakter": "s", "gorsel": DOZ + "3.png", "t": 2.0, "buyu": True},
+                       {"tip": "balon", "karakter": "z", "metin": "Evet!", "t": 2.5, "sure": 1.0, "agiz": ACIK}]}
+    v6 = _video([{"baslik": "a", "sahneler": [sah]}])
+    z6 = zaman.hesapla(v6, tahmin=True)
+    cw = cizici(z6.sahneler[0], Baglam(v6, 480, 270))
+    assert abs(cw.kam(0.5).z - 1.0) < 1e-6 and abs(cw.kam(2.0).z - 1.1) < 1e-3 and cw.kam(2.0).cx > 0.5
+    ks = cw.karakterler[1]
+    assert ks.buyu and ks.buyu[0][1] < 1.0
+    assert ks.poz(2.02)["sx"] < 0.95 and abs(ks.poz(2.6)["sx"] - 1.0) < 0.02
+    kz = cw.karakterler[0]
+    acik = {kz.poz(2.5 + i / 30)["vi"] for i in range(30)}
+    assert kz.agiz and kz.agiz[0][2] in acik and 0 in acik             # hecelerde açık / kapalı ağız
+    # daktilo çapraz geçiş bitince başlar
+    dk = {"tip": "metin", "metin": "ANNE KARNINDA.", "yazim": "daktilo", "gecis": "gecis", "sure": 2.0,
+          "olaylar": [{"tip": "basla", "t": 0.0}]}
+    v7 = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "sure": 2.0}, dk]}])
+    s7 = zaman.hesapla(v7, tahmin=True).sahneler[1]
+    assert metin_zamanlari(s7)["daktilo"][0] >= 8 / 30
+    # SRT: tahmini sınır en yakın iç sessizliğe oturur
+    assert altyazi.sessizlige_otur([3.6], ((4.3, 5.1),), 6.2) == [5.1 - 0.08]
+    assert altyazi.sessizlige_otur([2.0], ((5.0, 5.3),), 6.2) == [2.0]       # uzak sessizlik: tahmin kalır
+    # sure: 0'dan önce eski etiket söner
+    say2 = {"tip": "sayac", "deger": 20000, "etiket": "hasta", "sure": 4, "sure_say": 1.0,
+            "olaylar": [{"tip": "deger", "deger": 17, "etiket": "bebek", "t": 2.0, "sure": 0}]}
+    v8 = _video([{"baslik": "a", "sahneler": [say2]}])
+    k8 = render.KareUretici(v8, zaman.hesapla(v8, tahmin=True), 0, 480, 270).cz
+    once = np.asarray(k8.kare(1.5), np.float32)
+    hemen = np.asarray(k8.kare(1.99), np.float32)
+    assert np.abs(once - hemen)[int(270 * 0.62):].mean() > 0.3        # etiket bandı değişti (söndü)

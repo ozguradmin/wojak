@@ -13,7 +13,10 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
+
+import numpy as np
 
 from .spec import temiz_metin
 from .zaman import Zaman
@@ -257,6 +260,51 @@ def parcala(metin: str) -> list[str]:
     return birlesik
 
 
+@lru_cache(maxsize=512)
+def _sessizlikler(yol: str, mtime: float) -> tuple[tuple[float, float], ...]:
+    """Satır sesindeki iç sessizlikler (sn, satır başına göre): 20 ms RMS, en yüksek seviyenin %90'lık diliminin 28 dB
+    altı, en az 0,1 sn; baştaki ve sondaki sessizlik sayılmaz."""
+    from .tts import wav_oku
+    x, sr = wav_oku(Path(yol))
+    h = max(1, int(sr * 0.02))
+    n = len(x) // h
+    if n < 10:
+        return ()
+    r = np.sqrt((x[: n * h].reshape(n, h) ** 2).mean(axis=1) + 1e-12)
+    db = 20 * np.log10(r + 1e-9)
+    sil = db < float(np.percentile(db, 90)) - 28
+    out, i = [], 0
+    while i < n:
+        if sil[i]:
+            j = i
+            while j < n and sil[j]:
+                j += 1
+            if i > 0 and j < n and (j - i) * 0.02 >= 0.1:
+                out.append((i * 0.02, j * 0.02))
+            i = j
+        else:
+            i += 1
+    return tuple(out)
+
+
+def sessizlige_otur(sinirlar: list[float], sessiz: tuple, sure: float, pencere: float = 1.6) -> list[float]:
+    """9. tur (teknik hakem S3): satır içindeki parça sınırları (uzunlukla orantılı tahmin) en yakın iç sessizliğe
+    oturur: sonraki parça konuşma yeniden başlamadan 0,08 sn önce açılır. Ekranda olup söylenmeyen yazı ('(FDA)')
+    tahmini 1,4 sn kaydırıyordu. Sıra korunur; parçalar en az 0,6 sn kalır."""
+    out, onceki = [], 0.0
+    for k, b in enumerate(sinirlar):
+        sonraki_sinir = sinirlar[k + 1] if k + 1 < len(sinirlar) else sure
+        adaylar = [(abs((a + c) / 2 - b), max(a, c - 0.08)) for a, c in sessiz
+                   if abs((a + c) / 2 - b) <= pencere and onceki + 0.6 <= max(a, c - 0.08) <= sonraki_sinir + pencere
+                   and max(a, c - 0.08) <= sure - 0.6]
+        yeni = min(adaylar)[1] if adaylar else b
+        if yeni < onceki + 0.6:
+            yeni = b
+        out.append(yeni)
+        onceki = yeni
+    return out
+
+
 def parcalar(z: Zaman) -> list[Parca]:
     satirlar = z.satirlar()
     out: list[Parca] = []
@@ -282,12 +330,17 @@ def parcalar(z: Zaman) -> list[Parca]:
             ps[j:j + 2] = [ps[j] + " " + ps[j + 1]]
         agirlik = [len(p) + 6 for p in ps]
         top = sum(agirlik)
-        t = sz.bas
         alinti = sz.satir.ses != z.video.anlatici_ses
-        for p, w in zip(ps, agirlik):
-            d = sure * w / top
-            out.append(Parca(t, t + d, p, alinti))
-            t += d
+        sinirlar, acc = [], 0.0
+        for w in agirlik[:-1]:
+            acc += sure * w / top
+            sinirlar.append(acc)
+        wav = sz.satir.wav
+        if sinirlar and wav is not None and not sz.satir.tahmini and Path(wav).exists():
+            sinirlar = sessizlige_otur(sinirlar, _sessizlikler(str(wav), Path(wav).stat().st_mtime), sure)
+        kenar = [0.0] + sinirlar + [sure]
+        for k, p in enumerate(ps):
+            out.append(Parca(sz.bas + kenar[k], sz.bas + kenar[k + 1], p, alinti))
     # uzatma, en az süre ve çakışmasızlık
     for i, p in enumerate(out):
         sonraki = out[i + 1].bas if i + 1 < len(out) else z.sure

@@ -138,6 +138,31 @@ def _isik(cap: int) -> Image.Image:
     return Image.fromarray((np.clip(1 - d, 0, 1) ** 2.2 * 255).astype(np.uint8), "L")
 
 
+# ---------------------------------------------------------------- toz (wojak sahnesi dokusu)
+
+class Toz:
+    """Havada süzülen toz zerreleri (7. tur, wojak sahnesi `doku`): yukarı süzülür, yanlara salınır, alt pikselde."""
+
+    def __init__(self, n: int, S: float, tohum: int = 0):
+        rng = np.random.default_rng(97 + tohum)
+        self.S = S
+        self.z = [(rng.uniform(0, 1), rng.uniform(0, 1), rng.uniform(6, 18), rng.uniform(5, 20), rng.uniform(0.04, 0.14),
+                   rng.uniform(0, 6.28), rng.uniform(1.0, 3.0), rng.uniform(0.05, 0.13)) for _ in range(max(0, n))]
+
+    def ciz(self, im: Image.Image, t: float) -> None:
+        S, W, H = self.S, im.width, im.height
+        for x0, y0, v, sal, fr, fz, r, a in self.z:
+            y = (y0 * (H + 60 * S) - v * S * t) % (H + 60 * S) - 30 * S
+            x = x0 * W + sal * S * math.sin(2 * math.pi * fr * t + fz)
+            rr = max(1, int(round(r * S * 1.6)))
+            m = _yumusak_nokta(rr)
+            aa = a * (0.75 + 0.25 * math.sin(2 * math.pi * 0.3 * t + fz))
+            # kesirli konum: maskeyi alt pikselde kaydır (1 px adımlarla zıplamasın)
+            fx, fy = x - math.floor(x), y - math.floor(y)
+            mk = m.transform(m.size, Image.AFFINE, (1, 0, -fx, 0, 1, -fy), resample=Image.BILINEAR)
+            im.paste((255, 246, 228), (int(math.floor(x)), int(math.floor(y))), mk.point(C._alfa_lut(int(255 * aa))))
+
+
 # ---------------------------------------------------------------- zemin
 
 class Zemin:
@@ -181,6 +206,9 @@ class Zemin:
                                     Image.eval(g, lambda v: int(v * 0.7)), lk)
             C.vinyet_uygula(g, 0.5)
             self.gren = (0.05, (255, 255, 255))
+        if p.get("karart"):
+            # 9. tur (animasyon S7): koyu sahneden kâğıda kesmede parlaklık sıçraması (75 -> 212) telefonda flaş gibiydi
+            g = C.ayarla(g, karart=float(p["karart"]))
         self.taban = g
         # toz zerreleri (yalnız koyu/foto): (x0, y0, hız, salınım, frekans, faz, yarıçap, opaklık)
         rng = np.random.default_rng(31 + tohum)

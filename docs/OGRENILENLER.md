@@ -499,3 +499,58 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
     yakın çekim (`vinyet: 0.8` + kamera 1,0 -> 1,3).
   - Küçük resimde en çok üç öğe (yazı, karakter, bir simge); zemin doygun kırmızı-siyah radyal: açık ve koyu akışta
     öne çıkar.
+- **7. tur (animasyon sorumlusu, hesap sahibinin "animasyonda hatalar var" notu):** göz kararı değil ölçüm:
+  `tools/uzun_animasyon_denetimi.py` videoyu 30 fps çözer, motoru öğe öğe izler (her çizim çağrısı), şüpheli anları
+  zaman damgasıyla verir; her bulguya tam çözünürlükte bakılır. Bulunanların çoğu motordaydı ve düzeltildi
+  (UZUN_MOTOR §3 "Hareket dili"): kenardan giren karakter kare başına 150-280 px "zıplıyordu" (hareket bulanıklığı +
+  eğilip yaylanma), hızlı sayaçta rakamlar her karede titriyordu (tekerlek), köşe göstergesi kutusu ±9 px titriyordu
+  (tabular rakam), vurgu kelimesi kesmede yarı saydam kalıyordu, süzülen yazı 1 px adımlarla zıplıyordu (alt piksel),
+  damga sesi 40 ms erken, whoosh ve deklanşör 0,22 sn geçti (efekt dosyasının vuruş anı ölçülerek). YAML tarafındaki
+  dersler: `konum: ust` kelime varken karakterin baş üstü >= 0,25 H; kamera itmesi olan sahnede yan karakter x 0,28-0,72
+  (itme onu kadrajdan çıkarır); vurgu ülkesi/çağrı kesmeden en az ~1 sn önce gelsin; dekor (kapı, raf) `canli: false`.
+- **Bitiş:** iki "sıradaki video" kutusu yerine `kapanis` sahnesi (açık soru + seçenek kartları + imleçle abone/zil/beğen
+  + yorum balonu); kanalda yeterli uzun video olunca kutular yeniden düşünülür.
+- **7. tur yapımcı (hazır kıyafetli karakterler, kapanış çağrısı):**
+  - Baş-omuz kesimli hazır çizimlerde çene kadrajın alt çeyreğine iner: alt banttaki isim etiketi aynı taraftaysa çeneye
+    biner. Etiket karakterin karşı tarafına (`konum`), o köşedeki nesne yukarı/masaya.
+  - Kapanış çağrısının seçenekleri, videonun kendi açık sorusuyla (KP.1: kahraman mı, kural mı, şans mı?) aynı olsun;
+    belgesiz anlatı (Aygün) seçenek yapılmaz. Sabit yorum aynı A/B/C sorusu. Yeni ses yalnız "Sizce hangisi?".
+  - Kapanışın zemini koyu kalmasın (karart 0,55'te ilk saniye 37/255: "video bitti" hissi); 0,38 yeterli.
+  - Masaya/duvara konmuş dekorda `canli: false` + sahnede `kamera: {paralaks: 0}`; havadaki nesneler salınabilir.
+  - Motor hataları (bu turda yaml ile aşıldı, rapor): wojak sahnesinde `yon: pop` küçük ölçekte `alt_piksel`'de çöküyor;
+    foto atıfı yakınlaşmasız baskı boyuna göre konuyor, `zoom` > ~1,04'te baskı atıfın üstüne büyüyor.
+- **8. tur (dört hakem: izlenme 8, animasyon 6,5, dil 8,4, teknik 9):**
+  - Hareket bulanıklığı bütün sprite'ı bulandırınca yüz yarı saydam "hayalet"e dönüyor (girişlerde kafatası gibi
+    görünen anlatıcı, arkasından rafları görünen anne adayı). Doğrusu: keskin, tam opak katman üstte, en çok 40 px'lik
+    iz altta (çizgi film "smear" dili). Bir karede bakınca da temiz olmalı: hakem duraklatıp 1:1 bakıyor.
+  - Çapraz geçiş aynı karakteri iki kez gösterir (biri sönerken öbürü belirir): 20 yerde vardı. Aynı karakterli iki
+    çekim arasında kesme ya da itme; `kontrol` artık uyarıyor.
+  - Sayaçta basamak sayısı baştan sabit olmalı (9.999 -> "0.000" -> 10.000+ ve yana kayma kancanın 6. saniyesindeydi);
+    bir anda gelen değer "yumruk" ile insin, etiketler sırayla değişsin (üst üste binmesin).
+  - Tek karede açık -> kapalı olan kapı kancanın kilit vuruşunda zayıf: 2 ara çizimle 4-5 karede kapanış + 2-3 karelik
+    sarsıntı. Aynı kapı Türkiye bölümünde geri dönünce (B5.4) tekrar eden sayılar yerine anlam taşır.
+  - Kapanışta vurgu döngüsü son seçenekte biterse o seçenek cevap gibi okunur: üçü birlikte nabız + eşit vurgu.
+  - LAEA'da merkezden ~70° uzaktaki ülke (Kuzey Atlantik görünümünde Türkiye) eğik bir şeride döner: iki kıtalı
+    görünümde Equal Earth. Damga yer adının üstüne (HAMBURG Türkiye'nin üstündeydi): kare kare bakılmadan bulunmuyor.
+  - TTS'te nadir kelime (cüzzam, kupür, multipl) Whisper'ın dil modeline yenilir: 3 çekim de 2 nat eşiğini geçemezse
+    kelimeyi değiştir ("bu hastalığın", "gazete haberi"); doğru yazım ekranda kalsın. Yeni çekim eskisinden kötü
+    olabilir ("yalnızca Grünenthal" çekiminde ad bozuldu): değiştirmeden önce ölç, kötüyse eskiyi koru.
+  - Hareket çizgisi: anlatıcıyı hikâyenin dışında bir "gözlemci" gibi değil, sahneye tepki veren biri gibi kullan
+    (kapanışta balona eğilir, her vurguda onaylar); havadaki nesneye düşen gölge onu masaya "koyar".
+- **9. tur (dört hakem: izlenme 8, animasyon 7,5, dil 8,1, teknik 9):**
+  - Küçük resimde yazı katmanları birbirine binmesin: "RUHSAT YOK" bloğu Türkiye'nin konturu ve başlık altında "PUHSAT"
+    okunuyordu. Blok, konturdan SONRA ve şeklin dışında (altında) çizilir; her varyant 168x94'te ve süre rozetiyle bakılır.
+  - Aynı zeminde iki çekim arasında kesme süreklilik hatası gibi okunur (takvim kayboluyor, kutu zıplıyor, tablet sayısı
+    değişiyor): ya gerçek yakın plan (≥ 1,35x, başka kadraj) ya da tek çekim + kamera vurgu itmesi (`it` olayı).
+  - Yüz varyantı telefonda (baş ~120 px) okunmalı: kaş açısının birkaç pikseli görünmüyor. Kararlı = kalın V kaş +
+    kısık göz (üst kapak aşağı) + ağız uçları aşağı; şüpheci = tek göz kısık + tek kaş kalkık. Silme çokgeni yüz
+    konturuna/saça taşmasın (yalnız renksiz çizgiyi sil: `sil_notr`).
+  - Balonlu replikte konuşma sekmesi yetmiyor: aynı tuvalde açık ağızlı yüz, hecelerde açılıp kapanır (`balon {agiz}`).
+  - TTS'te "h" ile başlayan kelime ("96 hastanın") zayıf okununca bambaşka bir kelimeye dönebiliyor ("aslanın", 9/9):
+    anlam aynıysa kelimeyi değiştir ("96 kişinin"), ekrandaki damga terimi taşır.
+  - Koyu sahneden kâğıda kesme telefonda flaş gibi (75 -> 212): kâğıt zemine `karart`, yazıdan yazıya ya da aynı
+    karakterli geçişte `gecis: karart` (karanlıktan geçiş). Çapraz geçiş, bindirme kartının donmuş karesini aydınlık
+    odanın üstünde "hayalet" gibi gösteriyordu.
+  - Takılı yıl göstergesi geriye akmamalı (1961 -> "20??" altında 1948): zaman ileri giden hikâyede sayaç da ileri.
+  - Ekranda olup söylenmeyen yazı ("(FDA)") uzunlukla orantılı SRT bölmesini 1,4 sn kaydırır: bölme sınırı sesin iç
+    sessizliğine oturmalı.

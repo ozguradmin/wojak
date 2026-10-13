@@ -29,6 +29,7 @@ from PIL import Image
 
 from .. import config
 from . import FPS, H as H_TAM, W as W_TAM
+from . import cizim as C
 from . import easing as E
 from .spec import Sahne, Video
 from .zaman import Zaman
@@ -41,7 +42,7 @@ PRESET = "faster"
 # ve tarayıcılar BT.709 diye çözer; swscale ise varsayılan olarak BT.601 ile dönüştürüyordu: Türkiye yeşili
 # (60,255,140) (45,229,138), kırmızı (204,24,30) (219,42,28) görünüyordu. Bütün parçalarda aynı bayraklar:
 # concat -c copy geçerli kalır.
-RENK = ["-vf", "scale=out_color_matrix=bt709:out_range=tv,format=yuv420p", "-colorspace", "bt709",
+RENK = ["-vf", "scale=out_color_matrix=bt709:out_range=tv,format=yuv420p,setsar=1", "-colorspace", "bt709",
         "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv"]
 KODLAYICI = [*RENK, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-bf", "0", "-profile:v", "high", "-g", "60",
              "-video_track_timescale", "15360"]
@@ -54,7 +55,7 @@ def kod_surumu() -> str:
     # yalnız görüntüyü etkileyen modüller (ses/TTS/paket değişince parçalar yeniden çizilmesin; zamanlama zaten
     # sahne imzasında)
     gorsel = ("sahneler.py", "cizim.py", "harita.py", "easing.py", "render.py", "__init__.py", "zemin.py", "ust.py",
-              "bilgi.py", "kanal.py")
+              "bilgi.py", "kanal.py", "kapanis.py")
     for p in [pk / n for n in gorsel] + [pk.parent / n for n in ("text.py", "facing.py", "config.py")]:
         h.update(p.read_bytes())
     return h.hexdigest()[:12]
@@ -85,7 +86,7 @@ def sahne_imzasi(s: Sahne) -> dict:
 
 def bindirme_mi(s: Sahne) -> bool:
     """Önceki sahnenin son karesi üstüne çizilen sahne (bindirme bölüm kartı, marka, bitiş)."""
-    return bool(s.p.get("bindirme")) and s.tip in ("bolum_karti", "marka", "bitis")
+    return bool(s.p.get("bindirme")) and s.tip in ("bolum_karti", "marka", "bitis", "kapanis")
 
 
 def onceki_imzasi(z: Zaman, i: int) -> list:
@@ -126,16 +127,32 @@ def parcalar(v: Video, z: Zaman, klasor: Path, W: int, H: int, kod: dict, max_ka
     return out
 
 
-def gecis_uygula(tip: str, onceki: Image.Image, simdiki: Image.Image, j: int, k: int) -> Image.Image:
+def gecis_uygula(tip: str, onceki: Image.Image, simdiki: Image.Image, j: int, k: int,
+                 bulanik: bool = False) -> Image.Image:
     p = (j + 1) / (k + 1)
     if tip == "gecis":
         return Image.blend(onceki, simdiki, E.in_out_sine(p))
+    if tip == "karart":
+        # 9. tur: karanlıktan geçiş: önceki kare koyuya söner, yenisi koyudan açılır (iki görüntü üst üste binmez)
+        koyu = Image.new("RGB", simdiki.size, (10, 10, 12))
+        if p < 0.5:
+            return Image.blend(onceki, koyu, E.in_out_sine(p * 2))
+        return Image.blend(koyu, simdiki, E.in_out_sine((p - 0.5) * 2))
     if tip == "kaydir":
         W, H = simdiki.size
         off = int(round(W * E.in_out_cubic(p)))
         out = Image.new("RGB", (W, H))
         out.paste(onceki, (-off, 0))
         out.paste(simdiki, (W - off, 0))
+        if bulanik:   # 7. tur: itme bir kamera savrulması: kare başına ~190-290 px kayarken keskin kare çakılıyordu
+            onc = W * E.in_out_cubic(j / (k + 1))
+            L = 0.5 * abs(W * E.in_out_cubic(p) - onc)
+            # 8. tur: itmenin son karelerinde (yavaşlarken, < 60 px/kare) bulanıklık yok: varılan karedeki yüz
+            # 20 px yatay izle "basamaklı" görünüyordu (2:36.4); en çok 160 px
+            S = W / 1920
+            L = min(L, 160 * S) * min(1.0, max(0.0, (L - 20 * S) / (40 * S)))   # 20 px altı yok, 60'ta tam
+            if L >= 2:
+                out = C.yatay_bulanik(out, L)
         return out
     return simdiki
 
@@ -169,13 +186,14 @@ class KareUretici:
                 self.onceki.dondur(son_kare(v, z, i - 2, W, H))
         self.wm = filigran_katmani(v.filigran, self.c) if (v.filigran and self.s.filigran) else None
         self.fps = z.fps
+        self.bulanik = bool((getattr(v, "hareket", None) or {}).get("bulaniklik", False))
 
     def kare(self, k: int) -> Image.Image:
         t = k / self.fps
         im = self.cz.kare(t)
         if self.onceki is not None and k < self.s.gecis_kare:
             pim = self.onceki.kare(self.onceki_s.sure_hesap + k / self.fps)
-            im = gecis_uygula(self.s.gecis, pim, im, k, self.s.gecis_kare)
+            im = gecis_uygula(self.s.gecis, pim, im, k, self.s.gecis_kare, self.bulanik)
         if self.wm is not None:
             lay, x, y = self.wm
             im.paste(lay, (x, y), lay)

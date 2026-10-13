@@ -1,5 +1,7 @@
 # DEMO (~2 dk): uzun format motorunun bütün sahne tiplerini (wojak, foto, metin, marka, bolum_karti, sayac, harita,
-# izgara, zaman_cizelgesi, manset, bolunmus, pano, bitis), iki sesi, müziği ve efektleri gösterir.
+# izgara, zaman_cizelgesi, manset, bolunmus, pano, kapanis), iki sesi, müziği ve efektleri gösterir.
+# 7. tur: hareket dili (bulanıklık, ikincil hareket, canlı boşta hareket varsayılan; burada paralaks ve ilk sahnede
+# doku da açık), harita rotası, belgede elle çizilmiş çember, video kutusuz kapanış çağrısı (eski bitis yerine).
 # Konu: Talidomit ve Türkiye (kısa sürüm: episodes/talidomit-turkiye). Olgu sınırları kısa sürümle aynı:
 #   - Kaymakçalan'ın olumsuz görüşü meslektaşlarının tanıklığına dayanır ("meslektaşlarının anlattığına göre").
 #   - Aygün'ün tavuk embriyosu deneyi tek kaynağa dayanır ("anlatılana göre"); ikisi aynı sahnede gösterilmez.
@@ -20,6 +22,7 @@ muzik: {uret: true, tohum: 1957, seviye: -22, acik: -15}
 zamanlama: {kart: 2.3}
 gecis: kesme
 kart_bindirme: true      # bölüm kartları önceki sahnenin donmuş karesi üstünde (1,2 sn; siyah ekran yok)
+hareket: {paralaks: 0.35}   # wojak sahnelerinde arka plan kamerayı daha az izler (itmede derinlik)
 
 bolumler:
   - baslik: Soğuk açılış
@@ -31,6 +34,7 @@ bolumler:
         kirp: [0.0, 0.0, 0.86, 1.0]   # sağ kenardaki modern prizler kadraja girmesin
         kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.45, 0.46]]}   # konuşana doğru itme: it 0.05 (vars.)
         etiket: "BATI ALMANYA · 1957"
+        doku: true                    # arka plana gren + toz (karakterler net)
         muzik_db: -6                  # soğuk açılışta müzik kısık
         karakterler:
           - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol}
@@ -92,6 +96,8 @@ bolumler:
         olaylar:
           - {tip: basla, satir: 1, ofset: 0.1}
           - {tip: ulke, kod: TUR, satir: 2, ofset: 0.7}
+          # ilacın Türkiye'ye "yolu": kesik beyaz rota, Türkiye yandığı anda varır
+          - {tip: rota, a: DEU, b: TUR, kesik: true, renk: beyaz, satir: 2, ofset: -0.5, sure: 1.2}
         sfx:
           - {ad: turkiye, satir: 2, ofset: 0.7, db: -6}   # Türkiye ses motifi
 
@@ -141,7 +147,7 @@ bolumler:
         olaylar:
           - {tip: vurgula, kutu: 1, satir: 1, ofset: 1.2}
           - {tip: vurgula, kutu: 2, satir: 2, ofset: 0.0}
-          - {tip: vurgula, kutu: 3, satir: 2, ofset: 0.55}
+          - {tip: vurgula, kutu: 3, satir: 2, ofset: 0.55, stil: daire}   # elle çizilmiş kırmızı çember
 
       - tip: bolunmus                 # bölünmüş ekran: sağ panel kayarak açılır
         sol: {metin: "en az 17 bebek", baslik: "ABD", alt: "ruhsat yoktu; 'klinik deneme' yoluyla (FDA sayımı)",
@@ -195,9 +201,15 @@ bolumler:
         sfx:
           - {ad: hit, satir: 2, ofset: 0.4, db: -8}
 
-      - tip: bitis                    # YouTube bitiş ekranı (son 15-20 sn): iki 16:9 kutu + abone dairesi
-        arka: img/contergan_kutu.jpg
-        sure: 15
+      - tip: kapanis                  # kapanış çağrısı (video kutusu yok): soru + seçenekler + abone/zil/beğen + yorum
+        bindirme: true                # önceki sahnenin donmuş karesi üstünde
+        sure: 10
+        ust: "SON SORU"
+        soru: "Türkiye'yi bu ilaçtan ne korudu?"
+        secenekler:                   # ayrı kartlar: kişiler arasında bağ kurulmaz
+          - {metin: "Kaymakçalan", alt: "farmakolog", gorsel: assets/kit/klasik/sakin.png}
+          - {metin: "Aygün", alt: "veteriner hekim", gorsel: episodes/talidomit-turkiye/chars/veteriner.png}
+          - {metin: "Kural", alt: "ruhsat şartı", gorsel: uzun/talidomit-turkiye/img/cizim/kanun_1262_sayfa.jpg}
         satirlar:
           - "Bir sonraki unutulmuş hikâyede görüşmek üzere."
 
