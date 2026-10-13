@@ -48,10 +48,15 @@ zamanlama:                         # hepsi isteğe bağlı (varsayılanlar göst
   kart: 2.6                        # bölüm kartı
   sabit: 3.0                       # satırsız sahne
   max_bos: 6.0                     # kontrol: bu kadar sn ekranda yeni bir şey yoksa uyar
+  bindirme: 1.2                    # bindirme bölüm kartının süresi
 
 gecis: kesme                       # varsayılan sahne geçişi: kesme | gecis (8 kare crossfade) | kaydir (10 kare push)
 filigran: tarihselwojak            # sağ altta her karede (false: kapalı)
 otomatik_sfx: true                 # sahne tipine göre efektler (whoosh, deklanşör, daktilo, kalem, pop, boom...)
+kart_bindirme: true                # bölüm kartları önceki sahnenin donmuş, kararmış karesi üstünde (siyah ekran yok);
+                                   # false: klasik siyah kart (2,6 sn). Bölümde kart_bindirme ile tek tek değişir.
+# Elle eklenebilecek efektler (sahnenin sfx listesi): turkiye (Türkiye ses motifi), turkiye_major, kapi, geri_sarma,
+# telefon, raptiye, damga, gecis, marka, boom, hit, riser, drone, heartbeat, static (assets/sfx/<ad>.wav)
 
 bolumler:
   # ---------------------------------------------------------------- 1. bölüm: soğuk açılış (kartsız)
@@ -59,20 +64,27 @@ bolumler:
     youtube: "Giriş"               # açıklamadaki bölüm adı (verilmezse baslik). İlk bölüm 0:00'dan başlar.
     kart: false                    # ilk bölüm varsayılan kartsız; sonrakiler kartlı
     sahneler:
-      # WOJAK: gerçek fotoğraf + Ken Burns + 1-3 karakter (kenardan kayarak girer, nefes alır, içeri bakar)
+      # WOJAK: gerçek fotoğraf + Ken Burns + 1-3 karakter (kenardan kayarak girer, nefes alır, içeri bakar).
+      # Kamera arka planı ve karakterleri birlikte taşır; biri konuşurken (balon/konusan) ona doğru hafifçe yaklaşır.
       - tip: wojak
         arka: img/mekan.jpg
         kirp: [0.0, 0.0, 0.9, 1.0]           # isteğe bağlı: fotoğrafın istenmeyen kenarını at (0..1)
-        kamera: {zoom: [1.0, 1.07], merkez: [[0.5, 0.5], [0.46, 0.46]]}   # başlangıç -> bitiş
+        kamera: {zoom: [1.0, 1.07], merkez: [[0.5, 0.5], [0.46, 0.46]], it: 0.05, odak: 0.4}   # it: 0 = itme yok
         karart: 0.12                         # bulanik: 1.6 (px), doygunluk: 0.85
         etiket: "ANKARA · 1960"              # sol altta daktiloyla yazılan yer-tarih etiketi (isteğe bağlı)
+        muzik_db: -6                         # bu sahnede müzik kısık (0 = normal, +6 = açık)
+        muzik_mod: gerilim                   # bu sahneden itibaren müzik kipi: drone | nabiz | gerilim | major
+        kose: {metin: "GÜN {} / 12", deger: 0}   # köşe göstergesi (konum: sag_ust | sol_ust | sag_alt | sol_alt)
         karakterler:
           - {id: a, gorsel: chars/a.png, taraf: sol}           # boy: 0.66 (kare yüksekliğine oran)
           - {id: b, gorsel: chars/b.png, taraf: sag, giris: false}   # giris: false = baştan yerinde
+          - {id: c, gorsel: chars/c.png, x: 0.52, derinlik: 0.6}     # arkada: küçük, sisli, önce çizilir
         satirlar:
           - "Anlatıcının ilk cümlesi."                         # düz metin = anlatıcı
-          - {ses: aylin, metin: "Alıntı ya da kadın karakter.", duygu: content, balon: a}   # balon: a'nın balonunda
+          - {ses: aylin, metin: "Alıntı ya da kadın karakter.", duygu: content, balon: a}   # balon: a'nın balonunda, a seker
+          - {metin: "Karakterin balonsuz sözü.", konusan: b}  # b satır boyunca hece başlarında seker
           - {metin: "Uzun bir duraklamadan sonra.<break time=\"600ms\"/> Devam.", once: 0.8}
+          - {metin: "Vurgu cümlesi: Türkiye.", sonra: 0.5, db: 1.0}   # sonra: vurgudan sonra nefes; db: ek kazanç
         olaylar:
           - {tip: giris, karakter: b, satir: 2}                         # b bu satırda kayarak girer
           - {tip: balon, karakter: b, metin: "Yalnız görsel replik", satir: 3, ofset: 0.3, sure: 2.5}
@@ -80,8 +92,16 @@ bolumler:
           - {tip: kelime, metin: "REÇETESİZ", satir: 1, konum: ust}        # vurgu kelimesi (ust | orta | alt)
           - {tip: isim, karakter: a, ad: "Ad Soyad", unvan: "Unvan (1900-1980)", satir: 1, ofset: 0.8}
           - {tip: cikis, karakter: b, satir: 3, an: son}
-        sfx:
-          - {ad: hit, satir: 3, ofset: 0.5, db: -8}           # assets/sfx/<ad>.wav ya da dosya yolu
+          - {tip: damga, metin: "RUHSAT VERİLMEDİ", satir: 4, ofset: 0.3, x: 0.5, y: 0.3}   # renk, aci, boy, sure
+          - {tip: kose, deger: 5, satir: 4}                    # köşe göstergesi sayarak 5'e
+          - {tip: muzik, db: -12, satir: 4}                    # müzik bu andan itibaren incelir
+        sfx:   # konuşma sürerken efektler anlatımın 9 dB altına kısılır: vurgu efektini cümle BİTİŞİNE çapala
+          - {ad: hit, satir: 3, an: son, ofset: 0.05, db: -8}  # assets/sfx/<ad>.wav ya da dosya yolu
+          - {ad: turkiye, satir: 5, an: son, ofset: 0.05, db: -11}   # Türkiye ses motifi (kelimenin üstüne değil)
+
+      # MARKA: ~1,8 sn kanal imzası (soğuk açılıştan sonra); yazı sonunda filigranın yerine uçar
+      - tip: marka
+        bindirme: true                 # önceki sahnenin donmuş karesi üstünde (yoksa koyu zemin)
 
       # FOTO: arşiv fotoğrafı "masaya konmuş baskı" (beyaz kenar, gölge, eğik), kayarak düşer, yavaşça büyür
       - tip: foto
@@ -93,19 +113,27 @@ bolumler:
         satirlar: ["Fotoğrafı anlatan cümle."]
 
       # METİN: alıntı / anahtar söz kartı, kelime kelime belirir; çeviri sarı altı çizili gelir
+      # ZEMİN (metin, sayac, zaman_cizelgesi, izgara): zemin: koyu (vars.) | kagit | foto; arka: ilgili fotoğraf (bulanık)
       - tip: metin
         ust: "Almanya'daki reklamlardan"
         metin: "„völlig ungiftig“"
         ceviri: "tamamen zehirsiz"
-        arka: img/arsiv.jpg            # isteğe bağlı: bulanık doku
+        arka: img/arsiv.jpg            # isteğe bağlı: bulanık doku (arka_opak: 0.5)
         satirlar:
           - "Reklamlardaki vaat:"
-          - {ses: aylin, metin: "Tamamen zehirsiz."}
+          - {ses: aylin, metin: "Tamamen zehirsiz."}   # aynı metin+ses+hız başka yerde = aynı kayıt (kontrol gösterir)
         olaylar: [{tip: ceviri, satir: 2}]
+      - tip: metin
+        zemin: kagit                   # eski kâğıt; yazılar mürekkep rengi
+        yazim: daktilo                 # harf harf, imleçli, tuş sesli
+        metin: "Etkilenmeyen tek iki ülke: Türkiye ve ABD"
+        satirlar: ["Bu söz yanlış."]
+        olaylar: [{tip: ustunu_ciz, satir: 1, ofset: 0.4}]   # üstü kırmızı çizilir
 
-  # ---------------------------------------------------------------- 2. bölüm (kartlı: siyah kart + numara + başlık)
+  # ---------------------------------------------------------------- 2. bölüm (kartlı: bindirme kart + numara + başlık)
   - baslik: Bölüm adı
-    kart_sure: 2.6
+    kart_marka: true                   # kartta önce kanal imzası, sonra başlık (soğuk açılıştan sonraki ilk kart)
+    kart_muzik_db: 4                   # kartta müzik kabarması; muzik_mod: nabiz -> bölüm boyunca kip
     sahneler:
       # SAYAÇ: büyük sayı sayarak artar (deger) ya da yıl göstergesi odometre gibi akar (yil)
       - tip: sayac
@@ -114,6 +142,14 @@ bolumler:
         etiket: "bebek"
         satirlar: ["Sayıyı söyleyen cümle."]
         olaylar: [{tip: basla, satir: 1, ofset: 0.5}]  # saymaya başlama anı (yoksa 0.35 sn)
+      - tip: sayac
+        deger: [60, 0]                 # azalan sayaç (doğrusal)
+        ust: "O dönemin kuralı"
+        etiket: "gün"
+        sure_say: 3.0
+        satirlar: ["..."]
+        olaylar:
+          - {tip: deger, deger: 1267, etiket: "doktor", satir: 1, an: son}   # yeni değere sayar (renk, onek, sonek)
       - tip: sayac
         yil: [1957, 1961]
         ust: "Raflarda"
@@ -144,6 +180,19 @@ bolumler:
         olaylar:
           - {tip: nokta, indeks: 2, satir: 1, ofset: 0.4}
           - {tip: nokta, indeks: 3, satir: 2}
+          - {tip: kose, deger: "????", takili: true, satir: 2}   # köşedeki yıl takılır (kose: {deger: 1961, yil: true})
+        kose: {deger: 1961, yil: true, konum: sag_ust}
+
+      # NOKTA IZGARASI: n nokta satır satır dolar; sondur ile bir oranı sessizce söner
+      - tip: izgara
+        n: 10000
+        ust: "Dünya genelinde · 10.000+"
+        etiket: "bebek etkilendi"
+        say: false                     # true: canlı sayı
+        satirlar: ["...", "..."]
+        olaylar:
+          - {tip: basla, satir: 1}
+          - {tip: sondur, oran: 0.4, satir: 2, ofset: 0.5, etiket: "≈ %40 · ..."}
 
   # ---------------------------------------------------------------- 3. bölüm
   - baslik: Türkiye neden kurtuldu?
@@ -157,6 +206,39 @@ bolumler:
         zoom: 1.18
         satirlar: ["Belgeyi anlatan cümle."]
         olaylar: [{tip: vurgula, kutu: 1, satir: 1, ofset: 1.0}]
+
+      # BÖLÜNMÜŞ EKRAN: sol panel ekranı kaplar; panel olayıyla sağ panel kayarak açılır
+      - tip: bolunmus
+        sol: {gorsel: img/arsiv.jpg, etiket: "BATI ALMANYA: KAYIT YETİYOR"}       # görsel panel (Ken Burns)
+        sag: {metin: "Ruhsat şart", ceviri: "1928", baslik: "TÜRKİYE", zemin: kagit, alt: "kaynak"}   # metin paneli
+        satirlar: ["...", "..."]
+        olaylar:
+          - {tip: panel, taraf: sag, satir: 2}
+          - {tip: soluk, taraf: sol, satir: 2, ofset: 1.0}
+          - {tip: buyut, taraf: sag, satir: 2, an: son}     # sağ panel ekranı kaplar
+
+      # SORUŞTURMA PANOSU: kartlar iğnelenir, kırmızı ipler gerilir, karta damga basılır
+      - tip: pano
+        baslik: "Elimizdekiler"
+        kose: {metin: "YAYIMLANMIŞ BELGE: {}", deger: 0}
+        kartlar:                       # x, y: kadraja göre 0..1; stil: kagit | merkez | bos | foto (gorsel ile)
+          - {id: m, metin: "BAKANLIK: RUHSAT YOK", stil: merkez, x: 0.5, y: 0.38}
+          - {id: k, metin: "KİŞİ A", alt: "kaynak: ...", x: 0.19, y: 0.34}
+          - {id: y, metin: "YIL ?", stil: bos, x: 0.36, y: 0.78}
+        ipler: [[k, m]]
+        satirlar: ["...", "..."]
+        olaylar:
+          - {tip: kart, id: m, satir: 1}
+          - {tip: kart, id: k, satir: 2}
+          - {tip: kart, id: y, satir: 2, an: son}
+          - {tip: damga, kart: k, metin: "BELGE YOK", satir: 2, an: son, boy: 52}
+
+      # BİTİŞ EKRANI (son sahne, 15-20 sn): iki boş 16:9 kutu + abone dairesi; üstte kapanış cümlesi
+      - tip: bitis
+        arka: img/arsiv.jpg            # ya da bindirme: true
+        sure: 15
+        duzen: yan_yana                # yan_yana | sag | sol; kutular: 2; abone: true; etiketler: [..., ...]
+        satirlar: ["Bir sonraki unutulmuş hikâyede görüşmek üzere."]
 
 # KÜÇÜK RESİMLER (1280x720; 2-3 varyant, YouTube "Test ve karşılaştır")
 kucukresimler:
@@ -174,6 +256,12 @@ paket:
   aciklama: |
     İlk 2-3 satır (aramada görünen kısım): merak boşluğu, ana gerçek.
   short_url: ""                      # Short yayımlanmışsa bağlantısı (yoksa açıklamada yer tutucu kalır)
+  ara_reklam: [3, 5]                 # bu numaralı bölüm kartlarının içindeki ilk tam saniye kontrol listesine yazılır
+  yapay_icerik: "'Hayır' öner: ..."  # 'Değiştirilmiş ya da yapay içerik' maddesinin önerisi
+  dinle:                             # yayından önce kulakla dinlenecek satırlar (an zaman çizelgesinden yazılır)
+    - {ara: "satırda geçen kelime", not: "neden şüpheli"}
+  ek_maddeler: ["Bölüme özel kontrol maddesi"]
+  telif_notu: ["Videoda telifli görsel yok.", "img/telifli/x.jpg -> sahne, gereken atıf"]   # hesap sahibinin kararı
   short_baglanti: "teslim/<kısa-bölüm>"
   etiketler: [tarih, wojak, tarihselwojak]
   sabit_yorum: "İzleyiciye soru?"

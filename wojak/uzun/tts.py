@@ -3,7 +3,7 @@
 - Uç nokta: POST https://api.cartesia.ai/tts/bytes, başlıklar X-API-Key + Cartesia-Version: 2025-11-04.
 - Anahtar YALNIZ ortamdan / ~/.config/wojak/secrets.env'den (config.load_secrets) okunur; hiçbir yere
   yazılmaz, loglanmaz, hata mesajına konmaz.
-- Önbellek: out/<id>/ses/ham/<anahtar>.wav (API'nin ham çıktısı) ve out/<id>/ses/<anahtar>.wav (kırpılmış).
+- Önbellek: out/<id>-uzun/ses/ham/<anahtar>.wav (API'nin ham çıktısı) ve out/<id>-uzun/ses/<anahtar>.wav (kırpılmış).
   Anahtar = sha1(model, ses, transkript, hız, duygu, dil, sürüm). Metin değişmedikçe yeniden istek atılmaz.
 - Kırpma: tüm satırlarda aynı kural (eşik + sabit ön/arka pay + kısa yumuşatma), böylece aralar tutarlı.
 - Denetim (--qa): faster-whisper "medium"; sesi ffmpeg ile 16 kHz float diziye kendimiz çözeriz
@@ -45,7 +45,7 @@ class TTSHatasi(RuntimeError):
 
 
 def ses_klasoru(v: Video) -> Path:
-    return config.OUT / v.id / "ses"
+    return v.cikti / "ses"
 
 
 def anahtar(model: str, ses_id: str, transkript: str, hiz: float, duygu: str | None, dil: str,
@@ -173,6 +173,28 @@ def satir_wav(v: Video, satir: Satir, deneme: int = 0) -> tuple[str, Path]:
     return k, ses_klasoru(v) / f"{k}.wav"
 
 
+def tekrarlar(v: Video) -> tuple[list[list[str]], list[str]]:
+    """Aynı kaydı paylaşan satır grupları ve uyarılar.
+
+    Aynı ses + aynı TTS metni + aynı hız/duygu = aynı önbellek anahtarı = AYNI dosya: ikinci satır yeniden
+    seslendirilmez, birebir aynı kayıt çalar (ör. 'Tamamen zehirsiz.' açılışta ve sonda). Görünen metni ve sesi
+    aynı ama ayarı (hiz, duygu, tts) farklı satırlar ayrı kayıt olur: uyarı verilir."""
+    gruplar: dict[str, list[str]] = {}
+    metinler: dict[tuple[str, str], list[tuple[str, str]]] = {}
+    for s, i, st in _yer(v):
+        k, _ = satir_wav(v, st)
+        yer = f"{s.yer}, satır {i + 1}"
+        gruplar.setdefault(k, []).append(yer)
+        metinler.setdefault((st.ses, st.altyazi), []).append((k, yer))
+    tekrar = [y for y in gruplar.values() if len(y) > 1]
+    uyari = []
+    for (ses, metin), lst in metinler.items():
+        if len({k for k, _ in lst}) > 1:
+            uyari.append(f"'{metin[:40]}' ({ses}) {len(lst)} kez ama farklı ayarla (hiz/duygu/tts): aynı kayıt "
+                         f"çalmaz — {'; '.join(y for _, y in lst)}")
+    return tekrar, uyari
+
+
 def manifest_yolu(v: Video) -> Path:
     return ses_klasoru(v) / "manifest.json"
 
@@ -274,6 +296,45 @@ def isim_duyuldu_mu(isim: str, duyulan: str, okunus: str | None = None, esik: fl
     return en_iyi >= esik, round(en_iyi, 3)
 
 
+SAYI_KOKLERI = ("bir", "iki", "uc", "dort", "bes", "alti", "yedi", "sekiz", "dokuz", "on", "yirmi", "otuz", "kirk",
+                "elli", "altmis", "yetmis", "seksen", "doksan", "yuz", "bin", "milyon", "milyar")
+
+
+def _sayi_kelimesi(k: str) -> bool:
+    """'kırk', 'binden', 'kırkı', 'yirmi' gibi yazıyla sayı (Whisper bunları rakamla yazar)."""
+    return any(k == r or (k.startswith(r) and len(k) - len(r) <= 3 and r not in ("bir", "on", "uc", "yuz"))
+               for r in SAYI_KOKLERI)
+
+
+def _sayisiz(s: str) -> list[str]:
+    """Karşılaştırma için kelimeler: kesme işareti birleşir (Fakültesi'nden -> fakultesinden), rakamlı ve yazıyla
+    sayı kelimeleri atılır (Whisper sayıları rakamla yazar, metin yazıyla)."""
+    s = re.sub(r"['’`]", "", s)
+    return [k for k in ascii_kat(tr_norm(s)).split() if not any(ch.isdigit() for ch in k) and not _sayi_kelimesi(k)]
+
+
+def kelime_farklari(beklenen: str, duyulan: str, esik: float = 0.96, haric: list[str] | None = None) -> list[str]:
+    """Beklenen metinde olup duyulanda benzeri (>= esik) bulunmayan kelimeler (isimler `haric`te: ayrıca puanlanır).
+    Eşik 0.96: tek harflik kayıplar da yakalanır ('denenmiyor' -> 'denemiyor' 0.95, 'çalışanının' -> 'çalışanın'
+    0.90, 'cüzzam' -> 'cüzdan'); kısa kelimeler (< 4 harf) ve rakamlı kelimeler atlanır. Whisper'ın kendi
+    yanlışları da işaretlenebilir: rapor dinleyip karar vermek içindir."""
+    duy = _sayisiz(duyulan)
+    bitisik = "".join(ascii_kat(tr_norm(re.sub(r"['’`]", "", duyulan))).split())   # 'bir çoğunda' / 'Sıkanlatılan'
+    ad = set()
+    for h in haric or []:
+        ad |= set(_sayisiz(h))
+    out = []
+    for k in _sayisiz(beklenen):
+        if len(k) < 4 or k in ad or any(k.startswith(a if len(a) < 5 else a[:5]) for a in ad if len(a) >= 3):
+            continue
+        if k in bitisik:
+            continue
+        en = max((difflib.SequenceMatcher(None, k, d).ratio() for d in duy), default=0.0)
+        if en < esik:
+            out.append(k)
+    return out
+
+
 def satirdaki_isimler(v: Video, satir: Satir) -> list[str]:
     adaylar = list(dict.fromkeys(v.qa_isimler + list(v.telaffuz)))
     m = tr_norm(satir.altyazi)
@@ -303,8 +364,9 @@ def yaziya_dok(p: Path, dil: str = "tr", ipucu: str | None = None) -> str:
     return " ".join(s.text.strip() for s in segs).strip()
 
 
-def qa(v: Video, yenile: int = 0, log=print) -> list[dict]:
-    """İsim geçen satırları Whisper ile dinler; duyulmayan isimleri raporlar.
+def qa(v: Video, yenile: int = 0, log=print, tum: bool = False) -> list[dict]:
+    """İsim geçen satırları (tum=True: bütün satırları) Whisper ile dinler; duyulmayan isimleri ve isim dışı
+    kelime farklarını (kelime_farklari) raporlar: ikisinden biri varsa "KONTROL ET".
     yenile>0: başarısız satırları en fazla o kadar kez yeniden üretir (önbellek anahtarına deneme no eklenir),
     en iyi sonucu seçer (manifest 'secim'). Asla sonsuz döngüye girmez."""
     sonuc = []
@@ -312,7 +374,7 @@ def qa(v: Video, yenile: int = 0, log=print) -> list[dict]:
     secim = man.setdefault("secim", {})
     for s, i, st in _yer(v):
         isimler = satirdaki_isimler(v, st)
-        if not isimler:
+        if not isimler and not tum:
             continue
         k0, p0 = satir_wav(v, st)
         aday = secim.get(k0, k0)
@@ -346,13 +408,14 @@ def qa(v: Video, yenile: int = 0, log=print) -> list[dict]:
                      sum(x for _, _, x in r2) > sum(x for _, _, x in r)):
                 duy, r, aday = duy2, r2, k2
                 secim[k0] = k2
-        durum = "tamam" if all(ok for _, ok, _ in r) else "KONTROL ET"
+        fark = kelime_farklari(st.altyazi, duy, haric=isimler + [v.telaffuz.get(a, a) for a in isimler])
+        durum = "tamam" if all(ok for _, ok, _ in r) and not fark else "KONTROL ET"
         kayit = {"yer": f"{s.yer}, satır {i + 1}", "durum": durum, "metin": st.altyazi, "duyulan": duy,
                  "isimler": [{"isim": a, "duyuldu": ok, "benzerlik": x} for a, ok, x in r],
-                 "anahtar": aday, "deneme": deneme}
+                 "kelime_farki": fark, "anahtar": aday, "deneme": deneme}
         sonuc.append(kayit)
         log(f"  {durum:<10} {kayit['yer']}: " + ", ".join(f"{a} {'✓' if ok else '✗'}{x:.2f}" for a, ok, x in r)
-            + f"  | duyulan: {duy[:90]}")
+            + (f" fark: {', '.join(fark)}" if fark else "") + f"  | duyulan: {duy[:90]}")
     man["qa"] = sonuc
     manifest_yolu(v).write_text(json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
     return sonuc

@@ -37,7 +37,13 @@ PARCA_KARE = 180
 # x264 hız ayarı: 1080p'de 4 çekirdekte medium ~21 kare/sn, faster ~48 kare/sn (crf 18'de dosya boyu ve görüntü
 # farkı küçük; YouTube zaten yeniden kodlar). Darboğaz kodlayıcı olmasın diye varsayılan 'faster'.
 PRESET = "faster"
-KODLAYICI = ["-c:v", "libx264", "-pix_fmt", "yuv420p", "-bf", "0", "-profile:v", "high", "-g", "60",
+# Renk: RGB -> YUV dönüşümü BT.709 matrisiyle yapılır VE akış BT.709 olarak etiketlenir. Etiketsiz HD'yi YouTube
+# ve tarayıcılar BT.709 diye çözer; swscale ise varsayılan olarak BT.601 ile dönüştürüyordu: Türkiye yeşili
+# (60,255,140) (45,229,138), kırmızı (204,24,30) (219,42,28) görünüyordu. Bütün parçalarda aynı bayraklar:
+# concat -c copy geçerli kalır.
+RENK = ["-vf", "scale=out_color_matrix=bt709:out_range=tv,format=yuv420p", "-colorspace", "bt709",
+        "-color_primaries", "bt709", "-color_trc", "bt709", "-color_range", "tv"]
+KODLAYICI = [*RENK, "-c:v", "libx264", "-pix_fmt", "yuv420p", "-bf", "0", "-profile:v", "high", "-g", "60",
              "-video_track_timescale", "15360"]
 
 
@@ -47,7 +53,8 @@ def kod_surumu() -> str:
     pk = Path(__file__).resolve().parent
     # yalnız görüntüyü etkileyen modüller (ses/TTS/paket değişince parçalar yeniden çizilmesin; zamanlama zaten
     # sahne imzasında)
-    gorsel = ("sahneler.py", "cizim.py", "harita.py", "easing.py", "render.py", "__init__.py")
+    gorsel = ("sahneler.py", "cizim.py", "harita.py", "easing.py", "render.py", "__init__.py", "zemin.py", "ust.py",
+              "bilgi.py", "kanal.py")
     for p in [pk / n for n in gorsel] + [pk.parent / n for n in ("text.py", "facing.py", "config.py")]:
         h.update(p.read_bytes())
     return h.hexdigest()[:12]
@@ -70,8 +77,24 @@ def _imza(o):
 
 def sahne_imzasi(s: Sahne) -> dict:
     return _imza({"tip": s.tip, "p": s.p, "n": s.n_kare, "gecis": [s.gecis, s.gecis_kare],
-                  "satirlar": [[st.metin, st.t0, st.sure, st.balon] for st in s.satirlar],
-                  "olaylar": [[o.tip, o.zaman, o.p] for o in s.olaylar]})
+                  "satirlar": [[st.metin, st.t0, st.sure, st.balon, st.konusan,
+                                Path(st.wav).name if (st.wav and (st.balon or st.konusan)) else None]
+                               for st in s.satirlar],
+                  "olaylar": [[o.tip, o.zaman, o.p] for o in s.olaylar], "kose": s.kose, "f": s.filigran})
+
+
+def bindirme_mi(s: Sahne) -> bool:
+    """Önceki sahnenin son karesi üstüne çizilen sahne (bindirme bölüm kartı, marka, bitiş)."""
+    return bool(s.p.get("bindirme")) and s.tip in ("bolum_karti", "marka", "bitis")
+
+
+def onceki_imzasi(z: Zaman, i: int) -> list:
+    """Bindirme sahnesinin bağlı olduğu önceki sahnelerin imzası (zincir: bindirme üstüne bindirme)."""
+    out = []
+    while i > 0 and bindirme_mi(z.sahneler[i]):
+        i -= 1
+        out.append(sahne_imzasi(z.sahneler[i]))
+    return out
 
 
 @dataclass
@@ -94,9 +117,10 @@ def parcalar(v: Video, z: Zaman, klasor: Path, W: int, H: int, kod: dict, max_ka
         sinirlar = [round(n * j / k) for j in range(k + 1)]
         imza = sahne_imzasi(s)
         onceki = sahne_imzasi(z.sahneler[i - 1]) if i > 0 and s.gecis != "kesme" else None
+        bagli = onceki_imzasi(z, i)
         for a, b in zip(sinirlar, sinirlar[1:]):
             d = {"s": imza, "k": [a, b], "wh": [W, H], "fps": z.fps, "kod": kod, "ks": ks, "f": filigran,
-                 "o": onceki if a < s.gecis_kare else None}
+                 "o": onceki if a < s.gecis_kare else None, "b": bagli}
             key = hashlib.sha1(json.dumps(d, sort_keys=True, ensure_ascii=False, default=str).encode()).hexdigest()[:16]
             out.append(Parca(len(out), i, a, b, key, klasor / f"{len(out):04d}_s{i:03d}_{key}.mp4"))
     return out
@@ -116,6 +140,17 @@ def gecis_uygula(tip: str, onceki: Image.Image, simdiki: Image.Image, j: int, k:
     return simdiki
 
 
+def son_kare(v: Video, z: Zaman, i: int, W: int, H: int, derinlik: int = 0) -> Image.Image:
+    """i. sahnenin son karesi (filigransız); bindirme sahnesi ise kendi öncülünü de çizer."""
+    from .sahneler import Baglam, cizici
+    c = Baglam(v, W, H, z.fps)
+    s = z.sahneler[i]
+    cz = cizici(s, c)
+    if bindirme_mi(s) and i > 0 and derinlik < 4:
+        cz.dondur(son_kare(v, z, i - 1, W, H, derinlik + 1))
+    return cz.kare(s.sure_hesap - 1 / z.fps)
+
+
 class KareUretici:
     """Bir sahnenin (geçiş ve filigran dahil) son karelerini üretir."""
 
@@ -124,11 +159,15 @@ class KareUretici:
         self.c = Baglam(v, W, H, z.fps)
         self.s = z.sahneler[i]
         self.cz = cizici(self.s, self.c)
+        if bindirme_mi(self.s) and i > 0:
+            self.cz.dondur(son_kare(v, z, i - 1, W, H))
         self.onceki = None
         if i > 0 and self.s.gecis != "kesme" and self.s.gecis_kare > 0:
             self.onceki_s = z.sahneler[i - 1]
             self.onceki = cizici(self.onceki_s, self.c)
-        self.wm = filigran_katmani(v.filigran, self.c) if v.filigran else None
+            if bindirme_mi(self.onceki_s) and i > 1:
+                self.onceki.dondur(son_kare(v, z, i - 2, W, H))
+        self.wm = filigran_katmani(v.filigran, self.c) if (v.filigran and self.s.filigran) else None
         self.fps = z.fps
 
     def kare(self, k: int) -> Image.Image:
@@ -170,7 +209,7 @@ def video_render(v: Video, z: Zaman, cikti: Path, W: int = W_TAM, H: int = H_TAM
     if shutil.which("ffmpeg") is None:
         raise RuntimeError("ffmpeg bulunamadı")
     kod = {"preset": "veryfast", "crf": 23} if onizleme else {"preset": preset, "crf": 18}
-    klasor = config.OUT / v.id / ("parca_onizleme" if onizleme else "parca")
+    klasor = v.cikti / ("parca_onizleme" if onizleme else "parca")
     klasor.mkdir(parents=True, exist_ok=True)
     ps = parcalar(v, z, klasor, W, H, kod, filigran=v.filigran)
     if aralik:
@@ -216,7 +255,8 @@ def birlestir(video: Path, ses: Path, cikti: Path, ss_v: float | None = None, ss
     """Videoya sesi ekler (AAC 48 kHz). ss_v/ss_a/sure verilirse (ön izleme aralığı) kırpılır, yeniden kodlanır."""
     if sure is None:
         cmd = ["ffmpeg", "-y", "-loglevel", "error", "-i", str(video), "-i", str(ses), "-map", "0:v", "-map", "1:a",
-               "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", str(cikti)]
+               "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-metadata:s:a:0", "language=tur",
+               "-movflags", "+faststart", str(cikti)]
     else:   # kare/örnek hassasiyetinde kırp (-ss ile kayan kesirli kare başlangıcı olmasın)
         k0, nk = int(round((ss_v or 0) * FPS)), int(round(sure * FPS))
         a0, na = int(round((ss_a or 0) * 48000)), nk * 48000 // FPS
@@ -224,7 +264,7 @@ def birlestir(video: Path, ses: Path, cikti: Path, ss_v: float | None = None, ss
                "-filter_complex", f"[0:v]trim=start_frame={k0}:end_frame={k0 + nk},setpts=PTS-STARTPTS[v];"
                                   f"[1:a]atrim=start_sample={a0}:end_sample={a0 + na},asetpts=PTS-STARTPTS[a]",
                "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
-               "-pix_fmt", "yuv420p", "-bf", "0", "-r", str(FPS),
+               "-pix_fmt", "yuv420p", "-bf", "0", "-r", str(FPS), *RENK[2:],
                "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-movflags", "+faststart", str(cikti)]
     subprocess.run(cmd, check=True)
     return cikti

@@ -1,8 +1,10 @@
-# DEMO (~1 dk): uzun format motorunun bütün sahne tiplerini, iki sesi, müziği ve efektleri gösterir.
+# DEMO (~2 dk): uzun format motorunun bütün sahne tiplerini (wojak, foto, metin, marka, bolum_karti, sayac, harita,
+# izgara, zaman_cizelgesi, manset, bolunmus, pano, bitis), iki sesi, müziği ve efektleri gösterir.
 # Konu: Talidomit ve Türkiye (kısa sürüm: episodes/talidomit-turkiye). Olgu sınırları kısa sürümle aynı:
 #   - Kaymakçalan'ın olumsuz görüşü meslektaşlarının tanıklığına dayanır ("meslektaşlarının anlattığına göre").
 #   - Aygün'ün tavuk embriyosu deneyi tek kaynağa dayanır ("anlatılana göre"); ikisi aynı sahnede gösterilmez.
 #   - Haritada bugünkü sınırlar var: Almanya tek parça görünür (1957'de ilaç Batı Almanya'da satıldı).
+#   - Panoda Kaymakçalan ve Aygün ayrı kartlarda, ipler yalnız ortadaki Bakanlık kartına (aralarında bağ kurulmaz).
 # Render: python -m wojak uzun render uzun/demo   (önce: python -m wojak uzun seslendir uzun/demo --qa)
 id: demo
 baslik: "Türkiye'ye giremeyen ilaç: Talidomit (demo)"
@@ -17,6 +19,7 @@ qa:
 muzik: {uret: true, tohum: 1957, seviye: -22, acik: -15}
 zamanlama: {kart: 2.3}
 gecis: kesme
+kart_bindirme: true      # bölüm kartları önceki sahnenin donmuş karesi üstünde (1,2 sn; siyah ekran yok)
 
 bolumler:
   - baslik: Soğuk açılış
@@ -26,18 +29,20 @@ bolumler:
       - tip: wojak
         arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
         kirp: [0.0, 0.0, 0.86, 1.0]   # sağ kenardaki modern prizler kadraja girmesin
-        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.45, 0.46]]}
+        kamera: {zoom: [1.0, 1.08], merkez: [[0.5, 0.5], [0.45, 0.46]]}   # konuşana doğru itme: it 0.05 (vars.)
         etiket: "BATI ALMANYA · 1957"
+        muzik_db: -6                  # soğuk açılışta müzik kısık
         karakterler:
           - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol}
           - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag}
+          - {id: c, gorsel: assets/kit/klasik/sakin.png, x: 0.53, derinlik: 0.65, giris: 1.0}   # arkada müşteri
         satirlar:
           - "1957. Batı Almanya'da yeni bir uyku ilacı satışa çıkıyor."
           - "Reçete gerekmiyor. Üstelik hamilelere bile öneriliyor."
         olaylar:
           - {tip: giris, karakter: b, satir: 2, ofset: 0.2}
-          - {tip: balon, karakter: a, metin: "Reçeteye gerek yok!", satir: 2, ofset: -0.1, sure: 2.4}
-          - {tip: kelime, metin: "REÇETESİZ", satir: 2, ofset: 0.1, konum: ust}
+          - {tip: balon, karakter: a, metin: "Reçeteye gerek yok!", satir: 1, an: son, ofset: -1.2, sure: 2.2}
+          - {tip: kelime, metin: "REÇETESİZ", satir: 2, ofset: 1.2, konum: ust}
 
       - tip: foto
         gorsel: img/contergan_kutu.jpg
@@ -60,12 +65,16 @@ bolumler:
         olaylar:
           - {tip: ceviri, satir: 2, ofset: -0.05}
 
+      - tip: marka                    # kanal imzası (~1,8 sn): donmuş karenin üstünde, filigranın yerine uçar
+        bindirme: true
+
   - baslik: Sessiz felaket
     sahneler:
       - tip: sayac
         yil: [1957, 1961]
         ust: "Raflarda"
         etiket: "dört yıl"
+        arka: img/contergan_kutu.jpg   # koyu zemine bulanık, kararmış ilgili fotoğraf (+ toz, ışık, gren)
         satirlar:
           - "Dört yıl boyunca ilaç raflarda kalıyor."
 
@@ -83,21 +92,27 @@ bolumler:
         olaylar:
           - {tip: basla, satir: 1, ofset: 0.1}
           - {tip: ulke, kod: TUR, satir: 2, ofset: 0.7}
+        sfx:
+          - {ad: turkiye, satir: 2, ofset: 0.7, db: -6}   # Türkiye ses motifi
 
-      - tip: sayac
-        deger: 10000
-        sonek: "+"
+      - tip: izgara                   # nokta ızgarası: 10.000 nokta dolar, %40'ı sessizce söner
+        n: 10000
         ust: "Dünya genelinde"
         etiket: "bebek etkilendi"
+        say: true
         gecis: gecis
         satirlar:
           - "Dünyada on binden fazla bebek, ağır doğum kusurlarıyla dünyaya geliyor."
+          - "Bu bebeklerin tahminen yüzde kırkı, doğumda ya da kısa süre sonra hayatını kaybediyor."
         olaylar:
-          - {tip: basla, satir: 1, ofset: 0.6}
+          - {tip: basla, satir: 1, ofset: 0.3}
+          - {tip: sondur, oran: 0.4, satir: 2, ofset: 1.2, sure: 2.0, etiket: "≈ %40 · doğumda ya da kısa süre sonra"}
+          - {tip: muzik, db: -8, satir: 2}   # müzik incelir
 
       - tip: zaman_cizelgesi
         baslik: "Felaketin takvimi"
-        arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
+        zemin: kagit                  # eski kâğıt zemin; yazılar mürekkep renginde
+        kose: {metin: "GÜN {} / 11", deger: 0}
         noktalar:
           - {tarih: "1 Ekim 1957", metin: "Contergan satışa çıktı"}
           - {tarih: "16 Kasım 1961", metin: "Dr. Lenz alarm verdi"}
@@ -109,6 +124,7 @@ bolumler:
           - {tip: nokta, indeks: 1, t: 0.6}
           - {tip: nokta, indeks: 2, satir: 1, ofset: 0.4}
           - {tip: nokta, indeks: 3, satir: 2, ofset: 0.2}
+          - {tip: kose, deger: 11, satir: 2, ofset: 0.2, sure: 1.0}
 
   - baslik: Türkiye neden kurtuldu?
     sahneler:
@@ -127,6 +143,40 @@ bolumler:
           - {tip: vurgula, kutu: 2, satir: 2, ofset: 0.0}
           - {tip: vurgula, kutu: 3, satir: 2, ofset: 0.55}
 
+      - tip: bolunmus                 # bölünmüş ekran: sağ panel kayarak açılır
+        sol: {metin: "en az 17 bebek", baslik: "ABD", alt: "ruhsat yoktu; 'klinik deneme' yoluyla (FDA sayımı)",
+              arka: img/contergan_kutu.jpg}
+        sag: {metin: "bilinen vaka yok", baslik: "TÜRKİYE", zemin: kagit}
+        satirlar:
+          - "ABD'de en az on yedi bebek etkilendi."
+          - "Türkiye'de ise talidomite bağlanmış bilinen bir vaka yok."
+        olaylar:
+          - {tip: panel, taraf: sag, satir: 2}
+          - {tip: soluk, taraf: sol, satir: 2, ofset: 1.2}
+
+      - tip: pano                     # soruşturma panosu: kartlar iğnelenir, ipler gerilir, damga basılır
+        baslik: "Elimizdekiler"
+        kose: {metin: "YAYIMLANMIŞ BELGE: {}", deger: 0}
+        gecis: kaydir
+        kartlar:
+          - {id: m, metin: "BAKANLIK: RUHSAT YOK", stil: merkez, x: 0.5, y: 0.38}
+          - {id: k, metin: "KAYMAKÇALAN", alt: "kaynak: meslektaş tanıklıkları (TFD Bülteni, 2012)", x: 0.19, y: 0.34}
+          - {id: g, metin: "AYGÜN", alt: "ilk kaynak: Medikal Tribün, 2008", x: 0.81, y: 0.34}
+          - {id: y, metin: "YIL ?", stil: bos, x: 0.36, y: 0.78}
+          - {id: f, metin: "FİRMA ?", stil: bos, x: 0.64, y: 0.78}
+        ipler: [[k, m], [g, m]]       # ayrı ipler: Kaymakçalan ile Aygün arasında bağ yok
+        satirlar:
+          - "Şimdi elimizdekilere bakalım."
+          - "Kaymakçalan'ın rolü, meslektaşlarının tanıklığına dayanıyor."
+          - "Tavuk embriyosu deneyinin bilinen en eski kaynağı, 2008'de çıkan bir haber."
+        olaylar:
+          - {tip: kart, id: m, satir: 1, ofset: 0.3}
+          - {tip: kart, id: k, satir: 2}
+          - {tip: kart, id: g, satir: 3}
+          - {tip: kart, id: y, satir: 3, ofset: 1.0}
+          - {tip: kart, id: f, satir: 3, ofset: 1.6}
+          - {tip: damga, kart: g, metin: "TEK KAYNAK", satir: 3, an: son, ofset: -0.6, boy: 52, aci: -9}
+
       - tip: wojak
         arka: episodes/talidomit-turkiye/img/arka_lille_lab_kaynak.jpg
         kirp: [0.0, 0.0, 0.86, 1.0]   # sağ kenardaki modern prizler kadraja girmesin
@@ -144,6 +194,12 @@ bolumler:
           - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 2, ofset: 0.4}
         sfx:
           - {ad: hit, satir: 2, ofset: 0.4, db: -8}
+
+      - tip: bitis                    # YouTube bitiş ekranı (son 15-20 sn): iki 16:9 kutu + abone dairesi
+        arka: img/contergan_kutu.jpg
+        sure: 15
+        satirlar:
+          - "Bir sonraki unutulmuş hikâyede görüşmek üzere."
 
 kucukresimler:
   - ad: a

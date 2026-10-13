@@ -3,11 +3,11 @@
     kontrol     spesifikasyon + zaman çizelgesi + hareket/bölüm/altyazı denetimi (ses yoksa süreler tahmini)
     seslendir   Cartesia TTS (önbellekli). --qa: Whisper ile isim denetimi; --yenile N: başarısızları N kez yeniden üret
     onizle      yarım çözünürlük (960x540) hızlı ön izleme; --bas 1:10 --bit 2:00 ile yalnız bir aralık
-    render      1920x1080 30 fps, -14 LUFS; + .srt, anlatım izi, ölçümler (out/<id>/)
+    render      1920x1080 30 fps, -14 LUFS; + .srt, anlatım izi, ölçümler (out/<id>-uzun/)
     kare        tek kare(ler): --t 12.5 --t 1:03
     kucukresim  1280x720 küçük resim varyantları
-    paket       paylasim.md + .srt (out/<id>/)
-    teslim      out/<id>/ -> teslim/<id>-uzun/ (video git'e girmez)
+    paket       paylasim.md + .srt (out/<id>-uzun/)
+    teslim      out/<id>-uzun/ -> teslim/<id>-uzun/ (önce mp4 doğrulanır; video git.e girmez)
 """
 
 from __future__ import annotations
@@ -83,7 +83,12 @@ def hareket_denetimi(v, z) -> list[str]:
 def cmd_kontrol(a) -> None:
     v, z = _yukle(a.yol)
     ozet(v, z)
-    u = hareket_denetimi(v, z) + paket.uyarilar(v, z) + altyazi.denetle(altyazi.parcalar(z))
+    tekrar, tekrar_uyari = tts.tekrarlar(v)
+    for g in tekrar:
+        print(f"  aynı kayıt ({len(g)} kez, tek seslendirme): " + " = ".join(g))
+    ps = altyazi.parcalar(z)
+    u = (hareket_denetimi(v, z) + paket.uyarilar(v, z) + altyazi.denetle(ps)
+         + [f"altyazı kelime farkı: {x}" for x in altyazi.kelime_farki(z, ps)] + tekrar_uyari)
     for x in u:
         print(f"  ⚠ {x}")
     print("bölümler:\n" + paket.bolum_metni(paket.bolum_damgalari(z)))
@@ -100,23 +105,26 @@ def cmd_seslendir(a) -> None:
           f"{sum(r.sure for r in sonuc):.1f} sn, {time.time() - t0:.1f} sn")
     if a.qa:
         print("Whisper denetimi (faster-whisper medium):")
-        q = tts.qa(v, yenile=a.yenile)
+        q = tts.qa(v, yenile=a.yenile, tum=a.tum)
         kotu = [x for x in q if x["durum"] != "tamam"]
         print(f"denetim: {len(q)} satır, {len(kotu)} kontrol gerektiriyor "
               f"(rapor: {tts.manifest_yolu(v)})")
 
 
 def _ses_anahtari(v, z) -> str:
-    d = {"s": [[round(sz.bas, 4), Path(sz.satir.wav).name if sz.satir.wav else None] for sz in z.satirlar()],
+    d = {"s": [[round(sz.bas, 4), Path(sz.satir.wav).name if sz.satir.wav else None,
+                Path(sz.satir.wav).stat().st_mtime_ns if sz.satir.wav and Path(sz.satir.wav).exists() else None,
+                sz.satir.db] for sz in z.satirlar()],
          "x": [[round(t, 4), x.ad, x.db] for t, x in zaman.tum_sfx(z)], "m": {k: str(x) for k, x in v.muzik.items()},
          "n": z.toplam_kare, "o": v.otomatik_sfx,
          "k": [s.otomatik_sfx for s in z.sahneler], "e": [list(e) for e in ses.otomatik_efektler(z)],
+         "mz": [list(e) for e in ses.muzik_egrisi(z)], "mk": ses.muzik_kipleri(z),
          "c": hashlib.sha1((Path(ses.__file__).read_bytes() + Path(ses.muzik.__file__).read_bytes())).hexdigest()}
     return hashlib.sha1(json.dumps(d, sort_keys=True, default=str).encode()).hexdigest()[:12]
 
 
 def _ses(v, z, log=print) -> dict:
-    klasor = config.OUT / v.id / "ses_miks"
+    klasor = v.cikti / "ses_miks"
     key = _ses_anahtari(v, z)
     bilgi_yol = klasor / f"bilgi_{key}.json"
     if bilgi_yol.exists():
@@ -140,7 +148,7 @@ def cmd_render(a, onizleme: bool = False) -> None:
     ozet(v, z)
     for x in hareket_denetimi(v, z) + paket.uyarilar(v, z):
         print(f"  ⚠ {x}")
-    od = config.OUT / v.id
+    od = v.cikti
     W, H = (960, 540) if onizleme else (1920, 1080)
     aralik = None
     if onizleme and (a.bas or a.bit):
@@ -172,11 +180,17 @@ def cmd_render(a, onizleme: bool = False) -> None:
           + f" -> {'TAMAM' if d['senkron_ok'] and d.get('kare_ok', True) else 'SORUN'}")
     if onizleme:
         return
+    mo = ses.ebur128(cikti)   # teslim edilen dosyanın kendisi (AAC sonrası)
+    print(f"  mp4 ses: {mo.get('I')} LUFS, tepe {mo.get('TP')} dBTP"
+          + ("" if (mo.get("TP") is not None and mo["TP"] <= ses.HEDEF_TP) else f"  ⚠ hedef <= {ses.HEDEF_TP} dBTP"))
     srt = altyazi.yaz(z, od / f"{v.id}.srt")
     stem = od / f"{v.id}_anlatim.wav"
     shutil.copy2(sb["anlatim_izi"], stem)
+    if sb.get("altlik_izi") and Path(sb["altlik_izi"]).exists():
+        shutil.copy2(sb["altlik_izi"], od / f"{v.id}_altlik.wav")
     olcum = {**{k: sb.get(k) for k in ("son_lufs", "son_tepe_dbtp", "son_lra", "loudnorm_turu", "anlatim_lufs_ham",
                                        "muzik_lufs_ham", "efekt_sayisi")},
+             "mp4_lufs": mo.get("I"), "mp4_tepe_dbtp": mo.get("TP"),
              **d, "render_kare_hizi": rb["kare_hizi"], "render_sn": rb["sure_sn"], "video_sn": round(t_video, 1),
              "toplam_sn": round(toplam, 1), "isci": a.isci}
     eski = od / "olcum.json"
@@ -197,7 +211,7 @@ def cmd_onizle(a) -> None:
 
 def cmd_kare(a) -> None:
     v, z = _yukle(a.yol)
-    od = config.OUT / v.id / "kareler"
+    od = v.cikti / "kareler"
     od.mkdir(parents=True, exist_ok=True)
     for t in a.t or ["0"]:
         sec = _t(t)
@@ -211,14 +225,14 @@ def cmd_kucukresim(a) -> None:
     v = spec.yukle(a.yol)
     if not v.kucukresimler:
         sys.exit("video.yaml'da 'kucukresimler' yok")
-    for p, s in zip(kucukresim.hepsi(v, config.OUT / v.id), v.kucukresimler):
+    for p, s in zip(kucukresim.hepsi(v, v.cikti), v.kucukresimler):
         print(f"-> {p} ({p.stat().st_size / 1e3:.0f} KB)" +
               ("  ⚠ telifli görsel içeriyor: teslim/ altına girerse repoya da girer" if kucukresim.telifli_mi(v, s) else ""))
 
 
 def cmd_paket(a) -> None:
     v, z = _yukle(a.yol)
-    od = config.OUT / v.id
+    od = v.cikti
     srt = altyazi.yaz(z, od / f"{v.id}.srt")
     mp4 = od / f"{v.id}.mp4"
     olcum = None
@@ -232,14 +246,23 @@ def cmd_paket(a) -> None:
 
 def cmd_teslim(a) -> None:
     v, z = _yukle(a.yol, tahmin=False)
-    od = config.OUT / v.id
+    od = v.cikti
     mp4 = od / f"{v.id}.mp4"
     if not mp4.exists():
         sys.exit(f"Önce render: python -m wojak uzun render {a.yol}")
     yml = v.dir / "video.yaml"
     if mp4.stat().st_mtime < yml.stat().st_mtime:
         print("  ⚠ video, video.yaml'dan eski: değiştiyse önce yeniden render et")
+    # yanlış dosya teslim edilmesin (ör. aynı id'li Short'un dikey 14 sn'lik mp4'ü): boyut + kare sayısı + senkron
+    d = render.dogrula(mp4, z.toplam_kare, z.fps)
+    if d["boyut"] != "1920x1080" or not d.get("kare_ok") or not d["senkron_ok"]:
+        sys.exit(f"HATA: {mp4} bu videonun render'ı değil ya da bozuk: {d['boyut']}, {d['kare']}/{z.toplam_kare} "
+                 f"kare, senkron {'tamam' if d['senkron_ok'] else 'SORUN'}. Önce: python -m wojak uzun render {a.yol}")
     u = paket.uyarilar(v, z)
+    qa_kotu = [x for x in tts._manifest(v).get("qa", []) if x.get("durum") != "tamam"]
+    if qa_kotu:
+        u.append(f"ses QA: {len(qa_kotu)} satır KONTROL ET (ilki: {qa_kotu[0]['yer']}: "
+                 f"{qa_kotu[0].get('duyulan', '')[:50]}) — dinle, gerekirse yeniden seslendir")
     for x in u:
         print(f"  ⚠ {x}")
     if u and not a.zorla:
@@ -278,6 +301,7 @@ def main(argv=None) -> None:
     p.add_argument("--qa", action="store_true", help="Whisper ile isim denetimi")
     p.add_argument("--yenile", type=int, default=0, help="denetimde başarısız satırı en fazla N kez yeniden üret")
     p.add_argument("--yeniden", action="store_true", help="önbelleği yok say, hepsini yeniden üret")
+    p.add_argument("--tum", action="store_true", help="--qa: yalnız isimli satırları değil bütün satırları dinle")
     p.set_defaults(fn=cmd_seslendir)
     for ad, fn in (("render", cmd_render), ("onizle", cmd_onizle)):
         p = sp.add_parser(ad)

@@ -227,6 +227,30 @@ def afin(src: Image.Image, cx: float, cy: float, sx: float = 1.0, sy: float | No
     return out, x0, y0
 
 
+ALT_PAY = 4   # alt piksel yerleştirme için sprite çevresindeki saydam pay (px)
+
+
+def alt_piksel_hazirla(src: Image.Image) -> Image.Image:
+    """Sprite'ı alt piksel yerleştirmeye hazırlar: önceden çarpılmış alfa (RGBa) + ALT_PAY saydam kenar."""
+    out = Image.new("RGBa", (src.width + 2 * ALT_PAY, src.height + 2 * ALT_PAY))
+    out.paste(src.convert("RGBa"), (ALT_PAY, ALT_PAY))
+    return out
+
+
+def alt_piksel(src: Image.Image, x: float, y: float, sx: float, sy: float) -> tuple[Image.Image, int, int]:
+    """alt_piksel_hazirla()'dan geçmiş sprite'ı, sol üst köşesi (x, y) (kesirli) ve ölçeği (sx, sy) olacak
+    biçimde örnekler. Dönen: (RGBA katman, tam sayı sol üst). `resize(box=...)` ayrılabilir örnekleme kullanır:
+    afin dönüşümden ~2 kat hızlı (713 px boyda ~9 ms)."""
+    P = ALT_PAY
+    w0, h0 = src.width - 2 * P, src.height - 2 * P
+    x0, y0 = math.floor(x), math.floor(y)
+    fx, fy = x - x0, y - y0
+    wo, ho = math.ceil(w0 * sx + fx) + 1, math.ceil(h0 * sy + fy) + 1
+    bx, by = P - fx / sx, P - fy / sy
+    out = src.resize((wo, ho), Image.BILINEAR, box=(bx, by, bx + wo / sx, by + ho / sy))
+    return out.convert("RGBA"), x0, y0
+
+
 def kamera(src: Image.Image, W: int, H: int, zoom: float, merkez=(0.5, 0.5),
            resample=Image.BILINEAR) -> Image.Image:
     """Ken Burns: src (W*zmax x H*zmax) içinden 1/zoom'luk pencereyi (merkez, 0..1) W x H'ye örnekler.
@@ -269,13 +293,13 @@ def _gren(W: int, H: int, n: int, seed: int = 7) -> tuple[Image.Image, ...]:
     return tuple(out)
 
 
-def gren_uygula(im: Image.Image, t: float, guc: float = 0.06, fps: int = 30) -> None:
-    """Hafif film greni (açık noktalar). guc: 0..1."""
+def gren_uygula(im: Image.Image, t: float, guc: float = 0.06, fps: int = 30, renk=(255, 255, 255)) -> None:
+    """Hafif film greni (vars. açık noktalar; kâğıtta koyu renk ver). guc: 0..1."""
     if guc <= 0:
         return
     frames = _gren(im.width, im.height, 6)
     m = frames[int(t * fps) % len(frames)].point(_alfa_lut(int(guc * 255)))
-    im.paste((255, 255, 255), (0, 0, im.width, im.height), m)
+    im.paste(tuple(renk), (0, 0, im.width, im.height), m)
 
 
 def gradyan_zemin(W: int, H: int, ic=(30, 34, 42), dis=(8, 9, 12), merkez=(0.5, 0.42)) -> Image.Image:
@@ -284,6 +308,13 @@ def gradyan_zemin(W: int, H: int, ic=(30, 34, 42), dis=(8, 9, 12), merkez=(0.5, 
     k = np.clip(d / 0.75, 0, 1)[..., None] ** 1.2
     a, b = np.array(ic, np.float32), np.array(dis, np.float32)
     return Image.fromarray((a + (b - a) * k).astype(np.uint8), "RGB")
+
+
+def donuk_karart(im: Image.Image, karart: float, hedef: float = 58.0) -> float:
+    """Bindirme sahnelerinde donmuş karenin karartma oranı: en az `karart`; açık renkli karede (kâğıt, gökyüzü)
+    ortalama parlaklık `hedef`in altına inecek kadar (üstteki beyaz/sarı yazı okunsun)."""
+    ort = float(np.asarray(im.convert("L").resize((64, 36))).mean())
+    return min(0.9, max(karart, 1.0 - hedef / max(ort, 1.0)))
 
 
 def say_bicimle(n: float, ondalik: int = 0) -> str:

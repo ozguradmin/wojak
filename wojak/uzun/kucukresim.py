@@ -5,12 +5,12 @@ Spesifikasyon (video.yaml > kucukresimler, her öğe bir varyant; YouTube "Test 
       arka: img/mekan.jpg          # kaplar, kontrast/doygunluk artar, kenarlar kararır
       karart: 0.35
       karakterler: [{gorsel: chars/x.png, taraf: sol, boy: 0.95}]   # içeri bakar (wojak.facing), beyaz kontur
-      yazi: "TÜRKİYE'YE GİREMEDİ"  # 2-4 kelime; en fazla 2 satır, büyük harf
+      yazi: "TÜRKİYE'YE GİREMEDİ"  # 2-4 kelime; en fazla 2 satır, büyük harf; yazi_y (0..1), yazi_bolge [x0, x1]
       vurgu_kelime: GİREMEDİ       # sarı yazılır
       ek: {gorsel: img/kanit.jpg, konum: sag_alt, boy: 0.32, egim: 4}
       ok: {bas: [0.5, 0.45], son: [0.72, 0.7]}        # 0..1 koordinat, kırmızı ok
       daire: {x: 0.8, y: 0.78, r: 0.16}              # kırmızı halka (r: yüksekliğe oran)
-Dosya: out/<id>/kucukresim_<ad>.jpg (< 2 MB, YouTube sınırı).
+Dosya: out/<id>-uzun/kucukresim_<ad>.jpg (< 2 MB, YouTube sınırı).
 """
 
 from __future__ import annotations
@@ -158,7 +158,11 @@ def uret(v: Video, spec: dict, cikti: Path) -> Path:
         tek = len(kars) == 1
         sol = tek and kars[0].get("taraf", "sol") == "sol"
         sag = tek and not sol
-        if tek:
+        yb = [float(q) for q in (spec.get("yazi_bolge") or [])]
+        if yb:   # [x0, x1] ya da [x0, x1, y0, y1] (0..1): yazının alanı (ör. karaktersiz haritada boş deniz)
+            bolge = (KW * yb[0], KW * yb[1])
+            max_h = KH * ((yb[3] - yb[2]) if len(yb) == 4 else 0.5)
+        elif tek:
             bolge = (KW * 0.47, KW * 0.97) if sol else (KW * 0.03, KW * 0.53)
             max_h = KH * 0.62
         else:
@@ -169,10 +173,12 @@ def uret(v: Video, spec: dict, cikti: Path) -> Path:
         y = KH * (0.06 if not tek else 0.08)
         if spec.get("yazi_y") is not None:
             y = float(spec["yazi_y"]) * KH
+        elif len(yb) == 4:   # alanın dikey ortası
+            y = KH * (yb[2] + yb[3]) / 2 - yz.height / 2
         im.paste(yz, (int(x), int(y)), yz)
-    # küçük filigran
+    # küçük filigran: sol altta (sağ alt köşe YouTube'un süre rozetinin altında kalıyor)
     wm = C.yazi(config.WATERMARK, C.FONT_DIALOG, 24, (255, 255, 255), stroke=2)
-    im.paste(wm, (KW - wm.width - 18, KH - wm.height - 12), wm)
+    im.paste(wm, (18, KH - wm.height - 12), wm)
     cikti.parent.mkdir(parents=True, exist_ok=True)
     q = 92
     while True:

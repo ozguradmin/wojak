@@ -401,3 +401,21 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
 - Mahremiyet, lisans, ağ gizliliği ve gizli anahtar kuralları birebir.
 - İki bağımsız hakem + düzeltme döngüsü; hakem çapaları uzun format için yeniden yazılmalı (izlenme süresi, tempo,
   seslendirmenin isimleri doğru okuması).
+
+### 7.1 Uzun format, talidomit-turkiye hakem turlarından (13.10.2026)
+
+- **Vurgu damgası en az 1,2 sn ekranda kalmalı.** Damganın iniş anından sahne sonuna kadar 0,5-0,8 sn kalınca hakem
+  "flaş gibi geçiyor" dedi: vurgu satırına `sonra: 1.1-1.3`. Koyu zeminde koyu kırmızı damga okunmuyor: beyaz/sarı, ya
+  da kırmızıyı açık bir nesnenin (dosya, kâğıt) üstüne bas. Aynı tipten damga 30'u geçince etkisi düşüyor.
+- **Kanca ilk 15 sn'de bir wojak göstermeli** (küçük resim karakter vaat ediyorsa) ve vurgu cümlesinin görseli 1+ sn
+  okunur kalmalı. Doruk (hikâyenin cevabı) bilgi kartıyla değil, karakterli bir sahneyle verilir.
+- **Ardışık iki çekimde aynı karakter aynı tarafta kalır** (taraf atlaması göze batıyor).
+- **Kesik kafa:** kaynak PNG'nin satır 0'ında opak piksel varsa saç tuvalden taşmıştır; tuvali tepeye aç.
+- **Havada duran nesne:** göğüsten kesik karakterlerin yanında nesnenin alt kenarı da kadraj altına taşmalı
+  (`alt` pozitif); negatif `alt` nesneyi yukarı kaldırır.
+- **Zaman damgaları YUKARI yuvarlanır** (bölüm, ara reklam, bitiş ekranı): aşağı yuvarlanan damga önceki cümlenin
+  ortasına düşer.
+- **TTS kotası bittiğinde:** yanlış okunan ilk kelime/cümle sessizlikten kesilebilir, ikiz ünsüz ("cüzzam") z
+  uzatılarak düzeltilebilir, hızlı satır rubberband ile yavaşlatılabilir; her sonuç iki Whisper çözümlemesiyle
+  doğrulanır ve hesap sahibine zaman damgalı dinleme listesi verilir. Whisper nadir adları bağlama göre böler
+  ("talih domit"): temiz bir çekimi nakletmek de bunu her zaman düzeltmez, kulak karar verir.

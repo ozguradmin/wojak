@@ -132,9 +132,10 @@ def laea(lon, lat, lon0, lat0):
     return x, y, cosc
 
 
-def equal_earth(lon, lat, lon0=0.0):
+def equal_earth(lon, lat, lon0=0.0, sar=True):
     A1, A2, A3, A4 = 1.340264, -0.081106, 0.000893, 0.003796
-    lam = np.radians(((np.asarray(lon) - lon0 + 180) % 360) - 180)
+    d = np.asarray(lon) - lon0
+    lam = np.radians(((d + 180) % 360) - 180 if sar else d)
     phi = np.radians(lat)
     th = np.arcsin(np.sqrt(3) / 2 * np.sin(phi))
     t2 = th * th
@@ -165,13 +166,13 @@ class Projeksiyon:
         self.cx, self.cy = (x0 + x1) / 2, (y0 + y1) / 2
         self.W, self.H = W, H
 
-    def _ham(self, lon, lat):
+    def _ham(self, lon, lat, sar=True):
         if self.proj == "equal_earth":
-            return equal_earth(lon, lat, self.lon0)
+            return equal_earth(lon, lat, self.lon0, sar)
         return laea(lon, lat, self.lon0, self.lat0)
 
-    def __call__(self, lon, lat):
-        x, y, cosc = self._ham(np.asarray(lon, float), np.asarray(lat, float))
+    def __call__(self, lon, lat, sar=True):
+        x, y, cosc = self._ham(np.asarray(lon, float), np.asarray(lat, float), sar)
         px = self.W / 2 + (x - self.cx) * self.s
         py = self.H / 2 - (y - self.cy) * self.s
         return px, py, cosc
@@ -201,12 +202,28 @@ class HaritaCizer:
         if key not in self._poli_cache:
             out = []
             for ring in self.ulkeler[kod].halkalar:
-                px, py, cosc = self.proj(ring[:, 0], ring[:, 1])
+                px, py, cosc = self._yansit(ring)
                 if len(px) < 3 or not _cizilebilir(px, py, cosc, self.W, self.H):
                     continue
                 out.append(list(zip((px * olcek).tolist(), (py * olcek).tolist())))
             self._poli_cache[key] = out
         return self._poli_cache[key]
+
+    def _yansit(self, ring: np.ndarray):
+        """Halkayı projekte eder. Equal Earth'te kesim boylamını (merkez+180) aşan halka (ör. merkez 10 iken
+        Çukotka, St. Lawrence adası) sarılınca haritayı boydan boya geçen bir şerit çiziyordu: böyle bir halka
+        sarılmadan, tek parça olarak kenarın biraz dışına taşacak biçimde çizilir (Antarktika gibi tüm
+        boylamları dolaşan halkalar olduğu gibi kalır)."""
+        lon, lat = ring[:, 0], ring[:, 1]
+        if self.proj.proj == "equal_earth" and len(lon) > 1:
+            d = ((lon - self.proj.lon0 + 180) % 360) - 180
+            if np.abs(np.diff(d)).max() > 180:
+                du = np.degrees(np.unwrap(np.radians(d)))
+                if np.ptp(du) < 270:
+                    m = du.mean()
+                    du = du - 360 if m > 180 else du + 360 if m < -180 else du
+                    return self.proj(du + self.proj.lon0, lat, sar=False)
+        return self.proj(lon, lat)
 
     def taban(self) -> Image.Image:
         ss = self.ss

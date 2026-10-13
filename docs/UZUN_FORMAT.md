@@ -34,7 +34,9 @@ yeni bir hareket ya da görüntü görmeli.** Kullanılan yapı taşları:
    "giremedi" etiketiyle ayrışır.
 5. **Sayaç ve zaman çizgisi:** büyük sayı sayarak yükselir (10.000+), yıl göstergesi 1957 → 1961 akar.
 6. **İsim etiketi (lower third):** kişi ilk göründüğünde adı ve unvanı.
-7. **Bölüm kartı:** siyah zemin, bölüm numarası + başlık (kanalın Avenir yazısı), whoosh.
+7. **Bölüm kartı:** siyah zemin, bölüm numarası + başlık (kanalın Avenir yazısı), whoosh. Talidomit uzun videosundan
+   beri tercih **bindirme** kart: son kare donar ve kararır, kart 1,2 sn üstünde açılır; siyah ekran yok, müzik
+   kesilmez (`kart_bindirme`, UZUN_MOTOR.md §3).
 8. **Filigran:** `tarihselwojak` sağ altta, her karede.
 
 ## 3. Hikâye yapısı (şablon)
@@ -42,11 +44,11 @@ yeni bir hareket ya da görüntü görmeli.** Kullanılan yapı taşları:
 | Bölüm | Süre | İş |
 |---|---|---|
 | Soğuk açılış (kanca) | 0:00-0:40 | En çarpıcı gerçek + Türkiye sorusu; logo/giriş müziği YOK. İlk 5 sn'de merak boşluğu |
-| Marka anı | ~2 sn | `tarihselwojak` imza görüntüsü (kısa) |
+| Marka anı | ~2 sn | `tarihselwojak` imza görüntüsü (kısa): `marka` sahnesi ya da ilk bölüm kartında `kart_marka` |
 | 3-5 bölüm | ~1:30-2:30 her biri | Kronolojik anlatım; her bölüm küçük bir merak sorusuyla biter |
 | Türkiye bölümü | ~1:30 | Hikâyenin "neden giremedi" cevabı; ihtilaflı kısımlar "anlatılana göre" diliyle |
 | Ters köşe / bugün | ~1:00 | Hikâyenin beklenmedik devamı |
-| Kapanış | ~0:30 | İzleyiciye soru (yoruma çağrı) + kısa versiyona / sonraki videoya yönlendirme; son 15-20 sn bitiş ekranı alanı |
+| Kapanış | ~0:30 | İzleyiciye soru (yoruma çağrı) + kısa versiyona / sonraki videoya yönlendirme; son 15-20 sn bitiş ekranı alanı (`bitis` sahnesi: iki boş 16:9 kutu + abone dairesi) |
 
 Kurallar: anlatıcı dili sade ve konuşur gibi; cümleler kısa; her bölüm sonunda "ama asıl şaşırtıcı olan…" türünden
 köprü; sayılar ve isimler araştırma notundan; tartışmalı her bilgi yumuşatılmış dille; mağdurlara saygı (engellilikle

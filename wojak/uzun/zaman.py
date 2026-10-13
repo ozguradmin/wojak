@@ -14,7 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from . import FPS
-from .spec import Olay, Sahne, Satir, Sfx, Video, ara_sureleri, temiz_metin
+from .spec import TIP_MIN_SURE, TIP_SURESI, Olay, Sahne, Satir, Sfx, Video, ara_sureleri, temiz_metin
 
 TR_HIZ = 14.5   # sn başına harf (boşluk dahil), hız 1.0'da: Cartesia Türkçe anlatıcı ölçümü (~)
 
@@ -49,13 +49,19 @@ def sahne_zamanla(sahne: Sahne, zam: dict, fps: int = FPS) -> None:
             t = s.once
         s.t0 = round(t, 4)
         t += s.sure + (s.sonra or 0.0)
+    tip_min = TIP_MIN_SURE.get(sahne.tip) if sahne.sure is None and sahne.min_sure is None else None
     if sahne.satirlar:
         dur = t + son
-        dur = max(dur, zam["min_sahne"] if sahne.min_sure is None else sahne.min_sure)
+        dur = max(dur, zam["min_sahne"] if sahne.min_sure is None else sahne.min_sure, tip_min or 0.0)
         if sahne.sure is not None:
             dur = max(dur, sahne.sure)
     else:
-        dur = sahne.sure if sahne.sure is not None else (zam["kart"] if sahne.tip == "bolum_karti" else zam["sabit"])
+        if sahne.sure is not None:
+            dur = sahne.sure
+        elif sahne.tip == "bolum_karti":
+            dur = zam["bindirme"] if sahne.p.get("bindirme") else zam["kart"]
+        else:
+            dur = TIP_SURESI.get(sahne.tip, tip_min or zam["sabit"])
         if sahne.min_sure is not None:
             dur = max(dur, sahne.min_sure)
     sahne.n_kare = max(1, round(dur * fps))
