@@ -22,7 +22,7 @@
 | 13.10 | Bitiş ekranındaki 2 video kutusu gereksiz (kanalda henüz 2 uzun video yok) | Bitişte video kutusu yok (kanalda yeterli video olunca yeniden düşünülür). Abone/beğeni/yorum çağrısı **düz değil, ilgi çekici**: hikâyeye bağlı soru + wojak'lı animasyon |
 | 13.10 | Instagram açıklamalarında **hashtag kullanmıyoruz** | `pack.py` Instagram metnine hashtag koymaz. YouTube'da 2-3 hashtag serbest |
 | 13.10 | YouTube başlığı **"AI slop" gibi durmamalı**, ilgi çekici olmalı | Başlıkta abartı sıfatı, emoji, "şok" kalıbı yok; merak boşluğu + somut ayrıntı (yer, sayı, kişi) |
-| 13.10 | Teslim: videolar Telegram botuyla (kalite kaybı olmadan) | `tools/telegram_gonder.py`: 50 MB altı belge, üstü sıkıştırmasız 7-Zip parçaları. Sohbet dosya sınırı 30 MB |
+| 13.10 | Teslim: videolar Telegram botuyla (kalite kaybı olmadan) | `tools/telegram_gonder.py`: 50 MB altı Bot API belgesi; üstü TELEGRAM_API_ID/HASH ile tek parça (<= 2 GB, `tools/telegram/gonder.js`: MTProto, WSS üzerinden, çünkü ortamın vekili düz MTProto'yu geçirmiyor), yoksa 7-Zip parçaları. Sohbet dosya sınırı 30 MB |
 | 13.10 | "Yapayım geçeyim değil, sınırlarını zorla; benchmarktasın gibi düşün" | Her teslimden önce: hakemler 8+ VE kendi gözümüzle kare kare kontrol; bilinen bir kusurla teslim yok, varsa açıkça yazılır |
 
 ### Uzun format: ilk videodan dersler (talidomit, 12-13.10)

@@ -1,0 +1,9 @@
+{
+  "name": "wojak-telegram",
+  "private": true,
+  "description": "Büyük dosyaları (<= 2 GB) Telegram botuyla tek parça gönderir: MTProto, WSS (TLS) üzerinden",
+  "dependencies": {
+    "https-proxy-agent": "7.0.5",
+    "telegram": "2.26.22"
+  }
+}

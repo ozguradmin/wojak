@@ -19,3 +19,4 @@ uzun/*/img/telifli/
 teslim/*/*.mp4
 
 # Uzun format (wojak/uzun): videolar ve ses önbelleği out/ altında; teslim/<id>-uzun/*.mp4 yukarıdaki kuralla dışarıda
+tools/telegram/node_modules/

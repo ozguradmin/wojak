@@ -1,10 +1,11 @@
 """Teslim dosyalarını hesap sahibine Telegram botuyla gönderir (kalite kaybı yok: belge olarak).
 
-Bot API tek dosyada en fazla 50 MB kabul eder. Daha büyük dosyalar (uzun video) sıkıştırmasız 7-Zip
-parçalarına bölünür (`.7z.001`, `.7z.002` ...); hepsi aynı klasöre indirilip ilk parça açılınca tek dosya çıkar
+Bot API tek dosyada en fazla 50 MB kabul eder. Daha büyük dosyalar (uzun video) TELEGRAM_API_ID/HASH varsa
+tek parça gider (<= 2 GB; tools/telegram/gonder.js, MTProto WSS üzerinden; ilk kurulum: cd tools/telegram && npm install).
+Yoksa sıkıştırmasız 7-Zip parçalarına bölünür (`.7z.001`, `.7z.002` ...); hepsi aynı klasöre indirilip ilk parça açılınca tek dosya çıkar
 (Windows: 7-Zip, Mac: Keka / The Unarchiver, Android: ZArchiver).
 
-Gizli bilgiler: TELEGRAM_BOT_TOKEN ve TELEGRAM_CHAT_ID yalnız ortamdan ya da ~/.config/wojak/secrets.env'den
+Gizli bilgiler: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID (ve TELEGRAM_API_ID/HASH) yalnız ortamdan ya da ~/.config/wojak/secrets.env'den
 okunur; hiçbir yere yazılmaz, hata mesajlarında maskelenir.
 
     python tools/telegram_gonder.py --mesaj "Uzun video hazır"
@@ -92,9 +93,38 @@ def _parcala(p: Path, hedef: Path) -> list[Path]:
     return out
 
 
+JS = Path(__file__).resolve().parent / "telegram" / "gonder.js"
+
+
+def _mtproto_hazir() -> bool:
+    """Büyük dosya tek parça yolu: node + tools/telegram bağımlılıkları + TELEGRAM_API_ID/HASH."""
+    import shutil
+    config.load_secrets()
+    return bool(shutil.which("node") and (JS.parent / "node_modules" / "telegram").exists()
+                and os.environ.get("TELEGRAM_API_ID") and os.environ.get("TELEGRAM_API_HASH"))
+
+
+def _mtproto_gonder(p: Path, aciklama: str) -> bool:
+    """<= 2 GB tek dosya (MTProto, WSS üzerinden). Başarısızsa False (çağıran parçalı yola düşer)."""
+    import subprocess
+    env = dict(os.environ)
+    env["TG_SESSION_FILE"] = str(Path.home() / ".config" / "wojak" / "telegram_gramjs.session")
+    if Path("/root/.ccr/ca-bundle.crt").exists():  # bulut ortamının TLS vekili
+        env.setdefault("NODE_EXTRA_CA_CERTS", "/root/.ccr/ca-bundle.crt")
+    r = subprocess.run(["node", str(JS), "gonder", str(p), aciklama], env=env, text=True, capture_output=True)
+    for satir in (r.stdout + r.stderr).splitlines():
+        if "INFO" not in satir and satir.strip():
+            print("  " + satir)
+    return r.returncode == 0
+
+
 def gonder(p: Path, aciklama: str = "", video: bool = False) -> None:
     _, chat = _kimlik()
     boyut = p.stat().st_size
+    if boyut > SINIR and boyut <= 2000 * 1024 * 1024 and _mtproto_hazir():
+        if _mtproto_gonder(p, aciklama):
+            return
+        print("tek parça gönderim olmadı; 7-Zip parçalarına geçiliyor")
     if boyut <= SINIR:
         if video and p.suffix.lower() == ".mp4":
             _cagir("sendVideo", {"chat_id": chat, "caption": aciklama[:1000], "supports_streaming": "true"}, p, "video")

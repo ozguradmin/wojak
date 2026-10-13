@@ -79,7 +79,8 @@ python -m pytest tests/ -q                        # or: python tests/test_uzun.p
 - Characters: prefer ready-made clothed wojaks; do not paint clothes onto wojak heads. Face variants must be clean.
 - No end-screen video boxes for now; the subscribe/like/comment call must be engaging, tied to the story.
 - Instagram captions: no hashtags. YouTube: 2-3 hashtags allowed. Titles must not read like AI slop.
-- Deliver videos via Telegram (`tools/telegram_gonder.py`; creds in secrets.env), chat files are limited to 30 MB.
+- Deliver videos via Telegram (`tools/telegram_gonder.py`; creds in secrets.env; files > 50 MB go as one file via
+  `tools/telegram/gonder.js`, MTProto over WSS; first run `cd tools/telegram && npm install`). Chat files are limited to 30 MB.
 
 ## Quality bar and workflow
 
