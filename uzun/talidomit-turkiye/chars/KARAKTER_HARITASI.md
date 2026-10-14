@@ -153,6 +153,11 @@ ailesinden hazır çizim, elle çizilmedi.
   üst kapağa yapışık (camın içi silinip gözler aynı kalın üst kapakla yeniden çizildi), ağız kısa, yana itilmiş ve
   eğik. `kaymakcalan_v2_ciddi`: kalın kaşlar camın üst kenarına basar (gözler açık), ağız uçları belirgin aşağı.
   Telefon boyunda (baş ~150 px) dört yüz ayrışıyor (`kararli`: V kaş + kısık göz + sert ağız).
+- 13. tur (animasyon hakemi S4): `kaymakcalan_v2_dusunceli`'nin yeniden çizilmiş ince badem gözleri öteki üç yüzün
+  taşınan klasik Flannel gözlerinden (kalın kontur, büyük göz bebeği) ayrı bir çizim diliydi (6:18-6:30 yakın
+  çekimi). Şimdi klasik gözler kalır: üst kapak düz ve aşağıda (gözün üst ~%25'i silinir, 10 px kapak çizgisi; göz
+  bebeği kapağın altında yarım ay, yana bakar); kaşlar ve "hmm" ağzı aynı. `hazir_uret.py kaymakcalan --yuz dusunceli`
+  (yalnız bu yüz yazılır). Bakış yeniden kaydedildi (`python -m wojak yon … --yon sag`; kayıt sha1 ile tutulur).
 - Anne adayına endişeli yüz yine **eklenmedi** (8. turdaki gerekçe; animasyon S5 bunu tekrar istedi): B2.4'te
   "HAMİLELERDE TEST EDİLMEDİ" sözünde kamera anne adayına yavaşça iter (`it`); ironi görüntüde, anne mağdur değil.
 - Kapanış kartı A artık `kaymakcalan_v2_sakin` ile başlar, vurgusunda `kararli`ya geçer ve başının yanına küçük

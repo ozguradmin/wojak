@@ -307,19 +307,11 @@ def zehirsiz_zemini() -> None:
     x0, y0 = 10, H - tr.height - 40
     im.alpha_composite(tr, (x0, y0))
     # 10. tur (izlenme N11): blok Türkiye siluetinin çoğunu örtüyordu (168 px'te şekil yarım okunuyordu): biraz küçük,
-    # sağa ve aşağı: Marmara ve Ege kıyısı açıkta
-    hb = kirmizi_blok("HAYIR", 132, -7.0)
-    im.alpha_composite(hb, (x0 + tr.width // 2 - hb.width // 2 + 95, y0 + tr.height // 2 - hb.height // 2 + 78))
-    # 9. tur (izlenme N5): "ZEHİRSİZ"in bir ilaç olduğu 168 px'te de anlaşılsın: Türkiye'nin doğusunda iki beyaz
-    # tablet (kendi çizimimiz, markasız), beyaz çıkartma kenarı ve gölge
-    tb = Image.open(CIZ / "tablet.png").convert("RGBA")
-    for (bx, by, en, aci) in ((x0 + tr.width - 250, y0 + 10, 180, -18), (x0 + tr.width - 120, y0 + 130, 140, 24)):
-        t = tb.resize((en, en), Image.LANCZOS).rotate(aci, resample=Image.BICUBIC, expand=True)
-        al = t.getchannel("A").filter(ImageFilter.MaxFilter(15))
-        st = Image.new("RGBA", t.size, (255, 255, 255, 0))
-        st.putalpha(al)
-        st.alpha_composite(t)
-        im.alpha_composite(golge(st, 10, 0.6, 5, 9), (int(bx), int(by)))
+    # sağa ve aşağı: Marmara ve Ege kıyısı açıkta. 13. tur (izlenme N3): 168 px'te HAYIR harfleri ~5 px'ti ve iki
+    # tablet beyaz daire gibi okunuyordu: tabletler çıktı (ilaç bağlamını başlık ve yazı veriyor), blok %35 büyük ve
+    # Türkiye'nin ortasında; batı ucu (Marmara, Ege) ve doğu ucu açık kalır, şekil kıyı çizgisinden okunur
+    hb = kirmizi_blok("HAYIR", 178, -7.0)
+    im.alpha_composite(hb, (x0 + tr.width // 2 - hb.width // 2 + 40, y0 + tr.height // 2 - hb.height // 2 + 30))
     kaydet(im.convert("RGB"), "kr_zehirsiz.jpg")
 
 

@@ -386,6 +386,10 @@ def sarsinti_uygula(im: Image.Image, sarsintilar: list, t: float, S: float) -> I
 
 # ================================================================ üst katmanlar
 
+KELIME_Y = {"ust": 0.17, "orta": 0.5, "alt": 0.80}   # vurgu kelimesinin dikey merkezi (konuma göre)
+KELIME_CIKIS = 0.3                                     # vurgu kelimesinin sönme süresi (sn)
+
+
 def kesmeyle_biter(sahne: Sahne, v: Video | None) -> str | None:
     """Sahneden sonra ne geliyor: 'kesme' | 'donuk' (sonraki sahne bu sahnenin son karesini dondurup üstüne çizer:
     bindirme kart/imza/kapanış) | None (çapraz geçiş ya da itme: bu sahne geçiş boyunca çizilmeye devam eder)."""
@@ -458,7 +462,9 @@ class UstKatman:
             spr = C.yazi(str(o.p["metin"]), C.FONT_DIALOG, 92 * S, C.BEYAZ, stroke=7 * S, max_w=1500 * S,
                          max_lines=2, align="center", golge=(0, 5 * S, 9 * S, 0.55))
             sure = kesmede_yarim_kalmasin(o.zaman, float(o.p.get("sure", 2.3)), 0.3, dur, kesme)
-            self.vurgular.append((o.zaman, sure, spr, str(o.p.get("konum", "alt")), str(o.p["metin"])))
+            # 13. tur (animasyon hakemi N2): `y` (0..1) yazının dikey merkezi; yoksa konumun varsayılanı
+            cy = float(o.p["y"]) if o.p.get("y") is not None else KELIME_Y.get(str(o.p.get("konum", "alt")), 0.80)
+            self.vurgular.append((o.zaman, sure, spr, cy, str(o.p["metin"])))
         self.damgalar = [Damga(o, c, i) for i, o in enumerate(damga_olaylari(sahne))]
         for d in self.damgalar:
             if d.sure is not None:
@@ -627,12 +633,12 @@ class UstKatman:
                     continue
                 pb = self._kutu_ici(it["spr"])
                 out.append((f"isim '{it['ad']}'", Y.dikdortgen(x + pb[0], y + pb[1], x + pb[2], y + pb[3])))
-        for t0, sure, spr, konum, metin in self.vurgular:
+        for t0, sure, spr, cy_, metin in self.vurgular:
             u = t - t0
             if u < 0.08 or u > sure + 0.3 * 0.7:
                 continue
             s = 0.6 + 0.4 * E.out_back(u / 0.26, 1.6)
-            cy = {"ust": 0.17, "orta": 0.5, "alt": 0.80}.get(konum, 0.80) * H
+            cy = cy_ * H
             pb = self._kutu_ici(spr)
             x0, y0 = W / 2 - spr.width / 2 * s, cy - spr.height / 2 * s
             out.append((f"kelime '{metin}'", Y.dikdortgen(x0 + pb[0] * s, y0 + pb[1] * s, x0 + pb[2] * s,
@@ -679,13 +685,13 @@ class UstKatman:
                 C.bindir(im, spr2, x + ox, y + oy, a)
             else:
                 C.bindir_alt(im, spr, x, y, a)
-        for t0, sure, spr, konum, _ in self.vurgular:
+        for t0, sure, spr, cy_, _ in self.vurgular:
             u = t - t0
             if u < 0 or u > sure + 0.3:
                 continue
             s = 0.6 + 0.4 * E.out_back(u / 0.26, 1.6)
             a = min(1.0, u / 0.08) * (1 - E.lineer((u - sure) / 0.3))
-            cy = {"ust": 0.17, "orta": 0.5, "alt": 0.80}.get(konum, 0.80) * H
+            cy = cy_ * H
             if s != 1.0:
                 spr2, x0, y0 = C.afin(spr, W / 2, cy, s, s)
                 C.bindir(im, spr2, x0, y0, a)
@@ -1764,7 +1770,12 @@ class HaritaCizici(Cizici):
         self.aciklama = None
         if p.get("aciklama"):
             # 4. tur: 26 -> 34 pt (izlenme hakemi: telefonda ~14 px, okunmuyordu; olgu çekincesi taşıyor)
-            yz = C.yazi(str(p["aciklama"]), C.FONT_BOLD, 34 * S, (232, 234, 238))
+            # 13. tur (animasyon hakemi S3): lejant alttaki konuğun omzuna biniyordu: `aciklama_en` (px, 1080p:
+            # kutunun en çok eni) aşılırsa yazı iki satıra kırılır; kutu `sabit_engeller`de (kontrol ve isim etiketi)
+            en = p.get("aciklama_en")
+            mw = (float(en) - 78) * S if en else None
+            yz = C.yazi(str(p["aciklama"]), C.FONT_BOLD, 34 * S, (232, 234, 238), max_w=mw, max_lines=2,
+                        min_size=34 * S)
             sq = int(28 * S)
             w, h = int(sq + 14 * S + yz.width + 36 * S), int(max(sq, yz.height) + 24 * S)
             lay = C.yuvarlak_kutu(w, h, 5 * S, (8, 10, 14, 200))
@@ -1772,6 +1783,13 @@ class HaritaCizici(Cizici):
                                           fill=renk + (255,))
             lay.alpha_composite(yz, (int(18 * S + sq + 14 * S), (h - yz.height) // 2))
             self.aciklama = lay
+
+    def sabit_engeller(self) -> list[tuple]:
+        if self.aciklama is None:
+            return []
+        S, H = self.S, self.H
+        y0 = H - 110 * S - self.aciklama.height
+        return [(80 * S, y0, 80 * S + self.aciklama.width, y0 + self.aciklama.height)]
 
     @staticmethod
     def _rota_noktasi(hc, v):

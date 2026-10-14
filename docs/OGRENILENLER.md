@@ -626,3 +626,30 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
     tamlama, sıfat + ad, ikileme ve satır başında "bile" bölünmez.
   - Denetim aracının kendi hatası da yanlış uyarı üretir: ayırıcı eksen denetimi ilk eksende dönünce eğik iki kart
     260 px uzakken "değiyor" görünüyordu. Uyarıyı düzeltmeden önce ölç.
+- **13. tur (dört hakem: izlenme 8, animasyon 7,5, dil 8,2, teknik 8,5; engelleyici: 9:23'te kamera itmesi):**
+  - Kamera itmesi (`it`) köşedeki karakteri kadrajdan çıkarabilir: makaleye itilince anlatıcının yüzünün yarısı sağ
+    kenarla makalenin arasında kaldı, tepkisi ('fark') kayboldu. Hakem bunu "makale önde çiziliyor" diye okudu; asıl
+    neden kadraj dışına kayan yüzdü. İtme hedefini karakterin tarafına al, `guc` küçük (<= 0,05) ve karakteri içeri
+    çek. `kontrol` artık her sahnede kamera ve itme dahil yüzün kadraj dışındaki payını ve sonra çizilen görselin yüzü
+    örtmesini ölçüyor (yeni denetim aynı turda dört sahnede daha buldu: 0:50, 4:01, 6:40, 8:14).
+  - Yarı saydam sönen yazı da çakışır: kontrol çakışmayı opaklık >= 0,3 iken sayıyordu, 6 karelik "çift yazı"yı
+    kaçırdı. Aynı yerdeki iki vurgu kelimesi arasında öncekinin sönmesinden sonra en az 0,3 sn olsun (denetim).
+  - Sahnenin sabit kutuları (harita lejantı, foto atfı) da karakter engelidir: lejant anlatıcının omzuna biniyordu.
+    Aynı anlamı daha kısa söyle ("satıldığı belgelenen bazı ülkeler"); `aciklama_en` iki satıra kırar ama alttaki
+    kırmızı ülkenin (Brezilya) üstüne çıkıyordu.
+  - Yeniden üretilen yüz varyantının bakış kaydı silinir (kayıt dosyanın sha1'iyle): motor yönü tahmin edip karakteri
+    aynaladı, yüz kadrajdan taştı. Her yeni ya da değişen karakter görselinden sonra `python -m wojak yon <png> --yon
+    sag|sol|on` (kontrol artık kayıtsız görseli bildirir).
+  - Yüz varyantı taşınan gözlerin çizim dilinde kalsın: Kaymakçalan'ın 'düşünceli' gözleri camın içinde yeniden
+    çizilmiş ince badem gözlerdi, öteki üç yüzün klasik Flannel gözlerinden ayrı okunuyordu. Klasik göz korunur, ifade
+    kapakla (düz, aşağıda), kaşla ve ağızla verilir.
+  - Konturlu damgada beyaz kenar dolgusu harflerin ALTINI da doldurunca mürekkep boşlukları beyaz görünür (kırmızı yazı
+    pembe-beyaz benekli, mantar panoda soluk): harf izinin altına mürekkebin kendi rengi, kenar yalnız dışta halka.
+  - Tek geçişli kutu bulanıklığı, itme geçişinde eğik çizgileri (yüz, saç) basamaklı hayalet kopyalara çevirir: aynı
+    varyansta üç geçiş (~Gauss). Küçültülmüş karede çift genişlikli kutu her geçişte yarım piksel kaydırır: tek genişlik.
+  - Hakemin önerdiği sayıyı kareye bakmadan uygulama: kontrol listesi şeritleri için önerilen boy 0,24 sağdaki anlatıcıya
+    biniyordu (şeritler 6,5:1 enli), pano için yakin 1,4 kartları Kaymakçalan'ın başına bindiriyor ve alttaki kartı
+    kesiyordu. Kompozisyonu değiştir (anlatıcı şeritlerin altında; yakin 1,22) ve kareyle doğrula.
+  - Tırnak içindeki ekran yazısı söylenmemiş söz olmasın: Distaval reklamı için önerilen "‘ANNEYE DE ÇOCUĞA DA
+    ZARARSIZ’" reklamda yok; reklamın kendi ifadesi kullanıldı: "‘OLUMSUZ ETKİSİ YOK’" ("ÇOCUĞA DA" ekli hali iki
+    satıra kırılıp kartın üst kenarına biniyordu).

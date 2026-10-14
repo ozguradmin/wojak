@@ -41,7 +41,7 @@ bolumler:
         karakterler:
           - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol}
           - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag}
-          - {id: c, gorsel: assets/kit/klasik/sakin.png, x: 0.53, derinlik: 0.65, giris: 1.0}   # arkada müşteri
+          - {id: c, gorsel: assets/kit/klasik/sakin.png, x: 0.47, derinlik: 0.65, giris: 1.0}   # arkada müşteri (13. tur, kontrol: 0.53te veterinerin arkasında yüzünün %21i örtülüyordu)
         satirlar:
           - "1957. Batı Almanya'da yeni bir uyku ilacı satışa çıkıyor."
           - "Reçete gerekmiyor. Üstelik hamilelere bile öneriliyor."

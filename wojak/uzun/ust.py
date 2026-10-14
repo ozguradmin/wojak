@@ -62,6 +62,12 @@ def damga_sprite(metin: str, renk, boy: float, S: float, tohum: int = 0, kontur=
         kenar = Image.new("RGBA", tuval.size, tuple(kontur) + (0,))
         kenar.putalpha(maske.point(lambda v: int(v * 0.92)))
         tuval.alpha_composite(kenar)
+        # 13. tur (izlenme: mantar panodaki kırmızı damgalar telefonda soluk): kenar dolgusu harflerin ALTINI da
+        # dolduruyordu, mürekkep boşluklarından beyaz görünüyordu (kırmızı yazı pembe-beyaz benekli). Harf ve çerçeve
+        # izinin altına önce mürekkebin kendi rengi (%72): boşluklar açık mürekkep tonu, kenar yalnız dışta halka
+        alt = Image.new("RGBA", (w, h), renk + (0,))
+        alt.putalpha(Image.fromarray((a * 0.72).astype(np.uint8), "L"))
+        tuval.alpha_composite(alt, (pay, pay))
         tuval.alpha_composite(lay, (pay, pay))
         return tuval
     return lay

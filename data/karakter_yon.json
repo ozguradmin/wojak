@@ -15,10 +15,6 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_ciddi.png"
  },
- "0db51abb8afb06a7d39bd8ccedda6dc9f8370610": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_dusunceli.png"
- },
  "0dc88746faae6e9f9ea7cd70afa2e8c10821df52": {
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
@@ -290,6 +286,10 @@
  "7680eea425233166e5f9ac8d6c1ed524c6b8db22": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/voss_v2_sakin.png"
+ },
+ "7a5f374eb2a248cb4e6b21f844967a5fc742f100": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_dusunceli.png"
  },
  "7acf9a9259bbb57dd483b30ceea719addd059dc1": {
   "faces": "right",

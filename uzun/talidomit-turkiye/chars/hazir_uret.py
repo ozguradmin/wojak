@@ -448,29 +448,23 @@ def kaymakcalan():
         return c.im
 
     def dusunceli_yuz():
-        """11. tur (animasyon S5): telefonda (baş ~150 px) sakin/ciddi ile aynı okunuyordu (fark kaş ve ağızda 1-2
-        px). Şimdi: yakın kaş camın çok üstünde yüksek kemer, uzak kaş alçak ve düz (asimetri), göz bebekleri küçük
-        ve üst kapağa yapışık (yukarı ve içeri bakar: motor aynalasa da sahneye bakar), ağız kısa, yana itilmiş ve
-        eğik ("hmm"). Gözler camın içinde yeniden çizilir (çerçeve korunur); aynı çizgi kalınlığı."""
+        """13. tur (animasyon hakemi S4): 11. turdaki düşünceli yüzün gözleri camın içinde yeniden çizilmiş ince,
+        badem gözlerdi (küçük göz bebeği); öteki üç yüzün taşınan klasik Flannel gözlerinden (kalın kontur, büyük
+        göz bebeği) ayrı bir çizim diliydi, 6:18-6:30 yakın çekiminde görünüyordu. Şimdi klasik gözler kalır: üst
+        kapak düz ve aşağıda (gözün üst ~%25'i silinir, kalın kapak çizgisi; göz bebeği kapağın altında yarım ay, yana
+        bakar), kaşlar asimetrik (yakın kaş yüksek kemer, uzak kaş alçak ve düz), ağız kısa, yana itilmiş, eğik
+        ("hmm"). 'kararlı'dan farkı: kaşlar V değil, kapaklar içe eğik değil düz. Aynı çizgi kalınlığı."""
         im = sil_koru(base, KAS_L, koru, oy=oy)
         im = sil_koru(im, KAS_R, koru, oy=oy)
         im = sil(im, AGIZ, oy=oy)
-        # camın içi (çerçeveden 3 px içeride) tamamen silinir: kalin_siyah koruması eski göz bebeğini de (kalın
-        # siyah) koruyordu
-        a = np.array(im)
-        for cam in camlar:
-            m = ~dil(~poly_mask(im.size, cam), 3)
-            a[m & (a[..., 3] > 0), :3] = 255
-        im = Image.fromarray(a)
+        # üst göz kapakları: gözün üstü (göz bebeğinin üst kısmı dahil) silinir, düz ve kalın kapak çizgisi
+        im = sil(im, [(540, 424), (670, 424), (670, 449), (540, 447)], oy=oy)
+        im = sil(im, [(818, 428), (918, 428), (918, 454), (818, 456)], oy=oy)
         c = Cizim(im, oy, seed=113)
         c.cizgi([(520, 346), (556, 318), (606, 304), (656, 314)], W + 2)          # yüksek kemer
         c.cizgi([(798, 384), (838, 380), (878, 380), (906, 384)], W + 2)          # alçak, düz
-        for (x0, y0, x1, y1, px, py, pr) in ((550, 438, 656, 486, 624, 452, 15), (828, 448, 906, 492, 886, 461, 13)):
-            cx, ry = (x0 + x1) / 2, (y1 - y0) / 2
-            c.cizgi([(x0, y0 + ry * 0.9), (x0 + (x1 - x0) * 0.3, y0 + 3), (cx + 12, y0 + 1), (x1, y0 + ry * 0.55)], W + 8,
-                    titrek=0.3)                                                   # kalın üst kapak (taşınan gözler gibi)
-            c.cizgi([(x0 + 4, y0 + ry * 1.05), (cx, y1 - 2), (x1 - 6, y0 + ry * 1.2)], W + 1, titrek=0.3)
-            c.elips(px, py, pr, pr, dolgu=BLACK)
+        c.cizgi([(546, 450), (584, 447), (624, 448), (660, 454)], W + 3)          # sol üst kapak (düz, aşağıda)
+        c.cizgi([(826, 459), (854, 455), (884, 454), (912, 457)], W + 3)          # sağ üst kapak
         c.cizgi([(726, 760), (756, 757), (786, 750), (812, 738)], W)                # kısa, sağa itilmiş, eğik
         c.cizgi([(812, 738), (818, 728)], W - 1)
         return c.im
@@ -498,6 +492,8 @@ def kaymakcalan():
         "kararli": kararli_yuz(),
     }
     for k, im in out.items():
+        if SADECE and k not in SADECE:   # 13. tur: yalnız istenen yüz yazılsın (ör. kaymakcalan --yuz dusunceli)
+            continue
         kaydet(im, f"kaymakcalan_v2_{k}")
 
 

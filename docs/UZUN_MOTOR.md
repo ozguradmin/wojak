@@ -116,7 +116,7 @@ hassasiyetinde, sahneler kare sınırında başlar: görüntü-ses kayması olma
 | `balon` | wojak | `karakter`, `metin`, `sure`, `agiz` | konuşma balonu (pop ile açılır; kuyruk konuşana). 9. tur: `agiz` = aynı tuvalde açık ağızlı yüz: balon açıkken hece vuruşlarında (konuşma değeri > 0,3) bu görsele geçer (animasyon hakemi: balon repliklerinde oyunculuk yoktu). **11. tur: `agiz: [yarık, açık]`** (animasyon hakemi S6: gülümseyen temsilcinin ağzı her hecede ince sırıtışla geniş hilal arasında gidip geliyordu, telefonda yanıp sönen sırıtış): zaman 4 karelik adımlara bölünür (`Karakter.AGIZ_ADIM`; saniyede en çok 7,5 değişim), adımdaki en yüksek konuşma değeri > 0,55 açık, > 0,2 yarık; kapalıdan açığa (ya da tersi) atlanmaz, araya yarık adımı girer. Tek görselde de 4 kare tutulur |
 | `giris` / `cikis` | wojak (ya da konuklu sahne) | `karakter` | karakter kenarından (ya da `yon: alt` ise alttan) kayarak girer / çıkar |
 | `isim` | hepsi | `ad`, `unvan`, `sure`, `konum` (sol/sag) ya da `karakter` | alt bant (lower third), kayarak girer/çıkar. **11. tur: sahnenin sabit kutuları da engel** (`Cizici.sabit_engeller()`; foto: atıf satırı. Animasyon hakemi S4: Kelsey'nin etiketi "(kamu malı)" atfını örtüyordu). **10. tur: yerini kendisi seçer** (animasyon hakemi M1: iki etiket 4-5 sn çeneye/ağza biniyordu): kutusu her karakterin alfa kutusundan en az 40 px (`yerlesim.BOSLUK`; `canli: false` nesneden 8 px), öteki üst katmanlardan 20 px uzak. Sıra: istenen kenar (`konum`; `karakter` verilince onun tarafı) > o karakterin hemen yanı > öbür kenar > engellerin arasındaki boşluk; sığmazsa en geniş satır iki satıra (` · `/virgülden), sonra ikisi, sonra %86 boy. Hiçbir yer temiz değilse yüzü değil gövdeyi örten yer seçilir ve `kontrol` uyarır; küçültme de bildirilir (telefonda küçük). Kenardaki etiket kenardan kayarak, boşluğa yerleşen kısa kayma + belirmeyle gelir (karakterin üstünden geçmesin) |
-| `kelime` | hepsi | `metin`, `sure`, `konum` (ust/orta/alt) | ekranda vurgu kelimesi (pop) |
+| `kelime` | hepsi | `metin`, `sure`, `konum` (ust/orta/alt), `y` (13. tur: dikey merkez 0..1; konumun varsayılanını ezer) | ekranda vurgu kelimesi (pop). 13. tur (animasyon hakemi N2): baskının üst kenarına binen kelime `y: 0.085` ile üstüne alınır |
 | `etiket` | wojak, foto, manset | — | daktilo etiketinin başlama anı |
 | `vurgula` | manset | `kutu` (1'den), `stil` (kalem \| daire \| alt_cizgi), `renk` | kalem: fosforlu kalem o kutudan geçer; daire: elle çizilmiş kırmızı çember (geniş kutuda süperelips: satır aralığında kalır, komşu satırların üstünü çizmez), alt_cizgi: dalgalı, sonu kıvrık alt çizgi (0,7 sn'de çizilir; efekt `kalem`) |
 | `basla` | sayac, harita, zaman_cizelgesi, izgara | `sure` (sayac) | ana animasyon başlar; 10. tur: sayaçta `sure` ilk sayımın süresi (`sure_say` yerine) |
@@ -149,7 +149,7 @@ Sahne tipine özgü bir olayı başka tipte kullanmak hata verir (ör. `sondur` 
 | `wojak` | `arka`*, `kirp` [x0,y0,x1,y1], `odak`, `vinyet` (0.42; düz zeminde bilinçli yakın çekim için 0.7-0.8), `kamera` {zoom: [a,b], merkez: [[x,y],[x,y]], `it` (0.05), `odak` (0.4), `paralaks`}, `karart`, `bulanik`, `doygunluk`, `etiket`, `doku` (true \| {gren, toz}), `karakterler` (1-4: `id`, `gorsel`*, `taraf` sol/sag/orta, `x`, `boy` 0.66, `giris` true/false/sn, `yon` sol/sag/alt/ust/pop (giriş yönü; pop: yerinde büyüyerek belirir), `bakis`, `alt`, `derinlik` 0..1, `canli` (false: dekor/nesne, nefes-salınım-eğim yok), `golge` (8. tur: true = sağ alta düşen yumuşak gölge; havada duran nesne masaya konmuş çıkartma gibi okunur)) | Ken Burns arka plan; karakterler kenardan out_back (%4-5 taşma) ile kayarak girer, nefes alır (±%1, 0,3 Hz) ve hafif sallanır, `data/karakter_yon.json`'a göre hep içeri bakar (gerekirse aynalanır). **Kamera** arka planı, karakterleri ve balonları birlikte taşır; biri konuşurken (`balon`/`konusan` satırı, `balon` olayı) konuşana doğru yumuşakça yaklaşır (`it`: zoom artışı, `odak`: merkezin kayma oranı; `it: 0` kapatır). **Konuşma sekmesi**: konuşan karakter satırın sesindeki hece başlarında (10 ms RMS'te > 6 dB yükseliş) küçük bir sekme ve dikey esneme yapar; ses yoksa yapay hece ritmi. **Derinlik** (3 karakterde arkadaki): küçülür (1 - 0,3·d), hafif sisli, az doygun, önce çizilir; taban kadraj altında kalır (kit görselleri göğüsten kesik) |
 | `foto` | `gorsel`*, `etiket`, `atif`, `egim`, `giris` (alt/ust/sag/sol), `boy` 0.72, `zoom` 1.05, `arka`, `x` (baskının yatay merkezi, 0.5; ortada değilse atıf baskının altına yazılır: köşedeki konuğa binmesin) | aynı fotoğrafın bulanık-karartılmış hâli üzerinde beyaz kenarlı, gölgeli, eğik "baskı"; düşerek oturur, deklanşör sesi; yavaş yaklaşma; daktilo etiketi |
 | `manset` | `gorsel`*, `kutular` (piksel ya da 0..1), `zoom` 1.18, `renk`, `boy`, `arka`, `etiket` | belge/manşet; kutular sırayla fosforlu kalemle (çarpma karışımı, pürüzlü kenar) boyanır; kamera yaklaşır ve kalemi dikeyde izler |
-| `harita` | `bolge` (avrupa, bati_avrupa, akdeniz, turkiye, dunya ya da {merkez, sinir}), `ulkeler` (ADM0_A3), `aralik`, `etiketler`, `vurgu` {kod, etiket, renk, ad}, `baslik`, `aciklama` (lejant), `renk`, `zoom`, `cozunurluk` (50m/110m) | ülkeler sırayla parlayarak yanar; vurgu ülkesi farklı renk, nabız gibi atan halka ve çağrı kutusu |
+| `harita` | `bolge` (avrupa, bati_avrupa, akdeniz, turkiye, dunya ya da {merkez, sinir}), `ulkeler` (ADM0_A3), `aralik`, `etiketler`, `vurgu` {kod, etiket, renk, ad}, `baslik`, `aciklama` (lejant; 13. tur: sahnenin sabit kutusu, `sabit_engeller`), `aciklama_en` (13. tur: lejant kutusunun en çok eni, px @1080p; aşarsa yazı iki satıra kırılır), `renk`, `zoom`, `cozunurluk` (50m/110m) | ülkeler sırayla parlayarak yanar; vurgu ülkesi farklı renk, nabız gibi atan halka ve çağrı kutusu |
 | `sayac` | `deger` (ya da azalan `[60, 0]`) ya da `yil` [a, b], `onek`, `sonek` ("+"; azalanda yok), `ust`, `etiket`, `sure_say` (ya da `basla {sure}`), `renk`, `olcek` (9. tur: `log` = geometrik sayım, her basamak eşit sürede eklenir; 0 -> 300 milyon out_cubic'te ilk karede 8 basamağa sıçrıyordu), `tut` (10. tur: değer değişmeden ve sahne bitmeden önce en az okunma süresi, 0,6; 12. tur, animasyon hakemi M1: yavaş sayımda (birler tekerleği <= 0,5 birim/kare) gösterilen değer round(v) ile adım adım ilerler: yeni tam sayı 2 karede gelir (%87,5, %100), eski rakam çeyrek hücre yukarı kayıp söner, yenisi aşağıdan belirir (şeritten kesilmez, iz yok); 0 -> 61'in kuyruğunda neredeyse her kare yarım dönmüş iki rakam, gri bulanıklık bandı ve pencerenin altında gelen rakamın tepesi görünüyordu; hızlıda tekerleğin hareket izi yalnız tekerlek kare başına `IZ_ESIK` (2,5) hücreden hızlı dönerken ve yalnız gösterilen rakamın kendi dikey izi: orta hızda iz, rakamın kendi boşluklarını gri, düz kenarlı bantlarla dolduruyordu, şeritten kesilen iz de komşu rakamların parçalarını taşıyordu), zemin | sabit genişlikli rakamlarla sayma (artan out_cubic, azalan doğrusal); yıl modunda odometre gibi dönen basamaklar; bitişte vuruş + çizgi; `deger` olaylarıyla yeni değerlere (1.267 doktor -> 20.000 hasta -> EN AZ 17); bitince sayı nefes alır |
 | `bolum_karti` | (bölümden) `numara`, `baslik`, `ust`; `bindirme`, `marka`, `karart` (0.45) | siyah zemin + gren (ya da bindirme: donmuş son kare kararır ve bulanır, hafif yaklaşır), ortadan açılan sarı çizgi, "BÖLÜM n", soldan silinerek açılan başlık; kısa kartta animasyon orantılı sıkışır |
 | `metin` | `metin`*, `ceviri`, `ust`, `alt`, `ceviri_t`, `yazim` (kelime/daktilo), `renk`, `tirnak` (süs tırnağı; vars. yalnız metin tırnakla başlıyorsa), zemin | kelime kelime beliren büyük alıntı (daktilo: harf harf, imleçli, tuş sesli); çeviri koyu zeminde sarı + altı sarı şerit, kâğıtta mürekkep + fosforlu kalem; satırlar hafifçe süzülür |
@@ -225,6 +225,15 @@ Her zaman açık (hata düzeltmesi; ayar yok):
 - **Kesmede yarıda kalmaz:** vurgu kelimesi, isim etiketi ve süreli damga sahne kesmeyle (ya da donmuş kare
   bindirmesiyle) bitiyorsa çıkış animasyonu kesmede yarıda kalmaz, öğe kesmeye dek tam görünür (talidomit-turkiye:
   8 vurgu kelimesi kesmede %18-95 saydam kesiliyordu). Çapraz geçişte söner (önceki sahne geçiş boyunca çizilir).
+- **İtme geçişinin bulanıklığı (13. tur, izlenme hakemi N1):** tek geçişli kutu çekirdeğinin sert uçları eğik çizgileri
+  (yüz, saç) 2-3 karede "basamaklı hayalet kopyalara" çeviriyordu (7:08.9): aynı varyansta üç kutu geçişi (~Gauss), tek
+  genişlikli (çift genişlik her geçişte yarım piksel kaydırır); hız için yalnız yatayda L/10 oranında küçültülmüş
+  karede (yerel kayma <= L/20), 1080p'de 0,05-0,2 sn/kare.
+- **Konturlu damga (13. tur):** kenar dolgusu harflerin altını da dolduruyordu, mürekkep boşlukları beyaz görünüyordu
+  (kırmızı yazı mantar panoda pembe-beyaz benekli, telefonda soluk). Harf izinin altına mürekkebin kendi rengi (%72),
+  kenar yalnız dışta halka.
+- **Kapanış (13. tur, animasyon hakemi N6, N7):** imleç 58 -> 84 px; tıkta iki halka (sarı dış 14 -> 92 px, beyaz iç),
+  telefonda okunur. Belgeli kartın damgası (eğik kutusu) kartın iç eninin %88'ine sığar.
 - **Bindirme kartı kararması** 0,18 sn out_cubic -> 0,3 sn in_out_sine (ikinci karede bir anda %46 kararıp bulanıyordu,
   kare farkı 37/255).
 
@@ -364,6 +373,20 @@ kaydedilmezse bitiş ekranı boş bırakılır ya da kanal filigranı (Özelleş
 - **Pano kartları üst üste (10. tur) / ayırıcı eksen (12. tur):** `yerlesim.derinlik` artık ilk ayırıcı eksende
   dönmüyor, bütün eksenlerin en küçük örtüşmesini veriyor (eğik iki kart 260 px uzakken bir eksende 3 px "değiyor"
   görünüyordu).
+- **Karakter görünürlüğü (13. tur, `yerlesim._karakter_denetle`; animasyon hakemi M1: 9:23'te makaleye itmede
+  anlatıcının yüzünün yarısı sağ kenar ile makalenin arasında kaldı, 'fark' tepkisi kayboldu):** her sahnede (wojak
+  karakterleri ve konuklar), giriş/çıkış animasyonu dışında 0,1 sn arayla: (a) yüz kutusunun %12'sinden fazlası
+  kadraj dışında (sol/sağ/üst; sahne kamerası ve `it` dahil), (b) çizim sırasında SONRA gelen görsel yüz kutusunun
+  %10'undan fazlasını örtüyor (nesnede kutu, canlı karakterde gerçek alfa maskesi), (c) sahnenin sabit kutusu (harita
+  lejantı, foto atfı) canlı karakterin alfa kutusuna 16 px'ten yakın. 0,4 sn'den kısası bildirilmez. talidomit-turkiye:
+  hakemin bulduğu ikisinin yanında beş yeni yer buldu (0:50, 4:01, 6:40, 8:14, 6:27).
+- **Vurgu kelimesi sırası (13. tur; animasyon hakemi S1: 4:57.5'te "ABD · FDA · 1960" önceki kelime sönerken aynı yerde
+  belirdi, 6 kare çift yazı; çakışma denetimi yarı saydamı saymadığı için kaçırıyordu):** aynı dikey banttaki yeni
+  kelime, öncekinin sönmesi bittikten en az 0,3 sn sonra.
+- **Bakış kaydı (13. tur, `cli.bakis_denetimi`):** `bakis` verilmemiş canlı karakter görseli (chars/, kit)
+  `data/karakter_yon.json`'da yoksa uyarır. Kayıt dosyanın sha1'iyle tutulur: yeniden üretilen yüz varyantının kaydı
+  düşer, motor yönü tahmin eder ve yanlışsa karakteri aynalar (Kaymakçalan 'düşünceli' yeniden çizilince yüzü kadrajdan
+  taştı). Çözüm: görsele bakıp `python -m wojak yon <png> --yon sag|sol|on`.
 - **Kesmede kaybolup yeniden giren karakter (12. tur, animasyon hakemi S3):** kesmeden önce ekranda olan karakter
   kesmenin ilk karesinde yoksa ve 0,8 sn içinde aşağı yukarı aynı yere (ekranın beşte birinden az kayma) yeniden
   giriyorsa uyarılır (köşe 5-10 kare boş kalıyor, "göz kırpma"). Çözüm: `giris: false` ile eşleşen yerde başlat ya
@@ -424,7 +447,8 @@ darboğaz civarında (~8-10 dk).
 
 Ön izleme (960x540, 3 işçi) 2971 kare 26,7 sn (~111 kare/sn); ses -14,0 LUFS, -2,3 dBTP, loudnorm doğrusal; video/ses
 0,000'da, fark -0,3 ms, 2971/2971 kare. `kontrol` talidomit-turkiye'de ~15 sn (90 sahnenin çizicisi 960x540'ta
-kurulur, kare çizilmez). Test: `python -m pytest tests -q` 66 test (11. tur: 67; kesmede zıplama denetimi ~9 sn ekler; 12. tur: 69).
+kurulur, kare çizilmez). Test: `python -m pytest tests -q` 66 test (11. tur: 67; kesmede zıplama denetimi ~9 sn ekler; 12. tur: 69; 13. tur: 70).
+`kontrol` talidomit-turkiye'de 13. turdan beri ~35 sn (karakter denetimi bütün karakterli sahneleri örnekler).
 
 ## 11. Senaryo istekleri (senaryo_v2 §F) ve karşılıkları
 

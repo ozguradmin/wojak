@@ -25,6 +25,11 @@ YUZ_DERIN = 8.0        # px: yüze bu kadardan derin giren üst katman uyarılı
 UST_DERIN = -8.0       # px: iki üst katman arası bundan azsa (değme, köşeden binme dahil) uyarılır; eksi = boşluk
 ADIM = 0.1             # sn: denetim örnek aralığı
 EN_AZ_SURE = 0.15      # sn: bundan kısa çakışma (geçiş anı) bildirilmez
+KELIME_ARA = 0.3       # sn (13. tur): aynı yerdeki iki vurgu kelimesi arasında, öncekinin sönmesinden sonra en az
+YUZ_DISARI = 0.12      # 13. tur: yüz kutusunun bu oranından fazlası kadraj dışında (sol/sağ/üst) kalırsa uyarılır
+YUZ_ORTU = 0.10        # 13. tur: sonra çizilen görsel bir yüz kutusunun bu oranından fazlasını örterse uyarılır
+SABIT_PAY = 16.0       # px (13. tur): sahnenin sabit kutusu (harita lejantı, foto atfı) ile canlı karakter arası en az
+KARAKTER_SURE = 0.4    # sn: karakter denetimlerinde bundan kısa durum (giriş/çıkış, itme anı) bildirilmez
 
 
 # ---------------------------------------------------------------- görsel kutuları
@@ -161,7 +166,8 @@ def denetle(v, z, W: int = 960) -> list[str]:
     for i, s in enumerate(z.sahneler):
         if s.tip == "pano":
             out += _pano_denetle(s, c, z)
-        if not _ust_var(s):
+        ust = _ust_var(s)
+        if not (ust or s.p.get("karakterler") or s.p.get("konuk")):
             continue
         try:
             cz = cizici(s, c)
@@ -170,6 +176,10 @@ def denetle(v, z, W: int = 960) -> list[str]:
             continue
         uk = cz.katman
         b0 = z.sahne_basi(s)
+        out += _kelime_sirasi(uk, b0, c)
+        out += _karakter_denetle(s, cz, b0, c)
+        if not ust:
+            continue
         for it in uk.isimler:
             if it["ihlal"] > 0:
                 out.append(f"{Zm.zaman_str(b0 + it['t0'])}: isim etiketi '{it['ad']}' hiçbir yerde karakterlerden "
@@ -205,6 +215,118 @@ def denetle(v, z, W: int = 960) -> list[str]:
                 out.append(f"{Zm.zaman_str(b0 + t0)}-{Zm.zaman_str(b0 + t1 + ADIM)}: {ne} "
                            f"({t1 - t0 + ADIM:.1f} sn) — x/y/konum/ofset/sure ile ayır")
     return out
+
+
+def _kelime_sirasi(uk, b0: float, c) -> list[str]:
+    """13. tur (animasyon hakemi S1: 4:57.5'te "ABD · FDA · 1960" önceki kelime sönerken aynı yerde belirdi, 6 kare
+    üst üste iki yazı): aynı dikey bantta yeni vurgu kelimesi öncekinin sönmesi bittikten en az `KELIME_ARA` sonra
+    başlamalı. Çakışma denetimi yarı saydamı saymadığı için bunu kaçırıyordu."""
+    from . import zaman as Zm
+    from .sahneler import KELIME_CIKIS
+    out = []
+    vs = sorted(uk.vurgular, key=lambda q: q[0])
+    for j in range(1, len(vs)):
+        t1, _, spr1, cy1, m1 = vs[j]
+        for t0, su0, spr0, cy0, m0 in vs[:j]:
+            bitis = t0 + su0 + KELIME_CIKIS
+            if t1 >= bitis + KELIME_ARA or t1 + 0.05 < t0:
+                continue
+            h0, h1 = spr0.height / 2, spr1.height / 2
+            if abs(cy0 * c.H - cy1 * c.H) >= (h0 + h1) * 0.8:
+                continue
+            ne = "sönmesi bitmeden" if t1 < bitis else f"söndükten {t1 - bitis:.2f} sn sonra (en az {KELIME_ARA} sn)"
+            out.append(f"{Zm.zaman_str(b0 + t1)}: kelime '{m1}', aynı yerdeki '{m0}' {ne} beliriyor — ofset/sure "
+                       f"ile ayır ya da `y` ver")
+    return out
+
+
+def _karakter_denetle(s, cz, b0: float, c) -> list[str]:
+    """13. tur (animasyon hakemi M1: 9:23'te kamera itmesinde makale çizimi anlatıcının yüzünün yarısını örttü, 'fark'
+    tepkisi kayboldu; S3: harita lejantı anlatıcının omzuna biniyordu). Sahne boyunca (giriş/çıkış animasyonu dışında):
+    (a) yüz kutusunun `YUZ_DISARI`'dan fazlası kadraj dışında (sol/sağ/üst; kamera ve `it` dahil),
+    (b) çizim sırasında SONRA gelen bir görsel (nesne ya da karakter) yüz kutusunun `YUZ_ORTU`'sundan fazlasını örtüyor,
+    (c) sahnenin sabit kutusu (harita lejantı, foto atfı) canlı bir karakterin alfa kutusuna `SABIT_PAY`'dan yakın."""
+    from . import zaman as Zm
+    uk = cz.katman
+    S, W, H = c.S, c.W, c.H
+    sira = list(getattr(cz, "cizim_sirasi", []) or []) + list(uk.konuklar)
+    if not sira:
+        return []
+    kamf = {id(k): kf for k, kf in uk.kars}
+    try:
+        sabit = list(cz.sabit_engeller())
+    except Exception:   # noqa: BLE001
+        sabit = []
+    cak: dict = {}
+    n = max(1, int(s.sure_hesap / ADIM))
+    for j in range(n + 1):
+        t = min(j * ADIM, s.sure_hesap - 1e-3)
+        kutular = []
+        for k in sira:
+            kf = kamf.get(id(k))
+            kb = k.ekran_kutulari(t, kf(t) if kf else None)
+            sakin = kb is not None and not (k.giris is not None and k.giris <= t < k.giris + k.GIRIS + 0.15) \
+                and not (k.cikis is not None and t >= k.cikis - 0.05)
+            kutular.append((k, kb, sakin))
+        for x, (k, kb, sakin) in enumerate(kutular):
+            if not (sakin and k.yuzlu):
+                continue
+            fb = kb[1]
+            fw, fh = max(1.0, fb[2] - fb[0]), max(1.0, fb[3] - fb[1])
+            dis = max((max(0.0, -fb[0]) + max(0.0, fb[2] - W)) / fw, max(0.0, -fb[1]) / fh)
+            if dis > YUZ_DISARI:
+                cak.setdefault((k.ad, "", "dış"), []).append((t, dis))
+            for k2, kb2, _ in kutular[x + 1:]:
+                if kb2 is None:
+                    continue
+                o = kutu_kesisim(fb, kb2[0]) / (fw * fh)
+                if o > YUZ_ORTU and not k2.sabit:   # canlı karakterin kutusu omuz boşluklarını da sayar: alfa maskesiyle
+                    o = _maske_ortusu(k2, t, kb2[0], fb) / (fw * fh)
+                if o > YUZ_ORTU:
+                    cak.setdefault((k.ad, k2.ad, "ört"), []).append((t, o))
+            for b in sabit:
+                ab = kb[0]
+                gx = max(b[0] - ab[2], ab[0] - b[2])
+                gy = max(b[1] - ab[3], ab[1] - b[3])
+                ara = max(gx, gy)
+                if ara < SABIT_PAY * S:
+                    cak.setdefault((k.ad, "", "sabit"), []).append((t, ara / S))
+    out = []
+    for (a_ad, b_ad, tur), ts in sorted(cak.items(), key=lambda q: q[1][0][0]):
+        for t0, t1 in _araliklar([t for t, _ in ts]):
+            if t1 - t0 + ADIM < KARAKTER_SURE:
+                continue
+            en = [v for t, v in ts if t0 <= t <= t1]
+            if tur == "dış":
+                ne = f"{a_ad} yüzünün %{100 * max(en):.0f}'i kadraj dışında — x/boy, kamera ya da `it` hedefini değiştir"
+            elif tur == "ört":
+                ne = (f"{b_ad} {a_ad} yüzünün %{100 * max(en):.0f}'ini örtüyor (sonra çiziliyor) — yerini/boyunu "
+                      f"değiştir ya da karakterler listesinde sırasını")
+            else:
+                ne = (f"sabit kutu (lejant/atıf) {a_ad} karakterine {min(en):.0f} px "
+                      f"({'biniyor' if min(en) < 0 else 'yakın'}; en az {SABIT_PAY:.0f}) — konuğu kaydır ya da kısalt")
+            out.append(f"{Zm.zaman_str(b0 + t0)}-{Zm.zaman_str(b0 + t1 + ADIM)}: {ne}")
+    return out
+
+
+def _maske_ortusu(k, t: float, ab: tuple, fb: tuple) -> float:
+    """k karakterinin (ekranda alfa kutusu `ab`) gerçekten opak pikselleriyle `fb` kutusunun kesişim alanı (px²)."""
+    x0, y0 = max(ab[0], fb[0]), max(ab[1], fb[1])
+    x1, y1 = min(ab[2], fb[2]), min(ab[3], fb[3])
+    if x1 <= x0 or y1 <= y0:
+        return 0.0
+    im = k.ims[k.poz(t)["vi"]]
+    bb = alfa_kutusu(im)
+    if bb is None:
+        return 0.0
+    a = np.asarray(im.getchannel("A").crop(bb)) > 40
+    h, w = a.shape
+    sx, sy = w / max(1e-6, ab[2] - ab[0]), h / max(1e-6, ab[3] - ab[1])
+    ix0, ix1 = int(max(0, (x0 - ab[0]) * sx)), int(min(w, math.ceil((x1 - ab[0]) * sx)))
+    iy0, iy1 = int(max(0, (y0 - ab[1]) * sy)), int(min(h, math.ceil((y1 - ab[1]) * sy)))
+    if ix1 <= ix0 or iy1 <= iy0:
+        return 0.0
+    return float(a[iy0:iy1, ix0:ix1].mean()) * (x1 - x0) * (y1 - y0)
 
 
 def _pano_denetle(s, c, z) -> list[str]:

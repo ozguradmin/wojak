@@ -345,16 +345,35 @@ def hareket_izi(src: Image.Image, dx: float, dy: float, pay: float = 0.5, en_cok
     return out, ox, oy
 
 
+def _kutu_yatay(a: np.ndarray, n: int) -> np.ndarray:
+    """Tek geçişli yatay kutu ortalaması (kümülatif toplamla), n px."""
+    pad = np.pad(a, ((0, 0), (n // 2 + 1, n - n // 2), (0, 0)), mode="edge")
+    c = np.cumsum(pad, axis=1, dtype=np.float32)
+    return (c[:, n:n + a.shape[1]] - c[:, :a.shape[1]]) / n
+
+
 def yatay_bulanik(im: Image.Image, L: float) -> Image.Image:
-    """Bütün karede yatay kutu bulanıklığı (itme geçişi: kamera 'savrulması'). L px."""
+    """Bütün karede yatay hareket bulanıklığı (itme geçişi: kamera 'savrulması'). L px: kutu genişliğine eşdeğer
+    yayılım. 13. tur (izlenme hakemi N1): tek geçişli kutu çekirdeğinin sert uçları eğik çizgileri (yüz, saç) 2-3
+    karede "basamaklı hayalet kopyalara" çeviriyordu (7:08.9 Aygün): aynı varyansta üç kutu geçişi (~Gauss), uçlar
+    yumuşak söner."""
     n = int(round(L))
     if n < 2:
         return im
-    a = np.asarray(im, np.float32)
-    pad = np.pad(a, ((0, 0), (n // 2 + 1, n - n // 2), (0, 0)), mode="edge")
-    c = np.cumsum(pad, axis=1)
-    out = (c[:, n:n + a.shape[1]] - c[:, :a.shape[1]]) / n
-    return Image.fromarray(np.clip(out + 0.5, 0, 255).astype(np.uint8), "RGB")
+    # hız: yalnız yatayda küçültülmüş karede bulanıklaştır (dikey ayrıntı kalır; bulanık içerik zaten alçak
+    # frekanslı; satır toplamı en çok ~1920·255: float32 yeter), sonra geri büyüt. 1080p'de ~0,03-0,2 sn/kare
+    f = max(1, n // 10)   # küçültme kutusu içindeki ayrıntı kutunun ortasına toplanır: yerel kayma <= f/2 (L'nin %5'i)
+    W, H = im.size
+    k = im.resize((max(8, round(W / f)), H), Image.BOX) if f > 1 else im
+    n2 = n / f
+    # 3 geçiş: 3(m²-1)/12 = (n²-1)/12; m tek: çift genişlikli kutu her geçişte yarım piksel kaydırır (küçültülmüş
+    # karede 3 geçiş x 0,5 px x f: ~30 px'lik yanal kayma)
+    m = max(3, int(round(math.sqrt((n2 * n2 - 1) / 3.0 + 1))) | 1)
+    a = np.asarray(k, np.float32)
+    for _ in range(3):
+        a = _kutu_yatay(a, m)
+    out = Image.fromarray(np.clip(a + 0.5, 0, 255).astype(np.uint8), "RGB")
+    return out.resize((W, H), Image.BILINEAR) if f > 1 else out
 
 
 def tabular_yazi(metin: str, path, size: float, fill, rakam_en: float | None = None,

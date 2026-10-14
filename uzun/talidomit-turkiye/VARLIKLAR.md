@@ -114,7 +114,7 @@ Gerçek firma/gazete/dergi adı ya da logosu yok; kişi, bebek, hasta yok. Hepsi
 
 | Dosya | Ne | Sahne |
 |---|---|---|
-| `numune_kutusu.png`, `numune_kutusu_tabletler.png`, `tablet.png` | Adsız beyaz numune/ilaç kutusu (yalnız mavi şerit), tabletler, tek tablet | SA.6, B1.1, B3.11, B5.2, B6.1, B6.4, K1 |
+| `numune_kutusu.png`, `numune_kutusu_tabletler.png`, `tablet.png` | Adsız beyaz numune/ilaç kutusu (yalnız mavi şerit), tabletler, tek tablet | SA.6, B1.1, B3.11, B5.2, B6.1, B6.4 (13. turda K1'den çıktı: 168 px'te beyaz daire gibiydi) |
 | `fare_kafesi.png`, `doz_sisesi.png` | Fare kafesi (3 gri fare), adsız kahverengi doz şişesi (Kevadon yedeği de bu) | B1.4, B4.5, B5.4 |
 | `molekul_beyaz.png`, `molekul_siyah.png`, `cereblon.png`, `sall4.png`, `sall4_kirik.png` | Formülün saydam hâlleri; cereblon simgesi (cepli mor kütle); SALL4 bloğu sağlam/kırık | B1.3, B5.13, B6.4 |
 | `kapi_acik.png`, `kapi_kapali.png` | Kapı (açık, karanlık boşluk / kapalı) | B5.4 |

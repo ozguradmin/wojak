@@ -249,7 +249,7 @@ class KapanisCizici(Cizici):
         # --- düğmeler
         self.dugmeler = {}
         self._dugmeler_hazirla()
-        self.imlec = imlec_spr(58 * S)
+        self.imlec = imlec_spr(84 * S)   # 13. tur (animasyon hakemi N6): 58 px'lik ok telefonda ~12 px'ti
         self.yorum_metin = self.z["metin"]
         self._yorum_cache: dict = {}
         self._yorum_satir = None
@@ -391,6 +391,14 @@ class KapanisCizici(Cizici):
             # 12. tur (izlenme 4, animasyon S5): karakterli karttaki "HAYIR" 36 pt ile telefonda ~20 px'ti: 60 pt
             dmg = damga_sprite(str(d_["metin"]), renk, (60 if kar is not None else 50) * S, S, tohum=7 + i,
                                kontur=(255, 255, 255))
+            # 13. tur (animasyon hakemi N7): belgeli karttaki "RUHSAT ŞART" (-7° eğik) kartın sağ kenarını aşıyordu:
+            # eğik kutusu kartın iç eninin %88'ine sığar
+            th = math.radians(7)
+            en_egik = dmg.width * math.cos(th) + dmg.height * math.sin(th)
+            sinir = 0.88 * (w - 2 * pad)
+            if en_egik > sinir:
+                f_ = sinir / en_egik
+                dmg = dmg.resize((max(1, round(dmg.width * f_)), max(1, round(dmg.height * f_))), Image.LANCZOS)
         return {"x": x, "y": y, "w": w, "h": h, "ic": ic, "kar": kar, "pad": pad, "ic_h": ic_h, "plaka": plaka,
                 "kar_pm": C.alt_piksel_hazirla(kar) if kar is not None else None,
                 "kar2_pm": C.alt_piksel_hazirla(kar2) if kar2 is not None else None,
@@ -566,13 +574,19 @@ class KapanisCizici(Cizici):
             for tt in z["tik"].values():
                 if 0 <= t - tt < 0.16:
                     bas = 1 - 0.15 * E.tumsek((t - tt) / 0.16)
-                if 0 <= t - tt < 0.45:   # tık halkası
-                    q = (t - tt) / 0.45
-                    rr = (10 + 46 * E.out_cubic(q)) * S
-                    lay = Image.new("RGBA", (int(2 * rr + 8), int(2 * rr + 8)), (0, 0, 0, 0))
-                    ImageDraw.Draw(lay).ellipse((4, 4, 4 + 2 * rr, 4 + 2 * rr), outline=(255, 255, 255, 255),
-                                                width=max(1, int(5 * S * (1 - q) + 1)))
-                    C.bindir_alt(im, lay, x - rr - 4, y - rr - 4, (1 - q) * 0.9)
+                if 0 <= t - tt < 0.5:   # tık halkası (13. tur, animasyon N6: telefonda okunsun: büyük, iki halka)
+                    q = (t - tt) / 0.5
+                    rr = (14 + 78 * E.out_cubic(q)) * S
+                    r2 = (8 + 48 * E.out_cubic(min(1.0, q * 1.25))) * S
+                    n_ = int(2 * rr + 16)
+                    lay = Image.new("RGBA", (n_, n_), (0, 0, 0, 0))
+                    dr_ = ImageDraw.Draw(lay)
+                    c_ = n_ / 2
+                    dr_.ellipse((c_ - rr, c_ - rr, c_ + rr, c_ + rr), outline=tuple(self.vurgu_renk) + (255,),
+                                width=max(1, int(9 * S * (1 - q) + 1)))
+                    dr_.ellipse((c_ - r2, c_ - r2, c_ + r2, c_ + r2), outline=(255, 255, 255, 255),
+                                width=max(1, int(6 * S * (1 - q) + 1)))
+                    C.bindir_alt(im, lay, x - c_, y - c_, (1 - q) * 0.95)
             ux, uy = self.imlec.info["uc"]
             dog = (t - z["imlec"]) / 0.3
             if dog < 1:   # 9. tur: imleç karakterin önünde küçükten büyüyerek doğar

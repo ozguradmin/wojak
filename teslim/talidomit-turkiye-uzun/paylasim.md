@@ -1,8 +1,8 @@
 # 46 Ülkede Satılan İlaca Türkiye Neden ‘Hayır’ Dedi? — uzun video paketi
 
-Süre: **10:29** (629.6 sn), 90 sahne, 8 bölüm.
+Süre: **10:30** (630.1 sn), 90 sahne, 8 bölüm.
 Video: `talidomit-turkiye-uzun.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
-Ölçüm (mp4): -14.0 LUFS, tepe -2.1 dBTP; senkron: tamam
+Ölçüm (mp4): -14.0 LUFS, tepe -2.0 dBTP; senkron: tamam
 
 ## Başlık alternatifleri
 
@@ -24,7 +24,7 @@ Bölümler
 3:11 3 · On İki Gün
 4:50 4 · Hayır Diyen Kadın
 6:00 5 · Ankara'da Bir ‘Hayır’
-8:22 6 · Geri Dönen Hap
+8:23 6 · Geri Dönen Hap
 9:50 Kapanış
 
 Kaynaklar
@@ -73,7 +73,7 @@ Seslendirme yapay zekâ ile üretilmiştir (Cartesia). Karakterler canlandırmad
 3:11 3 · On İki Gün
 4:50 4 · Hayır Diyen Kadın
 6:00 5 · Ankara'da Bir ‘Hayır’
-8:22 6 · Geri Dönen Hap
+8:23 6 · Geri Dönen Hap
 9:50 Kapanış
 ```
 
@@ -131,13 +131,15 @@ Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yet
   - 2:55 «Firma, böyle bir yan etkiden haberi olmadığını söylüyor.» — 12. tur yeni çekim (ekrandaki 'HABERİMİZ YOK' ile aynı dil); ilk çekim 'bir iyan etkiden' duyuluyordu, seçilen ikinci çekim 4/4 doğru
   - 3:44 «Firmanın yanıtı sert: Lenz'i iftirayla…» — 10. tur çekimi; 12. tur: zarfın giriş efekti 'sert.'in t'sinden 0,2 sn daha uzağa alındı (teknik N1: mikste 'ser')
   - 6:38 «…göre ruhsatsız bir ilacın tanıtım numunesi bile Türkiye'ye giremiyor.» — 12. tur: rubberband ile ~0,85 tempo (bölümün en hassas ihtiyat cümlesi); doğal duyuluyor mu
+  - 7:10 «Kaymakçalan'ın rolü, meslektaşlarının…» — ÖNCELİKLİ (13. tur, izlenme S7). Gerçek kişinin adı: Whisper'ın 4 hedefli çözümünün 4'ü 'Kaymak Çalan'ın' diye bölüyor, tam geçiş 'Kaymakçalağının' yazdı. Kulak adı bölünmüş ya da yanlış duyarsa ElevenLabs listesine
   - 7:14 «Ölümünün onuncu yılındaki anma yazıları, Bakanlığa…» — 11. tur: Ankara satırları rubberband ile yavaşlatıldı (0,85-0,92); doğal duyuluyor mu
   - 7:29 «Sorulduğunda, haberin kaynağı belge gösteremedi.» — 12. tur yeni çekim (dil S9: 'ise' tekrarı); 4/4 doğru
   - 7:33 «Nejat Eczacıbaşı bir söyleşisinde başarıyı…» — ÖNCELİKLİ. 12. tur yeni metin ve çekim (4 denemeden zorlanmış skorda en iyisi: 'Nejat' > 'Necat/Necdet/Necad'); teslim karışımında ve izde ışın-5 çözüm 'Nejat', açgözlü çözüm 'Necad'. 'Necat/Necdet' duyulursa ElevenLabs listesine
-  - 8:04 «İnternette sık duyulan bir söz var: ‘Etkilenmeyen…» — 12. tur yeni metin ve çekim: iddia tırnaklı ve duraklı; 4/4 doğru
+  - 8:05 «İnternette sık duyulan bir söz var: ‘Etkilenmeyen…» — 12. tur yeni metin ve çekim: iddia tırnaklı ve duraklı; 4/4 doğru
+  - 8:19 «Ama talidomit geri döndü.» — ÖNCELİKLİ (13. tur, izlenme S7). 6. bölümün dönüm cümlesi: tam video Whisper'ı (ışın 5, ipucusuz) 'Ama tarih domit geri döndü' yazdı; mikste hedefli çözümler 2/2 'Tali Domit', anlatım izinde 2/2 'talidomit'. Altlık sesin 29 dB altında: maskeleme değil, Cartesia'nın okuyuşu. Kulak 'tarih' duyarsa ElevenLabs listesine
   - 8:23 «…Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor.» — ÖNCELİKLİ. z uzatılmış eski çekim (Cartesia ikiz zz'yi yeni çekimde 'cüzdan' okuyor; ekranda 'CÜZZAM (LEPRA)' var); teslim karışımında ve izde ışın-5 'cüzzam', açgözlü 'cüzlam'. 'Cüzdan' duyulursa ElevenLabs listesine
-  - 8:28 «Sheskin, elinde kalan eski bir uyku ilacını…» — 12. tur: 'talidomit.' sonrası +0,5 sn (dil S6: 'Talidomit, beklenmedik…' diye bitişikti)
-  - 8:47 «Brezilya'da lepra tedavisinde kullanıldığı için,…» — 12. tur yeni metin ve çekim: 'cüzzam' 6/6 'cüzdan' duyuluyordu, yeni çekimde de (z uzatılınca da); satırda 'lepra', ekranda 'LEPRA (CÜZZAM)'; 4/4 doğru
+  - 8:29 «Sheskin, elinde kalan eski bir uyku ilacını…» — 12. tur: 'talidomit.' sonrası +0,5 sn (dil S6: 'Talidomit, beklenmedik…' diye bitişikti)
+  - 8:48 «Brezilya'da lepra tedavisinde kullanıldığı için,…» — 12. tur yeni metin ve çekim: 'cüzzam' 6/6 'cüzdan' duyuluyordu, yeni çekimde de (z uzatılınca da); satırda 'lepra', ekranda 'LEPRA (CÜZZAM)'; 4/4 doğru
   - 9:32 «Bugün bir kanser ilacı olarak kullanılıyor;…» — 12. tur: doruk (9:26-9:38) rubberband 0,88 + durak; 'O reklamı hatırlayın' da 0,88, 'Bugün Türkiye'deki resmî…' yeni çekim (0,88, 'ise' çıktı)
   - 9:45 «Talidomid, gebe kadınlar (…) tarafından kesinlikle…» — ÖNCELİKLİ. Aylin: 12. tur teslim karışımında ipucusuz Whisper 2/2 'Tarih domit', anlatım izinde 2/2 'Talidomit' (altlık orada sesin 25-35 dB altında: maskeleme değil, okuyuş sınırda; 11. turda teknik hakem 'Talidomit / Tali domit' duydu). Kulak 'Tarih' duyarsa ElevenLabs listesine
 - [ ] Küçük resim: K1 (zehirsiz) ANA küçük resim. 'Test ve karşılaştır' açılırsa YALNIZ K1 ile K3 (izlenme hakemi: K2 168 px'te en zayıfı; 11. turda harita uzaklaştı ama yine yedek; 12. turda K3'te K1'in temsilcisi yerine belge arayan, terleyen anlatıcı: test yalnız yazıyı değil yüzü de karşılaştırır). K2'yi yalnız başlık 3 ile kullan (yazısı '46 ÜLKEDE SATILDI', başlık 1 ve 2'deki '46 Ülkede'yi tekrar eder). Başlık testi açılırsa başlık 1 ile başlık 3'ü ('10 Binden Fazla Bebeği…': bedeli söyler) karşılaştır. Başlık 2 ('Kimdi?') yedek: video adı yalnız meslektaş tanıklığıyla verebiliyor, 'tık tuzağı' yorumu çekebilir.

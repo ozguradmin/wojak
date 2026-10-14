@@ -1705,6 +1705,96 @@ def test_short_youtube_aciklamasi_en_cok_uc_hashtag():
     assert not [w for w in pack.warnings(t, ep) if "hashtag" in w]
 
 
+def test_on_uc_tur_motor_ekleri():
+    """13. tur: (a) kontrol, aynı yerde öncekinin sönmesi bitmeden beliren vurgu kelimesini bildirir; `y` ile ayrılır;
+    (b) kamera itmesinde kadrajdan çıkan yüzü ve sonra çizilen görselin örttüğü yüzü bildirir; (c) harita lejantı
+    `aciklama_en` ile iki satıra kırılır, sabit kutudur ve konuğa binince bildirilir; (d) itme geçişinin bulanıklığı
+    yumuşak uçlu (tek kutu çekirdeğinin sert uçları basamaklı hayalet kopya yapıyordu); (e) bakış kaydı olmayan karakter
+    görseli bildirilir; (f) kapanıştaki belge damgası kartın içine sığar; (g) konturlu damganın mürekkep boşlukları
+    beyaz değil."""
+    import tempfile
+    from PIL import Image
+    from wojak.uzun import cli, yerlesim as Y
+    from wojak.uzun import cizim as C
+    from wojak.uzun.kapanis import KapanisCizici
+    from wojak.uzun.sahneler import Baglam, cizici
+    from wojak.uzun.ust import damga_sprite
+    AN = "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png"
+    KG = "uzun/talidomit-turkiye/img/doku_kagit.jpg"
+    MAK = "uzun/talidomit-turkiye/img/cizim/makale_behcet_1998_cizim.png"
+    # (a) kelime sırası
+    def kel(o2):
+        sah = {"tip": "metin", "metin": "x", "sure": 5.0,
+               "olaylar": [{"tip": "kelime", "metin": "BİR", "konum": "ust", "t": 0.2, "sure": 1.5}, o2]}
+        v = _video([{"baslik": "a", "sahneler": [sah]}])
+        return [x for x in Y.denetle(v, zaman.hesapla(v, tahmin=True)) if "kelime" in x]
+    assert any("sönmesi bitmeden" in x for x in kel({"tip": "kelime", "metin": "İKİ", "konum": "ust", "t": 1.8}))
+    assert not kel({"tip": "kelime", "metin": "İKİ", "konum": "ust", "t": 2.4})
+    assert not kel({"tip": "kelime", "metin": "İKİ", "konum": "ust", "t": 1.8, "y": 0.6})
+    # (b) yüz kadraj dışında / örtülü
+    def kar(karakterler, olaylar=()):
+        sah = {"tip": "wojak", "arka": KG, "sure": 4.0, "kamera": {"zoom": [1.0, 1.0], "it": 0},
+               "karakterler": karakterler, "olaylar": list(olaylar)}
+        v = _video([{"baslik": "a", "sahneler": [sah]}])
+        return Y.denetle(v, zaman.hesapla(v, tahmin=True))
+    z_ = {"id": "z", "gorsel": AN, "x": 0.86, "boy": 0.5, "giris": False}
+    assert not kar([z_])
+    it = {"tip": "it", "t": 0.5, "guc": 0.2, "sure": 0.6, "x": 0.3, "y": 0.5}
+    assert any("kadraj dışında" in x for x in kar([z_], [it]))
+    m_ = {"id": "m", "gorsel": MAK, "x": 0.8, "boy": 0.8, "giris": False, "canli": False}
+    assert any("örtüyor" in x for x in kar([z_, m_]))          # makale sonra çiziliyor: yüzü örter
+    assert not any("örtüyor" in x for x in kar([m_, z_]))      # anlatıcı önde
+    # (c) lejant
+    har = {"tip": "harita", "bolge": "avrupa", "ulkeler": ["DEU"], "sure": 3.0,
+           "aciklama": "kırmızı: satıldığı belgelenen ülkelerden bazıları"}
+    v = _video([{"baslik": "a", "sahneler": [har]}])
+    cz = cizici(zaman.hesapla(v, tahmin=True).sahneler[0], Baglam(v, 960, 540))
+    tek = cz.aciklama.size
+    assert len(cz.sabit_engeller()) == 1
+    v2 = _video([{"baslik": "a", "sahneler": [dict(har, aciklama_en=520)]}])
+    cz2 = cizici(zaman.hesapla(v2, tahmin=True).sahneler[0], Baglam(v2, 960, 540))
+    assert cz2.aciklama.width <= 520 / 2 + 2 and cz2.aciklama.height > tek[1] * 1.5    # 960 px'te yarı ölçek
+    v3 = _video([{"baslik": "a", "sahneler": [dict(har, konuk=[{"id": "z", "gorsel": AN, "x": 0.45, "boy": 0.4,
+                                                                 "giris": False}])]}])
+    assert any("lejant" in x for x in Y.denetle(v3, zaman.hesapla(v3, tahmin=True)))
+    # (d) bulanıklık: tek parlak sütunun izi uçlara doğru yumuşak azalır (düz kutu değil), ortalama korunur
+    im = Image.new("RGB", (400, 4), (0, 0, 0))
+    im.paste((255, 255, 255), (200, 0, 202, 4))
+    b = np.asarray(C.yatay_bulanik(im, 120), np.float32)[2, :, 0]
+    tepe = int(np.argmax(b))
+    assert abs(float((b * np.arange(400)).sum() / b.sum()) - 200.5) <= 120 / 20 + 1   # yerel kayma <= L/20
+    assert b[tepe] > 1.6 * b[tepe + 40] > 0 and b[tepe + 40] > b[tepe + 70]     # uçlar yumuşak söner
+    assert abs(b.sum() - 2 * 255) < 0.08 * 2 * 255
+    # (e) kayıtsız bakış
+    with tempfile.TemporaryDirectory(dir=str(KOK / "out")) as td:
+        kopya = Path(td) / "chars" / "yeni_yuz.png"
+        kopya.parent.mkdir()
+        a = Image.open(KOK / AN).convert("RGBA")
+        a.putpixel((0, 0), (1, 2, 3, 4))                         # içerik (sha1) farklı: kayıtsız
+        a.save(kopya)
+        sah = {"tip": "wojak", "arka": KG, "sure": 2.0, "karakterler": [{"id": "z", "gorsel": str(kopya), "x": 0.8}]}
+        assert any("bakış kaydı yok" in x for x in cli.bakis_denetimi(_video([{"baslik": "a", "sahneler": [sah]}])))
+        sah["karakterler"][0]["bakis"] = "sol"
+        assert not cli.bakis_denetimi(_video([{"baslik": "a", "sahneler": [sah]}]))
+    # (f) kapanış: belge kartındaki damga kartın iç enine sığar
+    kap = {"tip": "kapanis", "arka": KUTU, "soru": "?", "sure": 9.5, "satirlar": ["Sizce hangisi?"],
+           "secenekler": [{"metin": "A"}, {"metin": "B", "gorsel": KUTU, "damga": "ÇOK UZUN BİR DAMGA YAZISI"},
+                          {"metin": "C"}]}
+    v = _video([{"baslik": "a", "sahneler": [kap]}])
+    kc = KapanisCizici(zaman.hesapla(v, tahmin=True).sahneler[0], Baglam(v, 960, 540))
+    k = kc.kartlar[1]
+    th = math.radians(7)
+    assert k["damga"].width * math.cos(th) + k["damga"].height * math.sin(th) <= 0.881 * (k["w"] - 2 * k["pad"])
+    # (g) konturlu damga: harf izinin içinde beyaz benek yok (mürekkep rengi altta)
+    from PIL import ImageFilter
+    iz = np.asarray(damga_sprite("HAYIR", (196, 16, 28), 80, 1.0, 3).getchannel("A")
+                    .filter(ImageFilter.MinFilter(3))) > 10              # harf + çerçeve izi (boşluklar dahil)
+    d = np.asarray(damga_sprite("HAYIR", (196, 16, 28), 80, 1.0, 3, kontur=(255, 255, 255)), np.float32)
+    pay = max(3, int(round(0.07 * 80)) | 1)
+    d = d[pay:pay + iz.shape[0], pay:pay + iz.shape[1]]
+    assert d[..., 1][iz].mean() < 50, d[..., 1][iz].mean()   # 12. turdaki gibi beyaz dolgu üstünde: ~75 (pembe)
+
+
 if __name__ == "__main__":
     import inspect
     import time

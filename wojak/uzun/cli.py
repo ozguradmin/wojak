@@ -202,6 +202,27 @@ def sayac_denetimi(z) -> list[str]:
     return out
 
 
+def bakis_denetimi(v) -> list[str]:
+    """13. tur: karakter görselinin bakış yönü `data/karakter_yon.json`'da (dosya içeriğinin sha1'iyle) kayıtlı değilse
+    motor yönü tahmin eder (~%75 isabet) ve yanlış tahminde karakteri aynalar: yeniden üretilen bir yüz varyantı
+    (Kaymakçalan 'düşünceli') kayıtsız kalınca karakter aynalandı, yüzü sahnenin dışına kaydı. `bakis` verilmemiş
+    canlı karakter (chars/ ya da kit) görsellerinin kaydı aranır."""
+    from .. import facing
+    out, gor = [], set()
+    for s in v.sahneler:
+        for cs in list(s.p.get("karakterler", []) or []) + list(s.p.get("konuk", []) or []):
+            if cs.get("bakis") or cs.get("canli", True) is False:
+                continue
+            p = Path(str(cs["gorsel"]))
+            if not ({"chars", "kit"} & set(p.parts)) or p in gor or not p.exists():
+                continue
+            gor.add(p)
+            if facing.registered(p) is None:
+                out.append(f"bakış kaydı yok: {p.name} (motor tahmin ediyor: {facing.guess(p)[0]}) — görsele bakıp "
+                           f"`python -m wojak yon {p} --yon sag|sol|on` ile kaydet")
+    return out
+
+
 def C_sayi(v) -> str:
     from .cizim import say_bicimle
     return say_bicimle(v)
@@ -215,7 +236,7 @@ def cmd_kontrol(a) -> None:
         print(f"  aynı kayıt ({len(g)} kez, tek seslendirme): " + " = ".join(g))
     ps = altyazi.parcalar(z)
     u = (hareket_denetimi(v, z) + gecis_denetimi(z) + ziplama_denetimi(v, z) + sayac_denetimi(z) + yerlesim.denetle(v, z)
-         + paket.uyarilar(v, z) + altyazi.denetle(ps)
+         + bakis_denetimi(v) + paket.uyarilar(v, z) + altyazi.denetle(ps)
          + [f"altyazı kelime farkı: {x}" for x in altyazi.kelime_farki(z, ps)] + tekrar_uyari)
     for x in u:
         print(f"  ⚠ {x}")

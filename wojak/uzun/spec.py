@@ -63,7 +63,7 @@ SAHNE_PARAMLARI: dict[str, set[str]] = {
     "foto": {"gorsel", "etiket", "egim", "zoom", "atif", "boy", "giris", "arka", "odak", "x"},
     "manset": {"gorsel", "kutular", "zoom", "arka", "renk", "boy", "etiket"},
     "harita": {"bolge", "ulkeler", "vurgu", "baslik", "aralik", "cozunurluk", "renk", "etiketler", "zoom",
-               "aciklama"},
+               "aciklama", "aciklama_en"},   # 13. tur: aciklama_en (lejantın en geniş hali, px @1080p; aşarsa 2 satır)
     "sayac": {"deger", "yil", "etiket", "ust", "onek", "sonek", "sure_say", "renk", "olcek", "tut"} | ZEMIN_PARAM,
     "bolum_karti": {"numara", "baslik", "ust", "bindirme", "marka", "karart"},
     "metin": {"metin", "ceviri", "ust", "alt", "ceviri_t", "yazim", "renk", "tirnak"} | ZEMIN_PARAM,
@@ -109,7 +109,7 @@ OLAY_TIPLERI: dict[str, set[str]] = {
     "balon": {"karakter", "metin", "sure", "agiz"},   # konuşma balonu (yalnız görsel); 9. tur: agiz = açık ağızlı
     #                                           yüz görseli: balon açıkken hecelerde ağız açılıp kapanır; 11. tur:
     #                                           [yarık, açık] listesi: kapalı -> yarık -> açık, en az 4 kare tutulur
-    "kelime": {"metin", "sure", "konum"},     # ekranda vurgu kelimesi (konum: ust | orta | alt)
+    "kelime": {"metin", "sure", "konum", "y"},   # ekranda vurgu kelimesi (konum: ust | orta | alt; 13. tur: y 0..1 merkez)
     "isim": {"ad", "unvan", "sure", "konum", "karakter"},  # isim etiketi (lower third); konum: sol | sag
     "giris": {"karakter"},                    # karakter bu anda kayarak girer
     "cikis": {"karakter"},                    # karakter bu anda çıkar
