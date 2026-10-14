@@ -21,7 +21,7 @@ import re
 from functools import lru_cache
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageEnhance
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance
 
 from . import cizim as C
 from . import easing as E
@@ -490,9 +490,13 @@ class PanoCizici(Cizici):
             cx, cy = (x - 0.5) * W + CW / 2, (y - 0.5) * H + CH / 2
             egim = float(k.get("egim", rng.uniform(-4, 4)))
             spr, foto_y = self._kart(k)
+            bb = spr.getchannel("A").point(lambda v: 255 if v > 160 else 0).getbbox() or (0, 0, spr.width, spr.height)
+            govde = (cx - spr.width / 2 + bb[0], cy - spr.height / 2 + bb[1], cx - spr.width / 2 + bb[2],
+                     cy - spr.height / 2 + bb[3])   # kartın kendisi (gölgesiz), tuval pikseli
             self.kartlar[k["id"]] = {"spr": spr, "cx": cx, "cy": cy, "egim": egim, "t": self.zt["kartlar"][k["id"]],
-                                     "foto_y": foto_y,
-                                     "pin": (cx, cy - spr.height / 2 + 16 * S)}
+                                     "foto_y": foto_y, "govde": govde, "id": k["id"],
+                                     "pin": (cx, cy - spr.height / 2 + 16 * S),
+                                     "alt_pin": ((govde[0] + govde[2]) / 2, govde[3] - 16 * S)}
             if self.canli_golge:   # 7. tur: düşen kartın havadaki gölgesi (uzak, yumuşak; oturunca kaybolur)
                 g, gx, gy = C.golge_katmani(spr, 16 * S, 0.5)
                 self.kartlar[k["id"]]["golge"] = (g, gx, gy)
@@ -508,6 +512,25 @@ class PanoCizici(Cizici):
         self.baslik = C.yazi(str(p["baslik"]), C.FONT_DIALOG, 54 * S, C.BEYAZ, max_w=1100 * S, max_lines=2,
                              golge=(0, 3 * S, 8 * S, 0.8)) if p.get("baslik") else None
         self.sira = sorted(self.kartlar.values(), key=lambda k: k["t"])
+        # 10. tur (animasyon hakemi S6): ipin ucu. Raptiye kartın üstünde; öbür kart bu kartın ALTINDAysa ip üst
+        # raptiyeden kartın kendi yazısının üstünden aşağı iniyordu ("KAYMAKÇALAN / kaynak: ..." okunmuyordu): o uç
+        # kartın alt kenarındaki ikinci raptiyeye bağlanır
+        self.ip_uclari = {}
+        for a_, b_, _ in self.zt["ipler"]:
+            self.ip_uclari[(a_, b_)] = (self._ip_ucu(a_, b_), self._ip_ucu(b_, a_))
+
+    def _ip_ucu(self, a: str, b: str) -> tuple[tuple[float, float], bool]:
+        """a kartında, b'ye giden ipin bağlandığı nokta ve alt raptiye mi."""
+        ka, kb = self.kartlar[a], self.kartlar[b]
+        x0, y0, x1, y1 = ka["govde"]
+        px, py = ka["pin"]
+        hx, hy = (kb["govde"][0] + kb["govde"][2]) / 2, (kb["govde"][1] + kb["govde"][3]) / 2
+        if hy > y1 and hy - py > 1e-6:
+            # üst raptiyeden b'nin ortasına giden doğru kartı alt kenarından mı terk ediyor (gövdeyi boydan geçer)
+            xa = px + (hx - px) * (y1 - py) / (hy - py)
+            if x0 <= xa <= x1:
+                return ka["alt_pin"], True
+        return ka["pin"], False
 
     def _kart(self, k: dict) -> Image.Image:
         S = self.S
@@ -576,6 +599,33 @@ class PanoCizici(Cizici):
             d.line([(x + 3 * S, y + 4 * S) for x, y in pts], fill=(60, 30, 18), width=max(1, int(4 * S)))
             d.line(pts, fill=(196, 26, 30), width=max(1, int(4.5 * S)))
 
+    def _ip_ciz(self, cv: Image.Image, a: str, b: str, pa, pb, q: float, t: float) -> None:
+        """10. tur (animasyon hakemi S6): ip, uçları olmayan kartların ALTINDAN geçer (üstten geçen ip "AYGÜN" kartının
+        görselini ve başka kartların yazısını çiziyordu). İp ayrı katmanda çizilir; araya giren asılı kartların
+        gövdesi (eğimiyle) katmandan silinir."""
+        S = self.S
+        xs, ys = [pa[0], pb[0]], [pa[1], pb[1] + 0.07 * math.hypot(pb[0] - pa[0], pb[1] - pa[1])]
+        m = int(12 * S)
+        X0, Y0 = int(min(xs)) - m, int(min(ys)) - m
+        X1, Y1 = int(max(xs)) + m + 1, int(max(ys)) + m + 1
+        lay = Image.new("RGBA", (max(1, X1 - X0), max(1, Y1 - Y0)), (0, 0, 0, 0))
+        self._ip(ImageDraw.Draw(lay), (pa[0] - X0, pa[1] - Y0), (pb[0] - X0, pb[1] - Y0), q)
+        aradaki = [k for k in self.sira if k["id"] not in (a, b) and t >= k["t"] + 0.4
+                   and k["govde"][2] > X0 and k["govde"][0] < X1 and k["govde"][3] > Y0 and k["govde"][1] < Y1]
+        if aradaki:
+            maske = Image.new("L", lay.size, 0)
+            dm = ImageDraw.Draw(maske)
+            for k in aradaki:
+                gx0, gy0, gx1, gy1 = k["govde"]
+                cx, cy = (gx0 + gx1) / 2, (gy0 + gy1) / 2
+                th = math.radians(k["egim"])
+                c, s_ = math.cos(th), math.sin(th)
+                w2, h2 = (gx1 - gx0) / 2, (gy1 - gy0) / 2
+                dm.polygon([(c * dx + s_ * dy + cx - X0, -s_ * dx + c * dy + cy - Y0)
+                            for dx, dy in ((-w2, -h2), (w2, -h2), (w2, h2), (-w2, h2))], fill=255)
+            lay.putalpha(ImageChops.subtract(lay.getchannel("A"), maske))
+        cv.paste(lay, (X0, Y0), lay)
+
     def ciz(self, t):
         S, W, H = self.S, self.W, self.H
         cv = self.taban.copy()
@@ -594,16 +644,25 @@ class PanoCizici(Cizici):
                 C.bindir(cv, gs, x0, y0, h * min(1.0, u * 2.5))
             spr, x0, y0 = C.afin(k["spr"], k["cx"], k["cy"], s, s, aci)
             C.bindir(cv, spr, x0, y0, min(1.0, u * 2.5))
-        d = ImageDraw.Draw(cv)
+        alt_pinler = []
         for a, b, t0 in self.zt["ipler"]:
             q = E.in_out_cubic((t - t0) / 0.55)
             if q > 0:
-                self._ip(d, self.kartlar[a]["pin"], self.kartlar[b]["pin"], q)
+                (pa, alt_a), (pb, alt_b) = self.ip_uclari[(a, b)]
+                self._ip_ciz(cv, a, b, pa, pb, q, t)
+                alt_pinler += [(pa, t0)] if alt_a else []
+                alt_pinler += [(pb, t0 + 0.4)] if alt_b else []
         for k in self.sira:   # raptiyeler ipin üstünde
             u = (t - k["t"] - 0.18) / 0.22
             if u > 0:
                 s = 0.4 + 0.6 * E.out_back(u, 2.0)
                 px, py = k["pin"]
+                spr, x0, y0 = C.afin(self.raptiye, px, py, s, s)
+                C.bindir(cv, spr, x0, y0)
+        for (px, py), t0 in alt_pinler:   # ipin alt kenara bağlandığı ikinci raptiye, ip oraya varınca batar
+            u = (t - t0) / 0.22
+            if u > 0:
+                s = 0.4 + 0.6 * E.out_back(u, 2.0)
                 spr, x0, y0 = C.afin(self.raptiye, px, py, s, s)
                 C.bindir(cv, spr, x0, y0)
         for dm, k, ky in self.damgalar:

@@ -46,6 +46,16 @@ ONARIMLAR'da değiller (`ESKI`). Etkin kalanlar:
 - fda_r6: fda_r5 + ilk "FDA," kesilir (dil hakemi S3: dört çözümlemede de "FTA"); yeni istek yok.
 - tanik_r6: doruk satırı "Aynı tanıklıklara göre Kaymakçalan," hız 0,85 çekiminde virgüldeki 0,70 sn'lik durak
   0,45 sn'ye.
+
+10. tur (13.10.2026): yalnız metni değişen 3 satır yeniden seslendirildi (satır başına iki çekim). Onarımlar:
+- sert_r10: "Firmanın yanıtı sert. <break> Lenz'i…" (dil S3: "sertlentsi" diye akıyordu); deneme 0'ın durakları
+  (1,12 / 0,60 / 0,54 sn) 0,35 sn'ye (hakemin istediği ~300 ms).
+- sheskin_r10: "Sheskin, elinde kalan…" (dil N2); deneme 1'in 0,74 sn'lik "talidomit." öncesi durağı 0,5 sn'ye.
+
+11. tur (13.10.2026, dil hakemi S1; yeni istek YOK): Ankara bölümü en hassas bölüm ama en hızlı okunuyordu (ort. 6,9
+hece/sn, öteki bölümler 6,4-6,6). Seçili çekimler rubberband ile (perde/formant korunur) yavaşlatılır:
+- hiz_r11_*: yedi Ankara satırı tempo 0,92 (7,6-8,3 hece/sn idi); kapanışın vedası 0,9; kancanın "Ama Türkiye'de bu
+  ilaca ruhsat verilmedi." 0,92 (dil N3, videonun ana sorusu).
 """
 
 from __future__ import annotations
@@ -224,8 +234,12 @@ def sessizlik_kisalt(x, sr, en_fazla=0.5, esik=-42.0):
     return y, [(round(a, 3), round(b, 3)) for a, b in kes]
 
 
-def yavaslat(x, sr, tempo):
-    """rubberband (ffmpeg) ile yavaşlatma: perde ve formant korunur."""
+def yavaslat(x, sr, tempo, pad: float = 0.0):
+    """rubberband (ffmpeg) ile yavaşlatma: perde ve formant korunur. 11. tur: `pad` sn sessizlik önden eklenip
+    sonra atılır: başlangıç geçişi bozulmasın (tempo 0,92'de "Ölümünün" Whisper'da "Bölümünün" duyuluyordu)."""
+    if pad > 0:
+        y = yavaslat(np.concatenate([np.zeros(int(pad * sr), x.dtype), x]), sr, tempo)
+        return y[int(round(pad / tempo * sr)):]
     with tempfile.TemporaryDirectory() as d:
         g, c = Path(d) / "g.wav", Path(d) / "c.wav"
         tts.wav_yaz(g, x, sr)
@@ -333,10 +347,10 @@ def orta_kes(eski, a, b):
     return fn
 
 
-def yavas(tempo):
+def yavas(tempo, pad: float = 0.0):
     def fn(st):
         x, sr = tts.wav_oku(secili(st))
-        return yavaslat(x, sr, tempo), sr, {"tempo": tempo}
+        return yavaslat(x, sr, tempo, pad), sr, {"tempo": tempo, **({"pad": pad} if pad else {})}
     return fn
 
 
@@ -372,6 +386,19 @@ ONARIMLAR = {
     "fda_r6": ("ilaç kurumu (FDA)", onar_fda_r6),   # 6. tur: 5. turun fda_r5'i + "FDA," kesildi
     "grunenthal_r5": ("Grünenthal çalışanının kızı", durak(2, 0.45)),
     "tanik_r6": ("Aynı tanıklıklara göre", durak(0, 0.45)),   # 6. tur: hız 0,85 çekimi, 'Kaymakçalan,' sonrası 0,70 sn
+    # 10. tur (dil S3, N2): yeni çekimlerin <break> durakları 1,12 / 0,74 sn çıktı: öteki satırların düzeyine
+    "sert_r10": ("Firmanın yanıtı sert", durak(0, 0.35)),       # deneme 0: "Lentsi" net (deneme 1 "Lensi"); dil S3: ~300 ms
+    "sheskin_r10": ("Sheskin, elinde kalan", durak(1, 0.5)),    # deneme 1: Whisper 4/4 "Şeskin"
+    # 11. tur (dil S1, N3): yavaşlatma (seçili çekimden; yeni istek yok)
+    "hiz_r11_fark": ("İşte Amerika'yla aradaki büyük fark", yavas(0.92, 0.3)),
+    "hiz_r11_kapi": ("ulaşan o ‘deneme’ kapısı", yavas(0.92, 0.3)),
+    "hiz_r11_kaynak": ("Haberin kaynağı ise sorulduğunda", yavas(0.92, 0.3)),
+    "hiz_r11_sayili": ("faciayı yaşamayan sayılı ülkelerden", yavas(0.92, 0.3)),
+    "hiz_r11_anma": ("Ölümünün onuncu yılındaki anma", yavas(0.92, 0.3)),
+    "hiz_r11_zehir": ("Ama zehirlilik deneylerinin", yavas(0.92, 0.3)),
+    "hiz_r11_bakanlik": ("Bakanlık da bu görüşe uyuyor", yavas(0.92, 0.3)),
+    "hiz_r11_veda": ("Bir sonraki unutulmuş hikâyede", yavas(0.9, 0.3)),
+    "hiz_r11_kanca": ("Ama Türkiye'de bu ilaca ruhsat verilmedi", yavas(0.92, 0.3)),
 }
 
 # ad -> (satırın 4. turdaki metninden bir parça, işlev). Kesim noktaları zarf çukurlarında; her biri Whisper ile

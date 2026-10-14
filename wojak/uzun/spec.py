@@ -64,7 +64,7 @@ SAHNE_PARAMLARI: dict[str, set[str]] = {
     "manset": {"gorsel", "kutular", "zoom", "arka", "renk", "boy", "etiket"},
     "harita": {"bolge", "ulkeler", "vurgu", "baslik", "aralik", "cozunurluk", "renk", "etiketler", "zoom",
                "aciklama"},
-    "sayac": {"deger", "yil", "etiket", "ust", "onek", "sonek", "sure_say", "renk", "olcek"} | ZEMIN_PARAM,
+    "sayac": {"deger", "yil", "etiket", "ust", "onek", "sonek", "sure_say", "renk", "olcek", "tut"} | ZEMIN_PARAM,
     "bolum_karti": {"numara", "baslik", "ust", "bindirme", "marka", "karart"},
     "metin": {"metin", "ceviri", "ust", "alt", "ceviri_t", "yazim", "renk", "tirnak"} | ZEMIN_PARAM,
     "zaman_cizelgesi": {"noktalar", "baslik"} | ZEMIN_PARAM,
@@ -89,7 +89,7 @@ ORTAK = {"tip", "satirlar", "olaylar", "sfx", "gecis", "gecis_kare", "sure", "mi
          "isim_etiketi", "kelime", "not", "otomatik_sfx", "kose", "muzik_db", "filigran", "muzik_mod", "konuk",
          "sfx_db"}
 # sfx_db: bu sahnenin OTOMATİK efektlerine ek kazanç (dB, -24..+6; ör. sessiz altlıkta fosforlu kalem sesi -6)
-# konuk: wojak dışındaki sahnelere (harita, sayaç, pano, belge...) köşeden/kenardan giren tepki karakteri (1-2);
+# konuk: wojak dışındaki sahnelere (harita, sayaç, pano, belge...) köşeden/kenardan giren tepki karakteri (1-3; 10. tur: 3);
 # `yuz` / `giris` / `cikis` olayları ve `isim {karakter}` konuk kimliğiyle her sahne tipinde kullanılabilir
 KONUK_OLAYLARI = {"yuz", "giris", "cikis"}
 ZEMINLER = ("koyu", "kagit", "foto")
@@ -107,13 +107,15 @@ OLAY_TIPLERI: dict[str, set[str]] = {
     #                                           büyüyerek oturur (doz şişesi tek karede 1,3 kat büyüyordu)     # yüz varyantına geç (kısa sıkışma efektiyle; 8. tur: sik: false =
     #                                           sıkışmasız: kapı kanadının ara kareleri gibi art arda geçişler)
     "balon": {"karakter", "metin", "sure", "agiz"},   # konuşma balonu (yalnız görsel); 9. tur: agiz = açık ağızlı
-    #                                           yüz görseli: balon açıkken hecelerde ağız açılıp kapanır
+    #                                           yüz görseli: balon açıkken hecelerde ağız açılıp kapanır; 11. tur:
+    #                                           [yarık, açık] listesi: kapalı -> yarık -> açık, en az 4 kare tutulur
     "kelime": {"metin", "sure", "konum"},     # ekranda vurgu kelimesi (konum: ust | orta | alt)
     "isim": {"ad", "unvan", "sure", "konum", "karakter"},  # isim etiketi (lower third); konum: sol | sag
     "giris": {"karakter"},                    # karakter bu anda kayarak girer
     "cikis": {"karakter"},                    # karakter bu anda çıkar
     "vurgula": {"kutu", "stil", "renk"},      # manset: bu kutu vurgulanır (1'den); stil: kalem | daire | alt_cizgi
-    "basla": set(),                           # sayac/harita/zaman_cizelgesi: ana animasyon başlar
+    "basla": {"sure"},                        # sayac/harita/zaman_cizelgesi: ana animasyon başlar (sayac: sure =
+    #                                           ilk sayımın süresi, `sure_say` yerine; 10. tur)
     "nokta": {"indeks"},                      # zaman_cizelgesi: bu nokta belirir (1'den başlar)
     "ulke": {"kod"},                          # harita: bu ülke yanar (ISO3)
     "etiket": set(),                          # foto: yer-tarih etiketi yazılmaya başlar
@@ -436,7 +438,9 @@ def _karakterler(lst, yer: str, base: Path, ne: str = "karakterler") -> list[dic
         return out
     if isinstance(lst, dict) and ne == "konuk":
         lst = [lst]
-    en_cok = 2 if ne == "konuk" else 4   # 4. tur: 3 nesne + bir karakter (ör. molekül, cereblon, SALL4 + anlatıcı)
+    # 4. tur: 3 nesne + bir karakter (ör. molekül, cereblon, SALL4 + anlatıcı); 10. tur: konuk en çok 3 (iki karakter
+    # ya da karakter + kapı + elindeki numune kutusu: talidomit-turkiye B5.4)
+    en_cok = 3 if ne == "konuk" else 4
     if not isinstance(lst, list) or not 1 <= len(lst) <= en_cok:
         _hata(yer, f"{ne} 1-{en_cok} öğelik liste olmalı")
     for i, c in enumerate(lst):
@@ -574,10 +578,23 @@ def _kapanis(p: dict, olaylar: list, yer: str, base: Path) -> None:
             s_ = {"metin": s_}
         if not isinstance(s_, dict) or not s_.get("metin"):
             _hata(yer, f"{i + 1}. seçenekte 'metin' yok")
-        _bilinmeyen(s_, {"metin", "alt", "gorsel", "harf", "bakis"}, f"{yer}, seçenek {i + 1}", "seçenek")
+        _bilinmeyen(s_, {"metin", "alt", "gorsel", "harf", "bakis", "vurgu_gorsel", "damga", "hareket"},
+                    f"{yer}, seçenek {i + 1}", "seçenek")
         s_ = dict(s_)
-        if s_.get("gorsel"):
-            s_["gorsel"] = yol_coz(s_["gorsel"], base)
+        for k_ in ("gorsel", "vurgu_gorsel"):
+            if s_.get(k_):
+                s_[k_] = yol_coz(s_[k_], base)
+        # 11. tur (animasyon S9): vurguda kartın içindeki çizim de oynar: vurgu_gorsel (yüz değişir), damga (küçük
+        # lastik damga iner: metin ya da {metin, renk}), hareket: yuvarlan (zar gibi döner ve seker) | sicra
+        if s_.get("damga") is not None:
+            d_ = s_["damga"]
+            d_ = {"metin": d_} if isinstance(d_, str) else dict(d_)
+            _bilinmeyen(d_, {"metin", "renk"}, f"{yer}, seçenek {i + 1}", "seçenek damgası")
+            if not d_.get("metin"):
+                _hata(yer, f"{i + 1}. seçeneğin damgasında 'metin' yok")
+            s_["damga"] = d_
+        if s_.get("hareket") not in (None, "yuvarlan", "sicra"):
+            _hata(yer, f"{i + 1}. seçenek hareket: yuvarlan | sicra")
         out.append(s_)
     p["secenekler"] = out
     dug = p.get("dugmeler", list(KAPANIS_DUGMELERI))
@@ -778,7 +795,14 @@ def _sahne(d: dict, video_ctx: dict, yer: str, base: Path) -> Sahne:
         if o.tip == "yuz":
             o.p["gorsel"] = yol_coz(o.p["gorsel"], base)
         if o.tip == "balon" and o.p.get("agiz"):
-            o.p["agiz"] = yol_coz(o.p["agiz"], base)
+            # 11. tur: agiz tek görsel ya da [yarık, açık] (kapalı -> yarık -> açık)
+            ag = o.p["agiz"]
+            if isinstance(ag, (list, tuple)):
+                if not 1 <= len(ag) <= 2:
+                    _hata(yer, f"balon agiz: tek görsel ya da [yarık, açık] olmalı: {ag!r}")
+                o.p["agiz"] = [yol_coz(a, base) for a in ag]
+            else:
+                o.p["agiz"] = yol_coz(ag, base)
     return sahne
 
 
@@ -907,8 +931,12 @@ def sahne_dosyalari(s: Sahne) -> list:
     paths += [k.get("gorsel") for k in s.p.get("kartlar", []) if isinstance(k, dict)]
     if isinstance(s.p.get("karakter"), dict):
         paths += [s.p["karakter"].get("gorsel"), s.p["karakter"].get("yuz")]
-    paths += [x.get("gorsel") for x in s.p.get("secenekler") or [] if isinstance(x, dict)]
+    paths += [x.get(k) for x in s.p.get("secenekler") or [] if isinstance(x, dict) for k in ("gorsel", "vurgu_gorsel")]
     paths += [o.p["gorsel"] for o in s.olaylar if o.tip == "yuz"]
+    for o in s.olaylar:   # 11. tur: balon ağız görselleri de imzada (yeniden çizilince parça yenilensin)
+        if o.tip == "balon" and o.p.get("agiz"):
+            ag = o.p["agiz"]
+            paths += list(ag) if isinstance(ag, (list, tuple)) else [ag]
     return [x for x in paths if x]
 
 

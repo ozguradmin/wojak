@@ -758,23 +758,6 @@ def test_paket_dinle_satir_zamani():
     assert d[1].startswith(zaman.zaman_str(bas[2]) + " «Cüzzam tedavisinde.»")
 
 
-if __name__ == "__main__":
-    import inspect
-    import time
-    testler = [(n, f) for n, f in sorted(globals().items()) if n.startswith("test_") and inspect.isfunction(f)]
-    hata = 0
-    for n, f in testler:
-        t0 = time.time()
-        try:
-            f()
-            print(f"  ok    {n} ({time.time() - t0:.1f} sn)")
-        except Exception as e:  # noqa: BLE001
-            hata += 1
-            print(f"  HATA  {n}: {type(e).__name__}: {e}")
-    print(f"{len(testler) - hata}/{len(testler)} geçti")
-    sys.exit(1 if hata else 0)
-
-
 # ---------------------------------------------------------------- 4. tur (talidomit-turkiye 3. hakem turu)
 
 def test_konuk_karakter_her_sahnede():
@@ -1332,7 +1315,16 @@ def test_dokuz_tur_motor_ekleri():
     assert ks.poz(2.02)["sx"] < 0.95 and abs(ks.poz(2.6)["sx"] - 1.0) < 0.02
     kz = cw.karakterler[0]
     acik = {kz.poz(2.5 + i / 30)["vi"] for i in range(30)}
-    assert kz.agiz and kz.agiz[0][2] in acik and 0 in acik             # hecelerde açık / kapalı ağız
+    assert kz.agiz and kz.agiz[0][2][0] in acik and 0 in acik          # hecelerde açık / kapalı ağız
+    # 11. tur: [yarık, açık] ağız: kapalıdan açığa atlamaz, her durum en az 4 kare
+    sah["olaylar"][-1]["agiz"] = [AN.replace("sakin", "dusunceli"), ACIK]
+    v6b = _video([{"baslik": "a", "sahneler": [sah]}])
+    kz2 = cizici(zaman.hesapla(v6b, tahmin=True).sahneler[0], Baglam(v6b, 480, 270)).karakterler[0]
+    yar, ac = kz2.agiz[0][2]
+    dz = [{0: 0, yar: 1, ac: 2}[kz2.poz(2.5 + i / 30)["vi"]] for i in range(48)]
+    assert 2 in dz and all(abs(x - y) <= 1 for x, y in zip(dz, dz[1:]))
+    kosu = [len(list(g)) for _, g in __import__("itertools").groupby(dz)]
+    assert min(kosu[:-1]) >= 4
     # daktilo çapraz geçiş bitince başlar
     dk = {"tip": "metin", "metin": "ANNE KARNINDA.", "yazim": "daktilo", "gecis": "gecis", "sure": 2.0,
           "olaylar": [{"tip": "basla", "t": 0.0}]}
@@ -1350,3 +1342,388 @@ def test_dokuz_tur_motor_ekleri():
     once = np.asarray(k8.kare(1.5), np.float32)
     hemen = np.asarray(k8.kare(1.99), np.float32)
     assert np.abs(once - hemen)[int(270 * 0.62):].mean() > 0.3        # etiket bandı değişti (söndü)
+
+
+# ---------------------------------------------------------------- 10. tur (hakem 9: sayaç, yerleşim, altyazı)
+
+def _okuma(parcalar) -> int:
+    """Tekerleklerin okunan değeri: her tekerlek en yakın rakamı gösterir (boş = 0)."""
+    tek = [q for q in parcalar if not isinstance(q[0], str)]
+    n = 0
+    for konum, _, bos in tek:
+        n = n * 10 + (0 if bos and konum < 0.5 else int(round(konum)) % 10)
+    return n
+
+
+def _sayac_cizici(say: dict, W: int = 480):
+    from wojak.uzun import render
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [say]}])
+    z = zaman.hesapla(v, tahmin=True)
+    return render.KareUretici(v, z, 0, W, W * 9 // 16).cz, z
+
+
+def test_sayac_tekerlek_hic_geri_okunmaz():
+    """Animasyon hakemi S1: taşıma geriye okunmamalı ("38 -> 30 -> 40", "292,9 M -> 202,0 M", "≈6.318 -> ≈0.310").
+    Her karede tekerleklerin okunuşu tekdüze; öndeki sıfır hiç görünmez; boş tekerlek ancak boştan 1'e döner."""
+    durumlar = [
+        {"tip": "sayac", "deger": 61, "sonek": "", "sure_say": 4.2, "sure": 5.2},
+        {"tip": "sayac", "deger": 20000, "sure": 4},
+        {"tip": "sayac", "deger": 300000000, "olcek": "log", "sure_say": 3.0, "sure": 4},
+        {"tip": "sayac", "deger": [60, 0], "sure_say": 3.0, "sure": 4},
+        {"tip": "sayac", "deger": 1267, "sonek": "", "sure": 5,
+         "olaylar": [{"tip": "deger", "deger": 20000, "onek": "≈", "t": 2.2, "sure": 1.2}]},
+    ]
+    for say in durumlar:
+        cz, z = _sayac_cizici(say)
+        dt = 1 / 30
+        onceki = None
+        for k in range(z.sahneler[0].n_kare):
+            t = k * dt
+            _, b = cz._bolum(t)
+            v, vo = cz._deger(t, b), cz._deger(t - dt, b)
+            p = cz._yuvarlanan(v, abs(v - vo), b, vo)
+            n = _okuma(p)
+            artan = b["b"] >= b["a"]
+            if onceki is not None and onceki[0] is b:
+                assert (n >= onceki[1]) if artan else (n <= onceki[1]), (say, t, onceki[1], n)
+            onceki = (b, n)
+            tek = [q for q in p if not isinstance(q[0], str)]
+            for konum, iz, bos in tek:
+                if bos:
+                    assert konum < 1.0 and (konum < 1e-9 or iz < 0.5)   # boş tekerlek yalnız boştan 1'e döner
+            dolu = [q for q in tek if not q[2]]
+            if dolu and n > 0 and len(dolu) > 1:
+                assert int(round(dolu[0][0])) % 10 != 0, (say, t, p)   # öndeki sıfır yok
+        # son değer yerleşir
+        son = cz.bolumler[-1]
+        assert _okuma(cz._yuvarlanan(son["b"], 0.0, son)) == int(son["b"])
+
+
+def test_sayac_tekerlek_keskin_rakam_ve_hizli_sayi():
+    """Hızlı sayımda her kare round(v) (sayısal), iz keskin rakamın ALTINDA (rakam bulanıp "0" okunmaz); duran
+    tekerlekte iz yok (eskiden sayının hızıyla duran 9 da bulanıyordu)."""
+    cz, _ = _sayac_cizici({"tip": "sayac", "deger": 20000, "sure": 4}, 960)
+    b = cz.bolumler[0]
+    p = cz._yuvarlanan(9775.84, 1078.4, b, 8697.4)
+    assert _okuma(p) == 9776
+    tek = [q for q in p if not isinstance(q[0], str)]
+    assert tek[0][2] and tek[1][1] > 0 and tek[-1][1] > 0          # binler döner (iz var), on binler boş
+    # yavaş: duran tekerlekte iz yok, dönen birlerde var
+    p = cz._yuvarlanan(1262.4, 0.3, b, 1262.1)
+    tek = [q for q in p if not isinstance(q[0], str)]
+    assert all(q[1] == 0.0 for q in tek[:-1]) and tek[-1][1] > 0
+    # izli tekerlekte rakamın kendi pikselleri keskin olanla aynı
+    renk = (240, 240, 240)
+    keskin = np.asarray(cz._teker(renk, 8.0, 0.0), np.float32)
+    izli = np.asarray(cz._teker(renk, 8.0, 0.75), np.float32)
+    opak = keskin[..., 3] >= 250
+    assert opak.sum() > 50 and np.abs(izli[opak] - keskin[opak]).max() <= 2
+    assert izli[..., 3][~opak].mean() > keskin[..., 3][~opak].mean()   # iz rakamın çevresinde
+    # önek ilk görünen rakamın solunda kalır (9.999 -> 10.000 geçişinde "≈" yeni "1"in üstüne binmez)
+    cz2, _ = _sayac_cizici({"tip": "sayac", "deger": 1267, "sonek": "", "sure": 5, "olaylar": [
+        {"tip": "deger", "deger": 20000, "onek": "≈", "t": 2.2, "sure": 1.2}]}, 960)
+    b2 = cz2.bolumler[1]
+    for k in range(int(b2["t0"] * 30), int(b2["t1"] * 30) + 2):
+        lay = cz2._say_katmani(k / 30, b2)
+        assert lay.info["onek_sag"] <= lay.info["rakam_sol"] + 1.0, (k, lay.info)
+
+
+def test_sayac_yerlesip_okunur_ve_basla_sure():
+    """Animasyon hakemi M2: 1.267 sayımı bitmeden 20.000 geliyordu. Değer yeni değişimden en az `tut` (0,6) önce
+    yerleşir: sayım kısalır (en az 0,6 sn), yetmezse sonraki değer ertelenir; `basla {sure}` sayım süresi; son
+    sayım sahne bitmeden; kontrol bildirir."""
+    from wojak.uzun.cli import sayac_denetimi
+    from wojak.uzun.sahneler import SAYAC_EN_AZ, SAYAC_TUT, sayac_bolumleri
+    say = {"tip": "sayac", "deger": 1267, "sonek": "", "sure": 7, "olaylar": [
+        {"tip": "basla", "t": 0.3}, {"tip": "deger", "deger": 20000, "t": 2.21, "sure": 1.2}]}
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [say]}])
+    z = zaman.hesapla(v, tahmin=True)
+    b = sayac_bolumleri(z.sahneler[0])
+    assert b[0]["t1"] <= b[1]["t0"] - SAYAC_TUT + 1e-6 and b[0]["kisaldi"] > 0.8
+    assert any("kısaltıldı" in x for x in sayac_denetimi(z))
+    # basla sure
+    say2 = dict(say, olaylar=[{"tip": "basla", "t": 0.3, "sure": 1.0},
+                              {"tip": "deger", "deger": 20000, "t": 2.21, "sure": 1.2}])
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [say2]}])
+    b = sayac_bolumleri(zaman.hesapla(v, tahmin=True).sahneler[0])
+    assert abs(b[0]["t1"] - 1.3) < 1e-9 and not b[0].get("kisaldi")
+    # çok yakın değişim: sayım en az 0,6 sn, sonraki değer ertelenir
+    say3 = dict(say, olaylar=[{"tip": "basla", "t": 0.3}, {"tip": "deger", "deger": 17, "t": 0.6, "sure": 0}])
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [say3]}])
+    z = zaman.hesapla(v, tahmin=True)
+    b = sayac_bolumleri(z.sahneler[0])
+    assert abs(b[0]["t1"] - (0.3 + SAYAC_EN_AZ)) < 1e-9 and b[1]["ertelendi"] > 0
+    assert b[1]["t0"] - b[0]["t1"] >= 0.3 - 1e-9
+    assert any("ertelendi" in x for x in sayac_denetimi(z))
+    # son sayım sahne sonundan tut kadar önce biter
+    v = _video([{"baslik": "a", "kart": False, "sahneler": [{"tip": "sayac", "deger": 50, "sure": 2.0,
+                                                               "sure_say": 3.0}]}])
+    b = sayac_bolumleri(zaman.hesapla(v, tahmin=True).sahneler[0])
+    assert b[0]["t1"] <= 2.0 - SAYAC_TUT + 1e-6
+    _video([{"baslik": "a", "sahneler": [{"tip": "sayac", "deger": 5, "tut": 0.8}]}])   # `tut` geçerli anahtar
+
+
+def test_sayac_anlik_deger_yuvarlanarak_gelir():
+    """Animasyon hakemi S2: "≈20.000" -> "en az 17" tek karede değişiyordu. Şimdi 0,26 sn'de tekerlek gibi
+    yuvarlanır: değişim birkaç kareye yayılır; vuruş efekti yeni sayı oturduğunda."""
+    from wojak.uzun import ses
+    from wojak.uzun.sahneler import SAYAC_GECIS
+    say = {"tip": "sayac", "deger": 20000, "onek": "≈", "sonek": "", "sure": 4, "sure_say": 1.0, "olaylar": [
+        {"tip": "deger", "deger": 17, "onek": "en az ", "renk": "kirmizi", "t": 2.5, "sure": 0}]}
+    cz, z = _sayac_cizici(say)
+    H = 270
+    t0 = cz.bolumler[1]["t0"]
+    kareler = [np.asarray(cz.kare(t0 + (k - 2) / 30), np.float32)[int(H * 0.25):int(H * 0.65)]
+               for k in range(int(SAYAC_GECIS * 30) + 6)]
+    farklar = [np.abs(b_ - a_).mean() for a_, b_ in zip(kareler, kareler[1:])]
+    assert sum(1 for f in farklar if f > 0.5) >= 3, farklar          # birkaç karede ilerler
+    assert max(farklar) < 0.7 * sum(farklar), farklar                 # tek karede değil
+    vurus = [t for t, a, _ in ses.otomatik_efektler(z) if a == "hit" and t > t0]
+    assert vurus and abs(vurus[0] - cz.bolumler[1]["varis"]) < 1e-6 and vurus[0] > t0
+
+
+def test_yuz_kutusu_ve_geometri():
+    from PIL import Image
+    from wojak.uzun import yerlesim as Y
+    im = Image.open(KOK / "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png").convert("RGBA")
+    ab, yb = Y.alfa_kutusu(im), Y.yuz_kutusu(im)
+    h = ab[3] - ab[1]
+    assert yb[1] == ab[1] and 0.4 * h <= yb[3] - yb[1] <= 0.9 * h and yb[0] >= ab[0] and yb[2] <= ab[2]
+    kare = Y.dikdortgen(0, 0, 10, 10)
+    assert Y.derinlik(kare, Y.dikdortgen(5, 5, 20, 20)) == 5
+    assert Y.derinlik(kare, Y.dikdortgen(13, 0, 20, 10)) < 0
+    don = Y.donuk_dikdortgen(0, 0, 10, 10, 45)
+    assert abs(max(x for x, _ in don) - 5 * math.sqrt(2)) < 1e-6
+    assert Y.ikiye_bol("farmakolog (1923–1984) · kaynak: meslektaş tanıklıkları") == \
+        "farmakolog (1923–1984)\nkaynak: meslektaş tanıklıkları"
+    assert Y.ikiye_bol("Ord. Prof. Süreyya Tahsin Aygün").count("\n") == 1 and Y.ikiye_bol("Tek") is None
+
+
+def test_isim_karakterlerden_40px_uzak():
+    """Animasyon hakemi M1: isim etiketi çeneye/ağza biniyordu. Etiket her karakterin alfa kutusundan en az 40 px
+    uzakta: uzun unvan kırılır/küçülür ya da boş tarafa geçer; `karakter` verilince karakterin yanına."""
+    from wojak.uzun import yerlesim as Y
+    from wojak.uzun.sahneler import Baglam, cizici
+    AN = "uzun/talidomit-turkiye/chars/kaymakcalan_v2_sakin.png"
+    for kon, x, ek in (("sol", 0.72, {}), ("sag", 0.5, {"karakter": "s"}), ("sol", 0.25, {})):
+        sah = {"tip": "wojak", "arka": "uzun/talidomit-turkiye/img/doku_kagit.jpg", "sure": 6.0,
+               "kamera": {"zoom": [1.0, 1.0], "it": 0},
+               "karakterler": [{"id": "s", "gorsel": AN, "x": x, "boy": 0.7, "giris": False}],
+               "olaylar": [dict({"tip": "isim", "ad": "Şükrü Kaymakçalan", "t": 0.5, "sure": 4.0, "konum": kon,
+                                 "unvan": "farmakolog (1923–1984) · kaynak: meslektaş tanıklıkları"}, **ek)]}
+        v = _video([{"baslik": "a", "sahneler": [sah]}])
+        z = zaman.hesapla(v, tahmin=True)
+        c = Baglam(v, 960, 540, 30)
+        cz = cizici(z.sahneler[0], c)
+        uk = cz.katman
+        it = uk.isimler[0]
+        assert it["ihlal"] == 0.0, (kon, x, it)
+        for t in (1.0, 2.5, 4.4):
+            (ad, poli), = uk.kutular(t)
+            kb = cz.karakterler[0].ekran_kutulari(t, cz.kam(t))[0]
+            px0, py0, px1, py1 = Y.kutu_icin(poli)
+            bosluk = max(kb[0] - px1, px0 - kb[2], kb[1] - py1)
+            assert bosluk >= Y.BOSLUK * c.S - 1.5, (kon, x, t, bosluk)
+    # hiçbir yere sığmıyorsa en az çakışan yer (önce yüz, sonra gövde) seçilir ve kontrol uyarır
+    sah = {"tip": "wojak", "arka": "uzun/talidomit-turkiye/img/doku_kagit.jpg", "sure": 6.0,
+           "karakterler": [{"id": "a", "gorsel": AN, "x": 0.25, "boy": 0.75, "giris": False},
+                           {"id": "b", "gorsel": AN, "x": 0.75, "boy": 0.75, "giris": False}],
+           "olaylar": [{"tip": "isim", "ad": "Çok Uzun Bir Ad Soyad Unvanı", "unvan": "uzun bir açıklama satırı",
+                        "t": 0.5, "sure": 4.0}]}
+    v = _video([{"baslik": "a", "sahneler": [sah]}])
+    z = zaman.hesapla(v, tahmin=True)
+    uk = cizici(z.sahneler[0], Baglam(v, 960, 540, 30)).katman
+    assert uk.isimler[0]["ihlal"] == 1.0
+    assert any("40 px" in x for x in Y.denetle(v, z))
+
+
+def test_kontrol_ust_katman_cakismalari():
+    """kontrol: üst katman yüze ya da başka üst katmana binerse (damgalar köşeden değerse dahil) ve pano kartları
+    üst üste binerse uyarır; ayrık olanlar temiz."""
+    from wojak.uzun import yerlesim as Y
+    AN = "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png"
+    KG = "uzun/talidomit-turkiye/img/doku_kagit.jpg"
+    def uyarilar(olaylar, kar=True):
+        sah = {"tip": "wojak", "arka": KG, "sure": 4.0, "kamera": {"zoom": [1.0, 1.0], "it": 0},
+               "karakterler": [{"id": "z", "gorsel": AN, "x": 0.75, "boy": 0.8, "giris": False}] if kar else [],
+               "olaylar": olaylar}
+        v = _video([{"baslik": "a", "sahneler": [sah]}])
+        return Y.denetle(v, zaman.hesapla(v, tahmin=True))
+    d1 = {"tip": "damga", "metin": "BİR", "x": 0.3, "y": 0.3, "aci": 0, "t": 0.3}
+    assert not uyarilar([d1])
+    yakin = {"tip": "damga", "metin": "İKİ", "x": 0.37, "y": 0.3, "aci": 0, "t": 0.5}
+    assert any("damga 'BİR' ile damga 'İKİ'" in x for x in uyarilar([d1, yakin]))
+    yuz = {"tip": "kelime", "metin": "YÜZÜN ÜSTÜNDE", "konum": "orta", "t": 0.5}
+    assert any("yüzüne biniyor" in x for x in uyarilar([yuz]))
+    pano = {"tip": "pano", "sure": 3.0, "kartlar": [{"id": "a", "metin": "A", "x": 0.4, "y": 0.5},
+                                                    {"id": "b", "metin": "B", "x": 0.45, "y": 0.52},
+                                                    {"id": "c", "metin": "C", "x": 0.85, "y": 0.2}]}
+    v = _video([{"baslik": "a", "sahneler": [pano]}])
+    u = Y.denetle(v, zaman.hesapla(v, tahmin=True))
+    assert any("'a' ile 'b'" in x for x in u) and not any("'c'" in x for x in u)
+
+
+def test_pano_ipi_kartin_yazisindan_gecmez():
+    """Animasyon hakemi S6: alttaki karta giden ip üst raptiyeden kartın kendi yazısının üstünden iniyordu; şimdi
+    alt kenardaki raptiyeye bağlanır. Aradaki kartlar ipin üstünde (ip altlarından geçer)."""
+    from wojak.uzun.sahneler import Baglam, cizici
+    pano = {"tip": "pano", "sure": 4.0, "ipler": [["k", "b"], ["k", "r"]],
+            "kartlar": [{"id": "k", "metin": "ÜST", "alt": "uzun bir açıklama", "x": 0.2, "y": 0.35, "egim": 0},
+                        {"id": "b", "metin": "ALT", "x": 0.2, "y": 0.75, "egim": 0},
+                        {"id": "m", "metin": "ORTA", "x": 0.5, "y": 0.35, "egim": 0},
+                        {"id": "r", "metin": "SAĞ", "x": 0.8, "y": 0.35, "egim": 0}]}
+    v = _video([{"baslik": "a", "sahneler": [pano]}])
+    z = zaman.hesapla(v, tahmin=True)
+    cz = cizici(z.sahneler[0], Baglam(v, 960, 540, 30))
+    (ka, alt_a), (kb, alt_b) = cz.ip_uclari[("k", "b")]
+    assert alt_a and not alt_b and ka[1] > cz.kartlar["k"]["cy"]       # üst kartın alt raptiyesinden
+    (ra, alt_ra), _ = cz.ip_uclari[("k", "r")]
+    assert not alt_ra                                                   # yan kart: üst raptiye
+    # ip ortadaki kartın gövdesinde görünmez: kartın ortası ipli ve ipsiz çizimde aynı
+    from PIL import Image
+    tuval = Image.new("RGB", (cz.CW, cz.CH), (200, 180, 150))
+    m = cz.kartlar["m"]
+    gx0, gy0, gx1, gy1 = m["govde"]
+    once = np.asarray(tuval, np.float32)[int(gy0):int(gy1), int(gx0):int(gx1)].copy()
+    cz._ip_ciz(tuval, "k", "r", cz.kartlar["k"]["pin"], cz.kartlar["r"]["pin"], 1.0, 10.0)
+    sonra = np.asarray(tuval, np.float32)[int(gy0):int(gy1), int(gx0):int(gx1)]
+    assert np.abs(sonra - once).max() == 0
+    assert np.abs(np.asarray(tuval, np.float32) - 200).sum() > 0     # ip başka yerde çizildi
+
+
+def test_kapanis_kartlari_karakterden_kacar():
+    """Animasyon hakemi S8: anlatıcının başı A kartının köşesine biniyordu; kart sırası karakterin kutusundan uzak."""
+    from wojak.uzun.kapanis import KapanisCizici
+    from wojak.uzun.sahneler import Baglam
+    kap = {"tip": "kapanis", "arka": KUTU, "soru": "Ne korudu?", "secenekler": ["A", "B", "C"], "sure": 9.5,
+           "karakter": {"gorsel": "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png", "boy": 0.37},
+           "bos_alan": True, "satirlar": ["Sizce hangisi?"]}
+    v = _video([{"baslik": "a", "sahneler": [kap]}])
+    kc = KapanisCizici(zaman.hesapla(v, tahmin=True).sahneler[0], Baglam(v, 1920, 1080))
+    kx0, ky0, kx1, ky1 = kc.kar["kutu"]
+    for k in kc.kartlar:
+        ust_uste = k["x"] < kx1 + 20 and k["x"] + k["w"] > kx0 and k["y"] + k["h"] > ky0
+        assert not ust_uste, (k["x"], k["y"], kc.kar["kutu"])
+    assert max(k["x"] + k["w"] for k in kc.kartlar) <= 1920 - 50
+
+
+def test_altyazi_sinirlari_metne_gore_oturur():
+    """Teknik hakem S1: tahmini sınır en yakın sessizliğe değil, bölme noktasındaki noktalamanın sessizliğine
+    oturur ("1957. | Batı Almanya." hatası); rakamlar okunuşuyla tartılır; noktalamasız bölmede uzak sessizlik
+    alınmaz, çapalar arasında doğrusal."""
+    assert altyazi.sayi_okunusu(1954) == "bin dokuz yüz elli dört"
+    assert altyazi.sayi_okunusu(20000) == "yirmi bin" and altyazi.sayi_okunusu(1267) == "bin iki yüz altmış yedi"
+    assert altyazi.soylenis("1954'te") == "bin dokuz yüz elli dört'te"
+    ps = ["1957. Batı Almanya.", "Reçetesiz satılan yeni bir uyku ilacı."]
+    # sessizlikler: "1957."den sonra (0,9-1,2) ve "Almanya."dan sonra (2,1-2,4); sınır ikincisine
+    s = altyazi.sinirlari_hizala(ps, ((0.9, 1.2), (2.1, 2.4)), 5.0)
+    assert s is not None and abs(s[0] - (2.4 - 0.08)) < 1e-9
+    # noktalamasız bölme noktası: 1,1 sn uzaktaki sessizlik alınmaz (rakam okunuşu tahmini öne çeker)
+    ps = ["1954'te Alman ilaç firması", "Grünenthal'in laboratuvarında yeni bir molekül sentezleniyor."]
+    s = altyazi.sinirlari_hizala(ps, ((1.24, 1.38),), 5.59)
+    assert s is not None and 2.0 < s[0] < 2.9, s
+    # bölme noktasındaki nefes duraklaması (noktalamasız) alınır, öndeki virgüle eşlenmez
+    ps = ["O yıllardan bir belge, bir gazete haberi", "ya da ailenizden dinlediğiniz bir anı varsa yorumlara yazın."]
+    s = altyazi.sinirlari_hizala(ps, ((2.42, 2.6),), 5.55)
+    assert s is not None and abs(s[0] - 2.52) < 1e-9
+
+
+def test_short_youtube_aciklamasi_en_cok_uc_hashtag():
+    """Hesap sahibi: YouTube'da 2-3 hashtag (Short açıklamasında 8 + #shorts vardı)."""
+    import re
+    from wojak import pack
+    from wojak.episode import load
+    ep = load(KOK / "episodes/talidomit-turkiye")
+    t = pack.texts(ep)
+    n = len(re.findall(r"(?<!\w)#\w+", t["youtube_aciklama"]))
+    assert 2 <= n <= 3 and "#shorts" in t["youtube_aciklama"]
+    assert "#" not in t["instagram_aciklama"]
+    assert not [w for w in pack.warnings(t, ep) if "hashtag" in w]
+
+
+if __name__ == "__main__":
+    import inspect
+    import time
+    testler = [(n, f) for n, f in sorted(globals().items()) if n.startswith("test_") and inspect.isfunction(f)]
+    hata = 0
+    for n, f in testler:
+        t0 = time.time()
+        try:
+            f()
+            print(f"  ok    {n} ({time.time() - t0:.1f} sn)")
+        except Exception as e:  # noqa: BLE001
+            hata += 1
+            print(f"  HATA  {n}: {type(e).__name__}: {e}")
+    print(f"{len(testler) - hata}/{len(testler)} geçti")
+    sys.exit(1 if hata else 0)
+
+
+def test_on_bir_tur_motor_ekleri():
+    """11. tur: kapanış kartlarının tepkisi (vurgu_gorsel, damga, yuvarlan) ve 34 px alt yazı, kartsız bölüm damgası
+    ilk sesten önceki tam saniyeye yukarı, kesmede zıplayan karakter denetimi, inik + sure damgası söner, fotoğraf
+    atıfı isim etiketine engel."""
+    from wojak.uzun import cli
+    from wojak.uzun.kapanis import KapanisCizici, efektler
+    from wojak.uzun.sahneler import Baglam, cizici
+    from wojak.uzun.ust import Damga
+    AN = "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png"
+    KAY = "uzun/talidomit-turkiye/chars/kaymakcalan_v2_"
+    kap = {"tip": "kapanis", "arka": KUTU, "soru": "Ne korudu?", "sure": 9.5, "satirlar": ["Sizce hangisi?"],
+           "secenekler": [{"metin": "A", "alt": "bir uzmanın ‘hayır’ı", "gorsel": KAY + "sakin.png",
+                           "vurgu_gorsel": KAY + "kararli.png", "damga": "HAYIR"},
+                          {"metin": "B", "gorsel": KUTU, "damga": {"metin": "ŞART", "renk": [20, 128, 62]}},
+                          {"metin": "C", "gorsel": "uzun/talidomit-turkiye/img/cizim/zarlar.png", "hareket": "yuvarlan"}]}
+    v = _video([{"baslik": "a", "sahneler": [kap]}])
+    s = zaman.hesapla(v, tahmin=True).sahneler[0]
+    kc = KapanisCizici(s, Baglam(v, 960, 540))
+    a, b, c = kc.kartlar
+    assert a["kar2_pm"] is not None and a["damga"] is not None and b["damga"] is not None and c["hareket"] == "yuvarlan"
+    ilk = {i: t for t, i in reversed(kc.z["vurgu"])}
+    im0 = kc.kare(ilk[1] - 0.05)
+    im1 = kc.kare(ilk[1] + 0.6)
+    assert np.abs(np.asarray(im0, np.int16) - np.asarray(im1, np.int16)).mean() > 0.5   # yüz + damga değişti
+    adlar = [ad for _, ad, _ in efektler(s, 0.0)]
+    assert adlar.count("damga") == 2
+    _hata_bekle(lambda: _video([{"baslik": "a", "sahneler": [dict(kap, secenekler=[{"metin": "A", "hareket": "uc"}])]}]),
+                "yuvarlan")
+    # kartsız bölüm: ilk ses yukarıdaki saniyeden >= 0,1 sn sonra -> yukarı; değilse aşağı
+    v2 = _video([
+        {"baslik": "Giriş", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": 41.5}]},
+        {"baslik": "İki", "sahneler": [{"tip": "metin", "metin": "x", "sure": 30}]},
+        {"baslik": "Kapanış", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "bas": 0.6,
+                                                            "satirlar": ["Peki?"]}]}])
+    _sureler(v2, [1.0])
+    z2 = zaman.hesapla(v2)
+    s3 = v2.bolumler[2].sahneler[0]
+    t3 = z2.sahne_basi(s3)
+    assert t3 % 1 > 0.05
+    s3.bas = math.ceil(t3) - t3 + 0.3                       # ilk ses yukarıdaki saniyeden 0,3 sn sonra
+    assert paket.bolum_damgalari(zaman.hesapla(v2))[2][0] == math.ceil(t3)
+    s3.bas = math.ceil(t3) - t3 + 0.02                      # ilk ses saniyeye çok yakın: aşağı (kelime kesilmesin)
+    assert paket.bolum_damgalari(zaman.hesapla(v2))[2][0] == math.floor(t3)
+    # kesmede zıplama: aynı anlatıcı köşede boy değiştirirse uyarı; aynıysa yok; karart geçişinde yok
+    def iki(b2, gecis="kesme"):
+        sa = {"tip": "sayac", "deger": 10, "sure": 2.0, "konuk": [{"id": "z", "gorsel": AN, "x": 0.87, "boy": 0.5,
+                                                                    "giris": False}]}
+        sb = {"tip": "sayac", "deger": 20, "sure": 2.0, "gecis": gecis,
+              "konuk": [{"id": "z", "gorsel": AN, "x": 0.87, "boy": b2, "giris": False}]}
+        vv = _video([{"baslik": "a", "sahneler": [sa, sb]}])
+        return cli.ziplama_denetimi(vv, zaman.hesapla(vv, tahmin=True))
+    assert iki(0.42) and "zıplıyor" in iki(0.42)[0]
+    assert not iki(0.5) and not iki(0.42, "karart")
+    # inik + sure: sahne başında basılı, sure sonunda söner
+    sah = {"tip": "metin", "metin": "x", "sure": 2.0,
+           "olaylar": [{"tip": "damga", "metin": "ONAY", "t": 0.0, "inik": True, "sure": 0.4}]}
+    v3 = _video([{"baslik": "a", "sahneler": [sah]}])
+    s3 = zaman.hesapla(v3, tahmin=True).sahneler[0]
+    d = Damga(s3.olaylar[0], Baglam(v3, 480, 270))
+    bos = Image_bos = __import__("PIL.Image", fromlist=["Image"]).new("RGB", (480, 270))
+    im = bos.copy(); d.ciz(im, 0.0)
+    assert np.asarray(im).max() > 0
+    im = bos.copy(); d.ciz(im, 1.0)
+    assert np.asarray(im).max() == 0
+    # fotoğraf atıfı isim etiketine engel (sabit kutu)
+    foto = {"tip": "foto", "gorsel": KUTU, "atif": "Fotoğraf: test (kamu malı)", "x": 0.4, "sure": 4.0}
+    v4 = _video([{"baslik": "a", "sahneler": [foto]}])
+    cz = cizici(zaman.hesapla(v4, tahmin=True).sahneler[0], Baglam(v4, 960, 540))
+    assert len(cz.sabit_engeller()) == 1 and cz.katman.sabit == cz.sabit_engeller()

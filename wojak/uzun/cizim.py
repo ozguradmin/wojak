@@ -265,7 +265,9 @@ def alt_piksel(src: Image.Image, x: float, y: float, sx: float, sy: float) -> tu
     fx, fy = x - x0, y - y0
     wo, ho = math.ceil(w0 * sx + fx) + 1, math.ceil(h0 * sy + fy) + 1
     bx, by = P - fx / sx, P - fy / sy
-    if bx < 0 or by < 0:   # 8. tur: çok küçük ölçekte (pop girişinin ilk kareleri) kutu eksiye düşüyordu: afin
+    # 8. tur: çok küçük ölçekte (pop girişinin ilk kareleri) kutu eksiye düşüyordu: afin. 11. tur: kutu kaynağın
+    # sağından/altından da taşabiliyor (pop + golge: gölge katmanı küçük ölçekte; "box can't exceed original image size")
+    if bx < 0 or by < 0 or bx + wo / sx > src.width or by + ho / sy > src.height:
         out, ax0, ay0 = afin(src, x, y, sx, sy, 0.0, P, P)
         return out.convert("RGBA"), ax0, ay0
     out = src.resize((wo, ho), Image.BILINEAR, box=(bx, by, bx + wo / sx, by + ho / sy))

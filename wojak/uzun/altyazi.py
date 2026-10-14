@@ -263,7 +263,7 @@ def parcala(metin: str) -> list[str]:
 @lru_cache(maxsize=512)
 def _sessizlikler(yol: str, mtime: float) -> tuple[tuple[float, float], ...]:
     """Satır sesindeki iç sessizlikler (sn, satır başına göre): 20 ms RMS, en yüksek seviyenin %90'lık diliminin 28 dB
-    altı, en az 0,1 sn; baştaki ve sondaki sessizlik sayılmaz."""
+    altı, en az 0,08 sn (10. tur: virgülden sonraki 80 ms'lik duraklama da); baştaki ve sondaki sessizlik sayılmaz."""
     from .tts import wav_oku
     x, sr = wav_oku(Path(yol))
     h = max(1, int(sr * 0.02))
@@ -279,7 +279,7 @@ def _sessizlikler(yol: str, mtime: float) -> tuple[tuple[float, float], ...]:
             j = i
             while j < n and sil[j]:
                 j += 1
-            if i > 0 and j < n and (j - i) * 0.02 >= 0.1:
+            if i > 0 and j < n and (j - i) * 0.02 >= 0.08 - 1e-9:   # 10. tur: 0,1 -> 0,08 (virgül duraklaması)
                 out.append((i * 0.02, j * 0.02))
             i = j
         else:
@@ -302,6 +302,135 @@ def sessizlige_otur(sinirlar: list[float], sessiz: tuple, sure: float, pencere: 
             yeni = b
         out.append(yeni)
         onceki = yeni
+    return out
+
+
+_NOKTA_SON = re.compile(r"[\"'’”»)\]]+$")
+_BIRLER = ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"]
+_ONLAR = ["", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"]
+_RAKAM = re.compile(r"\d{1,3}(?:\.\d{3})+|\d+")
+
+
+def sayi_okunusu(n: int) -> str:
+    """Tam sayının Türkçe okunuşu (altyazı zamanlaması için: '1954' -> 'bin dokuz yüz elli dört')."""
+    if n == 0:
+        return "sıfır"
+    out = []
+    for deger, ad in ((10 ** 9, "milyar"), (10 ** 6, "milyon"), (1000, "bin")):
+        if n >= deger:
+            k, n = divmod(n, deger)
+            out += ([] if (k == 1 and ad == "bin") else [sayi_okunusu(k)]) + [ad]
+    if n >= 100:
+        k, n = divmod(n, 100)
+        out += ([] if k == 1 else [_BIRLER[k]]) + ["yüz"]
+    out += [x for x in (_ONLAR[n // 10], _BIRLER[n % 10]) if x]
+    return " ".join(out)
+
+
+def soylenis(kelime: str) -> str:
+    """Kelimedeki rakamları okunuşuyla değiştirir ('1954'te' -> 'bin dokuz yüz elli dört'te'); rakamsız kelime aynı.
+    TTS rakamı yazıyla okur: 7 harflik '1954'te' ~25 harf sürer (9. tur: 1-2 sn kayan altyazı sınırlarının biri)."""
+    return _RAKAM.sub(lambda m: sayi_okunusu(int(m.group(0).replace(".", ""))), kelime)
+
+
+
+def _kelime_agirliklari(kel: list[str]) -> tuple[list[float], list[str]]:
+    """Kelime başına süre ağırlığı (harf + boşluk) ve kelimeden sonraki noktalama sınıfı: 'nokta' (. ! ? … :),
+    'virgul' (, ; — –) ya da ''. Noktalamadan sonra TTS duraklar: ağırlığa eklenir."""
+    ag, tur = [], []
+    for w in kel:
+        son = _NOKTA_SON.sub("", w)[-1:] if _NOKTA_SON.sub("", w) else ""
+        t = "nokta" if son in ".!?…:" else ("virgul" if son in ",;—–" else "")
+        tur.append(t)
+        ag.append(len(soylenis(w)) + 1 + (8 if t == "nokta" else 4 if t == "virgul" else 0))
+    return ag, tur
+
+
+def sinirlari_hizala(ps: list[str], sessiz: tuple, sure: float) -> list[float] | None:
+    """10. tur (teknik hakem S1): satır içi parça sınırlarını sesin iç sessizliklerine METNE göre oturtur.
+
+    9. turdaki `sessizlige_otur` tahmini sınırı ±1,6 sn içindeki EN YAKIN sessizliğe çekiyordu; sessizlik bölme
+    noktasında değil de başka bir kelime arasında olunca sınır 1-2 sn kayıyordu ("1957. | Batı Almanya." -> "Batı
+    Almanya" bir sonraki altyazının altında okundu; 5 yerde). Şimdi:
+    1. noktalamalı kelime aralarının ve bölme noktalarının tahmini anları (harf + noktalama ağırlığıyla orantılı;
+       rakamlar okunuşuyla: '1954'te' ~25 harf) iç sessizliklerle sıra korunarak eşlenir (dinamik programlama;
+       eşleşmeyen de serbest; en çok 2 sn sapma, noktalamasız bölme noktasında 0,5 sn);
+    2. bölme noktası eşlenmiş bir noktalamadaysa sınır o sessizliğe oturur (sonraki parça konuşma başlamadan 0,08 sn
+       önce açılır);
+    3. değilse eşlenmiş sessizlikler çapa olur, sınır aralarında harf ağırlığıyla doğrusal hesaplanır (yakında
+       eşlenmemiş bir nefes sessizliği varsa ona oturur).
+    Sıra ya da en az 0,6 sn kuralı bozulursa None (çağıran düz tahmini kullanır)."""
+    kel = " ".join(ps).split()
+    if len(kel) < 2:
+        return None
+    ag, tur = _kelime_agirliklari(kel)
+    ag[-1] = len(soylenis(kel[-1])) + 1  # satır sonundaki duraklama kırpılmış seste yok
+    top = float(sum(ag))
+    kum = np.cumsum(ag)                       # i. kelimenin sonuna kadar ağırlık
+    tah = [sure * kum[i] / top for i in range(len(kel) - 1)]   # i ile i+1 arasının tahmini anı
+    # bölme noktaları (kelime aralığı indeksi)
+    bol, n = [], 0
+    for p in ps[:-1]:
+        n += len(p.split())
+        bol.append(n - 1)
+    # eşlenecek kelime araları: noktalamalılar (sessizlik ±2 sn içinde) + bölme noktaları (noktalamasızsa ±0,5 sn:
+    # parçalar yan cümle sınırından bölünür, orada nefes duraklaması olur; uzaktaki başka bir duraklamaya kaymasın)
+    nok = sorted(set(i for i in range(len(kel) - 1) if tur[i]) | set(bol))
+    ses = sorted(sessiz)
+    A, B = len(nok), len(ses)
+    YA, YB, MAKS = 0.6, 0.6, 2.0
+    inf = float("inf")
+    D = [[inf] * (B + 1) for _ in range(A + 1)]
+    G = [[None] * (B + 1) for _ in range(A + 1)]
+    D[0][0] = 0.0
+    for i in range(A + 1):
+        for j in range(B + 1):
+            d = D[i][j]
+            if d == inf:
+                continue
+            if i < A and d + YA < D[i + 1][j]:
+                D[i + 1][j], G[i + 1][j] = d + YA, (i, j, False)
+            if j < B and d + YB < D[i][j + 1]:
+                D[i][j + 1], G[i][j + 1] = d + YB, (i, j, False)
+            if i < A and j < B:
+                m = (ses[j][0] + ses[j][1]) / 2
+                c = abs(tah[nok[i]] - m)
+                if c <= (MAKS if tur[nok[i]] else 0.5) and d + c < D[i + 1][j + 1]:
+                    D[i + 1][j + 1], G[i + 1][j + 1] = d + c, (i, j, True)
+    es: dict[int, tuple[float, float]] = {}     # kelime aralığı -> (sessizlik başı, sonu)
+    i, j = A, B
+    while (i, j) != (0, 0):
+        pi, pj, eslesti = G[i][j]
+        if eslesti:
+            es[nok[pi]] = ses[pj]
+        i, j = pi, pj
+    kullanilan = set(es.values())
+    # çapalar: (ağırlık konumu, konuşmanın durduğu an, yeniden başladığı an)
+    capa = [(0.0, 0.0, 0.0)] + [(float(kum[k]), a, c) for k, (a, c) in sorted(es.items())] + [(top, sure, sure)]
+
+    def ara_an(konum: float) -> float:
+        for (p0, _, c0), (p1, a1, _) in zip(capa, capa[1:]):
+            if p0 <= konum <= p1:
+                return c0 + (a1 - c0) * ((konum - p0) / max(p1 - p0, 1e-9))
+        return sure * konum / top
+
+    out = []
+    for k in bol:
+        if k in es:
+            a, c = es[k]
+            out.append(max(a, c - 0.08))
+            continue
+        t = ara_an(float(kum[k]))
+        yakin = [s for s in ses if s not in kullanilan and abs((s[0] + s[1]) / 2 - t) <= 0.5]
+        if yakin:
+            a, c = min(yakin, key=lambda s: abs((s[0] + s[1]) / 2 - t))
+            t = max(a, c - 0.08)
+        out.append(t)
+    onceki = 0.0
+    for t in out + [sure]:
+        if t < onceki + 0.6 - 1e-9:
+            return None
+        onceki = t
     return out
 
 
@@ -337,7 +466,9 @@ def parcalar(z: Zaman) -> list[Parca]:
             sinirlar.append(acc)
         wav = sz.satir.wav
         if sinirlar and wav is not None and not sz.satir.tahmini and Path(wav).exists():
-            sinirlar = sessizlige_otur(sinirlar, _sessizlikler(str(wav), Path(wav).stat().st_mtime), sure)
+            sessiz = _sessizlikler(str(wav), Path(wav).stat().st_mtime)
+            # 10. tur: metne göre hizalama; olmazsa (sıra/en az süre) 9. turun en yakın sessizliği
+            sinirlar = sinirlari_hizala(ps, sessiz, sure) or sessizlige_otur(sinirlar, sessiz, sure)
         kenar = [0.0] + sinirlar + [sure]
         for k, p in enumerate(ps):
             out.append(Parca(sz.bas + kenar[k], sz.bas + kenar[k + 1], p, alinti))

@@ -74,7 +74,10 @@ class Damga:
         S = c.S
         p = o.p
         self.c, self.t0 = c, (-10.0 if p.get("inik") else o.zaman)   # inik: önceki çekimden basılı gelir
+        self.metin = str(p["metin"])
         self.sure = None if p.get("sure") is None else float(p["sure"])
+        if p.get("inik") and self.sure is not None:   # 11. tur: inik + sure: sahne başından `sure` sn sonra söner
+            self.sure -= self.t0                       # (eskiden t0 = -10'a göre sayılıp hiç çizilmiyordu)
         kontur = p.get("kontur")
         if kontur is True:
             kontur = C.BEYAZ
@@ -260,6 +263,16 @@ class KoseGostergesi:
                 self._cache.pop(next(iter(self._cache)))
             self._cache[key] = spr
         return spr
+
+    def kutu(self, t: float) -> tuple[float, float, float, float]:
+        """10. tur (yerleşim denetimi): oturmuş kutunun ekran kutusu (gölgesiz)."""
+        S, W, H = self.c.S, self.c.W, self.c.H
+        metin, rk, _ = self._metin(t)
+        spr = self._kutu(metin, rk)
+        bb = spr.getchannel("A").point(lambda v: 255 if v > 160 else 0).getbbox() or (0, 0, spr.width, spr.height)
+        x = W - 54 * S - spr.width if self.konum.startswith("sag") else 54 * S
+        y = self.ust_y * S if self.konum.endswith("ust") else H - 118 * S - spr.height
+        return x + bb[0], y + bb[1], x + bb[2], y + bb[3]
 
     def ciz(self, im: Image.Image, t: float) -> None:
         if t < self.goster_t:

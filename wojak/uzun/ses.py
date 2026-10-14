@@ -212,7 +212,7 @@ def otomatik_efektler(z: Zaman) -> list[tuple[float, str, float]]:
                         q = k / 16
                         u = 1 - (1 - q) ** (1 / 3)   # out_cubic'in tersi
                         out.append((b + t0 + (t1 - t0) * u, "tik", -16.0))
-                out.append((b + t1, "hit", -9.0))
+                out.append((b + bl.get("varis", t1), "hit", -9.0))   # 10. tur: anlıkta yuvarlanan sayı oturunca
         elif s.tip == "zaman_cizelgesi":
             for t in zc_zamanlari(s):
                 out.append((b + t, "pop", -11.0))

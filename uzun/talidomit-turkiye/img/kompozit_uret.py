@@ -57,7 +57,9 @@ def kaydet(im: Image.Image, ad: str) -> Path:
     return p
 
 
-def golge(lay: Image.Image, r: int = 18, a: float = 0.55, dx: int = 8, dy: int = 14) -> Image.Image:
+def golge(lay: Image.Image, r: int = 18, a: float = 0.55, dx: int = 8, dy: int = 14, ofs: bool = False):
+    """Yumuşak düşen gölge. ofs=True: (görsel, (x, y)) — katmanın kırpılmış çıktıdaki sol üst köşesi (10. tur: K3
+    büyütecinin camı "19??"dan ~40 px solda kalıyordu; kırpma payı sabit 3r sanılıyordu)."""
     pad = r * 3
     out = Image.new("RGBA", (lay.width + 2 * pad, lay.height + 2 * pad), (0, 0, 0, 0))
     g = Image.new("RGBA", out.size, (0, 0, 0, 0))
@@ -67,6 +69,8 @@ def golge(lay: Image.Image, r: int = 18, a: float = 0.55, dx: int = 8, dy: int =
     out.alpha_composite(g)
     out.alpha_composite(lay, (pad, pad))
     bb = out.getchannel("A").point(lambda v: 255 if v > 3 else 0).getbbox()
+    if ofs:
+        return out.crop(bb), (pad - bb[0], pad - bb[1])
     return out.crop(bb)
 
 
@@ -253,7 +257,9 @@ def harita_zemini() -> None:
     # 3. tur: Türkiye biraz sola (sağ altta gergin temsilciye yer), damga yerine kırmızı blok
     # 9. tur (animasyon M1, izlenme S6): "RUHSAT YOK" Türkiye'nin üstündeydi, beyaz kontur ve yazı R'yi örtüyordu
     # ("PUHSAT"); Türkiye büyük ve sağ üstte, blok Türkiye'nin ALTINDA (Akdeniz'de), kontur çizildikten sonra
-    bolge = {"merkez": (27.5, 36.0), "sinir": (-1.0, 24.0, 56.0, 50.0), "proj": "laea"}
+    # 11. tur (animasyon S10): "46 ÜLKEDE SATILDI" yazarken kadrajda yalnız ~3 kırmızı ülke vardı: harita
+    # uzaklaştı (Britanya'dan Hazar'a), boyalı 8 ülkenin hepsi kadrajda; Türkiye yine en parlak ve beyaz konturlu
+    bolge = {"merkez": (26.0, 44.0), "sinir": (-9.5, 29.5, 62.0, 60.0), "proj": "laea"}
     # küçük resim koyu kalır (4. turda videodaki haritalar aydınlatıldı; küçük resmin kontrastı için eski koyu palet)
     hc = HaritaCizer(bolge, W, H, "50m", renk={"deniz": (13, 20, 30), "deniz2": (22, 34, 48), "kara": (60, 66, 76),
                                                "sinir": (28, 33, 41), "izgara": (26, 38, 52)})
@@ -276,6 +282,8 @@ def harita_zemini() -> None:
     print(f"Türkiye: x {bb[0] / W:.2f}-{(bb[0] + m.width) / W:.2f} ({m.width / W:.0%} genişlik)")
     dm = kirmizi_blok("RUHSAT YOK", 94, 4.0)
     cx, cy = bb[0] + m.width * 0.47, bb[1] + m.height + 0.035 * H + dm.height / 2
+    if cy + dm.height / 2 > 0.97 * H:   # 11. tur: uzak haritada Türkiye aşağıda: blok Karadeniz'in üstüne
+        cy = bb[1] - 0.03 * H - dm.height / 2
     im.alpha_composite(dm, (int(cx - dm.width / 2), int(cy - dm.height / 2)))
     print(f"blok: x {(cx - dm.width / 2) / W:.2f}-{(cx + dm.width / 2) / W:.2f}, y {(cy - dm.height / 2) / H:.2f}-"
           f"{(cy + dm.height / 2) / H:.2f}; Türkiye y {bb[1] / H:.2f}-{(bb[1] + m.height) / H:.2f}")
@@ -298,8 +306,10 @@ def zehirsiz_zemini() -> None:
     tr = turkiye_silueti(860)
     x0, y0 = 10, H - tr.height - 40
     im.alpha_composite(tr, (x0, y0))
-    hb = kirmizi_blok("HAYIR", 150, -7.0)
-    im.alpha_composite(hb, (x0 + tr.width // 2 - hb.width // 2 - 30, y0 + tr.height // 2 - hb.height // 2))
+    # 10. tur (izlenme N11): blok Türkiye siluetinin çoğunu örtüyordu (168 px'te şekil yarım okunuyordu): biraz küçük,
+    # sağa ve aşağı: Marmara ve Ege kıyısı açıkta
+    hb = kirmizi_blok("HAYIR", 132, -7.0)
+    im.alpha_composite(hb, (x0 + tr.width // 2 - hb.width // 2 + 95, y0 + tr.height // 2 - hb.height // 2 + 78))
     # 9. tur (izlenme N5): "ZEHİRSİZ"in bir ilaç olduğu 168 px'te de anlaşılsın: Türkiye'nin doğusunda iki beyaz
     # tablet (kendi çizimimiz, markasız), beyaz çıkartma kenarı ve gölge
     tb = Image.open(CIZ / "tablet.png").convert("RGBA")
@@ -314,34 +324,48 @@ def zehirsiz_zemini() -> None:
 
 
 def dosya_zemini() -> None:
-    """K3: koyu masa (kendi dokumuz); açık ve bomboş dosya + etiketli dosya kapağı + büyüteç + kırmızı damga."""
+    """K3: koyu masa (kendi dokumuz); açık ve bomboş dosya + etiketli dosya kapağı + büyüteç + kırmızı damga.
+    10. tur (animasyon hakemi S9): büyüteç üç satırlık etiketi ortadan kesiyordu ("TALİDO… RUHSAT B… ANKAF"): kapakta
+    tek temiz satır ("RUHSAT BAŞVURUSU", cizim_uret.py dosya_k3), "19??" altta ayrı satırda ve büyüteç yalnız onun
+    üstünde (camın içi 1,5 kat büyütülmüş)."""
     from wojak.uzun.ust import damga_sprite
     W, H = 1920, 1080
     im = kagit(W, H, koyu=True).convert("RGBA")
     ac = Image.open(CIZ / "dosya_bos_acik.png").convert("RGBA")
     ac = ac.resize((1250, round(ac.height * 1250 / ac.width)), Image.LANCZOS)
     im.alpha_composite(golge(ac, 22, 0.6, 10, 20), (520, 250))
-    et = Image.open(CIZ / "dosya_k3_etiketli.png").convert("RGBA")
-    et = et.resize((820, round(et.height * 820 / et.width)), Image.LANCZOS).rotate(-5, resample=Image.BICUBIC,
-                                                                                   expand=True)
-    # 8. tur (izlenme N1): YouTube'un süre rozeti "ANKARA 19??"yu örtüyordu: etiketli kapak sola ve yukarı
-    im.alpha_composite(golge(et, 18, 0.6, 8, 16), (950, 530))
-    # 9. tur (animasyon S11): büyüteç "BELGE" yazısının arkasında gri bir leke gibiydi: etiketin "19??"unun üstünde
-    # ve camın içi 1,6 kat büyütülmüş (soru işaretleri camda büyük okunur)
+    et0 = Image.open(CIZ / "dosya_k3_tek_satir.png").convert("RGBA")
+    # "19??"nun yeri: kapağın alt sağ çeyreğindeki koyu yazı (aynı dönüşümle taşınır)
+    a = np.asarray(et0)
+    koyu = (a[..., :3].max(-1) < 90) & (a[..., 3] > 200)
+    bolge = np.zeros_like(koyu)
+    bolge[int(et0.height * 0.62):int(et0.height * 0.88), int(et0.width * 0.66):int(et0.width * 0.92)] = True
+    isaret = Image.fromarray(((koyu & bolge) * 255).astype(np.uint8))
+    en_k = 820
+    def don(x):
+        x = x.resize((en_k, round(x.height * en_k / x.width)), Image.LANCZOS)
+        return x.rotate(-5, resample=Image.BICUBIC, expand=True)
+    et, isaret = don(et0), don(isaret)
+    ex, ey = 950, 530
+    # 8. tur (izlenme N1): YouTube'un süre rozeti sağ alttaydı: kapak sola ve yukarı
+    im.alpha_composite(golge(et, 18, 0.6, 8, 16), (ex, ey))
+    bb = isaret.point(lambda v: 255 if v > 100 else 0).getbbox()
+    hx, hy = ex + (bb[0] + bb[2]) / 2, ey + (bb[1] + bb[3]) / 2
     bu = Image.open(CIZ / "buyutec.png").convert("RGBA")
-    en = 300
+    en = 285
     k = en / bu.width
     bu = bu.resize((en, round(bu.height * k)), Image.LANCZOS)
     lcx, lcy, lr = 310 * k, 300 * k, 282 * k          # camın merkezi ve yarıçapı (buyutec.png'de ölçüldü)
-    hx, hy = 1478, 838                                 # "19??" (etiketin son satırı)
-    buy = 1.5
+    buy = 1.28
     r0 = lr / buy
     parca = im.crop((int(hx - r0), int(hy - r0), int(hx + r0), int(hy + r0))).resize((int(2 * lr), int(2 * lr)),
                                                                                        Image.LANCZOS)
     mk = Image.new("L", parca.size, 0)
     ImageDraw.Draw(mk).ellipse((0, 0, parca.width - 1, parca.height - 1), fill=255)
     im.paste(parca, (int(hx - lr), int(hy - lr)), mk)
-    im.alpha_composite(golge(bu, 16, 0.5, 8, 14), (int(hx - lcx - 16 * 3 + 0), int(hy - lcy - 16 * 3 + 0)))
+    bg, (ox, oy) = golge(bu, 16, 0.5, 8, 14, ofs=True)
+    im.alpha_composite(bg, (int(round(hx - lcx - ox)), int(round(hy - lcy - oy))))
+    print(f"K3: '19??' merkezi ({hx:.0f}, {hy:.0f}), cam yarıçapı {lr:.0f} px")
     # 3. hakem turu: karakterin altında kesik kalan "…AT VERİLMEDİ" damgası kaldırıldı
     kaydet(im.convert("RGB"), "kr_dosya.jpg")
 

@@ -103,12 +103,15 @@ bolumler:
         olaylar:
           - {tip: giris, karakter: b, satir: 2}                         # b bu satırda kayarak girer
           - {tip: balon, karakter: b, metin: "Yalnız görsel replik", satir: 3, ofset: 0.3, sure: 2.5}
-            # agiz: chars/b_konusuyor.png -> balon açıkken hecelerde açık ağızlı yüz (aynı tuval)
+            # agiz: chars/b_konusuyor.png -> balon açıkken hecelerde açık ağızlı yüz (aynı tuval); 11. tur:
+            # agiz: [chars/b_konusuyor_yari.png, chars/b_konusuyor.png] -> kapalı -> yarık -> açık (en az 4 kare)
           - {tip: yuz, karakter: a, gorsel: chars/a_terli.png, satir: 3, ofset: 0.5}   # yüz varyantı + sıkışma
             # (buyu: true -> yeni görsel eski boyundan büyüyerek oturur; sik: false -> sıkışmasız)
           - {tip: it, satir: 3, an: son, guc: 0.08, sure: 0.5}            # kamera vurgu itmesi (x/y: hedef; kalıcı)
           - {tip: kelime, metin: "REÇETESİZ", satir: 1, konum: ust}        # vurgu kelimesi (ust | orta | alt)
           - {tip: isim, karakter: a, ad: "Ad Soyad", unvan: "Unvan (1900-1980)", satir: 1, ofset: 0.8}
+            # yerini kendisi seçer: karakterlerden 40 px uzak (gerekirse yanına, boş tarafa, iki satıra, küçük);
+            # sığmazsa kontrol uyarır -> ad/unvanı kısalt
           - {tip: cikis, karakter: b, satir: 3, an: son}
           - {tip: damga, metin: "RUHSAT VERİLMEDİ", satir: 4, ofset: 0.3, x: 0.5, y: 0.3}   # renk, aci, boy, sure,
             # kontur: true (desenli/koyu zeminde beyaz kenar)
@@ -166,7 +169,7 @@ bolumler:
         konuk: [{id: z, gorsel: assets/kit/klasik/sakin.png, x: 0.87, boy: 0.5, giris: 0.4, yon: alt}]
         # sfx_db: -6                   # bu sahnenin otomatik efektleri daha kısık (sessiz altlıkta kalem sesi gibi)
         olaylar:
-          - {tip: basla, satir: 1, ofset: 0.5}  # saymaya başlama anı (yoksa 0.35 sn)
+          - {tip: basla, satir: 1, ofset: 0.5}  # saymaya başlama anı (yoksa 0.35 sn); sure: sayım süresi
           - {tip: yuz, karakter: z, gorsel: assets/kit/klasik/terli.png, satir: 1, an: son}
       - tip: sayac
         deger: [60, 0]                 # azalan sayaç (doğrusal)
@@ -176,6 +179,8 @@ bolumler:
         satirlar: ["..."]
         olaylar:
           - {tip: deger, deger: 1267, etiket: "doktor", satir: 1, an: son}   # yeni değere sayar (renk, onek, sonek)
+          # sure: 0 -> yeni değer 0,26 sn'de yuvarlanarak gelir; her değer önce yerleşir ve `tut` (0,6 sn) okunur
+          # kalır (gerekirse sayım kısalır / değer ertelenir; kontrol bildirir)
       - tip: sayac
         yil: [1957, 1961]
         ust: "Raflarda"
@@ -271,7 +276,9 @@ bolumler:
         sure: 10                       # varsayılan 10; 10'dan kısada animasyon orantılı sıkışır
         ust: "SON SORU"
         soru: "Türkiye'yi bu ilaçtan ne korudu?"   # yoksa ilk satırın metni
-        secenekler:                    # metin, alt (küçük), gorsel (karakter ya da resim), harf (vars. A/B/C)
+        secenekler:                    # metin, alt (küçük), gorsel (karakter ya da resim), harf (vars. A/B/C);
+        #                                11. tur: vurgu_gorsel (vurguda yüz), damga (metin | {metin, renk}),
+        #                                hareket: yuvarlan | sicra (vurguda kartın içi oynar)
           - {metin: "Kişi A", alt: "farmakolog", gorsel: chars/a.png}
           - {metin: "Kişi B", alt: "virolog", gorsel: chars/b.png}
           - {metin: "Kural", alt: "ruhsat şartı", gorsel: img/cizim/kanun.jpg}

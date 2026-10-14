@@ -2,6 +2,8 @@
 # izgara, zaman_cizelgesi, manset, bolunmus, pano, kapanis), iki sesi, müziği ve efektleri gösterir.
 # 7. tur: hareket dili (bulanıklık, ikincil hareket, canlı boşta hareket varsayılan; burada paralaks ve ilk sahnede
 # doku da açık), harita rotası, belgede elle çizilmiş çember, video kutusuz kapanış çağrısı (eski bitis yerine).
+# 10. tur: anlatımsız sayaç değer zinciri (1.267 -> ≈20.000 -> yuvarlanarak "en az 17"), iki kişilik çekimde
+# karakterlerden kaçan isim etiketi; `kontrol` üst katman çakışmalarını da denetler ("denetim: sorun yok").
 # Konu: Talidomit ve Türkiye (kısa sürüm: episodes/talidomit-turkiye). Olgu sınırları kısa sürümle aynı:
 #   - Kaymakçalan'ın olumsuz görüşü meslektaşlarının tanıklığına dayanır ("meslektaşlarının anlattığına göre").
 #   - Aygün'ün tavuk embriyosu deneyi tek kaynağa dayanır ("anlatılana göre"); ikisi aynı sahnede gösterilmez.
@@ -149,6 +151,17 @@ bolumler:
           - {tip: vurgula, kutu: 2, satir: 2, ofset: 0.0}
           - {tip: vurgula, kutu: 3, satir: 2, ofset: 0.55, stil: daire}   # elle çizilmiş kırmızı çember
 
+      - tip: sayac                    # 10. tur: değer zinciri (anlatımsız): her değer yerleşir ve okunur kalır
+        deger: 1267                   # (tut 0,6 sn), yeni değer sayarak ya da (sure: 0) tekerlek gibi yuvarlanarak gelir
+        sonek: ""
+        etiket: "doktor"
+        ust: "ABD · ‘klinik deneme’"
+        sure: 5.2
+        olaylar:
+          - {tip: basla, t: 0.2, sure: 0.9}   # ilk sayımın süresi (sure_say yerine)
+          - {tip: deger, deger: 20000, onek: "≈", etiket: "hasta", t: 1.8, sure: 1.2}
+          - {tip: deger, deger: 17, onek: "en az ", etiket: "bebek · FDA sayımı", renk: kirmizi, t: 3.8, sure: 0}
+
       - tip: bolunmus                 # bölünmüş ekran: sağ panel kayarak açılır
         sol: {metin: "en az 17 bebek", baslik: "ABD", alt: "ruhsat yoktu; 'klinik deneme' yoluyla (FDA sayımı)",
               arka: img/contergan_kutu.jpg}
@@ -189,13 +202,13 @@ bolumler:
         kamera: {zoom: [1.04, 1.0], merkez: [[0.55, 0.48], [0.5, 0.5]]}
         gecis: gecis
         karakterler:
-          - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, giris: false}
-          - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, taraf: sag}
-        satirlar:
+          - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, x: 0.17, boy: 0.56, giris: false}
+          - {id: b, gorsel: episodes/talidomit-turkiye/chars/veteriner.png, x: 0.83, boy: 0.56}   # 10. tur: isim etiketi
+        satirlar:                     # aralarındaki boşluğa yerleşsin (karakterlerden 40 px uzak; kontrol denetler)
           - "Anlatılana göre veteriner hekim Süreyya Tahsin Aygün de ilacı tavuk embriyolarında denemişti."
           - "Türkiye, bu felaketi yaşamayan sayılı ülkelerden biri oldu."
         olaylar:
-          - {tip: isim, karakter: b, ad: "Ord. Prof. Süreyya Tahsin Aygün", unvan: "Veteriner hekim (1895-1981)", satir: 1, ofset: 0.9, sure: 4.5}
+          - {tip: isim, karakter: b, ad: "Süreyya Tahsin Aygün", unvan: "Ord. Prof. · veteriner hekim (1895-1981)", satir: 1, ofset: 0.9, sure: 4.5}
           - {tip: balon, karakter: b, metin: "Önce embriyoda deneyelim", satir: 1, ofset: 1.6, sure: 2.6}
           - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 2, ofset: 0.4}
         sfx:

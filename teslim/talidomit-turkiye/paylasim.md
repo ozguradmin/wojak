@@ -38,7 +38,7 @@ Olayın tamamı sabit yorumda 👇
 
 Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı); Sağlık Dünyası Dergisi
 
-#talidomit #şükrükaymakçalan #süreyyatahsinaygün #contergan #wojak #tarihselwojak #keşfet #olay #shorts
+#talidomit #şükrükaymakçalan #shorts
 ```
 
 ### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1708 karakter

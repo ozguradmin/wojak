@@ -113,6 +113,18 @@ def efektler(sahne, b: float) -> list[tuple[float, str, float]]:
     harfler = [i for i, ch in enumerate(z["metin"]) if ch != " "]
     out += [(b + z["yorum"] + i / YORUM_HIZI, "tus", -25.0) for i in harfler[::3]]
     out += [(b + t, "blip", -15.0) for t, _ in z["vurgu"]]
+    # 11. tur: kartın tepkisi (ilk vurgusunda): damga iner, zar döner
+    sec = sahne.p.get("secenekler") or []
+    ilk = {}
+    for t, idx in z["vurgu"]:
+        ilk.setdefault(idx, t)
+    for idx, t in ilk.items():
+        s_ = sec[idx - 1] if 0 < idx <= len(sec) else {}
+        if s_.get("damga"):
+            out.append((b + t + 0.15 + 0.14, "damga", -13.0))
+        if s_.get("hareket") == "yuvarlan":
+            out.append((b + t + 0.05, "whoosh_kisa", -20.0))
+            out.append((b + t + 0.55, "tik", -14.0))
     if z.get("hepsi") is not None:
         out.append((b + z["hepsi"], "pop", -14.0))
     return out
@@ -217,6 +229,8 @@ class KapanisCizici(Cizici):
             self._soru_hazirla(str(soru))
         self.ust = C.yazi(C.buyuk(str(p["ust"])), C.FONT_BOLD, 32 * S, self.vurgu_renk, aralik=0.24) \
             if p.get("ust") else None
+        # --- tıklayan karakter (10. tur: kartlardan önce: kart sırası onun kutusundan kaçar)
+        self.kar = self._karakter(p.get("karakter") or {})
         # --- seçenek kartları
         self.kartlar = []
         sec = p.get("secenekler") or []
@@ -226,10 +240,9 @@ class KapanisCizici(Cizici):
             ara = 80 * S if n < 3 else 64 * S
             top = (350 if self.bos else 300) * S
             x0 = W / 2 - (n * kw + (n - 1) * ara) / 2
+            x0, kw, ara = self._kartlar_karakterden_kac(x0, top, n, kw, kh, ara)
             for i, s_ in enumerate(sec):
                 self.kartlar.append(self._kart(s_, i, x0 + i * (kw + ara), top, kw, kh))
-        # --- tıklayan karakter
-        self.kar = self._karakter(p.get("karakter") or {})
         # --- düğmeler
         self.dugmeler = {}
         self._dugmeler_hazirla()
@@ -276,33 +289,73 @@ class KapanisCizici(Cizici):
         self.soru_cx = cx
         self.soru_w = max(f.getlength(" ".join(s_)) for s_ in satirlar)
 
+    def _kartlar_karakterden_kac(self, x0: float, top: float, n: int, kw: float, kh: float,
+                                 ara: float) -> tuple[float, float, float]:
+        """10. tur (animasyon hakemi S8): kart sırası karakterin alfa kutusundan (+ sıçrama/onay payı 28 px) uzak
+        dursun: anlatıcının başı A kartının sol alt köşesine ~40 px biniyordu. Önce sıra karakterden öteye kayar
+        (en az kaydırma; kenarda 60 px kalır), yetmezse kart arası, sonra kart eni daralır."""
+        S, W = self.S, self.W
+        k = self.kar
+        if not k or k.get("kutu") is None:
+            return x0, kw, ara
+        kx0, ky0, kx1, _ = k["kutu"]
+        pay, kenar = 28 * S, 60 * S
+        if ky0 - pay >= top + kh:          # karakter kartların altında kalıyor
+            return x0, kw, ara
+        if not k["sag"]:
+            sol, sag = max(x0, kx1 + pay), W - kenar
+        else:
+            sol, sag = kenar, min(x0 + n * kw + (n - 1) * ara, kx0 - pay)
+        if sol <= x0 and x0 + n * kw + (n - 1) * ara <= sag:
+            return x0, kw, ara
+        alan = sag - sol
+        top_w = n * kw + (n - 1) * ara
+        if top_w > alan:                    # sığmıyor: önce ara (en az 28 px), sonra kart eni (en az 300 px)
+            ara = max(28 * S, (alan - n * kw) / max(n - 1, 1)) if n > 1 else ara
+            top_w = n * kw + (n - 1) * ara
+            if top_w > alan:
+                kw = max(300 * S, (alan - (n - 1) * ara) / n)
+                top_w = n * kw + (n - 1) * ara
+        # en az kaydırma: sıra eski yerine en yakın, boşluğun içinde
+        return min(max(x0, sol), sag - top_w), kw, ara
+
     def _kart(self, s_: dict, i: int, x: float, y: float, kw: float, kh: float) -> dict:
         S = self.S
         w, h = int(kw), int(kh)
         r = 22 * S
         pad = 12 * S
-        plaka_h = (104 if s_.get("alt") else 78) * S
+        plaka_h = (122 if s_.get("alt") else 78) * S   # 11. tur (animasyon S9): alt yazı 24 -> 34 px (telefonda okunmuyordu)
         ic_h = h - plaka_h - 2 * pad
         # iç görsel (kartın üst bölümü, yuvarlak köşeli pencere)
         ic = Image.new("RGBA", (w, h), (0, 0, 0, 0))
         zemin = C.yuvarlak_kutu(w, h, r, (16, 18, 24, 228))
         ic.alpha_composite(zemin)
-        kar = None
+        kar = kar2 = None
         if s_.get("gorsel"):
             g = C.yukle(s_["gorsel"]).convert("RGBA")
-            g = C.kirp_alfa([g])[0]
+            g2 = C.yukle(s_["vurgu_gorsel"]).convert("RGBA") if s_.get("vurgu_gorsel") else None
+            if g2 is not None and g2.size == g.size:   # aynı tuval: ortak kırpım (yüz değişiminde zıplamaz)
+                g, g2 = C.kirp_alfa([g, g2])
+            else:
+                g = C.kirp_alfa([g])[0]
+                g2 = C.kirp_alfa([g2])[0] if g2 is not None else None
             seffaf = np.asarray(g.getchannel("A")).min() < 250
             if seffaf:   # karakter: büstü pencerenin altına oturur, içeri bakar
                 faces, _ = facing.resolve(Path(s_["gorsel"]), s_.get("bakis"))
                 cxn = (x + kw / 2) / self.W
-                if faces != "front" and facing.needs_flip(faces, cxn):
-                    g = ImageOps.mirror(g)
+                ayna = faces != "front" and facing.needs_flip(faces, cxn)
                 hh = ic_h * 0.98
-                g = g.resize((max(1, round(g.width * hh / g.height)), round(hh)), Image.LANCZOS)
-                if g.width > w - 2 * pad:
-                    ww = w - 2 * pad
-                    g = g.resize((int(ww), max(1, round(g.height * ww / g.width))), Image.LANCZOS)
-                kar = g
+
+                def _sig(g):
+                    if ayna:
+                        g = ImageOps.mirror(g)
+                    g = g.resize((max(1, round(g.width * hh / g.height)), round(hh)), Image.LANCZOS)
+                    if g.width > w - 2 * pad:
+                        ww = w - 2 * pad
+                        g = g.resize((int(ww), max(1, round(g.height * ww / g.width))), Image.LANCZOS)
+                    return g
+                kar = _sig(g)
+                kar2 = _sig(g2) if g2 is not None else None
             else:
                 g = C.sigdir(g.convert("RGB"), w - 2 * pad, ic_h).convert("RGBA")
                 ic.alpha_composite(g, (int((w - g.width) / 2), int(pad + (ic_h - g.height) / 2)))
@@ -313,8 +366,9 @@ class KapanisCizici(Cizici):
         yy = (plaka_h - ad.height - ((30 * S) if s_.get("alt") else 0)) / 2
         plaka.alpha_composite(ad, (int((plaka.width - ad.width) / 2), int(yy)))
         if s_.get("alt"):
-            alt = C.yazi(str(s_["alt"]), C.FONT_BOLD, 24 * S, (52, 46, 30), max_w=w - 4 * pad, max_lines=1)
-            plaka.alpha_composite(alt, (int((plaka.width - alt.width) / 2), int(yy + ad.height + 6 * S)))
+            alt = C.yazi(str(s_["alt"]), C.FONT_BOLD, 34 * S, (40, 34, 20), max_w=w - 3 * pad, max_lines=1,
+                         min_size=28 * S)
+            plaka.alpha_composite(alt, (int((plaka.width - alt.width) / 2), int(yy + ad.height + 8 * S)))
         # harf rozeti
         harf = str(s_.get("harf") or "ABC"[i])
         rz = int(84 * S)
@@ -324,8 +378,19 @@ class KapanisCizici(Cizici):
         roz = roz.resize((rz, rz), Image.LANCZOS)
         hz = C.yazi(harf, C.FONT_CARD, 56 * S, (14, 14, 16))
         roz.alpha_composite(hz, (int((rz - hz.width) / 2), int((rz - hz.height) / 2)))
+        # 11. tur (animasyon S9): vurguda içerideki çizim de oynar: küçük lastik damga iner (kartın görselinin
+        # ortasına, hafif eğik), yüz değişir (vurgu_gorsel), zar gibi döner (hareket: yuvarlan)
+        dmg = None
+        if s_.get("damga"):
+            from .ust import damga_sprite
+            d_ = s_["damga"]
+            renk = Z.renk(d_.get("renk"), (176, 14, 30))
+            dmg = damga_sprite(str(d_["metin"]), renk, (36 if kar is not None else 50) * S, S, tohum=7 + i,
+                               kontur=(255, 255, 255))
         return {"x": x, "y": y, "w": w, "h": h, "ic": ic, "kar": kar, "pad": pad, "ic_h": ic_h, "plaka": plaka,
                 "kar_pm": C.alt_piksel_hazirla(kar) if kar is not None else None,
+                "kar2_pm": C.alt_piksel_hazirla(kar2) if kar2 is not None else None,
+                "damga": dmg, "hareket": s_.get("hareket"),
                 "plaka_h": plaka_h, "roz": roz, "r": r, "faz": 1.3 * i}
 
     def _karakter(self, kr: dict) -> dict:
@@ -348,8 +413,10 @@ class KapanisCizici(Cizici):
         # imlecin çıktığı yer: göğsünün önü (9. tur, animasyon S12: omuzdaki boşlukta beliriyordu, karakterle bağı
         # yoktu); imleç orada küçükten büyüyerek doğar ve oradan yola çıkar
         el = (cx + (0.2 if not sag else -0.2) * w, taban - 0.34 * h)
+        bb = ims[0].getchannel("A").point(lambda v: 255 if v > 40 else 0).getbbox()
+        kutu = (cx - w / 2 + bb[0], taban - h + bb[1], cx - w / 2 + bb[2], taban - h + bb[3]) if bb else None
         return {"ims": [C.alt_piksel_hazirla(im) for im in ims], "w": w, "h": h, "cx": cx, "taban": taban,
-                "el": el, "sag": sag}
+                "el": el, "sag": sag, "kutu": kutu}
 
     def _dugme(self, w: float, h: float, dolgu, kontur, simge, yazi: str | None, yazi_renk=C.BEYAZ) -> Image.Image:
         S = self.S
@@ -570,19 +637,49 @@ class KapanisCizici(Cizici):
         s *= 1 + 0.05 * v + 0.03 * zip_
         dy = (1 - E.out_cubic(u)) * 40 * S + Z.suzul(t, k["faz"], 3.0) * S
         lay = k["ic"].copy()
+        tepki = (t - ilk_vurgu) if ilk_vurgu is not None else None   # 11. tur: kartın ilk vurgusundan beri (sn)
         if k["kar"] is not None:   # karakter pencerede, altı plakanın arkasında; vurguda sıçrar
             g = k["kar"]
+            pm = k["kar2_pm"] if (k["kar2_pm"] is not None and tepki is not None and tepki >= 0.06) else k["kar_pm"]
             nefes = 1 + 0.008 * math.sin(2 * math.pi * 0.3 * t + k["faz"])
+            sq = E.tumsek((tepki - 0.06 + 0.13) / 0.26) if (tepki is not None and k["kar2_pm"] is not None) else 0.0
             gx = (k["w"] - g.width) / 2
             # büstün kesik alt kenarı plakanın arkasında kalır
             gy = 2 * k["pad"] + k["ic_h"] + 14 * S - g.height * nefes - 18 * S * zip_
             pencere = Image.new("RGBA", lay.size, (0, 0, 0, 0))
-            spr, x0, y0 = C.alt_piksel(k["kar_pm"], gx, gy, 1.0, nefes)
+            if k["hareket"] == "yuvarlan" and tepki is not None and tepki < 0.75:
+                # zar gibi: bir tur döner, sekerek oturur (pivot ortası)
+                q = tepki / 0.75
+                aci = -360 * E.out_cubic(q)
+                hop = 34 * S * E.tumsek(q / 0.7)
+                w0, h0 = pm.width - 2 * C.ALT_PAY, pm.height - 2 * C.ALT_PAY
+                spr, x0, y0 = C.afin_pm(pm, gx + w0 / 2, gy + h0 * nefes / 2 - hop, 1.0, nefes, aci,
+                                        C.ALT_PAY + w0 / 2, C.ALT_PAY + h0 / 2)
+            else:
+                spr, x0, y0 = C.alt_piksel(pm, gx - g.width * 0.02 * sq, gy + g.height * 0.06 * sq,
+                                           1.0 + 0.04 * sq, nefes * (1 - 0.06 * sq))
             _ust_uste(pencere, spr, x0, y0)
             maske = C.yuvarlak_kutu(k["w"], k["h"], k["r"], (255, 255, 255, 255)).getchannel("A")
             pencere.putalpha(Image.fromarray(np.minimum(np.asarray(pencere.getchannel("A")),
                                                         np.asarray(maske)), "L"))
             lay.alpha_composite(pencere)
+        if k["damga"] is not None and tepki is not None and tepki >= 0.15:
+            # lastik damga görselin ortasına iner (ust.Damga gibi: büyükten 0,14 sn'de çarpar, sonra kalır)
+            q = (tepki - 0.15) / 0.14
+            ds = 1.0 + 0.7 * (1 - E.out_cubic(min(1.0, q)))
+            da = min(1.0, q * 1.6)
+            dm = k["damga"]
+            # karakterli kartta yüze/ağza değil başın yanındaki boşluğa (sol üst; yüz değişimi görünsün, gerçek kişinin
+            # yüzü ya da ağzı damgalanmaz), belgede ortaya
+            if k["kar"] is not None:
+                dcx, dcy = k["w"] * 0.22, k["pad"] + k["ic_h"] * 0.2
+            else:
+                dcx, dcy = k["w"] / 2, k["pad"] + k["ic_h"] * 0.72   # belgenin başlığı (1928) açık kalsın
+            out_d, dx0, dy0 = C.afin(dm, dcx, dcy, ds, ds, -7, dm.width / 2, dm.height / 2)
+            out_d = out_d.copy()
+            if da < 1:
+                out_d.putalpha(out_d.getchannel("A").point(lambda v: int(v * da)))
+            _ust_uste(lay, out_d, dx0, dy0)
         lay.alpha_composite(k["plaka"], (int(k["pad"]), int(k["h"] - k["pad"] - k["plaka_h"])))
         # çerçeve: beyaz; vurguda kalın sarı
         kal = (4 + 5 * v) * S

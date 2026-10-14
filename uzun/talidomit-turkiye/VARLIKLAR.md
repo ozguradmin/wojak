@@ -36,17 +36,17 @@ karakteri aynalar). Bir karakterin bütün yüzleri aynı tuvalde.
 | Dosya | Kim / yüzler | Taban (kaynak) | Lisans durumu |
 |---|---|---|---|
 | `anlatici_v2_{sakin,dusunceli,ciddi,fark,saskin,terli,gozyasli,mutlu}.png` | anlatıcı/izleyici ("feels guy", kırmızı ekose gömlek). `mutlu` (7. tur, kapanış çağrısında abone tıkı): kapalı kavisli gözler + yumuşak gülümseme | wojakland "Flannel Wojak" https://wojakland.com/wp-content/grand-media/image/original/flannel_wojak.png | wojakland'de kullanım şartı sayfası yok (topluluk memesi); kanal pratiği: karakter olarak kullanılır, kaynak yazılır |
-| `kaymakcalan_v2_{sakin,dusunceli,ciddi,kararli}.png` | Şükrü Kaymakçalan rolü (siyah saç, kalın siyah gözlük, yeşil gömlek, takım); `kararli` = doruğun "hayır" yüzü. Fotoğrafına benzetilmedi | wojakparadise arşivi (HF clayshoaf/Wojaks `5_Doomer/13708` "Depressed Office Worker"); camların içindeki gözler Flannel Wojak'ın klasik gözleri | yükleyenin malı, açık izin yok |
+| `kaymakcalan_v2_{sakin,dusunceli,ciddi,kararli}.png` | Şükrü Kaymakçalan rolü (siyah saç, kalın siyah gözlük, yeşil gömlek, takım); `kararli` = doruğun "hayır" yüzü. Fotoğrafına benzetilmedi. 11. tur: `dusunceli` (yakın kaş camın çok üstünde, göz bebekleri yukarıda, ağız yana itilmiş) ve `ciddi` (kalın kaşlar çerçeveye basar, ağız uçları aşağı) telefonda ayrışır | wojakparadise arşivi (HF clayshoaf/Wojaks `5_Doomer/13708` "Depressed Office Worker"); camların içindeki gözler Flannel Wojak'ın klasik gözleri | yükleyenin malı, açık izin yok |
 | `lenz_v2_{sakin,fark,ciddi}.png` | Widukind Lenz rolü (koyu kıvırcık saç, palto, ekose kravat; gözlüksüz) | wojakland "English Wojak" | wojakland (yukarıdaki gibi) |
 | `voss_v2_{sakin,ciddi}.png` | Ralf Voss rolü (kumral, siyah takım) | wojakland "Blushing Suit Wojak" (allık silindi, saç kumral) | wojakland |
 | `sheskin_v2_{sakin,saskin}.png` | Jacob Sheskin rolü (kır saç, gözlük, balıkçı yaka) | wojakland "Turtleneck Grey Hair Wojak" | wojakland |
-| `eczaci_v2_sakin.png` | 1950'ler eczacısı (bıyık, papyon, bordo ceket) | wojakland "Suit Wojak" (değiştirilmedi) | wojakland |
+| `eczaci_v2_sakin.png`, `eczaci_v2_konusuyor{,_yari}.png` | 1950'ler eczacısı (bıyık, papyon, bordo ceket); `konusuyor` balon repliklerinde açık ağız, `_yari` (11. tur) ara yarık ağız | wojakland "Suit Wojak" (yalnız ağız eklendi) | wojakland |
 | `musteri_v2_sakin.png` | eczane müşterisi (uykusuz yüz, giyimli) | wojakland "Tired Blonde Wojak" (değiştirilmedi) | wojakland |
 | `kelsey_v2_{sakin,supheci,kararli}.png` | Frances O. Kelsey rolü (gözlüksüz) | wojakparadise arşivi (HF clayshoaf/Wojaks `5_Daddys_Girl/11087` "Secretary Daddy's Girl"), yüzler temiz yeniden | yükleyenin malı, açık izin yok |
-| `veteriner_v2_sakin.png` | Süreyya Tahsin Aygün rolü (süveter yelek + gömlek) | wojakland "Grandpa Wojak" (kısa videoyla aynı yüz) | wojakland |
+| `veteriner_v2_sakin.png`, `veteriner_v2_ciddi.png` | Süreyya Tahsin Aygün rolü (süveter yelek + gömlek); `ciddi` (9. tur) "Bakanlığı uyarmış" anı | wojakland "Grandpa Wojak" (kısa videoyla aynı yüz) | wojakland |
 | `anne_adayi_sakin.png` | 1950'ler anne adayı, yalnız sakin yüz | wojakland "Trad Wife" (değiştirilmedi) | wojakland |
 | `temsilci2000_sakin.png`, `_gergin.png` | 2000'ler adsız temsilci; `gergin` = kit ter damlaları | wojakland "Grey Suit Wojak" | wojakland |
-| `temsilci_notr.png` (K3) ve *(kısa videodan)* `episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png`, `temsilci_gergin.png` | A temsilci (adsız, 1950'ler) | wojakland "1950s Businessman Wojak" | wojakland |
+| `temsilci_notr.png` (11. turdan beri kullanılmıyor; K3 artık `temsilci_gergin`) ve *(kısa videodan)* `episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png`, `temsilci_gergin.png`; `temsilci_gulumsuyor_konusuyor{,_yari}.png`, `temsilci_gergin_konusuyor{,_yari}.png` (balon ağızları; 11. tur: `_yari` ara yarık ağız, gergin açık ağızdaki eski çizgi kancası silindi) | A temsilci (adsız, 1950'ler) | wojakland "1950s Businessman Wojak" (yalnız ağız) | wojakland |
 
 **Artık kullanılmayan (6. tura kadar):** `anlatici_*`, `kaymakcalan_*`, `lenz_*`, `voss_*`, `sheskin_*`, `eczaci_sakin`,
 `kelsey_{sakin,supheci,kararli}` (eski `uret.py`: klasik kafa + bizim çizdiğimiz önlük/kazak/saç), `assets/kit/klasik/sakin.png`
@@ -121,7 +121,7 @@ Gerçek firma/gazete/dergi adı ya da logosu yok; kişi, bebek, hasta yok. Hepsi
 | `gazete_1961_canlandirma.png` | Adsız, logosuz "pazar gazetesi" (canlandırma): tarih satırı "SONNTAG, 26. NOVEMBER 1961", manşet "CONTERGAN?", okunmaz sütunlar. Kutu: `CONTERGAN` | B3.7 |
 | `bulten_karti_yedek.png` | TFD 1994 sayfası yerine bilgi kartı ("bilgi kartı · kendi çizimimiz") | B5.8 |
 | `yumurta_tablasi.png` | Kuluçka yumurtası tablası | B5.7 |
-| `dosya_bos_acik.png`, `dosya_kapali.png`, `dosya_k3_etiketli.png`, `dosya_ruhsat_basvurusu.png`, `dosya_kevadon.png`, `dosya_sinir_hasari_1961.png` | Manila dosyalar: açık ve BOMBOŞ; kapalı; "TALİDOMİT / RUHSAT BAŞVURUSU / ANKARA 19??"; kalın "RUHSAT BAŞVURUSU"; "KEVADON"; "SİNİR HASARI RAPORLARI · 1961" | SA.3, K3, B6.6, B4.2, B4.4 |
+| `dosya_bos_acik.png`, `dosya_kapali.png`, `dosya_k3_etiketli.png`, `dosya_k3_tek_satir.png`, `dosya_ruhsat_basvurusu.png`, `dosya_kevadon.png`, `dosya_sinir_hasari_1961.png` | Manila dosyalar: açık ve BOMBOŞ; kapalı; "TALİDOMİT / RUHSAT BAŞVURUSU / ANKARA 19??" (9. turda K3; artık kullanılmıyor); 10. tur K3: etikette "RUHSAT BAŞVURUSU", altta "TARİH: 19??"; kalın "RUHSAT BAŞVURUSU"; "KEVADON"; "SİNİR HASARI RAPORLARI · 1961" | SA.3, K3, B5.3, B4.2, B4.4 |
 | `makale_behcet_1998_cizim.png` | Hamuryudan ve ark. 1998 ilk sayfasının çizimi (gerçek başlık ve yazarlar, dergi adı/logosu yok) | B6.5 |
 | `eczane_raf_dolu.png`, `eczane_raf_turkiye_bos.png` | Düz çizim eczane rafı + tezgâh; ikincisinde ortadaki kutunun yeri boş (sarı çerçeve) | B1.8 (yedek), B2.4 "TÜRKİYE" tezgâhı |
 | `takvim_*.png` (10) | Koparılan takvim yaprakları: ARALIK 1956, 1 EKİM 1957, EYLÜL 1960, 30 EKİM 1961 (gri), 15/16/20/26/27 KASIM 1961, 31 MAYIS 2004 | B1.1, B1.6, B3.4–B3.8, B4.2, B6.6 |
@@ -158,7 +158,13 @@ Hepsi betikle üretilir; dış kaynaklı olanların lisansı kaynağınınkidir 
 Yollar `uzun/talidomit-turkiye/` köküne göre (`chars/...`, `img/...`); `ep/` = `episodes/talidomit-turkiye/chars/`.
 Harita, sayaç, nokta ızgarası, zaman çizelgesi, bölüm kartı, metin kartları motorun kendi sahneleridir (görsel dosyası yok).
 
-8. tur eşlemesi (video.yaml ile aynı, 13.10.2026). 7. turdan beri bütün karakterler hazır kıyafetli `*_v2_*` çizimler
+11. tur eşlemesi (video.yaml ile aynı, 14.10.2026). 11. turda: B4.2 fotoğraf ofiste, B4.3-B4.5 tek mekân (çizim büro,
+3 ardışık çekim: aynı sahnenin devamı; animasyon hakemi S2 ofis/büro arasında gidip gelen kesmeleri istemedi),
+B4.1'de daktilo etiketi çıktı, balon ağızlarına ara yarık (`*_konusuyor_yari.png`), kapanış seçenek A'sı sakin ->
+kararlı yüz, K3 terleyen temsilci, K2 uzak harita.
+10. tur eşlemesi (13.10.2026; teknik hakem 9. tur N4: "8. tur eşlemesi" ve B1.1a/B1.1b eskimişti).
+10. turda: B1.1 tek çekim (9. turdan beri), B3.2'de konuk anlatıcı, B5.4'te temsilcinin numune kutusu (3. konuk),
+B5.12 ve KP.1'de kartpostalın basılı yazısı kırpıldı (`kirp`), K3 yeni tek satır etiketli dosya. 7. turdan beri bütün karakterler hazır kıyafetli `*_v2_*` çizimler
 (`chars/KARAKTER_HARITASI.md`); 8. turda: kapının ara çizimleri (`kapi_ara_1/2.png`, SA.3, B5.4, B6.6b), B5.4'te kapı
 geri döner, B2.6'da Voss'un zarfı (2/2), B1.1b'de takvim yok, B5.5 ("Bir süre sonra") çıktı, B3.15/B5.10 haritası Equal
 Earth. Kural: bir görsel (aynı fotoğrafın kırpımı ya da baskısı dahil) en çok 2 çekimde; `konuk` = bilgi sahnesinde
@@ -173,7 +179,7 @@ köşeden giren karakter; "gölgeli" = `golge: true` (havada duran nesneye düş
 | SA.4b | `img/arka_eczane_raflar_169.jpg` (eczane fotoğrafı 1/2) · `chars/anne_adayi_sakin.png` · `img/cizim/numune_kutusu_tabletler.png` (gölgeli) |
 | SA.5 | metin, kâğıt zemin · konuk anne adayı |
 | SA.6 | `img/arka_koridor_cizim.jpg` (1/2) · `img/cizim/kapi_kapali.png` · `chars/temsilci2000_sakin.png` → `temsilci2000_gergin.png` |
-| B1.1a, B1.1b | `img/foto_stolberg_grunenthal_169.jpg` (1/2, 2/2: aynı yerin geniş ve yakın çekimi, bulanık) · B1.1a `takvim_aralik_1956.png` + `numune_kutusu_tabletler.png`; B1.1b yalnız numune kutusu (8. tur) · `chars/anlatici_v2_*` |
+| B1.1 | `img/foto_stolberg_grunenthal_169.jpg` (1/1; 9. turdan beri tek çekim: takvim 3. satırda çıkar, kamera kutuya ve anlatıcıya itilir) · `takvim_aralik_1956.png` + `numune_kutusu_tabletler.png` · `chars/anlatici_v2_*` |
 | B1.2 | zaman çizelgesi, `img/foto_kupferhof_grunenthal_169.jpg` (1/2) · konuk `chars/anlatici_v2_*` |
 | B1.3 | `img/foto_kupferhof_grunenthal_169.jpg` (2/2) · `molekul_beyaz.png` · `chars/anlatici_v2_*` |
 | B1.4 | `img/doku_duvar_yesil.jpg` (1/2) · `fare_kafesi.png`, `kompozit/doz_*.png` · manşet `kompozit/kart_neredeyse_zehirsiz.jpg` |
@@ -189,7 +195,7 @@ köşeden giren karakter; "gölgeli" = `golge: true` (havada duran nesneye düş
 | B2.4b | `img/arka_eczane_cizim.jpg` (2/2) · `img/cizim/eczane_raf_turkiye_bos.png` · anlatıcı |
 | B2.5a / B2.5b | `img/arka_hekim_odasi_cizim.jpg` (1/1) · `chars/voss_v2_sakin.png` → `voss_v2_ciddi.png` · `img/cizim/zarf.png` (1/2, gölgeli) / zaman çizelgesi (koyu zemin) + konuk Voss |
 | B2.6, B2.7 | `img/doku_karton.jpg` (1/2) · `chars/anlatici_v2_*` · `img/cizim/zarf.png` (2/2; Voss'un uyarı mektubu, 8. tur) / metin (koyu, bilinçli düşüş) |
-| B3.1, B3.2 | Hint Okyanusu yarıküre haritası + konuk `chars/lenz_v2_sakin.png`; Avustralya haritası |
+| B3.1, B3.2 | Hint Okyanusu yarıküre haritası + konuk `chars/lenz_v2_sakin.png`; Avustralya haritası + konuk anlatıcı (10. tur) |
 | B3.3, B3.5 | `img/arka_muayenehane_169.jpg` (1/2, 2/2) · `chars/lenz_v2_*` · takvimler, `telefon_simge.png`, `zarf_taahhutlu.png` (gölgeli) |
 | B3.4 | zaman çizelgesi (koyu) · konuk `chars/lenz_v2_ciddi.png` |
 | B3.6 | `img/doku_duvar_yesil.jpg` (2/2) · `chars/lenz_v2_ciddi.png` · `takvim_20_kasim_1961.png` |
@@ -200,22 +206,22 @@ köşeden giren karakter; "gölgeli" = `golge: true` (havada duran nesneye düş
 | B3.12, B3.13 | `img/foto_protez_kollar.jpg` (1/2, 2/2) · konuk anlatıcı |
 | B3.15, B5.10 | Kuzey Atlantik haritası (1/2, 2/2; 8. tur: Equal Earth, Türkiye eğilmiyor) · konuk anlatıcı / `chars/kaymakcalan_v2_sakin.png` |
 | B4.1 | `img/foto_kelsey_masa.jpg` (1/2) · konuk `chars/kelsey_v2_sakin.png`, anlatıcı |
-| B4.2, B4.4 | `img/arka_ofis_169.jpg` (1/2, 2/2) · `chars/kelsey_v2_sakin/supheci/kararli.png` · `dosya_kevadon.png`, `dosya_sinir_hasari_1961.png`, `kompozit/yigin_*.png` |
-| B4.3, B4.5 | `img/arka_buro_cizim.jpg` (1/2, 2/2) · Kelsey · `takvim_eylul_1960.png` / `doz_sisesi.png` (karar: `img/telifli/kevadon_1960_fda.jpg`) |
+| B4.2 | `img/arka_ofis_169.jpg` (1/1) · `chars/kelsey_v2_sakin.png` · `dosya_kevadon.png` |
+| B4.3, B4.4, B4.5 | `img/arka_buro_cizim.jpg` (tek mekân, 3 ardışık çekim) · Kelsey (`sakin/supheci/kararli`) · `takvim_eylul_1960.png` (B4.3 ve B4.4'ün başı) / `dosya_sinir_hasari_1961.png`, `kompozit/yigin_*.png` / `doz_sisesi.png` (karar: `img/telifli/kevadon_1960_fda.jpg`) |
 | B4.6 | sayaç · konuk Kelsey |
 | B4.7 | `img/foto_kelsey_kennedy_1962.jpg` (1/2) \| `img/foto_kennedy_imza_1962.jpg` (1/2) |
 | B4.8 | `img/foto_ankara_panorama_tam.jpg` (kırpım; panorama 1/2) · `kompozit/baski_kelsey.png` (Kelsey fotoğrafı 2/2) · anlatıcı |
 | B4.9 | metin (kâğıt, daktilo) |
-| B5.1, B5.6 | `img/foto_ankara_bankalar_caddesi.jpg` (1/2, 2/2) · B5.6 `ep/temsilci_gergin.png` + `numune_kutusu_tabletler.png` |
-| B5.2, B5.3c | `img/arka_bakanlik_oda_cizim.jpg` (1/2, 2/2) · `ep/temsilci_gulumsuyor.png` (→ `temsilci_gergin.png`) · `numune_kutusu_tabletler.png` |
+| B5.1, B5.6 | `img/foto_ankara_bankalar_caddesi.jpg` (1/2, 2/2) · B5.6 `ep/temsilci_gergin.png` (balonda `chars/temsilci_gergin_konusuyor{_yari,}.png`) + `numune_kutusu_tabletler.png` |
+| B5.2, B5.3c | `img/arka_bakanlik_oda_cizim.jpg` (1/2, 2/2) · `ep/temsilci_gulumsuyor.png` (balonda `chars/temsilci_gulumsuyor_konusuyor{_yari,}.png`; → `temsilci_gergin.png`) · `numune_kutusu_tabletler.png` |
 | B5.3a, B5.3b | `img/foto_ankara_bankalar_kartpostal_ust.jpg` (1/2, 2/2) · `chars/kaymakcalan_v2_*` · `img/cizim/dosya_ruhsat_basvurusu.png` |
-| B5.4 | bölünmüş: sol arka `foto_kennedy_imza_1962.jpg` (2/2) \| sağ `foto_saglik_bakanligi.jpg` (2/2) · konuk `ep/temsilci_gergin.png` + kapı (`kapi_acik` → ara kareler → `kapi_kapali`; kancanın kapısı, 8. tur) |
+| B5.4 | bölünmüş: sol arka `foto_kennedy_imza_1962.jpg` (2/2) \| sağ `foto_saglik_bakanligi.jpg` (2/2) · konuk `ep/temsilci_gergin.png` (→ `chars/temsilci_gergin_konusuyor.png` kapı çarpınca) + kapı (`kapi_acik` → ara kareler → `kapi_kapali`; kancanın kapısı, 8. tur) + `numune_kutusu_tabletler.png` (11. tur: soldan kapıya gelir, çarpınca sola geri savrulur; temsilcinin yüzünden geçmez) |
 | B5.7, KP.3b | `img/arka_lille_masa_169.jpg` (Lille fotoğrafı 1/2, 2/2) · `chars/veteriner_v2_sakin.png` (+ B5.7'de `veteriner_v2_ciddi`) · `yumurta_tablasi.png` (gölgeli) · B5.7: `kompozit/baski_tavuk.png` (tavuk embriyosu 1/2, "GÖRSEL TEMSİLÎ") |
 | B5.8a, B5.8b | mantar pano (1/2, 2/2) · `kompozit/bulten_kagit.jpg` (aynı kart, iki çekim) · `img/foto_tavuk_embriyosu.jpg` · konuk `kaymakcalan_v2_dusunceli` (8a), anlatıcı (8b) |
 | B5.8m | `img/cizim/gazete_2008_canlandirma.png` · konuk anlatıcı |
 | B5.9 | `img/foto_dogu_berlin_kacak_ilac_1961.jpg` · konuk anlatıcı |
 | B5.11 | `img/doku_kagit_mavi.jpg` (1/1) · `kompozit/telefon_iddia.png` · anlatıcı |
-| B5.12, KP.1 | `img/foto_ankara_sergievi_kartpostal_alt.jpg` (1/2, 2/2) · `chars/kaymakcalan_v2_sakin.png` / anlatıcı |
+| B5.12, KP.1 | `img/foto_ankara_sergievi_kartpostal_alt.jpg` (1/2, 2/2; 10. tur: alt %15 kırpılır, basılı "Sergi evi ve Bankalar…" yazısı yarım kalmasın) · `chars/kaymakcalan_v2_sakin.png` / anlatıcı |
 | B5.13, B6.4a | `img/doku_tebesir.jpg` (1/2, 2/2) · `molekul_beyaz.png`, `cereblon.png`, `sall4*.png` · anlatıcı |
 | B6.1 | `img/arka_hastane_odasi_cizim.jpg` · `chars/sheskin_v2_*` (8. tur: saç iki düz gri) · `numune_kutusu.png` (komodinde) |
 | B6.2 | zaman çizelgesi (kâğıt) · konuk Sheskin |
@@ -225,8 +231,8 @@ köşeden giren karakter; "gölgeli" = `golge: true` (havada duran nesneye düş
 | B6.7 | bölünmüş: sol arka `foto_contergan_teneke_169.jpg` (teneke 2/2) \| sağ metin (kâğıt) · manşet `img/cizim/kub_bolum44_yedek_kart.jpg` (onay: `img/telifli/kub_*`) |
 | KP.2 | `foto_kelsey_kennedy_1962.jpg` (2/2) \| `img/kompozit/kp_kapi.jpg` (9. tur: koridor + kancanın kapısı; boş dosyalar yerine) · konuk anlatıcı (6. tur: 1. satırda girer) |
 | KP.3a | `img/foto_ankara_panorama_tam.jpg` (başka kırpım; panorama 2/2) · `chars/kaymakcalan_v2_sakin.png` |
-| KP.4 (kapanış) | `img/foto_contergan_forte.jpg` (forte 2/2, bulanık) · `chars/anlatici_v2_sakin.png` → `anlatici_v2_mutlu.png` · seçenek kartları: `chars/kaymakcalan_v2_kararli.png`, `img/cizim/kanun_1262_sayfa.jpg` (2/2), `img/cizim/zarlar.png` |
-| K1 / K3 / K2 | K1 (ana): zemin `img/kompozit/kr_zehirsiz.jpg` + `ep/temsilci_gergin.png` · K3: `img/kompozit/kr_dosya.jpg` (8. tur: etiketli kapak sola-yukarı, süre rozetinden uzak) + `chars/temsilci_notr.png` · K2: `img/kompozit/kr_harita.jpg` + `ep/temsilci_gergin.png` (8. tur: boy 0,6, rozetin solunda). Küçük resimde CC BY-SA fotoğraf yok (senaryo kuralı) |
+| KP.4 (kapanış) | `img/foto_contergan_forte.jpg` (forte 2/2, bulanık) · `chars/anlatici_v2_sakin.png` → `anlatici_v2_mutlu.png` · seçenek kartları: `chars/kaymakcalan_v2_sakin.png` → `kaymakcalan_v2_kararli.png` (+ "HAYIR" damgası), `img/cizim/kanun_1262_sayfa.jpg` (2/2, + "RUHSAT ŞART"), `img/cizim/zarlar.png` (yuvarlanır) |
+| K1 / K3 / K2 | K1 (ana): zemin `img/kompozit/kr_zehirsiz.jpg` + `ep/temsilci_gergin.png` · K3: `img/kompozit/kr_dosya.jpg` (10. tur: `img/cizim/dosya_k3_tek_satir.png`: etikette tek satır "RUHSAT BAŞVURUSU", büyüteç yalnız alttaki "19??"un üstünde) + `ep/temsilci_gergin.png` (11. tur; nötr yüz 168 px'te duygusuzdu) · K2: `img/kompozit/kr_harita.jpg` (11. tur: Britanya'dan Hazar'a uzak harita, boyalı 8 ülkenin hepsi kadrajda; RUHSAT YOK bloğu Karadeniz'de) + `ep/temsilci_gergin.png`. Küçük resimde CC BY-SA fotoğraf yok (senaryo kuralı) |
 
 Görsel sayılmayanlar: motorun kendi ürettiği koyu/kâğıt bilgi zemini (sayaç, metin, zaman çizelgesi; görsel dosyası yok).
 

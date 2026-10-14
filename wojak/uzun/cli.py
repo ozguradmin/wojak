@@ -21,8 +21,8 @@ import time
 from pathlib import Path
 
 from .. import config
-from . import FPS, altyazi, kucukresim, paket, render, ses, spec, tts, zaman
-from .sahneler import vuruslar
+from . import FPS, altyazi, kucukresim, paket, render, ses, spec, tts, yerlesim, zaman
+from .sahneler import sayac_bolumleri, vuruslar
 
 
 def _t(s: str) -> float:
@@ -113,6 +113,90 @@ def gecis_denetimi(z) -> list[str]:
     return out
 
 
+def ziplama_denetimi(v, z, W: int = 960) -> list[str]:
+    """11. tur (animasyon hakemi M2): kesmede aynı karakter aynı yerde boy ya da yer değiştirirse "jump cut" gibi
+    zıplar (köşedeki anlatıcı 0,50 -> 0,42; soldan sağa sıçrama). Kesmenin iki yanında görünen aynı aile (chars/
+    karakteri, yüz eki atılmış ad) için EKRANDAKİ alfa kutusu karşılaştırılır (kamera dahil: yakın çekimle eşleşen
+    kesme uyarı vermez). Hakemin kuralı: kesmede aynı karakter ya aynı yer ve boyda kalır ya da değişim bilinçli ve
+    geçişlidir (kaydir / karart). Yan değiştirme ve aynı yanda (ekranın beşte birinden az kayarak) boy/yer değişimi
+    uyarılır; değişim karakterin ekranda gerçekten başka bir yere taşınmasıysa (>= 0,2 kayma) ya da boy en az %50
+    değişiyorsa (köşedeki konuktan tam boy sahneye) uyarılmaz. Karşılaştırılan: yüz kutusunun ortası ve üstü, alfa
+    kutusunun yüksekliği."""
+    from .sahneler import Baglam, cizici
+    H = W * 9 // 16
+    c = Baglam(v, W, H, z.fps)
+    onbellek: dict = {}
+
+    def kutular(i: int, t: float) -> dict:
+        s = z.sahneler[i]
+        if i not in onbellek:
+            try:
+                onbellek[i] = cizici(s, c)
+            except Exception:   # noqa: BLE001 — denetim çizimi durdurmasın
+                onbellek[i] = None
+        cz = onbellek[i]
+        if cz is None or not getattr(cz, "katman", None):
+            return {}
+        out = {}
+        specs = (s.p.get("karakterler") or []) if s.tip == "wojak" else (s.p.get("konuk") or [])
+        kamlar = {id(k): kf for k, kf in cz.katman.kars}
+        for cs in specs:
+            a_ = karakter_ailesi(cs["gorsel"])
+            k = cz.katman.kar_id.get(cs.get("id"))
+            if not a_ or k is None:
+                continue
+            kf = kamlar.get(id(k))
+            kk = k.ekran_kutulari(t, kf(t) if kf else None)
+            if kk is not None:   # yüz kutusunun ortası ve üstü + alfa kutusunun boyu (kadraj dışına taşan gövde değil)
+                (x0, y0, x1, y1), (fx0, fy0, fx1, fy1) = kk
+                out[a_] = ((fx0 + fx1) / 2 / W, (y1 - y0) / H, fy0 / H)
+        return out
+
+    out = []
+    for i in range(1, len(z.sahneler)):
+        s, o = z.sahneler[i], z.sahneler[i - 1]
+        if s.gecis not in (None, "kesme") or "bolum_karti" in (s.tip, o.tip):
+            continue
+        if not (sahne_aileleri(s) & sahne_aileleri(o)):
+            continue
+        once, sonra = kutular(i - 1, o.sure_hesap - 1.0 / z.fps), kutular(i, 0.0)
+        for a_ in sorted(set(once) & set(sonra)):
+            (x0, h0, u0), (x1, h1, u1) = once[a_], sonra[a_]
+            db = abs(h1 - h0) / max(h0, 1e-6)
+            yan = (x0 < 0.5) != (x1 < 0.5)
+            yer = f"{zaman.zaman_str(z.sahne_basi(s), ms=True)}: kesmede {a_}"
+            olcu = f"(ekranda baş x {x0:.2f} -> {x1:.2f}, üst {u0:.2f} -> {u1:.2f}, boy {h0:.2f} -> {h1:.2f})"
+            if yan:
+                out.append(f"{yer} yan değiştiriyor {olcu} — aynı yerde tut ya da gecis: kaydir / karart")
+            elif (abs(x1 - x0) > 0.012 or abs(u1 - u0) > 0.03 or db > 0.04) and abs(x1 - x0) < 0.2 and db < 0.5:
+                out.append(f"{yer} yerinde zıplıyor {olcu} — x/boy'u kesmenin iki yanında eşitle")
+    return out
+
+
+def sayac_denetimi(z) -> list[str]:
+    """10. tur (animasyon hakemi M2): sayaç değeri yerleşip okunmadan yenisine geçiyorsa motor sayımı kısaltır ya
+    da sonraki değeri erteler; ikisini de bildirir (anlatımla eşleşmesini kulakla/gözle doğrula)."""
+    out = []
+    for s in z.sahneler:
+        if s.tip != "sayac":
+            continue
+        b0 = z.sahne_basi(s)
+        for b in sayac_bolumleri(s):
+            if b.get("kisaldi"):
+                out.append(f"{zaman.zaman_str(b0 + b['t0'])}: sayaç {C_sayi(b['b'])} değerine sayım "
+                           f"{b['kisaldi']:.2f} sn kısaltıldı (sonraki değişimden / sahne sonundan önce en az "
+                           f"{float(s.p.get('tut', 0.6)):.1f} sn okunsun) — istersen `sure_say` / basla `sure` ver")
+            if b.get("ertelendi"):
+                out.append(f"{zaman.zaman_str(b0 + b['t0'])}: sayaç {C_sayi(b['b'])} değeri {b['ertelendi']:.2f} sn "
+                           f"ertelendi (önceki değer okunmadan geliyordu) — olayın satır/ofset'ini kaydır")
+    return out
+
+
+def C_sayi(v) -> str:
+    from .cizim import say_bicimle
+    return say_bicimle(v)
+
+
 def cmd_kontrol(a) -> None:
     v, z = _yukle(a.yol)
     ozet(v, z)
@@ -120,7 +204,8 @@ def cmd_kontrol(a) -> None:
     for g in tekrar:
         print(f"  aynı kayıt ({len(g)} kez, tek seslendirme): " + " = ".join(g))
     ps = altyazi.parcalar(z)
-    u = (hareket_denetimi(v, z) + gecis_denetimi(z) + paket.uyarilar(v, z) + altyazi.denetle(ps)
+    u = (hareket_denetimi(v, z) + gecis_denetimi(z) + ziplama_denetimi(v, z) + sayac_denetimi(z) + yerlesim.denetle(v, z)
+         + paket.uyarilar(v, z) + altyazi.denetle(ps)
          + [f"altyazı kelime farkı: {x}" for x in altyazi.kelime_farki(z, ps)] + tekrar_uyari)
     for x in u:
         print(f"  ⚠ {x}")

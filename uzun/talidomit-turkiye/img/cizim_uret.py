@@ -471,6 +471,21 @@ def dosya(acik: bool, etiket: str | None = None, kalin=False):
     return t.done()
 
 
+def dosya_k3():
+    """10. tur (animasyon hakemi S9): K3'te büyüteç üç satırlık etiketi ortadan kesiyordu ("TALİDO… RUHSAT B… ANKAF",
+    telefonda bulamaç). Etikette tek temiz satır ("RUHSAT BAŞVURUSU"), "19??" kapağın alt sağında ayrı daktilo satırı:
+    büyüteç yalnız onu örter. Gövde ve etiket `dosya()` ile aynı çizim dili."""
+    W, H = 1300, 900
+    t = Tuval(W, H)
+    manila = (226, 196, 128, 255)
+    t.shape([(70, 200), (90, 150), (420, 146), (440, 196), (1220, 200), (1230, 780), (80, 780)], manila)
+    t.shape([(200, 300), (1110, 296), (1114, 430), (204, 434)], (250, 248, 240, 255), w=7)
+    t.text((657, 336), "RUHSAT BAŞVURUSU", ("mono", 64), fill=(30, 30, 34, 255), anchor="mt")
+    t.text((560, 640), "TARİH:", ("mono", 44), fill=(60, 52, 40, 255), anchor="lm")
+    t.text((1010, 640), "19??", ("mono", 68), fill=(30, 30, 34, 255), anchor="mm")
+    return t.done()
+
+
 def makale_sayfasi():
     """Hamuryudan ve ark., Ann Intern Med 1998 ilk sayfasının KENDİ çizimimiz (dergi adı/logosu yok; başlık ve künye
     belgeli olgu)."""
@@ -1121,6 +1136,8 @@ def hepsi(sec: list[str]):
         kaydet(dosya(True), "dosya_bos_acik.png")
         kaydet(dosya(False), "dosya_kapali.png")
         kaydet(dosya(False, "TALİDOMİT\nRUHSAT BAŞVURUSU\nANKARA 19??"), "dosya_k3_etiketli.png")
+    if on("dosya") or on("dosya_k3"):   # 10. tur: K3'ün tek satır etiketli dosyası
+        kaydet(dosya_k3(), "dosya_k3_tek_satir.png")
         kaydet(dosya(False, "RUHSAT BAŞVURUSU", kalin=True), "dosya_ruhsat_basvurusu.png")
         kaydet(dosya(False, "KEVADON"), "dosya_kevadon.png")
         kaydet(dosya(False, "SİNİR HASARI\nRAPORLARI · 1961"), "dosya_sinir_hasari_1961.png")

@@ -554,3 +554,42 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
   - Takılı yıl göstergesi geriye akmamalı (1961 -> "20??" altında 1948): zaman ileri giden hikâyede sayaç da ileri.
   - Ekranda olup söylenmeyen yazı ("(FDA)") uzunlukla orantılı SRT bölmesini 1,4 sn kaydırır: bölme sınırı sesin iç
     sessizliğine oturmalı.
+- **10. tur (dört hakem: izlenme 8, animasyon 7,5, dil 8,3, teknik 9; motor 10. tur: yerleşim denetimi):**
+  - İsim etiketi uzunluğu yüz büyüklüğüne bağlı: "farmakolog (1923–1984) · kaynak: meslektaş tanıklıkları" gibi iki
+    bilgi tek etikete sığmaz, motor küçültür ya da çeneye biner. Kaynak notu aynı sahnede başka yerde söyleniyorsa
+    etiketten çıkar; `kontrol`ün "küçültüldü" uyarısı = etiketi kısalt.
+  - Bir üst katman başka bir fotoğrafa taşmasın: etiket bir fotoğrafı tanıtıyorsa o fotoğraf tam ekrandayken gelir ve
+    çıkar, bölünmüş panel ondan SONRA açılır (Kennedy ödül töreni etiketi yasa imzası fotoğrafının üstündeydi).
+  - Sayaçta her değer en az ~0,6 sn yerleşmiş okunmalı: anlatılan sayı ("1.267 doktor") hiç oturmuyorsa ilk sayımı
+    kısalt (`basla {sure}`); ek bilgi (17 vakanın 10'u) sayının altına değil, boş üst alana küçük damgayla.
+  - Yüz varyantları için telefon testi: ciddi = kalın V kaş + kaş arası kırışık + uçları aşağı ağız; düşünceli = bir kaş
+    yüksek kemer, öbürü alçak düz + yana kaymış ağız. Şüpheci yüzde ağzın tek ucu kalkarsa kısık gözle birlikte "göz
+    kırpan sırıtma" okunur: ağız düz. Kısık gözde kirpik üst kapakta kalmalı (alt yarıyı temiz yeniden çiz).
+  - Hakemin "bakışı yanlış" notunu motorun aynalamasıyla birlikte doğrula: PNG'de sağa bakan göz bebekleri, karakter
+    sağ tarafta aynalanınca içeri bakar (Lenz'in "fark" yüzü videoda doğruydu).
+  - Yazılı kartpostal/fotoğrafın basılı yazısı kenarda yarım kalmasın: `kirp` ile çıkar ya da tamamen kadrajda tut.
+  - Küçük resimde büyüteç tek bir şeyi büyütsün: üç satırlık etiket camın altında bulamaç oluyordu. Etikette tek temiz
+    satır, büyütülecek ayrıntı ("19??") ayrı satırda; gölgeli sprite'ın kırpma payını hesapla (cam 40 px kayıyordu).
+  - Eklenen her `<break>` ve "Sheskin," gibi açıklık kelimesi süre ekler (bu tur +3,3 sn): yeni çekimin duraklarını
+    `ses_onarim.py durak` ile öteki satırların düzeyine indir, sonra olay anlarını Whisper kelime zamanlarına göre kaydır.
+- **11. tur (dört hakem: izlenme 8,1, animasyon 7, dil 8,5, teknik 9):**
+  - Kesmede aynı karakter ya aynı yer ve boyda kalır ya da değişim bilinçli ve geçişlidir: köşedeki anlatıcının 0,50 ->
+    0,42 boy değiştirmesi, soldan sağa sıçraması ya da kamera itmesiyle büyüyüp sonraki sahnede küçülmesi "jump cut"
+    okunur. Ekrandaki boyu kamerayla birlikte hesapla (yaml boyu değil); `kontrol`ün yeni zıplama denetimi bunu yapar.
+    Çözümler: x/boy/kamera eşitle, `gecis: karart` (zaman atlaması) ya da `kaydir`; eşleşen kesmede sahnedeki
+    nesneler (takvim, damga, köşe göstergesi) de devam etmeli, yoksa kaybolur.
+  - Nesnenin yolu yüzden geçmesin: numune kutusu sağdan girip çıkarken ağlayan temsilcinin yüzünün içinden geçiyordu.
+    Hikâyenin yönünden gelsin (dışarıdan kapıya: soldan) ve yüzün olduğu bölgeyi hiç kesmesin (`yon` + `x` sınırı).
+  - Bölünmüş ekranda ortalı yazı (kelime) her konumda ayracı keser: panelin içine damga/etiket olarak koy.
+  - Yüz düzenlemesinde silme kutusu eski çizginin uçlarını (kanca, uç kıvrımı) da kapsasın; kontrastı 6 kat artırılmış
+    kırpımda leke ara (temsilcinin açık ağzının köşesinde kalan kanca hakem gözüyle bulundu).
+  - Balon ağzı iki durumda (ince sırıtış <-> geniş hilal) telefonda yanıp sönen sırıtış gibi: ara yarık ağız + en az 4
+    kare tutma (saniyede <= 7,5 değişim), kapalıdan açığa atlamadan.
+  - Kapanış kartında yalnız çerçeve yanması yetmez: vurguda içerideki çizim de bir şey yapsın (yüz değişir, damga iner,
+    zar döner); gerçek kişinin yüzüne/ağzına damga basılmaz (başın yanındaki boşluğa).
+  - Fotoğrafın atıf satırı da engel: isim etiketi lisans satırını örtmesin (motor: `sabit_engeller`).
+  - Dramatik sessizlik dijital sıfır olmasın (-70/-78 dBFS hoparlörde ses kesilmesi gibi): müzik incelmesi -15/-18 dB.
+  - Rubberband ile yavaşlatmada başa 0,3 sn sessizlik ekle, sonra at: tempo 0,92'de "Ölümünün" Whisper'da
+    "Bölümünün" duyuluyordu (başlangıç geçişi bozuluyordu).
+  - Anne adayı yine endişeli çizilmedi (hakem ikinci kez istedi): anlatım "gönül rahatlığıyla alıyor" diyor, mağdur anne
+    çizilmez; duygu kamera itmesiyle verildi. Hakemin isteği olgu/saygı kuralıyla çakışırsa gerekçe raporda yazılır.

@@ -31,8 +31,8 @@ karelerinden ölçüldü; başlangıç değeri, son karar kareye bakarak).
 | Eski dosya | Yeni dosya | Rol | Kullanıldığı sahneler (eski) | boy × |
 |---|---|---|---|---|
 | `anlatici_sakin.png` | `anlatici_v2_sakin.png` | anlatıcı/izleyici "feels guy" | SA.1a, B1.1, B1.1b, B1.7, B2.1, B2.4b, B3.8b, B3.9, B5.13, B6.5 | 1,0 |
-| `anlatici_dusunceli.png` | `anlatici_v2_dusunceli.png` | (bir kaş kalkık, yana kaymış kısa ağız) | SA.3b, B1.1b, B1.2, B1.3, B1.7, B2.6, B3.8b, B3.11b, B3.15, B4.1, B4.8, B5.8m, B5.8b, B5.9, B5.11, B6.4a, B6.4b, KP.1, KP.2 | 1,0 |
-| `anlatici_ciddi.png` | `anlatici_v2_ciddi.png` | (alçak düz kaşlar, sıkı ağız) | SA.3b, B1.5, B3.11b, B3.13, B5.8m, B5.8b, B5.9, B6.3, KP.1, KP.2 | 1,0 |
+| `anlatici_dusunceli.png` | `anlatici_v2_dusunceli.png` | (10. tur: yakın kaş alçak ve düz, uzak kaş yüksek kemer, ağız sağa kaymış ve aşağı eğik: telefonda sakinden ayrılır) | SA.3b, B1.1b, B1.2, B1.3, B1.7, B2.6, B3.8b, B3.11b, B3.15, B4.1, B4.8, B5.8m, B5.8b, B5.9, B5.11, B6.4a, B6.4b, KP.1, KP.2 | 1,0 |
+| `anlatici_ciddi.png` | `anlatici_v2_ciddi.png` | (10. tur: kalın V kaşlar, kaş arası kırışık, uçları aşağı ağız; eskisi sakinden 2-5 px kaş farkıydı) | SA.3b, B1.5, B3.11b, B3.13, B5.8m, B5.8b, B5.9, B6.3, KP.1, KP.2 | 1,0 |
 | `anlatici_fark.png` | `anlatici_v2_fark.png` | (kalkık kaşlar, açık gözler) | SA.2, B1.2, B1.3, B1.7, B2.1, B2.4b, B3.15, B4.1, B4.8, B5.11, B6.4a, B6.4b, B6.5, KP.1 | 1,0 |
 | `anlatici_saskin.png` | `anlatici_v2_saskin.png` | (fark + "o" ağız) | B5.13, KP.1 | 1,0 |
 | `anlatici_terli.png` | `anlatici_v2_terli.png` | (endişeli kaşlar + 3 ter damlası) | SA.1a, SA.1b, B1.5, B2.6 | 1,0 |
@@ -43,17 +43,17 @@ karelerinden ölçüldü; başlangıç değeri, son karar kareye bakarak).
 | `kaymakcalan_kollar.png` | `kaymakcalan_v2_kararli.png` | (9. tur: kalın V kaşlar camın üstüne iner + kaş arası kırışık + kısık gözler (üst kapak içten aşağı) + belirgin aşağı uçlu ağız: telefonda 'ciddi'den ayrılır; doruğun "hayır" yüzü) | B5.3b (son yüz), kapanış kartı A | 1,0 |
 | `lenz_sakin.png` | `lenz_v2_sakin.png` | Widukind Lenz rolü (taban yüz zaten hafif endişeli) | B3.1, B3.3, B3.8 | 0,92 |
 | `lenz_fark.png` | `lenz_v2_fark.png` | | B3.3 | 0,92 |
-| `lenz_ciddi.png` | `lenz_v2_ciddi.png` | | B3.4, B3.6, B3.8 | 0,92 |
+| `lenz_ciddi.png` | `lenz_v2_ciddi.png` | (10. tur: kalın V kaşlar + kırışık + aşağı uçlu ağız; taban yüz zaten hafif endişeli olduğundan eskisi sakinle aynı okunuyordu) | B3.4, B3.6, B3.8 | 0,92 |
 | `lenz_telefon.png` | `lenz_v2_ciddi.png` + ayrı sahne nesnesi `img/cizim/telefon_simge.png` | telefon eden Lenz: çizilmiş el + ahize yerine masadaki telefon (sfx `telefon` zaten var) | B3.5 | 0,92 |
 | `lenz_gazete.png` | `lenz_v2_fark.png` (ya da `_ciddi`) | gazete zaten sahnenin ana görseli (B3.7 manşet); konuk yalnız tepki verir | B3.7 | 0,92 |
 | `voss_sakin.png` | `voss_v2_sakin.png` | Ralf Voss rolü | B2.5a | 1,0 |
-| `voss_ciddi.png` | `voss_v2_ciddi.png` | | B2.5a, B2.5b | 1,0 |
+| `voss_ciddi.png` | `voss_v2_ciddi.png` | (10. tur: kalın V kaşlar + kırışık + aşağı uçlu ağız) | B2.5a, B2.5b | 1,0 |
 | `sheskin_sakin.png` | `sheskin_v2_sakin.png` | Jacob Sheskin rolü (8. tur: kaynağın püskürtme gri saçı iki düz griye indirildi, `sac_duzle`) | B6.1, B6.2 | 0,96 |
 | `sheskin_saskin.png` | `sheskin_v2_saskin.png` | (kalkık kaşlar, camların içinde açık gözler, "o" ağız; çerçeve korunur) | B6.1, B6.2 | 0,96 |
 | `eczaci_sakin.png` | `eczaci_v2_sakin.png` | 1950'ler eczacısı (bıyık, papyon, bordo ceket) | B1.6, B1.8, B2.2, B2.4 | 0,85 |
-| `kelsey_sakin.png` | `kelsey_v2_sakin.png` | Frances O. Kelsey rolü (aynı hazır taban, aynı renk değişimi; yüzler temiz yeniden) | B4.1, B4.2, B4.3, B4.4 | 1,0 |
-| `kelsey_supheci.png` | `kelsey_v2_supheci.png` | (9. tur: sol göz kısık + alçak düz kaş, sağ kaş yüksek kemer, ağzın sağ ucu kalkık; yanak çizgisi kalır) | B4.3, B4.4, B4.6 | 1,0 |
-| `kelsey_kararli.png` | `kelsey_v2_kararli.png` | (9. tur: kalın V kaşlar + kaş arası kırışık, iki göz kısık, uçları aşağı sıkılı ağız) | B4.4, B4.5, B4.6 | 1,0 |
+| `kelsey_sakin.png` | `kelsey_v2_sakin.png` | Frances O. Kelsey rolü (aynı hazır taban, aynı renk değişimi; yüzler temiz yeniden; 10. tur: soluk pembe dudak gölgesi silindi, üç yüzde ağız aynı siyah çizgi) | B4.1, B4.2, B4.3, B4.4 | 1,0 |
+| `kelsey_supheci.png` | `kelsey_v2_supheci.png` | (9. tur: sol göz kısık + alçak düz kaş, sağ kaş yüksek kemer; 10. tur (izlenme S1): ağız düz, uçları hafif aşağı (kalkık uç kısık gözle 'göz kırpan sırıtma' gibiydi); kısık gözde kirpikler üst kapakta, alt yarı temiz yeniden çizildi) | B4.3, B4.4, B4.6 | 1,0 |
+| `kelsey_kararli.png` | `kelsey_v2_kararli.png` | (9. tur: kalın V kaşlar + kaş arası kırışık, iki göz kısık, uçları aşağı sıkılı ağız; 10. tur: kısık gözlerde kirpikler üst kapakta, sağ gözün iç köşe kırıntısı silindi) | B4.4, B4.5, B4.6 | 1,0 |
 | `assets/kit/klasik/sakin.png` (B1.8 müşteri) | `musteri_v2_sakin.png` | eczane müşterisi: uykusuz yüz (uyku ilacı almaya gelen); çıplak omuzlu klasik büst yerine giyimli | B1.8 | 0,9 |
 | `episodes/talidomit-turkiye/chars/veteriner.png` | `veteriner_v2_sakin.png` (**isteğe bağlı**) | Aygün rolü: kısa videodakiyle aynı yüz, ama boyanmış önlük yerine hazır süveter yelek + gömlek | B5.7, KP.3b | 1,0 |
 | — | `veteriner_v2_ciddi.png` | 9. tur: içe doğru inen kalın kaşlar + kaş arası çizgi, uçları aşağı ağız ("Bakanlığı uyarmış") | B5.7 | 1,0 |
@@ -140,3 +140,20 @@ ailesinden hazır çizim, elle çizilmedi.
 - `sheskin_v2_sakin/saskin`: saç iki düz gri (128 / 196), kontur ve yüz değişmedi (`hazir_uret.py sheskin`).
 - Anne adayına endişeli yüz **eklenmedi**: B2.4'te anlatım "gönül rahatlığıyla alıyor" diyor ve anne adayı mağdur
   gibi gösterilmiyor (senaryo kuralı); "HAMİLELERDE TEST EDİLMEDİ" izleyicinin bilgisi, onun değil.
+
+## 8. 11. tur (animasyon hakemi M3, S5, S6, S9)
+
+- `temsilci_gergin_konusuyor.png`: açık ağzın sağ köşesinde eski düz çizginin aşağı kancası siyah leke olarak kalmıştı
+  (~896-905, 824-832 px); silme kutusu genişletildi (`hazir_uret.py agiz`). 1:1 ve kontrastı 6 kat artırılmış kırpımda
+  temiz.
+- Balon ağızlarına ara yarık: `eczaci_v2_konusuyor_yari`, `temsilci_gulumsuyor_konusuyor_yari`,
+  `temsilci_gergin_konusuyor_yari` (aynı tuval, aynı 9 px çizgi; açık hilal biraz sığlaştı). Motor `agiz: [yarık,
+  açık]` ile kapalı -> yarık -> açık sırasında, en az 4 kare tutarak geçer (telefonda yanıp sönen sırıtış yok).
+- `kaymakcalan_v2_dusunceli`: yakın kaş camın çok üstünde yüksek kemer, uzak kaş alçak ve düz, göz bebekleri küçük ve
+  üst kapağa yapışık (camın içi silinip gözler aynı kalın üst kapakla yeniden çizildi), ağız kısa, yana itilmiş ve
+  eğik. `kaymakcalan_v2_ciddi`: kalın kaşlar camın üst kenarına basar (gözler açık), ağız uçları belirgin aşağı.
+  Telefon boyunda (baş ~150 px) dört yüz ayrışıyor (`kararli`: V kaş + kısık göz + sert ağız).
+- Anne adayına endişeli yüz yine **eklenmedi** (8. turdaki gerekçe; animasyon S5 bunu tekrar istedi): B2.4'te
+  "HAMİLELERDE TEST EDİLMEDİ" sözünde kamera anne adayına yavaşça iter (`it`); ironi görüntüde, anne mağdur değil.
+- Kapanış kartı A artık `kaymakcalan_v2_sakin` ile başlar, vurgusunda `kararli`ya geçer ve başının yanına küçük
+  "HAYIR" damgası iner (motor `secenekler[].vurgu_gorsel`, `damga`).

@@ -319,9 +319,10 @@ def anlatici():
             im = sil(im, GOZ_R, oy=oy)
         if agiz is not None:
             im = sil(im, AGIZ, oy=oy)
-        c = Cizim(im, oy, seed=len(str(kaslar)))
+        cag = kaslar is not None and any(callable(k) for k in kaslar)
+        c = Cizim(im, oy, seed=(97 + len(kaslar)) if cag else len(str(kaslar)))   # 10. tur: lambda'lı kaşta tohum sabit
         for k in (kaslar or []):
-            c.cizgi(k, W + 1)
+            k(c) if callable(k) else c.cizgi(k, W + 1)
         if gozler:
             gozler(c)
         for a in (agiz or []):
@@ -344,14 +345,19 @@ def anlatici():
                 [(712, 262), (745, 272), (778, 286), (802, 302)]]
     out = {}
     out["sakin"] = base
+    # 10. tur (animasyon hakemi S3): sakin / düşünceli / ciddi telefonda (baş ~120 px) ayrılmıyordu (fark 2-5 px
+    # kaştı). Düşünceli: yakın kaş alçak ve düz, uzak kaş yüksek kemer (iki kaş arası ~45 px), ağız sağa kaymış ve
+    # aşağı eğik ("hmm"). Ciddi: kalın V kaşlar (iç uçlar ~30 px aşağı), kaş arası kırışık, uçları aşağı ağız
+    # (Kaymakçalan/Kelsey 'kararlı' dili). Aynı çizgi ailesi (6-9 px, kenarı keskin).
     out["dusunceli"] = yuz(
-        kaslar=[[(488, 286), (522, 262), (566, 250), (608, 256)],
-                [(712, 296), (746, 290), (782, 292), (804, 300)]],
-        agiz=[[(636, 619), (664, 621), (694, 619), (722, 612)]])          # kısa, yana kaymış "hmm" ağzı
+        kaslar=[lambda c: c.cizgi([(490, 318), (530, 320), (572, 322), (612, 328)], W + 2),
+                lambda c: c.cizgi([(706, 294), (726, 271), (756, 260), (788, 264), (810, 280)], W + 2)],
+        agiz=[[(650, 616), (682, 619), (712, 623), (738, 632)]])          # kısa, sağa kaymış, aşağı eğik
     out["ciddi"] = yuz(
-        kaslar=[[(488, 302), (528, 296), (572, 300), (610, 314)],
-                [(710, 318), (740, 306), (774, 300), (804, 304)]],
-        agiz=[[(588, 622), (620, 616), (668, 617), (712, 616), (738, 622)]])
+        kaslar=[lambda c: c.cizgi([(490, 300), (530, 306), (574, 316), (614, 333)], W + 3),
+                lambda c: c.cizgi([(708, 343), (736, 328), (770, 318), (806, 316)], W + 3),
+                lambda c: c.cizgi([(654, 300), (657, 318), (655, 334)], W - 1)],
+        agiz=[lambda c: c.cizgi([(588, 637), (608, 621), (640, 613), (680, 612), (716, 618), (740, 635)], W + 1)])
     out["fark"] = yuz(
         kaslar=[[(486, 276), (516, 252), (558, 240), (600, 244), (618, 256)],
                 [(706, 264), (734, 248), (770, 245), (806, 262)]],
@@ -395,8 +401,10 @@ def kaymakcalan():
     oy = PAD_TOP
     base = sac_rengi(base, [(0, 0), (1078, 0), (1078, 700), (0, 700)], (59, 41, 33), (46, 43, 47), oy=oy)
     goz_kaynak = yukle("anlatici_kaynak_flannel.png")
+    camlar = []
     for cx, cy, R in ((598, 480, 160), (872, 478, 140)):
         cam = cam_ici(base, cx, cy + oy, R)
+        camlar.append(cam)
         a = np.array(base)
         m = poly_mask(base.size, cam)
         a[m & (a[..., 3] > 0), :3] = 255
@@ -439,14 +447,50 @@ def kaymakcalan():
         c.cizgi([(630, 770), (656, 757), (720, 751), (786, 754), (820, 770)], W + 1)
         return c.im
 
+    def dusunceli_yuz():
+        """11. tur (animasyon S5): telefonda (baş ~150 px) sakin/ciddi ile aynı okunuyordu (fark kaş ve ağızda 1-2
+        px). Şimdi: yakın kaş camın çok üstünde yüksek kemer, uzak kaş alçak ve düz (asimetri), göz bebekleri küçük
+        ve üst kapağa yapışık (yukarı ve içeri bakar: motor aynalasa da sahneye bakar), ağız kısa, yana itilmiş ve
+        eğik ("hmm"). Gözler camın içinde yeniden çizilir (çerçeve korunur); aynı çizgi kalınlığı."""
+        im = sil_koru(base, KAS_L, koru, oy=oy)
+        im = sil_koru(im, KAS_R, koru, oy=oy)
+        im = sil(im, AGIZ, oy=oy)
+        # camın içi (çerçeveden 3 px içeride) tamamen silinir: kalin_siyah koruması eski göz bebeğini de (kalın
+        # siyah) koruyordu
+        a = np.array(im)
+        for cam in camlar:
+            m = ~dil(~poly_mask(im.size, cam), 3)
+            a[m & (a[..., 3] > 0), :3] = 255
+        im = Image.fromarray(a)
+        c = Cizim(im, oy, seed=113)
+        c.cizgi([(520, 346), (556, 318), (606, 304), (656, 314)], W + 2)          # yüksek kemer
+        c.cizgi([(798, 384), (838, 380), (878, 380), (906, 384)], W + 2)          # alçak, düz
+        for (x0, y0, x1, y1, px, py, pr) in ((550, 438, 656, 486, 624, 452, 15), (828, 448, 906, 492, 886, 461, 13)):
+            cx, ry = (x0 + x1) / 2, (y1 - y0) / 2
+            c.cizgi([(x0, y0 + ry * 0.9), (x0 + (x1 - x0) * 0.3, y0 + 3), (cx + 12, y0 + 1), (x1, y0 + ry * 0.55)], W + 8,
+                    titrek=0.3)                                                   # kalın üst kapak (taşınan gözler gibi)
+            c.cizgi([(x0 + 4, y0 + ry * 1.05), (cx, y1 - 2), (x1 - 6, y0 + ry * 1.2)], W + 1, titrek=0.3)
+            c.elips(px, py, pr, pr, dolgu=BLACK)
+        c.cizgi([(726, 760), (756, 757), (786, 750), (812, 738)], W)                # kısa, sağa itilmiş, eğik
+        c.cizgi([(812, 738), (818, 728)], W - 1)
+        return c.im
+
+    def ciddi_yuz():
+        """11. tur (animasyon S5): kalın kaşlar camın üst kenarına basar (gözler açık; kararlı'daki V ve kısık göz
+        yok), ağız uçları belirgin aşağı."""
+        im = sil_koru(base, KAS_L, koru, oy=oy)
+        im = sil_koru(im, KAS_R, koru, oy=oy)
+        im = sil(im, AGIZ, oy=oy)
+        c = Cizim(im, oy, seed=117)
+        c.cizgi([(512, 384), (560, 376), (612, 378), (666, 390)], W + 4)
+        c.cizgi([(794, 392), (832, 378), (872, 374), (908, 378)], W + 4)
+        c.cizgi([(646, 768), (668, 752), (720, 745), (776, 747), (804, 762)], W + 1)
+        return c.im
+
     out = {
         "sakin": base,
-        "dusunceli": yuz(kaslar=[[(518, 352), (556, 330), (606, 320), (656, 328)],
-                                 [(796, 368), (836, 362), (878, 362), (906, 370)]],
-                         agiz=[[(700, 746), (738, 748), (778, 744), (812, 734)]]),
-        "ciddi": yuz(kaslar=[[(516, 366), (560, 360), (612, 362), (664, 374)],
-                             [(796, 382), (830, 368), (872, 362), (906, 368)]],
-                     agiz=[[(640, 746), (690, 742), (750, 743), (800, 744), (830, 750)]]),
+        "dusunceli": dusunceli_yuz(),
+        "ciddi": ciddi_yuz(),
         # B5.3b doruk ("hayır"): eski `kaymakcalan_kollar` (çizilmiş kollar) yerine en sert yüz: kaşlar V, ağız
         # uçları hafif aşağı. Kollar hazır çizimde yok; poz değil yüz taşır.
         # 9. tur (animasyon S8, izlenme S4): 640x360'ta 'ciddi' ile aynı okunuyordu: kaşlar kalın ve camın üstüne
@@ -504,9 +548,13 @@ def lenz():
     W = 7
     out = {
         "sakin": base,
+        # 10. tur (animasyon hakemi S3): sakin ile ciddi telefonda aynıydı (taban yüz zaten hafif endişeli): kalın V
+        # kaşlar (iç uçlar ~28 px aşağı), kaş arası kırışık, uçları aşağı ağız (köşe parantezleri arasında)
         "ciddi": yuz_kur(base, oy, B, 21, w=W,
-                         kaslar=[[(476, 352), (520, 347), (566, 352), (606, 366)],
-                                 [(688, 370), (718, 357), (752, 352), (780, 356)]]),
+                         kaslar=[lambda c: c.cizgi([(474, 338), (518, 342), (562, 350), (604, 364)], W + 3),
+                                 lambda c: c.cizgi([(678, 372), (708, 358), (746, 350), (782, 352)], W + 3),
+                                 lambda c: c.cizgi([(643, 334), (646, 350), (644, 366)], W - 1)],
+                         agiz=[lambda c: c.cizgi([(574, 612), (598, 600), (638, 595), (680, 597), (706, 610)], W)]),
         "fark": yuz_kur(base, oy, B, 22, w=W,
                         kaslar=[[(472, 330), (504, 311), (548, 302), (590, 309), (608, 322)],
                                 [(684, 330), (714, 314), (750, 311), (782, 325)]],
@@ -545,10 +593,13 @@ def voss():
     W = 6
     out = {
         "sakin": base,
+        # 10. tur (animasyon hakemi S3): 2-5 px kaş farkı telefonda görünmüyordu: kalın V kaşlar, kaş arası kırışık,
+        # uçları aşağı ağız (anlatıcının 'ciddi'siyle aynı dil; taban yüz aynı çizim ailesi)
         "ciddi": yuz_kur(base, oy, B, 31, w=W,
-                         kaslar=[[(392, 248), (428, 242), (466, 246), (494, 258)],
-                                 [(552, 262), (578, 250), (608, 246), (632, 252)]],
-                         agiz=[[(468, 466), (500, 463), (540, 464), (572, 468)]]),
+                         kaslar=[lambda c: c.cizgi([(392, 250), (428, 254), (464, 262), (498, 278)], W + 3),
+                                 lambda c: c.cizgi([(552, 278), (572, 266), (602, 258), (632, 260)], W + 3),
+                                 lambda c: c.cizgi([(523, 246), (525, 260), (524, 272)], W - 1)],
+                         agiz=[lambda c: c.cizgi([(470, 476), (488, 466), (518, 462), (550, 464), (570, 476)], W + 1)]),
     }
     for k, im in out.items():
         kaydet(im, f"voss_v2_{k}")
@@ -650,15 +701,17 @@ def kelsey():
     YANAK = [(498, 568), (548, 568), (548, 632), (498, 632)]        # sol yanak çizgisi (çene konturu x <= 490)
     W = 6
 
-    def yap(silinecek, kaslar, ek=None, w_kas=W):
+    def yap(silinecek, kaslar, ek=None, w_kas=W, son=None):
         im = base
         for p in silinecek:
-            im = (sil_notr if p in (KAPAK_L, KAPAK_R) else sil)(im, p, oy=oy)
+            im = (sil_notr if p in (KAPAK_L, KAPAK_R, ALT_L, ALT_R) else sil)(im, p, oy=oy)
         c = Cizim(im, oy, seed=len(str(kaslar)))
         for k in kaslar:
             c.cizgi(k, w_kas)
         for k, w_ in (ek or []):
             c.cizgi(k, w_)
+        for f in (son or []):
+            f(c)
         return c.im
 
     # 9. tur (izlenme S4, animasyon S8): üç yüz telefonda aynı okunuyordu (fark birkaç piksel kaş açısıydı).
@@ -666,25 +719,58 @@ def kelsey():
     KAPAK_L = [(500, 350), (662, 350), (662, 400), (500, 400)]
     KAPAK_R = [(756, 364), (846, 364), (846, 408), (756, 408)]
     AGIZ = [(556, 588), (802, 588), (802, 634), (556, 634)]
+    # 10. tur (animasyon hakemi S4): kısık gözlerde kirpikler alt kapakta kalıyordu (üst kapakla birlikte üst kirpikler
+    # silinmişti): kısık gözün alt yarısı (göz bebeği parçası, alt kapak, alt kirpikler, iç köşe kırıntısı) silinir;
+    # temiz kısık göz çizilir: kalın üst kapak (ek), altında göz bebeği şeridi, ince alt kapak, dış uçta üst kirpikler
+    ALT_L = [(508, 398), (664, 398), (664, 440), (508, 440)]
+    ALT_R = [(734, 378), (760, 378), (760, 400), (862, 400), (862, 452), (734, 452)]
+
+    def kisik_sol(lid_y):
+        def f(c):
+            y = lid_y
+            c.cokgen([(566, y + 2), (614, y + 4), (610, y + 13), (590, y + 17), (570, y + 13)], BLACK)
+            c.cizgi([(546, y + 8), (572, y + 18), (608, y + 18), (640, y + 11)], W - 2)
+            for p in ([(546, y - 1), (535, y - 10), (529, y - 21)], [(560, y - 2), (552, y - 13), (550, y - 24)],
+                      [(575, y - 3), (571, y - 14), (572, y - 24)]):
+                c.cizgi(p, W - 1, titrek=0.2)
+        return f
+
+    def kisik_sag(lid_y):
+        def f(c):
+            y = lid_y
+            c.cokgen([(800, y + 1), (836, y), (832, y + 11), (818, y + 15), (804, y + 11)], BLACK)
+            c.cizgi([(778, y + 7), (800, y + 16), (830, y + 16), (850, y + 8)], W - 2)
+            for p in ([(842, y - 2), (851, y - 12), (854, y - 22)], [(830, y - 3), (835, y - 14), (836, y - 24)],
+                      [(818, y - 3), (820, y - 14), (818, y - 23)]):
+                c.cizgi(p, W - 1, titrek=0.2)
+        return f
+
+    sakin = yap(KIRISIK + [YAY, YANAK], [[(516, 338), (552, 330), (592, 330), (620, 338)],
+                                         [(770, 356), (800, 349), (834, 352)]])
+    # 10. tur (animasyon hakemi S4): dudak tonu yüzden yüze değişiyordu (sakinde soluk pembe dudak gölgesi, ötekilerde
+    # saf siyah ağız): pembe gölge silinir (G kanalından geri çözülür; siyah çizgi aynen kalır)
+    sakin = allik_sil(sakin, [(556, 580), (802, 580), (802, 640), (556, 640)], pembe_g=180, oy=oy)
     out = {
-        "sakin": yap(KIRISIK + [YAY, YANAK], [[(516, 338), (552, 330), (592, 330), (620, 338)],
-                                             [(770, 356), (800, 349), (834, 352)]]),
-        # şüpheci: sol göz kısık (düz, kalın kapak), sol kaş alçak; sağ kaş yüksek kemer; ağzın sağ ucu kalkık
-        "supheci": yap([YAY, KIRISIK[0], KIRISIK[1], KAPAK_L, AGIZ],
+        "sakin": sakin,
+        # şüpheci: sol göz kısık (düz, kalın kapak), sol kaş alçak; sağ kaş yüksek kemer. 10. tur (izlenme S1):
+        # ağzın sağ ucu kalkıktı: kırpık gözle birlikte telefonda göz kırpan bir sırıtma gibi okunuyordu: ağız düz,
+        # uçları hafifçe aşağı (kararlıdan yumuşak)
+        "supheci": yap([YAY, KIRISIK[0], KIRISIK[1], KAPAK_L, ALT_L, AGIZ],
                        [[(512, 352), (558, 356), (602, 361), (636, 368)],
                         [(760, 352), (790, 334), (826, 329), (854, 338)]],
                        ek=[([(538, 402), (572, 398), (610, 398), (646, 402)], W + 2),
-                           ([(576, 614), (630, 614), (700, 611), (756, 604), (784, 592)], W)], w_kas=W + 1),
+                           ([(578, 616), (622, 611), (680, 610), (738, 612), (774, 619)], W)], w_kas=W + 1,
+                       son=[kisik_sol(398)]),
         # kararlı: iki kaş kalın ve içe doğru aşağı (V), kaş arası kırışık, iki göz kısık ve kapaklar içten aşağı,
         # ağız düz ve uçları aşağı (çene sıkılı)
-        "kararli": yap(KIRISIK + [YAY, KAPAK_L, KAPAK_R, AGIZ],
+        "kararli": yap(KIRISIK + [YAY, KAPAK_L, KAPAK_R, ALT_L, ALT_R, AGIZ],
                        [[(512, 334), (556, 341), (600, 355), (636, 372)],
                         [(768, 386), (796, 372), (826, 362), (846, 361)]],
                        ek=[([(694, 346), (698, 362), (696, 378)], W - 1),
                            ([(538, 396), (575, 397), (612, 401), (648, 408)], W + 2),
                            ([(768, 414), (800, 408), (835, 405), (856, 408)], W + 2),
                            ([(574, 623), (600, 612), (650, 608), (720, 608), (768, 612), (792, 625)], W)],
-                       w_kas=W + 2),
+                       w_kas=W + 2, son=[kisik_sol(398), kisik_sag(406)]),
     }
     for k, im in out.items():
         kaydet(im, f"kelsey_v2_{k}")
@@ -792,36 +878,49 @@ def veteriner():
 def agiz_acik():
     """9. tur (animasyon hakemi S10): balon repliklerinde oyunculuk yoktu. Balonu olan yüzlerin AÇIK AĞIZLI eşi
     (motor `balon {agiz: ...}`: balon açıkken hece vuruşlarında bu görsele geçer). Aynı tuval, aynı çizgi kalınlığı;
-    yalnız ağız: koyu ağız içi + siyah kontur (kanalın MS-Paint dili)."""
+    yalnız ağız: koyu ağız içi + siyah kontur (kanalın MS-Paint dili).
+    11. tur (animasyon S6): gülümseyen temsilcinin ağzı her hecede ince sırıtışla geniş koyu hilal arasında gidip
+    geliyordu (telefonda yanıp sönen ürkütücü sırıtış): her açık ağzın bir ARA eşi var (`*_konusuyor_yari`: aynı
+    genişlikte dar yarık); motor kapalı -> yarık -> açık sırasıyla, en az 4 kare tutarak geçer (`balon {agiz:
+    [yari, acik]}`). Açık hilal de biraz sığlaştı. Gergin açık ağzın altında eski çizginin sağ ucundaki kanca
+    (M3: ağzın sağ köşesinde siyah leke) artık siliniyor."""
     AGIZ_IC = (78, 24, 30, 255)
     # eczacı (Suit Wojak; ağız bıyığın altında): bıyığın alt kenarının altında küçük oval
     e = Image.open(HERE / "eczaci_v2_sakin.png").convert("RGBA")
     c = Cizim(e, PAD_TOP, seed=71)
     c.elips(545, 528, 27, 13, dolgu=AGIZ_IC, w=6)
     kaydet(c.im, "eczaci_v2_konusuyor")
+    c = Cizim(e.copy(), PAD_TOP, seed=74)
+    c.elips(545, 524, 25, 7, dolgu=AGIZ_IC, w=6)
+    kaydet(c.im, "eczaci_v2_konusuyor_yari")
     ep = ROOT / "episodes/talidomit-turkiye/chars"
     # Short'tan gelen temsilci (1950s Businessman), gülümseyen yüz: gülüş çizgisi üst dudak, altı açık
     g = Image.open(ep / "temsilci_gulumsuyor.png").convert("RGBA")
     g = sil(g, [(748, 818), (852, 818), (852, 846), (748, 846)])      # çene çizgisi (açık ağız altında kalırdı)
-    g = sil(g, [(628, 738), (934, 738), (934, 804), (628, 804)])      # eski gülüş çizgisi (çift çizgi olmasın)
-    c = Cizim(g, 0, seed=72)
+    g = sil(g, [(628, 738), (934, 738), (934, 816), (628, 816)])      # eski gülüş çizgisi (çift çizgi olmasın; 11. tur: alt kenar payı yarıkta görünüyordu)
     ust = [(652, 762), (700, 781), (760, 791), (830, 791), (912, 780)]
-    alt = [(912, 780), (870, 812), (800, 828), (730, 816), (676, 784), (652, 762)]
-    c.cokgen(ust + alt, AGIZ_IC)
-    c.cizgi(ust, 9)
-    c.cizgi(alt, 9)
-    c.cizgi([(776, 862), (800, 858), (824, 862)], 7)                 # çene çizgisi aşağıda
-    kaydet(c.im, "temsilci_gulumsuyor_konusuyor")
-    # gergin yüz: düz endişeli çizgi yerine açık, aşağı kıvrık ağız
+    for ad, alt in (("temsilci_gulumsuyor_konusuyor",
+                     [(912, 780), (872, 806), (800, 819), (730, 808), (676, 782), (652, 762)]),
+                    ("temsilci_gulumsuyor_konusuyor_yari",
+                     [(912, 780), (868, 801), (800, 811), (730, 803), (676, 780), (652, 762)])):
+        c = Cizim(g.copy(), 0, seed=72)
+        c.cokgen(ust + alt, AGIZ_IC)
+        c.cizgi(ust, 9)
+        c.cizgi(alt, 9)
+        c.cizgi([(776, 862), (800, 858), (824, 862)], 7)             # çene çizgisi aşağıda
+        kaydet(c.im, ad)
+    # gergin yüz: düz endişeli çizgi yerine açık, aşağı kıvrık ağız. Silme kutusu eski çizginin sağ ucundaki aşağı
+    # kancayı da (~897-907, 822-832) kapsar (10. turda kalıp siyah leke olarak görünüyordu)
     r = Image.open(ep / "temsilci_gergin.png").convert("RGBA")
-    r = sil(r, [(736, 780), (932, 780), (932, 824), (736, 824)])
-    c = Cizim(r, 0, seed=73)
+    r = sil(r, [(736, 778), (930, 778), (930, 842), (736, 842)])
     ust = [(748, 814), (792, 797), (860, 796), (906, 812)]
-    alt = [(906, 812), (872, 836), (806, 842), (752, 828), (748, 814)]
-    c.cokgen(ust + alt, AGIZ_IC)
-    c.cizgi(ust, 9)
-    c.cizgi(alt, 9)
-    kaydet(c.im, "temsilci_gergin_konusuyor")
+    for ad, alt in (("temsilci_gergin_konusuyor", [(906, 812), (872, 836), (806, 842), (752, 828), (748, 814)]),
+                    ("temsilci_gergin_konusuyor_yari", [(906, 812), (872, 822), (806, 826), (752, 820), (748, 814)])):
+        c = Cizim(r.copy(), 0, seed=73)
+        c.cokgen(ust + alt, AGIZ_IC)
+        c.cizgi(ust, 9)
+        c.cizgi(alt, 9)
+        kaydet(c.im, ad)
 
 
 KARAKTERLER = {"anlatici": anlatici, "kaymakcalan": kaymakcalan, "lenz": lenz, "voss": voss, "sheskin": sheskin,

@@ -17,6 +17,7 @@ BASLIK_MAX = 100
 ETIKET_MAX = 500
 ACIKLAMA_MAX = 5000
 BINDIRME_PAYI = 0.1   # bindirme kartı tam saniyeden en çok bu kadar sonra başlıyorsa bölüm damgası aşağı yuvarlanır
+KARTSIZ_PAY = 0.1    # kartsız bölümde ilk ses yukarı yuvarlanan saniyeden en az bu kadar sonraysa damga yukarı
 KISA_URL_PAYI = 45   # "[Short bağlantısı]" yerine gelecek https://youtube.com/shorts/... bağlantısının ek baytı
 
 
@@ -43,7 +44,11 @@ def bolum_damgalari(z: Zaman) -> list[tuple[int, str]]:
 
     Bindirme kartında kart, tam saniyeden en çok BINDIRME_PAYI sn sonra başlıyorsa da aşağı yuvarlanır (6. tur, teknik
     hakem N4: yukarı yuvarlanan 2:11 ve 8:13 kartın son ~0,25 sn'sine düşüyordu; aşağıdaki an, bindirmenin dondurduğu
-    karenin kendisi, sessiz son pay)."""
+    karenin kendisi, sessiz son pay).
+
+    11. tur (teknik hakem S3): kartsız bölümde ilk ses bir sonraki tam saniyeden en az KARTSIZ_PAY sn sonra başlıyorsa
+    YUKARI yuvarlanır: aşağı yuvarlanan "Kapanış" 9:38 bölümün 0,9 sn önüne, önceki satırın son hecesine düşüyordu;
+    yukarıdaki saniye hâlâ ilk kelimenin önünde."""
     import math
     out = []
     ilkler = [b.sahneler[0] for b in z.video.bolumler if b.sahneler]
@@ -52,7 +57,11 @@ def bolum_damgalari(z: Zaman) -> list[tuple[int, str]]:
         alt = int(math.floor(t + 1e-6))
         if not out:
             s = 0
-        elif not kartli or (s0.p.get("bindirme") and t - alt <= BINDIRME_PAYI):
+        elif not kartli:
+            ust = yukari(t)
+            ilk_ses = (t + s0.satirlar[0].t0) if s0.satirlar and s0.satirlar[0].t0 is not None else None
+            s = ust if (ilk_ses is not None and ilk_ses - ust >= KARTSIZ_PAY) else alt
+        elif s0.p.get("bindirme") and t - alt <= BINDIRME_PAYI:
             s = alt
         else:
             s = yukari(t)
@@ -162,10 +171,15 @@ def bitis_maddesi(z: Zaman) -> str:
                 "başlarsa kapanış sahnesinin üstüne biner)")
     bos = s.p.get("bos_alan")
     yer = {"sol_ust": "sol üstteki", True: "sağ üstteki", "sag_ust": "sağ üstteki"}.get(bos)
+    # 11. tur (teknik hakem S1): YouTube Studio bitiş ekranında büyük olasılıkla en az bir video ya da oynatma listesi
+    # öğesi istiyor; yalnız "Abone ol" kaydedilmeyebilir. Madde bunu söyler ve iki yedek verir.
     return (f"- [ ] Bitiş ekranı (son ~{z.sure - t0:.0f} sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz "
             "yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). "
-            + (f"İstersen yalnız 'Abone ol' öğesini **{zaman_str(t0)}**'ten itibaren videodaki {yer} boş alana koy"
-               if yer else "Abone ol öğesi de gerekmez (eklenirse sahnenin düğmelerinin üstüne binmesin)"))
+            + (f"İstersen yalnız 'Abone ol' öğesini **{zaman_str(t0)}**'ten itibaren videodaki {yer} boş alana koy. "
+               if yer else "Abone ol öğesi de gerekmez (eklenirse sahnenin düğmelerinin üstüne binmesin). ")
+            + "Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' "
+              "kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor) ya da kanal filigranını "
+              "kullan (Özelleştirme > Marka > Video filigranı)")
 
 
 def ara_reklam_yerleri(v: Video, z: Zaman) -> list[str]:

@@ -1,11 +1,23 @@
 {
- "0024eca331c1ca062626060047285fca95dea0d0": {
+ "00dec93cf3697ef79b35a8011ca14d7b9a06f7ce": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_sakin.png"
+ },
+ "01437181fdaa6abbfb983e34ab4a65b144711c5d": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_ciddi.png"
+ },
+ "04b78b01df6753f641aab4d5b2cc4dafb18a8fb8": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/temsilci_gulumsuyor_konusuyor_yari.png"
+ },
+ "07808372ec31a938cd5a415d79033f54f682214d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_ciddi.png"
  },
- "0b21037526333b0ccfac2eaba1e404c93a0fff93": {
+ "0db51abb8afb06a7d39bd8ccedda6dc9f8370610": {
   "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/temsilci_gulumsuyor_konusuyor.png"
+  "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_dusunceli.png"
  },
  "0dc88746faae6e9f9ea7cd70afa2e8c10821df52": {
   "faces": "front",
@@ -51,10 +63,6 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/veteriner_v2_sakin.png"
  },
- "270de3183b053fe9844972c6d3ef16e8f02589e5": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/sheskin_v2_saskin.png"
- },
  "28365e0a4d32b291f30d4b5643df7bff2e5dc025": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
@@ -63,17 +71,13 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
  },
- "2a0eace9af7fbf814a7f529c24352028687eeb96": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_ciddi.png"
- },
  "2adb11d433df6412a80f83cf7964cd70c08b24bf": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
  },
- "2b2294bfb4fd938a77ed6d69cccd0ec45cd1c978": {
+ "2b03f786fd04bb4f9f23d35f55fb15eca386e574": {
   "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
+  "file": "uzun/talidomit-turkiye/chars/anlatici_v2_ciddi.png"
  },
  "2d6fd0e2178cfc076970b8ab4bc88b9643adefed": {
   "faces": "right",
@@ -115,17 +119,9 @@
   "faces": "right",
   "file": "assets/kit/klasik/uzgun.png"
  },
- "3dd9cac1c981745a07567297930b531829a011bc": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_sakin.png"
- },
  "3f4d31c5d8d022f11843cdd61a1c7a74cb2a2098": {
   "faces": "right",
   "file": "assets/kit/klasik/cok_terli.png"
- },
- "407c21731fc8b3437f28f5f10d765ef663d56495": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/anlatici_v2_dusunceli.png"
  },
  "40da4ab664ecb8405c65d95f805e7b4f4990bbf2": {
   "faces": "right",
@@ -159,21 +155,9 @@
   "faces": "right",
   "file": "assets/kit/klasik/gozyasli.png"
  },
- "4a39c4c002f42368bba44fcce6216b0d4c76c332": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/sheskin_v2_saskin.png"
- },
  "4b0a3598c148e0a16b3bf805fdba10086db813e3": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915_biyikli/gulumsuyor.png"
- },
- "4bdad9cb7a256098ab9a9debfcd3bef283527d5d": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/voss_v2_ciddi.png"
- },
- "4bdef5dc02c9da4065fccc1379f32f4163dad2dd": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
  },
  "4d74384580c926c56d3dc31063cc887d9895d337": {
   "faces": "front",
@@ -187,21 +171,9 @@
   "faces": "right",
   "file": "assets/kit/klasik/agliyor.png"
  },
- "51fb798088c38562453d07a30261cf789b610298": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
- },
  "53669d9d580e8d816123af1b6384f9210678e1d0": {
   "faces": "right",
   "file": "assets/characters/muhendis_baretli.png"
- },
- "540f23e70067f463474dd0b4fcdbee0a66ccd0cb": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
- },
- "543b0478d1ca6a4bc25f3aca6110157fa74497ee": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
  },
  "548b7fdb3e12a46f298bf502844d415ad0dc6844": {
   "faces": "right",
@@ -227,13 +199,13 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_sakin.png"
  },
+ "59fc99a88d34fbb50653f844b99567c816553fb4": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/anlatici_v2_dusunceli.png"
+ },
  "5a051ed0a6ffda9dbc875170b62a5f77664af1de": {
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/terli.png"
- },
- "5c4188c48532329eeb6149ce1e6c782a67a5c835": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
  },
  "5e1594f36df48eae7e34a859420ec74af0d15ecb": {
   "faces": "right",
@@ -243,17 +215,9 @@
   "faces": "right",
   "file": "assets/kit/bizans_prenses/korku.png"
  },
- "5f9f04a09cd0f9d38758f2df5b40bbfdd0d748e7": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/veteriner_v2_ciddi.png"
- },
  "60e17cc128cf62788ab1ebc12d53ddd2efa97b61": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_baba.png"
- },
- "613964432c3314c9e3427318e79c0582926e1b41": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
  },
  "63e57287048f9d4891c4da5279f062d06fbb1956": {
   "faces": "right",
@@ -262,10 +226,6 @@
  "66815981ebde700466fa384e73b4a77c378c1898": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_gulumser.png"
- },
- "675f6bfc0b7f3b2def4cb75e3316104d8c7c9436": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/temsilci_gergin_konusuyor.png"
  },
  "681bf79e27f6014782da5201b1831ac740bbf384": {
   "faces": "right",
@@ -323,6 +283,10 @@
   "faces": "right",
   "file": "episodes/nusret-mayin-gemisi/chars/itilaf_deniz_subayi.png"
  },
+ "7621d605282adae2a5218f0f0aa758d7b8c6ed69": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
+ },
  "7680eea425233166e5f9ac8d6c1ed524c6b8db22": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/voss_v2_sakin.png"
@@ -331,9 +295,9 @@
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
  },
- "7c4a7a9d6b2a3fabddb504e564e7bcb09c534777": {
+ "7ca57a5fe38408c95d9732bedf779035255779b9": {
   "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
+  "file": "uzun/talidomit-turkiye/chars/temsilci_gulumsuyor_konusuyor.png"
  },
  "7e1eae8ac572070bdbfc0a79016d223ba556e4b2": {
   "faces": "right",
@@ -351,17 +315,25 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/veteriner_v2_ciddi.png"
  },
+ "88e6b510b21caeb8bfdbe4c1435c5c412ad24bae": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/eczaci_v2_konusuyor_yari.png"
+ },
+ "8a9f8082eb5ed357eae6294f97543bc904101151": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/temsilci_gergin_konusuyor.png"
+ },
  "8aa0abe9e7c8757c13b48c39ef013ba707294bdb": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_supheci.png"
  },
- "8de64086ded93743d8b931415c24a13b544f9e9c": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
- },
  "8eb0e58c44eba67374904b779a6b6b0e4c8cd6bf": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_fark.png"
+ },
+ "9012f4d035a8580253cdc25f1ca00f568b072bfd": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/voss_v2_ciddi.png"
  },
  "901a34b0015bc34d044a37feb1534fd12c9fe38c": {
   "faces": "right",
@@ -379,17 +351,9 @@
   "faces": "front",
   "file": "assets/kit/klasik/korku_karanlik.png"
  },
- "924c05396aa5674aa5feb558177f4ab9fdafabf3": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/sheskin_v2_sakin.png"
- },
  "93f7c1df799e56fafa1e148f8499db8c3d2b39de": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_kollar.png"
- },
- "98f009b6ae6cbe9b9744cd9176c55383e4641e7d": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
  },
  "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
   "faces": "right",
@@ -407,25 +371,9 @@
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/cok_terli.png"
  },
- "9e62ade63dbd4cae9832860afa8f5a9c86f04719": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/temsilci_gulumsuyor_konusuyor.png"
- },
  "a02a473620f5ce1a94224b6220c138f384f0817e": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_sakin.png"
- },
- "a0eb0fc73a0b27d198dbdfa5d12cdd50d372d67c": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/eczaci_v2_konusuyor.png"
- },
- "a3175bbbd8f1399e97b22197d88f5b9e11ecfd3e": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/sheskin_v2_sakin.png"
- },
- "a3c0dd44d86211589223bcf74288d388d2b1e2b8": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
  },
  "ab795e0baa11a4983b1f7120475aff4af014f70a": {
   "faces": "right",
@@ -451,9 +399,9 @@
   "faces": "right",
   "file": "assets/kit/klasik/tek_gozyasi.png"
  },
- "b16f787dd088da4d1a6888e8aa2029368ee8602a": {
+ "b0fe0c1fea5b132f023bc504e29835a110daff35": {
   "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_kararli.png"
+  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
  },
  "b17e7d9c922e73169efabef67faa97abb518842c": {
   "faces": "right",
@@ -475,17 +423,9 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_kararli.png"
  },
- "bb99c26d5e503f9291705ab28df1d333a3cc7957": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
- },
  "c63de61d756d066397ffb590f99ea19a2ab63bd2": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_ciddi.png"
- },
- "c70610c79846f3ea658c6b9dae0f98fe6ce6a594": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kelsey_v2_kararli.png"
  },
  "c72f82d513a9e86b5a1bfdfd378339312593879a": {
   "faces": "right",
@@ -531,10 +471,6 @@
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
  },
- "d95f5041064bf51a7534ce2c020eaefa978fe593": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/anlatici_v2_mutlu.png"
- },
  "daa5727f03e399eadb611bb4a4e09733e34034ed": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
@@ -579,17 +515,9 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
  },
- "e97fd77713bfa0d50f52cfd6986195eabe937d97": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_dusunceli.png"
- },
  "ec161ae5609fcdd12b714c564d031bd46972f2d9": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
- },
- "ee46626f34619a6f65073137ccae3a793c7c3c84": {
-  "faces": "right",
-  "file": "uzun/talidomit-turkiye/chars/anlatici_v2_ciddi.png"
  },
  "f4afc247400801a4434e9cbb1be5d823d950919c": {
   "faces": "right",
@@ -598,6 +526,10 @@
  "f55bd366499e4b93b630d4c9ad3e1dca3db9611d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_mutlu.png"
+ },
+ "f967de52d4e68f03878fbd6633780e877d4ae876": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/temsilci_gergin_konusuyor_yari.png"
  },
  "fcb62cc249d8853528fac04717b2b86179cd5f00": {
   "faces": "right",

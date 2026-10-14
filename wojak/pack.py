@@ -1,8 +1,8 @@
 """Paylaşım paketi: hesap sahibinin kopyala-yapıştır yapacağı metinler + yükleme kontrol listesi.
 
 Akış (2026-10): videoyu ben hazırlarım, hesap sahibi onaylar ve kendisi paylaşır.
-  - Instagram Reels : açıklama = başlık + hikâyenin tamamı + hashtag (hikâye açıklamada, yorumda değil)
-  - YouTube Shorts  : başlık + kısa açıklama; hikâye SABİT YORUMDA (hesap sahibi yazar ve sabitler)
+  - Instagram Reels : açıklama = başlık + hikâyenin tamamı + atıf; hashtag YOK (hesap sahibinin düzeni, 13.10.2026)
+  - YouTube Shorts  : başlık + kısa açıklama + en çok 3 hashtag (2 konu + #shorts); hikâye SABİT YORUMDA
   - TikTok          : açıklama = Instagram ile aynı (sınır 4000)
 
 Çıktı: out/<id>/paylasim.md (hepsi bir arada) ve out/<id>/metinler/*.txt (telefonda tek dokunuşla kopyalamak için).
@@ -17,7 +17,8 @@ from . import censor
 from .episode import Episode
 
 DEFAULT_TAGS = ["#wojak", "#tarihselwojak", "#keşfet", "#olay", "#gizem"]
-LIMITS = {"instagram": 2200, "instagram_tags": 5, "youtube_title": 100, "youtube_desc": 5000, "tiktok": 4000}
+LIMITS = {"instagram": 2200, "instagram_tags": 5, "youtube_title": 100, "youtube_desc": 5000, "tiktok": 4000,
+          "youtube_tags": 3}   # hesap sahibi (13.10.2026): YouTube'da 2-3 hashtag
 BRAND_TAGS = ["#tarihselwojak", "#wojak"]
 
 
@@ -54,7 +55,8 @@ def texts(ep: Episode) -> dict[str, str]:
         "instagram_aciklama": "\n\n".join(x for x in (head, story, credit) if x),
         "youtube_baslik": title,
         "youtube_aciklama": "\n\n".join(x for x in (
-            caption, f"▶ Uzun hali: {ep.uzun_video}" if ep.uzun_video else "", credit, tags + " #shorts") if x),
+            caption, f"▶ Uzun hali: {ep.uzun_video}" if ep.uzun_video else "", credit,
+            hashtags(ep, LIMITS["youtube_tags"] - 1) + " #shorts") if x),   # 2 konu + #shorts (eskiden 8 + #shorts)
         "youtube_sabit_yorum": story,
         "tiktok_aciklama": "\n\n".join(x for x in (head, story, credit, tags) if x),
     }
@@ -69,6 +71,9 @@ def warnings(t: dict[str, str], ep: Episode | None = None) -> list[str]:
         w.append(f"Instagram açıklamasında {n_tags} hashtag (sınır 5)")
     if len(t["tiktok_aciklama"]) > LIMITS["tiktok"]:
         w.append(f"TikTok açıklaması {len(t['tiktok_aciklama'])} karakter (sınır 4000)")
+    n_yt = len(re.findall(r"(?<!\w)#\w+", t["youtube_aciklama"]))
+    if n_yt > LIMITS["youtube_tags"]:
+        w.append(f"YouTube açıklamasında {n_yt} hashtag (hesap sahibinin kuralı: 2-3)")
     if len(t["youtube_baslik"]) > LIMITS["youtube_title"]:
         w.append(f"YouTube başlığı {len(t['youtube_baslik'])} karakter (sınır 100)")
     if not t["youtube_sabit_yorum"]:
