@@ -78,6 +78,8 @@
 # üç "Hayır"dan biri çıktı; boş pano kareleri; kraft zemin koyu); animasyon S1-S6 (kanca anlatıcısı ve anne adayı
 # kesmede zıplamıyor, Lenz/temsilci2000 köşede göz kırpmıyor, molekül anlatıcının önünden geçmiyor, durağan anlara
 # vuruş); dil S1-S9 (yedi yeni çekim, yavaşlatma ve duraklar), N2, N4, N5; teknik S1-S3. K3'te anlatıcı.
+# 12. tur son bakış: B1.2 de büyük yazı/konuk (dört seyrek çizelgenin dördü), B6.3'te anlatıcı geç girer ve fark eder
+# (animasyon S6), SRT blok ipuçları ("Aralık 1956." ve "Firma bastırıyor."; ses aynı), sayaçta orta hızda iz yok (motor).
 id: talidomit-turkiye
 baslik: "46 Ülkede Satılan İlaca Türkiye Neden ‘Hayır’ Dedi?"   # 7. tur: somut ayrıntı + merak; abartı sıfatı/emoji yok
 
@@ -95,7 +97,9 @@ anlatici: {ses: murat, hiz: 1.0}   # hız testi (uretici_raporu.md): 0.95 ile 1.
 # haberi olmadığını…", "Bugün Türkiye'deki resmî ürün bilgisinde şu uyarı var:"). ElevenLabs'te ayrıca: kancadaki
 # "Ama Türkiye'de bu ilaca ruhsat verilmedi." yavaş ve ardından ~0,3 sn durak; "Nejat" (Cartesia'da Whisper hâlâ
 # "Necad" yazıyor); B6.1'in "cüzzam"ı (Cartesia ikiz zz'yi "cüzdan" okuyor; B6.3 bu yüzden "lepra"); kancadaki
-# "Bu hikâye 1961'de bitmedi." için dil hakeminin önerisi "Ama bu hikâye, ilaç toplatılınca bitmedi."
+# "Bu hikâye 1961'de bitmedi." için dil hakeminin önerisi "Ama bu hikâye, ilaç toplatılınca bitmedi."; B2.2 (dil
+# hakemi 11. tur N1: ipucusuz Whisper "günlük dost" yazıyor): "Kasım 1961'e kadar yalnız Grünenthal'in sattığı günlük
+# dozların 300 milyonu aştığı hesaplanıyor."; "yayımlandı / yayımlanmış" (Cartesia "yayınlandı" okuyor; dil N6).
 telaffuz:                          # yalnız TTS metnine; uzun olan önce
   Frances Oldham Kelsey: Frensis Oldım Kelsi
   Widukind Lenz: Vidukind Lents
@@ -350,7 +354,7 @@ bolumler:
           - {id: n, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.64, boy: 0.3, alt: -0.2, bakis: on, golge: true}
           - {id: z, gorsel: chars/anlatici_v2_sakin.png, x: 0.9, boy: 0.5, yon: alt}
         satirlar:
-          - "Aralık 1956. Bir Grünenthal çalışanının kızı dünyaya geliyor."
+          - "Aralık 1956.\nBir Grünenthal çalışanının kızı dünyaya geliyor."   # 12. tur (dil S10): SRT "Grünenthal | çalışanının"ı bölüyordu; \n: blok kırma ipucu (ses aynı)
           - "Babası, hamile eşine firmanın numune tabletlerinden getirmiş."
           - "Bebekte bir doğum kusuru var. O gün kimse bunu ilaçla ilişkilendirmiyor."
         olaylar:
@@ -368,7 +372,12 @@ bolumler:
         arka: img/foto_kupferhof_grunenthal_169.jpg
         gecis: kaydir              # 11. tur (animasyon M2): B1.1'in itmesinde anlatıcı büyüktü (ekranda 0,65), kesmede 0,42'ye zıplıyordu
         kose: {metin: "{}", deger: 1956, yil: true}
-        konuk: [{id: z, gorsel: chars/anlatici_v2_dusunceli.png, x: 0.89, boy: 0.42, giris: false}]
+        # 12. tur (izlenme 2): seyrek çizelge (karenin yarısı boş, yazılar telefonda ~30 px): büyük yazı, eksen
+        # büyük anlatıcının solunda
+        olcek: 1.3
+        y: 0.5
+        x: [0.04, 0.8]
+        konuk: [{id: z, gorsel: chars/anlatici_v2_dusunceli.png, x: 0.88, boy: 0.52, giris: false}]
         noktalar:
           - {tarih: "1954", metin: "?"}
           - {tarih: "Aralık 1956", metin: "bilinen ilk vaka"}
@@ -1149,7 +1158,7 @@ bolumler:
         satirlar:
           - "Kelsey dosyayı eksik buluyor."
           - "Derken sinir hasarı raporları geliyor. Hamilelikte güvenli mi? O da belirsiz."
-          - {metin: "Firma bastırıyor. Kelsey her seferinde daha fazla veri istiyor.", sonra: 0.4}
+          - {metin: "Firma bastırıyor.\nKelsey her seferinde daha fazla veri istiyor.", sonra: 0.4}   # 12. tur (dil S10): SRT "Kelsey"i 1. satırın sonunda bırakıyordu
           - "Reddetmiyor ama onay da vermiyor."   # 8. tur (dil S1): Scientific American "Not rejected. Not approved."
         olaylar:
           - {tip: yuz, karakter: k, gorsel: chars/kelsey_v2_supheci.png, satir: 1, ofset: 0.5}
@@ -1565,8 +1574,8 @@ bolumler:
           # üstüne büyük kırmızı damga
           # 11. tur (son bakış): "?" kartlarının üstünde kartların yazısı mürekkebin içinden okunuyordu: altlarındaki boş
           # mantarda. 12. tur (teknik S1): alt kenarı karenin %99'undaydı (YouTube ilerleme çubuğu ve altyazı bandı):
-          # kartlar yukarı, damga y 0,86 / boy 60 (alt kenar < %92)
-          - {tip: damga, metin: "HİÇBİRİ YAYIMLANMADI", renk: kirmizi, satir: 2, an: son, ofset: -0.7, x: 0.5, y: 0.86, boy: 60, aci: -3, kontur: true}
+          # kartlar yukarı, damga y 0,85 / boy 56 (alt kenar < %92)
+          - {tip: damga, metin: "HİÇBİRİ YAYIMLANMADI", renk: kirmizi, satir: 2, an: son, ofset: -0.7, x: 0.5, y: 0.85, boy: 56, aci: -3, kontur: true}   # 12. tur son bakış: y 0,86 / boy 60'ta alt kenar teslim karesinde %93,1'deydi: %91,7
           - {tip: muzik, db: 4, satir: 2, an: son, ofset: 0.2, gecis: 0.6}
           - {tip: giris, karakter: z, satir: 2, ofset: 0.3}
           - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_ciddi.png, satir: 2, an: son, ofset: -0.6}
@@ -1742,7 +1751,9 @@ bolumler:
         egim: -2.0
         zoom: 1.03                 # 7. tur: motor atıfı yakınlaşmasız baskının altına koyuyor; 1.12'de baskı atıfın üstüne büyüyordu
         gecis: kaydir
-        konuk: [{id: z, gorsel: chars/anlatici_v2_ciddi.png, x: 0.87, boy: 0.52, giris: 0.4, yon: sag}]
+        # 12. tur (animasyon S6): ilk ~4 sn yalnız kutu fotoğrafıydı (en durağan üç andan biri): anlatıcı "bedeli"
+        # sözünde girer, "1965'ten sonra da" yazısıyla fark eder, sonra gözleri dolar
+        konuk: [{id: z, gorsel: chars/anlatici_v2_ciddi.png, x: 0.87, boy: 0.52, giris: 1.2, yon: sag}]
         satirlar:
           - {metin: "Geri dönüşün bir bedeli de oldu.", hiz: 0.94}
           # 12. tur (teknik M1, dil S5): eski çekimde "cüzzam" 6/6 "cüzdan" duyuluyordu. Cartesia ikiz zz'yi hâlâ "cüzdan"
@@ -1752,7 +1763,8 @@ bolumler:
         olaylar:
           - {tip: kelime, metin: "LEPRA (CÜZZAM)", satir: 2, ofset: 0.5, sure: 1.9, konum: ust}
           - {tip: kelime, metin: "1965'TEN SONRA DA", satir: 2, an: son, ofset: -2.3, sure: 2.3, konum: ust}
-          - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_gozyasli.png, satir: 2, an: son, ofset: -1.6}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_fark.png, satir: 2, an: son, ofset: -2.2}
+          - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_gozyasli.png, satir: 2, an: son, ofset: -1.0}
 
       # B6.4a · mekanizma: tablet -> molekül, cereblon, SALL4 kırılır; köşe ???? -> 2018 (B3.11'deki takılı yıl
       # cevabını bulur). 4. tur: kara tahta zemin; cereblon 1. satırda (molekül tek başına 6 sn kalıyordu); anlatıcı sağda
@@ -2001,7 +2013,7 @@ bolumler:
         arka: img/foto_contergan_forte.jpg     # eski bitişin zemini (görsel sayısı değişmez)
         karart: 0.38                # 7. tur: 0.55'te ilk saniye 37/255 (kararma hissi); kartlar koyu zeminli, okunur
         bulanik: 10
-        sure: 9.5
+        sure: 10.3                 # 12. tur: yorum balonu soruyu son 0,3 sn'de bitiriyordu: tamamlanmış çağrı ~1,1 sn kalır
         muzik_db: 6
         muzik_mod: major
         bas: 1.0                    # soru belirip kartlar inince sorulur
@@ -2108,14 +2120,15 @@ paket:
     - {ara: "Bu molekülün adı", not: "12. tur yeni çekim: ilacın adı ilk kez; 'adı:' sonrası ~0,35 sn durak (eski çekimde 13/16 klip 'Tadidomit'); Whisper 4/4 'talidomit'"}
     - {ara: "yan etkiden haberi", not: "12. tur yeni çekim (ekrandaki 'HABERİMİZ YOK' ile aynı dil); ilk çekim 'bir iyan etkiden' duyuluyordu, seçilen ikinci çekim 4/4 doğru"}
     - {ara: "Firmanın yanıtı sert", not: "10. tur çekimi; 12. tur: zarfın giriş efekti 'sert.'in t'sinden 0,2 sn daha uzağa alındı (teknik N1: mikste 'ser')"}
-    - {ara: "Talidomid, gebe kadınlar", not: "Aylin: Whisper 'Talidomit / Tali domit' yazıyor ('Tarih domit' değil; teknik hakem 11. tur); kulakla bir kez"}
-    - {ara: "Nejat Eczacıbaşı", not: "ÖNCELİKLİ. 12. tur yeni metin ve çekim (4 denemeden zorlanmış skorda en iyisi: 'Nejat' > 'Necat/Necdet/Necad'); ipucusuz Whisper yine 4/4 'Necad' yazıyor. 'Necat' duyulursa ElevenLabs listesine"}
+    - {ara: "Talidomid, gebe kadınlar", not: "ÖNCELİKLİ. Aylin: 12. tur teslim karışımında ipucusuz Whisper 2/2 'Tarih domit', anlatım izinde 2/2 'Talidomit' (altlık orada sesin 25-35 dB altında: maskeleme değil, okuyuş sınırda; 11. turda teknik hakem 'Talidomit / Tali domit' duydu). Kulak 'Tarih' duyarsa ElevenLabs listesine"}
+    - {ara: "Nejat Eczacıbaşı", not: "ÖNCELİKLİ. 12. tur yeni metin ve çekim (4 denemeden zorlanmış skorda en iyisi: 'Nejat' > 'Necat/Necdet/Necad'); teslim karışımında ve izde ışın-5 çözüm 'Nejat', açgözlü çözüm 'Necad'. 'Necat/Necdet' duyulursa ElevenLabs listesine"}
     - {ara: "Sorulduğunda, haberin kaynağı", not: "12. tur yeni çekim (dil S9: 'ise' tekrarı); 4/4 doğru"}
     - {ara: "tanıtım numunesi bile", not: "12. tur: rubberband ile ~0,85 tempo (bölümün en hassas ihtiyat cümlesi); doğal duyuluyor mu"}
     - {ara: "İnternette sık duyulan", not: "12. tur yeni metin ve çekim: iddia tırnaklı ve duraklı; 4/4 doğru"}
-    - {ara: "cüzzam hastası", not: "ÖNCELİKLİ. z uzatılmış eski çekim; Cartesia ikiz zz'yi 'cüzdan' okuyor (ekranda 'CÜZZAM (LEPRA)' var). 'Cüzdan' duyulursa ElevenLabs listesine"}
+    - {ara: "cüzzam hastası", not: "ÖNCELİKLİ. z uzatılmış eski çekim (Cartesia ikiz zz'yi yeni çekimde 'cüzdan' okuyor; ekranda 'CÜZZAM (LEPRA)' var); teslim karışımında ve izde ışın-5 'cüzzam', açgözlü 'cüzlam'. 'Cüzdan' duyulursa ElevenLabs listesine"}
     - {ara: "Sheskin, elinde kalan", not: "12. tur: 'talidomit.' sonrası +0,5 sn (dil S6: 'Talidomit, beklenmedik…' diye bitişikti)"}
     - {ara: "lepra tedavisinde", not: "12. tur yeni metin ve çekim: 'cüzzam' 6/6 'cüzdan' duyuluyordu, yeni çekimde de (z uzatılınca da); satırda 'lepra', ekranda 'LEPRA (CÜZZAM)'; 4/4 doğru"}
+    - {ara: "günlük doz sattığı", not: "düşük öncelik (dil hakemi N1): Whisper 4/4 'günlük dost' yazıyor ('doz'un z'si 'sattığı'nın s'sinden önce ötümsüzleşiyor; ekranda 'günlük doz (hesap)'). Rahatsız ederse ElevenLabs metni: 'Grünenthal'in sattığı günlük dozların 300 milyonu aştığı hesaplanıyor.'"}
     - {ara: "Bugün bir kanser ilacı", not: "12. tur: doruk (9:26-9:38) rubberband 0,88 + durak; 'O reklamı hatırlayın' da 0,88, 'Bugün Türkiye'deki resmî…' yeni çekim (0,88, 'ise' çıktı)"}
     - {ara: "Ölümünün onuncu yılındaki", not: "11. tur: Ankara satırları rubberband ile yavaşlatıldı (0,85-0,92); doğal duyuluyor mu"}
   telif_notu:

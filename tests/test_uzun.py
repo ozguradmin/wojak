@@ -1435,7 +1435,8 @@ def test_sayac_tekerlek_keskin_rakam_ve_hizli_sayi():
     p = cz._yuvarlanan(9775.84, 1078.4, b, 8697.4)
     assert _okuma(p) == 9776
     tek = [q for q in p if not isinstance(q[0], str)]
-    assert tek[0][2] and tek[1][1] > 0 and tek[-1][1] > 0          # binler döner (iz var), on binler boş
+    assert tek[0][2] and tek[2][1] > 0 and tek[-1][1] > 0          # yüzler döner (iz var), on binler boş
+    assert tek[1][1] == 0.0                                          # 12. tur: binler ~1 hücre/kare: keskin
     # yavaş: hiçbir tekerlekte iz yok (12. tur: adım adım geçiş; bulanık kopya rakamın üstünde gri bant gibiydi)
     p = cz._yuvarlanan(1262.4, 0.3, b, 1262.1)
     tek = [q for q in p if not isinstance(q[0], str)]
@@ -1447,6 +1448,15 @@ def test_sayac_tekerlek_keskin_rakam_ve_hizli_sayi():
     opak = keskin[..., 3] >= 250
     assert opak.sum() > 50 and np.abs(izli[opak] - keskin[opak]).max() <= 2
     assert izli[..., 3][~opak].mean() > keskin[..., 3][~opak].mean()   # iz rakamın çevresinde
+    # 12. tur (animasyon hakemi M1): orta hızda (birler kare başına 0,5-2,5) iz yok; iz yalnız rakamın kendi dikey
+    # izi (komşu rakamların parçası yok: rakamın hiç pikseli olmayan sütunlarda iz de yok)
+    p = cz._yuvarlanan(35.2, 1.2, b, 34.0)
+    assert _okuma(p) == 35 and all(q[1] == 0.0 for q in p if not isinstance(q[0], str))
+    for d in (1, 5, 7):
+        kes = np.asarray(cz._rakam(str(d), renk))[..., 3]
+        iz1 = cz._rakam_izi(renk, d, 0.75)[..., 3]
+        bos_sutun = kes.max(axis=0) == 0
+        assert bos_sutun.any() and iz1[:, bos_sutun].max() < 1e-3
     # önek ilk görünen rakamın solunda kalır (9.999 -> 10.000 geçişinde "≈" yeni "1"in üstüne binmez)
     cz2, _ = _sayac_cizici({"tip": "sayac", "deger": 1267, "sonek": "", "sure": 5, "olaylar": [
         {"tip": "deger", "deger": 20000, "onek": "≈", "t": 2.2, "sure": 1.2}]}, 960)

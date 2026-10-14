@@ -1,6 +1,6 @@
 # 46 Ülkede Satılan İlaca Türkiye Neden ‘Hayır’ Dedi? — uzun video paketi
 
-Süre: **10:21** (621.2 sn), 90 sahne, 8 bölüm.
+Süre: **10:29** (629.6 sn), 90 sahne, 8 bölüm.
 Video: `talidomit-turkiye-uzun.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
 Ölçüm (mp4): -14.0 LUFS, tepe -2.1 dBTP; senkron: tamam
 
@@ -20,12 +20,12 @@ Kısa hâli (Short): [Short bağlantısı]
 Bölümler
 0:00 Giriş
 0:43 1 · Zehirsiz Mucize
-2:07 2 · Dünyayı Dolaşan Hap
-3:09 3 · On İki Gün
-4:48 4 · Hayır Diyen Kadın
-5:58 5 · Ankara'da Bir ‘Hayır’
-8:17 6 · Geri Dönen Hap
-9:42 Kapanış
+2:09 2 · Dünyayı Dolaşan Hap
+3:11 3 · On İki Gün
+4:50 4 · Hayır Diyen Kadın
+6:00 5 · Ankara'da Bir ‘Hayır’
+8:22 6 · Geri Dönen Hap
+9:50 Kapanış
 
 Kaynaklar
 - Özdemir O., 'Türkiye'de Talidomid Gerçeği', TFD E-Bülteni 114 (2012): http://www.tfd.org.tr/sites/default/files/Klasor/Dosyalar/ebultenler/114_2012_4_0.pdf
@@ -69,12 +69,12 @@ Seslendirme yapay zekâ ile üretilmiştir (Cartesia). Karakterler canlandırmad
 ```
 0:00 Giriş
 0:43 1 · Zehirsiz Mucize
-2:07 2 · Dünyayı Dolaşan Hap
-3:09 3 · On İki Gün
-4:48 4 · Hayır Diyen Kadın
-5:58 5 · Ankara'da Bir ‘Hayır’
-8:17 6 · Geri Dönen Hap
-9:42 Kapanış
+2:09 2 · Dünyayı Dolaşan Hap
+3:11 3 · On İki Gün
+4:50 4 · Hayır Diyen Kadın
+6:00 5 · Ankara'da Bir ‘Hayır’
+8:22 6 · Geri Dönen Hap
+9:50 Kapanış
 ```
 
 ## Etiketler
@@ -117,30 +117,32 @@ Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yet
 - [ ] Altyazı (.srt) yüklendi, dil: Türkçe
 - [ ] Etiketler yapıştırıldı; kategori: Eğitim (ya da Kişiler ve Bloglar), dil: Türkçe
 - [ ] Kitle: 'Çocuklara özel değil'
-- [ ] Bitiş ekranı (son ~9 sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). İstersen yalnız 'Abone ol' öğesini **10:12**'ten itibaren videodaki sağ üstteki boş alana koy. Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor) ya da kanal filigranını kullan (Özelleştirme > Marka > Video filigranı)
+- [ ] Bitiş ekranı (son ~10 sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). İstersen yalnız 'Abone ol' öğesini **10:20**'ten itibaren videodaki sağ üstteki boş alana koy. Studio bitiş ekranını varsayılan olarak son 20 sn'ye koyar: başlangıcını **10:20**'e sürükle (daha erken başlarsa önceki sahnenin yazılarının üstüne biner). Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). Kanal filigranı (Özelleştirme > Marka > Video filigranı) bu videoda kullanma: YouTube onu sağ alta, videodaki 'tarihselwojak' yazısının üstüne koyar
 - [ ] **Shorts > İlgili video**: kısa sürümün (Short) Studio düzenleme sayfasında 'İlgili video' olarak BU uzun video seçildi (Short izleyicisini uzun videoya taşır)
 - [ ] Short'un açıklamasına 'Uzun hâli kanalda' satırı eklendi; bu açıklamadaki [Short bağlantısı] dolduruldu
 - [ ] Short henüz yayımlanmadıysa açıklamadaki 'Kısa hâli (Short): [Short bağlantısı]' satırı silindi
 - [ ] Sabit yorum yazıldı ve sabitlendi
 - [ ] 'Değiştirilmiş ya da yapay içerik' sorusu: 'Hayır' öner. Seslendirme yapay zekâ (Cartesia) ama yalnız anlatıcı ile reklam sloganı ve ürün bilgisi alıntıları; gerçek bir kişinin sesi ya da görüntüsü üretilmedi, sahneler açıkça çizim. Açıklamadaki 'Seslendirme yapay zekâ ile üretilmiştir' satırı kalsın.
-- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:09 (3. bölüm kartı: 3:08.800–3:10.200), 5:58 (5. bölüm kartı: 5:57.833–5:59.233)** (otomatik ara reklam kapalı)
+- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:11 (3. bölüm kartı: 3:10.767–3:12.167), 6:00 (5. bölüm kartı: 5:59.800–6:01.200)** (otomatik ara reklam kapalı)
 - [ ] Görsel atıfları açıklamada (CC BY-SA görseller atıf ister); telif kararları verildi (aşağıdaki 'Telif notu' bölümü)
 - [ ] **Yayından önce kulakla dinle** (yapay zekâ seslendirmesi; satırın başladığı an). Kabul edilemeyen varsa yayımlama, bildir:
-  - 0:16 «Ama ortada yayımlanmış tek bir belge yok.» — düşük öncelik: Whisper 'yayınlanmış' yazıyor (KP.2'deki yeni çekimde de)
-  - 3:42 «Firmanın yanıtı sert: Lenz'i iftirayla…» — 10. tur yeni çekim: 'sert.' sonrası ~0,35 sn durak (eskisi 'sertlentsi' diye akıyordu); 'Lents'i'
-  - 4:55 «1960'ta ABD'nin ilaç kurumu (FDA), yeni bir uzmanı göreve…» — 6. tur: 'FTA' duyulan ilk FDA sesten kesildi (ekranda); kesik doğal mı
-  - 5:08 «Kural şu: FDA 60 gün içinde yanıt…» — 8. tur çekimi: FDA Türkçe harf adlarıyla ('Fe De A')
-  - 7:12 «Ölümünün onuncu yılındaki anma yazıları, Bakanlığa…» — 11. tur: Ankara satırları (bu ve 'İşte Amerika'yla', 'Ama zehirlilik', 'Bakanlık da', 'deneme kapısı', 'Haberin kaynağı', 'sayılı ülkelerden') rubberband ile yavaşlatıldı (en hızlı üçü 0,85, öteki dördü 0,9-0,92); doğal duyuluyor mu
-  - 7:31 «Nejat Eczacıbaşı ise bir röportajında…» — ÖNCELİKLİ. 7 çözümün 6'sı 'Necdet' (spektrumda j sürtünmesi var ama kısa): 'Necat/Necdet' duyulursa telaffuz girdisi 'Nejat: Ne-jat' ya da ElevenLabs
-  - 8:18 «…Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor.» — ÖNCELİKLİ. z uzatılmış eski çekim; stem'de bir çözüm 'cüzdan' (ekranda 'CÜZZAM (LEPRA)' var)
-  - 8:23 «Sheskin, elinde kalan eski bir uyku ilacını…» — 10. tur yeni çekim: cümle başına 'Sheskin,' eklendi (Whisper 4/4 'Şeskin')
-  - 8:27 «Beklenmedik bir şey oluyor: Birkaç gün içinde…» — 9. tur çekimi: iki noktada ~0,8 sn durak
-  - 8:42 «Brezilya'da cüzzam tedavisinde kullanıldığı için,…» — ÖNCELİKLİ. z uzatılmış eski çekim; tam geçişte 'cüzdan' duyuldu. 'Cüzdan' duyulursa yeni TTS: 'Brezilya'da lepra, yani cüzzam tedavisinde kullanıldığı için,'
-  - 9:37 «Talidomid, gebe kadınlar (…) tarafından kesinlikle…» — ÖNCELİKLİ. Aylin: 4 çözümün 3'ü 'Tarih domit' (zorlanmış skorda fark 0,5 nat: belirsiz); kulak 'Tarih' duyarsa ElevenLabs listesine
-  - 9:57 «Ankara'daki ‘hayır’ın ise bugün yayımlanmış tek…» — 10. tur yeni çekim: 'hayırın' (eskisi 'hayrın' = iyilik okunuyordu), hız 0,92
-- [ ] Küçük resim: K1 (zehirsiz) ANA küçük resim. 'Test ve karşılaştır' açılırsa YALNIZ K1 ile K3 (izlenme hakemi: K2 168 px'te en zayıfı; 11. turda harita uzaklaştı ama yine yedek). K2'yi yalnız başlık 3 ile kullan (yazısı '46 ÜLKEDE SATILDI', başlık 1 ve 2'deki '46 Ülkede'yi tekrar eder). Başlık testi açılırsa başlık 1 ile başlık 3'ü ('10 Binden Fazla Bebeği…': bedeli söyler) karşılaştır. Başlık 2 ('Kimdi?') yedek: video adı yalnız meslektaş tanıklığıyla verebiliyor, 'tık tuzağı' yorumu çekebilir.
+  - 1:09 «Bu molekülün adı: talidomit.» — 12. tur yeni çekim: ilacın adı ilk kez; 'adı:' sonrası ~0,35 sn durak (eski çekimde 13/16 klip 'Tadidomit'); Whisper 4/4 'talidomit'
+  - 2:18 «…300 milyonu aşkın günlük doz sattığı hesaplanıyor.» — düşük öncelik (dil hakemi N1): Whisper 4/4 'günlük dost' yazıyor ('doz'un z'si 'sattığı'nın s'sinden önce ötümsüzleşiyor; ekranda 'günlük doz (hesap)'). Rahatsız ederse ElevenLabs metni: 'Grünenthal'in sattığı günlük dozların 300 milyonu aştığı hesaplanıyor.'
+  - 2:55 «Firma, böyle bir yan etkiden haberi olmadığını söylüyor.» — 12. tur yeni çekim (ekrandaki 'HABERİMİZ YOK' ile aynı dil); ilk çekim 'bir iyan etkiden' duyuluyordu, seçilen ikinci çekim 4/4 doğru
+  - 3:44 «Firmanın yanıtı sert: Lenz'i iftirayla…» — 10. tur çekimi; 12. tur: zarfın giriş efekti 'sert.'in t'sinden 0,2 sn daha uzağa alındı (teknik N1: mikste 'ser')
+  - 6:38 «…göre ruhsatsız bir ilacın tanıtım numunesi bile Türkiye'ye giremiyor.» — 12. tur: rubberband ile ~0,85 tempo (bölümün en hassas ihtiyat cümlesi); doğal duyuluyor mu
+  - 7:14 «Ölümünün onuncu yılındaki anma yazıları, Bakanlığa…» — 11. tur: Ankara satırları rubberband ile yavaşlatıldı (0,85-0,92); doğal duyuluyor mu
+  - 7:29 «Sorulduğunda, haberin kaynağı belge gösteremedi.» — 12. tur yeni çekim (dil S9: 'ise' tekrarı); 4/4 doğru
+  - 7:33 «Nejat Eczacıbaşı bir söyleşisinde başarıyı…» — ÖNCELİKLİ. 12. tur yeni metin ve çekim (4 denemeden zorlanmış skorda en iyisi: 'Nejat' > 'Necat/Necdet/Necad'); teslim karışımında ve izde ışın-5 çözüm 'Nejat', açgözlü çözüm 'Necad'. 'Necat/Necdet' duyulursa ElevenLabs listesine
+  - 8:04 «İnternette sık duyulan bir söz var: ‘Etkilenmeyen…» — 12. tur yeni metin ve çekim: iddia tırnaklı ve duraklı; 4/4 doğru
+  - 8:23 «…Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor.» — ÖNCELİKLİ. z uzatılmış eski çekim (Cartesia ikiz zz'yi yeni çekimde 'cüzdan' okuyor; ekranda 'CÜZZAM (LEPRA)' var); teslim karışımında ve izde ışın-5 'cüzzam', açgözlü 'cüzlam'. 'Cüzdan' duyulursa ElevenLabs listesine
+  - 8:28 «Sheskin, elinde kalan eski bir uyku ilacını…» — 12. tur: 'talidomit.' sonrası +0,5 sn (dil S6: 'Talidomit, beklenmedik…' diye bitişikti)
+  - 8:47 «Brezilya'da lepra tedavisinde kullanıldığı için,…» — 12. tur yeni metin ve çekim: 'cüzzam' 6/6 'cüzdan' duyuluyordu, yeni çekimde de (z uzatılınca da); satırda 'lepra', ekranda 'LEPRA (CÜZZAM)'; 4/4 doğru
+  - 9:32 «Bugün bir kanser ilacı olarak kullanılıyor;…» — 12. tur: doruk (9:26-9:38) rubberband 0,88 + durak; 'O reklamı hatırlayın' da 0,88, 'Bugün Türkiye'deki resmî…' yeni çekim (0,88, 'ise' çıktı)
+  - 9:45 «Talidomid, gebe kadınlar (…) tarafından kesinlikle…» — ÖNCELİKLİ. Aylin: 12. tur teslim karışımında ipucusuz Whisper 2/2 'Tarih domit', anlatım izinde 2/2 'Talidomit' (altlık orada sesin 25-35 dB altında: maskeleme değil, okuyuş sınırda; 11. turda teknik hakem 'Talidomit / Tali domit' duydu). Kulak 'Tarih' duyarsa ElevenLabs listesine
+- [ ] Küçük resim: K1 (zehirsiz) ANA küçük resim. 'Test ve karşılaştır' açılırsa YALNIZ K1 ile K3 (izlenme hakemi: K2 168 px'te en zayıfı; 11. turda harita uzaklaştı ama yine yedek; 12. turda K3'te K1'in temsilcisi yerine belge arayan, terleyen anlatıcı: test yalnız yazıyı değil yüzü de karşılaştırır). K2'yi yalnız başlık 3 ile kullan (yazısı '46 ÜLKEDE SATILDI', başlık 1 ve 2'deki '46 Ülkede'yi tekrar eder). Başlık testi açılırsa başlık 1 ile başlık 3'ü ('10 Binden Fazla Bebeği…': bedeli söyler) karşılaştır. Başlık 2 ('Kimdi?') yedek: video adı yalnız meslektaş tanıklığıyla verebiliyor, 'tık tuzağı' yorumu çekebilir.
 - [ ] Sabit yorum kapanıştaki soruyla aynı (A/B/C): yayından hemen sonra sabitle; ilk cevaplara kalp ver.
-- [ ] Süre ~10:21: UZUN_FORMAT'taki 8-10 dk kararının ~20 sn üstünde (bilinçli: 11. turda Ankara satırları dil hakeminin isteğiyle yavaşlatıldı, ~+3 sn). YouTube için sorun değil; kısaltmak istersen söyle (aday: B6.5 Behçet sahnesi).
+- [ ] Süre ~10:29: UZUN_FORMAT'taki 8-10 dk kararının ~30 sn üstünde (bilinçli: 11. ve 12. turda dil hakeminin isteğiyle yavaşlatılan satırlar ve duraklar, Türkiye vuruşunun tutulması). YouTube için sorun değil; kısaltmak istersen söyle (aday: B6.5 Behçet sahnesi).
 - [ ] Short (teslim/talidomit-turkiye/): YouTube açıklamasındaki 9 hashtag 3'e indi ('#talidomit #şükrükaymakçalan #shorts'; senin kuralın: YouTube'da 2-3). Short'un videosu değişmedi, yalnız metinleri yeniden üretildi.
 - [ ] Açıklama YouTube'un 5.000 bayt sınırına yakın: bağlantı ya da satır ekleme (Short bağlantısı payı hesapta). İstersen kalan baytla atıflara tek satır eklenebilir: 'Görsellerin dosya bağlantıları ve lisansları: <repodaki uzun/talidomit-turkiye/VARLIKLAR.md bağlantısı>'. Eklemedim: bağlantı GitHub hesabını kanala bağlar (gizlilik kararı senin).
 

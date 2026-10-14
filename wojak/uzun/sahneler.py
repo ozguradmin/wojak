@@ -2037,6 +2037,7 @@ class SayacCizici(Cizici):
     IZ_SEVIYE = (0.06, 0.12, 0.2, 0.3, 0.42, 0.56, 0.75, 1.0)   # iz uzunluğu (hücre)
     IZ_OPAK = 0.38           # izin opaklığı (keskin rakam her zaman tam opak ve okunur)
     HIZLI = 0.5              # birim/kare: birler tekerleği bundan hızlıysa sayaç "sayısal" (her kare round(v))
+    IZ_ESIK = 2.5            # 12. tur: tekerleğin hızı (hücre/kare) bunu aşınca hareket izi (altında keskin rakam)
 
     def _serit(self, renk, seviye: float, bos: bool = False) -> np.ndarray:
         """0-9-0 rakam şeridi (11 hücre, dikey), dikeyde `seviye` hücre boyu kutu bulanık; önceden çarpılmış alfa.
@@ -2059,6 +2060,29 @@ class SayacCizici(Cizici):
         a = np.concatenate([a, a[:h]], axis=0)          # 11. hücre (sarma için)
         self._rk[key] = a
         return a
+
+    def _rakam_izi(self, renk, d: int, seviye: float, bos: bool = False) -> np.ndarray:
+        """12. tur: tek rakamın dikey hareket izi (hücre, önceden çarpılmış alfa): rakam kendi başına (komşu rakamlar
+        yok), `seviye` hücre boyu kutu bulanık, pencereye (hücreye) kırpılmış. bos ve 0: boş hücre."""
+        key = ("iz1", tuple(renk), d, seviye, bos)
+        if key in self._rk:
+            return self._rk[key]
+        c = np.asarray(self._rakam(str(d), renk).convert("RGBa"), np.float32)
+        h = c.shape[0]
+        if bos and d == 0:
+            out = np.zeros_like(c)
+        else:
+            n = int(round(seviye * h))
+            if n >= 2:
+                pad = np.concatenate([np.zeros((n, *c.shape[1:]), np.float32), c,
+                                      np.zeros((n, *c.shape[1:]), np.float32)], axis=0)
+                cs = np.concatenate([np.zeros((1, *c.shape[1:]), np.float32), np.cumsum(pad, axis=0)], axis=0)
+                o = n - n // 2   # ortalı pencere: [i - n//2, i + n - n//2)
+                out = (cs[n + o:n + o + h] - cs[n + o - n:n + o - n + h]) / n
+            else:
+                out = c
+        self._rk[key] = out
+        return out
 
     def _teker(self, renk, konum: float, iz: float, bos: bool = False) -> Image.Image:
         """Sayaç tekerleği: konum (0..10, kesirli: yuvarlanma), iz (hücre: dönüşün hareket izi) -> hücre katmanı.
@@ -2092,7 +2116,10 @@ class SayacCizici(Cizici):
             parca = parca * self._rk["profil_y"]
         if iz > 0.03:
             sev = min(self.IZ_SEVIYE, key=lambda x: abs(x - iz))
-            b_ = self._serit(renk, sev, bos)[y0:y0 + h]
+            # 12. tur (animasyon hakemi M1): iz yalnız gösterilen rakamın KENDİ dikey izi. Eskiden bulanık şeritten
+            # kesiliyordu: komşu rakamların (üstteki ve alttaki) yarım, gri parçaları keskin rakamın çevresinde ve
+            # boşluklarında bant/kutu gibi okunuyordu ("35"in 5'inin ortasında gri çubuk, "49"un 9'unun solunda leke)
+            b_ = self._rakam_izi(renk, int(round(konum)) % 10, sev, bos)
             if "profil" not in self._rk:   # iz pencerenin üst/alt kenarında söner (silindir; kutu gibi durmasın)
                 yy = (np.arange(h, dtype=np.float32) + 0.5) / h
                 self._rk["profil"] = (np.minimum(1.0, np.minimum(yy, 1 - yy) / 0.22) ** 1.5)[:, None, None]
@@ -2137,7 +2164,10 @@ class SayacCizici(Cizici):
                 g = 10 ** k
                 bos = k > 0 and N < g
                 s_ = hiz / g
-                iz = 0.0 if (bos or s_ <= self.HIZLI) else min(1.0, 0.5 * s_)
+                # 12. tur (animasyon hakemi M1): orta hızda (tekerlek kare başına 0,5-2,5 hücre: rakam her kare değişir
+                # ama okunur) iz yok: dikey iz rakamın kendi boşluklarını gri, düz kenarlı bantlarla dolduruyordu ("35"in
+                # 5'inde çubuk, "46"nın 6'sında). İz yalnız rakamların zaten okunmadığı gerçek hızda, yumuşak artarak
+                iz = 0.0 if (bos or s_ <= self.IZ_ESIK) else min(1.0, 0.1 + 0.4 * (s_ - self.IZ_ESIK))
                 out.append((0.0 if bos else float((N // g) % 10), iz, bos))
                 if k and k % 3 == 0:
                     out.append((".", 0.0 if bos else 1.0))

@@ -602,6 +602,11 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
     dönmüş iki rakam ("52"nin 2'sinin üstünde 1'in kuyruğu), gri bulanıklık bandı ve pencerenin altında gelen rakamın
     tepesi görünüyordu. Yavaşta değer round(v) ile adım adım ilerler, yeni rakam 2 karede kayarak belirir, iz yok;
     sayaçları her zaman 30 fps şeritle kare kare kontrol et (motor: `SayacCizici._gosterilen`).
+  - Hareket izi (motion blur) yalnız rakamların zaten okunmadığı hızda: kare başına ~1 adımda dikey iz, rakamın kendi
+    boşluklarını gri, düz kenarlı bantlarla dolduruyordu ("35"in 5'inde çubuk). Teşhis için kontrastı 3 kat artırılmış
+    1:1 kırpım ve iki karenin farkı yetti; küçük temas sayfasında görünmüyordu.
+  - SRT blok kırmasında 42 karakter sınırı bazen iyi kırımı imkânsız kılar ("Kelsey her seferinde daha fazla veri
+    istiyor." 46 karakter): satırı `metin`'de `\n` ile iki bloğa böl (`tts`/ses değişmez, önbellek anahtarı aynı).
   - Başlığın konusu olan vuruş (haritada "boşluk: Türkiye") 10 px'lik gri bir leke olmasın: kancadaki rengiyle, kamera
     o ülkeye itilerek ve ~1 sn tutularak verilir (motor: haritada `it`, hedef vurgu ülkesi).
   - Koyu/mavi-gri haritada sarı damga 360 px'te okunmuyor: beyaz + kontur.
