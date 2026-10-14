@@ -158,7 +158,8 @@ Hepsi betikle üretilir; dış kaynaklı olanların lisansı kaynağınınkidir 
 Yollar `uzun/talidomit-turkiye/` köküne göre (`chars/...`, `img/...`); `ep/` = `episodes/talidomit-turkiye/chars/`.
 Harita, sayaç, nokta ızgarası, zaman çizelgesi, bölüm kartı, metin kartları motorun kendi sahneleridir (görsel dosyası yok).
 
-11. tur eşlemesi (video.yaml ile aynı, 14.10.2026). 11. turda: B4.2 fotoğraf ofiste, B4.3-B4.5 tek mekân (çizim büro,
+12. tur (14.10.2026): B5.8m kupür çizimi yerine pano (aşağıda), K3'te anlatıcı (`anlatici_v2_terli`), B6.3 satırı
+"lepra" (ekranda "LEPRA (CÜZZAM)"); başka görsel değişmedi. 11. tur eşlemesi (video.yaml ile aynı, 14.10.2026). 11. turda: B4.2 fotoğraf ofiste, B4.3-B4.5 tek mekân (çizim büro,
 3 ardışık çekim: aynı sahnenin devamı; animasyon hakemi S2 ofis/büro arasında gidip gelen kesmeleri istemedi),
 B4.1'de daktilo etiketi çıktı, balon ağızlarına ara yarık (`*_konusuyor_yari.png`), kapanış seçenek A'sı sakin ->
 kararlı yüz, K3 terleyen temsilci, K2 uzak harita.
@@ -218,7 +219,7 @@ köşeden giren karakter; "gölgeli" = `golge: true` (havada duran nesneye düş
 | B5.4 | bölünmüş: sol arka `foto_kennedy_imza_1962.jpg` (2/2) \| sağ `foto_saglik_bakanligi.jpg` (2/2) · konuk `ep/temsilci_gergin.png` (→ `chars/temsilci_gergin_konusuyor.png` kapı çarpınca) + kapı (`kapi_acik` → ara kareler → `kapi_kapali`; kancanın kapısı, 8. tur) + `numune_kutusu_tabletler.png` (11. tur: soldan kapıya gelir, çarpınca sola geri savrulur; temsilcinin yüzünden geçmez) |
 | B5.7, KP.3b | `img/arka_lille_masa_169.jpg` (Lille fotoğrafı 1/2, 2/2) · `chars/veteriner_v2_sakin.png` (+ B5.7'de `veteriner_v2_ciddi`) · `yumurta_tablasi.png` (gölgeli) · B5.7: `kompozit/baski_tavuk.png` (tavuk embriyosu 1/2, "GÖRSEL TEMSİLÎ") |
 | B5.8a, B5.8b | mantar pano (1/2, 2/2) · `kompozit/bulten_kagit.jpg` (aynı kart, iki çekim) · `img/foto_tavuk_embriyosu.jpg` · konuk `kaymakcalan_v2_dusunceli` (8a), anlatıcı (8b) |
-| B5.8m | `img/cizim/gazete_2008_canlandirma.png` · konuk anlatıcı |
+| B5.8m | 12. turdan beri pano (B5.8b ile aynı kartlar; kamera AYGÜN kartına yakın): `img/foto_tavuk_embriyosu.jpg` (kart) · konuk anlatıcı. `img/cizim/gazete_2008_canlandirma.png` artık kullanılmıyor (izlenme hakemi: siyah çubuklu sayfa yer tutucu gibi okunuyordu) |
 | B5.9 | `img/foto_dogu_berlin_kacak_ilac_1961.jpg` · konuk anlatıcı |
 | B5.11 | `img/doku_kagit_mavi.jpg` (1/1) · `kompozit/telefon_iddia.png` · anlatıcı |
 | B5.12, KP.1 | `img/foto_ankara_sergievi_kartpostal_alt.jpg` (1/2, 2/2; 10. tur: alt %15 kırpılır, basılı "Sergi evi ve Bankalar…" yazısı yarım kalmasın) · `chars/kaymakcalan_v2_sakin.png` / anlatıcı |

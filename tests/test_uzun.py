@@ -698,6 +698,23 @@ def test_paket_telif_ve_ara_reklam():
     assert "yukarıdaki 'Telif notu'" not in md
 
 
+def test_paket_kucukresim_yedek():
+    """11. tur: `test: false` varyant yedek yazılır; paket "hepsini yükle" demez (ek maddeyle çelişiyordu)."""
+    import tempfile
+    v = _video([{"baslik": "Giriş", "kart": False, "sahneler": [{"tip": "metin", "metin": "x", "sure": 20}]}])
+    v.kucukresimler = [{"ad": "a"}, {"ad": "b"}, {"ad": "c", "test": False}]
+    z = zaman.hesapla(v)
+    with tempfile.TemporaryDirectory() as d:
+        ks = [Path(d) / f"kucukresim_{a}.jpg" for a in "abc"]
+        md = paket.yaz(v, z, Path(d), None, None, ks).read_text(encoding="utf-8")
+    assert "`kucukresim_c.jpg` (yedek: teste ekleme)" in md and "`kucukresim_a.jpg`\n" in md
+    assert "hepsini yükle" not in md and "yedek olmayan varyantlar eklendi" in md
+    v.kucukresimler = [{"ad": "a"}, {"ad": "b"}]
+    with tempfile.TemporaryDirectory() as d:
+        md = paket.yaz(v, z, Path(d), None, None, [Path(d) / "kucukresim_a.jpg"]).read_text(encoding="utf-8")
+    assert "hepsini yükle" in md and "yedek" not in md.split("## Küçük resimler")[1].split("##")[0]
+
+
 
 def test_altyazi_kirma_kurallari():
     # sayı öbeği, özel ad, tırnak içi bölünmez; ayrı 'da' satır başına düşmez (talidomit-turkiye 3. hakem turu)
@@ -714,6 +731,17 @@ def test_altyazi_kirma_kurallari():
     assert any("‘etkilenmeyen tek iki ülke Türkiye ve ABD’" in p.replace("\n", " ") for p in ps)
     c = altyazi.kirma_cezalari("on yedi, bebek".split())
     assert c[1] > 0 and c[2] == 0                     # virgülden sonra kırmak serbest
+    # 12. tur (dil hakemi S10): noktalama sonrası kırma dengeden önce; tamlama, sıfat + ad, ikileme bölünmez;
+    # bağlaçtan önce kırmak iyi
+    assert altyazi.iki_satir("Peki ruhsat vermemek yeterli miydi? Her zaman değil.") == \
+        "Peki ruhsat vermemek yeterli miydi?\nHer zaman değil."
+    assert altyazi.iki_satir("Kural şu: FDA 60 gün içinde yanıt vermezse,").startswith("Kural şu:\n")
+    assert altyazi.iki_satir("26 Kasım'da haber bir pazar gazetesine düşüyor.") == \
+        "26 Kasım'da haber\nbir pazar gazetesine düşüyor."
+    assert "artırırlarsa artırsınlar," in altyazi.iki_satir("Dozu ne kadar artırırlarsa artırsınlar, fareler ölmüyor.")
+    assert altyazi.iki_satir("Bugün bir kanser ilacı olarak kullanılıyor;") == "Bugün bir kanser ilacı\nolarak kullanılıyor;"
+    assert "uyku\nilacını" not in altyazi.iki_satir("Sheskin, elinde kalan eski bir uyku ilacını veriyor: talidomit.")
+    assert "yan\netki" not in altyazi.iki_satir("Firma, böyle bir yan etki duymadığını söylüyor.")
 
 
 def test_pano_asili_kart_ve_inik_damga():
@@ -1408,10 +1436,10 @@ def test_sayac_tekerlek_keskin_rakam_ve_hizli_sayi():
     assert _okuma(p) == 9776
     tek = [q for q in p if not isinstance(q[0], str)]
     assert tek[0][2] and tek[1][1] > 0 and tek[-1][1] > 0          # binler döner (iz var), on binler boş
-    # yavaş: duran tekerlekte iz yok, dönen birlerde var
+    # yavaş: hiçbir tekerlekte iz yok (12. tur: adım adım geçiş; bulanık kopya rakamın üstünde gri bant gibiydi)
     p = cz._yuvarlanan(1262.4, 0.3, b, 1262.1)
     tek = [q for q in p if not isinstance(q[0], str)]
-    assert all(q[1] == 0.0 for q in tek[:-1]) and tek[-1][1] > 0
+    assert all(q[1] == 0.0 for q in tek)
     # izli tekerlekte rakamın kendi pikselleri keskin olanla aynı
     renk = (240, 240, 240)
     keskin = np.asarray(cz._teker(renk, 8.0, 0.0), np.float32)
@@ -1426,6 +1454,32 @@ def test_sayac_tekerlek_keskin_rakam_ve_hizli_sayi():
     for k in range(int(b2["t0"] * 30), int(b2["t1"] * 30) + 2):
         lay = cz2._say_katmani(k / 30, b2)
         assert lay.info["onek_sag"] <= lay.info["rakam_sol"] + 1.0, (k, lay.info)
+
+
+def test_sayac_yavas_adim_adim_yirtik_rakam_yok():
+    """12. tur (animasyon hakemi M1): 0 -> 61 sayımının yavaş kuyruğunda adım ~2,75 karede bir geliyordu ve neredeyse
+    her kare yarım dönmüş iki rakamdı (yırtık rakam, gri bulanıklık bandı, pencerenin altında gelen rakamın tepesi).
+    Artık gösterilen değer round(v): yeni tam sayı 2 karede geçer (%87,5, %100), sonra durur; geçişteki tekerlek
+    şeritten kesilmez (eski rakam yukarı kayıp söner, yenisi aşağıdan belirir; pencere kenarında sert kesik yok)."""
+    cz, _ = _sayac_cizici({"tip": "sayac", "deger": 61, "sonek": "", "sure_say": 4.2, "sure": 6}, 960)
+    b = cz.bolumler[0]
+    dt = 1 / 30
+    ks = range(int(b["t0"] * 30), int(b["t1"] * 30) + 15)
+    gos = [cz._gosterilen(k * dt, b) for k in ks]
+    hiz = [abs(cz._deger(k * dt, b) - cz._deger(k * dt - dt, b)) for k in ks]
+    yavas = [g for g, h in zip(gos, hiz) if h <= cz.HIZLI]
+    assert len(yavas) > 20
+    kesirli = [g for g in yavas if abs(g - round(g)) > 1e-6]
+    tam = [g for g in yavas if abs(g - round(g)) <= 1e-6]
+    assert len(kesirli) < len(tam)                                    # çoğu kare tam bir sayı
+    assert all(abs(g - round(g)) >= 0.1 for g in kesirli)            # geçiş karesi yeniye yakın (%87,5)
+    assert all(b_ >= a_ - 1e-9 for a_, b_ in zip(gos, gos[1:]))      # hiç geri gitmez
+    assert abs(gos[-1] - 61) < 1e-9
+    renk = (240, 240, 240)
+    ara = np.asarray(cz._teker(renk, 1.875, 0.0), np.float32)[..., 3]
+    tam1 = np.asarray(cz._teker(renk, 2.0, 0.0), np.float32)[..., 3]
+    assert ara[0].max() < 30 and ara[-1].max() < 30                  # kenarda kesik parça yok
+    assert ara.sum() > 0.8 * tam1.sum()                               # yeni rakam neredeyse tam
 
 
 def test_sayac_yerlesip_okunur_ve_basla_sure():

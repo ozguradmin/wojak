@@ -55,7 +55,14 @@ ONARIMLAR'da değiller (`ESKI`). Etkin kalanlar:
 11. tur (13.10.2026, dil hakemi S1; yeni istek YOK): Ankara bölümü en hassas bölüm ama en hızlı okunuyordu (ort. 6,9
 hece/sn, öteki bölümler 6,4-6,6). Seçili çekimler rubberband ile (perde/formant korunur) yavaşlatılır:
 - hiz_r11_*: yedi Ankara satırı tempo 0,92 (7,6-8,3 hece/sn idi); kapanışın vedası 0,9; kancanın "Ama Türkiye'de bu
-  ilaca ruhsat verilmedi." 0,92 (dil N3, videonun ana sorusu).
+  ilaca ruhsat verilmedi." 0,92 (dil N3, videonun ana sorusu). Son bakış: hakemin hedefi satır başına <= 7,0 hece/sn;
+  0,92'de en hızlı üçü (deneme kapısı 8,15, Haberin kaynağı 8,2, sayılı ülkeler 8,26) ~7,5'te kalıyordu: bu üçü 0,85,
+  "Ölümünün onuncu" (7,7) ve "İşte Amerika'yla" (7,65) 0,9. Whisper (iki çözüm) 0,85'te de üç satırı tam doğru yazıyor.
+
+12. tur (14.10.2026, dil hakemi S4, S7; teknik M1): yalnız metni değişen 7 satır yeniden seslendirildi (ayrıntı:
+uretici_raporu.md). B6.3'ün "cüzzam" satırı yeni metin ve çekimle değiştiği için cuzzam3 ve "Haberin kaynağı" satırı
+değiştiği için hiz_r11_kaynak ESKI'ye taşındı. Yavaşlatma: hiz_r12_numune (0,92 çekim x 0,92), hiz_r12_kanser ve
+hiz_r12_reklam (doruk, 0,88).
 """
 
 from __future__ import annotations
@@ -378,7 +385,7 @@ def onar_fda_r6(st):
 # 5. tur: etkin onarımlar (yeni çekimlerle değişenler ESKI'de, tarihçe); 6. turda fda_r6 ve tanik_r6
 ONARIMLAR = {
     "cuzzam1": ("ağır bir cüzzam hastası", onar_cuzzam1),
-    "cuzzam3": ("cüzzam tedavisinde kullanıldığı", onar_cuzzam3),
+    # 12. tur: cuzzam3 ESKI'de (B6.3 satırı yeni metin ve çekimle değişti)
     "arada_r5": ("Bu arada bir ayrıntı", durak(1, 0.5)),
     "asil_r5": ("Asıl soruyu ise kimse", durak(0, 0.5)),
     "bosluk_r5": ("Ama haritada bir boşluk var", durak(0, 0.55)),
@@ -390,20 +397,26 @@ ONARIMLAR = {
     "sert_r10": ("Firmanın yanıtı sert", durak(0, 0.35)),       # deneme 0: "Lentsi" net (deneme 1 "Lensi"); dil S3: ~300 ms
     "sheskin_r10": ("Sheskin, elinde kalan", durak(1, 0.5)),    # deneme 1: Whisper 4/4 "Şeskin"
     # 11. tur (dil S1, N3): yavaşlatma (seçili çekimden; yeni istek yok)
-    "hiz_r11_fark": ("İşte Amerika'yla aradaki büyük fark", yavas(0.92, 0.3)),
-    "hiz_r11_kapi": ("ulaşan o ‘deneme’ kapısı", yavas(0.92, 0.3)),
-    "hiz_r11_kaynak": ("Haberin kaynağı ise sorulduğunda", yavas(0.92, 0.3)),
-    "hiz_r11_sayili": ("faciayı yaşamayan sayılı ülkelerden", yavas(0.92, 0.3)),
-    "hiz_r11_anma": ("Ölümünün onuncu yılındaki anma", yavas(0.92, 0.3)),
+    "hiz_r11_fark": ("İşte Amerika'yla aradaki büyük fark", yavas(0.9, 0.3)),
+    "hiz_r11_kapi": ("ulaşan o ‘deneme’ kapısı", yavas(0.85, 0.3)),
+    "hiz_r11_sayili": ("faciayı yaşamayan sayılı ülkelerden", yavas(0.85, 0.3)),
+    "hiz_r11_anma": ("Ölümünün onuncu yılındaki anma", yavas(0.9, 0.3)),
     "hiz_r11_zehir": ("Ama zehirlilik deneylerinin", yavas(0.92, 0.3)),
     "hiz_r11_bakanlik": ("Bakanlık da bu görüşe uyuyor", yavas(0.92, 0.3)),
     "hiz_r11_veda": ("Bir sonraki unutulmuş hikâyede", yavas(0.9, 0.3)),
     "hiz_r11_kanca": ("Ama Türkiye'de bu ilaca ruhsat verilmedi", yavas(0.92, 0.3)),
+    # 12. tur (dil hakemi S4, S7; yeni istek yok): doruk (9:26-9:38, 7,7-8,0 hece/sn) ve "Anlatılana göre…numunesi
+    # bile" (0,92 çekiminde bile 7,6 hece/sn) seçili çekimden yavaşlatılır
+    "hiz_r12_numune": ("tanıtım numunesi bile", yavas(0.92, 0.3)),     # 0,92 çekim x 0,92 = ~0,85
+    "hiz_r12_kanser": ("Bugün bir kanser ilacı", yavas(0.88, 0.3)),
+    "hiz_r12_reklam": ("O reklamı hatırlayın", yavas(0.88, 0.3)),
 }
 
 # ad -> (satırın 4. turdaki metninden bir parça, işlev). Kesim noktaları zarf çukurlarında; her biri Whisper ile
 # (ipucusuz) dinlenerek seçildi (scratchpad r3/kes_tara.py). 5. turda yeni çekimlerle değiştiler; çalıştırılmaz.
 ESKI = {
+    "cuzzam3": ("cüzzam tedavisinde kullanıldığı", onar_cuzzam3),   # 12. tur: satır yeni metinle yeniden seslendirildi
+    "hiz_r11_kaynak": ("Haberin kaynağı ise sorulduğunda", yavas(0.85, 0.3)),   # 12. tur: satır değişti ("Sorulduğunda,…")
     "fda_r5": ("ilaç kurumu FDA", durak(4, 0.5)),   # 5. tur; 6. turda fda_r6 (FDA kesildi)
     "fda": ("ilaç kurumu FDA", onar_fda),
     "recete": ("Reçetesiz bir uyku ve sakinleştirici", onar_recete),

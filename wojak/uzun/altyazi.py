@@ -29,15 +29,23 @@ UZATMA = 0.35    # satır sesi bittikten sonra yazının ekranda kalabileceği e
 
 SAYI = {"bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on", "yirmi", "otuz", "kırk", "elli",
         "altmış", "yetmiş", "seksen", "doksan", "yüz", "bin", "milyon", "milyar"}
-EKLER = {"da", "de", "ta", "te", "mi", "mı", "mu", "mü", "ki"}   # ayrı yazılan ek/edat: satır başına düşmesin
+EKLER = {"da", "de", "ta", "te", "mi", "mı", "mu", "mü", "ki", "bile"}   # 12. tur: "bile" de   # ayrı yazılan ek/edat: satır başına düşmesin
 # soru eki ve çekimli hâlleri ('yeterli | miydi?'): satır başına düşmesin (5. tur, dil hakemi)
 SORU = re.compile(r"^(mi|mı|mu|mü)(ydi|ydı|ydu|ydü|ymiş|ymış|ymuş|ymüş|dir|dır|dur|dür|sin|sın|sun|sün|yim|yım|yum|yüm|"
                   r"yiz|yız|yuz|yüz|siniz|sınız|sunuz|sünüz)?$")
 # belirleyici / niteleyici: arkasından kırılmasın ('her | seferinde', 'en | eski', 'yarım | asırdan', 'o | ‘deneme’')
 BELIRLEYICI = {"o", "bu", "şu", "en", "her", "yarım", "hiçbir", "birkaç", "pek", "aynı", "bütün", "tüm"}
 # ek-fiil / yardımcı: önünden kırılmasın ('yetersiz | olduğunu', 'sakinleştirici | olarak')
-YARDIMCI = {"olduğunu", "olduğu", "olduğunda", "olan", "olarak", "olur", "oldu", "olmuş", "olmadığını", "değil",
+YARDIMCI = {"olduğunu", "olduğu", "olduğunda", "olan", "olur", "oldu", "olmuş", "olmadığını", "değil",
             "değildi"}
+# 12. tur (dil hakemi S10): bağlaç/edat ÖNCESİ kırmak iyi ('bir kanser ilacı | olarak kullanılıyor'); "olarak"
+# YARDIMCI'dan çıktı
+BAGLAC = {"ve", "ama", "ise", "ya", "ancak", "fakat", "çünkü", "olarak", "yoksa"}
+# 12. tur: adın önündeki sık sıfatlar: arkasından kırılmasın ('eski | bir uyku ilacını', 'resmî | ürün bilgisinde')
+SIFAT = {"eski", "yeni", "genç", "ağır", "büyük", "küçük", "uzun", "kısa", "sıkı", "resmî", "resmi", "önemli", "ilk",
+         "tek", "beklenmedik", "unutulmuş", "yayımlanmış", "ruhsatsız", "sık", "yan"}
+# 12. tur: tamlama (ikinci ad iyelik + hâl ekli: 'pazar | gazetesine', 'uyku | ilacını', 'ürün | bilgisinde')
+IYELIK_HAL = re.compile(r"([aeıioöuü]s[ıiuü](n(a|e|da|de|dan|den|ı|i|u|ü))?|[^aeıioöuü][ıiuü]n(ı|i|u|ü|a|e|da|de|dan|den))$")
 # rakamla sayı + ek ('1928'den', '300'), kesme işaretli ya da değil
 RAKAM = re.compile(r"^[≈~]?\d[\d.,]*(['’]\w+)?$")
 # ilgi hâli (tamlayan) eki: arkasından kırılmasın ('Grünenthal'in | laboratuvarında', 'ilacın | tanıtım')
@@ -115,6 +123,24 @@ def kirma_cezalari(kel: list[str]) -> list[float]:
         if (not _buyuk_mu(a) and not _buyuk_mu(b) and i + 1 < n and _buyuk_mu(kel[i + 1])
                 and by[-1:] in "ıiuü" and b[-1] not in NOKTALAMA):
             x += 15
+        # 12. tur (dil hakemi S10): ad + iyelikli/hâl ekli ad (tamlama) ve "-ki" sıfatı + ad bölünmesin
+        if (not _buyuk_mu(a) and not _buyuk_mu(b) and len(ay) > 2 and ay not in SAYI and ay not in BELIRLEYICI
+                and ay not in BAGLAC and by not in YARDIMCI and IYELIK_HAL.search(by) and len(by) > 5
+                and not re.search(r"[dt][ıiuü]ğ", by)):   # sıfat-fiil değil ('yan etki | duymadığını')
+            x += 20
+        if len(ay) > 4 and ay.endswith(("ki", "kü")) and not _buyuk_mu(b):
+            x += 10 if _buyuk_mu(a) else 20   # 'bugünkü | anlamda' (yer adı + -deki daha gevşek: 'Türkiye'deki')
+        ortak = 0
+        for p_, q_ in zip(ay, by):
+            if p_ != q_:
+                break
+            ortak += 1
+        if ortak >= 4 and not _buyuk_mu(a):
+            x += 30   # ikileme / deyim çifti ('artırırlarsa | artırsınlar', 'yavaş | yavaş')
+        if by in BAGLAC and not tirnak[i - 1]:
+            x -= 6
+        if ay in SIFAT:
+            x += 25
         c[i] = x
     return c
 
@@ -139,7 +165,10 @@ def iki_satir(metin: str, genislik: int = MAX_SATIR) -> str | None:
         a, b = " ".join(kel[:i]), " ".join(kel[i:])
         if len(a) <= genislik and len(b) <= genislik:
             # dengeli, tercihen noktalama sonrası; sayı öbeği, tırnak, özel ad içinden ve ekten önce kırma
-            skor = abs(len(a) - len(b)) - (8 if a[-1] in ",;:.!?" else 0) + ceza[i]
+            # 12. tur (dil hakemi S10): noktalama sonrası kırma dengeden önce gelir (cümle sonu 34, iki nokta 22, virgül
+            # 14; eskiden hepsi 8: 'Peki ruhsat vermemek | yeterli miydi? Her zaman değil.')
+            skor = abs(len(a) - len(b)) - (34 if a[-1] in ".!?…" else 22 if a[-1] in ":;" else 14 if a[-1] == ","
+                                           else 0) + ceza[i] + (12 if len(kel) - i == 1 else 0)   # tek kelimelik 2. satır
             if en_iyi is None or skor < en_iyi[0]:
                 en_iyi = (skor, a + "\n" + b)
     return en_iyi[1] if en_iyi else None

@@ -67,7 +67,7 @@ SAHNE_PARAMLARI: dict[str, set[str]] = {
     "sayac": {"deger", "yil", "etiket", "ust", "onek", "sonek", "sure_say", "renk", "olcek", "tut"} | ZEMIN_PARAM,
     "bolum_karti": {"numara", "baslik", "ust", "bindirme", "marka", "karart"},
     "metin": {"metin", "ceviri", "ust", "alt", "ceviri_t", "yazim", "renk", "tirnak"} | ZEMIN_PARAM,
-    "zaman_cizelgesi": {"noktalar", "baslik"} | ZEMIN_PARAM,
+    "zaman_cizelgesi": {"noktalar", "baslik", "olcek", "y", "x"} | ZEMIN_PARAM,   # 12. tur: olcek (yazı), y (eksen), x [x0, x1]
     "bolunmus": {"sol", "sag", "acik", "cizgi"},
     "izgara": {"n", "sutun", "ust", "etiket", "alt", "renk", "dolum", "say"} | ZEMIN_PARAM,
     "pano": {"kartlar", "ipler", "baslik", "zoom", "yakin", "doku"},
@@ -143,6 +143,7 @@ OLAY_TIPLERI: dict[str, set[str]] = {
     "sarsinti": {"guc", "sure"},              # kamera sarsıntısı (kapı çarpması, darbe): guc px (1080p, vars. 7), sure sn (0.1)
     # --- 9. tur
     "it": {"guc", "sure", "x", "y"},          # wojak: kamera vurgu itmesi (zoom x(1+guc), vars. 0.08, sure 0.5 sn; x/y: hedef)
+    #                                           12. tur: harita (x/y yoksa vurgu ülkesine) ve zaman_cizelgesi (x/y ekran oranı)
 }
 OLAY_ZORUNLU = {"yuz": ["karakter", "gorsel"], "balon": ["karakter", "metin"], "kelime": ["metin"],
                 "isim": ["ad"], "giris": ["karakter"], "cikis": ["karakter"], "vurgula": ["kutu"],
@@ -155,7 +156,7 @@ OLAY_SAHNE = {"yuz": {"wojak"}, "balon": {"wojak"}, "giris": {"wojak"}, "cikis":
               "ceviri": {"metin", "bolunmus"}, "deger": {"sayac"}, "panel": {"bolunmus"}, "soluk": {"bolunmus"},
               "buyut": {"bolunmus"}, "kart": {"pano"}, "ip": {"pano"}, "sondur": {"izgara"},
               "ustunu_ciz": {"metin"}, "rota": {"harita"}, "tikla": {"kapanis"}, "secenek": {"kapanis"},
-              "it": {"wojak"}}
+              "it": {"wojak", "harita", "zaman_cizelgesi"}}   # 12. tur: it haritada ve zaman çizelgesinde de
 CAPA = {"tip", "satir", "ofset", "an", "t"}
 
 SFX_DIR = config.SFX

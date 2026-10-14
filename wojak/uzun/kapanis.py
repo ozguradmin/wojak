@@ -72,8 +72,11 @@ def kapanis_zamanlari(sahne) -> dict:
     hepsi = (vurgu[-1][0] + ara) if (vurgu and n >= 2) else None
     if hepsi is not None and hepsi > dur - 0.4:
         hepsi = None
+    # 12. tur: tıklar satıra çapalanıp geç gelince (seçenek vurguları önce) imleç elde boş beklemesin: ilk tıktan
+    # ~0,9 sn önce belirir
+    imlec = max(2.4 * k, (min(tik.values()) - 0.9) if tik else 0.0)
     return {"soru": 0.2 * k, "kartlar": [(0.8 + 0.18 * i) * k for i in range(n)], "karakter": 1.7 * k,
-            "dugmeler": [(2.0 + 0.1 * j) * k for j in range(len(dug))], "imlec": 2.4 * k, "tik": tik,
+            "dugmeler": [(2.0 + 0.1 * j) * k for j in range(len(dug))], "imlec": imlec, "tik": tik,
             "yorum": yorum, "yorum_bitis": yorum_bitis, "vurgu": vurgu, "hepsi": hepsi, "k": k, "metin": metin,
             "dugme_sira": dug}
 
@@ -385,7 +388,8 @@ class KapanisCizici(Cizici):
             from .ust import damga_sprite
             d_ = s_["damga"]
             renk = Z.renk(d_.get("renk"), (176, 14, 30))
-            dmg = damga_sprite(str(d_["metin"]), renk, (36 if kar is not None else 50) * S, S, tohum=7 + i,
+            # 12. tur (izlenme 4, animasyon S5): karakterli karttaki "HAYIR" 36 pt ile telefonda ~20 px'ti: 60 pt
+            dmg = damga_sprite(str(d_["metin"]), renk, (60 if kar is not None else 50) * S, S, tohum=7 + i,
                                kontur=(255, 255, 255))
         return {"x": x, "y": y, "w": w, "h": h, "ic": ic, "kar": kar, "pad": pad, "ic_h": ic_h, "plaka": plaka,
                 "kar_pm": C.alt_piksel_hazirla(kar) if kar is not None else None,
@@ -672,7 +676,7 @@ class KapanisCizici(Cizici):
             # karakterli kartta yüze/ağza değil başın yanındaki boşluğa (sol üst; yüz değişimi görünsün, gerçek kişinin
             # yüzü ya da ağzı damgalanmaz), belgede ortaya
             if k["kar"] is not None:
-                dcx, dcy = k["w"] * 0.22, k["pad"] + k["ic_h"] * 0.2
+                dcx, dcy = max(dm.width * 0.5 + 4 * S, k["w"] * 0.26), k["pad"] + k["ic_h"] * 0.17
             else:
                 dcx, dcy = k["w"] / 2, k["pad"] + k["ic_h"] * 0.72   # belgenin başlığı (1928) açık kalsın
             out_d, dx0, dy0 = C.afin(dm, dcx, dcy, ds, ds, -7, dm.width / 2, dm.height / 2)

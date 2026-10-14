@@ -176,10 +176,15 @@ def bitis_maddesi(z: Zaman) -> str:
     return (f"- [ ] Bitiş ekranı (son ~{z.sure - t0:.0f} sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz "
             "yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). "
             + (f"İstersen yalnız 'Abone ol' öğesini **{zaman_str(t0)}**'ten itibaren videodaki {yer} boş alana koy. "
+               f"Studio bitiş ekranını varsayılan olarak son 20 sn'ye koyar: başlangıcını **{zaman_str(t0)}**'e "
+               "sürükle (daha erken başlarsa önceki sahnenin yazılarının üstüne biner). "
                if yer else "Abone ol öğesi de gerekmez (eklenirse sahnenin düğmelerinin üstüne binmesin). ")
+            # 12. tur (teknik hakem S2): kanal filigranı yedeği çıktı: YouTube onu sağ alta, videonun kendi
+            # filigranının üstüne koyar
             + "Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' "
-              "kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor) ya da kanal filigranını "
-              "kullan (Özelleştirme > Marka > Video filigranı)")
+              "kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). Kanal filigranı "
+              "(Özelleştirme > Marka > Video filigranı) bu videoda kullanma: YouTube onu sağ alta, videodaki "
+              "'tarihselwojak' yazısının üstüne koyar")
 
 
 def ara_reklam_yerleri(v: Video, z: Zaman) -> list[str]:
@@ -255,9 +260,17 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
     L += ["", "## Etiketler", "", "```", etiket_metni(v), "```", f"({len(etiket_metni(v))}/{ETIKET_MAX} karakter)"]
     if p.get("sabit_yorum"):
         L += ["", "## Sabit yorum", "", "```", str(p["sabit_yorum"]).strip(), "```"]
+    # 11. tur: `kucukresimler[].test: false` = yedek varyant (teste girmez). Önceden bu satır "hepsini yükle" diyordu,
+    # ek maddedeki "yalnız K1 ile K3" ile çelişiyordu (izlenme hakemi: K2 168 px'te en zayıfı)
+    yedek = {f"kucukresim_{s.get('ad')}" for s in (v.kucukresimler or []) if s.get("test") is False}
     if kucukresimler:
-        L += ["", "## Küçük resimler", ""] + [f"- `{k.name}`" for k in kucukresimler]
-        L.append("- YouTube Studio > Küçük resim > **Test ve karşılaştır**: hepsini yükle, kazananı YouTube seçer.")
+        L += ["", "## Küçük resimler", ""] + [f"- `{k.name}`" + (" (yedek: teste ekleme)" if k.stem in yedek else "")
+                                              for k in kucukresimler]
+        if yedek and len(yedek) < len(kucukresimler):
+            L.append("- YouTube Studio > Küçük resim: ilki ANA küçük resim; **Test ve karşılaştır** açılırsa yalnız yedek "
+                     "olmayanları yükle, kazananı YouTube seçer.")
+        else:
+            L.append("- YouTube Studio > Küçük resim > **Test ve karşılaştır**: hepsini yükle, kazananı YouTube seçer.")
     if srt:
         L += ["", "## Altyazı", "", f"`{teslim_adi(v, srt.suffix)}` (Türkçe, zamanlamalı): Studio > Altyazılar > Türkçe > "
               "Altyazı ekle > Dosya yükle > *Zamanlamalı*."]
@@ -265,7 +278,8 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
     L += [
         "- [ ] Video yüklendi; başlık alternatiflerden seçildi (ilk 60 karakter arama sonucunda görünür)",
         "- [ ] Açıklama yapıştırıldı; bölümler oynatıcıda görünüyor (ilk damga 0:00, en az 3 bölüm, her biri >= 10 sn)",
-        "- [ ] Küçük resim yüklendi; 'Test ve karşılaştır' ile diğer varyantlar eklendi",
+        ("- [ ] Küçük resim yüklendi; 'Test ve karşılaştır' ile yedek olmayan varyantlar eklendi" if yedek else
+         "- [ ] Küçük resim yüklendi; 'Test ve karşılaştır' ile diğer varyantlar eklendi"),
         "- [ ] Altyazı (.srt) yüklendi, dil: Türkçe",
         "- [ ] Etiketler yapıştırıldı; kategori: Eğitim (ya da Kişiler ve Bloglar), dil: Türkçe",
         "- [ ] Kitle: 'Çocuklara özel değil'",

@@ -591,5 +591,33 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
   - Dramatik sessizlik dijital sıfır olmasın (-70/-78 dBFS hoparlörde ses kesilmesi gibi): müzik incelmesi -15/-18 dB.
   - Rubberband ile yavaşlatmada başa 0,3 sn sessizlik ekle, sonra at: tempo 0,92'de "Ölümünün" Whisper'da
     "Bölümünün" duyuluyordu (başlangıç geçişi bozuluyordu).
+  - Tempo oranını hedefe göre seç, hakemin önerdiği sayıyı körü körüne uygulama: 0,92, 8,2 hece/sn'lik satırı ~7,5'te
+    bırakıyordu (hedef <= 7,0). En hızlı üç satır 0,85 (Whisper iki çözümde de tam doğru), ötekiler 0,9-0,92.
+  - Damga mürekkebi yarı saydam: yazılı kartların üstüne basılan damga ("HİÇBİRİ YAYIMLANMADI") kartların yazısıyla
+    birbirine karışıyordu. Büyük tez damgasını boş zemine (kartların hemen altındaki mantar) koy.
   - Anne adayı yine endişeli çizilmedi (hakem ikinci kez istedi): anlatım "gönül rahatlığıyla alıyor" diyor, mağdur anne
     çizilmez; duygu kamera itmesiyle verildi. Hakemin isteği olgu/saygı kuralıyla çakışırsa gerekçe raporda yazılır.
+- **12. tur (dört hakem: izlenme 8, animasyon 7,5, dil 8,2, teknik 8,5):**
+  - Yavaş sayan sayaçta sürekli yuvarlanma yırtık rakam üretir: adım ~2,75 karede gelince neredeyse her kare yarım
+    dönmüş iki rakam ("52"nin 2'sinin üstünde 1'in kuyruğu), gri bulanıklık bandı ve pencerenin altında gelen rakamın
+    tepesi görünüyordu. Yavaşta değer round(v) ile adım adım ilerler, yeni rakam 2 karede kayarak belirir, iz yok;
+    sayaçları her zaman 30 fps şeritle kare kare kontrol et (motor: `SayacCizici._gosterilen`).
+  - Başlığın konusu olan vuruş (haritada "boşluk: Türkiye") 10 px'lik gri bir leke olmasın: kancadaki rengiyle, kamera
+    o ülkeye itilerek ve ~1 sn tutularak verilir (motor: haritada `it`, hedef vurgu ülkesi).
+  - Koyu/mavi-gri haritada sarı damga 360 px'te okunmuyor: beyaz + kontur.
+  - İki noktalı zaman çizelgesi karenin yarısını boş bırakır: yazı 1,3 kat, eksen ortada, köşedeki konuk büyük ve
+    eksen onun yanında biter (`olcek`, `y`, `x`); konuk eksenin üstüne binmesin (kare kontrolüyle yakalandı).
+  - Siyah çubuklu "haber" çizimi yer tutucu gibi okunur; gerçek başlık uydurulamıyorsa vuruşu zaten var olan
+    nesneye (pano kartı, ip, kaynak kartı) taşı; aynı tahtaya gidip gelen pano -> kupür -> pano da biter.
+  - Kapanışta kartların kendi tepkileri sorudan hemen sonra gelsin (A, B, C ~0,85 sn arayla), abone/beğen/yorum
+    ondan sonra: vedadan sonraki son 1,6 sn'yi izleyicilerin çoğu görmez, YouTube'un bitiş ekranı öğeleri de örter.
+  - Kesmede karakter kaybolup ~0,2 sn sonra aynı yere yeniden giriyorsa köşe "göz kırpar": `giris: false` ile eşleşen
+    yerde başlat, önceki sahnede çıkar ya da karanlıktan geç (`kontrol` artık bunu da bildirir).
+  - Cartesia (Murat) ikiz zz'yi "cüzdan" okuyor: yeni metinle ("lepra, yani cüzzam") de, z 1,5-2,2 kat uzatılınca da
+    Whisper 4/4 "cüzdan" yazdı. Okunamayan kelimeyi zorlamak yerine eş anlamlısını seslendir ("lepra"), ekranda ikisini
+    birden yaz ("LEPRA (CÜZZAM)"). "Nejat" da 4 denemede "Necad" yazıldı: zorlanmış skorda en iyi çekim seçildi,
+    kulak testi listesinde ve ElevenLabs notunda.
+  - Satır kırma noktalama sonrasını dengeden önce seçmeli ("Peki ruhsat vermemek yeterli miydi? | Her zaman değil.");
+    tamlama, sıfat + ad, ikileme ve satır başında "bile" bölünmez.
+  - Denetim aracının kendi hatası da yanlış uyarı üretir: ayırıcı eksen denetimi ilk eksende dönünce eğik iki kart
+    260 px uzakken "değiyor" görünüyordu. Uyarıyı düzeltmeden önce ölç.

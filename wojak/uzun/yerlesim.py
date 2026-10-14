@@ -101,9 +101,9 @@ def derinlik(p: list, q: list) -> float:
             pa = [x * ex + y * ey for x, y in p]
             qa = [x * ex + y * ey for x, y in q]
             ort = min(max(pa), max(qa)) - max(min(pa), min(qa))
+            # 12. tur: ilk ayırıcı eksende dönülmüyor: eğik iki kart başka bir eksende 3 px "değiyor" görünüp gerçekte
+            # 260 px uzaktaydı (B5.8b 'g' ile 'y'); ayrıklıkta en büyük boşluk (en küçük örtüşme) asıl uzaklıktır
             en_az = min(en_az, ort)
-            if en_az <= 0:
-                return en_az
     return en_az
 
 

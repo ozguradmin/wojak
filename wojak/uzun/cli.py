@@ -170,6 +170,16 @@ def ziplama_denetimi(v, z, W: int = 960) -> list[str]:
                 out.append(f"{yer} yan değiştiriyor {olcu} — aynı yerde tut ya da gecis: kaydir / karart")
             elif (abs(x1 - x0) > 0.012 or abs(u1 - u0) > 0.03 or db > 0.04) and abs(x1 - x0) < 0.2 and db < 0.5:
                 out.append(f"{yer} yerinde zıplıyor {olcu} — x/boy'u kesmenin iki yanında eşitle")
+        # 12. tur (animasyon hakemi S3): kesmeden önce ekranda olan karakter kesmede kaybolup ~0,8 sn içinde aynı
+        # sahneye yeniden giriyorsa köşe birkaç kare boş kalıyor ("göz kırpma")
+        for a_ in sorted(set(once) - set(sonra)):
+            for k in range(1, 9):
+                kk_ = kutular(i, 0.1 * k)
+                if a_ in kk_ and abs(kutular(i, 0.1 * k + 0.6).get(a_, kk_[a_])[0] - once[a_][0]) < 0.2:
+                    out.append(f"{zaman.zaman_str(z.sahne_basi(s), ms=True)}: kesmede {a_} kayboluyor ve "
+                               f"{0.1 * k:.1f} sn sonra yeniden giriyor — giris: false ile eşleşen yerde başlat ya da "
+                               "önceki sahnede çıkar")
+                    break
     return out
 
 
