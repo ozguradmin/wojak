@@ -1827,6 +1827,15 @@ def test_on_dort_tur_motor_ekleri():
         x2[-int(0.006 * sr):] = 0
         tts.wav_yaz(w, x2, sr)
         assert not ses.klip_denetimi(zaman.hesapla(v))
+    # (a2) klip içindeki sıfır aralığının (Cartesia break) iki kenarı da yumuşar; boy aynı; kısa sıfırlar dokunulmaz
+    c = np.full(4800, 0.5, np.float32)
+    c[2000:2600] = 0                       # 12,5 ms tam sıfır: sönümsüz kesme + sönümsüz başlangıç
+    c[3500:3550] = 0                       # ~1 ms: aralık sayılmaz
+    y2, k = ses.ic_kenar_yumusat(c)
+    assert len(y2) == len(c) and k == 3    # kesme, başlangıç, sıfırsız klip başı
+    assert y2[0] == 0 and y2[1999] < 0.01 and y2[2600] < 0.01 and abs(y2[2600 + 240] - 0.5) < 1e-6
+    assert y2[1500] == 0.5 and np.all(y2[3500:3550] == 0) and y2[3600] == 0.5
+    assert ses.ic_kenar_yumusat(np.zeros(1000, np.float32))[1] == 0
     # (b) yakın pano: alttaki uzun kart
     kartlar = [{"id": "a", "metin": "ÜST", "x": 0.3, "y": 0.3}, {"id": "b", "metin": "ALT KART", "alt": "alt satır",
                "gorsel": KG, "x": 0.3, "y": 0.78, "en": 320}]

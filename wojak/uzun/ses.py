@@ -133,6 +133,49 @@ def klip_sondur(x: np.ndarray, sure: float = KLIP_SONU, sr: int = SR) -> np.ndar
     return y
 
 
+# 14. tur (son tarama): Cartesia `<break>` aralarını sayısal sıfırla dolduruyor ve konuşmayı sönümsüz kesip sönümsüz
+# başlatıyor (ör. 8:11 "…bir söz var: | ‘Etkilenmeyen…": -12 dBFS'ten sıfıra, sıfırdan -9 dBFS'e tek örnekte; teslim
+# karışımında 7 yer). Motor her klibin İÇİNDEKİ en az IC_SIFIR_MIN sn'lik tam sıfır aralıklarının iki kenarını da
+# IC_KENAR sn'de yükseltilmiş kosinüsle yumuşatır (klip boyu ve zamanlama aynı).
+IC_KENAR = 0.005
+IC_SIFIR_MIN = 0.003
+
+
+def sifir_araliklari(x: np.ndarray, sr: int = SR, en_az: float = IC_SIFIR_MIN) -> list[tuple[int, int]]:
+    """Klipteki tam sıfır (|x| < 1e-7) aralıkları [(i0, i1)], en az `en_az` sn; klibin başı ve sonu dahil."""
+    z = np.abs(np.asarray(x)) < 1e-7
+    if not z.any():
+        return []
+    d = np.diff(np.concatenate([[0], z.astype(np.int8), [0]]))
+    bas, son = np.nonzero(d == 1)[0], np.nonzero(d == -1)[0]
+    m = int(round(en_az * sr))
+    return [(int(a), int(b)) for a, b in zip(bas, son) if b - a >= m]
+
+
+def ic_kenar_yumusat(x: np.ndarray, sure: float = IC_KENAR, sr: int = SR) -> tuple[np.ndarray, int]:
+    """(kopya, yumuşatılan kenar sayısı): sıfır aralığından önceki `sure` sn söner, sonraki `sure` sn açılır; klip
+    sıfırsız başlıyorsa baş da açılır."""
+    y = np.array(x, np.float32, copy=True)
+    n = int(round(sure * sr))
+    if n < 2 or len(y) < 2 * n:
+        return y, 0
+    w = (0.5 - 0.5 * np.cos(np.linspace(0.0, np.pi, n))).astype(np.float32)   # 0 -> 1
+    k = 0
+    for a, b in sifir_araliklari(y, sr):
+        if a > 0:
+            a0 = max(0, a - n)
+            y[a0:a] *= w[::-1][n - (a - a0):]
+            k += 1
+        if b < len(y):
+            b1 = min(len(y), b + n)
+            y[b:b1] *= w[: b1 - b]
+            k += 1
+    if abs(float(y[0])) >= 1e-7:   # sıfırsız başlangıç
+        y[:n] *= w
+        k += 1
+    return y, k
+
+
 def kuyruk_farki(x: np.ndarray, sr: int = SR, son: float = KUYRUK_SON, once: float = KUYRUK_ONCE) -> tuple[float, float]:
     """(fark_db, son_tepeye_db): klibin son `son` sn'sindeki en yüksek 1 ms RMS'in, ondan önceki `once` sn'nin RMS'ine
     göre farkı; ve o son pencerenin klibin örnek tepesine göre düzeyi. Tık/patlama ölçüsü (teknik hakemin ölçütü)."""
@@ -548,7 +591,8 @@ def miks(v: Video, z: Zaman, klasor: Path, log=print) -> dict:
         i = int(round(sz.bas * SR))
         j = min(n, i + len(x))
         if j > i:
-            anlatim[i:j] += klip_sondur(x[: j - i])   # 14. tur: basamaklı bitiş (tık) kalmasın
+            # 14. tur: basamaklı bitiş (tık) ve klip içindeki sönümsüz kesme/başlangıçlar (Cartesia break) kalmasın
+            anlatim[i:j] += klip_sondur(ic_kenar_yumusat(x[: j - i])[0])
     if eksik:
         log(f"UYARI: {len(eksik)} satırın sesi yok (sessiz kalır); önce: python -m wojak uzun seslendir")
     ham_anlatim = klasor / "anlatim_ham.wav"

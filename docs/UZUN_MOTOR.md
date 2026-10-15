@@ -239,6 +239,10 @@ Her zaman açık (hata düzeltmesi; ayar yok):
     kosinüsle söndürür (`klip_sondur`). `kontrol` ve `render`, son 20 ms'i önceki 45 ms'den 20 dB'den fazla yüksek
     (ve tepenin en çok 45 dB altında) klibi bildirir (`ses.klip_denetimi`). Kaynak: rubberband akış sonu patlaması;
     yavaşlatmada sona 0,3 sn sıfır ekleyip çıktıyı eski boyuna kesmek gövdeyi 1 LSB içinde aynı bırakır.
+  - **Klip içindeki sönümsüz kenarlar (14. tur, son tarama):** Cartesia `<break>` aralarını tam sıfırla dolduruyor,
+    konuşmayı sönümsüz kesip sönümsüz başlatıyordu (8:11'de -12 dBFS'ten sıfıra, sıfırdan -9 dBFS'e; karışımda 7 yer).
+    `ses.ic_kenar_yumusat` her klibin içindeki >= 3 ms tam sıfır aralığının iki kenarını 5 ms'de yumuşatır (sıfırsız
+    klip başı da açılır); boy ve zamanlama aynı.
   - **Çerçeveleyen pano kamerası (`pano`, `cercevele`; `yakin` > 1'de varsayılan açık):** asılı kartların birleşik kutusu
     güvenli alanda kalır (üstte başlık/köşe göstergesi bandı 150 px, altta YouTube çubuğu bandı 54 px, yanlarda 24 px);
     sığmazsa yaklaşma kesilir. Kart kısıta düşmeden 0,35 sn önce girer, oturduğunda tam girmiştir. (İzlenme M1: B5.8a'da

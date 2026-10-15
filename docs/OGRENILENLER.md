@@ -443,6 +443,9 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
   güvenli alanda tutar. Kelimenin baskı kenarına "yapıştırılmış" durması için kenar bandı denetimi on yer buldu
   (hakem dördünü görmüştü). Bir denetimi geçen düzeltmeye yine bak: dosya yukarı kayıp kadrajdan taşınca yazı
   "içinde" sayıldı; kare görünce dosya aşağı alındı.
+  Tık taramasını yalnız klip sonlarında değil, anlatım izinin sıfıra inip çıktığı HER yerde yap: Cartesia `<break>`
+  araları da konuşmayı sönümsüz kesiyordu (hakemin listesinde yoktu; 8:11'de -12 dBFS'ten sıfıra). Motor artık bu
+  kenarları da yumuşatır.
 
 - **Vurgu damgası en az 1,2 sn ekranda kalmalı.** Damganın iniş anından sahne sonuna kadar 0,5-0,8 sn kalınca hakem
   "flaş gibi geçiyor" dedi: vurgu satırına `sonra: 1.1-1.3`. Koyu zeminde koyu kırmızı damga okunmuyor: beyaz/sarı, ya

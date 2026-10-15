@@ -1541,14 +1541,13 @@ bolumler:
         muzik_mod: gerilim
         zoom: 1.25
         yakin: 1.22
-        kose: {metin: "YAYIMLANMIŞ BELGE: {}", deger: 0, konum: sag_ust}
+        # 15. tur (animasyon M1a): köşe kutusu BAKANLIK kartının başlığına biniyordu; "0" B5.8m/B5.8b'de veriliyor
         gecis: kaydir
         konuk: [{id: s, gorsel: chars/kaymakcalan_v2_dusunceli.png, x: 0.885, boy: 0.54, yon: sag}]
         kartlar:
           - {id: m, metin: "BAKANLIK: RUHSAT YOK", stil: merkez, x: 0.385, y: 0.37, en: 380, egim: 0}
           - {id: k, metin: "KAYMAKÇALAN", alt: "kaynak: meslektaş tanıklıkları", x: 0.14, y: 0.38, en: 330, egim: -3}
           - {id: b, metin: "ANMA YAZILARI, 1994", alt: "danışmanlık: var", gorsel: img/kompozit/bulten_kagit.jpg, x: 0.15, y: 0.71, en: 300, egim: 2}
-        ipler: [[k, m]]
         satirlar:
           - {metin: "Şimdi elimizdekilere bakalım.", hiz: 0.86}
           - {metin: "Kaymakçalan'ın rolü, meslektaşlarının tanıklığına dayanıyor.", sonra: 0.4}
@@ -1557,6 +1556,7 @@ bolumler:
         olaylar:
           - {tip: kart, id: m, t: 0.0}   # 12. tur (izlenme 6): 2 sn boş/tek kartlı mantar görünüyordu
           - {tip: kart, id: k, satir: 1, an: son, ofset: 0.0}
+          - {tip: ip, a: k, b: m, satir: 1, an: son, ofset: 0.4}   # 15. tur (animasyon M1b): sabit ipler ucu iğneye 55 px varmıyordu
           - {tip: giris, karakter: s, satir: 2, ofset: 0.4}
           - {tip: kart, id: b, satir: 3, ofset: 0.2}
           - {tip: ip, a: b, b: k, satir: 3, an: son, ofset: -2.0}   # 6. tur: 6 sn yeni vuruş yoktu
