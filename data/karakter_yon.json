@@ -415,6 +415,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
  },
+ "b9194f4eb5c26e1f1b24deed586b848506f581d0": {
+  "faces": "right",
+  "file": "uzun/talidomit-turkiye/chars/lenz_v2_fark.png"
+ },
  "baf9fde2cf34ea557b9185e0cff52f26e02f95d1": {
   "faces": "right",
   "file": "episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png"

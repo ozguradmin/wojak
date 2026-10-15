@@ -63,6 +63,10 @@ hece/sn, öteki bölümler 6,4-6,6). Seçili çekimler rubberband ile (perde/for
 uretici_raporu.md). B6.3'ün "cüzzam" satırı yeni metin ve çekimle değiştiği için cuzzam3 ve "Haberin kaynağı" satırı
 değiştiği için hiz_r11_kaynak ESKI'ye taşındı. Yavaşlatma: hiz_r12_numune (0,92 çekim x 0,92), hiz_r12_kanser ve
 hiz_r12_reklam (doruk, 0,88).
+
+14. tur (14.10.2026, teknik hakem M1; yeni istek YOK): 11 hiz_* klibinin son 5-9 ms'i rubberband'in akış sonu
+patlamasıydı (videoda 11 tık). `yavaslat()` artık sona 0,3 sn sıfır ekleyip çıktıyı eski boyuna keser ve son 10 ms'i
+söndürür; 11 klip aynı kaynaktan, aynı tempoyla, aynı boyda yeniden üretildi (gövde 1 LSB içinde aynı).
 """
 
 from __future__ import annotations
@@ -241,11 +245,27 @@ def sessizlik_kisalt(x, sr, en_fazla=0.5, esik=-42.0):
     return y, [(round(a, 3), round(b, 3)) for a, b in kes]
 
 
-def yavaslat(x, sr, tempo, pad: float = 0.0):
+def yavaslat(x, sr, tempo, pad: float = 0.0, son_pad: float = 0.3, son_fade: float = 0.010):
     """rubberband (ffmpeg) ile yavaşlatma: perde ve formant korunur. 11. tur: `pad` sn sessizlik önden eklenip
-    sonra atılır: başlangıç geçişi bozulmasın (tempo 0,92'de "Ölümünün" Whisper'da "Bölümünün" duyuluyordu)."""
+    sonra atılır: başlangıç geçişi bozulmasın (tempo 0,92'de "Ölümünün" Whisper'da "Bölümünün" duyuluyordu).
+
+    14. tur (teknik hakem M1): rubberband akışın SONUNDA, son blok boşaltılırken 5-9 ms'lik tam bantlı bir patlama
+    üretiyordu (klibin kendi tepesinin 0-8 dB altında, önceki 45 ms'nin 27-48 dB üstünde): videoda 11 tık. Şimdi sona
+    `son_pad` sn sıfır eklenir ve çıktı ESKİ boyuna (yalnız ön dolgulu çıktının boyu) kesilir: patlama atılan dolguda
+    kalır. Gövde eskisiyle 1 LSB içinde aynı (rubberband belirlenimci), boy örneği örneğine aynı: satır süreleri,
+    zaman çizelgesi, SRT ve bölümler kaymaz. Son `son_fade` sn yükseltilmiş kosinüsle sıfıra iner."""
+    if son_pad > 0:
+        L = len(yavaslat(x, sr, tempo, pad, 0.0, 0.0))   # eski boy: zaman çizelgesi bu boyla kurulu
+        y = yavaslat(np.concatenate([x, np.zeros(int(son_pad * sr), x.dtype)]), sr, tempo, pad, 0.0, 0.0)
+        if len(y) < L:
+            raise RuntimeError(f"yavaslat: son dolgulu çıktı kısa ({len(y)} < {L})")
+        y = y[:L].astype(np.float32).copy()
+        n = min(int(son_fade * sr), len(y))
+        if n > 1:
+            y[-n:] *= (0.5 + 0.5 * np.cos(np.linspace(0, np.pi, n))).astype(np.float32)
+        return y
     if pad > 0:
-        y = yavaslat(np.concatenate([np.zeros(int(pad * sr), x.dtype), x]), sr, tempo)
+        y = yavaslat(np.concatenate([np.zeros(int(pad * sr), x.dtype), x]), sr, tempo, 0.0, 0.0)
         return y[int(round(pad / tempo * sr)):]
     with tempfile.TemporaryDirectory() as d:
         g, c = Path(d) / "g.wav", Path(d) / "c.wav"

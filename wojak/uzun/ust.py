@@ -159,6 +159,12 @@ class KoseGostergesi:
             takili = bool(p.get("takili", False))
             sure = float(p.get("sure", 0.8 if takili else 0.6))
             yeni = p["deger"]
+            # 14. tur (animasyon hakemi 13. tur M1, 5:20): şablon değişirken ("GÜN {}" -> "{}") ya da değerlerden biri
+            # sayı değilken ("1961" yazı) şablon olay anında değişiyor, eski değer ise sürenin yarısı boyunca yeni
+            # şablonla çiziliyordu: 9 kare çıplak "0", sonra "1961". Bu durumda şablon ve değer aynı karede birlikte
+            # değişir (nabız vuruşuyla); sayı -> sayı aynı şablonda sayarak geçmeye devam eder
+            if not takili and (metin != self.durumlar[-1][1] or not (_sayi_mi(deger) and _sayi_mi(yeni))):
+                sure = 0.0
             self.durumlar.append((o.zaman, metin, deger, yeni, sure, takili, rk, yil))
             deger = yeni
         self.f_boy = 58 * S   # 8. tur (izlenme hakemi N2): 52 telefonda küçüktü

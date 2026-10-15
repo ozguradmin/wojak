@@ -532,6 +532,109 @@ class PanoCizici(Cizici):
                 return ka["alt_pin"], True
         return ka["pin"], False
 
+    def kamera_durumu(self, t: float) -> tuple[float, float, float]:
+        """(zoom, merkez x, merkez y): 1:1'den yavaş yaklaşma + asılı kartların ağırlık merkezine kayma (yeni kart
+        biraz daha ağır); yalnız son karta gitmek üstteki kartları başlığın altına itiyordu. yakin > 1: kamera kartlara
+        yaklaşır (pano iki çekime bölündüğünde ilk çekim; kartlar büyük okunur) ve ağırlık merkezine daha çok kayar."""
+        yakin = float(self.p.get("yakin", 1.0))
+        z = self.zm * yakin * (1.0 + 0.06 * E.in_out_sine(t / self.dur))
+        top = fx = fy = 0.0
+        for k in self.sira:
+            q = E.in_out_sine((t - k["t"]) / 1.1)
+            if q <= 0:
+                break
+            w = q * (1.0 + math.exp(-(t - k["t"]) / 2.0))
+            top += w
+            fx += w * k["cx"] / self.CW
+            fy += w * k["cy"] / self.CH
+        mx, my = 0.5, 0.5
+        if top > 0:
+            g = (0.6 if yakin <= 1.0 else 0.95) * min(1.0, top)
+            mx += (fx / top - 0.5) * g
+            my += (fy / top - 0.5) * g
+        if self.p.get("cercevele", yakin > 1.0):
+            z, mx, my = self._cercevele(t, z, mx, my)
+        return z, mx, my
+
+    # 14. tur: yakın pano kamerasında asılı kartların durması gereken güvenli alan (px @1080p; üstte başlık/köşe
+    # göstergesi bandı, altta YouTube ilerleme çubuğu bandı)
+    CERCEVE_UST, CERCEVE_UST_BOS, CERCEVE_ALT, CERCEVE_YAN = 150.0, 40.0, 54.0, 24.0
+
+    def _cercevele(self, t: float, z: float, mx: float, my: float) -> tuple[float, float, float]:
+        """14. tur (izlenme hakemi 13. tur M1): yakın kamera (`yakin` > 1) ağırlık merkezine kayıp yavaşça yaklaşırken
+        boyu uzun bir kartı kadrajın altında kesiyordu (B5.8a "ANMA YAZILARI, 1994": tam okunan satır "danışmanlık:
+        var" yarım; SA.3'te "YAYIMLANMIŞ BELGE"). Kamera artık asılı kartların birleşik kutusunu güvenli alanda tutar:
+        sığmıyorsa yaklaşmayı keser (zoom en çok bu kadar), sığıyorsa merkezi en az kaydırarak içeri alır. Her kart
+        kısıta düşmeye başlamadan 0,35 sn önce girer, oturduğu anda (0,4 sn) tam girmiştir (kamera kartı karşılar;
+        ani sıçrama yok).
+        `cercevele: false` kapatır; `yakin` <= 1'de varsayılan kapalı."""
+        from .yerlesim import donuk_dikdortgen, kutu_icin
+        S, CW, CH = self.S, self.CW, self.CH
+        ust = (self.CERCEVE_UST if (self.p.get("baslik") or self.sahne.kose is not None
+                                    or any(o.tip == "kose" for o in self.sahne.olaylar))
+               else self.CERCEVE_UST_BOS) * S / self.H
+        alt, yan = self.CERCEVE_ALT * S / self.H, self.CERCEVE_YAN * S / self.W
+        cx0, cy0 = mx * CW, my * CH
+        kutular = []
+        for k in self.sira:
+            q = E.in_out_sine((t - k["t"] + 0.35) / 0.75)
+            if q <= 0:
+                continue
+            if "dis_kutu" not in k:
+                g = k["govde"]
+                k["dis_kutu"] = kutu_icin(donuk_dikdortgen((g[0] + g[2]) / 2, (g[1] + g[3]) / 2, g[2] - g[0],
+                                                           g[3] - g[1], k["egim"]))
+            x0, y0, x1, y1 = k["dis_kutu"]
+            kutular.append((cx0 + q * (x0 - cx0), cy0 + q * (y0 - cy0), cx0 + q * (x1 - cx0), cy0 + q * (y1 - cy0)))
+        if not kutular:
+            return z, mx, my
+        u0x, u0y = min(b[0] for b in kutular), min(b[1] for b in kutular)
+        u1x, u1y = max(b[2] for b in kutular), max(b[3] for b in kutular)
+        z = min(z, CH * (1 - ust - alt) / max(u1y - u0y, 1e-6), CW * (1 - 2 * yan) / max(u1x - u0x, 1e-6))
+        z = max(z, 1.0)
+        ww, wh = CW / z, CH / z
+        out = []
+        for c0, a0, a1, w, p0, p1 in ((cx0, u0x, u1x, ww, yan, yan), (cy0, u0y, u1y, wh, ust, alt)):
+            lo, hi = a1 + p1 * w - w / 2, a0 - p0 * w + w / 2
+            out.append((lo + hi) / 2 if lo > hi else min(max(c0, lo), hi))
+        return z, out[0] / CW, out[1] / CH
+
+    def ekrana(self, t: float):
+        """14. tur: t anında tuval pikselini (x, y) ekran pikseline çeviren işlev (cizim.kamera ile aynı pencere).
+        `kontrol` kartların ve karta basılan damgaların `yakin`/`zoom` altında kadrajdan taşıp taşmadığına bakar
+        (izlenme hakemi 13. tur M1: B5.8a'da "ANMA YAZILARI, 1994" kartının alt satırı kadrajın altında kesildi)."""
+        z, mx, my = self.kamera_durumu(t)
+        z = max(z, 1e-3)
+        ww, wh = self.CW / z, self.CH / z
+        cx = min(max(mx * self.CW, ww / 2), self.CW - ww / 2)
+        cy = min(max(my * self.CH, wh / 2), self.CH - wh / 2)
+        x0, y0, sx, sy = cx - ww / 2, cy - wh / 2, self.W / ww, self.H / wh
+        return lambda x, y: ((x - x0) * sx, (y - y0) * sy)
+
+    def ekran_kutulari(self, t: float) -> list[tuple[str, list]]:
+        """14. tur: t anında asılı (inişi bitmiş) kartların gövdeleri ve karta basılmış damgalar, ekran pikselinde
+        dönük çokgen olarak: [(ad, 4 köşe)]. Kart düşerken (0,4 sn) ve damga inerken sayılmaz."""
+        from .yerlesim import donuk_dikdortgen
+        f = self.ekrana(t)
+        out = []
+        for k in self.sira:
+            if t < k["t"] + 0.4:
+                continue
+            x0, y0, x1, y1 = k["govde"]
+            p = donuk_dikdortgen((x0 + x1) / 2, (y0 + y1) / 2, x1 - x0, y1 - y0, k["egim"])
+            out.append((f"pano kartı '{k['id']}'", [f(x, y) for x, y in p]))
+        for dm, k, ky in self.damgalar:
+            u = t - dm.t0
+            if u < dm.INIS + 0.14 or t < k["t"] + 0.4 or (dm.sure is not None and u > dm.sure + 0.25 * 0.7):
+                continue
+            p = donuk_dikdortgen(k["cx"], k["cy"] + ky * k["spr"].height, dm.spr.width, dm.spr.height, dm.aci)
+            out.append((f"damga '{dm.metin}' (kart {k['id']})", [f(x, y) for x, y in p]))
+        return out
+
+    def kenar_kutulari(self, t: float) -> list[tuple[str, list]]:
+        """14. tur (`kontrol` kenar denetimi): asılı kartların ekran çokgenleri."""
+        return [(ad, p) for ad, p in self.ekran_kutulari(t) if ad.startswith("pano")]
+
     def _kart(self, k: dict) -> Image.Image:
         S = self.S
         stil = k.get("stil", "kagit")
@@ -667,26 +770,7 @@ class PanoCizici(Cizici):
                 C.bindir(cv, spr, x0, y0)
         for dm, k, ky in self.damgalar:
             dm.ciz(cv, t, k["cx"], k["cy"] + ky * k["spr"].height)
-        # kamera: 1:1'den yavaş yaklaşma + asılı kartların ağırlık merkezine kayma (yeni kart biraz daha ağır);
-        # yalnız son karta gitmek üstteki kartları başlığın altına itiyordu
-        # yakin > 1: kamera kartlara yaklaşır (pano iki çekime bölündüğünde ilk çekim; kartlar büyük okunur) ve
-        # ağırlık merkezine daha çok kayar
-        yakin = float(self.p.get("yakin", 1.0))
-        z = self.zm * yakin * (1.0 + 0.06 * E.in_out_sine(t / self.dur))
-        top = fx = fy = 0.0
-        for k in self.sira:
-            q = E.in_out_sine((t - k["t"]) / 1.1)
-            if q <= 0:
-                break
-            w = q * (1.0 + math.exp(-(t - k["t"]) / 2.0))
-            top += w
-            fx += w * k["cx"] / self.CW
-            fy += w * k["cy"] / self.CH
-        mx, my = 0.5, 0.5
-        if top > 0:
-            g = (0.6 if yakin <= 1.0 else 0.95) * min(1.0, top)
-            mx += (fx / top - 0.5) * g
-            my += (fy / top - 0.5) * g
+        z, mx, my = self.kamera_durumu(t)
         im = C.kamera(cv, W, H, z, (mx, my))
         C.vinyet_uygula(im, 0.25)
         if self.baslik is not None:

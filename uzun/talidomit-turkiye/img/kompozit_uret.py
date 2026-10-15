@@ -338,8 +338,9 @@ def dosya_zemini() -> None:
         x = x.resize((en_k, round(x.height * en_k / x.width)), Image.LANCZOS)
         return x.rotate(-5, resample=Image.BICUBIC, expand=True)
     et, isaret = don(et0), don(isaret)
-    ex, ey = 950, 530
-    # 8. tur (izlenme N1): YouTube'un süre rozeti sağ alttaydı: kapak sola ve yukarı
+    ex, ey = 890, 470
+    # 8. tur (izlenme N1): YouTube'un süre rozeti sağ alttaydı: kapak sola ve yukarı. 14. tur (teknik N4): rozet hâlâ
+    # büyütecin ve "19??"un sağ altını örtüyordu: 60 px daha sola ve yukarı (950, 530 -> 890, 470)
     im.alpha_composite(golge(et, 18, 0.6, 8, 16), (ex, ey))
     bb = isaret.point(lambda v: 255 if v > 100 else 0).getbbox()
     hx, hy = ex + (bb[0] + bb[2]) / 2, ey + (bb[1] + bb[3]) / 2

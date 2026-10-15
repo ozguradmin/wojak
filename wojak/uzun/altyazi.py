@@ -18,18 +18,21 @@ from pathlib import Path
 
 import numpy as np
 
-from .spec import temiz_metin
+from .spec import SATIR_IPUCU, temiz_metin
 from .zaman import Zaman
 
 MAX_SATIR = 42
 MAX_KARAKTER = 2 * MAX_SATIR
 MIN_SURE = 1.0
 UZATMA = 0.35    # satır sesi bittikten sonra yazının ekranda kalabileceği en fazla süre
+BOSLUK_BIRLES = 0.1   # 14. tur: ardışık bloklar arasında bundan kısa boşluk kapatılır
 
 
 SAYI = {"bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on", "yirmi", "otuz", "kırk", "elli",
         "altmış", "yetmiş", "seksen", "doksan", "yüz", "bin", "milyon", "milyar"}
-EKLER = {"da", "de", "ta", "te", "mi", "mı", "mu", "mü", "ki", "bile"}   # 12. tur: "bile" de   # ayrı yazılan ek/edat: satır başına düşmesin
+# 14. tur (dil hakemi 13. tur S7): "ise" bağlaç değil konu eki: öznesinde kalır, kırım "ise"den SONRA
+# ("İngiltere'deki bir reklam ise | daha da ileri gidiyor:"); eskiden BAGLAC'taydı ve kırım ÖNÜNE konuyordu
+EKLER = {"da", "de", "ta", "te", "mi", "mı", "mu", "mü", "ki", "bile", "ise"}   # 12. tur: "bile" de   # ayrı yazılan ek/edat: satır başına düşmesin
 # soru eki ve çekimli hâlleri ('yeterli | miydi?'): satır başına düşmesin (5. tur, dil hakemi)
 SORU = re.compile(r"^(mi|mı|mu|mü)(ydi|ydı|ydu|ydü|ymiş|ymış|ymuş|ymüş|dir|dır|dur|dür|sin|sın|sun|sün|yim|yım|yum|yüm|"
                   r"yiz|yız|yuz|yüz|siniz|sınız|sunuz|sünüz)?$")
@@ -40,7 +43,7 @@ YARDIMCI = {"olduğunu", "olduğu", "olduğunda", "olan", "olur", "oldu", "olmu�
             "değildi"}
 # 12. tur (dil hakemi S10): bağlaç/edat ÖNCESİ kırmak iyi ('bir kanser ilacı | olarak kullanılıyor'); "olarak"
 # YARDIMCI'dan çıktı
-BAGLAC = {"ve", "ama", "ise", "ya", "ancak", "fakat", "çünkü", "olarak", "yoksa"}
+BAGLAC = {"ve", "ama", "ya", "ancak", "fakat", "çünkü", "olarak", "yoksa"}
 # 12. tur: adın önündeki sık sıfatlar: arkasından kırılmasın ('eski | bir uyku ilacını', 'resmî | ürün bilgisinde')
 SIFAT = {"eski", "yeni", "genç", "ağır", "büyük", "küçük", "uzun", "kısa", "sıkı", "resmî", "resmi", "önemli", "ilk",
          "tek", "beklenmedik", "unutulmuş", "yayımlanmış", "ruhsatsız", "sık", "yan"}
@@ -151,6 +154,7 @@ class Parca:
     son: float
     metin: str
     alinti: bool = False   # anlatıcıdan başka sesin satırı (alıntı: reklam, ürün bilgisi): SRT'de <i>…</i>
+    zorla: str | None = None   # 14. tur: metindeki "¦" ipucuyla elle kırılmış iki satır (sığıyorsa)
 
 
 def iki_satir(metin: str, genislik: int = MAX_SATIR) -> str | None:
@@ -475,6 +479,13 @@ def parcalar(z: Zaman) -> list[Parca]:
             ps = [x for seg in ham.split("\n") if seg.strip() for x in parcala(temiz_metin(seg))]
         else:
             ps = parcala(metin)
+        # 14. tur: "¦" ipucu: parça tek blok kaldıysa satır orada kırılır (dil hakemi 13. tur S7: 'gebelik | önleme')
+        elle = {}
+        for seg in ham.split("\n"):
+            if SATIR_IPUCU in seg:
+                yarim = [temiz_metin(x) for x in seg.split(SATIR_IPUCU)]
+                if len(yarim) == 2 and all(0 < len(x) <= MAX_SATIR for x in yarim):
+                    elle[" ".join(yarim)] = "\n".join(yarim)
         if not ps:
             continue
         sure = max(sz.son - sz.bas, 0.01)
@@ -500,7 +511,7 @@ def parcalar(z: Zaman) -> list[Parca]:
             sinirlar = sinirlari_hizala(ps, sessiz, sure) or sessizlige_otur(sinirlar, sessiz, sure)
         kenar = [0.0] + sinirlar + [sure]
         for k, p in enumerate(ps):
-            out.append(Parca(sz.bas + kenar[k], sz.bas + kenar[k + 1], p, alinti))
+            out.append(Parca(sz.bas + kenar[k], sz.bas + kenar[k + 1], p, alinti, elle.get(p)))
     # uzatma, en az süre ve çakışmasızlık
     for i, p in enumerate(out):
         sonraki = out[i + 1].bas if i + 1 < len(out) else z.sure
@@ -511,7 +522,15 @@ def parcalar(z: Zaman) -> list[Parca]:
                 out[i + 1].bas += kay + 0.04
                 out[i + 1].son = max(out[i + 1].son, out[i + 1].bas + MIN_SURE)
                 p.son = p.bas + MIN_SURE
+    # 14. tur (teknik hakem 13. tur N1): ardışık iki blok arasında 0,1 sn'den kısa boşluk (0,04 sn: ~1 kare) YouTube'da
+    # altyazı kutusunu bir kare söndürüp yakıyordu: blok bir sonrakinin başladığı ana kadar uzar (çakışma yok)
+    for i in range(len(out) - 1):
+        if 0 < out[i + 1].bas - out[i].son < BOSLUK_BIRLES:
+            out[i].son = out[i + 1].bas
     for p in out:
+        if p.zorla and (not p.alinti or all(len(x) <= MAX_SATIR - 4 for x in p.zorla.split("\n"))):
+            p.metin = p.zorla
+            continue
         # alıntıda <i> etiketleri (3-4 karakter) satıra sığsın: önce dar genişlik
         iki = (iki_satir(p.metin, MAX_SATIR - 4) if p.alinti else None) or iki_satir(p.metin)
         if iki is None:   # parcala() bunu engeller; yine de kelime atma, bölünmüş ama tam metin yaz

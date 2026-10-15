@@ -236,7 +236,7 @@ def cmd_kontrol(a) -> None:
         print(f"  aynı kayıt ({len(g)} kez, tek seslendirme): " + " = ".join(g))
     ps = altyazi.parcalar(z)
     u = (hareket_denetimi(v, z) + gecis_denetimi(z) + ziplama_denetimi(v, z) + sayac_denetimi(z) + yerlesim.denetle(v, z)
-         + bakis_denetimi(v) + paket.uyarilar(v, z) + altyazi.denetle(ps)
+         + bakis_denetimi(v) + ses.klip_denetimi(z) + paket.uyarilar(v, z) + altyazi.denetle(ps)
          + [f"altyazı kelime farkı: {x}" for x in altyazi.kelime_farki(z, ps)] + tekrar_uyari)
     for x in u:
         print(f"  ⚠ {x}")
@@ -295,7 +295,7 @@ def _ses(v, z, log=print) -> dict:
 def cmd_render(a, onizleme: bool = False) -> None:
     v, z = _yukle(a.yol, tahmin=a.tahmini)
     ozet(v, z)
-    for x in hareket_denetimi(v, z) + paket.uyarilar(v, z):
+    for x in hareket_denetimi(v, z) + ses.klip_denetimi(z) + paket.uyarilar(v, z):   # 14. tur: klip sonu tıkı da
         print(f"  ⚠ {x}")
     od = v.cikti
     W, H = (960, 540) if onizleme else (1920, 1080)

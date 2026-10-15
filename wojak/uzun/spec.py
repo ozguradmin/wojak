@@ -60,7 +60,7 @@ ZEMIN_PARAM = {"zemin", "arka", "arka_opak", "karart"}   # "bilgi" sahnelerinin 
 SAHNE_PARAMLARI: dict[str, set[str]] = {
     "wojak": {"arka", "kamera", "karakterler", "karart", "bulanik", "doygunluk", "kirp", "odak", "etiket", "vinyet",
               "doku"},
-    "foto": {"gorsel", "etiket", "egim", "zoom", "atif", "boy", "giris", "arka", "odak", "x"},
+    "foto": {"gorsel", "etiket", "egim", "zoom", "atif", "boy", "giris", "arka", "odak", "x", "y"},
     "manset": {"gorsel", "kutular", "zoom", "arka", "renk", "boy", "etiket"},
     "harita": {"bolge", "ulkeler", "vurgu", "baslik", "aralik", "cozunurluk", "renk", "etiketler", "zoom",
                "aciklama", "aciklama_en"},   # 13. tur: aciklama_en (lejantın en geniş hali, px @1080p; aşarsa 2 satır)
@@ -70,7 +70,7 @@ SAHNE_PARAMLARI: dict[str, set[str]] = {
     "zaman_cizelgesi": {"noktalar", "baslik", "olcek", "y", "x"} | ZEMIN_PARAM,   # 12. tur: olcek (yazı), y (eksen), x [x0, x1]
     "bolunmus": {"sol", "sag", "acik", "cizgi"},
     "izgara": {"n", "sutun", "ust", "etiket", "alt", "renk", "dolum", "say"} | ZEMIN_PARAM,
-    "pano": {"kartlar", "ipler", "baslik", "zoom", "yakin", "doku"},
+    "pano": {"kartlar", "ipler", "baslik", "zoom", "yakin", "doku", "cercevele"},
     "marka": {"bindirme", "karart", "wojak", "yuz", "yazi", "arka"},
     "bitis": {"arka", "bindirme", "karart", "bulanik", "baslik", "kutular", "abone", "duzen", "etiketler",
               "karakter"},
@@ -168,9 +168,14 @@ class SpecHatasi(ValueError):
     pass
 
 
+# 14. tur (dil hakemi 13. tur S7): metindeki "¦" altyazı bloğunun İÇİNDE satırın nerede kırılacağını söyler ("\n" blok
+# kırma ipucudur). İkisi de TTS metninden ve ekrandan çıkar: önbellek anahtarı değişmez.
+SATIR_IPUCU = "¦"
+
+
 def temiz_metin(s: str) -> str:
-    """Altyazı/ekran metni: SSML benzeri etiketler (<break .../>) ve satır sonları çıkar."""
-    s = TAG_RE.sub(" ", s).replace("\n", " ")
+    """Altyazı/ekran metni: SSML benzeri etiketler (<break .../>), satır sonları ve altyazı satır ipuçları (¦) çıkar."""
+    s = TAG_RE.sub(" ", s).replace("\n", " ").replace(SATIR_IPUCU, " ")
     s = re.sub(r"\s+", " ", s).strip()
     return re.sub(r"\s+([,.;:!?…])", r"\1", s)
 
@@ -313,7 +318,7 @@ class Video:
     def transkript(self, satir: Satir) -> str:
         """TTS'e giden metin: telaffuz düzeltmeleri YALNIZ burada uygulanır (altyazıda değil)."""
         s = satir.tts if satir.tts is not None else satir.metin
-        s = s.replace("\n", " ")
+        s = s.replace("\n", " ").replace(SATIR_IPUCU, " ")
         for yazim, okunus in self.telaffuz.items():
             s = re.sub(rf"(?<!\w){re.escape(yazim)}(?!\w)", okunus, s)
         return re.sub(r"[ \t]+", " ", s).strip()

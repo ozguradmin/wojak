@@ -554,7 +554,8 @@ def lenz():
         "fark": yuz_kur(base, oy, B, 22, w=W,
                         kaslar=[[(472, 330), (504, 311), (548, 302), (590, 309), (608, 322)],
                                 [(684, 330), (714, 314), (750, 311), (782, 325)]],
-                        gozler=lambda c: acik_gozler(c, [(545, 391, 43, 28, 566, 13), (728, 403, 32, 24, 744, 11)], W),
+                        # 14. tur (animasyon N2): göz çizgileri öteki yüzlerin yarı kalınlığındaydı: W -> W + 3
+                        gozler=lambda c: acik_gozler(c, [(545, 391, 43, 28, 566, 13), (728, 403, 32, 24, 744, 11)], W + 3),
                         agiz=[[(584, 601), (636, 599), (690, 601)]]),
     }
     for k, im in out.items():

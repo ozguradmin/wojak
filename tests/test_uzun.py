@@ -1795,6 +1795,79 @@ def test_on_uc_tur_motor_ekleri():
     assert d[..., 1][iz].mean() < 50, d[..., 1][iz].mean()   # 12. turdaki gibi beyaz dolgu üstünde: ~75 (pembe)
 
 
+def test_on_dort_tur_motor_ekleri():
+    """14. tur: (a) anlatım klibinin sonu söndürülür ve patlamayla biten klip bildirilir; (b) yakın panoda kadrajdan
+    taşan kart bildirilir, çerçeveleyen kamera kartı güvenli alanda tutar; (c) köşe göstergesinde şablon değişince
+    değer aynı karede değişir; (d) vurgu kelimesi baskının üst kenarına binince bildirilir; (e) altyazıda "ise"
+    öznesinde kalır, "¦" blok içi satır ipucu, 0,1 sn'den kısa boşluk kapanır; (f) kapanışta yorum gönderme tıkı
+    yazımı geciktirmez."""
+    import tempfile
+    from wojak.uzun import altyazi, ses, tts, yerlesim as Y
+    from wojak.uzun.kapanis import kapanis_zamanlari
+    from wojak.uzun.sahneler import Baglam, cizici
+    from wojak.uzun.ust import KoseGostergesi, kose_olaylari
+    KG = "uzun/talidomit-turkiye/img/doku_kagit.jpg"
+    # (a) söndürme ve kuyruk ölçüsü
+    sr = 48000
+    t_ = np.arange(sr) / sr
+    x = (0.3 * np.sin(2 * np.pi * 220 * t_) * np.clip(1 - t_ / 0.8, 0, 1)).astype(np.float32)
+    x[-int(0.006 * sr):] = 0.8 * np.sign(np.sin(np.arange(int(0.006 * sr))))     # sondaki patlama
+    assert ses.kuyruk_farki(x)[0] > 20
+    y = ses.klip_sondur(np.ones(1000, np.float32))
+    assert y[-1] == 0 and y[0] == 1 and y[-500] == 1 and 0 < y[-200] < 1
+    with tempfile.TemporaryDirectory() as d:
+        w = Path(d) / "k.wav"
+        tts.wav_yaz(w, x, sr)
+        v = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "satirlar": ["Bir."]}]}])
+        st = v.sahneler[0].satirlar[0]
+        st.wav, st.sure, st.tahmini = w, 1.0, False
+        z = zaman.hesapla(v)
+        assert any("patlamayla bitiyor" in u for u in ses.klip_denetimi(z))
+        x2 = x.copy()
+        x2[-int(0.006 * sr):] = 0
+        tts.wav_yaz(w, x2, sr)
+        assert not ses.klip_denetimi(zaman.hesapla(v))
+    # (b) yakın pano: alttaki uzun kart
+    kartlar = [{"id": "a", "metin": "ÜST", "x": 0.3, "y": 0.3}, {"id": "b", "metin": "ALT KART", "alt": "alt satır",
+               "gorsel": KG, "x": 0.3, "y": 0.78, "en": 320}]
+    def pano(**ek):
+        sah = {"tip": "pano", "zoom": 1.25, "yakin": 1.25, "sure": 6.0, "kartlar": kartlar,
+               "olaylar": [{"tip": "kart", "id": "a", "t": 0.0}, {"tip": "kart", "id": "b", "t": 1.0}], **ek}
+        v = _video([{"baslik": "a", "sahneler": [sah]}])
+        return [u for u in Y.denetle(v, zaman.hesapla(v, tahmin=True)) if "kadraj" in u]
+    assert any("pano kartı 'b'" in u for u in pano(cercevele=False))
+    assert not pano()
+    # (c) köşe: "GÜN {}" 0 -> "{}" "1961": ara karede çıplak "0" yok
+    sah = {"tip": "metin", "metin": "x", "sure": 3.0, "kose": {"metin": "GÜN {}", "deger": 0},
+           "olaylar": [{"tip": "kose", "metin": "{}", "deger": "1961", "t": 1.0}]}
+    v = _video([{"baslik": "a", "sahneler": [sah]}])
+    s0 = zaman.hesapla(v, tahmin=True).sahneler[0]
+    kg = KoseGostergesi(s0, Baglam(v, 960, 540), kose_olaylari(s0))
+    assert [kg._metin(t)[0] for t in (0.9, 1.01, 1.2)] == ["GÜN 0", "1961", "1961"]
+    # (d) kenar bandı: kelime baskının üst kenarında / üstünde
+    def foto(y_):
+        sah = {"tip": "foto", "gorsel": KG, "boy": 0.7, "sure": 4.0,
+               "olaylar": [{"tip": "kelime", "metin": "SORU?", "t": 1.5, "konum": "ust", "y": y_}]}
+        v = _video([{"baslik": "a", "sahneler": [sah]}])
+        return [u for u in Y.denetle(v, zaman.hesapla(v, tahmin=True)) if "kenarının" in u]
+    assert foto(0.13) and not foto(0.5)
+    # (e) altyazı
+    assert altyazi.iki_satir("İngiltere'deki bir reklam ise daha da ileri gidiyor:").split("\n")[0].endswith("ise")
+    sah = {"tip": "metin", "metin": "x", "satirlar": ["Bugün bir kanser ilacı olarak¦kullanılıyor.", "İkinci satır."]}
+    v = _video([{"baslik": "a", "sahneler": [sah]}])
+    assert v.transkript(v.sahneler[0].satirlar[0]) == "Bugün bir kanser ilacı olarak kullanılıyor."
+    _sureler(v, [3.0, 2.0])
+    ps = altyazi.parcalar(zaman.hesapla(v))
+    assert ps[0].metin == "Bugün bir kanser ilacı olarak\nkullanılıyor."
+    assert all(not (0 < ps[i + 1].bas - ps[i].son < altyazi.BOSLUK_BIRLES) for i in range(len(ps) - 1))
+    # (f) kapanış: yorum tıkı yazım başlangıcını değiştirmez
+    kap = {"tip": "kapanis", "arka": KG, "soru": "?", "sure": 11.0, "satirlar": ["Sizce?"],
+           "olaylar": [{"tip": "tikla", "hedef": "yorum", "t": 9.0}]}
+    v = _video([{"baslik": "a", "sahneler": [kap]}])
+    z = kapanis_zamanlari(zaman.hesapla(v, tahmin=True).sahneler[0])
+    assert z["tik"]["yorum"] == 9.0 and z["yorum"] < 6.0
+
+
 if __name__ == "__main__":
     import inspect
     import time

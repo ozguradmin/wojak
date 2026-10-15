@@ -113,6 +113,59 @@ def satir_kazanci(x: np.ndarray) -> float:
     return float(10 ** (np.clip(SATIR_HEDEF_DB - aktif_rms_db(x), -12, 12) / 20))
 
 
+# 14. tur (teknik hakem M1: 11 tık): rubberband'le yavaşlatılmış onarım kliplerinin son 5-9 ms'i tam bantlı bir
+# patlamaydı ve ardından sayısal sessizlik geliyordu. Motor artık (1) yerleştirdiği her anlatım klibinin sonunu
+# KLIP_SONU sn'de yükseltilmiş kosinüsle söndürür (klibin kendisi ne olursa olsun basamaklı bitiş kalmaz) ve
+# (2) `kontrol`/`render`'da son KUYRUK_SON sn'si önceki KUYRUK_ONCE sn'den KUYRUK_DB'den fazla yüksek klibi bildirir
+# (söndürme 8 ms'lik patlamanın ilk yarısını bırakır: asıl düzeltme klibin kendisinde).
+KLIP_SONU = 0.008
+KUYRUK_SON, KUYRUK_ONCE, KUYRUK_DB = 0.020, 0.045, 20.0
+KUYRUK_TABAN_DB = -45.0   # son pencere klibin tepesinin bu kadar altındaysa (sessizlik üstünde gürültü) sayılmaz
+
+
+def klip_sondur(x: np.ndarray, sure: float = KLIP_SONU, sr: int = SR) -> np.ndarray:
+    """Klibin son `sure` sn'sini yükseltilmiş kosinüsle sıfıra indirir (kopya döner)."""
+    n = min(int(round(sure * sr)), len(x))
+    if n < 2:
+        return x
+    y = np.array(x, np.float32, copy=True)
+    y[-n:] *= (0.5 + 0.5 * np.cos(np.linspace(0.0, np.pi, n))).astype(np.float32)
+    return y
+
+
+def kuyruk_farki(x: np.ndarray, sr: int = SR, son: float = KUYRUK_SON, once: float = KUYRUK_ONCE) -> tuple[float, float]:
+    """(fark_db, son_tepeye_db): klibin son `son` sn'sindeki en yüksek 1 ms RMS'in, ondan önceki `once` sn'nin RMS'ine
+    göre farkı; ve o son pencerenin klibin örnek tepesine göre düzeyi. Tık/patlama ölçüsü (teknik hakemin ölçütü)."""
+    w = max(1, sr // 1000)
+    n = len(x) // w
+    ns, no = int(round(son * 1000)), int(round(once * 1000))
+    if n < ns + no + 1:
+        return 0.0, -120.0
+    e = np.sqrt((np.asarray(x[: n * w], np.float64).reshape(n, w) ** 2).mean(axis=1))
+    son_db = 20 * math.log10(max(float(e[n - ns:].max()), 1e-9))
+    once_db = 20 * math.log10(max(float(np.sqrt((e[n - ns - no:n - ns] ** 2).mean())), 1e-9))
+    tepe_db = 20 * math.log10(max(float(np.abs(x).max()), 1e-9))
+    return son_db - once_db, son_db - tepe_db
+
+
+def klip_denetimi(z: Zaman) -> list[str]:
+    """Anlatım kliplerinden sonu patlayanlar (kontrol ve render uyarısı). Her dosya bir kez ölçülür."""
+    from .zaman import zaman_str
+    out, gor = [], set()
+    for sz in z.satirlar():
+        p = sz.satir.wav
+        if p is None or not Path(p).exists() or str(p) in gor:
+            continue
+        gor.add(str(p))
+        fark, duzey = kuyruk_farki(oku(p, 1))
+        if fark > KUYRUK_DB and duzey > KUYRUK_TABAN_DB:
+            out.append(f"{zaman_str(sz.bas + float(sz.satir.sure or 0), True)}: anlatım klibi {Path(p).name} ({sz.sahne.yer}) "
+                       f"patlamayla bitiyor: son {KUYRUK_SON * 1000:.0f} ms önceki {KUYRUK_ONCE * 1000:.0f} ms'den "
+                       f"{fark:.0f} dB yüksek (tık) — klibin sonunu düzelt (yavaşlatmada sona sessizlik ekleyip kes, "
+                       f"ya da söndür)")
+    return out
+
+
 # ---------------------------------------------------------------- efektler
 
 def efekt_kismasi(anlatim: np.ndarray, efekt: np.ndarray, pay_db: float = EFEKT_PAYI_DB, esik_db: float = -42.0,
@@ -495,7 +548,7 @@ def miks(v: Video, z: Zaman, klasor: Path, log=print) -> dict:
         i = int(round(sz.bas * SR))
         j = min(n, i + len(x))
         if j > i:
-            anlatim[i:j] += x[: j - i]
+            anlatim[i:j] += klip_sondur(x[: j - i])   # 14. tur: basamaklı bitiş (tık) kalmasın
     if eksik:
         log(f"UYARI: {len(eksik)} satırın sesi yok (sessiz kalır); önce: python -m wojak uzun seslendir")
     ham_anlatim = klasor / "anlatim_ham.wav"

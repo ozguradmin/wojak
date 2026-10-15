@@ -437,6 +437,13 @@ anlatıcı sesi, efekt, −14 LUFS, isim etiketi ve bölüm kartları serbest. *
 
 ### 7.1 Uzun format, talidomit-turkiye hakem turlarından (13.10.2026)
 
+- **14. tur (14.10):** Yavaşlatılmış (rubberband) her klibin son 5-9 ms'i tam bantlı bir patlamaydı: videoda 11 tık,
+  hiçbir görsel denetim görmez. Ses onarımında klip sonu ölçülür (son 20 ms / önceki 45 ms); motor artık her klibi
+  söndürür ve patlamayı bildirir. Yakın pano kamerası ağırlık merkezine kayınca uzun kartı kesiyordu: kamera kartları
+  güvenli alanda tutar. Kelimenin baskı kenarına "yapıştırılmış" durması için kenar bandı denetimi on yer buldu
+  (hakem dördünü görmüştü). Bir denetimi geçen düzeltmeye yine bak: dosya yukarı kayıp kadrajdan taşınca yazı
+  "içinde" sayıldı; kare görünce dosya aşağı alındı.
+
 - **Vurgu damgası en az 1,2 sn ekranda kalmalı.** Damganın iniş anından sahne sonuna kadar 0,5-0,8 sn kalınca hakem
   "flaş gibi geçiyor" dedi: vurgu satırına `sonra: 1.1-1.3`. Koyu zeminde koyu kırmızı damga okunmuyor: beyaz/sarı, ya
   da kırmızıyı açık bir nesnenin (dosya, kâğıt) üstüne bas. Aynı tipten damga 30'u geçince etkisi düşüyor.

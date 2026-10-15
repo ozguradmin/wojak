@@ -8,7 +8,9 @@ düzeltilebilirdi ama motor uyarmadı. Bu modül:
 - `isim` etiketi için yer seçer (sahneler.UstKatman): kutusu her karakterin alfa kutusundan en az `BOSLUK` (40 px,
   1080p) uzak; sığmazsa satır kırar, küçülür ya da boş tarafa geçer;
 - `kontrol` için bütün üst katmanları (isim, kelime, damga, daktilo etiketi, köşe göstergesi) sahne boyunca 0,1 sn
-  arayla örnekler; bir yüze ya da başka bir üst katmana binenleri zaman aralığıyla bildirir (`denetle`).
+  arayla örnekler; bir yüze ya da başka bir üst katmana binenleri zaman aralığıyla bildirir (`denetle`);
+- 14. tur: pano kartlarının (kamera `yakin`/`zoom` altında, ekran pikseline çevrilerek), karta basılı damgaların ve
+  bütün üst katmanların kadrajdan taşmasını bildirir (`_kadraj_denetle`).
 """
 
 from __future__ import annotations
@@ -30,6 +32,10 @@ YUZ_DISARI = 0.12      # 13. tur: yüz kutusunun bu oranından fazlası kadraj d
 YUZ_ORTU = 0.10        # 13. tur: sonra çizilen görsel bir yüz kutusunun bu oranından fazlasını örterse uyarılır
 SABIT_PAY = 16.0       # px (13. tur): sahnenin sabit kutusu (harita lejantı, foto atfı) ile canlı karakter arası en az
 KARAKTER_SURE = 0.4    # sn: karakter denetimlerinde bundan kısa durum (giriş/çıkış, itme anı) bildirilmez
+KADRAJ_TASMA = 2.0     # px (14. tur): pano kartı, karta basılı damga, vurgu kelimesi, damga, isim, köşe göstergesi
+                       # kadraj kenarını bundan fazla aşarsa (yakin/zoom/kamera dahil) uyarılır
+KENAR_BANT = 24.0      # px (14. tur): vurgu kelimesi bir fotoğraf baskısının, pano kartının ya da dekor görselinin üst/alt
+                       # kenarına bundan yakınsa ya da kenarın üstüne biniyorsa (yarısı içeride yarısı dışarıda) uyarılır
 
 
 # ---------------------------------------------------------------- görsel kutuları
@@ -167,7 +173,7 @@ def denetle(v, z, W: int = 960) -> list[str]:
         if s.tip == "pano":
             out += _pano_denetle(s, c, z)
         ust = _ust_var(s)
-        if not (ust or s.p.get("karakterler") or s.p.get("konuk")):
+        if not (ust or s.p.get("karakterler") or s.p.get("konuk") or s.tip == "pano" or _ust_herhangi(s)):
             continue
         try:
             cz = cizici(s, c)
@@ -176,6 +182,10 @@ def denetle(v, z, W: int = 960) -> list[str]:
             continue
         uk = cz.katman
         b0 = z.sahne_basi(s)
+        out += _kadraj_denetle(s, cz, b0, c)
+        out += _kenar_denetle(s, cz, b0, c)
+        if not (ust or s.p.get("karakterler") or s.p.get("konuk")):
+            continue
         out += _kelime_sirasi(uk, b0, c)
         out += _karakter_denetle(s, cz, b0, c)
         if not ust:
@@ -214,6 +224,104 @@ def denetle(v, z, W: int = 960) -> list[str]:
                     ne = f"{a_ad} ile {b_ad} üst üste biniyor ya da birbirine değiyor"
                 out.append(f"{Zm.zaman_str(b0 + t0)}-{Zm.zaman_str(b0 + t1 + ADIM)}: {ne} "
                            f"({t1 - t0 + ADIM:.1f} sn) — x/y/konum/ofset/sure ile ayır")
+    return out
+
+
+def _kadraj_denetle(s, cz, b0: float, c) -> list[str]:
+    """14. tur (izlenme hakemi 13. tur M1: B5.8a'da `yakin: 1.22` ile "ANMA YAZILARI, 1994" kartının alt satırı
+    kadrajın altında kesildi; anlatım tam o satırı okuyordu; eski denetimler yalnız çakışmaya bakıyordu). Sahne boyunca
+    0,1 sn arayla: pano kartlarının gövdesi ve karta basılı damgalar (tuvalde çizilir: `yakin`/`zoom`/kamera kayması
+    dahil, ekran pikseline çevrilerek), vurgu kelimeleri, damgalar, köşe göstergesi, daktilo etiketi ve yerine oturmuş
+    isim etiketleri kadraj kenarını `KADRAJ_TASMA`'dan fazla aşıyor mu. `EN_AZ_SURE`'den kısası (kelimenin büyüme
+    sıçraması) bildirilmez."""
+    from . import zaman as Zm
+    S, W, H = c.S, c.W, c.H
+    uk = cz.katman
+    pano = getattr(cz, "ekran_kutulari", None) if s.tip == "pano" else None
+    tas: dict = {}
+    n = max(1, int(s.sure_hesap / ADIM))
+    for j in range(n + 1):
+        t = min(j * ADIM, s.sure_hesap - 1e-3)
+        polis = list(uk.kutular(t, isim=False))
+        for it in getattr(uk, "isimler", []):
+            u = t - it["t0"]
+            if uk.ISIM_GIRIS <= u <= it["sure"]:   # kenardan kayarak giren/çıkan etiket bilerek dışarıdadır
+                x, y, a = uk._isim_xy(it, u)
+                pb = uk._kutu_ici(it["spr"])
+                polis.append((f"isim '{it['ad']}'", dikdortgen(x + pb[0], y + pb[1], x + pb[2], y + pb[3])))
+        if pano is not None:
+            polis += pano(t)
+        for ad, poli in polis:
+            x0, y0, x1, y1 = kutu_icin(poli)
+            asim = {"sol": -x0, "sağ": x1 - W, "üst": -y0, "alt": y1 - H}
+            kenar, px = max(asim.items(), key=lambda q: q[1])
+            if px > KADRAJ_TASMA * S:
+                tas.setdefault((ad, kenar), []).append((t, px / S))
+    out = []
+    for (ad, kenar), ts in sorted(tas.items(), key=lambda q: q[1][0][0]):
+        for t0, t1 in _araliklar([t for t, _ in ts]):
+            if t1 - t0 + ADIM < EN_AZ_SURE:
+                continue
+            en = max(v for t, v in ts if t0 <= t <= t1)
+            ipucu = ("kartın x/y/en'ini ya da sahnenin `yakin`/`zoom`'unu değiştir"
+                     if ad.startswith("pano") or "(kart " in ad else "x/y/boy/konum ile kadraja al")
+            out.append(f"{Zm.zaman_str(b0 + t0, True)}-{Zm.zaman_str(b0 + t1 + ADIM, True)}: {ad} kadrajın {kenar} kenarından "
+                       f"{en:.0f} px taşıyor ({t1 - t0 + ADIM:.1f} sn) — {ipucu}")
+    return out
+
+
+def _kenar_denetle(s, cz, b0: float, c) -> list[str]:
+    """14. tur (animasyon hakemi 13. tur S1: "HAMİLE BİR KADIN ALIRSA?" Köln fotoğrafının üst kenarını kesiyordu,
+    "TAVUK EMBRİYOSU DENEYİ?" baskının köşesinde, "DOĞU ALMANYA: RUHSAT YOK" baskının üst kenarına oturmuş, Brezilya
+    kutusunda iki yazı kenarın üstünde: okunuyor ama "yapıştırılmış" görünüyor). Vurgu kelimesinin kutusu bir fotoğraf
+    baskısının, pano kartının ya da dekor görselinin (chars/ dışı, `canli: false`) üst ya da alt kenarına `KENAR_BANT`'tan
+    yakın ya da kenarın üstündeyse (yatayda örtüşürken) bildirilir: ya bütünüyle görselin içinde ya da en az bant kadar
+    dışında olmalı."""
+    from . import zaman as Zm
+    S = c.S
+    uk = cz.katman
+    if not uk.vurgular:
+        return []
+    kenarlik = getattr(cz, "kenar_kutulari", None)
+    sira = [k for k in list(getattr(cz, "cizim_sirasi", []) or []) + list(uk.konuklar) if not k.yuzlu]
+    kamf = {id(k): kf for k, kf in uk.kars}
+    bant = KENAR_BANT * S
+    cak: dict = {}
+    n = max(1, int(s.sure_hesap / ADIM))
+    for j in range(n + 1):
+        t = min(j * ADIM, s.sure_hesap - 1e-3)
+        kelimeler = [(ad, kutu_icin(p_)) for ad, p_ in uk.kutular(t, isim=False) if ad.startswith("kelime")]
+        if not kelimeler:
+            continue
+        polis = list(kenarlik(t) if kenarlik else [])   # 4 köşe: sol üst, sağ üst, sağ alt, sol alt (dönük olabilir)
+        for k in sira:
+            if k.giris is not None and k.giris <= t < k.giris + k.GIRIS + 0.15:
+                continue
+            if k.cikis is not None and t >= k.cikis - 0.05:
+                continue
+            kf = kamf.get(id(k))
+            kb = k.ekran_kutulari(t, kf(t) if kf else None)
+            if kb is not None:
+                polis.append((f"görsel '{k.ad}'", dikdortgen(*kb[0])))
+        for k_ad, kk in kelimeler:
+            for r_ad, pp in polis:
+                for kenar, (a_, b_) in (("üst", (pp[0], pp[1])), ("alt", (pp[3], pp[2]))):
+                    # kenar doğrusunun kelimeyle yatayda örtüşen parçasındaki en düşük/en yüksek y (eğik baskı)
+                    xa, xb = max(kk[0], min(a_[0], b_[0])), min(kk[2], max(a_[0], b_[0]))
+                    if xb <= xa:
+                        continue
+                    dx = b_[0] - a_[0]
+                    ys = [a_[1] + (b_[1] - a_[1]) * ((x - a_[0]) / dx if abs(dx) > 1e-6 else 0.0) for x in (xa, xb)]
+                    if kk[3] > min(ys) - bant and kk[1] < max(ys) + bant:
+                        cak.setdefault((k_ad, r_ad, kenar), []).append(t)
+    out = []
+    for (k_ad, r_ad, kenar), ts in sorted(cak.items(), key=lambda q: q[1][0]):
+        for t0, t1 in _araliklar(ts):
+            if t1 - t0 + ADIM < EN_AZ_SURE:
+                continue
+            out.append(f"{Zm.zaman_str(b0 + t0, True)}-{Zm.zaman_str(b0 + t1 + ADIM, True)}: {k_ad} {r_ad} "
+                       f"kutusunun {kenar} kenarının üstünde (en az {KENAR_BANT:.0f} px dışında ya da bütünüyle içinde "
+                       f"olmalı) — kelimeye `y` ver ya da görseli kaydır")
     return out
 
 
@@ -363,6 +471,12 @@ def _araliklar(ts: list[float]) -> list[tuple[float, float]]:
         else:
             out.append((t, t))
     return out
+
+
+def _ust_herhangi(s) -> bool:
+    """Sahnede kadraj denetimine girecek en az bir üst katman (isim, kelime, damga, köşe göstergesi) var mı."""
+    return (s.kose is not None or any(o.tip in ("isim", "kelime", "damga", "kose") for o in s.olaylar)
+            or bool(s.tip in ("wojak", "foto", "manset") and s.p.get("etiket")))
 
 
 def _ust_var(s) -> bool:

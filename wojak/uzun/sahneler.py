@@ -1471,6 +1471,9 @@ class FotoCizici(Cizici):
         # x: baskının yatay merkezi (0..1; konuk karakter için yer açmak: ör. 0.4 + konuk sağda). Ortada değilse
         # atıf ekran köşesine değil baskının altına, sağ kenarına hizalı yazılır (köşedeki konuğa binmesin)
         self.x = float(p.get("x", 0.5))
+        # 14. tur (animasyon hakemi 13. tur S1): y: baskının dikey merkezi (vars. 0.455). Üstte vurgu kelimesi olan
+        # sahnede baskı biraz aşağı alınır: yazı baskının üst kenarına binmesin (kontrol: kenar bandı denetimi)
+        self.y = float(p.get("y", 0.455))
         self.pr_w, self.pr_h = pr.width, pr.height
 
     def _atif_yeri(self) -> tuple[float, float] | None:
@@ -1483,7 +1486,17 @@ class FotoCizici(Cizici):
         th = math.radians(abs(self.egim))
         yari_h = (self.pr_h * math.cos(th) + self.pr_w * math.sin(th)) / 2 * self.zoom
         yari_w = (self.pr_w * math.cos(th) + self.pr_h * math.sin(th)) / 2 * self.zoom
-        return W * self.x + yari_w - self.atif.width, min(H * 0.455 + yari_h + 12 * S, H - 40 * S - self.atif.height)
+        x = W * self.x + yari_w - self.atif.width
+        y = min(H * self.y + yari_h + 12 * S, H - 40 * S - self.atif.height)
+        # 14. tur: baskı aşağı alınınca (y) atıf satırı sol alttaki daktilo etiketinin satırına iniyordu ("DOĞU
+        # BERLİN · ARALIK 1961" ile üst üste): dikeyde örtüşürse etiketin bittiği yerden 24 px sağa
+        e = self.etiket
+        if e.metin:
+            es = e._spr(len(e.metin), False)
+            ey0, ey1 = H - 120 * S - es.height, H - 120 * S
+            if y < ey1 and y + self.atif.height > ey0:
+                x = max(x, 70 * S + es.width + 24 * S)
+        return x, y
 
     def sabit_engeller(self) -> list[tuple]:
         yer = self._atif_yeri()
@@ -1491,11 +1504,19 @@ class FotoCizici(Cizici):
             return []
         return [(yer[0], yer[1], yer[0] + self.atif.width, yer[1] + self.atif.height)]
 
+    def kenar_kutulari(self, t: float) -> list[tuple[str, list]]:
+        """14. tur (`kontrol` kenar denetimi): masaya oturmuş baskının ekran çokgeni (kenarlığıyla, gölgesiz)."""
+        from .yerlesim import donuk_dikdortgen
+        u, cx, cy, aci, s, _ = self._poz(t)
+        if u < 1.0:
+            return []
+        return [("fotoğraf baskısı", donuk_dikdortgen(cx, cy, self.pr_w * s, self.pr_h * s, aci))]
+
     def _poz(self, t):
         W, H = self.W, self.H
         u = (t - self.z["inis"]) / 0.72
         e = E.out_back(u, 1.0)
-        cx, cy = W * self.x, H * 0.455
+        cx, cy = W * self.x, H * self.y
         yon = {"alt": (0, 1), "ust": (0, -1), "sag": (1, 0), "sol": (-1, 0)}.get(self.giris, (0, 1))
         cx += (1 - e) * yon[0] * W * 0.9
         cy += (1 - e) * yon[1] * H * 0.95

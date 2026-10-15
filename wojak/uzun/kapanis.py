@@ -40,6 +40,7 @@ from .sahneler import Cizici
 VARSAYILAN_KARAKTER = config.ASSETS / "kit" / "klasik" / "sakin.png"
 VARSAYILAN_YUZ = config.ASSETS / "kit" / "klasik" / "mutlu.png"
 YORUM_HIZI = 24.0   # harf / sn
+KAPANIS_TUT = 0.8   # sn (14. tur): son itme bittikten sonra oturmuş kare
 GRI = (64, 66, 74)
 KOYU_DUGME = (24, 26, 32)
 KIRMIZI_DUGME = (204, 18, 24)
@@ -57,7 +58,9 @@ def kapanis_zamanlari(sahne) -> dict:
     tik = {d: (3.1 + 0.8 * i) * k for i, d in enumerate(tik_sira)}
     for o in sorted((o for o in sahne.olaylar if o.tip == "tikla"), key=lambda o: o.zaman):
         tik[o.p["hedef"]] = o.zaman
-    son_tik = max(tik.values()) if tik else 2.6 * k
+    # 14. tur (animasyon hakemi S3): `tikla {hedef: yorum}` yazım bittikten sonra balona son bir tık ("gönder"):
+    # yazımın başlangıcı yalnız abone/zil/beğen tıklarına göre
+    son_tik = max((t_ for h_, t_ in tik.items() if h_ != "yorum"), default=2.6 * k)
     yorum = son_tik + 0.5 * k
     metin = str(p.get("yorum") or varsayilan_yorum(n))
     yorum_bitis = yorum + len(metin) / YORUM_HIZI
@@ -113,6 +116,8 @@ def efektler(sahne, b: float) -> list[tuple[float, str, float]]:
             out.append((b + t + 0.03, "zil", -12.0))
         elif hedef == "begen":
             out.append((b + t + 0.04, "pop", -11.0))
+        elif hedef == "yorum":   # 14. tur: yorum gönderilir
+            out.append((b + t + 0.04, "pop", -14.0))
     harfler = [i for i, ch in enumerate(z["metin"]) if ch != " "]
     out += [(b + z["yorum"] + i / YORUM_HIZI, "tus", -25.0) for i in harfler[::3]]
     out += [(b + t, "blip", -15.0) for t, _ in z["vurgu"]]
@@ -596,8 +601,10 @@ class KapanisCizici(Cizici):
                 C.bindir(im, spr, x0, y0, a)
             else:
                 C.bindir_alt(im, self.imlec, x - ux, y - uy, a)
-        # 9. tur (animasyon S12): son ~1,8 sn durağan değil: bütün kare hafifçe yaklaşır (son müzik vuruşuyla)
-        q = (t - (self.dur - 1.8)) / 1.8
+        # 9. tur (animasyon S12): son ~1,8 sn durağan değil: bütün kare hafifçe yaklaşır (son müzik vuruşuyla).
+        # 14. tur (animasyon hakemi S3): itme son karede hâlâ sürüyordu (sert kesme, aceleci bitiş): 1,6 sn'de yaklaşır,
+        # son KAPANIS_TUT sn oturmuş karede durur (müzik kuyruğu söner)
+        q = (t - (self.dur - KAPANIS_TUT - 1.6)) / 1.6
         if q > 0:
             im = C.kamera(im, W, H, 1.0 + 0.035 * E.in_out_sine(min(1.0, q)), (0.5, 0.52))
         return im
@@ -745,6 +752,8 @@ class KapanisCizici(Cizici):
         aci = 5.0 * yon * egil
         for tt, _ in z["vurgu"]:
             aci += 2.2 * yon * E.tumsek((t - tt) / 0.32)
+        if z["tik"].get("yorum") is not None:   # 14. tur: yorum gönderilince başıyla onaylar (bitiş vuruşu)
+            aci += 3.0 * yon * E.tumsek((t - z["tik"]["yorum"] - 0.05) / 0.4)
         if z.get("hepsi") is not None:
             aci += 2.5 * yon * E.tumsek((t - z["hepsi"]) / 0.4)
         if abs(aci) < 0.02:
@@ -817,7 +826,9 @@ class KapanisCizici(Cizici):
         n = 0
         if t >= z["yorum"]:
             n = min(len(self.yorum_metin), int((t - z["yorum"]) * YORUM_HIZI) + 1)
-        imlec = n < len(self.yorum_metin) or int(t * 2.2) % 2 == 0
+        gonder = z["tik"].get("yorum")
+        gitti = gonder is not None and t >= gonder + 0.04   # 14. tur: gönderilince imleç yanıp sönmez
+        imlec = (n < len(self.yorum_metin) or int(t * 2.2) % 2 == 0) and not gitti
         key = (n, imlec and t >= z["yorum"] - 0.3)
         spr = self._yorum_cache.get(key)
         if spr is None:
@@ -873,4 +884,12 @@ class KapanisCizici(Cizici):
                 self._yorum_cache.clear()
             self._yorum_cache[key] = spr
         ox, oy = spr.info["o"]
-        C.bindir(im, spr, d["x"] - ox, d["cy"] - 59 * S + gy - oy, a)
+        s = self._bas("yorum", t)   # 14. tur: gönder tıkında balon basılır
+        if gonder is not None and t >= gonder:
+            s *= 1 + 0.05 * E.tumsek((t - gonder - 0.05) / 0.3)
+        if abs(s - 1) > 1e-3:
+            bw, bh = spr.width - 2 * ox, spr.height - 2 * oy
+            out, x0, y0 = C.afin(spr, d["x"] + bw / 2, d["cy"] - 59 * S + gy + 59 * S, s, s, 0, ox + bw / 2, oy + 59 * S)
+            C.bindir(im, out, x0, y0, a)
+        else:
+            C.bindir(im, spr, d["x"] - ox, d["cy"] - 59 * S + gy - oy, a)

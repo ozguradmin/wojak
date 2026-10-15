@@ -234,6 +234,23 @@ Her zaman açık (hata düzeltmesi; ayar yok):
   kenar yalnız dışta halka.
 - **Kapanış (13. tur, animasyon hakemi N6, N7):** imleç 58 -> 84 px; tıkta iki halka (sarı dış 14 -> 92 px, beyaz iç),
   telefonda okunur. Belgeli kartın damgası (eğik kutusu) kartın iç eninin %88'ine sığar.
+- **14. tur motor ekleri:**
+  - **Anlatım klibi sonu (teknik hakem M1: 11 tık):** `ses.miks` yerleştirdiği her klibin son 8 ms'ini yükseltilmiş
+    kosinüsle söndürür (`klip_sondur`). `kontrol` ve `render`, son 20 ms'i önceki 45 ms'den 20 dB'den fazla yüksek
+    (ve tepenin en çok 45 dB altında) klibi bildirir (`ses.klip_denetimi`). Kaynak: rubberband akış sonu patlaması;
+    yavaşlatmada sona 0,3 sn sıfır ekleyip çıktıyı eski boyuna kesmek gövdeyi 1 LSB içinde aynı bırakır.
+  - **Çerçeveleyen pano kamerası (`pano`, `cercevele`; `yakin` > 1'de varsayılan açık):** asılı kartların birleşik kutusu
+    güvenli alanda kalır (üstte başlık/köşe göstergesi bandı 150 px, altta YouTube çubuğu bandı 54 px, yanlarda 24 px);
+    sığmazsa yaklaşma kesilir. Kart kısıta düşmeden 0,35 sn önce girer, oturduğunda tam girmiştir. (İzlenme M1: B5.8a'da
+    ağırlık merkezine kayan yakın kamera "ANMA YAZILARI, 1994" kartının okunan alt satırını kesiyordu.)
+  - **Köşe göstergesi:** şablon değişirken ya da değerlerden biri sayı değilken şablon ve değer aynı karede değişir
+    (5:20'de "GÜN 0" -> 9 kare çıplak "0" -> "1961" vardı); sayı -> sayı aynı şablonda saymaya devam eder.
+  - **`foto` `y`:** baskının dikey merkezi (0.455). Üstte vurgu kelimesi olan sahnede baskı aşağı (0.52-0.53) ve biraz
+    küçük; atıf satırı daktilo etiketinin satırına inerse etiketin sağına kayar.
+  - **Altyazı:** "ise" konu eki (EKLER), kırım ondan sonra; metinde `¦` blok içi satır kırma ipucu (TTS'ten ve
+    ekrandan çıkar, önbellek anahtarı değişmez); ardışık bloklar arasındaki < 0,1 sn boşluk kapanır.
+  - **Kapanış:** `tikla {hedef: yorum}` yazım bitince yorumu "gönderir" (balon basılır, imleç yanıp sönmez, anlatıcı
+    başıyla onaylar); yazım başlangıcı yalnız abone/zil/beğen tıklarına göre. Son itme 0,8 sn önce oturur.
 - **Bindirme kartı kararması** 0,18 sn out_cubic -> 0,3 sn in_out_sine (ikinci karede bir anda %46 kararıp bulanıyordu,
   kare farkı 37/255).
 
@@ -383,6 +400,12 @@ kaydedilmezse bitiş ekranı boş bırakılır ya da kanal filigranı (Özelleş
 - **Vurgu kelimesi sırası (13. tur; animasyon hakemi S1: 4:57.5'te "ABD · FDA · 1960" önceki kelime sönerken aynı yerde
   belirdi, 6 kare çift yazı; çakışma denetimi yarı saydamı saymadığı için kaçırıyordu):** aynı dikey banttaki yeni
   kelime, öncekinin sönmesi bittikten en az 0,3 sn sonra.
+- **Kadraj (14. tur, `yerlesim._kadraj_denetle`):** pano kartları ve karta basılı damgalar (kamera `yakin`/`zoom`
+  altında ekran pikseline çevrilerek), vurgu kelimeleri, damgalar, köşe göstergesi, daktilo etiketi ve oturmuş isim
+  etiketleri kadraj kenarını 2 px'ten fazla aşarsa (0,15 sn'den uzun) bildirilir.
+- **Kenar bandı (14. tur, `yerlesim._kenar_denetle`; animasyon hakemi S1):** vurgu kelimesi bir fotoğraf baskısının,
+  pano kartının ya da dekor görselinin üst/alt kenarına 24 px'ten yakınsa ya da kenarın üstündeyse (eğik kenar,
+  yatayda örtüşen parçada) bildirilir: ya bütünüyle içinde ya da en az 24 px dışında olmalı.
 - **Bakış kaydı (13. tur, `cli.bakis_denetimi`):** `bakis` verilmemiş canlı karakter görseli (chars/, kit)
   `data/karakter_yon.json`'da yoksa uyarır. Kayıt dosyanın sha1'iyle tutulur: yeniden üretilen yüz varyantının kaydı
   düşer, motor yönü tahmin eder ve yanlışsa karakteri aynalar (Kaymakçalan 'düşünceli' yeniden çizilince yüzü kadrajdan
@@ -447,7 +470,7 @@ darboğaz civarında (~8-10 dk).
 
 Ön izleme (960x540, 3 işçi) 2971 kare 26,7 sn (~111 kare/sn); ses -14,0 LUFS, -2,3 dBTP, loudnorm doğrusal; video/ses
 0,000'da, fark -0,3 ms, 2971/2971 kare. `kontrol` talidomit-turkiye'de ~15 sn (90 sahnenin çizicisi 960x540'ta
-kurulur, kare çizilmez). Test: `python -m pytest tests -q` 66 test (11. tur: 67; kesmede zıplama denetimi ~9 sn ekler; 12. tur: 69; 13. tur: 70).
+kurulur, kare çizilmez). Test: `python -m pytest tests -q` 66 test (11. tur: 67; kesmede zıplama denetimi ~9 sn ekler; 12. tur: 69; 13. tur: 70; 14. tur: 71).
 `kontrol` talidomit-turkiye'de 13. turdan beri ~35 sn (karakter denetimi bütün karakterli sahneleri örnekler).
 
 ## 11. Senaryo istekleri (senaryo_v2 §F) ve karşılıkları
