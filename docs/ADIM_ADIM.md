@@ -16,6 +16,8 @@
 ## 0. İlk gün: okuma sırası (yaklaşık 2 saat)
 
 1. [`../CLAUDE.md`](../CLAUDE.md): sert kurallar (gizli anahtar, herkese açık repo, mahremiyet, git).
+   **Görseller:** yapay zekâ ile görsel üretilmez; arka plan ve kanıt gerçek fotoğraf/belge (ya da kendi düz
+   çizimimiz), karakterler hazır wojak çizimleri.
 2. [`OGRENILENLER.md`](OGRENILENLER.md) en üstteki **hesap sahibinin geri bildirimi** tablosu. Hakemlerden önce gelir.
 3. Kısa reel yapacaksan [`STIL.md`](STIL.md) baştan sona (§0 altın kurallar, §14 gerçek senaryo örnekleri, §15 yapma
    listesi). Uzun video yapacaksan [`UZUN_FORMAT.md`](UZUN_FORMAT.md), sonra [`UZUN_MOTOR.md`](UZUN_MOTOR.md) §1-3.
@@ -40,7 +42,7 @@ kod `wojak.config.load_secrets()` ile okur. Hiçbir dosyaya, loga, komut satır�
 | `CARTESIA_API_KEY`, `_2`, `_3` … `_9` | Uzun video TTS (HTTP 402 kota dolunca sıradakine geçer). ElevenLabs gelince yenisi eklenir (YAYIN_PLANI §4) |
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Teslim (Bot API, ≤ 49 MB) |
 | `TELEGRAM_API_ID`, `TELEGRAM_API_HASH` | 50 MB üstü tek parça (MTProto); oturum `~/.config/wojak/telegram_gramjs.session` |
-| `SOL_API_KEY` (+ isteğe bağlı `SOL_BASE_URL`, `SOL_MODEL`) | Görsel üretimi ağ geçidi (son çare; PROMPTLAR.md) |
+| `SOL_API_KEY` | Yapay zekâ görsel üretimi: **kullanılmıyor** (hesap sahibi 16.10: gerçek görseller ve hazır wojak'lar daha iyi) |
 | `IG_*` çerezleri | Yalnız `tools/ig_fetch.py` (orijinal reel indirme/analiz) |
 
 Bulut oturumunda bu dosya konteynerle birlikte silinir: kalıcılık için anahtarlar **cloud environment → environment

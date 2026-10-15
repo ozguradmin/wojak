@@ -28,6 +28,7 @@
 | 15.10 | Bazı sahnelerde **yüzler fazla büyük**, altta kesik (Kaymakçalan + "RUHSAT BAŞVURUSU" dosyası) | Ölçüldü: etkin boy (`boy` × zoom × `yakin`) dört sahnede 0,87-0,96. Kural ≤ 0,80, dramatik yakın plan ≤ 0,88 ve en çok 1-2 kez (UZUN_FORMAT §2.9). Düzeltme ElevenLabs turunda |
 | 15.10 | Uzun videoda filigran gerekli mi? Kaldırılabilir, ama **şimdi değil**, ElevenLabs sesleriyle birlikte | Karar: uzun videoda gömülü filigran yok (`filigran: false`), YouTube Studio markalama filigranı; kısa reel'de kalır (UZUN_FORMAT §2.8) |
 | 15.10 | Talidomit kısa reel'inin karakterleri de uzun videodaki kadar kaliteli olsun (yüz ifadeleri) | v2 karakterlerle B sürümü, görsel hakem orijinallerle karşılaştırır, seçim hesap sahibinin (YAYIN_PLANI §4.5) |
+| 16.10 | "Görsel üretimi gerek yok, şu anki hâlini beğendim; gerçek görseller daha iyi" | Yapay zekâ ile görsel (arka plan, karakter, kanıt) üretilmez. Arka plan ve kanıt gerçek fotoğraf/belge ya da kendi düz çizimimiz; karakter hazır wojak. `tools/gorsel_uret.py` ve SOL ağ geçidi üretimde kullanılmaz |
 | 15.10 | Yayın planı: 2-3 günde bir konu; öğlen uzun video YouTube'a, akşam aynı konunun Shorts + Reels'i; açıklamalar uzun videoya yönlendirir | [`YAYIN_PLANI.md`](YAYIN_PLANI.md). **Yeni video ve düzeltme ElevenLabs başvurusu sonuçlanınca** başlar |
 
 ### Uzun format: ilk videodan dersler (talidomit, 12-13.10)

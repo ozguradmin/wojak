@@ -74,4 +74,4 @@ Hesap sahibinin talimatı (15.10): şimdi yeni video ya da düzeltme yok; Eleven
    döneme bıraktı.
 6. **Yeni konular:** §2 takvimiyle; her biri ADIM_ADIM.md §3-§4 ve `docs/is_akislari/` şablonlarıyla.
 
-Ayrıca açık: SOL görsel ağ geçidi son denemede 502 veriyordu (görsel üretimi son çare olduğu için üretimi engellemiyor).
+Yapay zekâ görsel üretimi (SOL ağ geçidi) bırakıldı (hesap sahibi 16.10): gerçek görseller ve hazır wojak'lar kullanılır.

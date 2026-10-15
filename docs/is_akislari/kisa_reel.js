@@ -42,7 +42,7 @@ episode.yaml extra fields: cover_scene (1-based scene for kapak.jpg) + cover_at 
 img/telifli/ images); ek_maddeler (extra owner checklist lines); uzun_video (YouTube link of the long version, when it exists).
 Copyrighted evidence (news agency/newspaper/TV/YouTube/artwork) goes in episodes/<id>/img/telifli/ (git-ignored; the owner decides the
 licence); prefer free images when equally strong.
-Owner's standing rules: ready-made clothed wojaks only (never paint clothes onto heads); clean face variants; Instagram caption has
+Owner's standing rules: no AI-generated images (real photos/documents or our own flat drawings; ready-made wojaks); ready-made clothed wojaks only (never paint clothes onto heads); clean face variants; Instagram caption has
 no hashtags (pack.py handles it); titles must not read like AI slop (no hype adjectives, no emoji, no "ŞOK"; curiosity gap + one
 concrete detail).
 Privacy/network: never put any e-mail address or personal identifier in HTTP headers or requests (generic browser User-Agent);

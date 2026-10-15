@@ -82,6 +82,8 @@ python -m pytest tests/ -q                        # or: python tests/test_uzun.p
 
 ## The owner's standing preferences (latest first; details in docs/OGRENILENLER.md, top table)
 
+- No AI-generated images (16.10): backgrounds and evidence are real photos/documents (or our own flat drawings);
+  characters are ready-made wojak drawings. `tools/gorsel_uret.py` and the SOL gateway are not used.
 - Wait for ElevenLabs before any new production or fix (15.10). Then follow `docs/YAYIN_PLANI.md` §4 in order.
 - Publishing plan: one topic every 2-3 days, 2-3 per week. The long video goes to YouTube at noon; the same topic's
   Shorts and Reels go out in the evening, and their descriptions point to the long video.

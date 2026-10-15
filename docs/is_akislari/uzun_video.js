@@ -52,6 +52,7 @@ Do not git commit/push.
 ${A.konu}`
 
 const OWNER = `OWNER'S STANDING RULES (they OUTRANK the judges; see docs/OGRENILENLER.md top table):
+0. No AI-generated images: backgrounds/evidence are real photos/documents or our own flat drawings; characters are ready-made wojaks.
 1. Quality: push to the limit; never deliver a known flaw silently (list it in the report and the package).
 2. CHARACTERS: READY-MADE clothed wojaks only (single drawings from wojakland / wojaksparadise / the 10,378-PNG library:
    tools/wojak_site.py, tools/wojak_lib.py); never paint or paste clothes onto heads. Face variants are clean face-only edits

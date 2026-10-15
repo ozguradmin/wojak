@@ -62,8 +62,9 @@ gri ton yok; renderer hafif yumuşatır. Öncelik sırası:
 1. **Olayın gerçek mekânı** (Wikimedia Commons, kurum fotoğrafı). İzleyici "burası gerçek" hissetmeli.
 2. **Telifsiz benzer mekân:** `python tools/bg_ara.py "abandoned school corridor" --sheet`
    (Openverse: CC0/CC-BY; lisans `sources:` alanına, CC BY atfı `credits:` alanına).
-3. **Yapay zekâ ile üret** (son çare; fotogerçekçiyse `ai_generated: true`):
-   `python tools/gorsel_uret.py arkaplan "a village cemetery in Anatolia" --zaman "Dusk" -o episodes/<id>/img/mezarlik.jpg`
+3. ~~Yapay zekâ ile üret~~ **Kullanılmıyor** (hesap sahibi 16.10: "görsel üretimi gerek yok, gerçek görseller daha iyi").
+   Gerçek fotoğraf bulunamazsa kendi düz çizimimiz (oda, koridor, masa; uzun videodaki gibi) ya da sahne yeniden kurgulanır.
+   (`tools/gorsel_uret.py` repoda durur ama üretimde kullanılmaz.)
 
 Yatay fotoğraflarda `focus: [x, y]` ile kare kırpmanın odağını ayarla.
 
@@ -75,7 +76,8 @@ zekâ görünümlü çizim yok. Görünen yükseklik karenin ~%48'i (renderer va
 2. **wojakland + wojaksparadise:** `python tools/wojak_site.py search turkish` → `sheet` → `get <id> --out-dir episodes/<id>/chars`
 3. **Kütüphane (10.378 şeffaf PNG):** `python tools/wojak_lib.py search police` → `sheet` → `get`.
    **Dikkat:** "Turkey" etiketlilerin çoğu siyasi/etnik karikatür, asla kullanma; rol + kıyafetle ara.
-4. **Hiçbiri yoksa yapay zekâ** (`tools/gorsel_uret.py karakter ... --ref <mevcut wojak>`; şablonlar `docs/PROMPTLAR.md`).
+4. ~~Hiçbiri yoksa yapay zekâ~~ **Kullanılmıyor** (16.10): karakter her zaman hazır wojak çizimidir; uygun olanı bulunamazsa
+   rol/kıyafet aramasını genişlet ya da yüz varyantıyla en yakın hazır karakteri uyarla.
 
 **Bakış yönü:** her yeni PNG'yi gözle bak ve kaydet: `python -m wojak yon <png> --yon sag|sol|on`.
 Renderer karakteri hep kadrajın içine çevirir (solda sağa, sağda sola bakar).
