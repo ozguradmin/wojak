@@ -52,7 +52,8 @@ zamanlama:                         # hepsi isteğe bağlı (varsayılanlar göst
 
 gecis: kesme                       # varsayılan sahne geçişi: kesme | gecis (8 kare crossfade) | kaydir (10 kare push)
                                    # | karart (10 kare karanlıktan geçiş: aynı karakter / yazıdan yazıya / parlaklık sıçraması)
-filigran: tarihselwojak            # sağ altta her karede (false: kapalı)
+filigran: tarihselwojak            # sağ altta her karede (false: kapalı). Karar 15.10: ElevenLabs turundan itibaren uzun
+                                   # videoda false + YouTube Studio markalama filigranı (UZUN_FORMAT §2.8)
 otomatik_sfx: true                 # sahne tipine göre efektler (whoosh, deklanşör, daktilo, kalem, pop, boom...)
 kart_bindirme: true                # bölüm kartları önceki sahnenin donmuş, kararmış karesi üstünde (siyah ekran yok);
                                    # false: klasik siyah kart (2,6 sn). Bölümde kart_bindirme ile tek tek değişir.

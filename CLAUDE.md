@@ -1,6 +1,11 @@
 # CLAUDE.md: Tarihsel Wojak production pipeline
 
 Read this first. Specs and lessons live in `docs/`; this file only points to them and lists the hard rules.
+**New to the project? Start with `docs/ADIM_ADIM.md`**: the step-by-step runbook for short reels and long videos.
+
+**Current status (15.10.2026):** the long `talidomit-turkiye` video is approved ("baya iyi olmuş beğendim").
+**Do not start a new video or fix an existing one until the ElevenLabs API key arrives.** The owner's instruction.
+The queued work is in `docs/YAYIN_PLANI.md` §4.
 
 ## What this repo is
 
@@ -31,7 +36,10 @@ Claude researches and produces; the owner approves and posts. Nothing is posted 
 |---|---|
 | `docs/STIL.md` | **The law for short reels:** 30 originals measured frame by frame (structure, lines, text, characters, background, evidence, audio). Renderer defaults and `check` follow it |
 | `docs/OGRENILENLER.md` | Lessons from 3/10 to 8/10, failure modes and fixes, **pre-delivery checklist**, the research → produce → two judges → fix workflow, time notes |
-| `docs/UZUN_FORMAT.md` | Long-form decisions (length, voices, loudness, motion grammar, story template, package) |
+| `docs/ADIM_ADIM.md` | **Step-by-step runbook** (setup, short reel, long video, self-check, delivery, budgets, common problems) |
+| `docs/YAYIN_PLANI.md` | Publishing schedule (long at noon, short in the evening, every 2-3 days) and the queued work for when ElevenLabs arrives |
+| `docs/is_akislari/` | Reusable workflow scripts with the exact producer/judge prompts (`kisa_reel.js`, `uzun_video.js`) |
+| `docs/UZUN_FORMAT.md` | Long-form decisions (length, voices, loudness, motion grammar, **face size**, **watermark**, story template, package) |
 | `docs/UZUN_MOTOR.md` | Long-form engine guide, if present; otherwise the docstring of `wojak/uzun/cli.py` and `uzun/demo/video.yaml` |
 | `docs/GUNDEM.md` | Current events: selection, speed, **§5 pre-publish checklist, §7 legal red lines** |
 | `docs/KONSEPT.md`, `docs/URETIM_REHBERI.md`, `docs/GEREKENLER.md`, `docs/INSTAGRAM_ANALIZ.md` | Concept and title/story rules, step-by-step production, delivery and secrets setup, topic/timing data |
@@ -74,6 +82,14 @@ python -m pytest tests/ -q                        # or: python tests/test_uzun.p
 
 ## The owner's standing preferences (latest first; details in docs/OGRENILENLER.md, top table)
 
+- Wait for ElevenLabs before any new production or fix (15.10). Then follow `docs/YAYIN_PLANI.md` §4 in order.
+- Publishing plan: one topic every 2-3 days, 2-3 per week. The long video goes to YouTube at noon; the same topic's
+  Shorts and Reels go out in the evening, and their descriptions point to the long video.
+- Long videos: no burned-in watermark from the ElevenLabs re-voice on (`filigran: false`; use the YouTube Studio branding
+  watermark instead). Short reels keep it.
+- Long videos: keep each character's effective height (`boy` × camera zoom × `yakin`) at or below 0.80 of the frame.
+  The owner noticed oversized, cropped faces.
+- Short reels should get the long video's character quality (better faces) as a B version; the owner picks.
 - Push for the best possible result ("benchmarktasın gibi"); never ship a known flaw silently.
 - Long videos: voice will be redone with ElevenLabs when credits arrive (owner disliked the Cartesia voice).
 - Characters: prefer ready-made clothed wojaks; do not paint clothes onto wojak heads. Face variants must be clean.
@@ -88,6 +104,10 @@ A short reel ships only when two independent judges both give it **at least 8/10
 The visual-fidelity judge compares it side by side with the originals. The Turkish-follower judge checks
 script and facts. Judges never edit files. The producer applies the fixes; where the judges conflict, follow
 what the originals do. Full method and checklist: `docs/OGRENILENLER.md`.
+
+A long video ships only when four independent judges each give it **at least 8/10** with no blocker.
+The four lenses are retention/visual, character/animation, Turkish narration/facts, and technical/package.
+Steps: `docs/ADIM_ADIM.md` §4. Prompts: `docs/is_akislari/uzun_video.js`.
 
 ## Hard rules
 

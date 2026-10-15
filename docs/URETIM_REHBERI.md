@@ -1,6 +1,7 @@
 # Üretim Rehberi — konudan paylaşıma
 
-Bir bölümün baştan sona üretimi. Hedef: **bir video ≈ 30-45 dakika** (araştırma dahil).
+Bir bölümün baştan sona üretimi. Yeni gelen biri önce [`ADIM_ADIM.md`](ADIM_ADIM.md)'yi okusun (kısa + uzun, sırayla). Gerçekleşen
+süre 8/10 kalitede **yaklaşık bir iş günü** (OGRENILENLER §6); eski "30-45 dakika" hedefi gerçekçi değildi.
 
 ```
 konu seç → araştır/doğrula → senaryo (episode.yaml) → görseller → render → kontrol → paylaşım paketi → paylaş → ilk 1 saat takip
@@ -118,10 +119,11 @@ Kontrol listesi:
 
 Paylaşımı **hesap sahibi** yapar. Ben `python -m wojak teslim episodes/<id>` ile `teslim/<id>/` klasörünü
 (video, kapak, `paylasim.md`, `metinler/*.txt`) hazırlayıp sohbette dosya olarak gönderirim; onaydan sonra paylaşılır.
-Platform metinleri: Instagram açıklaması = başlık + hikâyenin tamamı + hashtag; YouTube = başlık + kısa açıklama,
+Platform metinleri: Instagram açıklaması = başlık + hikâyenin tamamı (**hashtag yok**, hesap sahibi 13.10); YouTube = başlık + kısa açıklama (2-3 hashtag),
 hikâye sabit yorumda.
 
-- **Saat ve ritim:** 2 günde 1, **20:00-20:15** TR (Instagram altın döneminde 25/25 reel bu düzende).
+- **Saat ve ritim:** 2-3 günde 1, kısa sürüm **20:00-20:15** TR (Instagram altın döneminde 25/25 reel bu düzende); aynı
+  konunun uzun videosu aynı gün öğlen YouTube'da. Takvim ve gerekçe: [`YAYIN_PLANI.md`](YAYIN_PLANI.md).
 - **Sıklık:** altın dönemde ~2-3 günde bir video vardı. En az haftada 3, ideali günde 1.
 - **YouTube'da ilk dakika:** hikâye yorumunu yaz ve sabitle (videonun mekanizması buna dayanıyor).
 - Aynı videoyu **YouTube Shorts** ve isteğe bağlı **TikTok**'a da yükle (metinler pakette hazır).

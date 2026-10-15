@@ -24,6 +24,11 @@
 | 13.10 | YouTube başlığı **"AI slop" gibi durmamalı**, ilgi çekici olmalı | Başlıkta abartı sıfatı, emoji, "şok" kalıbı yok; merak boşluğu + somut ayrıntı (yer, sayı, kişi) |
 | 13.10 | Teslim: videolar Telegram botuyla (kalite kaybı olmadan) | `tools/telegram_gonder.py`: 50 MB altı Bot API belgesi; üstü TELEGRAM_API_ID/HASH ile tek parça (<= 2 GB, `tools/telegram/gonder.js`: MTProto, WSS üzerinden, çünkü ortamın vekili düz MTProto'yu geçirmiyor), yoksa 7-Zip parçaları. Sohbet dosya sınırı 30 MB |
 | 13.10 | "Yapayım geçeyim değil, sınırlarını zorla; benchmarktasın gibi düşün" | Her teslimden önce: hakemler 8+ VE kendi gözümüzle kare kare kontrol; bilinen bir kusurla teslim yok, varsa açıkça yazılır |
+| 15.10 | Uzun video (14. tur): **"baya iyi olmuş beğendim"**; bundan sonraki uzun videolar bu kalitede | `uzun/talidomit-turkiye` uzun video referansı. Bütün adımlar yeni gelen biri için [`ADIM_ADIM.md`](ADIM_ADIM.md)'de, ajan istemleri [`is_akislari/`](is_akislari/README.md)'nde |
+| 15.10 | Bazı sahnelerde **yüzler fazla büyük**, altta kesik (Kaymakçalan + "RUHSAT BAŞVURUSU" dosyası) | Ölçüldü: etkin boy (`boy` × zoom × `yakin`) dört sahnede 0,87-0,96. Kural ≤ 0,80, dramatik yakın plan ≤ 0,88 ve en çok 1-2 kez (UZUN_FORMAT §2.9). Düzeltme ElevenLabs turunda |
+| 15.10 | Uzun videoda filigran gerekli mi? Kaldırılabilir, ama **şimdi değil**, ElevenLabs sesleriyle birlikte | Karar: uzun videoda gömülü filigran yok (`filigran: false`), YouTube Studio markalama filigranı; kısa reel'de kalır (UZUN_FORMAT §2.8) |
+| 15.10 | Talidomit kısa reel'inin karakterleri de uzun videodaki kadar kaliteli olsun (yüz ifadeleri) | v2 karakterlerle B sürümü, görsel hakem orijinallerle karşılaştırır, seçim hesap sahibinin (YAYIN_PLANI §4.5) |
+| 15.10 | Yayın planı: 2-3 günde bir konu; öğlen uzun video YouTube'a, akşam aynı konunun Shorts + Reels'i; açıklamalar uzun videoya yönlendirir | [`YAYIN_PLANI.md`](YAYIN_PLANI.md). **Yeni video ve düzeltme ElevenLabs başvurusu sonuçlanınca** başlar |
 
 ### Uzun format: ilk videodan dersler (talidomit, 12-13.10)
 
