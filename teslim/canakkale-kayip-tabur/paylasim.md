@@ -38,7 +38,7 @@ Olayın tamamı sabit yorumda 👇
 
 Görseller: Tevfik Teker, “Suvla Bay” (Wikimedia Commons/Panoramio, CC BY 3.0; kırpıldı, renk düzeltildi, bulut katmanı eklendi)
 
-#çanakkalesavaşı #çanakkale #gizem #wojak #tarihselwojak #keşfet #olay #shorts
+#çanakkalesavaşı #çanakkale #shorts
 ```
 
 ### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1584 karakter
