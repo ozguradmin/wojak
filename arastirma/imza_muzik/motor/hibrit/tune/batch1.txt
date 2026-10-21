@@ -1,0 +1,8 @@
+base                68.40 | ltas_=98 mel_e=47 mfcc=36 band_=99 centr=98 flatn=96 noise=58 modul=37 pitch=63 stere=75 rever=48 dynam=98 accen=68
+ms                  68.35 | ltas_=98 mel_e=48 mfcc=36 band_=99 centr=98 flatn=98 noise=65 modul=38 pitch=56 stere=72 rever=50 dynam=99 accen=66
+hyper2              69.70 | ltas_=98 mel_e=48 mfcc=38 band_=99 centr=98 flatn=96 noise=58 modul=44 pitch=65 stere=76 rever=47 dynam=98 accen=68
+hyper4              69.80 | ltas_=98 mel_e=49 mfcc=40 band_=99 centr=98 flatn=95 noise=58 modul=51 pitch=65 stere=76 rever=46 dynam=84 accen=69
+pahsh4              63.40 | ltas_=98 mel_e=47 mfcc=36 band_=99 centr=98 flatn=99 noise=57 modul=43 pitch=52 stere=72 rever=51 dynam=82 accen=20
+leadsh4             62.35 | ltas_=98 mel_e=47 mfcc=38 band_=99 centr=98 flatn=83 noise=59 modul=37 pitch=63 stere=76 rever=46 dynam=74 accen=14
+leadsh-3            65.40 | ltas_=98 mel_e=46 mfcc=35 band_=99 centr=98 flatn=100 noise=57 modul=38 pitch=59 stere=74 rever=50 dynam=90 accen=41
+lowcoh              65.10 | ltas_=98 mel_e=46 mfcc=36 band_=100 centr=98 flatn=95 noise=59 modul=41 pitch=31 stere=72 rever=62 dynam=95 accen=54

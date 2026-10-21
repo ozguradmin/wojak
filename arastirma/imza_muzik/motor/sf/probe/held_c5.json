@@ -1,0 +1,39 @@
+{
+ "id": "probe held C5",
+ "tempo_bpm": 152,
+ "pickup_beats": 0,
+ "notes": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 6,
+   "midi": 72,
+   "vel": 90
+  }
+ ],
+ "chords": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  }
+ ],
+ "accomp": {
+  "pattern": "waltz"
+ }
+}

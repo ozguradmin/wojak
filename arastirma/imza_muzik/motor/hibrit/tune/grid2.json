@@ -1,0 +1,97 @@
+{
+ "wow_c": [
+  10,
+  13,
+  19
+ ],
+ "reed_mistune_c": [
+  8,
+  15
+ ],
+ "wander_acc_c": [
+  0,
+  2
+ ],
+ "wander_c": [
+  8,
+  20
+ ],
+ "hyper_db": [
+  2,
+  4.5
+ ],
+ "medium_db": [
+  -4.5,
+  -7.5
+ ],
+ "medium_ms": [
+  1
+ ],
+ "pah_decay_ms": [
+  35,
+  42
+ ],
+ "pah_attack_ms": [
+  33
+ ],
+ "oom_db": [
+  -2,
+  0
+ ],
+ "bass_oct_db": [
+  -2,
+  -8
+ ],
+ "dyn_wander_db": [
+  0.8
+ ],
+ "dyn_arch_db": [
+  1.5
+ ],
+ "lead_attack_ms": [
+  30,
+  60
+ ],
+ "legato_overlap_ms": [
+  20,
+  80
+ ],
+ "lead_layers": [
+  [
+   [
+    "hn",
+    0,
+    0
+   ]
+  ],
+  [
+   [
+    "hn",
+    0,
+    0
+   ],
+   [
+    "fs:22",
+    -4,
+    0
+   ],
+   [
+    "fs:22",
+    -7,
+    20
+   ]
+  ],
+  [
+   [
+    "hn",
+    0,
+    0
+   ],
+   [
+    "reed",
+    -4,
+    0
+   ]
+  ]
+ ]
+}

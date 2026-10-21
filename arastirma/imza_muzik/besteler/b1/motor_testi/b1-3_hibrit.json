@@ -1,0 +1,662 @@
+{
+ "file": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/besteler/b1/motor_testi/b1-3_hibrit.wav",
+ "olcum_version": "1.0",
+ "TIMBRE_SCORE": 59.5,
+ "timbre_subscores": {
+  "ltas_db": {
+   "score": 98.6,
+   "dist": 0.361,
+   "weight": 14,
+   "tau": 3.0,
+   "desc": "1/3-oct long-term spectrum, 125 Hz-6.3 kHz, dB RMS difference (level-normalised on 250-4000)"
+  },
+  "mel_env_db": {
+   "score": 45.3,
+   "dist": 3.299,
+   "weight": 7,
+   "tau": 3.0,
+   "desc": "mean log-mel envelope (typical frame), dB RMS difference 80 Hz-6 kHz"
+  },
+  "mfcc": {
+   "score": 19.6,
+   "dist": 30.411,
+   "weight": 7,
+   "tau": 15.0,
+   "desc": "Euclidean distance of mean MFCC c1-c19"
+  },
+  "band_shares": {
+   "score": 100.0,
+   "dist": 0.001,
+   "weight": 5,
+   "tau": 0.1,
+   "desc": "total-variation distance of the <250/250-1k/1-4k/>4k energy shares"
+  },
+  "centroid": {
+   "score": 98.1,
+   "dist": 0.035,
+   "weight": 4,
+   "tau": 0.25,
+   "desc": "|log2| ratio of the power-weighted spectral centroid (octaves)"
+  },
+  "flatness": {
+   "score": 91.4,
+   "dist": 0.092,
+   "weight": 4,
+   "tau": 0.3,
+   "desc": "|log10| ratio of the median core-band (250-4000) spectral flatness"
+  },
+  "noise_floor": {
+   "score": 50.5,
+   "dist": 3.962,
+   "weight": 8,
+   "tau": 4.0,
+   "desc": "inter-harmonic floor (p10 of bins per 1/3-oct band re band mean), mean |dB| difference"
+  },
+  "modulation": {
+   "score": 27.3,
+   "dist": 0.326,
+   "weight": 14,
+   "tau": 0.2,
+   "desc": "modulation spectrum 0.5-20 Hz of 4 band envelopes: 1 - Pearson r (shape) + depth/12 dB"
+  },
+  "pitch": {
+   "score": 19.0,
+   "dist": 2.062,
+   "weight": 10,
+   "tau": 1.0,
+   "desc": "pitch behaviour: |d vibrato|/4 c + |d band pitch-deviation std|/6 c + |d partial spread|/6 c + |log d vibrato peakiness|/log 4"
+  },
+  "stereo": {
+   "score": 97.8,
+   "dist": 0.151,
+   "weight": 6,
+   "tau": 1.0,
+   "desc": "|d L/R corr|/0.15 + |d side-mid dB|/3"
+  },
+  "reverb": {
+   "score": 61.4,
+   "dist": 4.761,
+   "weight": 6,
+   "tau": 6.0,
+   "desc": "side-from-mid identified response, dB RMS difference at 10-300 ms (mono: fixed 15 dB)"
+  },
+  "dynamics": {
+   "score": 35.7,
+   "dist": 1.341,
+   "weight": 8,
+   "tau": 1.0,
+   "desc": "|d 100 ms level std|/1.5 + |d fast fluct|/1 + |d crest|/2 + |d LRA|/2 (sum)"
+  },
+  "accent": {
+   "score": 92.2,
+   "dist": 0.292,
+   "weight": 7,
+   "tau": 1.0,
+   "desc": "waltz beat accent ('u a a'): |d brightness contrast|/2 dB + |d bright-pair balance|/2 + |d level contrast|/2"
+  }
+ },
+ "originality_verdict": "PASS",
+ "technical": {
+  "duration_s": {
+   "value": 13.75,
+   "original": 13.771,
+   "desc": "decoded file length"
+  },
+  "first_sound_s": {
+   "value": 0.02,
+   "original": 0.0,
+   "desc": "first 10 ms frame above (LUFS-I - 16 dB; original -45.5 dBFS); target 0.00"
+  },
+  "last_sound_s": {
+   "value": 13.61,
+   "original": 13.74,
+   "desc": "end of the last 10 ms frame above (LUFS-I - 16 dB); target <= 13.75"
+  },
+  "tail_end_s": {
+   "value": 13.71,
+   "original": 13.77,
+   "desc": "end of the last 10 ms frame above (LUFS-I - 40 dB): any residual tail"
+  },
+  "lufs_integrated": {
+   "value": -29.5,
+   "original": -29.5,
+   "desc": "EBU R128 integrated loudness (ffmpeg ebur128); target -29.5 +-0.5"
+  },
+  "lra_lu": {
+   "value": 4.8,
+   "original": 3.6,
+   "desc": "EBU R128 loudness range"
+  },
+  "true_peak_dbtp": {
+   "value": -13.7,
+   "original": -16.8,
+   "desc": "true peak (ffmpeg ebur128 peak=true); target <= -17"
+  },
+  "sample_peak_dbfs": {
+   "value": -13.749,
+   "original": -16.85,
+   "desc": "max |sample|"
+  },
+  "clip_samples": {
+   "value": 0,
+   "original": 0,
+   "desc": "samples with |x| >= 0.9999"
+  },
+  "clicks": {
+   "value": 0,
+   "original": 0,
+   "desc": "isolated AR(32)-residual spikes > 16 robust sigma (< 3 ms; hits within 60 ms count once)",
+   "first_times_s": [],
+   "resid_kurtosis": 12.696,
+   "resid_kurtosis_original": 0.734
+  },
+  "dc_dbfs": {
+   "value": -116.419,
+   "original": -74.939,
+   "desc": "channel mean (worse channel), dBFS"
+  },
+  "hum_100hz_dbfs": {
+   "value": -70.432,
+   "original": -71.244,
+   "desc": "100 Hz line, sine-peak dBFS (original -70.4)",
+   "hz50": -88.795,
+   "hz150": -79.868,
+   "hz200": -83.778
+  },
+  "rumble_lt25hz_dbfs": {
+   "value": -59.119,
+   "original": -59.125,
+   "desc": "RMS below 25 Hz"
+  },
+  "format": {
+   "codec": "pcm_f32le",
+   "profile": null,
+   "sample_rate": 44100,
+   "channels": 2,
+   "bit_rate": 2822400,
+   "container_duration_s": 13.75
+  }
+ },
+ "timbre": {
+  "ltas_dist_db": {
+   "value": 0.361,
+   "original": 0,
+   "desc": "1/3-oct LTAS distance 125-6300 Hz, dB RMS (bands floored at -45 dB re 250-4k)",
+   "core_250_4k": 0.264,
+   "diff_by_band_db": null
+  },
+  "ltas_diff_by_band_db": {
+   "125": 0.3,
+   "157": -0.5,
+   "198": 1.0,
+   "250": -0.1,
+   "315": -0.1,
+   "396": 0.1,
+   "500": -0.0,
+   "630": -0.1,
+   "793": 0.1,
+   "1000": -0.2,
+   "1259": 0.8,
+   "1587": -0.2,
+   "2000": 0.2,
+   "2519": -0.1,
+   "3174": 0.1,
+   "4000": -0.2,
+   "5039": 0.1
+  },
+  "mel_env_dist_db": {
+   "value": 3.299,
+   "original": 0,
+   "desc": "mean log-mel envelope distance 80-6000 Hz, dB RMS"
+  },
+  "mfcc_dist": {
+   "value": 30.411,
+   "original": 0,
+   "desc": "Euclidean distance of mean MFCC c1-c19 (librosa units)",
+   "std_vector_dist": 5.86
+  },
+  "band_shares": {
+   "value": {
+    "<250": 0.005717686420663864,
+    "250-1k": 0.36801568060534834,
+    "1-4k": 0.6229402463325169,
+    ">4k": 0.003326386641470979
+   },
+   "original": {
+    "<250": 0.005097361885651731,
+    "250-1k": 0.36872042608522576,
+    "1-4k": 0.6232594612202972,
+    ">4k": 0.0029227508088252576
+   },
+   "desc": "energy shares <250 / 250-1k / 1-4k / >4k",
+   "tv_dist": 0.001
+  },
+  "centroid_hz": {
+   "value": 1376.305,
+   "original": 1409.92,
+   "desc": "power-weighted spectral centroid",
+   "frame_median": 1317.251,
+   "frame_median_original": 1343.663
+  },
+  "rolloff95_hz": {
+   "value": 2476.318,
+   "original": 2605.518,
+   "desc": "95 % energy roll-off of the long-term spectrum"
+  },
+  "flatness": {
+   "value": 0.038,
+   "original": 0.031,
+   "desc": "median spectral flatness inside 250-4000 Hz (higher = noisier / denser)",
+   "fullband": 0.0,
+   "fullband_original": 0.001
+  },
+  "noise_floor": {
+   "value": [
+    -17.488,
+    -16.35,
+    -19.491,
+    -20.305,
+    -20.757,
+    -20.327,
+    -20.937,
+    -18.988,
+    -21.038,
+    -20.632,
+    -21.044,
+    -20.231,
+    -20.484
+   ],
+   "original": [
+    -12.792,
+    -15.897,
+    -18.626,
+    -18.695,
+    -19.243,
+    -17.288,
+    -18.009,
+    -17.481,
+    -22.807,
+    -21.169,
+    -19.935,
+    -24.997,
+    -47.198
+   ],
+   "desc": "per 1/3-oct band 250-4k: median over frames of p10(bin power)/mean(bin power), dB (more negative = cleaner valleys)",
+   "mean_abs_diff_db": 3.962,
+   "signed_diff_db": 1.236,
+   "shape_diff_db": 7.692,
+   "fc": [
+    250.0,
+    315.0,
+    396.9,
+    500.0,
+    630.0,
+    793.7,
+    1000.0,
+    1259.9,
+    1587.4,
+    2000.0,
+    2519.8,
+    3174.8,
+    4000.0
+   ]
+  },
+  "modulation": {
+   "value": {
+    "0.5-2": 1.7871168225668295,
+    "2-8": 2.8489322655132403,
+    "8-20": 1.532049102153838
+   },
+   "original": {
+    "0.5-2": 3.202134793612284,
+    "2-8": 2.830959185491337,
+    "8-20": 1.401144447076681
+   },
+   "desc": "band-envelope fluctuation, RMS dB in modulation ranges 0.5-2 / 2-8 / 8-20 Hz",
+   "spectrum_r": 0.816,
+   "depth_diff_db": -1.712
+  },
+  "vibrato_rms_c": {
+   "value": 6.875,
+   "original": 7.133,
+   "desc": "3.5-9 Hz pitch modulation of partial tracks >= 0.4 s, cents RMS (weighted median)",
+   "rate_hz": 3.028,
+   "peakiness": 1.864,
+   "peakiness_original": 2.596
+  },
+  "pitch_instability_c": {
+   "value": 14.764,
+   "original": 22.956,
+   "desc": "std of the 0.2 s-smoothed deviation from 12-TET in 3 register bands (240-470/480-940/1400-2500 Hz), mean of bands: per-note mistuning + bends + wow",
+   "per_band": [
+    14.365,
+    14.373,
+    15.554
+   ],
+   "coherence_r": 0.432,
+   "coherence_r_original": 0.243,
+   "common_std_c": 11.638,
+   "common_std_c_original": 16.173,
+   "common_p5_p95": [
+    -15.192,
+    19.944
+   ]
+  },
+  "texture_peaks_per_frame": {
+   "value": 19.0,
+   "original": 18.0,
+   "desc": "median number of spectral peaks per 46 ms frame in 240-2600 Hz (>= -30 dB re frame max, 6 dB prominence): texture density"
+  },
+  "glide_share": {
+   "value": 0.215,
+   "original": 0.296,
+   "desc": "weighted share of partial-track frames moving faster than 600 cents/s (portamento / bends)"
+  },
+  "tuning_offset_c": {
+   "value": -32.934,
+   "original": -11.411,
+   "desc": "mean deviation from A440 12-TET"
+  },
+  "partial_spread_c": {
+   "value": 18.078,
+   "original": 15.719,
+   "desc": "circular std of simultaneous partials' deviations (ensemble detune / mistuning), weighted median"
+  },
+  "stereo_lr_corr": {
+   "value": 0.656,
+   "original": 0.643,
+   "desc": "L/R Pearson correlation (active part)",
+   "side_mid_db": -6.821,
+   "side_mid_db_original": -6.622,
+   "corr_300_4k": 0.656,
+   "corr_300_4k_original": 0.64
+  },
+  "mono_fold_db": {
+   "value": 0.814,
+   "original": 0.392,
+   "desc": "mono fold-down: std over 300-3000 Hz of 10log10(P_mid / mean(P_L, P_R)) in 2.7 Hz bins (comb filtering in mono)",
+   "mean_db": -1.06,
+   "min_db": -5.593,
+   "min_db_original": -2.382
+  },
+  "reverb_ir_env_db": {
+   "value": [
+    -7.782,
+    -2.552,
+    -10.737,
+    -16.799,
+    -20.891,
+    -25.527,
+    -31.802,
+    -37.503,
+    -24.828
+   ],
+   "original": [
+    -3.67,
+    -0.755,
+    -2.588,
+    -16.816,
+    -26.515,
+    -31.446,
+    -35.373,
+    -38.394,
+    -30.931
+   ],
+   "desc": "side-from-mid identified response energy (dB re peak) at 10,20,30,50,75,100,150,200,300 ms; None = mono/no side",
+   "dist_db": 4.761,
+   "peak_ms": 16.168,
+   "peak_ms_original": 17.937
+  },
+  "level_std_100ms_db": {
+   "value": 3.23,
+   "original": 3.947,
+   "desc": "std of 100 ms RMS (active part)",
+   "p10_p90": 8.092,
+   "p10_p90_original": 10.255
+  },
+  "level_fast_fluct_db": {
+   "value": 2.336,
+   "original": 2.505,
+   "desc": "std of 20 ms level minus its 0.3 s moving average (shimmer / articulation)"
+  },
+  "crest_50ms_db": {
+   "value": 10.042,
+   "original": 9.855,
+   "desc": "median crest factor of 50 ms windows"
+  },
+  "fastest_drop_db_s": {
+   "value": -225.355,
+   "original": -235.103,
+   "desc": "2nd percentile of the 20 ms level slope (how fast sound can fall: articulation + room)"
+  },
+  "accent_uaa": {
+   "value": [
+    0.0,
+    2.713,
+    4.273
+   ],
+   "original": [
+    0.0,
+    2.932,
+    4.589
+   ],
+   "desc": "per-beat brightness tilt L(1-4k)-L(250-500) by beat position, rotated to start on the darkest ('u a a' = dark, bright, bright)",
+   "contrast_db": 3.493,
+   "contrast_db_original": 3.76,
+   "balance_db": 1.56,
+   "balance_db_original": 1.657,
+   "level_from_dark_db": [
+    0.0,
+    4.418,
+    4.236
+   ],
+   "level_from_dark_db_original": [
+    0.0,
+    4.685,
+    4.408
+   ]
+  }
+ },
+ "musical": {
+  "tempo_bpm": {
+   "value": 152.1,
+   "original": 152.3,
+   "desc": "beat-grid fit to the onset envelope, 110-190 BPM, 0.1 BPM steps",
+   "comb_acf": 152.0,
+   "comb_acf_original": 152.0,
+   "librosa_beat_track": 151.999,
+   "librosa_original": 156.605
+  },
+  "triple_metre": {
+   "value": 0.2,
+   "original": 0.031,
+   "desc": "ACF(3 beats) - mean(ACF(2), ACF(4)): > 0 = 3/4 feel"
+  },
+  "key": {
+   "value": "G major",
+   "original": "C minor",
+   "desc": "Krumhansl-Kessler best key on mean chroma",
+   "r": 0.625,
+   "r_original": 0.727,
+   "c_minor_r": 0.475,
+   "profile_corr_with_original": 0.561
+  },
+  "onsets_per_bar": {
+   "value": 3.57,
+   "original": 8.086,
+   "desc": "librosa onsets in the active part / bars at the measured tempo",
+   "per_s": 3.017,
+   "per_s_original": 6.841
+  },
+  "harmonic_rocking": {
+   "value": 0.171,
+   "original": 0.448,
+   "desc": "chroma self-similarity at a 2-bar lag (own tempo); with lag1bar: original rocks i<->vii (lag2 high, lag1 low)",
+   "lag1bar": -0.108,
+   "lag1bar_original": -0.353
+  },
+  "bar_levels_db": {
+   "value": [
+    -3.599,
+    -2.17,
+    -1.482,
+    0.0,
+    0.974,
+    2.551,
+    3.079,
+    2.642,
+    0.943,
+    -1.024,
+    -3.776
+   ],
+   "original": [
+    -2.27,
+    -1.479,
+    -3.299,
+    -1.376,
+    2.73,
+    -2.761,
+    2.322,
+    0.776,
+    2.717,
+    0.0,
+    0.173
+   ],
+   "desc": "RMS per 1.19 s window from the first sound, dB re the median window (dynamic arch)"
+  },
+  "start_level_db": {
+   "value": -1.928,
+   "original": -1.409,
+   "desc": "first 0.5 s RMS re the median 0.5 s window"
+  },
+  "end_hold_db": {
+   "value": -3.77,
+   "original": -1.253,
+   "desc": "RMS of the last 1.0 s before the last sound re the median (held tonic vs fade)"
+  },
+  "legato_gap_fraction": {
+   "value": 0.0,
+   "original": 0.0,
+   "desc": "share of 10 ms frames > 20 dB under the median level",
+   "longest_gap_ms": 0.0,
+   "p2_level_re_median_db": -6.387,
+   "p2_level_re_median_db_original": -7.288
+  }
+ },
+ "originality": {
+  "chroma_seq_sim": {
+   "value": 0.132,
+   "original": 1.0,
+   "desc": "tools/imza_muzik.py karsilastir method (baselines: copy 0.986, unrelated 0.139)",
+   "lag_s": -1.115
+  },
+  "chroma_seq_sim_transposed": {
+   "value": 0.171,
+   "original": 1.0,
+   "desc": "same, best of 12 chroma rotations and of time scales 0.94-1.06 (catches transposed / tempo-changed copies)",
+   "rotation_semitones": 0,
+   "lag_s": -1.463,
+   "time_scale": 1.06
+  },
+  "fingerprint_match": {
+   "value": 0.003,
+   "original": 1.0,
+   "desc": "share of candidate peak-pair hashes that match the original with one consistent time offset (pitch shift searched +-9 semitones); detects reused audio",
+   "shift_semitones": -2.667
+  },
+  "audio_verdict": "PASS",
+  "audio_reasons": [],
+  "audio_warnings": [],
+  "audio_rule": "audio FAIL if the transposition/tempo-invariant chroma-sequence similarity >= 0.40 or the fingerprint match >= 0.02; WARN at chroma >= 0.32. Null (40 random C-minor waltzes through the same chain): chroma max 0.31 over the original's own i/vii harmony, 0.20 over other harmony; fingerprint max 0.005. The original's composition re-synthesised with FluidR3 scores 0.50; re-encoded/pitch/tempo-shifted copies 0.88-1.0 and fingerprint >= 0.048",
+  "symbolic": {
+   "offlimits": {
+    "violations": 0,
+    "POV": 0.133,
+    "POV_status": "ok",
+    "N5": 0,
+    "signatures": [],
+    "rhythm_cells": [],
+    "SK": 0,
+    "ALT_warn": 1
+   },
+   "ngram3_metric": {
+    "shared": 0,
+    "of": 45,
+    "share": 0.0
+   },
+   "ngram3_free": {
+    "shared": 0,
+    "of": 45,
+    "share": 0.0
+   },
+   "ngram4_metric": {
+    "shared": 0,
+    "of": 44,
+    "share": 0.0
+   },
+   "ngram4_free": {
+    "shared": 0,
+    "of": 44,
+    "share": 0.0
+   },
+   "contour_bar_corr": {
+    "value": 0.069,
+    "bar_offset": 1
+   },
+   "contour_phrase_corr": {
+    "value": -0.001,
+    "bar_offset": -2
+   },
+   "rhythm_same_bar_share": 0.1,
+   "rhythm_distinctive_same_bar": 1,
+   "rhythm_distinctive_cells_shared": 2,
+   "melody_stats": {
+    "range_semitones": 9,
+    "low": 71,
+    "high": 80,
+    "steps": 0.617,
+    "thirds": 0.362,
+    "repeats": 0.0,
+    "leaps_ge4": 0.021,
+    "triplet_share": 0.562,
+    "notes": 48,
+    "notes_per_bar": 4.8
+   },
+   "melody_stats_original": {
+    "range_semitones": 8,
+    "low": 72,
+    "high": 80,
+    "steps": 0.432,
+    "thirds": 0.295,
+    "repeats": 0.136,
+    "leaps_ge4": 0.136,
+    "triplet_share": 0.422,
+    "notes": 45,
+    "notes_per_bar": 4.5
+   },
+   "verdict": "PASS",
+   "reasons": [],
+   "rule": "FAIL if any: offlimits.py violations > 0 (its N5/S/R/SK rules); POV >= 0.25; share of the candidate's 4-note windows (3 intervals + IOIs + start slot in bar) found in the original > 0.15; share of its 5-note windows (4 intervals + IOIs, any metric position) found in the original > 0.10; mean per-bar contour correlation (best bar offset -2..2) > 0.75; whole-phrase contour correlation > 0.65; more than 2 bars with the same distinctive (subdivided) rhythm cell as the original's same bar. Null (3000 random C-minor waltz melodies): max POV 0.24, max ngram3 0.13, max ngram4 0.09, p99 contour_bar 0.66, p99 contour_phrase 0.53, p99 rhythm 2; null FAIL rate about 2-3 % (mostly offlimits.py chance hits). Every disguised copy of the original FAILs (kalibrasyon.md).",
+   "chords": {
+    "longest_same_chord_run": 2,
+    "bar_offset": 0,
+    "i_V_alternation_bars": 5,
+    "warn": true
+   }
+  },
+  "verdict": "PASS"
+ },
+ "technical_checks": {
+  "starts_at_0": true,
+  "ends_by_13_75": true,
+  "no_tail_after_13_8": true,
+  "lufs_-29.5_pm0.5": true,
+  "true_peak_le_-17": false,
+  "no_clipping": true,
+  "no_clicks": true,
+  "dc_lt_-60dbfs": true,
+  "all_ok": false
+ },
+ "png": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/besteler/b1/motor_testi/b1-3_hibrit.png",
+ "elapsed_s": 12.5
+}

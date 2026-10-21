@@ -1,0 +1,3 @@
+oomhp               69.22 | ltas_=91 mel_e=47 mfcc=38 band_=98 centr=99 flatn=98 noise=65 modul=63 pitch=50 stere=88 rever=74 dynam=79 accen=39
+oomhp_oct           69.60 | ltas_=90 mel_e=47 mfcc=39 band_=98 centr=98 flatn=100 noise=65 modul=73 pitch=54 stere=88 rever=74 dynam=78 accen=19
+A_final             65.55 | ltas_=98 mel_e=44 mfcc=35 band_=98 centr=98 flatn=84 noise=71 modul=62 pitch=54 stere=98 rever=70 dynam=42 accen=12

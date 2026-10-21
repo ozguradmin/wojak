@@ -1,0 +1,1293 @@
+{
+ "id": "b2-1",
+ "title": "Kurmalı Kutu (the wind-up box)",
+ "composer": "b2",
+ "tempo_bpm": 152,
+ "meter": "3/4",
+ "key": "C minor",
+ "pickup_beats": 2,
+ "timing": {
+  "bar_numbering": "bar 0 = the 2-beat pickup (beats 2-3); bar 1 = first full bar; t = 0 at bar 0 beat 2",
+  "formula": "t_s(bar, beat) = (3*bar + beat - 2) * 60/tempo_bpm",
+  "bar1_downbeat_s": 0.789,
+  "bar10_downbeat_s": 11.447,
+  "end_s": 13.75
+ },
+ "notes": [
+  {
+   "bar": 0,
+   "beat": 2.0,
+   "dur_beats": 1.0,
+   "midi": 84,
+   "vel": 92
+  },
+  {
+   "bar": 0,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 80,
+   "vel": 92
+  },
+  {
+   "bar": 1,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 83,
+   "vel": 74
+  },
+  {
+   "bar": 1,
+   "beat": 2.0,
+   "dur_beats": 0.333,
+   "midi": 84,
+   "vel": 92
+  },
+  {
+   "bar": 1,
+   "beat": 2.333,
+   "dur_beats": 0.333,
+   "midi": 83,
+   "vel": 92
+  },
+  {
+   "bar": 1,
+   "beat": 2.667,
+   "dur_beats": 0.333,
+   "midi": 80,
+   "vel": 92
+  },
+  {
+   "bar": 1,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 83,
+   "vel": 92
+  },
+  {
+   "bar": 2,
+   "beat": 1.0,
+   "dur_beats": 2.0,
+   "midi": 84,
+   "vel": 74
+  },
+  {
+   "bar": 2,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 79,
+   "vel": 92
+  },
+  {
+   "bar": 3,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 80,
+   "vel": 74
+  },
+  {
+   "bar": 3,
+   "beat": 2.0,
+   "dur_beats": 0.333,
+   "midi": 83,
+   "vel": 92
+  },
+  {
+   "bar": 3,
+   "beat": 2.333,
+   "dur_beats": 0.333,
+   "midi": 80,
+   "vel": 92
+  },
+  {
+   "bar": 3,
+   "beat": 2.667,
+   "dur_beats": 0.333,
+   "midi": 79,
+   "vel": 92
+  },
+  {
+   "bar": 3,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 77,
+   "vel": 92
+  },
+  {
+   "bar": 4,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 79,
+   "vel": 98
+  },
+  {
+   "bar": 4,
+   "beat": 2.0,
+   "dur_beats": 0.333,
+   "midi": 80,
+   "vel": 123
+  },
+  {
+   "bar": 4,
+   "beat": 2.333,
+   "dur_beats": 0.333,
+   "midi": 79,
+   "vel": 123
+  },
+  {
+   "bar": 4,
+   "beat": 2.667,
+   "dur_beats": 0.333,
+   "midi": 77,
+   "vel": 123
+  },
+  {
+   "bar": 4,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 79,
+   "vel": 123
+  },
+  {
+   "bar": 5,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 80,
+   "vel": 104
+  },
+  {
+   "bar": 5,
+   "beat": 2.0,
+   "dur_beats": 1.0,
+   "midi": 83,
+   "vel": 127
+  },
+  {
+   "bar": 5,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 86,
+   "vel": 127
+  },
+  {
+   "bar": 6,
+   "beat": 1.0,
+   "dur_beats": 2.0,
+   "midi": 84,
+   "vel": 110
+  },
+  {
+   "bar": 6,
+   "beat": 3.0,
+   "dur_beats": 0.333,
+   "midi": 83,
+   "vel": 127
+  },
+  {
+   "bar": 6,
+   "beat": 3.333,
+   "dur_beats": 0.333,
+   "midi": 84,
+   "vel": 127
+  },
+  {
+   "bar": 6,
+   "beat": 3.667,
+   "dur_beats": 0.333,
+   "midi": 86,
+   "vel": 127
+  },
+  {
+   "bar": 7,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 87,
+   "vel": 117
+  },
+  {
+   "bar": 7,
+   "beat": 2.0,
+   "dur_beats": 2.0,
+   "midi": 86,
+   "vel": 127
+  },
+  {
+   "bar": 8,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 84,
+   "vel": 104
+  },
+  {
+   "bar": 8,
+   "beat": 2.0,
+   "dur_beats": 0.333,
+   "midi": 82,
+   "vel": 127
+  },
+  {
+   "bar": 8,
+   "beat": 2.333,
+   "dur_beats": 0.333,
+   "midi": 80,
+   "vel": 127
+  },
+  {
+   "bar": 8,
+   "beat": 2.667,
+   "dur_beats": 0.333,
+   "midi": 79,
+   "vel": 127
+  },
+  {
+   "bar": 8,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 77,
+   "vel": 127
+  },
+  {
+   "bar": 9,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 79,
+   "vel": 87
+  },
+  {
+   "bar": 9,
+   "beat": 2.0,
+   "dur_beats": 1.0,
+   "midi": 80,
+   "vel": 109
+  },
+  {
+   "bar": 9,
+   "beat": 3.0,
+   "dur_beats": 0.667,
+   "midi": 83,
+   "vel": 109
+  },
+  {
+   "bar": 9,
+   "beat": 3.667,
+   "dur_beats": 6.146,
+   "midi": 84,
+   "vel": 109
+  }
+ ],
+ "chords": [
+  {
+   "bar": 0,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 0,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 1,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 1,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 3,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 3,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 3,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 4,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 4,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 4,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 5,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 5,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 6,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 6,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 7,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 7,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Fm",
+   "roman": "iv",
+   "bass": 44,
+   "midi": [
+    65,
+    68,
+    72
+   ]
+  },
+  {
+   "bar": 8,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Fm",
+   "roman": "iv",
+   "bass": 44,
+   "midi": [
+    65,
+    68,
+    72
+   ]
+  },
+  {
+   "bar": 8,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Fm",
+   "roman": "iv",
+   "bass": 44,
+   "midi": [
+    65,
+    68,
+    72
+   ]
+  },
+  {
+   "bar": 9,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Cm/G",
+   "roman": "i6/4",
+   "bass": 55,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 9,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "G7",
+   "roman": "V7",
+   "bass": 55,
+   "midi": [
+    62,
+    65,
+    67,
+    71
+   ]
+  },
+  {
+   "bar": 9,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "G7",
+   "roman": "V7",
+   "bass": 55,
+   "midi": [
+    62,
+    65,
+    67,
+    71
+   ]
+  },
+  {
+   "bar": 10,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 10,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 10,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 11,
+   "beat": 1,
+   "dur_beats": 1,
+   "chord": "Cm",
+   "roman": "i",
+   "bass": 48,
+   "midi": [
+    63,
+    67,
+    72
+   ]
+  },
+  {
+   "bar": 11,
+   "beat": 2,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  },
+  {
+   "bar": 11,
+   "beat": 3,
+   "dur_beats": 1,
+   "chord": "Bdim7",
+   "roman": "vii°7",
+   "bass": 48,
+   "midi": [
+    62,
+    65,
+    68,
+    71
+   ]
+  }
+ ],
+ "accomp": {
+  "pattern": "waltz um-pa-pa with an inverted accent: beat 1 = soft dark bass + octave (the 'u'), beats 2-3 = bright close-triad swells in the C4-C5 octave (the 'a a'), over a very soft sustained chord bed so nothing gaps; bass is a C pedal for bars 0-7 (music-box drone), then Ab-G-G-C",
+  "um": "beat 1: bass + its octave, soft and dark (vel ~64, 0.30 s); fundamentals below 250 Hz are removed by the chain, so it is heard through its partials",
+  "pa": "beats 2-3: close triad in the C4-C5 octave (the 'midi' of each chords entry), bright 120-150 ms swell (vel ~86, ~3-4 dB over the um)",
+  "pad": "under the pa swells: the same chord sustained very softly (reed organ, about -14 dB) so there are no gaps (legato bed)",
+  "events": [
+   {
+    "bar": 0,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 0,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 1,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 72
+   },
+   {
+    "bar": 1,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 1,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 2,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 72
+   },
+   {
+    "bar": 2,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 2,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 3,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 72
+   },
+   {
+    "bar": 3,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 3,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 96
+   },
+   {
+    "bar": 4,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 96
+   },
+   {
+    "bar": 4,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 128
+   },
+   {
+    "bar": 4,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 128
+   },
+   {
+    "bar": 5,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 102
+   },
+   {
+    "bar": 5,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 136
+   },
+   {
+    "bar": 5,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 136
+   },
+   {
+    "bar": 6,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 108
+   },
+   {
+    "bar": 6,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 144
+   },
+   {
+    "bar": 6,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 144
+   },
+   {
+    "bar": 7,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 114
+   },
+   {
+    "bar": 7,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 152
+   },
+   {
+    "bar": 7,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 152
+   },
+   {
+    "bar": 8,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     44,
+     56
+    ],
+    "dur_s": 0.3,
+    "vel": 102
+   },
+   {
+    "bar": 8,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     65,
+     68,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 136
+   },
+   {
+    "bar": 8,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     65,
+     68,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 136
+   },
+   {
+    "bar": 9,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     55,
+     67
+    ],
+    "dur_s": 0.3,
+    "vel": 86
+   },
+   {
+    "bar": 9,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     67,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 114
+   },
+   {
+    "bar": 9,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     67,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 114
+   },
+   {
+    "bar": 10,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 86
+   },
+   {
+    "bar": 10,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 114
+   },
+   {
+    "bar": 10,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     63,
+     67,
+     72
+    ],
+    "dur_s": 0.12,
+    "vel": 114
+   },
+   {
+    "bar": 11,
+    "beat": 1,
+    "role": "um",
+    "midi": [
+     48,
+     60
+    ],
+    "dur_s": 0.3,
+    "vel": 81
+   },
+   {
+    "bar": 11,
+    "beat": 2,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 108
+   },
+   {
+    "bar": 11,
+    "beat": 3,
+    "role": "pa",
+    "midi": [
+     62,
+     65,
+     68,
+     71
+    ],
+    "dur_s": 0.12,
+    "vel": 108
+   }
+  ]
+ },
+ "counter": [
+  {
+   "bar": 1,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 72,
+   "vel": 70
+  },
+  {
+   "bar": 2,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 72,
+   "vel": 70
+  },
+  {
+   "bar": 3,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 72,
+   "vel": 70
+  },
+  {
+   "bar": 4,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 75,
+   "vel": 93
+  },
+  {
+   "bar": 5,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 74,
+   "vel": 99
+  },
+  {
+   "bar": 6,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 72,
+   "vel": 105
+  },
+  {
+   "bar": 7,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 71,
+   "vel": 111
+  },
+  {
+   "bar": 8,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 72,
+   "vel": 99
+  },
+  {
+   "bar": 9,
+   "beat": 1.0,
+   "dur_beats": 2.0,
+   "midi": 71,
+   "vel": 83
+  },
+  {
+   "bar": 9,
+   "beat": 3.0,
+   "dur_beats": 1.0,
+   "midi": 74,
+   "vel": 83
+  },
+  {
+   "bar": 10,
+   "beat": 1.0,
+   "dur_beats": 3.0,
+   "midi": 75,
+   "vel": 83
+  },
+  {
+   "bar": 11,
+   "beat": 1.0,
+   "dur_beats": 1.0,
+   "midi": 75,
+   "vel": 79
+  },
+  {
+   "bar": 11,
+   "beat": 2.0,
+   "dur_beats": 1.813,
+   "midi": 74,
+   "vel": 79
+  }
+ ],
+ "counter_text": "inner sustained reed line (like the original's held inner tones): Eb-D-C-B under the climb to the climax, in contrary motion to the melody, then back to Eb/D under the held tonic",
+ "instruments": {
+  "lead": "tremolo-reed lead (tini R1/R2: harmonica pair or tango accordion + harmonica); preview: FluidR3 accordion P21 + harmonica P22 +16 c",
+  "accomp": "accordion/harmonium pa swells (preview P21) + reed organ bed (P20)",
+  "counter": "soft second reed (preview P23)"
+ },
+ "dynamics_db_by_bar": {
+  "0": 0,
+  "1": 0,
+  "2": 0,
+  "3": 0,
+  "4": 2.5,
+  "5": 3,
+  "6": 3.5,
+  "7": 4,
+  "8": 3,
+  "9": 1.5,
+  "10": 1.5,
+  "11": 1
+ },
+ "notes_text": "A music box being wound in a dark room. KEPT from the original: C minor, 3/4 at 152, the inverted um-pa-pa, a one-bar harmonic pendulum (tonic <-> leading-tone chord), a narrow childlike line, triplet 'spins', one cry near the golden section, an early tonic frozen over the still-turning pulse, and the leading-tone chord returning under the held tonic so the reel's loop resolves into bar 0. CHANGED: the pendulum is the full vii°7 (B-D-F-Ab) over a C pedal (no C-D bass), so every second bar carries the Ab-B augmented second, a hicaz colour from Turkish music that already lives inside C harmonic minor. The melody sits in the upper tetrachord G-Ab-B-C, not the original's C-D-Eb-F. HOOK (bars 0-2): 'do le | ti (do-ti-le) ti | do - sol'. The pickup jumps an augmented second up to the leading tone, a music-box turn ornaments it, and it resolves to C6 and drops to G. Bars 3-4 answer a third lower in the same ornament language. Bars 5-7 wind upward: B°7 arpeggio Ab-B-D, C6, then a rising triplet B-C-D into the single cry Eb6 at 57 %. Eb6 is a b13 over the dominant-function chord, a minor ninth against its D, and it sighs a semitone to D6 on the next beat. Bars 8-9 fall by step to F5 and wind back up G-Ab-B. C6 arrives a triplet early and is held over the pedal. The inner counter doubles the C pedal and then creeps Eb-D-C-B in contrary motion under the climb."
+}

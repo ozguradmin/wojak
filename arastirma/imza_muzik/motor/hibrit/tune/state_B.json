@@ -1,0 +1,57 @@
+{
+ "recipe": "B_hohner",
+ "params": {
+  "sbr_db": -22,
+  "match_fmax": 12500,
+  "lf_noise_db": -69,
+  "medium_shape": [
+   [
+    100,
+    4
+   ],
+   [
+    250,
+    4
+   ],
+   [
+    400,
+    0
+   ],
+   [
+    3150,
+    0
+   ],
+   [
+    3600,
+    -6
+   ],
+   [
+    4000,
+    -30
+   ],
+   [
+    20000,
+    -30
+   ]
+  ],
+  "wow_c": 16,
+  "pah_floor_db": -18,
+  "flutter_per_c": 0
+ },
+ "best_ts": 68.4,
+ "best_sub": {
+  "ltas_db": 97.5,
+  "mel_env_db": 46.8,
+  "mfcc": 36.5,
+  "band_shares": 98.9,
+  "centroid": 98.2,
+  "flatness": 95.9,
+  "noise_floor": 57.9,
+  "modulation": 37.4,
+  "pitch": 63.3,
+  "stereo": 74.7,
+  "reverb": 48.1,
+  "dynamics": 98.3,
+  "accent": 68.2
+ }
+}

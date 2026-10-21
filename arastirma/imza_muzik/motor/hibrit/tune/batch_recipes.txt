@@ -1,0 +1,4 @@
+A                   62.70 | ltas_=98 mel_e=42 mfcc=34 band_=98 centr=98 flatn=45 noise=82 modul=54 pitch=48 stere=98 rever=70 dynam=38 accen=15
+B_hnfs22            61.17 | ltas_=98 mel_e=46 mfcc=35 band_=99 centr=99 flatn=36 noise=80 modul=50 pitch=49 stere=94 rever=70 dynam=29 accen=14
+B_fs22lead          60.45 | ltas_=97 mel_e=46 mfcc=35 band_=99 centr=99 flatn=28 noise=76 modul=40 pitch=61 stere=95 rever=65 dynam=32 accen=17
+C                   62.85 | ltas_=98 mel_e=50 mfcc=43 band_=98 centr=98 flatn=100 noise=60 modul=49 pitch=48 stere=93 rever=71 dynam=38 accen=8

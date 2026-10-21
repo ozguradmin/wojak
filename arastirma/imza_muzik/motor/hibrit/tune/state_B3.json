@@ -1,0 +1,69 @@
+{
+ "recipe": "B_hohner",
+ "params": {
+  "sbr_db": -22,
+  "match_fmax": 12500,
+  "lf_noise_db": -69,
+  "medium_shape": [
+   [
+    100,
+    4
+   ],
+   [
+    250,
+    4
+   ],
+   [
+    400,
+    0
+   ],
+   [
+    3150,
+    0
+   ],
+   [
+    3600,
+    -6
+   ],
+   [
+    4000,
+    -30
+   ],
+   [
+    20000,
+    -30
+   ]
+  ],
+  "wow_c": 19,
+  "pah_floor_db": -18,
+  "hyper_db": 3,
+  "room_wet_db": -9,
+  "room_pd_ms": 7,
+  "room_build_ms": 2,
+  "room_hold_ms": 8,
+  "room_rt60": 0.04,
+  "room_tail_db": -45,
+  "wander_acc_c": 2,
+  "medium_ms": 1,
+  "pah_decay_ms": 35,
+  "lead_attack_ms": 60,
+  "wow_pre": 1,
+  "flutter_per_c": 0
+ },
+ "best_ts": 72.1,
+ "best_sub": {
+  "ltas_db": 97.8,
+  "mel_env_db": 43.9,
+  "mfcc": 34.4,
+  "band_shares": 96.7,
+  "centroid": 97.8,
+  "flatness": 97.1,
+  "noise_floor": 66.2,
+  "modulation": 61.8,
+  "pitch": 71.3,
+  "stereo": 94.1,
+  "reverb": 46.6,
+  "dynamics": 79.8,
+  "accent": 62.4
+ }
+}

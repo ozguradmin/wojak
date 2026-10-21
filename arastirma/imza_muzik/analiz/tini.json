@@ -1,0 +1,1382 @@
+{
+ "source": {
+  "file": "/home/user/wojak/assets/music/ozel/kanal_orijinal_ses.m4a",
+  "codec": "HE-AAC v1 (SBR) 70 kb/s stereo 44.1 kHz",
+  "note": "content above ~5 kHz is SBR-reconstructed (noise-like, no harmonic peaks); valleys above 4 kHz quantised to <= -108 dBFS; side channel below ~120 Hz is zero (mono LF)",
+  "start": "sound already present at 0.000 s (excerpt starts mid-sound, -42 dB RMS in first 10 ms)",
+  "end": "hard cut at 13.735 s (-41.9 -> -58 dB within 10 ms), no free decay",
+  "tuning": {
+   "a4_hz": 434.5,
+   "offset_cents": -21,
+   "detail": "C5 516.3 Hz (-23 c), C4 258.2 (-23 c), G4 387-389 (-14..-20 c), D5 583 (-12 c), Eb5 618 (-11 c), Ab5 818 (-27 c); consistent with old A=435 pitch"
+  }
+ },
+ "eq_curve": [
+  [
+   20.0,
+   -31.3
+  ],
+  [
+   25.0,
+   -34.5
+  ],
+  [
+   31.5,
+   -37.6
+  ],
+  [
+   40.0,
+   -38.2
+  ],
+  [
+   50.0,
+   -38.1
+  ],
+  [
+   63.0,
+   -39.3
+  ],
+  [
+   80.0,
+   -40.4
+  ],
+  [
+   100.0,
+   -30.4
+  ],
+  [
+   125.0,
+   -32.0
+  ],
+  [
+   160.0,
+   -31.2
+  ],
+  [
+   200.0,
+   -32.2
+  ],
+  [
+   250.0,
+   -19.7
+  ],
+  [
+   315.0,
+   -11.6
+  ],
+  [
+   400.0,
+   -9.3
+  ],
+  [
+   500.0,
+   -6.6
+  ],
+  [
+   630.0,
+   -1.3
+  ],
+  [
+   800.0,
+   -6.8
+  ],
+  [
+   1000.0,
+   -10.2
+  ],
+  [
+   1250.0,
+   -7.9
+  ],
+  [
+   1600.0,
+   0.0
+  ],
+  [
+   2000.0,
+   -1.6
+  ],
+  [
+   2500.0,
+   -4.7
+  ],
+  [
+   3150.0,
+   -12.5
+  ],
+  [
+   4000.0,
+   -15.2
+  ],
+  [
+   5000.0,
+   -25.7
+  ],
+  [
+   6300.0,
+   -34.7
+  ],
+  [
+   8000.0,
+   -37.0
+  ],
+  [
+   10000.0,
+   -39.5
+  ],
+  [
+   12500.0,
+   -45.4
+  ],
+  [
+   16000.0,
+   -55.9
+  ],
+  [
+   20000.0,
+   -61.5
+  ]
+ ],
+ "eq_curve_note": "1/3-octave LTAS of the mid channel, dB re loudest band (1.6 kHz). This is a TARGET LTAS for a >=1/3-oct match EQ on the full arrangement, not a filter. Peaks 630 Hz and 1.6-2 kHz, dip 0.8-1.25 kHz; 250->200 Hz band drops 12.5 dB; above 2.5 kHz falls ~-24 dB/oct to 4 kHz then ~-30 dB/oct; 8-20 kHz is codec SBR.",
+ "eq_curve_dbfs": [
+  [
+   20.0,
+   -68.6
+  ],
+  [
+   25.0,
+   -71.8
+  ],
+  [
+   31.5,
+   -75.0
+  ],
+  [
+   40.0,
+   -75.5
+  ],
+  [
+   50.0,
+   -75.4
+  ],
+  [
+   63.0,
+   -76.6
+  ],
+  [
+   80.0,
+   -77.8
+  ],
+  [
+   100.0,
+   -67.7
+  ],
+  [
+   125.0,
+   -69.3
+  ],
+  [
+   160.0,
+   -68.5
+  ],
+  [
+   200.0,
+   -69.5
+  ],
+  [
+   250.0,
+   -57.0
+  ],
+  [
+   315.0,
+   -48.9
+  ],
+  [
+   400.0,
+   -46.6
+  ],
+  [
+   500.0,
+   -43.9
+  ],
+  [
+   630.0,
+   -38.6
+  ],
+  [
+   800.0,
+   -44.1
+  ],
+  [
+   1000.0,
+   -47.5
+  ],
+  [
+   1250.0,
+   -45.2
+  ],
+  [
+   1600.0,
+   -37.3
+  ],
+  [
+   2000.0,
+   -38.9
+  ],
+  [
+   2500.0,
+   -42.0
+  ],
+  [
+   3150.0,
+   -49.8
+  ],
+  [
+   4000.0,
+   -52.5
+  ],
+  [
+   5000.0,
+   -63.0
+  ],
+  [
+   6300.0,
+   -72.0
+  ],
+  [
+   8000.0,
+   -74.3
+  ],
+  [
+   10000.0,
+   -76.8
+  ],
+  [
+   12500.0,
+   -82.7
+  ],
+  [
+   16000.0,
+   -93.2
+  ],
+  [
+   20000.0,
+   -98.8
+  ]
+ ],
+ "noise_floor": {
+  "per_band_upper_bound_dbfs": [
+   [
+    20.0,
+    -65.7
+   ],
+   [
+    31.5,
+    -72.6
+   ],
+   [
+    40.0,
+    -78.3
+   ],
+   [
+    50.0,
+    -82.3
+   ],
+   [
+    63.0,
+    -85.5
+   ],
+   [
+    80.0,
+    -79.3
+   ],
+   [
+    100.0,
+    -70.5
+   ],
+   [
+    125.0,
+    -73.6
+   ],
+   [
+    160.0,
+    -75.9
+   ],
+   [
+    200.0,
+    -76.0
+   ],
+   [
+    250.0,
+    -70.4
+   ],
+   [
+    315.0,
+    -67.7
+   ],
+   [
+    400.0,
+    -66.3
+   ],
+   [
+    500.0,
+    -63.6
+   ],
+   [
+    630.0,
+    -63.2
+   ],
+   [
+    800.0,
+    -70.8
+   ],
+   [
+    1000.0,
+    -67.2
+   ],
+   [
+    1250.0,
+    -65.4
+   ],
+   [
+    1600.0,
+    -64.3
+   ],
+   [
+    2000.0,
+    -64.4
+   ],
+   [
+    2500.0,
+    -67.7
+   ],
+   [
+    3150.0,
+    -79.8
+   ],
+   [
+    4000.0,
+    -108.5
+   ],
+   [
+    5000.0,
+    -112.7
+   ],
+   [
+    6300.0,
+    -108.9
+   ],
+   [
+    8000.0,
+    -114.7
+   ],
+   [
+    10000.0,
+    -99.1
+   ],
+   [
+    12500.0,
+    -101.7
+   ],
+   [
+    16000.0,
+    -109.4
+   ],
+   [
+    20000.0,
+    -115.0
+   ]
+  ],
+  "note": "10th-percentile inter-harmonic valley power per 1/3-oct band (dBFS, sine-referenced). In 250-3150 Hz this is an UPPER BOUND (valleys are filled by accompaniment partials and room), not hiss. Above 4 kHz valleys are <= -108 dBFS (codec), so no broadband hiss is measurable.",
+  "hiss": "not detectable; upper bound about -64 dBFS per 1/3-oct band in 250-3150 Hz; recommend <= -80 dBFS (sine-ref RMS, 250-4500 Hz) or none",
+  "hum": {
+   "lines_hz_dbfs_peak": [
+    [
+     100.0,
+     -70.4
+    ],
+    [
+     150.0,
+     -78.3
+    ],
+    [
+     200.0,
+     -83.5
+    ],
+    [
+     250.0,
+     -83.5
+    ],
+    [
+     50.0,
+     -87.3
+    ]
+   ],
+   "stable": "100.0 Hz constant within 0.5 Hz over the clip, level -69..-72 dBFS in 2 s windows (added after any speed effect)"
+  },
+  "rumble": {
+   "band_hz": [
+    1,
+    25
+   ],
+   "rms_dbfs": -55.7,
+   "dominant_hz": 7.6,
+   "mono": true,
+   "lr_corr": 0.994,
+   "correlated_with_music": false
+  },
+  "crackle": {
+   "clicks_per_s": 0.0,
+   "kurtosis_4p5_11k": 4.3,
+   "note": "no impulsive clicks (LPC residual max z 7.8)"
+  },
+  "level_dbfs_sine_ref": {
+   "music_250_4000": -31.7,
+   "lf_30_90": -69.2,
+   "band_100hz": -67.9,
+   "infrasonic": -55.7
+  }
+ },
+ "vibrato": {
+  "rate_hz": null,
+  "depth_cents": 0,
+  "delay_s": null,
+  "detail": "no periodic vibrato. Held C5 (11.75-12.70 s): FM std 7.5 c with a weak 4.5 Hz component (peak/median 3.0); other notes FM std 10-12 c without a peak. This includes ~4.4 c common wow and interference from accompaniment."
+ },
+ "pitch_inflections": [
+  {
+   "t": [
+    4.95,
+    5.2
+   ],
+   "from_hz": 640,
+   "to_hz": 612,
+   "cents": -77,
+   "kind": "falling scoop into Eb5"
+  },
+  {
+   "t": [
+    8.45,
+    8.65
+   ],
+   "from_hz": 815,
+   "to_hz": 848,
+   "cents": 69,
+   "kind": "rising glide on the Ab5 climax, then held at 846-850 Hz"
+  },
+  {
+   "t": [
+    12.6,
+    12.9
+   ],
+   "from_hz": 516,
+   "to_hz": 529,
+   "cents": 44,
+   "kind": "held tonic C5 drifts sharp"
+  }
+ ],
+ "tremolo": {
+  "am_std_db_held_C5": 4.25,
+  "note": "amplitude fluctuation of lead harmonics ~4-6 dB std (heterodyne, 60 Hz band). The chain alone (wow+room) gives only ~1 dB on a steady sample, so the modulation is in the source: it comes from beating (see beating), not from a tremolo LFO."
+ },
+ "beating": {
+  "model": "two voices detuned (musette / tremolo reed)",
+  "held_C5": {
+   "beat_hz_fundamental": 6.7,
+   "detune_cents": 22,
+   "evidence": "AM peaks h1 7.0, h3 20, h4 26.7, h5 33.4 Hz = k x 6.7 Hz"
+  },
+  "Ab5": {
+   "beat_hz_fundamental": 8.3,
+   "detune_cents": 17,
+   "evidence": "AM peaks h1 9.0, h3 24.7, h4 31.9 Hz"
+  },
+  "confidence": "moderate (clean on 2 of 5 notes; others masked by polyphony)",
+  "fluidR3_reference": "P23 tango accordion sample is a 2-reed musette with ~15 c (4.5-4.8 Hz at C5); P21 accordion ~16 c with deeper beats (AM 8.4 dB)"
+ },
+ "attack_release": {
+  "lead_entrance_rise_ms": 45,
+  "legato": "no level dip at melody note changes (median -2.8 dB vs -2.9 dB at random times) -> fully legato in the dense texture",
+  "pah_bursts": {
+   "attack_ms_median": 48,
+   "attack_ms_range": [
+    16,
+    72
+   ],
+   "decay_to_minus10_ms_median": 55,
+   "decay_range": [
+    19,
+    76
+   ],
+   "width_ms": [
+    120,
+    150
+   ],
+   "rise_over_background_db": [
+    15,
+    18
+   ]
+  },
+  "end": "hard cut"
+ },
+ "inharmonicity": "none measurable (harmonics at k*f0 within 0.4 %)",
+ "breath_bellows_noise": "not separable from accompaniment; no evidence of broadband breath noise",
+ "formants": {
+  "fixed_peaks_hz": [
+   630,
+   1600,
+   2000,
+   2500
+  ],
+  "dip_hz": [
+   800,
+   1250
+  ],
+  "source_filter": "a fixed-frequency envelope and a harmonic-number term (odd>even by 5-11 dB) both explain the data (resid 4.9 / 4.8 dB alone, 3.9 dB jointly)",
+  "u_a_a": "\"u a a\" = rhythm/brightness, not a sung vowel: beat 1 centroid ~1070 Hz, beats 2-3 centroid ~1610 Hz and +8.3 dB"
+ },
+ "odd_even": {
+  "index_db_mean": 8.4,
+  "per_note": {
+   "C5": 11.2,
+   "D5": 10.8,
+   "Eb5": 6.3,
+   "Ab5": 5.1
+  },
+  "note": "mean(h1,h3,h5,h7) - mean(h2,h4,h6,h8) after the chain; h3 is the strongest harmonic on D5/Eb5"
+ },
+ "reverb": {
+  "type": "short room / ambience, stereo-decorrelated, with a faint long tail",
+  "rt60_early_s": 0.09,
+  "rt60_range_s": [
+   0.08,
+   0.15
+  ],
+  "predelay_ms": 6,
+  "build_ms": 4,
+  "late_tail": {
+   "level_db": -30,
+   "rt60_s": 1.5
+  },
+  "wet_db": -8,
+  "wet_band_hz": [
+   150,
+   4000
+  ],
+  "measured": {
+   "side_ir_db_vs_ms": {
+    "10": -3.8,
+    "20": -0.7,
+    "35": -5.6,
+    "50": -15.7,
+    "75": -24.6,
+    "100": -26.8,
+    "150": -28.2,
+    "200": -27.9,
+    "300": -35.2
+   },
+   "side_lag_ms": 25
+  },
+  "fit_quality": {
+   "model_side_mid_db": [
+    -6.7,
+    -5.4,
+    -2.8,
+    -6.1
+   ],
+   "orig_side_mid_db": [
+    -8.1,
+    -5.3,
+    -6.1,
+    -9.6
+   ],
+   "model_coh": [
+    0.69,
+    0.65,
+    0.64,
+    0.71
+   ],
+   "orig_coh": [
+    0.66,
+    0.58,
+    0.57,
+    0.73
+   ]
+  },
+  "note": "system-identified from side vs mid (Welch cross-spectrum, 0.74 s); the late tail estimate is near the estimation floor"
+ },
+ "saturation": {
+  "clipping": false,
+  "sample_peak_dbfs": [
+   -18.0,
+   -16.9
+  ],
+  "true_peak_dbtp": -16.8,
+  "crest_db": 16.3,
+  "crest_50ms_median_db": 9.9,
+  "estimate": "none detectable; harmonic distortion cannot be separated from instrument harmonics -> use none or very mild"
+ },
+ "stereo": {
+  "lr_corr": 0.64,
+  "side_minus_mid_db": -6.6,
+  "per_band_side_mid_db": {
+   "20-250": -11.2,
+   "250-500": -8.1,
+   "500-1000": -5.3,
+   "1000-2000": -6.1,
+   "2000-4000": -9.6
+  },
+  "coherence": {
+   "250-500": 0.66,
+   "500-1000": 0.58,
+   "1000-2000": 0.57,
+   "2000-4000": 0.73
+  },
+  "mono_below_hz": 130,
+  "balance_db": [
+   -1.6,
+   1.4
+  ],
+  "interpretation": "mono dry source + decorrelated stereo room; side lags mid by ~25 ms; side is -13 dB under mid at accents and -4 dB between them"
+ },
+ "wow_flutter": {
+  "common_rms_cents": 4.4,
+  "band_hz": [
+   0.8,
+   5.0
+  ],
+  "periodic": false,
+  "evidence": "slow pitch deviations of simultaneous non-harmonically related partials correlate r=0.33 mean (0.42 median, n=255) vs r=0.00 null (n=6466); per-partial slow deviation 7.1 c std"
+ },
+ "dynamics": {
+  "integrated_lufs": -29.5,
+  "lra_lu": 3.6,
+  "rms_dbfs": {
+   "intro_0_4p6": -36.7,
+   "melody_4p9_11p5": -33.3,
+   "final_hold": -35.1
+  },
+  "per_bar_rms_dbfs": [
+   -37.0,
+   -36.2,
+   -38.0,
+   -36.1,
+   -32.2,
+   -36.8,
+   -32.8,
+   -33.6,
+   -33.1,
+   -33.7,
+   -34.4,
+   -36.9
+  ],
+  "short_term_100ms_std_db": 4.0,
+  "p10_p90_db": 9.9
+ },
+ "time_varying_filter": "none found beyond the accent brightness changes (no sweep/wah)",
+ "layers": [
+  {
+   "name": "lead melody",
+   "when": "4.94 s to end (bars 5-12); absent in bars 1-4",
+   "register": "C5-Ab5, fundamentals 516-850 Hz",
+   "rhythm": "legato, long notes (median partial track 0.26 s, longest ~1 s; final C5 held ~2 s)",
+   "timbre": "free reed, 2 detuned voices (17-22 c), odd>even harmonics 5-11 dB, h3 strongest on D5/Eb5, centroid ~1.9 kHz",
+   "level": "about +1 to +6 dB over the accompaniment (energy)",
+   "expression": "pitch scoops/glides of 45-75 c on 3 long notes; no vibrato"
+  },
+  {
+   "name": "accompaniment oom (beat 1)",
+   "register": "visible partials 240-450 Hz (C4-A4); any fundamental below 250 Hz is removed by the EQ",
+   "rhythm": "beat 1, ~0.3 s",
+   "timbre": "dark: centroid ~1.07 kHz; 240-330 Hz band +5..+7 dB at downbeats"
+  },
+  {
+   "name": "accompaniment pah-pah (beats 2-3)",
+   "register": "chord tones C4-F5; tops C5/Eb5 and D5/F5 in bars 1-4",
+   "rhythm": "staccato 120-150 ms swells, attack ~48 ms, decay ~55 ms",
+   "timbre": "bright (3rd harmonics at 1.5-1.9 kHz rise 15-18 dB), +8.3 dB over beat 1",
+   "note": "this is the \"a a\" of \"u a a\""
+  },
+  {
+   "name": "inner sustained tones",
+   "register": "D4, F4, G4",
+   "rhythm": "occasional holds 0.5-1.5 s (D4 1.05-2.1 s, G4 9.3-10.9 s)",
+   "timbre": "same reed family"
+  },
+  {
+   "name": "absent",
+   "items": [
+    "bass below 250 Hz (only hum/rumble there)",
+    "drums/percussion",
+    "pads/strings",
+    "voice",
+    "sfx"
+   ]
+  }
+ ],
+ "best_patches": [
+  {
+   "id": "P23",
+   "name": "tango accordion",
+   "score": 7.13,
+   "score_with_brightness": 7.7,
+   "env_resid_db": 4.25,
+   "odd_even_db": 4.8,
+   "am_std_db": 4.12,
+   "fm_std_c": 7.5,
+   "centroid_hz": 2048
+  },
+  {
+   "id": "P21",
+   "name": "accordion",
+   "score": 8.98,
+   "score_with_brightness": 10.0,
+   "env_resid_db": 6.2,
+   "odd_even_db": 5.9,
+   "am_std_db": 5.09,
+   "fm_std_c": 9.1,
+   "centroid_hz": 1706
+  },
+  {
+   "id": "P42",
+   "name": "cello",
+   "score": 10.03,
+   "score_with_brightness": 10.29,
+   "env_resid_db": 4.96,
+   "odd_even_db": 1.2,
+   "am_std_db": 3.82,
+   "fm_std_c": 7.2,
+   "centroid_hz": 1860
+  },
+  {
+   "id": "P81",
+   "name": "saw lead",
+   "score": 10.66,
+   "score_with_brightness": 11.64,
+   "env_resid_db": 5.5,
+   "odd_even_db": 1.2,
+   "am_std_db": 4.05,
+   "fm_std_c": 5.3,
+   "centroid_hz": 1713
+  },
+  {
+   "id": "P22",
+   "name": "harmonica",
+   "score": 11.29,
+   "score_with_brightness": 11.98,
+   "env_resid_db": 5.16,
+   "odd_even_db": 10.8,
+   "am_std_db": 1.2,
+   "fm_std_c": 2.4,
+   "centroid_hz": 2077
+  },
+  {
+   "id": "P109",
+   "name": "bagpipe",
+   "score": 12.3,
+   "score_with_brightness": 13.25,
+   "env_resid_db": 5.81,
+   "odd_even_db": -0.7,
+   "am_std_db": 4.11,
+   "fm_std_c": 2.4,
+   "centroid_hz": 2141
+  },
+  {
+   "id": "P68",
+   "name": "oboe",
+   "score": 11.03,
+   "score_with_brightness": 13.41,
+   "env_resid_db": 5.39,
+   "odd_even_db": 1.3,
+   "am_std_db": 3.09,
+   "fm_std_c": 7.7,
+   "centroid_hz": 1459
+  },
+  {
+   "id": "P56",
+   "name": "trumpet",
+   "score": 13.48,
+   "score_with_brightness": 13.75,
+   "env_resid_db": 5.84,
+   "odd_even_db": -1.3,
+   "am_std_db": 2.55,
+   "fm_std_c": 6.7,
+   "centroid_hz": 1861
+  },
+  {
+   "id": "P111",
+   "name": "shanai",
+   "score": 12.26,
+   "score_with_brightness": 14.06,
+   "env_resid_db": 5.04,
+   "odd_even_db": 1.0,
+   "am_std_db": 2.17,
+   "fm_std_c": 4.8,
+   "centroid_hz": 1559
+  },
+  {
+   "id": "P71",
+   "name": "clarinet",
+   "score": 12.96,
+   "score_with_brightness": 14.1,
+   "env_resid_db": 7.3,
+   "odd_even_db": 9.5,
+   "am_std_db": 1.02,
+   "fm_std_c": 2.4,
+   "centroid_hz": 1681
+  },
+  {
+   "id": "clar2",
+   "name": "synthetic clar2",
+   "score": 7.86,
+   "score_with_brightness": 14.34,
+   "env_resid_db": 4.07,
+   "odd_even_db": 13.6,
+   "am_std_db": 4.49,
+   "fm_std_c": 7.7,
+   "centroid_hz": 907
+  },
+  {
+   "id": "P41",
+   "name": "viola",
+   "score": 13.33,
+   "score_with_brightness": 14.4,
+   "env_resid_db": 7.09,
+   "odd_even_db": -2.9,
+   "am_std_db": 4.37,
+   "fm_std_c": 10.6,
+   "centroid_hz": 1696
+  },
+  {
+   "id": "saw2",
+   "name": "synthetic saw2",
+   "score": 10.1,
+   "score_with_brightness": 14.59,
+   "env_resid_db": 5.49,
+   "odd_even_db": 1.5,
+   "am_std_db": 4.49,
+   "fm_std_c": 7.7,
+   "centroid_hz": 1143
+  },
+  {
+   "id": "P49",
+   "name": "slow strings",
+   "score": 12.05,
+   "score_with_brightness": 16.07,
+   "env_resid_db": 6.63,
+   "odd_even_db": 0.7,
+   "am_std_db": 5.57,
+   "fm_std_c": 11.7,
+   "centroid_hz": 1205
+  }
+ ],
+ "best_combos": [
+  {
+   "id": "tremolo_harmonica_18c",
+   "name": "tremolo_harmonica_18c",
+   "score": 5.98,
+   "score_with_brightness": 6.05,
+   "env_resid_db": 4.6,
+   "odd_even_db": 9.4,
+   "am_std_db": 4.6,
+   "fm_std_c": 10.4,
+   "centroid_hz": 1905
+  },
+  {
+   "id": "tremolo_harmonica_22c",
+   "name": "tremolo_harmonica_22c",
+   "score": 6.77,
+   "score_with_brightness": 6.81,
+   "env_resid_db": 4.9,
+   "odd_even_db": 10.5,
+   "am_std_db": 4.66,
+   "fm_std_c": 11.0,
+   "centroid_hz": 1928
+  },
+  {
+   "id": "tango+harmonica18",
+   "name": "tango+harmonica18",
+   "score": 7.12,
+   "score_with_brightness": 7.34,
+   "env_resid_db": 4.55,
+   "odd_even_db": 5.1,
+   "am_std_db": 4.64,
+   "fm_std_c": 10.3,
+   "centroid_hz": 1871
+  },
+  {
+   "id": "tango+voiceoohs",
+   "name": "tango+voiceoohs",
+   "score": 7.28,
+   "score_with_brightness": 7.44,
+   "env_resid_db": 4.21,
+   "odd_even_db": 6.2,
+   "am_std_db": 3.69,
+   "fm_std_c": 4.8,
+   "centroid_hz": 1885
+  },
+  {
+   "id": "tango+choir",
+   "name": "tango+choir",
+   "score": 7.47,
+   "score_with_brightness": 8.02,
+   "env_resid_db": 4.69,
+   "odd_even_db": 5.2,
+   "am_std_db": 4.05,
+   "fm_std_c": 7.5,
+   "centroid_hz": 1800
+  },
+  {
+   "id": "tango+accordion",
+   "name": "tango+accordion",
+   "score": 8.22,
+   "score_with_brightness": 8.39,
+   "env_resid_db": 4.74,
+   "odd_even_db": 4.1,
+   "am_std_db": 4.71,
+   "fm_std_c": 8.0,
+   "centroid_hz": 1882
+  },
+  {
+   "id": "harmonica+clarinet_20c",
+   "name": "harmonica+clarinet_20c",
+   "score": 7.21,
+   "score_with_brightness": 8.41,
+   "env_resid_db": 5.41,
+   "odd_even_db": 9.6,
+   "am_std_db": 4.02,
+   "fm_std_c": 7.8,
+   "centroid_hz": 1669
+  },
+  {
+   "id": "tango+clarinet+20c",
+   "name": "tango+clarinet+20c",
+   "score": 7.29,
+   "score_with_brightness": 8.61,
+   "env_resid_db": 4.95,
+   "odd_even_db": 6.5,
+   "am_std_db": 3.8,
+   "fm_std_c": 7.6,
+   "centroid_hz": 1648
+  },
+  {
+   "id": "clarinet_musette_20c",
+   "name": "clarinet_musette_20c",
+   "score": 7.29,
+   "score_with_brightness": 8.66,
+   "env_resid_db": 6.79,
+   "odd_even_db": 8.1,
+   "am_std_db": 4.23,
+   "fm_std_c": 11.3,
+   "centroid_hz": 1638
+  },
+  {
+   "id": "harmonica+tango",
+   "name": "harmonica+tango",
+   "score": 8.47,
+   "score_with_brightness": 9.38,
+   "env_resid_db": 4.41,
+   "odd_even_db": 7.5,
+   "am_std_db": 2.38,
+   "fm_std_c": 2.7,
+   "centroid_hz": 2131
+  },
+  {
+   "id": "tango+clarinet",
+   "name": "tango+clarinet",
+   "score": 9.4,
+   "score_with_brightness": 10.25,
+   "env_resid_db": 4.96,
+   "odd_even_db": 7.4,
+   "am_std_db": 2.08,
+   "fm_std_c": 2.7,
+   "centroid_hz": 1740
+  },
+  {
+   "id": "accordion+clarinet",
+   "name": "accordion+clarinet",
+   "score": 9.37,
+   "score_with_brightness": 10.45,
+   "env_resid_db": 5.12,
+   "odd_even_db": 7.2,
+   "am_std_db": 2.36,
+   "fm_std_c": 2.7,
+   "centroid_hz": 1694
+  },
+  {
+   "id": "accordion+choir",
+   "name": "accordion+choir",
+   "score": 9.92,
+   "score_with_brightness": 11.89,
+   "env_resid_db": 6.51,
+   "odd_even_db": 5.7,
+   "am_std_db": 5.57,
+   "fm_std_c": 9.0,
+   "centroid_hz": 1528
+  },
+  {
+   "id": "oboe+clarinet",
+   "name": "oboe+clarinet",
+   "score": 10.88,
+   "score_with_brightness": 12.1,
+   "env_resid_db": 5.31,
+   "odd_even_db": 2.4,
+   "am_std_db": 3.25,
+   "fm_std_c": 3.9,
+   "centroid_hz": 1665
+  },
+  {
+   "id": "reedorgan_musette_18c",
+   "name": "reedorgan_musette_18c",
+   "score": 11.81,
+   "score_with_brightness": 14.78,
+   "env_resid_db": 6.98,
+   "odd_even_db": -0.4,
+   "am_std_db": 4.42,
+   "fm_std_c": 11.7,
+   "centroid_hz": 1362
+  },
+  {
+   "id": "reedorgan+voiceoohs",
+   "name": "reedorgan+voiceoohs",
+   "score": 14.86,
+   "score_with_brightness": 18.49,
+   "env_resid_db": 6.91,
+   "odd_even_db": 0.9,
+   "am_std_db": 1.8,
+   "fm_std_c": 2.9,
+   "centroid_hz": 1262
+  }
+ ],
+ "best_recipes": [
+  {
+   "rank": 1,
+   "name": "R1 tremolo harmonica (2 x FluidR3 P22)",
+   "layers": [
+    {
+     "prog": 22,
+     "gain_db": 0,
+     "detune_c": 0
+    },
+    {
+     "prog": 22,
+     "gain_db": -3,
+     "detune_c": 20
+    }
+   ],
+   "tuning_cents": -23,
+   "metrics": {
+    "score": 5.92,
+    "env_resid_db": 4.66,
+    "odd_even_db": 9.9,
+    "am_std_db": 4.19,
+    "centroid_hz": 1943
+   },
+   "patch_eq_db": [
+    [
+     400,
+     8.9
+    ],
+    [
+     504,
+     7.6
+    ],
+    [
+     635,
+     6.4
+    ],
+    [
+     800,
+     4.8
+    ],
+    [
+     1008,
+     3.1
+    ],
+    [
+     1270,
+     1.1
+    ],
+    [
+     1600,
+     -0.8
+    ],
+    [
+     2016,
+     -1.8
+    ],
+    [
+     2540,
+     -3.0
+    ],
+    [
+     3200,
+     -5.3
+    ],
+    [
+     4032,
+     -8.6
+    ],
+    [
+     5080,
+     -12.3
+    ]
+   ]
+  },
+  {
+   "rank": 2,
+   "name": "R2 tango accordion + tremolo harmonica (P23 + P22)",
+   "layers": [
+    {
+     "prog": 23,
+     "gain_db": 0,
+     "detune_c": 0
+    },
+    {
+     "prog": 22,
+     "gain_db": -2,
+     "detune_c": 14
+    }
+   ],
+   "tuning_cents": -23,
+   "metrics": {
+    "score": 6.76,
+    "env_resid_db": 4.26,
+    "odd_even_db": 5.1,
+    "am_std_db": 4.32,
+    "centroid_hz": 1880
+   },
+   "patch_eq_db": [
+    [
+     400,
+     7.2
+    ],
+    [
+     504,
+     5.9
+    ],
+    [
+     635,
+     4.6
+    ],
+    [
+     800,
+     3.2
+    ],
+    [
+     1008,
+     1.9
+    ],
+    [
+     1270,
+     0.7
+    ],
+    [
+     1600,
+     -0.3
+    ],
+    [
+     2016,
+     -0.8
+    ],
+    [
+     2540,
+     -1.8
+    ],
+    [
+     3200,
+     -3.9
+    ],
+    [
+     4032,
+     -6.8
+    ],
+    [
+     5080,
+     -9.9
+    ]
+   ]
+  },
+  {
+   "rank": 3,
+   "name": "R3 clarinet musette (2 x FluidR3 P71)",
+   "layers": [
+    {
+     "prog": 71,
+     "gain_db": 0,
+     "detune_c": 0
+    },
+    {
+     "prog": 71,
+     "gain_db": 0,
+     "detune_c": 20
+    }
+   ],
+   "tuning_cents": -23,
+   "metrics": {
+    "score": 7.98,
+    "env_resid_db": 6.74,
+    "odd_even_db": 8.0,
+    "am_std_db": 4.66,
+    "centroid_hz": 1633
+   },
+   "patch_eq_db": [
+    [
+     400,
+     4.2
+    ],
+    [
+     504,
+     3.9
+    ],
+    [
+     635,
+     3.6
+    ],
+    [
+     800,
+     2.9
+    ],
+    [
+     1008,
+     1.7
+    ],
+    [
+     1270,
+     -0.4
+    ],
+    [
+     1600,
+     -2.7
+    ],
+    [
+     2016,
+     -4.1
+    ],
+    [
+     2540,
+     -4.7
+    ],
+    [
+     3200,
+     -4.0
+    ],
+    [
+     4032,
+     -1.5
+    ],
+    [
+     5080,
+     1.1
+    ]
+   ]
+  }
+ ],
+ "accompaniment_patch": {
+  "prog": 23,
+  "alt": 21,
+  "oom": {
+   "dur_s": 0.3,
+   "vel": 85
+  },
+  "pah": {
+   "dur_s": [
+    0.08,
+    0.12
+   ],
+   "vel": 85,
+   "note": "P23 0.08 s chord: attack 34 ms, decay 39 ms; P21 0.12 s: 74/72 ms; plucked/struck patches (piano 9 ms, guitar 8 ms, harp 18 ms attacks) do not match"
+  },
+  "level_db_re_lead": [
+   -6,
+   -1
+  ],
+  "evidence": "HNR at the held C5 is 19-20 dB in the original; R1 lead + accompaniment at -6 dB gives 21-24 dB, at -10 dB 25-28 dB"
+ },
+ "chain": {
+  "order": [
+   "render dry mono (FluidR3, reverb/chorus off, -23 c pitch bend)",
+   "per-note 40-50 ms raised-cosine attack, overlap next note 30-60 ms",
+   "wow: band-limited noise 0.5-5 Hz, 4.5 c RMS, variable delay",
+   "stereo room IR (rt60 0.09 s, predelay 6 ms, build 4 ms, tail -30 dB/1.5 s, wet band 150-4000 Hz, wet -8 dB)",
+   "patch EQ (patch_eq_db) then 1/3-oct LTAS match to eq_curve on the full arrangement, boost cap +12 dB, 2-3 passes",
+   "steep LPF ~5 kHz (>=48 dB/oct) to mimic the codec cliff",
+   "hum 100 Hz -70 dBFS peak (+150 Hz -78, 200 Hz -83.5) and optional 4-20 Hz rumble -56 dBFS RMS",
+   "level to -29.5 LUFS, true peak <= -17 dBTP, no limiter",
+   "end: short fade so all sound stops by 13.75 s"
+  ],
+  "code": {
+   "chain": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/py/zincir.py",
+   "render": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/py/fsr.py",
+   "features": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/py/ozellik.py",
+   "evaluate": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/py/aday.py",
+   "ltas_match": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/py/eslestir.py"
+  }
+ },
+ "audio": {
+  "recipes_held_C5": [
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/R1_tremolo_harmonica_heldC5.wav",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/R2_tango_plus_harmonica_heldC5.wav",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/R3_clarinet_musette_heldC5.wav"
+  ],
+  "recipes_phrase": [
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/R1_tremolo_harmonica_phrase.wav",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/R2_tango_plus_harmonica_phrase.wav",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/R3_clarinet_musette_phrase.wav"
+  ],
+  "full_probe": [
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/fullprobe_R1.wav",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/wav/fullprobe_R2.wav"
+  ],
+  "note": "probe phrase is a scale fragment C5-D5-Eb5, not a candidate melody"
+ },
+ "spectrograms": {
+  "overview": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/01_overview.png",
+  "fullband": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/02_fullband.png",
+  "cqt_zoom": [
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/04_cqt_zoom1.png",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/04_cqt_zoom2.png",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/04_cqt_zoom3.png"
+  ],
+  "narrowband": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/05_narrowband.png",
+  "band_envelopes": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/06_band_envelopes.png",
+  "intro_zoom": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/07_zoom_0_2p5.png",
+  "head_tail": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/08_head_tail.png",
+  "end_zoom": [
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/09_zoom_end.png",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/11_end_lowlin.png",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/12_end_hilin.png"
+  ],
+  "partial_tracks": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/13_tracks.png",
+  "held_C5_heterodyne": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/14_het_C5.png",
+  "am_spectra": [
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/15_am_C5.png",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/15c_am_Ab5b.png"
+  ],
+  "ab5_glide": [
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/18_ab5_low.png",
+   "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/33_glide_check.png"
+  ],
+  "dominant_f0": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/20_f0_dominant.png",
+  "bursts": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/21_burst_shapes.png",
+  "ltas": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/23_ltas.png",
+  "low_freq": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/24_lowfreq.png",
+  "infrasonic": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/25_infrasonic.png",
+  "stereo": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/26_stereo.png",
+  "hf_harmonics": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/27_hf_harmonics.png",
+  "source_filter": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/28_source_filter.png",
+  "reverb_sysid": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/29_sysid_orig.png",
+  "wow": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/30_wow.png",
+  "oom": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/34_oom_check.png",
+  "recipes_vs_original": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/35_recipes_vs_original.png",
+  "fullprobe_vs_original": "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/analiz/tini/png/36_fullprobe_vs_original.png"
+ },
+ "caveats": [
+  "Nobody listened; all claims are measurements or looked-at images.",
+  "Lead identity: measurements fit a free reed with two detuned voices; the 45-75 c glides fit a mouth-blown reed (harmonica/melodica) better than an accordion. Exact instrument unknown.",
+  "Lead harmonic profiles of the original include accompaniment leakage; the residual floor for every candidate is ~4 dB.",
+  "Reverb tail estimate below -28 dB is near the identification floor.",
+  "Hiss level is an upper bound only.",
+  "The ranking score is ad hoc: env_resid + 0.5*|odd-even diff| + |AM diff| + 0.5*|FM diff|/3 (+0.5*centroid diff in semitones for score_with_brightness)."
+ ]
+}

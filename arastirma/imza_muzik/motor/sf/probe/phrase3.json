@@ -1,0 +1,54 @@
+{
+ "id": "probe legato C5-D5-Eb5",
+ "tempo_bpm": 152,
+ "pickup_beats": 0,
+ "notes": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 72,
+   "vel": 90
+  },
+  {
+   "bar": 1,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 74,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 75,
+   "vel": 90
+  }
+ ],
+ "chords": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    55,
+    59,
+    62,
+    65
+   ]
+  }
+ ],
+ "accomp": {
+  "pattern": "waltz"
+ }
+}

@@ -1,0 +1,321 @@
+{
+ "null_summary": {
+  "POV": {
+   "mean": 0.096,
+   "p95": 0.156,
+   "p99": 0.178,
+   "max": 0.244
+  },
+  "ng3m": {
+   "mean": 0.002,
+   "p95": 0.027,
+   "p99": 0.043,
+   "max": 0.13
+  },
+  "ng3f": {
+   "mean": 0.006,
+   "p95": 0.038,
+   "p99": 0.071,
+   "max": 0.13
+  },
+  "ng4m": {
+   "mean": 0.0,
+   "p95": 0.0,
+   "p99": 0.0,
+   "max": 0.091
+  },
+  "ng4f": {
+   "mean": 0.001,
+   "p95": 0.0,
+   "p99": 0.031,
+   "max": 0.091
+  },
+  "cbar": {
+   "mean": 0.249,
+   "p95": 0.537,
+   "p99": 0.658,
+   "max": 0.805
+  },
+  "cphr": {
+   "mean": 0.166,
+   "p95": 0.427,
+   "p99": 0.527,
+   "max": 0.686
+  },
+  "rdist": {
+   "mean": 0.519,
+   "p95": 1.0,
+   "p99": 2.0,
+   "max": 3.0
+  },
+  "rshare": {
+   "mean": 0.248,
+   "p95": 0.364,
+   "p99": 0.455,
+   "max": 0.636
+  },
+  "offlimits_violation_rate": 0.0217,
+  "verdict_fail_rate": 0.0653,
+  "fail_reasons": {
+   "offlimits": 65,
+   "contour_bar_corr": 127,
+   "distinctive": 4,
+   "contour_phrase_corr": 5
+  }
+ },
+ "positives": {
+  "original": {
+   "viol": 73,
+   "POV": 1.0,
+   "ng3m": 1.0,
+   "ng4f": 1.0,
+   "ng3f": 1.0,
+   "ng4m": 1.0,
+   "cbar": 1.0,
+   "cphr": 1.0,
+   "rdist": 5,
+   "rshare": 1.0,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=73",
+    "POV 1.00 >= 0.25",
+    "ngram3_metric share 1.00 > 0.3",
+    "ngram4_free share 1.00 > 0.2",
+    "contour_bar_corr 1.00 > 0.55",
+    "contour_phrase_corr 1.00 > 0.6",
+    "distinctive rhythm cells in the same bars 5 > 2"
+   ]
+  },
+  "transposed_+2": {
+   "viol": 61,
+   "POV": 0.156,
+   "ng3m": 1.0,
+   "ng4f": 1.0,
+   "ng3f": 1.0,
+   "ng4m": 1.0,
+   "cbar": 1.0,
+   "cphr": 1.0,
+   "rdist": 5,
+   "rshare": 1.0,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=61",
+    "ngram3_metric share 1.00 > 0.3",
+    "ngram4_free share 1.00 > 0.2",
+    "contour_bar_corr 1.00 > 0.55",
+    "contour_phrase_corr 1.00 > 0.6",
+    "distinctive rhythm cells in the same bars 5 > 2"
+   ]
+  },
+  "transposed_-5": {
+   "viol": 61,
+   "POV": 0.089,
+   "ng3m": 1.0,
+   "ng4f": 1.0,
+   "ng3f": 1.0,
+   "ng4m": 1.0,
+   "cbar": 1.0,
+   "cphr": 1.0,
+   "rdist": 5,
+   "rshare": 1.0,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=61",
+    "ngram3_metric share 1.00 > 0.3",
+    "ngram4_free share 1.00 > 0.2",
+    "contour_bar_corr 1.00 > 0.55",
+    "contour_phrase_corr 1.00 > 0.6",
+    "distinctive rhythm cells in the same bars 5 > 2"
+   ]
+  },
+  "shifted_+1_bar": {
+   "viol": 73,
+   "POV": 1.0,
+   "ng3m": 1.0,
+   "ng4f": 1.0,
+   "ng3f": 1.0,
+   "ng4m": 1.0,
+   "cbar": 1.0,
+   "cphr": 1.0,
+   "rdist": 5,
+   "rshare": 1.0,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=73",
+    "POV 1.00 >= 0.25",
+    "ngram3_metric share 1.00 > 0.3",
+    "ngram4_free share 1.00 > 0.2",
+    "contour_bar_corr 1.00 > 0.55",
+    "contour_phrase_corr 1.00 > 0.6",
+    "distinctive rhythm cells in the same bars 5 > 2"
+   ]
+  },
+  "disguised_20pct_notes_stepped": {
+   "viol": 28,
+   "POV": 0.822,
+   "ng3m": 0.4523809523809524,
+   "ng4f": 0.36585365853658536,
+   "ng3f": 0.4523809523809524,
+   "ng4m": 0.36585365853658536,
+   "cbar": 0.8337996180853029,
+   "cphr": 0.942105172937678,
+   "rdist": 5,
+   "rshare": 1.0,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=28",
+    "POV 0.82 >= 0.25",
+    "ngram3_metric share 0.45 > 0.3",
+    "ngram4_free share 0.37 > 0.2",
+    "contour_bar_corr 0.83 > 0.55",
+    "contour_phrase_corr 0.94 > 0.6",
+    "distinctive rhythm cells in the same bars 5 > 2"
+   ]
+  },
+  "disguised_35pct_notes_stepped": {
+   "viol": 13,
+   "POV": 0.622,
+   "ng3m": 0.11904761904761904,
+   "ng4f": 0.07317073170731707,
+   "ng3f": 0.11904761904761904,
+   "ng4m": 0.07317073170731707,
+   "cbar": 0.8130030382086988,
+   "cphr": 0.8763983931732791,
+   "rdist": 5,
+   "rshare": 1.0,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=13",
+    "POV 0.62 >= 0.25",
+    "contour_bar_corr 0.81 > 0.55",
+    "contour_phrase_corr 0.88 > 0.6",
+    "distinctive rhythm cells in the same bars 5 > 2"
+   ]
+  },
+  "triplets_flattened": {
+   "viol": 33,
+   "POV": 0.711,
+   "ng3m": 0.5172413793103449,
+   "ng4f": 0.42857142857142855,
+   "ng3f": 0.5172413793103449,
+   "ng4m": 0.42857142857142855,
+   "cbar": 0.8649317298954762,
+   "cphr": 0.9519076315294543,
+   "rdist": 1,
+   "rshare": 0.6,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=33",
+    "POV 0.71 >= 0.25",
+    "ngram3_metric share 0.52 > 0.3",
+    "ngram4_free share 0.43 > 0.2",
+    "contour_bar_corr 0.86 > 0.55",
+    "contour_phrase_corr 0.95 > 0.6"
+   ]
+  },
+  "same_pitches_new_rhythm": {
+   "viol": 22,
+   "POV": 0.378,
+   "ng3m": 0.3333333333333333,
+   "ng4f": 0.34375,
+   "ng3f": 0.3939393939393939,
+   "ng4m": 0.3125,
+   "cbar": 0.34108056915219537,
+   "cphr": 0.13277127469575453,
+   "rdist": 0.0,
+   "rshare": 0.4166666666666667,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=22",
+    "POV 0.38 >= 0.25",
+    "ngram3_metric share 0.33 > 0.3",
+    "ngram4_free share 0.34 > 0.2"
+   ]
+  },
+  "same_rhythm_new_pitches": {
+   "viol": 0,
+   "POV": 0.178,
+   "ng3m": 0.0,
+   "ng4f": 0.0,
+   "ng3f": 0.0,
+   "ng4m": 0.0,
+   "cbar": 0.04357152380699768,
+   "cphr": 0.13786877358905955,
+   "rdist": 5,
+   "rshare": 1.0,
+   "verdict": "FAIL",
+   "reasons": [
+    "distinctive rhythm cells in the same bars 5 > 2"
+   ]
+  },
+  "bars4-8_copied_into_random": {
+   "viol": 40,
+   "POV": 0.689,
+   "ng3m": 0.7027027027027027,
+   "ng4f": 0.6944444444444444,
+   "ng3f": 0.7027027027027027,
+   "ng4m": 0.6944444444444444,
+   "cbar": 0.7246726915092209,
+   "cphr": 0.5570613799857982,
+   "rdist": 4,
+   "rshare": 0.45454545454545453,
+   "verdict": "FAIL",
+   "reasons": [
+    "offlimits violations=40",
+    "POV 0.69 >= 0.25",
+    "ngram3_metric share 0.70 > 0.3",
+    "ngram4_free share 0.69 > 0.2",
+    "contour_bar_corr 0.72 > 0.55",
+    "distinctive rhythm cells in the same bars 4 > 2"
+   ]
+  }
+ },
+ "rejected": {
+  "imza": {
+   "viol": 0,
+   "POV": 0.067,
+   "ng3m": 0.0,
+   "ng4f": 0.0,
+   "ng3f": 0.0,
+   "ng4m": 0.0,
+   "cbar": 0.6052800806435659,
+   "cphr": 0.020179327286158864,
+   "rdist": 0.0,
+   "rshare": 0.16666666666666666,
+   "verdict": "FAIL",
+   "reasons": [
+    "contour_bar_corr 0.61 > 0.55"
+   ]
+  },
+  "ikinci": {
+   "viol": 0,
+   "POV": 0.067,
+   "ng3m": 0.0,
+   "ng4f": 0.0,
+   "ng3f": 0.0,
+   "ng4m": 0.0,
+   "cbar": 0.06329548676878605,
+   "cphr": -0.08730981336807334,
+   "rdist": 0.0,
+   "rshare": 0.08333333333333333,
+   "verdict": "PASS",
+   "reasons": []
+  },
+  "ucuncu": {
+   "viol": 0,
+   "POV": 0.133,
+   "ng3m": 0.0,
+   "ng4f": 0.0,
+   "ng3f": 0.0,
+   "ng4m": 0.0,
+   "cbar": 0.6199492078464901,
+   "cphr": 0.18320983410455674,
+   "rdist": 0.0,
+   "rshare": 0.25,
+   "verdict": "FAIL",
+   "reasons": [
+    "contour_bar_corr 0.62 > 0.55"
+   ]
+  }
+ }
+}

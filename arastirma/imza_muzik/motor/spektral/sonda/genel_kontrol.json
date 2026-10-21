@@ -1,0 +1,350 @@
+{
+ "id": "genel-kontrol (engine generality check, not a candidate)",
+ "tempo_bpm": 152,
+ "pickup_beats": 2,
+ "notes": [
+  {
+   "bar": 0,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 0,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 90
+  },
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 1,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 63,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 65,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 62,
+   "vel": 90
+  },
+  {
+   "bar": 3,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 63,
+   "vel": 90
+  },
+  {
+   "bar": 3,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 60,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 59,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 2,
+   "dur_beats": 0.5,
+   "midi": 62,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 2.5,
+   "dur_beats": 0.5,
+   "midi": 65,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 95
+  },
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 67,
+   "vel": 95
+  },
+  {
+   "bar": 5,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 72,
+   "vel": 95
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 72,
+   "vel": 100
+  },
+  {
+   "bar": 6,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 95
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 1.5,
+   "midi": 77,
+   "vel": 100
+  },
+  {
+   "bar": 7,
+   "beat": 2.5,
+   "dur_beats": 0.5,
+   "midi": 75,
+   "vel": 95
+  },
+  {
+   "bar": 7,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 74,
+   "vel": 95
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 71,
+   "vel": 95
+  },
+  {
+   "bar": 8,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 66,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 10,
+   "beat": 1,
+   "dur_beats": 6,
+   "midi": 60,
+   "vel": 85
+  }
+ ],
+ "chords": [
+  {
+   "bar": 0,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    58,
+    62,
+    65
+   ],
+   "bass": 50
+  },
+  {
+   "bar": 3,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    56,
+    60,
+    63
+   ]
+  },
+  {
+   "bar": 4,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    55,
+    59,
+    62
+   ]
+  },
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    65,
+    68
+   ],
+   "bass": 53
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    56,
+    62,
+    65
+   ],
+   "bass": 53
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    59,
+    62,
+    65,
+    68
+   ],
+   "bass": 55
+  },
+  {
+   "bar": 9,
+   "beat": 1,
+   "dur_beats": 1.5,
+   "midi": [
+    56,
+    60,
+    65
+   ],
+   "bass": 53
+  },
+  {
+   "bar": 9,
+   "beat": 2.5,
+   "dur_beats": 1.5,
+   "midi": [
+    55,
+    59,
+    65
+   ],
+   "bass": 55
+  },
+  {
+   "bar": 10,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 11,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  }
+ ],
+ "accomp": {
+  "pattern": "waltz um-pa-pa, legato"
+ },
+ "counter": [
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 63
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 65
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 65
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 62
+  }
+ ]
+}

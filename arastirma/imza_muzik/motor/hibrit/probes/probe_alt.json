@@ -1,0 +1,286 @@
+{
+ "id": "probe_alt",
+ "tempo_bpm": 156,
+ "pickup_beats": 2,
+ "notes": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 75,
+   "vel": 90
+  },
+  {
+   "bar": 1,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 74,
+   "vel": 90
+  },
+  {
+   "bar": 1,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 72,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 74,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 71,
+   "vel": 90
+  },
+  {
+   "bar": 3,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 72,
+   "vel": 90
+  },
+  {
+   "bar": 3,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 75,
+   "vel": 90
+  },
+  {
+   "bar": 3,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 79,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 77,
+   "vel": 90
+  },
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 75,
+   "vel": 90
+  },
+  {
+   "bar": 5,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 74,
+   "vel": 90
+  },
+  {
+   "bar": 5,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 72,
+   "vel": 90
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 71,
+   "vel": 90
+  },
+  {
+   "bar": 6,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 90
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 7,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 72,
+   "vel": 90
+  },
+  {
+   "bar": 7,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 74,
+   "vel": 90
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 75,
+   "vel": 90
+  },
+  {
+   "bar": 8,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 74,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 73,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 71,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 72,
+   "vel": 90
+  },
+  {
+   "bar": 10,
+   "beat": 1,
+   "dur_beats": 6,
+   "midi": 72,
+   "vel": 90
+  }
+ ],
+ "chords": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    55,
+    59,
+    62,
+    65
+   ]
+  },
+  {
+   "bar": 3,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 4,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    53,
+    56,
+    60
+   ]
+  },
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    55,
+    59,
+    62,
+    65
+   ]
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    56,
+    60,
+    63
+   ]
+  },
+  {
+   "bar": 9,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    61,
+    65,
+    68
+   ]
+  },
+  {
+   "bar": 10,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 11,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    55,
+    59,
+    62,
+    65
+   ]
+  }
+ ],
+ "accomp": {
+  "pattern": "A C C staccato"
+ }
+}

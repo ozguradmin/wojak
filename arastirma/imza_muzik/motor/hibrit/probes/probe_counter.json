@@ -1,0 +1,330 @@
+{
+ "id": "probe_counter",
+ "tempo_bpm": 150,
+ "pickup_beats": 0,
+ "notes": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 65,
+   "vel": 90
+  },
+  {
+   "bar": 3,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 63,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 62,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 63,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 65,
+   "vel": 90
+  },
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 2,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 5,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 90
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 71,
+   "vel": 90
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 72,
+   "vel": 90
+  },
+  {
+   "bar": 7,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 71,
+   "vel": 90
+  },
+  {
+   "bar": 7,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 68,
+   "vel": 90
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": 67,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 1,
+   "dur_beats": 1,
+   "midi": 65,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 2,
+   "dur_beats": 1,
+   "midi": 63,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 3,
+   "dur_beats": 1,
+   "midi": 62,
+   "vel": 90
+  },
+  {
+   "bar": 10,
+   "beat": 1,
+   "dur_beats": 6,
+   "midi": 60,
+   "vel": 90
+  }
+ ],
+ "counter": [
+  {
+   "bar": 1,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 55,
+   "vel": 90
+  },
+  {
+   "bar": 2,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 56,
+   "vel": 90
+  },
+  {
+   "bar": 3,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 55,
+   "vel": 90
+  },
+  {
+   "bar": 4,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 53,
+   "vel": 90
+  },
+  {
+   "bar": 5,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 55,
+   "vel": 90
+  },
+  {
+   "bar": 6,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 53,
+   "vel": 90
+  },
+  {
+   "bar": 7,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 56,
+   "vel": 90
+  },
+  {
+   "bar": 8,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 55,
+   "vel": 90
+  },
+  {
+   "bar": 9,
+   "beat": 2,
+   "dur_beats": 2,
+   "midi": 53,
+   "vel": 90
+  },
+  {
+   "bar": 10,
+   "beat": 2,
+   "dur_beats": 5,
+   "midi": 55,
+   "vel": 90
+  }
+ ],
+ "chords": [
+  {
+   "bar": 1,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 2,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    53,
+    56,
+    60
+   ]
+  },
+  {
+   "bar": 3,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 4,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    55,
+    59,
+    62,
+    65
+   ]
+  },
+  {
+   "bar": 5,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 6,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    59,
+    62,
+    65,
+    68
+   ]
+  },
+  {
+   "bar": 7,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    56,
+    60,
+    63
+   ]
+  },
+  {
+   "bar": 8,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 9,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    55,
+    59,
+    62,
+    65
+   ]
+  },
+  {
+   "bar": 10,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  },
+  {
+   "bar": 11,
+   "beat": 1,
+   "dur_beats": 3,
+   "midi": [
+    60,
+    63,
+    67
+   ]
+  }
+ ],
+ "accomp": {
+  "pattern": "B C C legato"
+ }
+}

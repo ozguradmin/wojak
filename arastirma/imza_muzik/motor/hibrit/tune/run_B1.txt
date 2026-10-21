@@ -1,0 +1,38 @@
+start 63.35 {'ltas_db': 98.0, 'mel_env_db': 45.6, 'mfcc': 34.0, 'band_shares': 99.3, 'centroid': 98.3, 'flatness': 98.8, 'noise_floor': 58.0, 'modulation': 34.0, 'pitch': 25.6, 'stereo': 74.5, 'reverb': 64.2, 'dynamics': 79.1, 'accent': 65.8}
+wow_c=12: 63.65 (best 63.65)  <== keep
+wow_c=16: 66.75 (best 66.75)  <== keep
+wow_c=20: 64.65 (best 66.75)
+reed_mistune_c=6: 64.55 (best 66.75)
+reed_mistune_c=9: 64.60 (best 66.75)
+wander_c=7: 63.45 (best 66.75)
+wander_c=10: 64.90 (best 66.75)
+wander_c=20: 65.25 (best 66.75)
+pah_db=4: 64.20 (best 66.75)
+pah_db=8: 65.20 (best 66.75)
+lead_db=-3: 63.40 (best 66.75)
+lead_db=0: 64.55 (best 66.75)
+oom_db=-3: 65.20 (best 66.75)
+oom_db=1: 63.35 (best 66.75)
+pah_floor_db=-18: 67.55 (best 67.55)  <== keep
+pah_floor_db=-12: 64.35 (best 67.55)
+pah_attack_ms=30: 66.00 (best 67.55)
+pah_attack_ms=50: 63.40 (best 67.55)
+pah_hold_ms=15: 63.10 (best 67.55)
+pah_hold_ms=30: 63.05 (best 67.55)
+pah_decay_ms=35: 67.70 (best 67.55)
+pah_decay_ms=70: 65.10 (best 67.55)
+dyn_arch_db=5: 62.85 (best 67.55)
+dyn_arch_db=8: 59.10 (best 67.55)
+dyn_wander_db=1: 66.80 (best 67.55)
+dyn_wander_db=2: 66.25 (best 67.55)
+dyn_pitch_db=0.2: 65.85 (best 67.55)
+dyn_pitch_db=0.7: 65.60 (best 67.55)
+medium_db=-9: 66.30 (best 67.55)
+medium_db=-4: 67.40 (best 67.55)
+flutter_c=2.5: 67.20 (best 67.55)
+flutter_c=6: 67.10 (best 67.55)
+flutter_per_c=0: 68.40 (best 68.40)  <== keep
+flutter_per_c=5: 67.80 (best 68.40)
+room_wet_db=-14: 66.30 (best 68.40)
+room_wet_db=-10: 66.05 (best 68.40)
+final {"sbr_db": -22, "match_fmax": 12500, "lf_noise_db": -69, "medium_shape": [[100, 4], [250, 4], [400, 0], [3150, 0], [3600, -6], [4000, -30], [20000, -30]], "wow_c": 16, "pah_floor_db": -18, "flutter_per_c": 0} 68.4 {'ltas_db': 97.5, 'mel_env_db': 46.8, 'mfcc': 36.5, 'band_shares': 98.9, 'centroid': 98.2, 'flatness': 95.9, 'noise_floor': 57.9, 'modulation': 37.4, 'pitch': 63.3, 'stereo': 74.7, 'reverb': 48.1, 'dynamics': 98.3, 'accent': 68.2}

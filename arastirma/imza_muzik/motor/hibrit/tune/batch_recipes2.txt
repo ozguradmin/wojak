@@ -1,0 +1,4 @@
+Bcal                70.42 | ltas_=98 mel_e=47 mfcc=38 band_=98 centr=99 flatn=98 noise=64 modul=66 pitch=50 stere=89 rever=74 dynam=81 accen=36
+B_hnfs22            64.50 | ltas_=98 mel_e=45 mfcc=36 band_=98 centr=99 flatn=66 noise=80 modul=45 pitch=70 stere=98 rever=72 dynam=39 accen=8
+B_fs22lead          60.75 | ltas_=98 mel_e=41 mfcc=31 band_=99 centr=99 flatn=49 noise=81 modul=37 pitch=53 stere=96 rever=70 dynam=47 accen=7
+B_hnreed4           69.30 | ltas_=98 mel_e=48 mfcc=40 band_=98 centr=99 flatn=99 noise=63 modul=66 pitch=55 stere=88 rever=73 dynam=70 accen=22

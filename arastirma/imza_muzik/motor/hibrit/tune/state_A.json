@@ -1,0 +1,72 @@
+{
+ "recipe": "A_fluid",
+ "params": {
+  "sbr_db": -22,
+  "match_fmax": 12500,
+  "lf_noise_db": -69,
+  "medium_shape": [
+   [
+    100,
+    4
+   ],
+   [
+    250,
+    4
+   ],
+   [
+    400,
+    0
+   ],
+   [
+    3150,
+    0
+   ],
+   [
+    3600,
+    -6
+   ],
+   [
+    4000,
+    -30
+   ],
+   [
+    20000,
+    -30
+   ]
+  ],
+  "wow_c": 19,
+  "pah_floor_db": -18,
+  "hyper_db": 3,
+  "room_wet_db": -9,
+  "room_pd_ms": 7,
+  "room_build_ms": 2,
+  "room_hold_ms": 8,
+  "room_rt60": 0.04,
+  "room_tail_db": -45,
+  "wander_acc_c": 2,
+  "medium_ms": 1,
+  "pah_decay_ms": 35,
+  "lead_attack_ms": 60,
+  "wow_pre": 1,
+  "flutter_per_c": 0,
+  "pah_db": 3,
+  "lead_db": -4,
+  "medium_db": -3
+ },
+ "best_ts": 65.05000000000001,
+ "best_sub": {
+  "ltas_db": 98.4,
+  "mel_env_db": 41.7,
+  "mfcc": 32.5,
+  "band_shares": 97.7,
+  "centroid": 97.9,
+  "flatness": 80.8,
+  "noise_floor": 71.3,
+  "modulation": 58.9,
+  "pitch": 54.0,
+  "stereo": 99.5,
+  "reverb": 69.3,
+  "dynamics": 52.2,
+  "accent": 5.4
+ }
+}

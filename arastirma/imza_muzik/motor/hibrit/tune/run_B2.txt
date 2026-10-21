@@ -1,0 +1,78 @@
+start 65.7 {'ltas_db': 97.4, 'mel_env_db': 43.3, 'mfcc': 34.4, 'band_shares': 97.0, 'centroid': 98.0, 'flatness': 97.3, 'noise_floor': 59.9, 'modulation': 62.2, 'pitch': 50.3, 'stereo': 69.0, 'reverb': 49.2, 'dynamics': 72.2, 'accent': 36.5}
+wow_c=10: 64.40 (best 65.70)
+wow_c=13: 64.95 (best 65.70)
+wow_c=19: 67.30 (best 67.30)  <== keep
+reed_mistune_c=8: 66.15 (best 67.30)
+reed_mistune_c=15: 64.95 (best 67.30)
+wander_acc_c=0: 66.20 (best 67.30)
+wander_acc_c=2: 68.05 (best 68.05)  <== keep
+wander_c=8: 65.80 (best 68.05)
+wander_c=20: 68.25 (best 68.05)
+hyper_db=2: 67.75 (best 68.05)
+hyper_db=4.5: 68.15 (best 68.05)
+medium_db=-4.5: 68.30 (best 68.05)
+medium_db=-7.5: 67.55 (best 68.05)
+medium_ms=1: 70.20 (best 70.20)  <== keep
+pah_decay_ms=35: 71.65 (best 71.65)  <== keep
+pah_decay_ms=42: 71.55 (best 71.65)
+pah_attack_ms=33: 69.30 (best 71.65)
+oom_db=-2: 70.30 (best 71.65)
+oom_db=0: 71.00 (best 71.65)
+bass_oct_db=-2: 71.40 (best 71.65)
+bass_oct_db=-8: 70.00 (best 71.65)
+dyn_wander_db=0.8: 69.95 (best 71.65)
+dyn_arch_db=1.5: 70.60 (best 71.65)
+lead_attack_ms=30: 70.90 (best 71.65)
+lead_attack_ms=60: 72.10 (best 72.10)  <== keep
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/concurrent/futures/process.py", line 255, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/usr/lib/python3.13/concurrent/futures/process.py", line 204, in _process_chunk
+    return [fn(*args) for args in chunk]
+            ~~^^^^^^^
+  File "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/motor/hibrit/py/tune.py", line 13, in one
+    info=R.render(mel,out,seed,recipe,sets,quiet=True)
+  File "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/motor/hibrit/render.py", line 1009, in render
+    sf.write(out, y.astype(np.float32), SR, subtype="FLOAT")
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/soundfile.py", line 378, in write
+    f.write(data)
+    ~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/soundfile.py", line 1089, in write
+    written = self._array_io('write', data, len(data))
+  File "/usr/local/lib/python3.13/dist-packages/soundfile.py", line 1424, in _array_io
+    return self._cdata_io(action, cdata, ctype, frames)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/soundfile.py", line 1435, in _cdata_io
+    _error_check(self._errorcode)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/soundfile.py", line 1511, in _error_check
+    raise LibsndfileError(err, prefix=prefix)
+soundfile.LibsndfileError: System error.
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/motor/hibrit/py/tune.py", line 42, in <module>
+    t0=time.time(); ts,sub=evaluate(pool,tosets(trial),seeds,recipe,f'{k}',mel)
+                           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/claude-0/-home-user-wojak/e1bf52df-8e16-5819-ad96-6f6873ef480c/scratchpad/muzik2/motor/hibrit/py/tune.py", line 17, in evaluate
+    res=list(pool.map(one,[(sets,s,recipe,f'{tag}',mel) for s in seeds]))
+  File "/usr/lib/python3.13/concurrent/futures/process.py", line 621, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 625, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 318, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 453, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/concurrent/futures/_base.py", line 402, in __get_result
+    raise self._exception
+soundfile.LibsndfileError: System error.

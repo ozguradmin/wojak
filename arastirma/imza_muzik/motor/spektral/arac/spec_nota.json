@@ -1,0 +1,12 @@
+[["lead.slope_db_oct", 1.0, -2, 8],
+ ["lead.even_pen_db", 2.0, 0, 16],
+ ["lead.formants.0.1", 2.0, -10, 12],
+ ["lead.formants.1.1", 2.0, -12, 6],
+ ["lead.formants.2.1", 2.0, -6, 14],
+ ["lead.formants.2.0", 300, 1200, 3200],
+ ["lead.formants.3.1", 3.0, -24, 4],
+ ["lead.reeds.1.gain_db", 1.0, -8, 0],
+ ["lead.reeds.1.tilt_db_oct", 1.0, -4, 4],
+ ["lead.partial_sigma_db", 1.0, 0, 5],
+ ["lead.jitter_c", 2.0, 0, 14],
+ ["lead.drift_c", 2.0, 0, 12]]
