@@ -4,6 +4,34 @@
 > (CLAUDE.md "delivery flow"). **Yeni üretim ElevenLabs başvurusu sonuçlanınca başlar** (§4); o zamana kadar yeni video
 > ya da mevcut videoda düzeltme yok.
 
+## 0. YouTube: sıfırdan başlangıç ve hedef (21.10.2026)
+
+- Kanal bir **ihlal** aldı, hangi videodan olduğu bilinmiyor. Eski Shorts 90 günde ~200 bin izlenme getiriyordu, hepsi
+  silinecek (yedek: hesap sahibi Google Takeout ile alıyor). Kanalın verileri zaten repoda: `data/videos.csv` (223 Short),
+  `data/olay_metinleri.md`.
+- **Hedef: YouTube Partner Programı.** İki yol var, ikisi de 1.000 abone ister:
+  (a) son 90 günde 10 milyon herkese açık Shorts izlenmesi (günde ~111 bin);
+  (b) son 12 ayda 4.000 saat herkese açık uzun video izlenme süresi.
+  10 dakikalık videoda ortalama 4 dk izlenirse (b) için toplam ~60 bin izlenme yeter. Uzun videolar bu yolun motorudur;
+  Shorts'un izlenmesi saat hesabına girmez. İki yol paralel yürür. Güncel koşullar YouTube Studio → Para kazanma'da kontrol edilir.
+- **İhlal hakkında bilinenler:**
+  - Video silinince ihtar (uyarı) kalkmaz.
+  - İhtar 90 günde düşer. 90 gün içinde 3 ihtar alan kanal kapatılır.
+  - Etkin bir Topluluk Kuralları ihtarı varken Partner Programı'na kabul yapılmaz.
+- **Önce ihlalin nedeni bulunmalı.** Yeni videolar aynı hatayı tekrarlamasın:
+  - YouTube Studio ana sayfasındaki uyarı kartı ve gelen e-posta, ihlalin videosunu ve kuralını gösterir.
+  - Telif hakkı menüsünde telif ihtarları ve kaldırma talepleri listelenir.
+  - İçerik listesindeki "Kısıtlamalar" sütunu, sorunun hangi videoda olduğunu gösterir.
+- **Yeni YouTube yüklemeleri için kural:** önce **Özel** yükle. Yükleme ekranındaki "Kontroller" adımının (telif hakkı ve
+  reklam uygunluğu) bitmesini bekle. Sorun yoksa zamanla ya da yayınla.
+- **YouTube sürümleri için riskler** (nedeni öğrenilince karar hesap sahibinin):
+  1. Kısa reel'lerin imza müziği bir reel'in sesinden çıkarıldı. Kaynağı üçüncü taraf bir parçaysa YouTube'da Content ID
+     eşleşmesi alabilir. Hakkı bize ait yedek parça `imza_gece_vals.mp3` hazır (assets/music/README.md).
+  2. `img/telifli/` haber fotoğrafları YouTube'da telif kaldırma talebi alabilir. YouTube sürümünde mümkünse serbest
+     lisanslı görsel kullanılır.
+  3. Hassas konular (deprem, çocuk, ölüm, şiddet): GUNDEM.md §5 ve §7. Grafik görüntü yok. Çocuk gerçek fotoğrafla
+     gösterilmez.
+
 ## 1. Hesap sahibinin planı
 
 - **2-3 günde bir konu**, haftada 2-3 video: eski aktifliği geri kazanmak.
