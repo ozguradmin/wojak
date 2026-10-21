@@ -1,8 +1,27 @@
 # Müzik
 
-## Kanalın imza müziği (varsayılan)
+## Yeni imza: `imza_vals.m4a` (21.10.2026, hesap sahibinin onayı bekleniyor)
 
-`imza_gece_vals.mp3` — `python tools/make_music.py` ile sentezlenen özgün, ürkütücü müzik kutusu /
+Yıllardır kullanılan orijinal sesin (`ozel/kanal_orijinal_ses.m4a`) **bize ait benzeri**. Hesap sahibi YouTube ihlali
+sonrası istedi (YAYIN_PLANI §0). `python tools/imza_muzik.py` ile tamamen sentezlenir: kayıt, örnek ya da başka bir
+parçanın sesi yok, melodi ve armoni özgün. Aynı his: Do minör, 3/4, ~152 BPM, legato akordeon/harmonyum, gramofon bandı,
+13,75 sn tek cümle, sonda tonikte kalış.
+
+| Dosya | Varyant | 1-4 kHz payı (orijinal %62) | Ton/renk benzerliği | Melodik benzerlik |
+|---|---|---|---|---|
+| `imza_vals.m4a` | imza (ana) | %66 | 0,73 | 0,07 |
+| `imza_vals_ikinci.m4a` | ikinci | %61 | 0,83 | 0,10 |
+| `imza_vals_ucuncu.m4a` | ucuncu | %63 | 0,80 | 0,16 |
+
+Melodik benzerlik ölçeği (`--karsilastir`): orijinalin kendi kopyası 0,99, alakasız bir parça (`imza_gece_vals`) 0,14.
+Bizimkiler alakasız parça düzeyinde, yani melodi kopyalanmadı; ton ve tını ise yakın.
+Her video için değiştirmek: `--varyant`, `--ton` (yarım ses), `--tempo`, ya da `MELODILER`'e yeni 12 ölçülük bir melodi
+(orijinalin Mi♭5-Re5-Fa5 açılışı ve 8. ölçüdeki La♭5-Sol5 doruğu kullanılmaz). Onaylanınca `music: kanal` bu dosyayı
+kullanacak (`wojak/config.py`); şimdilik `episode.yaml`'da `music: {file: imza_vals.m4a}` ile seçilir.
+
+## Eski sentez imza: `imza_gece_vals.mp3`
+
+`python tools/make_music.py` ile sentezlenen özgün, ürkütücü müzik kutusu /
 gramofon valsi (La minör, 3/4, plak cızırtısı, 46 sn). **Hakkı bize ait**: Instagram, YouTube ve
 TikTok'ta "orijinal ses" olarak gider, sonradan sessize alınmaz, telif talebi almaz.
 

@@ -335,6 +335,7 @@ Aşağıdaki değerler kısa formattaki 26 reel'den alındı: C5eF, DHG, C5ob ve
 ### 10.4 Ses hedefi
 
 - **Tercih:** Hesabın kendi imza orijinal sesi (G1). Hesap sahibinde var.
+- **G1'in bize ait benzeri (21.10):** `tools/imza_muzik.py` → `assets/music/imza_vals*.m4a` (aşağıdaki hedefe göre yapıldı).
 - **G1 kullanılamıyorsa:** `tools/make_music.py` ile yeni bir parça üretilir:
   - Do minör, 3/4, 152–155 BPM.
   - Legato tutulan lead (akordeon veya org benzeri), Do5–La♭5 arası.

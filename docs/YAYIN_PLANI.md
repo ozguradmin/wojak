@@ -26,7 +26,7 @@
   reklam uygunluğu) bitmesini bekle. Sorun yoksa zamanla ya da yayınla.
 - **YouTube sürümleri için riskler** (nedeni öğrenilince karar hesap sahibinin):
   1. Kısa reel'lerin imza müziği bir reel'in sesinden çıkarıldı. Kaynağı üçüncü taraf bir parçaysa YouTube'da Content ID
-     eşleşmesi alabilir. Hakkı bize ait yedek parça `imza_gece_vals.mp3` hazır (assets/music/README.md).
+     eşleşmesi alabilir. Bize ait benzeri üretildi: `assets/music/imza_vals*.m4a` (`tools/imza_muzik.py`, 21.10; hesap sahibi dinleyip seçecek).
   2. `img/telifli/` haber fotoğrafları YouTube'da telif kaldırma talebi alabilir. YouTube sürümünde mümkünse serbest
      lisanslı görsel kullanılır.
   3. Hassas konular (deprem, çocuk, ölüm, şiddet): GUNDEM.md §5 ve §7. Grafik görüntü yok. Çocuk gerçek fotoğrafla

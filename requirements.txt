@@ -7,5 +7,7 @@ requests>=2.31
 # bgutil-ytdlp-pot-provider
 # Instagram yayını için videoyu Cloudflare R2'ye koymak (tools/ig_yayinla.py --r2):
 # boto3
+# Müzik karşılaştırması (tools/imza_muzik.py --karsilastir) için:
+# librosa
 # Karmaşık arka plan temizleme (tools/cutout.py --rembg) için:
 # rembg[cpu]
