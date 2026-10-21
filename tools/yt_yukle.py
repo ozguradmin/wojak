@@ -4,7 +4,8 @@
 Kimlik: YOUTUBE_TOKEN_JSON (OAuth "authorized_user" JSON'u; ortam değişkeni ya da ~/.config/wojak/secrets.env). Hiçbir
 yere yazılmaz, hata mesajlarında gösterilmez. Kanal kimliği denetlenir: başka bir kanala yükleme yapılmaz.
 Kota: günde 10.000 birim (başka kanallarla ortak), yükleme 1.600 birim -> bu kanal için günde en çok 3 yükleme.
-Kural: hesap sahibi başlık/açıklama/gizlilik ayarını görüp "yükle" demeden yükleme yok; ilk yükleme private.
+Kural: hesap sahibi "yükle" demeden yükleme yok. Varsayılan public (hesap sahibi 21.10: "direkt paylaş"). Bu anahtarın yetkisi
+yalnız yükleme + okuma: yüklenmiş videonun gizliliğini değiştirmek, yorum ya da silme API ile yapılamaz (Studio).
 
     python tools/yt_yukle.py --kontrol                       # yalnız kimlik + kanal denetimi (kota harcamaz sayılır: 1 birim)
     python tools/yt_yukle.py video.mp4 --title "..." --desc-file aciklama.txt [--tags a,b] [--privacy private] [--thumb kapak.jpg]
@@ -53,7 +54,7 @@ def main() -> None:
     ap.add_argument("--title")
     ap.add_argument("--desc-file")
     ap.add_argument("--tags", default="")
-    ap.add_argument("--privacy", default="private", choices=["public", "unlisted", "private"])
+    ap.add_argument("--privacy", default="public", choices=["public", "unlisted", "private"])
     ap.add_argument("--thumb")
     ap.add_argument("--kategori", default="27", help="27 Eğitim, 24 Eğlence")
     a = ap.parse_args()
