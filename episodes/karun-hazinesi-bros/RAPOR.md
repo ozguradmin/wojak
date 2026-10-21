@@ -136,11 +136,11 @@ Videoda (A) telifli görsel kalmadı; `paylasim.md`'de lisans maddesi yok.
 | Hakem turu 2 + kanıt tam genişlik düzeltmesi | ~6 dk |
 | §4 kontrol listesi, ders notu, teslim, commit | ~8 dk |
 | **Toplam (ilk teslim)** | **~1 saat** (19:59 → ~21:00 UTC) |
-| Kart turu: kaynak doğrulama (Milliyet kutu metni, Vatan) | ~2 dk |
-| Kart turu: kart tasarımı (3 deneme), yaml/metin, check, render, teslim | ~3 dk |
-| Kart turu: 2 hakem turu + metin düzeltmesi | ~2 dk |
-| Kart turu: §4, ders notu, rapor, outputs, commit | ~4 dk |
-| **Kart turu toplamı** | **~11 dk** (21:52 → ~22:03 UTC) |
+| Kart turu: kaynak doğrulama (Milliyet kutu metni, Vatan) | ~1 dk |
+| Kart turu: kart tasarımı (3 deneme), yaml/metin, check, render, teslim | ~2 dk |
+| Kart turu: 2 hakem turu + metin düzeltmesi | ~1 dk |
+| Kart turu: §4, ders notu, rapor, outputs, commit | ~2 dk |
+| **Kart turu toplamı** | **~6 dk** (21:52 → 21:58 UTC, saat damgalarıyla) |
 
 ## Yaklaşık maliyet
 
