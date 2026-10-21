@@ -24,7 +24,7 @@
 id: canakkale-kayip-tabur
 title: "Çanakkale'de bulutun yuttuğu söylenen İngiliz taburu (Olayı yorumlara yazdım)"
 
-music: kanal
+music: {file: imza_v2_ic_cekis.m4a}   # 21.10: bize ait yeni imza müziği (eski kanal sesi YouTube ihlal riski taşıyordu)
 
 scenes:
   # 1) KANCA — A (sol, bıyıklı er): olay anında masum bir taktik niyet (C2fa "onları çıkarıp geliyorum" gibi). "Türkler"
