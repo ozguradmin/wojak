@@ -427,6 +427,28 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
   dosyalarını silmiyor; `pack.py` Instagram'da `#tarihselwojak #wojak` etiketlerini her zaman ekliyor (yerel etiket
   takası hesap sahibine `ek_maddeler` ile bırakıldı).
 
+### 6.1 Bulut oturumu dersleri (21.10.2026, `karun-hazinesi-bros`, iki hakemden 8/8, 2 tur)
+
+- **Kanıt kareye sığdırılır:** renderer 1080'den uzun kanıtı kesmez, kareye sığdırır. 1260 px'lik görsel 925 px
+  genişliğe iner, iki yanında siyah bant kalır (STIL §8 "tam genişlik" bozulur). Kanıtı en çok 1080x1080 hazırla.
+  Uzun bir nesne fotoğrafını kare yapmak için iki yanı aynı fotoğrafın nesnesiz kenarından düz şeritlerle doldur
+  (8 px yumuşak geçiş). Ayna döşeme kumaşta kaleydoskop deseni yapıyor, kullanma. Gazete kupürünü kare kırp; iki
+  yandaki sayfa beyazı kalabilir.
+- **Basılı birinci sayfa en iyi son kare:** Milliyet Gazete Arşivi (`gazetearsivi.milliyet.com.tr/Arsiv/YYYY/AA/GG`)
+  üyeliksiz tam sayfa görüntü veriyor (sayfadaki `_next/image?url=` içindeki API adresi ~1900x2700). 2000'lerin
+  olaylarında altın dönem dilindeki kalın manşeti buradan bul (telifli, `img/telifli/`).
+- **Bakış kaydı repoya yazmadan:** `episode.yaml`'da karakter başına `faces: sag|sol|on` yeterli; `check` uyarmaz,
+  `data/karakter_yon.json`'a dokunulmaz. Yazma izni yalnız bölüm klasörü olan oturumlarda bunu kullan.
+- **Ağ (bu sandbox):** Commons API ve küçük resim (`thumburl`) adresleri sık 429 veriyor; `upload.wikimedia.org`
+  üzerindeki özgün dosya adresi (md5 yolu) ise sorunsuz iniyor (istekler arası ≥ 12 sn). Openverse
+  (`tools/bg_ara.py`) yanıt vermedi. Playwright'ta `ignore_https_errors=True` gerekiyor (vekilin sertifikası).
+- **Taze oturumda 1 test düşer:** `test_short_youtube_aciklamasi_en_cok_uc_hashtag`, git'e girmeyen
+  `episodes/talidomit-turkiye/img/telifli/kanit_2_sdd_mobil.png`'yi arıyor. Kod hatası değil, ortam eksiği.
+- **Gerçek, hükmü kesinleşmiş ve sonradan ölmüş kişi:** adını videoda ve metinde verme. Kötü yüz kullanma (sakin ve
+  kendinden emin). İroniyi onun belgeli sözlerine dayanan repliklerle kur ("Eserleri ABD'den teslim alan benim" →
+  "O broşu Amerika'dan ben getirdim"). Metne giren alıntıyı birebir yaz; takipçi hakemi kısaltılmış alıntıyı MUST
+  saydı.
+
 ---
 
 ## 7. Uzun formata ne taşınır?
