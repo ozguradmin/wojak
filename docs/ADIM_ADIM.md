@@ -48,6 +48,16 @@ kod `wojak.config.load_secrets()` ile okur. Hiçbir dosyaya, loga, komut satır�
 Bulut oturumunda bu dosya konteynerle birlikte silinir: kalıcılık için anahtarlar **cloud environment → environment
 variables** bölümüne eklenir (GEREKENLER.md §1).
 
+**Yeni bulut oturumunda ilk iş (özel dosyalar):** lisanslı font ve ölçülen orijinal reel'ler hesap sahibinin Telegram
+sohbetinde bot mesajı olarak durur (21.10). Hesap sahibi `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` (ve büyük dosya için
+`TELEGRAM_API_ID`, `TELEGRAM_API_HASH`) değişkenlerini cloud environment ayarlarına ekler; dosya kimliklerini (file_id)
+yeni sohbetin isteminde verir. Sonra:
+
+```bash
+pip install -q py7zr multivolumefile
+python tools/ozel_indir.py '<istemdeki JSON>'      # -> assets/fonts/ozel/*.otf + referans/*.mp4 (75 reel)
+```
+
 **Repoda olmayan ama gereken üç yerel varlık** (herkese açık repoya girmez, konteyner sıfırlanınca kaybolur; hesap
 sahibinde özel bir yedeği bulunmalı):
 

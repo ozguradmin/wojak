@@ -3,9 +3,12 @@
 Read this first. Specs and lessons live in `docs/`; this file only points to them and lists the hard rules.
 **New to the project? Start with `docs/ADIM_ADIM.md`**: the step-by-step runbook for short reels and long videos.
 
-**Current status (15.10.2026):** the long `talidomit-turkiye` video is approved ("baya iyi olmuş beğendim").
-**Do not start a new video or fix an existing one until the ElevenLabs API key arrives.** The owner's instruction.
-The queued work is in `docs/YAYIN_PLANI.md` §4.
+**Current status (21.10.2026):** new **short reels may be produced now** (owner, 21.10): one topic at a time, never a topic
+the channel already did. **Long videos still wait for the ElevenLabs API key.** The long `talidomit-turkiye` is approved.
+Queued long-form work: `docs/YAYIN_PLANI.md` §4. YouTube got a violation: read `docs/YAYIN_PLANI.md` §0 before producing.
+The new signature music (our own, replacing `music: kanal`) is being made in another session; keep `music: kanal` for now
+and re-render when it lands on the default branch.
+**Fresh cloud session?** The licensed font and the reference reels are not in the repo: run `docs/ADIM_ADIM.md` §1.
 
 ## What this repo is
 
@@ -84,7 +87,7 @@ python -m pytest tests/ -q                        # or: python tests/test_uzun.p
 
 - No AI-generated images (16.10): backgrounds and evidence are real photos/documents (or our own flat drawings);
   characters are ready-made wojak drawings. `tools/gorsel_uret.py` and the SOL gateway are not used.
-- Wait for ElevenLabs before any new production or fix (15.10). Then follow `docs/YAYIN_PLANI.md` §4 in order.
+- Short reels: produce now (21.10). Long videos: wait for ElevenLabs, then follow `docs/YAYIN_PLANI.md` §4 in order.
 - Publishing plan: one topic every 2-3 days, 2-3 per week. The long video goes to YouTube at noon; the same topic's
   Shorts and Reels go out in the evening, and their descriptions point to the long video.
 - Long videos: no burned-in watermark from the ElevenLabs re-voice on (`filigran: false`; use the YouTube Studio branding

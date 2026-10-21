@@ -1,8 +1,11 @@
 # Yayın planı ve sıradaki işler
 
 > Hesap sahibiyle 15.10.2026'da konuşuldu. Plan sahibindir; ben üretip teslim ederim, paylaşımı hesap sahibi yapar
-> (CLAUDE.md "delivery flow"). **Yeni üretim ElevenLabs başvurusu sonuçlanınca başlar** (§4); o zamana kadar yeni video
-> ya da mevcut videoda düzeltme yok.
+> (CLAUDE.md "delivery flow"). **21.10 güncellemesi:** ElevenLabs cevabı gelmedi; **kısa reel'lerle şimdi başlanıyor**, uzun
+> video ElevenLabs gelince (§4). Yeni imza müziği ayrı bir oturumda yapılıyor; gelene kadar `music: kanal` kalır, gelince
+> bölümler yeniden render edilir. Elimizdeki onaylı videolar: 4 kısa (van-depremi-azra-bebek, canakkale-kayip-tabur,
+> kiz-kulesi-efsanesi, talidomit-turkiye) + 1 uzun (talidomit-turkiye-uzun; ses ElevenLabs ile yenilenecek). Dört kısa
+> eski kanal müziğini kullanıyor: YouTube'a yüklenmeden önce yeni müzikle yeniden render edilmeli (§0).
 
 ## 0. YouTube: sıfırdan başlangıç ve hedef (21.10.2026)
 
