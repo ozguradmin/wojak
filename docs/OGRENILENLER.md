@@ -30,6 +30,7 @@
 | 15.10 | Talidomit kısa reel'inin karakterleri de uzun videodaki kadar kaliteli olsun (yüz ifadeleri) | v2 karakterlerle B sürümü, görsel hakem orijinallerle karşılaştırır, seçim hesap sahibinin (YAYIN_PLANI §4.5) |
 | 21.10 | ElevenLabs cevabı gelmedi: **kısa videolarla başla**, uzun sonra. Yeni bölümler yeni sohbetlerde üretilecek | CLAUDE.md durum satırı güncellendi; yeni oturum özel dosyaları `tools/ozel_indir.py` ile Telegram'dan alır (ADIM_ADIM §1); kanalda yapılmış konu tekrar seçilmez |
 | 21.10 | Kanalın sevilen müziğinin bize ait, ihlal yedirmeyecek benzeri; videoya göre değişebilsin | `tools/imza_muzik.py`: aynı his (Do minör vals, legato kamış, gramofon), özgün melodi; 3 varyant `assets/music/imza_vals*.m4a`. Melodik benzerlik ölçülür (`--karsilastir`), orijinalin motifleri yasak |
+| 21.10 | Karun reel'inde **telifli Milliyet sayfa görüntüsü kullanılmayacak**; son kare telifsiz manşet kartı olsun (kendi sade kupür tasarımımız, gazetenin logosu/fontu/düzeni taklit edilmez, söz kaynakla birebir, altında "Kaynak: <gazete>, <tarih>") | Telifli sayfa yalnız B sürümü olarak saklanır. Kartta "X: ..." başlığını bir kişinin sözü gibi tırnağa alma: önce haber metnini oku (Karun: "Bakan Koç: Hırsız evin içindeymiş" gazetenin başlığıydı; bakan "Hırsız evin içinde mi?" sorusuna "Evet" demişti) |
 | 16.10 | "Görsel üretimi gerek yok, şu anki hâlini beğendim; gerçek görseller daha iyi" | Yapay zekâ ile görsel (arka plan, karakter, kanıt) üretilmez. Arka plan ve kanıt gerçek fotoğraf/belge ya da kendi düz çizimimiz; karakter hazır wojak. `tools/gorsel_uret.py` ve SOL ağ geçidi üretimde kullanılmaz |
 | 15.10 | Yayın planı: 2-3 günde bir konu; öğlen uzun video YouTube'a, akşam aynı konunun Shorts + Reels'i; açıklamalar uzun videoya yönlendirir | [`YAYIN_PLANI.md`](YAYIN_PLANI.md). **Yeni video ve düzeltme ElevenLabs başvurusu sonuçlanınca** başlar |
 
@@ -448,6 +449,10 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
   kendinden emin). İroniyi onun belgeli sözlerine dayanan repliklerle kur ("Eserleri ABD'den teslim alan benim" →
   "O broşu Amerika'dan ben getirdim"). Metne giren alıntıyı birebir yaz; takipçi hakemi kısaltılmış alıntıyı MUST
   saydı.
+- **Telifsiz manşet kartı** (`episodes/karun-hazinesi-bros/gorsel.py:kanit_2_kart`): 1080x760 kırık beyaz kâğıt (hafif
+  gren), iki ince siyah çizgi, Anton manşet (3 satır, mürekkep bloğu iki çizginin ortasında; ç/ş çengelleri ölçüye
+  dahil), Poppins 44 px kaynak satırı. Telefonda (390 px) manşet ve kaynak okunuyor; iki hakem 8/8. Fotoğrafsız
+  olduğu için gerçek kupürden bir tık zayıf: ileride CC bir fotoğrafla birleştirilebilir.
 
 ---
 

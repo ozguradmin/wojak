@@ -4,7 +4,7 @@ Süre: 14.0 sn · 6 sahne · video: `karun-hazinesi-bros.mp4` · kapak: `kapak.j
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 1790/2200
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 1933/2200
 
 ```
 Karun Hazinesi'nin en değerli parçası neden 9 gram ağır çıktı?
@@ -15,13 +15,13 @@ Lidya dönemine ait Karun Hazinesi, 1960'larda Uşak'ın Güre beldesi yakınlar
 
 Hazine 1990'ların ortasından itibaren Uşak'ta sergilendi. Valiliğe gelen isimsiz bir ihbarın ardından Mart 2006'da Kültür ve Turizm Bakanlığı'nın uzmanları broşu inceledi. Vitrindeki broşun sahte olduğu anlaşıldı: orijinali dövme tekniğiyle yapılmıştı, vitrindeki döküm ve 23,5 gramdı.
 
-Mayıs 2006'da gözaltına alınanlar arasında müzenin müdürü de vardı. Müdür, hazineyi Metropolitan'dan teslim alan heyette yer almıştı. İddianameye göre orijinali vitrinden alıp yerine sahtesini koydu, broş İstanbul'da alıcılar tarafından gasp edildi. Müdür 2009'da hapis cezasına çarptırıldı, karar 2012'de Yargıtay'da onandı. Broş 2012'de Almanya'da bulundu ve 2013'te Türkiye'ye geri getirildi.
+Mayıs 2006'da gözaltına alınanlar arasında müzenin müdürü de vardı. Kültür ve Turizm Bakanı Atilla Koç da broşun sahtesiyle değiştirildiğini doğruladı ve hırsızın içeriden olduğunu kabul etti. Müdür, hazineyi Metropolitan'dan teslim alan heyette yer almıştı. İddianameye göre orijinali vitrinden alıp yerine sahtesini koydu, broş İstanbul'da alıcılar tarafından gasp edildi. Müdür 2009'da hapis cezasına çarptırıldı, karar 2012'de Yargıtay'da onandı. Broş 2012'de Almanya'da bulundu ve 2013'te Türkiye'ye geri getirildi.
 
 Hazineyi kazan köylülerin başına felaketler geldiği anlatılır; halk arasında bu yüzden "Karun'un laneti" denir. Müdür de köylülerin kendisine "Müdürüm, Karun'un laneti sizi de tutar" dediğini, ama buna inanmadığını anlatmıştı.
 
 Sizce Karun'un laneti gerçek mi, yoksa hepsi bir tesadüf mü?
 
-Görseller: Canercangul (Bursa Arkeoloji Müzesi) ve Dosseman (Uşak Müzesi'ndeki sahte broş, 2012), Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Milliyet, 31.05.2006
+Görseller: Canercangul (Bursa Arkeoloji Müzesi) ve Dosseman (Uşak Müzesi'ndeki sahte broş, 2012), Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); son karedeki söz: Milliyet, 31.05.2006
 ```
 
 ## YouTube Shorts
@@ -38,12 +38,12 @@ Karun Hazinesi'nin en değerli parçası neden 9 gram ağır çıktı?
 Karun Hazinesi'nin Kanatlı Denizatı Broşu (Uşak, 2006)
 Olayın tamamı sabit yorumda 👇
 
-Görseller: Canercangul (Bursa Arkeoloji Müzesi) ve Dosseman (Uşak Müzesi'ndeki sahte broş, 2012), Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Milliyet, 31.05.2006
+Görseller: Canercangul (Bursa Arkeoloji Müzesi) ve Dosseman (Uşak Müzesi'ndeki sahte broş, 2012), Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); son karedeki söz: Milliyet, 31.05.2006
 
 #karunhazinesi #uşak #shorts
 ```
 
-### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1545 karakter
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1670 karakter
 
 ```
 Kanatlı Denizatı Broşu olayı ya da Karun soygunu, 2006 yılında Uşak Arkeoloji Müzesi'nde Karun Hazinesi'nin en değerli parçasının sahtesiyle değiştirildiğinin ortaya çıktığı olaydır.
@@ -52,7 +52,7 @@ Lidya dönemine ait Karun Hazinesi, 1960'larda Uşak'ın Güre beldesi yakınlar
 
 Hazine 1990'ların ortasından itibaren Uşak'ta sergilendi. Valiliğe gelen isimsiz bir ihbarın ardından Mart 2006'da Kültür ve Turizm Bakanlığı'nın uzmanları broşu inceledi. Vitrindeki broşun sahte olduğu anlaşıldı: orijinali dövme tekniğiyle yapılmıştı, vitrindeki döküm ve 23,5 gramdı.
 
-Mayıs 2006'da gözaltına alınanlar arasında müzenin müdürü de vardı. Müdür, hazineyi Metropolitan'dan teslim alan heyette yer almıştı. İddianameye göre orijinali vitrinden alıp yerine sahtesini koydu, broş İstanbul'da alıcılar tarafından gasp edildi. Müdür 2009'da hapis cezasına çarptırıldı, karar 2012'de Yargıtay'da onandı. Broş 2012'de Almanya'da bulundu ve 2013'te Türkiye'ye geri getirildi.
+Mayıs 2006'da gözaltına alınanlar arasında müzenin müdürü de vardı. Kültür ve Turizm Bakanı Atilla Koç da broşun sahtesiyle değiştirildiğini doğruladı ve hırsızın içeriden olduğunu kabul etti. Müdür, hazineyi Metropolitan'dan teslim alan heyette yer almıştı. İddianameye göre orijinali vitrinden alıp yerine sahtesini koydu, broş İstanbul'da alıcılar tarafından gasp edildi. Müdür 2009'da hapis cezasına çarptırıldı, karar 2012'de Yargıtay'da onandı. Broş 2012'de Almanya'da bulundu ve 2013'te Türkiye'ye geri getirildi.
 
 Hazineyi kazan köylülerin başına felaketler geldiği anlatılır; halk arasında bu yüzden "Karun'un laneti" denir. Müdür de köylülerin kendisine "Müdürüm, Karun'un laneti sizi de tutar" dediğini, ama buna inanmadığını anlatmıştı.
 
@@ -61,7 +61,7 @@ Sizce Karun'un laneti gerçek mi, yoksa hepsi bir tesadüf mü?
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 1855/4000
+### Açıklama — 1998/4000
 
 ```
 Karun Hazinesi'nin en değerli parçası neden 9 gram ağır çıktı?
@@ -72,20 +72,19 @@ Lidya dönemine ait Karun Hazinesi, 1960'larda Uşak'ın Güre beldesi yakınlar
 
 Hazine 1990'ların ortasından itibaren Uşak'ta sergilendi. Valiliğe gelen isimsiz bir ihbarın ardından Mart 2006'da Kültür ve Turizm Bakanlığı'nın uzmanları broşu inceledi. Vitrindeki broşun sahte olduğu anlaşıldı: orijinali dövme tekniğiyle yapılmıştı, vitrindeki döküm ve 23,5 gramdı.
 
-Mayıs 2006'da gözaltına alınanlar arasında müzenin müdürü de vardı. Müdür, hazineyi Metropolitan'dan teslim alan heyette yer almıştı. İddianameye göre orijinali vitrinden alıp yerine sahtesini koydu, broş İstanbul'da alıcılar tarafından gasp edildi. Müdür 2009'da hapis cezasına çarptırıldı, karar 2012'de Yargıtay'da onandı. Broş 2012'de Almanya'da bulundu ve 2013'te Türkiye'ye geri getirildi.
+Mayıs 2006'da gözaltına alınanlar arasında müzenin müdürü de vardı. Kültür ve Turizm Bakanı Atilla Koç da broşun sahtesiyle değiştirildiğini doğruladı ve hırsızın içeriden olduğunu kabul etti. Müdür, hazineyi Metropolitan'dan teslim alan heyette yer almıştı. İddianameye göre orijinali vitrinden alıp yerine sahtesini koydu, broş İstanbul'da alıcılar tarafından gasp edildi. Müdür 2009'da hapis cezasına çarptırıldı, karar 2012'de Yargıtay'da onandı. Broş 2012'de Almanya'da bulundu ve 2013'te Türkiye'ye geri getirildi.
 
 Hazineyi kazan köylülerin başına felaketler geldiği anlatılır; halk arasında bu yüzden "Karun'un laneti" denir. Müdür de köylülerin kendisine "Müdürüm, Karun'un laneti sizi de tutar" dediğini, ama buna inanmadığını anlatmıştı.
 
 Sizce Karun'un laneti gerçek mi, yoksa hepsi bir tesadüf mü?
 
-Görseller: Canercangul (Bursa Arkeoloji Müzesi) ve Dosseman (Uşak Müzesi'ndeki sahte broş, 2012), Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Milliyet, 31.05.2006
+Görseller: Canercangul (Bursa Arkeoloji Müzesi) ve Dosseman (Uşak Müzesi'ndeki sahte broş, 2012), Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); son karedeki söz: Milliyet, 31.05.2006
 
 #karunhazinesi #uşak #wojak #tarihselwojak #keşfet #olay #gizem
 ```
 
 ## Yükleme kontrol listesi
 
-- [ ] **Lisans kararı senin:** son kanıt `kanit_2_milliyet_310506.jpg` (12,0-14,0 sn) telifli: Milliyet gazetesinin 31 Mayıs 2006 tarihli birinci sayfasının sol üstündeki haber (Milliyet Gazete Arşivi'nden; üst başlık "Karun soygunu dış basında", manşet "DÜNYAYA REZİL OLDUK", broş fotoğrafı, The Times spotu ve "Bakan Koç: Hırsız evin içindeymiş" kutusu). Yalnız kırpıp büyüttük, başka değişiklik yok; açıklamadaki "Görseller" satırında Milliyet adı var. Kanal altın dönemde de son görsel olarak gazete/haber başlığı kullanıyordu. YouTube'da telif riski taşır (YAYIN_PLANI §0): Özel yükleyip Kontroller adımını bekle. İstemezsen iki yedek: (1) yine telifli ama daha çarpıcı manşet: Milliyet 20.04.2006 "KARUN HAZİNESİ SOYULDU" ("... çaldılar, yerine sahtesini koydular"; `img/telifli/kanit_yedek_milliyet_200406.jpg`, 1080 genişlik); müdürü göstermez, cevabın yarısını verir. (2) izin gerektirmeyen: son kanıtı çıkarıp yalnız sahte broş fotoğrafıyla (CC BY-SA) 2,0 sn bitirmek; o zaman "müdür" cevabı videoda kalmaz, yalnız açıklamada olur ve `credits`'ten "Milliyet, 31.05.2006" çıkar. Söyle, değiştirip yeniden render ederim
 - [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
 - [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
 - [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
@@ -95,6 +94,7 @@ Görseller: Canercangul (Bursa Arkeoloji Müzesi) ve Dosseman (Uşak Müzesi'nde
 - [ ] **YouTube: yükledikten sonra Kontroller adımını kontrol et** (önce Özel yükle; telif ve reklam uygunluğu kontrolü bitince zamanla/yayınla, YAYIN_PLANI §0)
 - [ ] **Gerçek kişi:** dönemin müze müdürü videoda ve açıklamada adsız (hüküm 2012'de kesinleşti, kendisi sonradan vefat etti; ailesi yaşıyor). Yorumlarda ad, aile ya da hakaret içeren yorumları sil; ölünün hatırasına hakaret riski. Gizli kelimeler listesi sohbette
 - [ ] **Video bir canlandırmadır:** müfettiş adsız; incelemede tartma sahnesi canlandırma (ağırlık farkı bilirkişi raporunda: 14,3 g / 23,5 g). Müdürün replikleri kendi belgeli sözlerine dayanır ("Eserleri ABD'den teslim alan benim", "Eserler benim üzerime zimmetli")
+- [ ] **Son kare kendi kartımız:** "Bakan Koç: Hırsız evin içindeymiş" Milliyet'in 31.05.2006 birinci sayfa başlığıdır (birebir); bakanın kendi cevabı "Hırsız evin içinde mi?" sorusuna "Evet". Yorumlarda "bakan böyle demedi" gelirse açıklamadaki cümle esastır
 - [ ] İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): "Uşak'tan takip eden var mı? Broşu müzede gördünüz mü?"
 
 Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
@@ -119,13 +119,15 @@ Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
 - Aktüel Arkeoloji — Kanatlı Denizatı! (14,3 g, 3,4 cm; Essen savcılığı incelemesi, Kasım 2012): https://aktuelarkeoloji.com.tr/kategori/blog/kanatli-denizati
 - Sabah Pazar, 23.09.2018 — Kanatlı Denizatı'nın 2 bin 500 yıllık film gibi öyküsü (müdürün savunması: 'Eserleri ABD'den teslim alan benim... Karun'un laneti sizi de tutar derlerdi'; Hagen 2012; Mart 2013 iade): https://www.sabah.com.tr/pazar/2018/09/23/kanatli-denizatinin-2-bin-500-yillik-film-gibi-oykusu · aynı metin Fikriyat: https://www.fikriyat.com/kultur-sanat/2018/09/23/kanatli-denizatinin-film-gibi-oykusu
 - Ege'de Son Söz, 22.11.2012 — Kanatlı Denizatı Broşu Uşak'a dönüyor (sahte isimle ihbar; müdürün aynı sözleri; lanet anlatısı): https://www.egedesonsoz.com/kanatli-denizati-brosu-usaka-donuyor
+- Bakan Koç (hikâye metni + son kart): Vatan 29.05.2006 'Dokunan yanıyor!' (Kültür ve Turizm Bakanı Atilla Koç sahteyi doğruladı; 'Malesef içteki insanı koruyan bir alet bulunamadı'): https://www.gazetevatan.com/gundem/dokunan-yaniyor-78834 · Milliyet 31.05.2006 1. sayfa kutu: 'Kültür Bakanı Atilla Koç ... Hırsız evin içinde mi? sorusuna Evet yanıtını verdi', başlık 'Bakan Koç: Hırsız evin içindeymiş': https://gazetearsivi.milliyet.com.tr/Arsiv/2006/05/31
 - Vatan, 30.05.2006 — Türkiye'nin Karun utancı (dış basın; Scotsman'da müdürün 'lanetli olduğuna inanmamıştım' sözü): https://www.gazetevatan.com/gundem/turkiyenin-karun-utanci-78949 · Vatan — Dokunan yanıyor! (isimsiz ihbar, 8 kamera, hazine müdüre zimmetliydi): https://www.gazetevatan.com/gundem/dokunan-yaniyor-78834
 - Hürriyet — Kanatlı Denizatı Broşu nedir? (14,3 g; 2013 iadesi): https://www.hurriyet.com.tr/gundem/kanatli-denizati-brosu-nedir-40996056
 - AA — Karun Hazineleri yeni müzesinde (2005'te sahtesiyle değiştirildi, Almanya'dan iade): https://www.aa.com.tr/tr/kultur-sanat/karun-hazineleri-yeni-muzesinde/1136587
 - Müdürün vefatı (adı videoda ve metinde yok; ada içeren adresler bilerek yazılmadı): Ege'de Yeni Gün — Uşak'ta skandallara konu olan hazine Netflix dizisi oluyor ('merhum müze müdürü'): https://www.egedeyenigun.com/usakta-skandallara-konu-olan-hazine-netflix-dizisi-oluyor
 - GÖRSEL img/arka_muze.jpg (tüm diyalog) — 'Bursa Arkeoloji Müzesi (2).jpg', Canercangul, 09.07.2023, Wiki Loves Monuments Turkey, CC BY-SA 4.0 (Commons dosya sayfasında doğrulandı 21.10.2026), https://creativecommons.org/licenses/by-sa/4.0/ : https://commons.wikimedia.org/wiki/File:Bursa_Arkeoloji_M%C3%BCzesi_(2).jpg . Değişiklikler: kare kırpım x 480-2080 (vitrin ortada), 1080x1080, doygunluk x0,45, parlaklık x1,20. Olayın gerçek yeri değil: 'aynı türden yer' (Uşak Müzesi'nin serbest lisanslı geniş açı fotoğrafı bulunamadı)
 - GÖRSEL img/kanit_1_sahte_bros.jpg (kanıt 1, 10,5-12,0 sn) — 'Uşak Winged Karun Treasure fake seahorse brooch 2303.jpg', Dosseman, 17.06.2012, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/ : https://commons.wikimedia.org/wiki/File:U%C5%9Fak_Winged_Karun_Treasure_fake_seahorse_brooch_2303.jpg . Yükleyenin notu: çekildiği sırada vitrinde duran SAHTE broş (orijinali dönemin müdürü satmıştı). Değişiklikler (gorsel.py): y 195-2045 kırpım, 955x1080; iki yandaki ~63 px aynı fotoğrafın broşsuz sağ kenarındaki kumaşla dolduruldu (8 px geçiş), 1080x1080; broş piksellerine dokunulmadı
-- GÖRSEL img/telifli/kanit_2_milliyet_310506.jpg (kanıt 2, son görsel, 12,0-14,0 sn; TELİFLİ, git'e girmez) — Milliyet, 31.05.2006, 1. sayfa (Milliyet Gazete Arşivi: https://gazetearsivi.milliyet.com.tr/Arsiv/2006/05/31); kare kırpım (22,1085)-(732,1795) (haberin krem kutusu + iki yandaki sayfa beyazı), 1080x1080; başka değişiklik yok
+- GÖRSEL img/kanit_2_kart.jpg (kanıt 2, son görsel, 12,0-14,0 sn; A sürümü) — kendi manşet kartımız (gorsel.py:kanit_2_kart): kırık beyaz düz kâğıt, ince siyah çizgiler, Anton (SIL OFL) manşet, Poppins (SIL OFL) kaynak satırı; 1080x760. Milliyet logosu/yazı karakteri/düzeni kullanılmadı. Söz Milliyet 31.05.2006 1. sayfa kutu başlığıyla birebir; bakanın adı ve unvanı: Milliyet aynı kutu metni ('Kültür Bakanı Atilla Koç ... "Hırsız evin içinde mi?" sorusuna "Evet" yanıtını verdi') ve Vatan 29.05.2006 ('Kültür ve Turizm Bakanı Atilla Koç'): https://gazetearsivi.milliyet.com.tr/Arsiv/2006/05/31 , https://www.gazetevatan.com/gundem/dokunan-yaniyor-78834
+- B SÜRÜMÜ (videoda yok, TELİFLİ, git'e girmez): img/telifli/kanit_2_milliyet_310506.jpg — Milliyet, 31.05.2006, 1. sayfa (Milliyet Gazete Arşivi: https://gazetearsivi.milliyet.com.tr/Arsiv/2006/05/31); kare kırpım (22,1085)-(732,1795) (haberin krem kutusu + iki yandaki sayfa beyazı), 1080x1080; başka değişiklik yok
 - YEDEK (videoda yok, TELİFLİ): img/telifli/kanit_yedek_milliyet_200406.jpg — Milliyet, 20.04.2006, 1. sayfa manşeti 'KARUN HAZİNESİ SOYULDU' (https://gazetearsivi.milliyet.com.tr/Arsiv/2006/04/20); kırpım (390,697)-(1313,1560)
 - KARAKTER A müfettiş (sol): wojakland 'Grey Suit Wojak' https://wojakland.com/gmedia/grey_suit_wojak-png/ (chars/kaynak/mufettis_kaynak.png; mufettis_sakin.png = kaynağın kendisi). Ters köşe mufettis_sok.png: aynı çizim ve kutu; kaşlar, gözler, ağız ve alttaki alın kırışığı silinip aynı çizgi kalınlığında yeniden çizildi (kalkık kaşlar, iri açık gözler, küçük açık ağız) + 2 ter damlası (tools/kit_varyant.py)
 - KARAKTER B müze müdürü (sağ): HF clayshoaf/Wojaks (wojakparadise arşivi) 5_Doomer/13657 'Brownic Office Doomer Wojak, 2000-2010' (chars/kaynak/mudur_kaynak.png). Camların içindeki yorgun gözler, göz altı çizgileri ve mor ton silindi; yerine sakin klasik gözler çizildi (çerçeve, bıyık, saç, takım aynen)
