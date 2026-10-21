@@ -1,6 +1,10 @@
 # karun-hazinesi-bros: üretim raporu (21.10.2026, A sürümü: telifsiz)
 
-> **Güncelleme (21.10.2026, 2. oturum turu):** Hesap sahibi telifli Milliyet sayfa görüntüsünü kullanmama kararı verdi. Son kare
+> **Güncelleme 2 (21.10.2026, 3. tur):** Düz manşet kartı hesap sahibinden 1/10 aldı ("alıntı kartı gibi, gerçekçi değil").
+> Son kare, telefonda gerçek gazete kupürü sanılacak kalitede, kendi tasarımımız olan bir kupürle değiştirildi (`kupur.py`).
+> `son_kare.jpg` bu karedir. Telifli B sürümü `karun-hazinesi-bros_telifli.mp4` olarak duruyor.
+>
+> **Güncelleme 1 (21.10.2026, 2. oturum turu):** Hesap sahibi telifli Milliyet sayfa görüntüsünü kullanmama kararı verdi. Son kare
 > telifsiz kendi manşet kartımızla değiştirildi (A sürümü). Eski telifli video outputs'ta
 > `karun-hazinesi-bros_telifli.mp4` adıyla duruyor (B sürümü).
 
@@ -34,7 +38,7 @@ Kanalda yapılmadığını kontrol ettim: `data/videos.csv` (223 başlık), `dat
 | 6,0-8,0 | Müdür (aynı yüz) | Buyrun tartın, o bana emanet |
 | 8,0-10,5 | Müfettiş, aynı kutu, **şok yüzü + ter** | Bekle, bu broş neden / bu kadar ağır? |
 | 10,5-12,0 | Kanıt 1 | Vitrindeki SAHTE broşun fotoğrafı (Uşak, 2012; CC BY-SA 4.0) |
-| 12,0-14,0 | Kanıt 2 | **Kendi manşet kartımız** (1080x760, kırık beyaz kâğıt, Anton): "Bakan Koç: / Hırsız evin / içindeymiş" + "Kaynak: Milliyet, 31.05.2006". B sürümünde (telifli) Milliyet sayfasının kendisi vardı |
+| 12,0-14,0 | Kanıt 2 | **Kendi gazete kupürümüz** (1080x810): üst başlık "Bakan Koç:", manşet "Hırsız evin içindeymiş", spot "Kültür ve Turizm Bakanı Atilla Koç"; altında "Kaynak: Milliyet, 31.05.2006". B sürümünde (telifli) Milliyet sayfasının kendisi vardı |
 
 ## Hakem puanları
 
@@ -47,7 +51,9 @@ yan yana sayfa, kare farkıyla kesme tespiti, telefon boyu (390 px), ebur128.
 | 1 | 8 | 7,5 | 2 olgu: ihbarın tarihi (2006 başı değil, 2005 sonu) ve müdürün alıntısı (kısaltılmıştı) |
 | 2 | **8** | **8** | yok |
 | A-1 (kart) | 8 | 7,5 | 1: hikâye metnine eklenen "'Hırsız evin içinde mi?' sorusuna 'Evet'" cümlesi tek kaynaklıydı |
-| **A-2 (kart)** | **8** | **8** | yok |
+| A-2 (kart) | 8 | 8 | yok (hesap sahibi karta 1/10 verdi) |
+| K-1 (kupür) | 8 (gerçekçilik 8) | 7,5 (gerçekçilik 8) | 1: açıklamadaki atıf satırı kupürün canlandırma olduğunu söylemiyordu |
+| **K-2 (kupür)** | **8 (gerçekçilik 8,5)** | **8 (gerçekçilik 8)** | yok |
 
 Düzeltmeler:
 - 1. turdan sonra: ihbar cümlesi kaynakla uyumlu hâle geldi ("isimsiz ihbarın ardından Mart 2006'da"). Alıntı
@@ -64,7 +70,51 @@ Düzeltmeler:
 - Karakter boyu 0,48; telefon boyunda yüz değişimi %0,58 (C4V3: %0,60-1,01).
 - Filigran her karede.
 
-### Kart turu (A sürümü)
+### Kupür turu (A sürümü, son hâli)
+
+**Gerçek görüntü araması:** Serbest lisanslı bir görüntü bulunamadı.
+- Wikimedia Commons'ta dosya ve kategori aramaları: "Karun hazinesi gazete", "Milliyet 2006 Karun", "Lydian hoard
+  newspaper", "Karun Hazinesi", "hırsız evin içindeymiş", "Kanatlı denizatı broşu". Yalnız ilgisiz eski PDF'ler ve
+  müze fotoğrafları çıktı.
+- Milliyet Gazete Arşivi, Hürriyet ve Vatan web sayfaları: hepsi telifli.
+- Kültür ve Turizm Bakanlığı: 2006 haberine ait serbest lisanslı bir yayın yok.
+- Openverse bu ortamdan yanıt vermedi.
+
+**Tasarım ölçüleri** (`episodes/karun-hazinesi-bros/kupur.py`, 2 sn'de üretilir)
+- **Görsel:** 1080x810, y=960'a ortalı (kanıt alanı y 555-1365), tam genişlik.
+- **Kupür:** 1000x660, −1,4° eğik.
+  - Kenarlar: üst kenar elle yırtılmış (rastgele yürüyüş, lif beyazlığı), diğer üç kenar hafif dalgalı makas kesimi.
+  - Gölge: koyu ahşap/keçe dokulu yüzeyde (7, 11) px kaymalı, 10 px bulanık, %62.
+  - Işık: kupürde kıvrılma ışığı var (sol üst aydınlık, sağ kenar gölgeli).
+- **Kâğıt:** taban rengi (222, 211, 184).
+  - Gren ve lekeler: iri lekeler ±6, ince leke ±3, gren σ4,5.
+  - Kâğıt dokusu: 900 açık/koyu lif çizgisi, kenarlarda sararma, sağ altta soluk bir leke, hafif bir katlanma izi.
+- **Tipografi** (fontlar SIL OFL, `fonts/` klasöründe lisans metinleriyle):
+  - Üst başlık "Bakan Koç:": Libre Franklin 800, 30 px, altında kısa çizgi.
+  - Ana manşet "Hırsız evin / içindeymiş": Libre Franklin 900, 128 px, iki satır.
+  - Spot "Kültür ve Turizm Bakanı Atilla Koç": Source Serif 4, 600 ağırlık, 33 px.
+  - Spotun altında sütun genişliğinde çizgi.
+- **Baskı izi:** mürekkep dağılması (0,7 px bulanıklık ve eşik), düzensiz mürekkep yoğunluğu.
+- **Fotoğraf:** raster (45°, 4,2 px hücre); kaynak sahte broş fotoğrafı (CC BY-SA). Altın ve mavi aynı griye
+  düşmesin diye sarı-mavi farkından gri ton üretildi.
+- **Sütunlar:**
+  - Solda ve sağda kesik komşu sütunlar, aralarında ince sütun çizgileri.
+  - Gövde iki sütun ve fotoğraf altı yazısı. Bunlar rastgele harf dizilerinden çizilip okunamayacak kadar
+    bulanıklaştırıldı (2,0-2,3 px); okunabilir uydurma metin yok.
+- **Yayın adı:** yalnız kupürün altında, yüzeyin üstünde. "Kaynak: Milliyet, 31.05.2006", Libre Franklin 600,
+  30 px, açık gri.
+- **Ölçüt:** Commons'taki gerçek kupür fotoğraflarıyla telefon boyunda (390 px) yan yana koydum: "Alas de libertad"
+  – El Comercio 1996 (CC BY 4.0), Allgäuer Zeitung 1966, Le Point. Kanalın C2kk kupürü de kıyasa girdi.
+
+**Bilinen kusurlar (kupür):**
+- Gerçek fotoğraf perspektifi yok; düz taranmış gibi duruyor.
+- Manşet mürekkebi gövde dokusundan daha keskin.
+- Yüzeydeki yatay lif bantları yakından bakınca düzenli görünebilir.
+
+**Şeffaflık:** Açıklamadaki "Görseller" satırı "son kare kupür canlandırmasıdır, söz Milliyet 31.05.2006 birinci
+sayfa başlığından" diyor. `ek_maddeler`'de de canlandırma notu var. Instagram açıklaması 2.174/2.200 karakter.
+
+### Kart turu (A sürümü, eski; yerini kupüre bıraktı)
 
 **Kartın son metni**
 - Manşet (3 satır): "Bakan Koç:" / "Hırsız evin" / "içindeymiş"
@@ -100,7 +150,7 @@ kelime, 1.841 karakter; Instagram açıklaması 2.122/2.200.
   lisanslı geniş açı fotoğrafı yok.
 - Kanıt 1'in iki yanındaki ~63 px, aynı fotoğrafın broşsuz kenarındaki kumaşla dolduruldu (broşun piksellerine
   dokunulmadı). Yakından bakılırsa kumaş deseninde hafif bir ek yeri görülebilir.
-- Son kart fotoğrafsız. Altın dönemin gerçek kupürlerine göre biraz daha "alıntı kartı" gibi duruyor; hakem notu COULD.
+- Son kare kendi kupür canlandırmamız; bilinen kusurları yukarıda, "Kupür turu" bölümünde.
 - Müdür çiziminin kaynağı düşük çözünürlüklü (504x544). Ekranda yaklaşık 1:1 görünüyor, yumuşaklık fark edilmiyor.
 - İnceleme sırasında broşun tartılması bir canlandırma. Ağırlık farkı belgeli (bilirkişi raporu). Müdürün o gün
   odada olup olmadığı bilinmiyor; `ek_maddeler`'de "canlandırma" diye yazıyor.
@@ -115,7 +165,8 @@ kelime, 1.841 karakter; Instagram açıklaması 2.122/2.200.
 |---|---|---|---|
 | `img/arka_muze.jpg` (diyalog arka planı) | Wikimedia Commons, "Bursa Arkeoloji Müzesi (2).jpg", Canercangul, 2023 | CC BY-SA 4.0 (atıf açıklamada) | A ve B |
 | `img/kanit_1_sahte_bros.jpg` (kanıt 1) | Wikimedia Commons, "Uşak Winged Karun Treasure fake seahorse brooch 2303.jpg", Dosseman, 2012 | CC BY-SA 4.0 (atıf açıklamada) | A ve B |
-| `img/kanit_2_kart.jpg` (kanıt 2, son kare) | Kendi tasarımımız; söz: Milliyet 31.05.2006 1. sayfa başlığı | Bize ait; fontlar Anton ve Poppins (SIL OFL) | **A telifsiz** |
+| `img/kanit_2_kupur.jpg` (kanıt 2, son kare) | Kendi kupür tasarımımız (`kupur.py`); söz: Milliyet 31.05.2006 1. sayfa başlığı; içindeki raster fotoğraf: Dosseman (Commons) | Bize ait; fontlar Libre Franklin ve Source Serif 4 (SIL OFL); raster fotoğraf CC BY-SA 4.0 | **A telifsiz** |
+| `img/kanit_2_kart.jpg` (eski düz kart, artık yok) | Kendi tasarımımız | Bize ait (Anton, Poppins; SIL OFL) | kullanılmıyor (1/10) |
 | `img/telifli/kanit_2_milliyet_310506.jpg` (kanıt 2, son kare) | Milliyet, 31.05.2006, 1. sayfa (Milliyet Gazete Arşivi) | Telifli; hesap sahibi kullanmama kararı verdi | **B telifli** (`karun-hazinesi-bros_telifli.mp4`) |
 | `img/telifli/kanit_yedek_milliyet_200406.jpg` (videoda yok) | Milliyet, 20.04.2006, 1. sayfa | Telifli | yedek, kullanılmıyor |
 | Karakterler (`chars/*.png`) | wojakland "Grey Suit Wojak"; HF clayshoaf 5_Doomer/13657 | Kanalın olağan wojak kaynakları | A ve B |
@@ -141,9 +192,16 @@ Videoda (A) telifli görsel kalmadı; `paylasim.md`'de lisans maddesi yok.
 | Kart turu: 2 hakem turu + metin düzeltmesi | ~1 dk |
 | Kart turu: §4, ders notu, rapor, outputs, commit | ~2 dk |
 | **Kart turu toplamı** | **~6 dk** (21:52 → 21:58 UTC, saat damgalarıyla) |
+| Kupür turu: gerçek görüntü araması (Commons) | ~2 dk |
+| Kupür turu: font + ölçüt kupürleri indirme | ~2 dk |
+| Kupür turu: kupür betiği + 5 yineleme | ~5 dk |
+| Kupür turu: yaml, check, render, teslim, 2 hakem turu | ~2 dk |
+| Kupür turu: teslim, wojak-ozel, ders belgesi, commit | ~15 dk |
+| **Kupür turu toplamı** | **~26 dk** (22:16 → ~22:42 UTC) |
 
 ## Yaklaşık maliyet
 
+- **Kupür turu:** ücretli API 0; font indirme ücretsiz (Google Fonts, OFL); model kullanımı kabaca **5-12 USD** (tahmin; birkaç tam çözünürlüklü görsel incelemesi ve uzun belge yazımı).
 - **Kart turu:** ücretli API 0; render 3 kez (her biri ~8 sn CPU); model kullanımı kabaca **2-5 USD** (tahmin).
 
 İlk teslim:

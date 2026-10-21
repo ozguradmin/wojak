@@ -6,7 +6,7 @@ Ham dosyalar .cache/karun-hazinesi-bros/ altına iner (git'e girmez; Wikimedia i
 Çıktılar:
   img/arka_muze.jpg                        diyalog arka planı (CC BY-SA 4.0, Canercangul)
   img/kanit_1_sahte_bros.jpg               kanıt 1: 2012'de Uşak Müzesi vitrinindeki SAHTE broş (CC BY-SA 4.0, Dosseman)
-  img/kanit_2_kart.jpg                     kanıt 2 (A sürümü, telifsiz): kendi manşet kartımız, söz Milliyet 31.05.2006
+  img/kanit_2_kupur.jpg                    kanıt 2 (A sürümü, telifsiz): kupur.py üretir (kendi gazete kupürü tasarımımız)
   img/telifli/kanit_2_milliyet_310506.jpg  B sürümü (kullanılmıyor): Milliyet 31.05.2006 birinci sayfa haberi (TELİFLİ)
   img/telifli/kanit_yedek_milliyet_200406.jpg  yedek: Milliyet 20.04.2006 manşeti "KARUN HAZİNESİ SOYULDU" (TELİFLİ)
 """
@@ -115,54 +115,6 @@ def kanit_2():
     im.save(IMG / "telifli" / "kanit_2_milliyet_310506.jpg", quality=93)
 
 
-def kanit_2_kart():
-    """A sürümü son kare (hesap sahibi 21.10.2026: telifli sayfa görüntüsü yok). Sade, kendi kupür kartımız:
-    düz kırık beyaz kâğıt (hafif grenli), üstte ve altta ince siyah çizgi, Anton manşet (SIL OFL), Poppins kaynak
-    satırı (SIL OFL). Milliyet'in logosu, yazı karakteri, rengi ve sayfa düzeni kullanılmaz.
-    Söz, kaynaktaki başlıkla birebir: "Bakan Koç: Hırsız evin içindeymiş" (Milliyet, 31.05.2006, 1. sayfa kutu
-    başlığı). Haber metnine göre Kültür ve Turizm Bakanı Atilla Koç "Hırsız evin içinde mi?" sorusuna "Evet" dedi;
-    cümle bakanın birebir sözü olmadığı için tırnak içinde verilmez, gazetenin başlığı olarak verilir.
-    1080x760 (STIL §8: tam genişlik, 537-816 px yükseklik), y=960'a ortalanır."""
-    from PIL import ImageDraw, ImageFont
-    W, H = 1080, 760
-    rng = np.random.default_rng(31)
-    kagit = np.full((H, W, 3), (241, 238, 230), np.float32)
-    kagit += rng.normal(0, 3.2, (H, W, 1))                       # gren
-    yy, xx = np.mgrid[0:H, 0:W]
-    kagit -= (((xx - W / 2) / (W / 2)) ** 2 + ((yy - H / 2) / (H / 2)) ** 2)[..., None] * 9   # kenarda hafif sararma
-    im = Image.fromarray(np.clip(kagit, 0, 255).astype(np.uint8))
-    d = ImageDraw.Draw(im)
-    ink = (22, 22, 22)
-    fonts = ROOT / "assets" / "fonts"
-    d.rectangle([70, 62, W - 70, 68], fill=ink)
-    d.rectangle([70, H - 128, W - 70, H - 125], fill=ink)
-    satirlar = ["Bakan Koç:", "Hırsız evin", "içindeymiş"]
-    ust, alt, pay = 68, H - 128, 34                               # çizgiler arası alan, iç boşluk
-
-    def yerlesim(boy):
-        f = ImageFont.truetype(str(fonts / "Anton-Regular.ttf"), boy)
-        aralik = round(boy * 1.06)
-        kutular = [d.textbbox((W / 2, i * aralik), t, font=f, anchor="ms") for i, t in enumerate(satirlar)]
-        y_ust = min(k[1] for k in kutular)
-        y_alt = max(k[3] for k in kutular)                       # ç/ş çengelleri dahil gerçek mürekkep
-        gen = max(k[2] - k[0] for k in kutular)
-        return f, aralik, y_ust, y_alt, gen
-
-    boy = 200
-    while True:
-        f, aralik, y_ust, y_alt, gen = yerlesim(boy)
-        if gen <= W - 180 and (y_alt - y_ust) <= (alt - ust) - 2 * pay:
-            break
-        boy -= 2
-    kay = ust + ((alt - ust) - (y_alt - y_ust)) / 2 - y_ust      # mürekkep bloğu iki çizginin tam ortasında
-    for i, t in enumerate(satirlar):
-        d.text((W / 2, kay + i * aralik), t, font=f, fill=ink, anchor="ms")
-    fk = ImageFont.truetype(str(fonts / "Poppins-Bold.ttf"), 44)
-    d.text((W / 2, H - 64), "Kaynak: Milliyet, 31.05.2006", font=fk, fill=(70, 70, 70), anchor="mm")
-    print("kanıt 2 kart:", im.size, "manşet punto", boy)
-    im.save(IMG / "kanit_2_kart.jpg", quality=94)
-
-
 def yedek():
     """Milliyet 20.04.2006, 1. sayfa manşeti: 'SKANDAL: NE KORUMA VAR NE DE ALARM / KARUN HAZİNESİ SOYULDU' + spot
     ('... Kanatlı Denizatı Broşu'nu çaldılar, yerine sahtesini koydular'). Sayfa 1821x2672; kırpım (390, 697)-(1313,
@@ -176,7 +128,6 @@ if __name__ == "__main__":
     IMG.mkdir(exist_ok=True)
     arka_plan()
     kanit_1()
-    kanit_2_kart()
     if (CACHE / "milliyet_2006-05-31_s1.jpg").exists():   # B sürümü (telifli) yalnız ham dosya varsa
         kanit_2()
         yedek()

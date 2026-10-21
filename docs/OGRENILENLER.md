@@ -31,6 +31,7 @@
 | 21.10 | ElevenLabs cevabı gelmedi: **kısa videolarla başla**, uzun sonra. Yeni bölümler yeni sohbetlerde üretilecek | CLAUDE.md durum satırı güncellendi; yeni oturum özel dosyaları `tools/ozel_indir.py` ile Telegram'dan alır (ADIM_ADIM §1); kanalda yapılmış konu tekrar seçilmez |
 | 21.10 | Kanalın sevilen müziğinin bize ait, ihlal yedirmeyecek benzeri; videoya göre değişebilsin | `tools/imza_muzik.py`: aynı his (Do minör vals, legato kamış, gramofon), özgün melodi; 3 varyant `assets/music/imza_vals*.m4a`. Melodik benzerlik ölçülür (`--karsilastir`), orijinalin motifleri yasak |
 | 21.10 | Karun reel'inde **telifli Milliyet sayfa görüntüsü kullanılmayacak**; son kare telifsiz manşet kartı olsun (kendi sade kupür tasarımımız, gazetenin logosu/fontu/düzeni taklit edilmez, söz kaynakla birebir, altında "Kaynak: <gazete>, <tarih>") | Telifli sayfa yalnız B sürümü olarak saklanır. Kartta "X: ..." başlığını bir kişinin sözü gibi tırnağa alma: önce haber metnini oku (Karun: "Bakan Koç: Hırsız evin içindeymiş" gazetenin başlığıydı; bakan "Hırsız evin içinde mi?" sorusuna "Evet" demişti) |
+| 21.10 | Düz manşet kartı (kâğıt + Anton + çizgi) son kareye **1/10**: "alıntı kartı gibi, hiç gerçekçi değil"; istenen telefonda gerçek gazete kupürü sanılacak kalite | Son kare kupürü **gerçekçi üret** (`kupur.py` ölçüsü, §"Kanıtlanmış yol" K adımı): sararmış dokulu kâğıt, yırtık/makas kenar + gölge, gerçek manşet tipografisi (SIL OFL grotesk/serif), raster fotoğraf, okunmaz komşu sütunlar; Commons gerçek kupürleriyle kıyasla. Düz kart yetmez |
 | 16.10 | "Görsel üretimi gerek yok, şu anki hâlini beğendim; gerçek görseller daha iyi" | Yapay zekâ ile görsel (arka plan, karakter, kanıt) üretilmez. Arka plan ve kanıt gerçek fotoğraf/belge ya da kendi düz çizimimiz; karakter hazır wojak. `tools/gorsel_uret.py` ve SOL ağ geçidi üretimde kullanılmaz |
 | 15.10 | Yayın planı: 2-3 günde bir konu; öğlen uzun video YouTube'a, akşam aynı konunun Shorts + Reels'i; açıklamalar uzun videoya yönlendirir | [`YAYIN_PLANI.md`](YAYIN_PLANI.md). **Yeni video ve düzeltme ElevenLabs başvurusu sonuçlanınca** başlar |
 
@@ -449,10 +450,138 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
   kendinden emin). İroniyi onun belgeli sözlerine dayanan repliklerle kur ("Eserleri ABD'den teslim alan benim" →
   "O broşu Amerika'dan ben getirdim"). Metne giren alıntıyı birebir yaz; takipçi hakemi kısaltılmış alıntıyı MUST
   saydı.
-- **Telifsiz manşet kartı** (`episodes/karun-hazinesi-bros/gorsel.py:kanit_2_kart`): 1080x760 kırık beyaz kâğıt (hafif
-  gren), iki ince siyah çizgi, Anton manşet (3 satır, mürekkep bloğu iki çizginin ortasında; ç/ş çengelleri ölçüye
-  dahil), Poppins 44 px kaynak satırı. Telefonda (390 px) manşet ve kaynak okunuyor; iki hakem 8/8. Fotoğrafsız
-  olduğu için gerçek kupürden bir tık zayıf: ileride CC bir fotoğrafla birleştirilebilir.
+- **Telifsiz manşet kartı yetmedi** (`gorsel.py:kanit_2_kart`, artık yok): 1080x760 düz kâğıt + Anton + çizgi; iki
+  hakemden 8/8 aldı ama hesap sahibi **1/10** verdi ("alıntı kartı gibi"). Düz kartı son kareye koyma.
+- **Gerçekçi gazete kupürü** (`episodes/karun-hazinesi-bros/kupur.py`, ~2 sn üretir, iki hakem 8/8 + "gerçek sanılır"
+  8+): sararmış dokulu kâğıt (gren + lif + leke + katlanma izi), üstte yırtık + üç yanda makas kenarı, koyu yüzeyde
+  gölge, kupürde kıvrılma ışığı, −1,4° eğik; manşet Libre Franklin 900, spot Source Serif 4 (ikisi SIL OFL); raster
+  fotoğraf (45°, sarı-mavi farkından gri ton, yoksa altın ve fon aynı griye düşüyor); komşu sütunlar ve gövde
+  **rastgele harften çizilip bulanıklaştırıldı** (okunabilir uydurma metin yok). Gazetenin logosu/adı/düzeni yok;
+  yayın adı yalnız alt "Kaynak: <gazete>, <tarih>" satırında. Ölçüt: Commons gerçek kupürleri (ör. "Alas de libertad"
+  El Comercio 1996, CC BY 4.0). Font: `raw.githubusercontent.com/google/fonts/main/ofl/<ad>/<Dosya>.ttf` + OFL.txt.
+
+---
+
+## 6.2 Kanıtlanmış yol: kısa reel (baştan sona)
+
+> Bu bölüm bu oturumda (`karun-hazinesi-bros`, 21.10.2026) gerçekten denenip çalışan yolu belgeler; tahmin değil.
+> Amaç: bir sonraki kısa reel aynı ya da daha iyi kalitede, **daha kısa sürede ve daha az token/maliyetle**. Ölçü
+> kaynağı yine [`STIL.md`](STIL.md); bu bölüm sırayı, komutları ve tuzakları verir.
+
+### Hızlı başlangıç (önce yalnız bunu oku)
+
+1. **Oku:** bu §6.2 + `STIL.md` §0 ve §14 + `OGRENILENLER.md` §0, §3, §4 (üst tablo). Gerisi gerektikçe. Koca
+   `INSTAGRAM_ANALIZ.md`/`ANALIZ.md`'yi baştan sona okuma; `KONSEPT.md` §5 (hikâye) ve `KONU_HAVUZU.md` yeter.
+2. **Ortam:** `ln -sfn /workspace/wojak /home/user/wojak`; `pip install -q -r requirements.txt pytest faster-whisper
+   py7zr multivolumefile`; font + referans (`referans.7z` çıkar). `test_short_youtube_...hashtag` taze oturumda
+   düşer (talidomit telifli görseli yok) — normal, kod hatası değil.
+3. **Konu:** `KONU_HAVUZU.md` + `data/videos.csv`/`instagram_reels.csv`/`olay_metinleri.md`/`episodes/` içinde
+   geçmediğini doğrula (grep). "Ne?!" + 2 kaynak + Türkiye + serbest lisanslı kanıt + ironi/ters köşe.
+4. **Olgu:** `web_search` ile doğrula, her ekran iddiası ≥2 bağımsız kaynak; alıntıları **birebir** al.
+5. **Arka plan + kanıt 1:** Commons'ta **serbest lisanslı** ara. İndirme: API/thumburl **429 veriyor**; özgün dosya
+   adresi (`upload.wikimedia.org/.../<md5>`) sorunsuz. `tools/orute` yerine md5 yolu (aşağıda K-komutları).
+6. **Karakterler:** `uzun/talidomit-turkiye/chars/*_v2_*` hazır; yoksa `wojak_lib.py`/`wojak_site.py` get. Yüz
+   varyantını `episodes/<id>/chars/uret.py` ile çiz (talidomit `hazir_uret.py`'yi kopyala). Her PNG'ye bak.
+7. **Bakış:** `episode.yaml`'da karakter başına `faces: sag|sol|on` (repoya yazmadan; `data/karakter_yon.json`'a
+   dokunma).
+8. **episode.yaml:** `python -m wojak new <id>`, talidomit ve bu bölümü şablon al. `music: {file:
+   imza_v2_ic_cekis.m4a}`. Süreler 0,5 katı, toplam 14,0.
+9. **Kanıt kareye sığar:** renderer 1080'den uzun kanıtı kesmez, kareye sığdırır → yanlarda bant. Kanıtı **1080x1080**
+   (ya da ≤1080 yüksek) hazırla; uzun nesneyi nesnesiz kenar şeridiyle kareye tamamla.
+10. **Son kare = gerçekçi kupür** (`kupur.py`), düz kart değil. Serbest görsel yoksa üret.
+11. **Döngü:** `check` (uyarısız; imza müzik uyarısı bilinçli) → `frames` → kareye bak → `render` → `teslim`.
+12. **Hakem:** 2 bağımsız mercek, yan yana + ölçüm. Metinde alıntı birebir, canlandırmayı açıkça yaz. İlk seferde
+    8/8 hedefle (aşağıda "kalite çıtası").
+13. **Teslim:** `/mnt/session/outputs/<id>/` (video, kapak, paylasim.md, metinler, RAPOR.md). Gerçek kişi adını
+    hiçbir dosyaya yazma. Hidden Words yalnız sohbette.
+14. **Commit:** herkese açık `wojak`'a mp4/`img/telifli/` **girmez** (`git status` + `git diff --cached --name-only |
+    grep -E '\.mp4$|telifli'`). Özel teslim `wojak-ozel`'e (video dahil).
+15. **Ortam tuzakları:** Commons 429 (≥12 sn, md5 yolu); Openverse (`bg_ara.py`) yanıt vermiyor; Playwright
+    `ignore_https_errors=True` + `python -m playwright install chromium` (tek sefer); gazete arşivi için Playwright.
+
+### Adım adım (çalışan yol / vakit kaybı / süre / tasarruf)
+
+**A. Hazırlık ve okuma** — Çalışan: hızlı başlangıç 1-2. Vakit kaybı: bütün `docs/`'u okumak; `STIL.md` Ek'teki 34
+maddeyi tekrar okumak (varsayılanlar zaten koda girmiş). Süre: oturumda ~4 dk, kanıtlanmış yolla ~2 dk. Tasarruf:
+`INSTAGRAM_ANALIZ.md` ve `ANALIZ.md` büyük ve bu üretim için gereksizdi — okuma.
+
+**B. Konu tarama** — Çalışan: `cut -d, -f10- data/videos.csv`, `olay_metinleri.md` başlıkları, `episodes/` listesi,
+`KONU_HAVUZU.md`; adaylara `grep -ril`. Süre: ~3 dk → ~2 dk. Tasarruf: 3 aday bul, en güçlüyle başla; zayıfları
+araştırma.
+
+**C. Olgu araştırması** — Çalışan: `web_search` (5-6 arama yetti), resmî/ana akım + Vikipedi + akademik; çelişen
+sayıyı yuvarla. Süre: ~6 dk → ~5 dk. Tasarruf: her aramanın tüm sonucunu okuma; 2 kaynak doğrulayınca dur.
+
+**D. Görsel avı (Commons)** — Çalışan:
+```
+# arama (API; istekler arası >= 12 sn)
+action=query&list=search&srsearch=<q>&srnamespace=6   (dosya)  / srnamespace=14 (kategori)
+action=query&generator=categorymembers&gcmtitle=Category:<ad>&gcmlimit=200&prop=imageinfo&iiprop=url|size|extmetadata
+# indirme: thumburl/thumb 429 veriyor -> ÖZGÜN dosya md5 yolu sorunsuz:
+n=${ad// /_}; h=md5(n); https://upload.wikimedia.org/wikipedia/commons/${h:0:1}/${h:0:2}/<urlencode(n)>
+```
+Vakit kaybı: `iiurlwidth` ile thumburl indirmek (429, tekrar tekrar); Openverse (`tools/bg_ara.py`) — bu ortamdan
+timeout. Süre: oturumda ~17 dk (çoğu 429 beklemesi) → kanıtlanmış yolla ~8 dk (baştan md5 yolu). Tasarruf: temas
+sayfalarını 400 px küçük thumbnail'le incele (tam çözünürlük gereksiz); yalnız seçilen 2-3 dosyayı tam indir.
+
+**E. Haber/gazete arşivi (gerekirse)** — Çalışan: Playwright (`ignore_https_errors=True`, mobil ya da masaüstü UA).
+Milliyet Gazete Arşivi: `gazetearsivi.milliyet.com.tr/Arsiv/YYYY/AA/GG`; sayfadaki `_next/image?url=` içindeki API
+adresi (`gazetearsivi-api...NewspaperImage/Image/<id>`) ~1900x2700 tam sayfa verir (üyeliksiz). Not: **telifli**.
+Vakit kaybı: TLS hatası (`ERR_CERT_AUTHORITY_INVALID`) — `ignore_https_errors=True` şart. Süre: ~6 dk.
+
+**F. Karakter ve yüz** — Çalışan: hazır v2 yüzler; yeni karakter için kaynağı `wojak_lib.py get <id>` /
+`wojak_site.py get wl:<dosya>`; yüz içini silip (poligon maske) aynı çizgi kalınlığında yeni kaş/göz/ağız +
+`kit_varyant.py` ter/gözyaşı. Grid görsel (NEAREST, koordinat ızgarası) ile hat yerlerini ölç. Vakit kaybı: düşük
+çözünürlüklü kaynak (müdür 504 px) — telefonda sorun değil ama 1:1'de yumuşak. Süre: ~10 dk → ~6 dk (talidomit
+`hazir_uret.py` kalıbını kopyalayınca). Tasarruf: yüz hattı koordinatlarını tek bir ızgara görselinden oku, deneme
+yanılmayı azalt.
+
+**G. episode.yaml + check** — Çalışan: talidomit + bu bölüm şablon; `check` tek "imza müzik" uyarısı bilinçli. Süre:
+~3 dk. Tasarruf: replikleri baştan 0,5 ızgara ve 1-11 kelimeye göre yaz (okuma uyarısı dönüşü yok).
+
+**H. frames + render** — Çalışan: `frames` → şerit + kare kare bak; `render` ~8 sn. Süre: ~2 dk. Tasarruf: `frames`
+tek seferde yeter; her küçük düzeltmede render 8 sn, ucuz.
+
+**I. Kanıt yerleşimi** — Çalışan: 1080x1080 ya da 1080x≤1080. Uzun nesne: nesnesiz kenar şeridini kopyalayıp kareye
+tamamla (ayna değil; ayna kaleydoskop yapıyor). Vakit kaybı: 1260 px kanıt → renderer kareye sığdırınca yan bant.
+Süre: ~3 dk.
+
+**J. Hakem turları** — Çalışan: 0,5 sn kare + C2kk/C4V3/C12O/C2Fr yan yana; ebur128; telefon boyu (390 px); kesme =
+kare farkı. Süre: tur ~2-3 dk. Tasarruf: ölçüm betiklerini scratchpad'de tut, yeniden yazma; kareleri 360-390 px
+çıkar (tam çözünürlük gereksiz).
+
+**K. Manşet kupürü** — Çalışan: `kupur.py` (yukarıda ders). Süre: betik ilk kez ~5-7 dk, sonra kopyala ~2 dk.
+Tasarruf: fontları bir kez indir, sakla.
+
+**L. §4 + teslim + outputs + commit** — Çalışan: §4 listesi; `teslim`; `/mnt/session/outputs/<id>/`'e kopya; iki
+depo. Süre: ~8 dk. Tasarruf: RAPOR'u üretirken yaz, sonradan değil.
+
+### Kalite çıtası (hakemlerin neye takıldığı → ilk seferde geç)
+
+- **Alıntı birebir olsun.** Takipçi hakemi kısaltılmış/parafraz alıntıyı MUST saydı. Metne gireni kaynaktan kopyala.
+- **Canlandırmayı açıkça yaz** (`ek_maddeler` + "Görseller" satırı). Tek kaynaklı iddiayı "anlatılana göre" yap.
+- **Son kare gerçekçi** olacak (kupür); düz kart hesap sahibinden 1/10.
+- **Kanıt tam genişlik** (kareye sığdırma bandı yok).
+- **Gerçek kişi:** ad hiçbir dosyada yok; kötü/sırıtan yüz yok; ironi belgeli sözlerden.
+- **Tarih kaynakla uyumlu** ("Mart 2006'da", "2005 sonunda ihbar"); uydurma kesinlik yok.
+
+### Süre ve maliyet
+
+- Bu oturum (ilk teslim + kart turu + kupür turu, hepsi düzeltmelerle): ~2 saat, ücretli API 0.
+- **Kanıtlanmış yolla bir sonraki kısa reel:** tahminen **55-75 dk**. En büyük tasarruf: Commons'ta baştan md5 yolu
+  (429 beklemesi yok), gereksiz belge okumama, düşük çözünürlüklü inceleme, hazır kupür/karakter kalıpları.
+
+### Kod değişikliği önerileri (uygulanmadı; hesap sahibi değerlendirir)
+
+- `tools/`: **Commons indirici** (md5 özgün yol + ≥12 sn hız sınırı + yeniden deneme). Bu oturumda elle `orig.sh`
+  yazıldı; araç olsa her bölümde kazandırır.
+- `wojak/compose.py`: kanıt `contain_fit` yerine **genişliğe göre sığdırma** seçeneği (`evidence_fill: width`), uzun
+  nesnelerde yan bant olmasın; şimdilik görseli elle 1:1 kareye tamamlıyoruz.
+- `tools/`: **gazete kupürü üreticisi** (bu bölümün `kupur.py`'si genelleştirilmiş: metin, kaynak, foto, satır
+  sayısı parametreli). Son kare her olayda gerekiyor.
+- `tools/bg_ara.py`: Openverse bu ortamda timeout; Commons'a (CC/PD süzgeçli) düşen bir yedek eklenebilir.
+- `wojak/facing.py`/`check`: `faces:` alanı yaml'da varken bakış uyarısı zaten susuyor; `yon` kaydının eski sha1
+  girdilerini temizleyen bir komut iyi olur (bilinen açık not).
 
 ---
 
