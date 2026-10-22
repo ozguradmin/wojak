@@ -48,6 +48,10 @@ TEXT_CENTER_RANGE = (0.32, 0.50)  # blok merkezinin kare içindeki izinli aralı
 # (assets/music/ozel/, repoya girmez); yoksa sentez imza müziği kullanılır.
 MUSIC_CHANNEL = MUSIC / "ozel" / "kanal_orijinal_ses.m4a"
 MUSIC_FALLBACK = MUSIC / "imza_gece_vals.mp3"
+# 22.10.2026: kanalın yeni imza müziği BİZE AİT (tools/imza_muzik.py çalışması, arastirma/imza_muzik/). Eski orijinal ses
+# YouTube ihlal riski taşıdığı için `music: kanal` artık bunu çalar; eski ses yalnız `music: orijinal` ile seçilir.
+MUSIC_IMZA = MUSIC / "imza_v2_golge.m4a"
+MUSIC_IMZA_VARYANT = sorted(MUSIC.glob("imza_v2_*.m4a"))   # videoya göre dönüşümlü kullanılabilir
 LOUDNESS_LUFS = -29.5
 LOUDNESS_TP = -17.0
 MAX_DURATION = 14.0

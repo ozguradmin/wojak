@@ -40,7 +40,7 @@ Efsanenin tamamı sabit yorumda 👇
 
 Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
 
-#kizkulesi #efsane #uskudar #istanbul #wojak #tarihselwojak #keşfet #olay #shorts
+#kizkulesi #efsane #shorts
 ```
 
 ### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1878 karakter

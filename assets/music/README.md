@@ -1,5 +1,20 @@
 # Müzik
 
+## Kanalın imza müziği (22.10.2026): `imza_v2_golge.m4a`, bize ait
+
+`music: kanal` artık bunu çalar (`wojak/config.py` MUSIC_IMZA). Eski orijinal ses (`ozel/`, YouTube ihlal riski) yalnız
+`music: orijinal` ile seçilir. Ölçüme dayalı ikinci çalışmanın ürünü (arastirma/imza_muzik/, DURUM.md): özgün melodiler,
+orijinalden ses kullanılmadı; eleştirmen puanları 7-7,5/10. Hesap sahibi dördünü "hepsi benzer" buldu: aynı ailedir,
+videoya göre dönüşümlü kullanılabilir (`music: {file: imza_v2_ic_cekis_b.m4a}` gibi).
+
+| Dosya | Melodi | Ses | Eleştirmen (ses/müzik) |
+|---|---|---|---|
+| `imza_v2_golge.m4a` (varsayılan) | Gölge (b1-4d) | FluidR3 akordeon (MIT) | 7,5 / 7,5 |
+| `imza_v2_ic_cekis_b.m4a` | İç Çekiş (b1-1) | FluidR3 akordeon | 7 / 7,5 |
+| `imza_v2_ic_cekis_hohner.m4a` | İç Çekiş | FreePats Hohner (CC0) | 7 / 7,5 |
+| `imza_v2_golge_sentez.m4a` | Gölge | tamamen sentez | 7 / 7 |
+| `imza_v2_ic_cekis.m4a` | İç Çekiş, ilk sürüm | FluidR3 | Çanakkale'de yayınlandı |
+
 ## Yeni imza: `imza_vals.m4a` (21.10.2026, hesap sahibinin onayı bekleniyor)
 
 Yıllardır kullanılan orijinal sesin (`ozel/kanal_orijinal_ses.m4a`) **bize ait benzeri**. Hesap sahibi YouTube ihlali

@@ -184,7 +184,9 @@ def load(path: str | Path) -> Episode:
         if isinstance(m, str):
             m = {"file": m}
         m = dict(m)
-        if m["file"] in ("kanal", "imza"):  # kanalın imza sesi; yoksa sentez yedek
+        if m["file"] in ("kanal", "imza"):  # kanalın bize ait imza müziği (22.10)
+            m["file"] = str(config.MUSIC_IMZA if config.MUSIC_IMZA.exists() else config.MUSIC_FALLBACK)
+        elif m["file"] == "orijinal":  # eski orijinal ses (YouTube ihlal riski); yoksa yedek
             m["file"] = str(config.MUSIC_CHANNEL if config.MUSIC_CHANNEL.exists() else config.MUSIC_FALLBACK)
         m["file"] = _resolve(base, m["file"], "music")
         music = Music(**m)

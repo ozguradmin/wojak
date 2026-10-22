@@ -137,6 +137,7 @@ def stil(ep: Episode) -> list[str]:
         out.append(f"[stil] toplam {ep.duration:.1f} sn; imza ses 13,75 sn, en fazla 14,0 sn")
     if ep.music is None:
         out.append("[stil] müzik yok; orijinallerin 27/30'u kanalın imza sesini kullanıyor (music: kanal)")
-    elif ep.music.file.resolve() not in (config.MUSIC_CHANNEL.resolve(), config.MUSIC_FALLBACK.resolve()):
+    elif ep.music.file.resolve() not in (config.MUSIC_CHANNEL.resolve(), config.MUSIC_FALLBACK.resolve(),
+                                      *(p.resolve() for p in config.MUSIC_IMZA_VARYANT)):
         out.append("[stil] imza ses dışında bir müzik (music: kanal önerilir)")
     return out

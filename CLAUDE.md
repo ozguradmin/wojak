@@ -6,8 +6,8 @@ Read this first. Specs and lessons live in `docs/`; this file only points to the
 **Current status (21.10.2026):** new **short reels may be produced now** (owner, 21.10): one topic at a time, never a topic
 the channel already did. **Long videos still wait for the ElevenLabs API key.** The long `talidomit-turkiye` is approved.
 Queued long-form work: `docs/YAYIN_PLANI.md` §4. YouTube got a violation: read `docs/YAYIN_PLANI.md` §0 before producing.
-The new signature music (our own, replacing `music: kanal`) is being made in another session; keep `music: kanal` for now
-and re-render when it lands on the default branch.
+Signature music (22.10): `music: kanal` now plays OUR OWN waltz (`assets/music/imza_v2_golge.m4a`); the old channel audio is
+`music: orijinal` only (YouTube risk). Variants `imza_v2_*.m4a` may rotate per video.
 **Fresh cloud session?** The licensed font and the reference reels are not in the repo: run `docs/ADIM_ADIM.md` §1.
 
 ## What this repo is

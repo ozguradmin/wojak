@@ -40,7 +40,7 @@ Olayın tamamı sabit yorumda 👇
 
 Görseller: AKUT Arama Kurtarma Derneği, 'AKUT 2011 Van-3' / Wikimedia Commons (CC BY-SA 3.0 creativecommons.org/licenses/by-sa/3.0, düzenlendi) · Kanıt: Adem Altan/AFP, Takvim
 
-#vandepremi #erciş #azrabebek #wojak #tarihselwojak #keşfet #olay #gizem #shorts
+#vandepremi #erciş #shorts
 ```
 
 ### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1646 karakter
