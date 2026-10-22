@@ -70,12 +70,15 @@ scenes:
   #      bacaklar, 1961-65; kişi yok; 1080x810 letterbox, altın dönem kanıt boyu), sonra Türkçe haber sayfası (mobil ekran görüntüsü, 1080x667: site logosu +
   #      "Türkiye'yi Thalidomide faciasından kurtaran büyük doktor: Süreyya Tahsin Aygün" + gerçek portresi; B'nin
   #      kim olduğunu söyler; telifli, bkz. telif_notu).
+  #      22.10: YouTube ihlali sonrası (YAYIN_PLANI §0) telifli haber sayfası çıktı, izin gerektirmeyen yedek girdi:
+  #      sıra "Contergan teneke kutusu -> protez"; Türkiye kapanışı başlıkta ve açıklamada. Eski son kanıt:
+  #      img/telifli/kanit_2_sdd_mobil.png (hesap sahibi isterse geri konur).
   - type: evidence
     duration: 1.5
-    images: [img/kanit_1_protez_810.jpg]
+    images: [img/kanit_yedek_contergan_teneke.jpg]
   - type: evidence
     duration: 2.0
-    images: [img/telifli/kanit_2_sdd_mobil.png]
+    images: [img/kanit_1_protez_810.jpg]
 
 # Kapak: kanca karesi (temsilci + "hamileler bile kullanıyor"; STIL §12)
 cover_scene: 1
@@ -99,11 +102,12 @@ pinned_comment: |
   Türkiye, talidomit faciasını yaşamayan sayılı ülkelerden biri olarak anılıyor. Şükrü Kaymakçalan ve Süreyya Tahsin Aygün'ün adlarını daha önce duymuş muydunuz?
 
 # CC BY-SA görseller atıf ister: açıklamalara "Görseller: ..." olarak eklenir (kısa, herkese açık satır)
-credits: "Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı); Sağlık Dünyası Dergisi"
+credits: "Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0 (kırpıldı); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı)"
 ai_generated: false
 
 telif_notu: >-
-  son kanıt `kanit_2_sdd_mobil.png` (12,0-14,0 sn) telifli: Sağlık Dünyası Dergisi'nin 21.12.2022 haber sayfasının
+  22.10: videoda telifli görsel YOK (YouTube ihlali sonrası izin gerektirmeyen yedek (2) uygulandı: teneke -> protez).
+  Eski durum, hesap sahibi haber sayfasını geri isterse: son kanıt `kanit_2_sdd_mobil.png` (12,0-14,0 sn) telifli: Sağlık Dünyası Dergisi'nin 21.12.2022 haber sayfasının
   telefondan görünüşü (12.10.2026'da çekildi): site logosu, sayfa başlığı ve haberin başlık görseli ("Türkiye'yi
   Thalidomide faciasından kurtaran büyük doktor: Süreyya Tahsin Aygün" + Aygün'ün cübbeli portresi; fotoğrafçı
   belirtilmemiş). Açılır reklamı gizledik; aradaki özet paragrafını ("binlerce çocuğun hayatını kurtarmıştır"),

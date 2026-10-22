@@ -4,7 +4,7 @@
 # hep sağda. Ters köşe: prenses aynı kutuda yüz varyantıyla (sakin -> korku) fark eder; son replik babanın
 # hediyesine döner ("getirdiğin"). Kart yok.
 # Kanıt en sonda: kulenin 19. yüzyıl fotoğrafı (Sébah, kamu malı: "eski ve gerçek"), sonra yılanlı sepet efsanesinin
-# kendi başlığıyla görseli (telifli; lisans kararı hesap sahibinde, bkz. telif_notu).
+# kendi başlığıyla görseli (telifli; 22.10 YouTube ihlali sonrası yerine BoraBora704 -> Sébah, bkz. telif_notu).
 # Doğrulanan anlatım (Üsküdar Belediyesi, Wikipedia EN, istanbul.com): kâhin/kehanet, kız 18. yaş gününde yılan
 # sokmasıyla ölecek; imparator onu yılanlardan uzak tutmak için denizdeki kuleye koyar, onu yalnız babası ziyaret
 # eder; 18. yaş gününde kehaneti boşa çıkardığını düşünüp bir sepet meyve getirir, meyvelerin arasına gizlenmiş
@@ -60,12 +60,15 @@ scenes:
 
   # 5-6) KANIT — kulenin 19. yüzyıl fotoğrafı (C2kk'nin 1965 kupürü gibi "eski ve gerçek"; parlak sepya), sonra
   #      efsanenin kendi başlığıyla görseli (STIL §8: "YouTube küçük resmi, kendi başlığıyla"; koyu kart).
+  #      22.10: YouTube ihlali sonrası (YAYIN_PLANI §0) telifli Boyacı görseli çıktı, izin gerektirmeyen yedek girdi:
+  #      önce kulenin bugünkü hali (BoraBora704, CC BY-SA 4.0), sonda 19. yüzyıl fotoğrafı (Sébah, kamu malı). Eski son
+  #      kanıt: img/telifli/kanit_2_sepetteki_yilan_boyaci.jpg (hesap sahibi izin alırsa geri konur).
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_kiz_kulesi_borabora704.jpg]
   - type: evidence
     duration: 1.5
     images: [img/kanit_1_sebah_tarihi.jpg]
-  - type: evidence
-    duration: 1.5
-    images: [img/telifli/kanit_2_sepetteki_yilan_boyaci.jpg]
 
 # Kapak: ters köşe karesi (korku yüzü + son replik + kule; STIL §12)
 cover_scene: 4
@@ -91,13 +94,13 @@ pinned_comment: |
   Sizce kaderden kaçmak mümkün mü?
 
 # CC BY (ve BY-SA) görseller atıf ister: açıklamalara "Görseller: ..." olarak eklenir. Final kesimdeki görseller:
-# arka plan Sonse (CC BY 2.0), kanıt 1 Sébah (kamu malı), kanıt 2 Boyacı / Pendik sergisi (telifli; atıf + izin).
+# arka plan Sonse (CC BY 2.0), kanıt 1 BoraBora704 (CC BY-SA 4.0), kanıt 2 Sébah (kamu malı). (22.10; eskiden kanıt 2 Boyacı, telifli)
 # (ayrıntılı lisans ve düzenleme notları yalnız 'sources' altında; açıklamalara giden satır kısa ve herkese açık)
-credits: "Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi"
+credits: "Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pascal Sébah (kamu malı)"
 ai_generated: false
 
 # Hesap sahibine lisans notu (paylasim.md kontrol listesi)
-telif_notu: "`kanit_2_sepetteki_yilan_boyaci.jpg` (son kanıt, 12,5-14,0 sn) telifli: Ömer Faruk Boyacı'nın YouTube kanalındaki (BOYACI, https://www.youtube.com/@omerfarukboyaci) \"İSTANBUL'UN EFSANELERİ - Kız Kulesi ve Sepetteki Yılan Efsanesi\" videosunun küçük resmi; Pendik Belediyesi'nin \"İstanbul'un Efsaneleri\" dijital sergisi için çizilmiş bir illüstrasyon (sol altta ressam imzası var, küratör İsmail Erdoğan). Kullanacaksan izni yalnız belediyeden değil, yükleyiciden/ressamdan (Ömer Faruk Boyacı) da iste; açıklamadaki atıf satırı hazır. İstemezsen bu kart çıkar ve yılan ekranda görünmez. Orijinallerde son görsel çoğu zaman kendi başlığı olan bir haber ya da YouTube küçük resmi; lisansını alabileceğin, başlığında \"yılan\" ya da \"sepet\" geçen gerçek bir küçük resim bulursan onu son kanıt yap (biz 14 tanesine baktık: çoğu yapay zekâ çizimi, birinin başlığı yazım hatalı, biri sunucunun yüzünü gösteriyor, TRT Haber'inkinde yılan yok; uygun çıkmadı). Bulamazsan izin gerektirmeyen hazır yedek: kanıtlar BoraBora704'ün modern kule fotoğrafı (Wikimedia Commons, CC BY-SA 4.0, hazır: `episodes/kiz-kulesi-efsanesi/img/kanit_1_kiz_kulesi_borabora704.jpg`) ve sonda Pascal Sébah'ın 19. yüzyıl fotoğrafı (kamu malı) olur. Bunun için episode.yaml'da iki kanıtın `images:` satırı ve `credits` (Boyacı yerine \"BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı)\") değişir, sonra yeniden render + teslim"
+telif_notu: "22.10: videoda telifli görsel YOK (YouTube ihlali sonrası aşağıdaki izin gerektirmeyen yedek uygulandı: BoraBora704 -> Sébah). Eski durum: `kanit_2_sepetteki_yilan_boyaci.jpg` (son kanıt, 12,5-14,0 sn) telifli: Ömer Faruk Boyacı'nın YouTube kanalındaki (BOYACI, https://www.youtube.com/@omerfarukboyaci) \"İSTANBUL'UN EFSANELERİ - Kız Kulesi ve Sepetteki Yılan Efsanesi\" videosunun küçük resmi; Pendik Belediyesi'nin \"İstanbul'un Efsaneleri\" dijital sergisi için çizilmiş bir illüstrasyon (sol altta ressam imzası var, küratör İsmail Erdoğan). Kullanacaksan izni yalnız belediyeden değil, yükleyiciden/ressamdan (Ömer Faruk Boyacı) da iste; açıklamadaki atıf satırı hazır. İstemezsen bu kart çıkar ve yılan ekranda görünmez. Orijinallerde son görsel çoğu zaman kendi başlığı olan bir haber ya da YouTube küçük resmi; lisansını alabileceğin, başlığında \"yılan\" ya da \"sepet\" geçen gerçek bir küçük resim bulursan onu son kanıt yap (biz 14 tanesine baktık: çoğu yapay zekâ çizimi, birinin başlığı yazım hatalı, biri sunucunun yüzünü gösteriyor, TRT Haber'inkinde yılan yok; uygun çıkmadı). Bulamazsan izin gerektirmeyen hazır yedek: kanıtlar BoraBora704'ün modern kule fotoğrafı (Wikimedia Commons, CC BY-SA 4.0, hazır: `episodes/kiz-kulesi-efsanesi/img/kanit_1_kiz_kulesi_borabora704.jpg`) ve sonda Pascal Sébah'ın 19. yüzyıl fotoğrafı (kamu malı) olur. Bunun için episode.yaml'da iki kanıtın `images:` satırı ve `credits` (Boyacı yerine \"BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı)\") değişir, sonra yeniden render + teslim"
 ek_maddeler:
   - "İlk saat (isteğe bağlı): ilk yorumu sen yaz: \"Kız Kulesi'ni her gün görenler, Üsküdarlılar burada mı?\" (\"ben oralıyım\" yorumlarını başlatır)"
   - "İlk saat (isteğe bağlı): ikinci yorum: \"Bizim bildiğimiz hikâyede sepeti hizmetçiler getiriyordu, sizde nasıl anlatılırdı?\" (efsanenin farklı anlatımları yorumda tartışma başlatır)"
