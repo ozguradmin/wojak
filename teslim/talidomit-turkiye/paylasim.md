@@ -4,7 +4,7 @@ Süre: 14.0 sn · 7 sahne · video: `talidomit-turkiye.mp4` · kapak: `kapak.jpg
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 1988/2200
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2025/2200
 
 ```
 Almanya'da hamilelere bile reçetesiz satılan, Türkiye'ye hiç giremeyen ilaç
@@ -19,7 +19,7 @@ Aynı yıllarda Türkiye'de de ilaç için ruhsat başvurusu yapıldı, ancak ru
 
 Türkiye, talidomit faciasını yaşamayan sayılı ülkelerden biri olarak anılıyor. Şükrü Kaymakçalan ve Süreyya Tahsin Aygün'ün adlarını daha önce duymuş muydunuz?
 
-Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı); Sağlık Dünyası Dergisi
+Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0 (kırpıldı); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı)
 ```
 
 ## YouTube Shorts
@@ -36,7 +36,7 @@ Almanya'da hamilelere bile reçetesiz satılan, Türkiye'ye hiç giremeyen ilaç
 Talidomit (Contergan) faciası ve Türkiye
 Olayın tamamı sabit yorumda 👇
 
-Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı); Sağlık Dünyası Dergisi
+Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0 (kırpıldı); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı)
 
 #talidomit #şükrükaymakçalan #shorts
 ```
@@ -57,7 +57,7 @@ Türkiye, talidomit faciasını yaşamayan sayılı ülkelerden biri olarak anı
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 2085/4000
+### Açıklama — 2122/4000
 
 ```
 Almanya'da hamilelere bile reçetesiz satılan, Türkiye'ye hiç giremeyen ilaç
@@ -72,14 +72,14 @@ Aynı yıllarda Türkiye'de de ilaç için ruhsat başvurusu yapıldı, ancak ru
 
 Türkiye, talidomit faciasını yaşamayan sayılı ülkelerden biri olarak anılıyor. Şükrü Kaymakçalan ve Süreyya Tahsin Aygün'ün adlarını daha önce duymuş muydunuz?
 
-Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı); Sağlık Dünyası Dergisi
+Görseller: Pierre André Leclercq, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı, renk düzeltildi); Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0 (kırpıldı); Science Museum London / Science & Society Picture Library, CC BY-SA 2.0 (kırpıldı)
 
 #talidomit #şükrükaymakçalan #süreyyatahsinaygün #contergan #wojak #tarihselwojak #keşfet #olay
 ```
 
 ## Yükleme kontrol listesi
 
-- [ ] **Lisans kararı senin:** son kanıt `kanit_2_sdd_mobil.png` (12,0-14,0 sn) telifli: Sağlık Dünyası Dergisi'nin 21.12.2022 haber sayfasının telefondan görünüşü (12.10.2026'da çekildi): site logosu, sayfa başlığı ve haberin başlık görseli ("Türkiye'yi Thalidomide faciasından kurtaran büyük doktor: Süreyya Tahsin Aygün" + Aygün'ün cübbeli portresi; fotoğrafçı belirtilmemiş). Açılır reklamı gizledik; aradaki özet paragrafını ("binlerce çocuğun hayatını kurtarmıştır"), tarih/paylaş satırını ve görselin altındaki doğrulanmamış "dünyada kök hücreye başlayan ilk bilim insanı" bandını çıkardık, telefonun menü ve arama simgelerini çubuk rengiyle boyadık; başka değişiklik yok. Kanal altın dönemde de son görsel olarak haber başlığı kullanıyordu; açıklamadaki "Görseller" satırında adı var. Aygün'ün serbest lisanslı fotoğrafı yok. DİKKAT: manşet hikâyenin tartışmalı yanını ("kurtaran büyük doktor: Aygün") kesin gibi gösteriyor; ruhsat konusunda daha iyi belgelenen kişi Kaymakçalan. Aynı Sağlık Dünyası sayfasında yanlış iddialar da var: "sadece Türkiye ve ABD" (ABD'de de vaka oldu, Doğu Almanya da ruhsat vermedi), "90.000 düşük" (kaynaksız), Aygün'ün ilacı Almanya'daki tahribatı gördükten sonra denediği (bizim anlatımla çelişiyor) ve kök hücreyle şizofreni, felç ve "mongoloid" (Down sendromlu) çocukları tedavi ettiği. Yorumlarda bu sayfa link olarak gelirse bizim açıklamamızdaki ifadeler esastır. İstemezsen iki hazır yedek var: (1) daha az tartışmalı, meslek derneği kaynağı: Türk Farmakoloji Derneği E-Bülteni 114 (2012) "Türkiye'de Talidomid Gerçeği" sayfası, bülten bandı + Akcasu'nun Kaymakçalan tanıklığı (`img/telifli/kanit_yedek_tfd_2012.png`, 1080x631; o da telifli, manşet kadar vurucu değil; `credits`'te "Sağlık Dünyası Dergisi" yerine "Türk Farmakoloji Derneği" yazılır); (2) izin gerektirmeyen: Grünenthal'in gerçek Contergan teneke kutusu (Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0; `img/kanit_yedek_contergan_teneke.jpg`); o zaman sıra "teneke -> protez" olur, Türkiye kapanışı yalnız açıklamada kalır, `credits`'te "Sağlık Dünyası Dergisi" yerine "Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0 (kırpıldı)" yazılır. Söyle, değiştirip yeniden render ederim
+- [ ] **Lisans kararı senin:** 22.10: videoda telifli görsel YOK (YouTube ihlali sonrası izin gerektirmeyen yedek (2) uygulandı: teneke -> protez). Eski durum, hesap sahibi haber sayfasını geri isterse: son kanıt `kanit_2_sdd_mobil.png` (12,0-14,0 sn) telifli: Sağlık Dünyası Dergisi'nin 21.12.2022 haber sayfasının telefondan görünüşü (12.10.2026'da çekildi): site logosu, sayfa başlığı ve haberin başlık görseli ("Türkiye'yi Thalidomide faciasından kurtaran büyük doktor: Süreyya Tahsin Aygün" + Aygün'ün cübbeli portresi; fotoğrafçı belirtilmemiş). Açılır reklamı gizledik; aradaki özet paragrafını ("binlerce çocuğun hayatını kurtarmıştır"), tarih/paylaş satırını ve görselin altındaki doğrulanmamış "dünyada kök hücreye başlayan ilk bilim insanı" bandını çıkardık, telefonun menü ve arama simgelerini çubuk rengiyle boyadık; başka değişiklik yok. Kanal altın dönemde de son görsel olarak haber başlığı kullanıyordu; açıklamadaki "Görseller" satırında adı var. Aygün'ün serbest lisanslı fotoğrafı yok. DİKKAT: manşet hikâyenin tartışmalı yanını ("kurtaran büyük doktor: Aygün") kesin gibi gösteriyor; ruhsat konusunda daha iyi belgelenen kişi Kaymakçalan. Aynı Sağlık Dünyası sayfasında yanlış iddialar da var: "sadece Türkiye ve ABD" (ABD'de de vaka oldu, Doğu Almanya da ruhsat vermedi), "90.000 düşük" (kaynaksız), Aygün'ün ilacı Almanya'daki tahribatı gördükten sonra denediği (bizim anlatımla çelişiyor) ve kök hücreyle şizofreni, felç ve "mongoloid" (Down sendromlu) çocukları tedavi ettiği. Yorumlarda bu sayfa link olarak gelirse bizim açıklamamızdaki ifadeler esastır. İstemezsen iki hazır yedek var: (1) daha az tartışmalı, meslek derneği kaynağı: Türk Farmakoloji Derneği E-Bülteni 114 (2012) "Türkiye'de Talidomid Gerçeği" sayfası, bülten bandı + Akcasu'nun Kaymakçalan tanıklığı (`img/telifli/kanit_yedek_tfd_2012.png`, 1080x631; o da telifli, manşet kadar vurucu değil; `credits`'te "Sağlık Dünyası Dergisi" yerine "Türk Farmakoloji Derneği" yazılır); (2) izin gerektirmeyen: Grünenthal'in gerçek Contergan teneke kutusu (Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0; `img/kanit_yedek_contergan_teneke.jpg`); o zaman sıra "teneke -> protez" olur, Türkiye kapanışı yalnız açıklamada kalır, `credits`'te "Sağlık Dünyası Dergisi" yerine "Kai Oesterreich, Wikimedia Commons, CC BY-SA 3.0 (kırpıldı)" yazılır. Söyle, değiştirip yeniden render ederim
 - [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
 - [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
 - [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme

@@ -4,7 +4,7 @@ Süre: 14.0 sn · 6 sahne · video: `kiz-kulesi-efsanesi.mp4` · kapak: `kapak.j
 
 ## Instagram Reels
 
-### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2113/2200
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2075/2200
 
 ```
 Kız Kulesi'ne kapatılan prensesin 18. doğum günü
@@ -21,7 +21,7 @@ Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşı
 
 Sizce kaderden kaçmak mümkün mü?
 
-Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
+Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pascal Sébah (kamu malı)
 ```
 
 ## YouTube Shorts
@@ -38,7 +38,7 @@ Kız Kulesi'ne kapatılan prensesin 18. doğum günü
 Kız Kulesi efsanesi
 Efsanenin tamamı sabit yorumda 👇
 
-Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
+Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pascal Sébah (kamu malı)
 
 #kizkulesi #efsane #shorts
 ```
@@ -61,7 +61,7 @@ Sizce kaderden kaçmak mümkün mü?
 
 ## TikTok (isteğe bağlı)
 
-### Açıklama — 2188/4000
+### Açıklama — 2150/4000
 
 ```
 Kız Kulesi'ne kapatılan prensesin 18. doğum günü
@@ -78,14 +78,14 @@ Kulenin bilinen tarihi ise çok eskiye dayanır. Üsküdar kıyısına yaklaşı
 
 Sizce kaderden kaçmak mümkün mü?
 
-Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); Pascal Sébah (kamu malı); Ömer Faruk Boyacı (YouTube: BOYACI) / İstanbul'un Efsaneleri Dijital Sergi, Pendik Belediyesi
+Görseller: Sonse, Flickr, CC BY 2.0 (kırpıldı, ton düzeltildi); BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı); Pascal Sébah (kamu malı)
 
 #kizkulesi #efsane #uskudar #istanbul #wojak #tarihselwojak #keşfet #olay
 ```
 
 ## Yükleme kontrol listesi
 
-- [ ] **Lisans kararı senin:** `kanit_2_sepetteki_yilan_boyaci.jpg` (son kanıt, 12,5-14,0 sn) telifli: Ömer Faruk Boyacı'nın YouTube kanalındaki (BOYACI, https://www.youtube.com/@omerfarukboyaci) "İSTANBUL'UN EFSANELERİ - Kız Kulesi ve Sepetteki Yılan Efsanesi" videosunun küçük resmi; Pendik Belediyesi'nin "İstanbul'un Efsaneleri" dijital sergisi için çizilmiş bir illüstrasyon (sol altta ressam imzası var, küratör İsmail Erdoğan). Kullanacaksan izni yalnız belediyeden değil, yükleyiciden/ressamdan (Ömer Faruk Boyacı) da iste; açıklamadaki atıf satırı hazır. İstemezsen bu kart çıkar ve yılan ekranda görünmez. Orijinallerde son görsel çoğu zaman kendi başlığı olan bir haber ya da YouTube küçük resmi; lisansını alabileceğin, başlığında "yılan" ya da "sepet" geçen gerçek bir küçük resim bulursan onu son kanıt yap (biz 14 tanesine baktık: çoğu yapay zekâ çizimi, birinin başlığı yazım hatalı, biri sunucunun yüzünü gösteriyor, TRT Haber'inkinde yılan yok; uygun çıkmadı). Bulamazsan izin gerektirmeyen hazır yedek: kanıtlar BoraBora704'ün modern kule fotoğrafı (Wikimedia Commons, CC BY-SA 4.0, hazır: `episodes/kiz-kulesi-efsanesi/img/kanit_1_kiz_kulesi_borabora704.jpg`) ve sonda Pascal Sébah'ın 19. yüzyıl fotoğrafı (kamu malı) olur. Bunun için episode.yaml'da iki kanıtın `images:` satırı ve `credits` (Boyacı yerine "BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı)") değişir, sonra yeniden render + teslim
+- [ ] **Lisans kararı senin:** 22.10: videoda telifli görsel YOK (YouTube ihlali sonrası aşağıdaki izin gerektirmeyen yedek uygulandı: BoraBora704 -> Sébah). Eski durum: `kanit_2_sepetteki_yilan_boyaci.jpg` (son kanıt, 12,5-14,0 sn) telifli: Ömer Faruk Boyacı'nın YouTube kanalındaki (BOYACI, https://www.youtube.com/@omerfarukboyaci) "İSTANBUL'UN EFSANELERİ - Kız Kulesi ve Sepetteki Yılan Efsanesi" videosunun küçük resmi; Pendik Belediyesi'nin "İstanbul'un Efsaneleri" dijital sergisi için çizilmiş bir illüstrasyon (sol altta ressam imzası var, küratör İsmail Erdoğan). Kullanacaksan izni yalnız belediyeden değil, yükleyiciden/ressamdan (Ömer Faruk Boyacı) da iste; açıklamadaki atıf satırı hazır. İstemezsen bu kart çıkar ve yılan ekranda görünmez. Orijinallerde son görsel çoğu zaman kendi başlığı olan bir haber ya da YouTube küçük resmi; lisansını alabileceğin, başlığında "yılan" ya da "sepet" geçen gerçek bir küçük resim bulursan onu son kanıt yap (biz 14 tanesine baktık: çoğu yapay zekâ çizimi, birinin başlığı yazım hatalı, biri sunucunun yüzünü gösteriyor, TRT Haber'inkinde yılan yok; uygun çıkmadı). Bulamazsan izin gerektirmeyen hazır yedek: kanıtlar BoraBora704'ün modern kule fotoğrafı (Wikimedia Commons, CC BY-SA 4.0, hazır: `episodes/kiz-kulesi-efsanesi/img/kanit_1_kiz_kulesi_borabora704.jpg`) ve sonda Pascal Sébah'ın 19. yüzyıl fotoğrafı (kamu malı) olur. Bunun için episode.yaml'da iki kanıtın `images:` satırı ve `credits` (Boyacı yerine "BoraBora704, Wikimedia Commons, CC BY-SA 4.0 (kırpıldı)") değişir, sonra yeniden render + teslim
 - [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
 - [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
 - [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
