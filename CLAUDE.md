@@ -23,15 +23,32 @@ videos told with wojak characters (history, mysteries, legends, carefully handle
 
 ## The owner's delivery flow
 
-Claude researches and produces; the owner approves and posts. Nothing is posted automatically.
+Since 23.10.2026 short reels are produced and published to YouTube automatically. Anything sensitive, or anything
+that misses the quality bar, waits for the owner (`BEKLET`). Instagram is still posted by the owner by hand.
 
-1. Produce, then deliver with `python -m wojak teslim ...` into `teslim/<id>/` (long-form: `teslim/<id>-uzun/`).
-   Send the files in chat; videos never go into the repo.
-2. The owner watches and replies "onay" or sends notes. **The owner decides every licence question** about
-   copyrighted images (`telif_notu` in the package).
-3. The owner posts. Instagram gets the whole story text in the caption; YouTube gets it as a pinned comment.
-   Per-episode owner tasks (Hidden Words, seed comment, timing) go in `ek_maddeler`.
-4. Never hand-edit files under `teslim/`. Change `episode.yaml` (or `video.yaml`) and regenerate.
+1. **Production (automatic, twice a day):** the Console agent "Wojak Video Üretici" (deployment "Kısa reel üretimi")
+   produces one short reel at 11:00 and one at 19:00 (Europe/Istanbul).
+   - Episode files and lessons go to this repo's default branch. Run `git pull --rebase` before every push.
+   - The finished package is pushed in one commit to the private repo `ozguradmin/wojak-ozel` under `teslim/<id>/`:
+     `<id>.mp4`, cover, `paylasim.md`, `metinler/`, `RAPOR.md`. Videos never go into this public repo.
+2. **Publishing (automatic):** the GitHub Actions bot in `wojak-ozel` (`.github/workflows/yayin.yml`,
+   `yayin/yayinla.py`) uploads the next unpublished `teslim/<id>/` to YouTube as public.
+   - It posts `youtube_sabit_yorum.txt` as a comment, which the owner pins in Studio.
+   - It sends the link, the video (as a document), the cover and the Instagram caption to Telegram.
+   - It then writes `YAYINLANDI.json`. Never touch that file.
+   - Do not upload to YouTube by hand: the bot would upload a duplicate. To publish something, put it in
+     `wojak-ozel/teslim/<id>/`.
+3. **`BEKLET` = the owner decides.** An empty `BEKLET` file in the episode folder keeps the bot from publishing it.
+   Always add it when:
+   - the reel misses the bar of two judges at 8/10 or a MUST fix remains;
+   - the topic is sensitive: current events (GUNDEM), minors, the recently dead, living private people;
+   - anything else needs the owner's eye.
+   **The owner decides every licence question.** Copyrighted images go into no version.
+4. **Instagram:** the owner posts from Telegram (best at 20:00-20:15).
+   - The caption carries the whole story text. YouTube gets it in the description and as a comment.
+   - Per-episode owner tasks (Hidden Words, seed comment, timing) go in `ek_maddeler`.
+5. **Long videos are not automated.** Deliver them into `teslim/<id>-uzun/`; the owner watches and approves.
+6. Never hand-edit files under `teslim/`. Change `episode.yaml` (or `video.yaml`) and regenerate.
 
 ## Where the specs are
 
