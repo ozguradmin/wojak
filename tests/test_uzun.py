@@ -1963,3 +1963,18 @@ def test_on_bir_tur_motor_ekleri():
     v4 = _video([{"baslik": "a", "sahneler": [foto]}])
     cz = cizici(zaman.hesapla(v4, tahmin=True).sahneler[0], Baglam(v4, 960, 540))
     assert len(cz.sabit_engeller()) == 1 and cz.katman.sabit == cz.sabit_engeller()
+
+
+def test_short_youtube_aciklamasi_hikayeyi_tasir():
+    """Hesap sahibi (22.10): YouTube açıklaması = başlık + hikâyenin tamamı + atıf + hashtag; 'sabit yorumda' satırı yok."""
+    from wojak import pack
+    from wojak.episode import load
+    ep = load(KOK / "episodes/kiz-kulesi-efsanesi")
+    t = pack.texts(ep)
+    d = t["youtube_aciklama"]
+    assert d.startswith(t["youtube_baslik"]) and t["youtube_sabit_yorum"] in d
+    assert "sabit yorumda" not in d
+    assert d.index(t["youtube_sabit_yorum"]) < d.index("Görseller:") < d.index("#shorts")
+    assert len(d) <= pack.LIMITS["youtube_desc"]
+    uzun = dict(t, youtube_aciklama="x" * 5001)
+    assert [w for w in pack.warnings(uzun) if "5000" in w]

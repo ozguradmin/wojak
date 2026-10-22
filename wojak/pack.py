@@ -2,7 +2,8 @@
 
 Akış (2026-10): videoyu ben hazırlarım, hesap sahibi onaylar ve kendisi paylaşır.
   - Instagram Reels : açıklama = başlık + hikâyenin tamamı + atıf; hashtag YOK (hesap sahibinin düzeni, 13.10.2026)
-  - YouTube Shorts  : başlık + kısa açıklama + en çok 3 hashtag (2 konu + #shorts); hikâye SABİT YORUMDA
+  - YouTube Shorts  : açıklama = başlık + hikâyenin tamamı + atıf + en çok 3 hashtag (2 konu + #shorts); hikâye ayrıca
+                      yorum olarak atılır, hesap sahibi sabitler (hesap sahibi 22.10: "açıklamaya da olayı yaz")
   - TikTok          : açıklama = Instagram ile aynı (sınır 4000)
 
 Çıktı: out/<id>/paylasim.md (hepsi bir arada) ve out/<id>/metinler/*.txt (telefonda tek dokunuşla kopyalamak için).
@@ -46,7 +47,6 @@ def texts(ep: Episode) -> dict[str, str]:
     """Platform metinleri. Hassas kelimeler censor.metin ile (üslup; hukuki koruma değildir)."""
     title = censor.metin(ep.title.strip())
     story = censor.metin(ep.pinned_comment.strip())
-    caption = censor.metin(ep.caption.strip())
     tags = hashtags(ep)
     head = _plain_title(title)
     credit = f"Görseller: {ep.credits}" if ep.credits else ""  # CC BY atfı
@@ -54,8 +54,9 @@ def texts(ep: Episode) -> dict[str, str]:
         # Hesap Instagram'da hashtag kullanmıyor (sahibin düzeni, 13.10.2026): başlık + hikâye + atıf
         "instagram_aciklama": "\n\n".join(x for x in (head, story, credit) if x),
         "youtube_baslik": title,
+        # 23.10: açıklama hikâyenin tamamını taşır; 'caption' ("tamamı sabit yorumda 👇") YouTube'a girmez
         "youtube_aciklama": "\n\n".join(x for x in (
-            caption, f"▶ Uzun hali: {ep.uzun_video}" if ep.uzun_video else "", credit,
+            head, f"▶ Uzun hali: {ep.uzun_video}" if ep.uzun_video else "", story, credit,
             hashtags(ep, LIMITS["youtube_tags"] - 1) + " #shorts") if x),   # 2 konu + #shorts (eskiden 8 + #shorts)
         "youtube_sabit_yorum": story,
         "tiktok_aciklama": "\n\n".join(x for x in (head, story, credit, tags) if x),
@@ -74,6 +75,8 @@ def warnings(t: dict[str, str], ep: Episode | None = None) -> list[str]:
     n_yt = len(re.findall(r"(?<!\w)#\w+", t["youtube_aciklama"]))
     if n_yt > LIMITS["youtube_tags"]:
         w.append(f"YouTube açıklamasında {n_yt} hashtag (hesap sahibinin kuralı: 2-3)")
+    if len(t["youtube_aciklama"]) > LIMITS["youtube_desc"]:
+        w.append(f"YouTube açıklaması {len(t['youtube_aciklama'])} karakter (sınır 5000): hikâyeyi kısalt")
     if len(t["youtube_baslik"]) > LIMITS["youtube_title"]:
         w.append(f"YouTube başlığı {len(t['youtube_baslik'])} karakter (sınır 100)")
     if not t["youtube_sabit_yorum"]:
