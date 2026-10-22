@@ -25,8 +25,10 @@
   - YouTube Studio ana sayfasındaki uyarı kartı ve gelen e-posta, ihlalin videosunu ve kuralını gösterir.
   - Telif hakkı menüsünde telif ihtarları ve kaldırma talepleri listelenir.
   - İçerik listesindeki "Kısıtlamalar" sütunu, sorunun hangi videoda olduğunu gösterir.
-- **Yeni YouTube yüklemeleri için kural:** önce **Özel** yükle. Yükleme ekranındaki "Kontroller" adımının (telif hakkı ve
-  reklam uygunluğu) bitmesini bekle. Sorun yoksa zamanla ya da yayınla.
+- **YouTube yüklemesi (hesap sahibi 22.10):** doğrudan **herkese açık** (`tools/yt_yukle.py`, varsayılan public). Yükledikten
+  sonra Studio'da "Kontroller" sonucuna bakılır; telif uyarısı gelirse video hemen özele alınır.
+- **Otomatik yorum:** API ile yorum için anahtarda `youtube.force-ssl` izni gerekir (şu anki anahtarda yok). API yorum
+  SABİTLEYEMEZ; sabitleme Studio'dan elle yapılır.
 - **YouTube sürümleri için riskler** (nedeni öğrenilince karar hesap sahibinin):
   1. Kısa reel'lerin imza müziği bir reel'in sesinden çıkarıldı. Kaynağı üçüncü taraf bir parçaysa YouTube'da Content ID
      eşleşmesi alabilir. Bize ait benzeri üretildi: `assets/music/imza_vals*.m4a` (`tools/imza_muzik.py`, 21.10; hesap sahibi dinleyip seçecek).
