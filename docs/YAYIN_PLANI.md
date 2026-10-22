@@ -27,7 +27,7 @@
   - İçerik listesindeki "Kısıtlamalar" sütunu, sorunun hangi videoda olduğunu gösterir.
 - **YouTube yüklemesi (hesap sahibi 22.10):** doğrudan **herkese açık** (`tools/yt_yukle.py`, varsayılan public). Yükledikten
   sonra Studio'da "Kontroller" sonucuna bakılır; telif uyarısı gelirse video hemen özele alınır.
-- **Otomatik yorum:** API ile yorum için anahtarda `youtube.force-ssl` izni gerekir (şu anki anahtarda yok). API yorum
+- **Otomatik yorum:** API ile yorum için anahtarda `youtube.force-ssl` izni gerekir (22.10 anahtarında var; `tools/yt_yukle.py --yorum-file`). API yorum
   SABİTLEYEMEZ; sabitleme Studio'dan elle yapılır.
 - **YouTube sürümleri için riskler** (nedeni öğrenilince karar hesap sahibinin):
   1. Kısa reel'lerin imza müziği bir reel'in sesinden çıkarıldı. Kaynağı üçüncü taraf bir parçaysa YouTube'da Content ID

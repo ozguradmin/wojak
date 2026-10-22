@@ -8,7 +8,8 @@ Kural: hesap sahibi "yükle" demeden yükleme yok. Varsayılan public (hesap sah
 yalnız yükleme + okuma: yüklenmiş videonun gizliliğini değiştirmek, yorum ya da silme API ile yapılamaz (Studio).
 
     python tools/yt_yukle.py --kontrol                       # yalnız kimlik + kanal denetimi (kota harcamaz sayılır: 1 birim)
-    python tools/yt_yukle.py video.mp4 --title "..." --desc-file aciklama.txt [--tags a,b] [--privacy private] [--thumb kapak.jpg]
+    python tools/yt_yukle.py video.mp4 --title "..." --desc-file aciklama.txt [--tags a,b] [--privacy public] [--thumb kapak.jpg] \
+        [--yorum-file teslim/<id>/metinler/youtube_sabit_yorum.txt]    # hikâye metnini yorum olarak da atar (sabitleme elle)
 
 Kurulum: pip install google-api-python-client google-auth
 """
@@ -57,6 +58,7 @@ def main() -> None:
     ap.add_argument("--privacy", default="public", choices=["public", "unlisted", "private"])
     ap.add_argument("--thumb")
     ap.add_argument("--kategori", default="27", help="27 Eğitim, 24 Eğlence")
+    ap.add_argument("--yorum-file", help="yüklemeden sonra kanal hesabıyla atılacak yorum (hikâye metni); sabitleme Studio'da elle")
     a = ap.parse_args()
     yt = youtube()
     if a.kontrol:
@@ -82,8 +84,17 @@ def main() -> None:
             yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(a.thumb)).execute()
         except Exception as e:  # Shorts özel kapağı yok sayar; doğrulanmamış kanal kapak koyamaz
             print("kapak atlandı:", type(e).__name__, file=sys.stderr)
-    print(json.dumps({"id": vid, "url": f"https://youtube.com/shorts/{vid}", "privacy": resp["status"]["privacyStatus"]},
-                     ensure_ascii=False))
+    yorum = None
+    if a.yorum_file:  # youtube.force-ssl izni gerekir; 50 kota birimi
+        try:
+            metin = Path(a.yorum_file).read_text(encoding="utf-8").strip()[:9900]
+            r = yt.commentThreads().insert(part="snippet", body={"snippet": {"videoId": vid, "topLevelComment": {
+                "snippet": {"textOriginal": metin}}}}).execute()
+            yorum = r["id"]
+        except Exception as e:
+            print("yorum atılamadı:", type(e).__name__, file=sys.stderr)
+    print(json.dumps({"id": vid, "url": f"https://youtube.com/shorts/{vid}", "privacy": resp["status"]["privacyStatus"],
+                      "yorum": yorum}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
