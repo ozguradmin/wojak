@@ -85,6 +85,10 @@ python -m pytest tests/ -q                        # or: python tests/test_uzun.p
 
 ## The owner's standing preferences (latest first; details in docs/OGRENILENLER.md, top table)
 
+- Music (22.10): every short uses the same signature `music: kanal`; a variant or a slightly slower/lower version only for a
+  topic with a very different mood.
+- YouTube (22.10): upload straight to public (`tools/yt_yukle.py`). After upload, post the story text as a comment once the token
+  has the `youtube.force-ssl` scope. The API cannot pin comments; the owner pins in Studio.
 - No AI-generated images (16.10): backgrounds and evidence are real photos/documents (or our own flat drawings);
   characters are ready-made wojak drawings. `tools/gorsel_uret.py` and the SOL gateway are not used.
 - Short reels: produce now (21.10). Long videos: wait for ElevenLabs, then follow `docs/YAYIN_PLANI.md` §4 in order.
