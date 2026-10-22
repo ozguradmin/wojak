@@ -586,6 +586,16 @@ depo. Süre: ~8 dk. Tasarruf: RAPOR'u üretirken yaz, sonradan değil.
 - `wojak/facing.py`/`check`: `faces:` alanı yaml'da varken bakış uyarısı zaten susuyor; `yon` kaydının eski sha1
   girdilerini temizleyen bir komut iyi olur (bilinen açık not).
 
+### Ek dersler (23.10.2026, Kız Kulesi ve Talidomit'in YouTube sürümleri)
+
+- **Kanıt sonradan değişirse, örneğin telifli bir görsel çıkarsa:** `episode.yaml`'da değiştir (`images`, `credits`,
+  `telif_notu`), sonra sırayla `check` → `render` → `teslim` çalıştır. `teslim/` altındaki paketi elle düzenleme:
+  atıf satırı ve metinler `credits`'ten üretilir, elle düzenlenen paket bir sonraki `teslim`'de ya eskir ya da silinir.
+  Yeni son kareye kareyi çıkarıp bak.
+- **Açıklamalardaki yıldızlı kelimeler kasıtlı** (örneğin "*leceğini", "*lümünden"). `wojak/censor.py` hassas
+  kelimeleri platform metinlerinde bilinçli olarak maskeler. Hata değil; elle düzeltme, "düzeltmek" için paketi
+  değiştirme.
+
 ---
 
 ## 7. Uzun formata ne taşınır?
