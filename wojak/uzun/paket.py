@@ -180,12 +180,21 @@ def bitis_maddesi(z: Zaman) -> str:
                f"Studio bitiş ekranını varsayılan olarak son 20 sn'ye koyar: başlangıcını **{zaman_str(t0)}**'e "
                "sürükle (daha erken başlarsa önceki sahnenin yazılarının üstüne biner). "
                if yer else "Abone ol öğesi de gerekmez (eklenirse sahnenin düğmelerinin üstüne binmesin). ")
-            # 12. tur (teknik hakem S2): kanal filigranı yedeği çıktı: YouTube onu sağ alta, videonun kendi
-            # filigranının üstüne koyar
             + "Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' "
-              "kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). Kanal filigranı "
-              "(Özelleştirme > Marka > Video filigranı) bu videoda kullanma: YouTube onu sağ alta, videodaki "
-              "'tarihselwojak' yazısının üstüne koyar")
+              "kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). "
+            + filigran_notu(z))
+
+
+def filigran_notu(z: Zaman) -> str:
+    """Kanal filigranı (Studio markalama) talimatı videonun kendi filigranına göre. 12. tur (teknik S2): gömülü
+    filigranlı videoda kanal filigranı kullanılmaz (YouTube onu sağ alta, videodaki yazının üstüne koyar). Gemini turu
+    2. hakem turu (teknik M1): `filigran: false` videoda (UZUN_FORMAT §2.8, hesap sahibi 15.10) tam tersi: kanal
+    filigranı AÇILIR; eski cümle hesap sahibine markasız yayın yaptırıyordu."""
+    if getattr(z.video, "filigran", None):
+        return ("Kanal filigranı (Özelleştirme > Markalama > Video filigranı) bu videoda kullanma: YouTube onu sağ "
+                f"alta, videodaki '{z.video.filigran}' yazısının üstüne koyar")
+    return ("Kanal filigranını AÇ: Studio > Özelleştirme > Markalama > **Video filigranı** (tıklanınca abone olunur; "
+            "görünme: videonun tamamı). Bu videoda gömülü filigran yok (UZUN_FORMAT §2.8, senin 15.10 kararın)")
 
 
 def ara_reklam_yerleri(v: Video, z: Zaman) -> list[str]:
@@ -287,9 +296,11 @@ def yaz(v: Video, z: Zaman, klasor: Path, mp4: Path | None, srt: Path | None, ku
         bitis_maddesi(z),
         "- [ ] **Shorts > İlgili video**: kısa sürümün (Short) Studio düzenleme sayfasında 'İlgili video' olarak "
         "BU uzun video seçildi (Short izleyicisini uzun videoya taşır)",
-        "- [ ] Short'un açıklamasına 'Uzun hâli kanalda' satırı eklendi; bu açıklamadaki [Short bağlantısı] dolduruldu",
+        # Gemini turu 2. hakem turu (teknik S3c): Short bağlantısı açıklamadaysa "[Short bağlantısı] dolduruldu" yok
+        "- [ ] Short'un açıklamasına 'Uzun hâli kanalda' satırı eklendi; bu açıklamadaki [Short bağlantısı] dolduruldu"
+        if not p.get("short_url") else "- [ ] Short'un açıklamasına 'Uzun hâli kanalda' satırı eklendi",
         "- [ ] Short henüz yayımlanmadıysa açıklamadaki 'Kısa hâli (Short): [Short bağlantısı]' satırı silindi"
-        if not p.get("short_url") else "- [ ] Short bağlantısı açıklamada doğru",
+        if not p.get("short_url") else f"- [ ] Short bağlantısı açıklamada doğru ({p['short_url']})",
         "- [ ] Sabit yorum yazıldı ve sabitlendi",
         "- [ ] 'Değiştirilmiş ya da yapay içerik' sorusu: "
         + str(p.get("yapay_icerik") or "gerçekçi bir kişi/olay taklidi yok; yapay zekâ seslendirmesi anlatım "

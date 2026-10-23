@@ -657,12 +657,58 @@ def yaziya_dok(p: Path, dil: str = "tr", ipucu: str | None = None) -> str:
     return " ".join(s.text.strip() for s in segs).strip()
 
 
+# Gemini turu 2. hakem turu (23.10, izlenme M2 + dil M1): Gemini cümle sonunu bazen hece bitmeden kesiyor ("Şükrü
+# Kaymakçalan" -> Whisper "Kaymakçala"; 152 satırın ~22'sinde son hece kırpık). Ham çekimin son 10-40 ms'i hâlâ
+# konuşma düzeyinde (p95'in 3-15 dB altı) ve sonda sessizlik yok; motorun 25 ms'lik söndürmesi kalan payı da alıyor.
+# Whisper'ın kelime denetimi bunu çoğu zaman görmüyor (kelimeyi bağlamdan tamamlıyor). Ölçü ham çekimde (tempo ve
+# kırpmadan önce): sondaki sessizlik KESIK_SESSIZLIK'ten kısa VE son 10-40 ms penceresi p95 - KESIK_DB'den yüksekse
+# "kesik son". Yalnız "sessizlik yok" yetmez: Gemini çekimlerinin ~%80'i son örnekte bitiyor ama sönümü çoktan
+# 25-45 dB aşağıda (duyulmaz); yalnız sesli kesilen son hece sayılır.
+KESIK_DB = 26.0          # dB: son 10-40 ms penceresi p95'in bundan az altındaysa (ve sessizlik yoksa) kesik (24 dB "talidomit."in t'sini kaçırıyordu)
+KESIK_SESSIZLIK = 0.04   # sn: sonda en az bu kadar sessizlik (p95 - 40 dB altı) varsa çekim doğal bitmiştir
+
+
+def kuyruk_olcumu(p: Path) -> dict | None:
+    """Ham çekimin sonu: {'db': son 10-40 ms'nin p95'e göre düzeyi, 'sessizlik': sondaki sessizlik (sn),
+    'kesik': bool}. Dosya yoksa ya da çok kısaysa None."""
+    try:
+        x, sr = wav_oku(p)
+    except (OSError, EOFError, TTSHatasi, wave.Error):
+        return None
+    hop = int(sr * 0.01)
+    n = len(x) // hop
+    if n < 10:
+        return None
+    db = 20 * np.log10(np.sqrt((x[: n * hop].reshape(n, hop) ** 2).mean(axis=1)) + 1e-9)
+    p95 = float(np.percentile(db[db > db.max() - 45], 95))
+    seg = x[len(x) - int(0.04 * sr): len(x) - int(0.01 * sr)]
+    son = 20 * np.log10(float(np.sqrt((seg ** 2).mean())) + 1e-9) - p95
+    k = 0
+    for d in db[::-1]:
+        if d >= p95 - 40:
+            break
+        k += 1
+    sess = k * 0.01
+    return {"db": round(son, 1), "sessizlik": round(sess, 2), "kesik": bool(sess < KESIK_SESSIZLIK and son > -KESIK_DB)}
+
+
+def duyulus_esle(v: Video, duy: str) -> str:
+    """qa.duyulus: Whisper'ın bir kelimeyi hep başka yazdığı bilinen duyuşları (doğru okunuşta bile) kelimenin kendisine
+    çevirir (yalnız karşılaştırma için; kayıttaki 'duyulan' ham kalır)."""
+    for kelime, alt in (getattr(v, "qa_duyulus", None) or {}).items():
+        for a in alt:
+            duy = re.sub(rf"(?<!\w){re.escape(a)}(?!\w)", kelime, duy, flags=re.IGNORECASE)
+    return duy
+
+
 def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = False) -> list[dict]:
     """İsim geçen satırları (tum=True: bütün satırları; kotu=True: yalnız önceki denetimde "tamam" olmayanları) Whisper
     ile dinler; duyulmayan isimleri ve isim dışı kelime farklarını (kelime_farklari) raporlar: biri varsa "KONTROL ET".
     yenile>0: başarısız (isim duyulmayan YA DA kelime farkı olan: Gemini kuralı, döküm metinle birebir) satırları en
     fazla o kadar kez yeniden üretir (önbellek anahtarına deneme no eklenir), en iyi sonucu seçer (manifest 'secim':
-    önce duyulan isim sayısı, sonra daha az kelime farkı, sonra isim benzerliği). Asla sonsuz döngüye girmez."""
+    önce duyulan isim sayısı, sonra daha az kelime farkı, sonra isim benzerliği). Asla sonsuz döngüye girmez.
+    Gemini'de ham çekimin sonu da ölçülür (kuyruk_olcumu): sesli kesilen son hece "kesik son" farkı sayılır, o çekim
+    yeniden alınır; eşit çekimlerde sonu daha sessiz olan seçilir."""
     sonuc = []
     man = _manifest(v)
     secim = man.setdefault("secim", {})
@@ -672,7 +718,11 @@ def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = Fal
         isimler = satirdaki_isimler(v, st)
         if kotu:
             o = onceki.get(yer, {})
-            if o.get("durum") == "tamam" and o.get("metin") == st.altyazi and \
+            sd = secili_deneme(v, st, man)
+            ku = kuyruk_olcumu(ham_yolu(v, st, sd)) if v.saglayici == "gemini" else None
+            # aynı metin ama başka çekim (tts/telaffuz/tarz/hız değişti): yeniden dinlenir
+            ayni = o.get("anahtar") in (None, satir_wav(v, st, sd)[0])
+            if o.get("durum") == "tamam" and o.get("metin") == st.altyazi and ayni and not (ku and ku["kesik"]) and \
                     len(fazla_kelimeler([st.altyazi, v.transkript(st)], o.get("duyulan", ""))) < 2:
                 sonuc.append(o)
                 continue
@@ -691,24 +741,37 @@ def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = Fal
             continue
         haric = isimler + [v.telaffuz.get(a, a) for a in isimler]
 
-        def puanla(path):
+        def kuyruk(deneme_no):
+            if v.saglayici != "gemini":
+                return None
+            return kuyruk_olcumu(ham_yolu(v, st, deneme_no))
+
+        def kesik_farki(ku):
+            return [f"kesik son ({ku['db']:+.0f} dB)"] if ku and ku["kesik"] else []
+
+        def farklar(duy, ku):
+            duy = duyulus_esle(v, duy)
+            fz = fazla_kelimeler([st.altyazi, v.transkript(st)], duy)
+            return (kelime_farklari(st.altyazi, duy, haric=haric) + [f"+{w}" for w in fz[:8]] * (len(fz) >= 2)
+                    + kesik_farki(ku))
+
+        def puanla(path, ku):
             duy = yaziya_dok(path, v.dil)
             r = [(a, *isim_duyuldu_mu(a, duy, v.telaffuz.get(a))) for a in isimler]
-            fz = fazla_kelimeler([st.altyazi, v.transkript(st)], duy)
-            return duy, r, kelime_farklari(st.altyazi, duy, haric=haric) + [f"+{w}" for w in fz[:8]] * (len(fz) >= 2)
+            return duy, r, farklar(duy, ku)
 
-        def skor(r, fark):
+        def skor(r, fark, ku):
             fz = sum(1 for f in fark if f.startswith("+"))
-            return (-fz, sum(ok for _, ok, _ in r), -len(fark), sum(x for _, _, x in r))
+            return (-fz, sum(ok for _, ok, _ in r), -len(fark), -(ku["db"] if ku else -99.0), sum(x for _, _, x in r))
 
+        ku = kuyruk(secili)
         if kotu and onceki.get(yer, {}).get("metin") == st.altyazi and onceki[yer].get("anahtar") == aday \
                 and onceki[yer].get("duyulan"):
             duy = onceki[yer]["duyulan"]   # aynı çekim: yeniden çözmeye gerek yok
             r = [(a, *isim_duyuldu_mu(a, duy, v.telaffuz.get(a))) for a in isimler]
-            fz = fazla_kelimeler([st.altyazi, v.transkript(st)], duy)
-            fark = kelime_farklari(st.altyazi, duy, haric=haric) + [f"+{w}" for w in fz[:8]] * (len(fz) >= 2)
+            fark = farklar(duy, ku)
         else:
-            duy, r, fark = puanla(p)
+            duy, r, fark = puanla(p, ku)
         deneme = 0
         while (not all(ok for _, ok, _ in r) or fark) and deneme < yenile:
             deneme += 1
@@ -720,9 +783,10 @@ def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = Fal
                 if not hp.exists():
                     hp.write_bytes(ham_uret(v, st))
                 ham_isle(v, st, hp, p2)
-            duy2, r2, fark2 = puanla(p2)
-            if skor(r2, fark2) > skor(r, fark):
-                duy, r, fark, aday, secili = duy2, r2, fark2, k2, deneme
+            ku2 = kuyruk(deneme)
+            duy2, r2, fark2 = puanla(p2, ku2)
+            if skor(r2, fark2, ku2) > skor(r, fark, ku):
+                duy, r, fark, aday, secili, ku = duy2, r2, fark2, k2, deneme, ku2
         if secili:
             secim[k0] = aday
             man.setdefault("deneme", {})[hk0] = secili
@@ -732,7 +796,8 @@ def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = Fal
         durum = "tamam" if all(ok for _, ok, _ in r) and not fark else "KONTROL ET"
         kayit = {"yer": yer, "durum": durum, "metin": st.altyazi, "duyulan": duy,
                  "isimler": [{"isim": a, "duyuldu": ok, "benzerlik": x} for a, ok, x in r],
-                 "kelime_farki": fark, "anahtar": aday, "deneme": secili}
+                 "kelime_farki": fark, "anahtar": aday, "deneme": secili,
+                 **({"kuyruk_db": ku["db"], "kuyruk_sessizlik": ku["sessizlik"]} if ku else {})}
         sonuc.append(kayit)
         log(f"  {durum:<10} {kayit['yer']}: " + ", ".join(f"{a} {'✓' if ok else '✗'}{x:.2f}" for a, ok, x in r)
             + (f" fark: {', '.join(fark)}" if fark else "") + f"  | duyulan: {duy[:90]}")

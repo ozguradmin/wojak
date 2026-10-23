@@ -23,6 +23,9 @@ KIRMIZI_DAMGA = (196, 34, 38)
 
 # ---------------------------------------------------------------- damga
 
+INIS_OLCEK = 1.85   # damganın iniş başlangıç ölçeği (varsayılan)
+
+
 def damga_sprite(metin: str, renk, boy: float, S: float, tohum: int = 0, kontur=None) -> Image.Image:
     """Lastik damga katmanı (RGBA): büyük harf Anton, çift çerçeve, mürekkep boşlukları.
     `kontur` (renk): harflerin ve çerçevenin çevresine ince dolu kenar (koyu/renkli zeminde okunurluk; 5. tur)."""
@@ -75,6 +78,7 @@ def damga_sprite(metin: str, renk, boy: float, S: float, tohum: int = 0, kontur=
 
 class Damga:
     INIS = 0.14
+    INIS_A = 0.3   # kontrol: inişte bu opaklıktan sonra yüze binen damga bildirilir
 
     def __init__(self, o, c, tohum: int = 0):
         S = c.S
@@ -91,6 +95,14 @@ class Damga:
                                 S, tohum, renk_coz(kontur, C.BEYAZ) if kontur else None)
         self.x, self.y = float(p.get("x", 0.5)) * c.W, float(p.get("y", 0.5)) * c.H
         self.aci = float(p.get("aci", -8))
+        # Gemini turu 2. hakem turu (animasyon S5): damga 1,85 kattan iner; yüzün yanına basılan damga ilk 3 karede
+        # yüzü süpürüyordu (B6.6, B5.3b). `inis`: iniş başlangıç ölçeği (1,0-1,85); kontrol bunu ölçer
+        self.inis = min(1.85, max(1.0, float(p.get("inis", INIS_OLCEK))))
+
+    def olcek(self, u: float) -> float:
+        """İnişin u (sn) anındaki ölçeği (tümsek dahil)."""
+        s = self.inis - (self.inis - 1.0) * E.in_cubic(u / self.INIS)
+        return s * (1 - 0.035 * E.tumsek((u - self.INIS) / 0.14))
 
     def ciz(self, im: Image.Image, t: float, x: float | None = None, y: float | None = None, olcek: float = 1.0):
         u = t - self.t0
@@ -101,8 +113,7 @@ class Damga:
             if u > self.sure + 0.25:
                 return
             a = 1 - E.in_cubic((u - self.sure) / 0.25)
-        s = 1.85 - 0.85 * E.in_cubic(u / self.INIS)
-        s *= 1 - 0.035 * E.tumsek((u - self.INIS) / 0.14)
+        s = self.olcek(u)
         a *= min(1.0, u / (self.INIS * 0.6))
         spr, x0, y0 = C.afin(self.spr, self.x if x is None else x, self.y if y is None else y, s * olcek, s * olcek,
                              self.aci)

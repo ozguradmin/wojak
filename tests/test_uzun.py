@@ -1166,6 +1166,11 @@ def test_kapanis_sahnesi():
     assert "klik" in ef and "zil" in ef and "pop" in ef and "tus" in ef
     assert not paket.bitis_denetle(z)                       # son sahne, 5-20 sn: uyarı yok
     assert "video kutusu EKLEME" in paket.bitis_maddesi(z)
+    # Gemini turu 2. hakem turu (teknik M1): filigran açıkken kanal filigranı kullanılmaz; `filigran: false` iken açılır
+    assert v.filigran and "kullanma" in paket.bitis_maddesi(z)
+    v.filigran = None
+    assert "Kanal filigranını AÇ" in paket.bitis_maddesi(z) and "kullanma" not in paket.bitis_maddesi(z)
+    v.filigran = config.WATERMARK
     ku = render.KareUretici(v, z, 1, 480, 270)
     kareler = [np.asarray(ku.kare(k), np.float32) for k in (3, 60, 100, 130, 200, 290)]
     for a, b in zip(kareler, kareler[1:]):
@@ -2049,3 +2054,68 @@ def test_gemini_ham_anahtari_hizdan_bagimsiz():
     assert tts.ham_anahtari(a, sa, 1) != tts.ham_anahtari(a, sa)
     assert tts.secili_deneme(a, sa, {"deneme": {tts.ham_anahtari(a, sa): 2}}) == 2
     assert tts.secili_deneme(a, sa, {"secim": {tts.satir_anahtari(a, sa): tts.satir_anahtari(a, sa, 3)}}) == 3
+
+
+def test_kesik_son_olcumu():
+    """Gemini turu 2. hakem turu: sesli kesilen son hece (Kaymakçalan -> 'Kaymakçala') 'kesik son' sayılır; doğal
+    sönümle biten ya da sonda sessizliği olan çekim sayılmaz."""
+    import tempfile
+    import numpy as np
+    from wojak.uzun import tts
+    sr = 48000
+    t = np.arange(int(0.8 * sr)) / sr
+    ses = (0.4 * np.sin(2 * np.pi * 180 * t)).astype(np.float32)
+    with tempfile.TemporaryDirectory() as d:
+        p = Path(d) / "a.wav"
+        tts.wav_yaz(p, ses, sr)                                      # son örneğe dek tam düzey: kesik
+        k = tts.kuyruk_olcumu(p)
+        assert k["kesik"] and k["db"] > -3 and k["sessizlik"] < 0.02
+        son = ses * np.r_[np.ones(len(t) - 4800), np.linspace(1, 0, 4800) ** 3].astype(np.float32)
+        tts.wav_yaz(p, son, sr)                                      # 100 ms'de sönüyor: doğal son
+        assert not tts.kuyruk_olcumu(p)["kesik"]
+        tts.wav_yaz(p, np.r_[ses, np.zeros(int(0.06 * sr), np.float32)], sr)   # 60 ms sessizlik
+        k = tts.kuyruk_olcumu(p)
+        assert not k["kesik"] and k["sessizlik"] >= 0.05
+        assert tts.kuyruk_olcumu(Path(d) / "yok.wav") is None
+
+
+def test_kontrol_alttan_kesik_yuz():
+    """Gemini turu 2. hakem turu: yüz kutusunun altı (boyun) kadrajın alt kenarının altındaysa (kamera zoom/merkez ile)
+    kontrol uyarır; eski denetim yalnız sol/sağ/üst kenara bakıyordu (dorukta çene 8 sn kesikti)."""
+    from wojak.uzun import yerlesim as Y
+    AN = "uzun/talidomit-turkiye/chars/anlatici_v2_sakin.png"
+    KG = "uzun/talidomit-turkiye/img/doku_kagit.jpg"
+
+    def kar(kamera):
+        sah = {"tip": "wojak", "arka": KG, "sure": 3.0, "kamera": kamera,
+               "karakterler": [{"id": "z", "gorsel": AN, "x": 0.6, "boy": 0.62, "giris": False}]}
+        v = _video([{"baslik": "a", "sahneler": [sah]}])
+        return [x for x in Y.denetle(v, zaman.hesapla(v, tahmin=True)) if "alt kenarına" in x]
+    assert not kar({"zoom": [1.0, 1.0], "it": 0})
+    assert kar({"zoom": [1.3, 1.3], "merkez": [[0.6, 0.42], [0.6, 0.42]], "it": 0})
+    assert not kar({"zoom": [1.3, 1.3], "merkez": [[0.6, 0.62], [0.6, 0.62]], "it": 0})
+
+
+def test_db_bas_giris_obegi():
+    """Gemini turu 2. hakem turu: `db_bas: [sn, dB]` satırın yalnız ilk öbeğini kısar (sınırda yumuşak geçiş)."""
+    import pytest
+    import numpy as np
+    from wojak.uzun import ses
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x",
+                                               "satirlar": [{"metin": "Bir. İki.", "db_bas": [0.5, -6]}]}]}])
+    assert v.sahneler[0].satirlar[0].db_bas == (0.5, -6.0)
+    x = np.ones(ses.SR, np.float32)
+    y = ses.bas_kazanci(x, 0.5, -6.0)
+    assert abs(y[0] - 10 ** (-6 / 20)) < 1e-4 and abs(y[-1] - 1.0) < 1e-6 and y[int(0.47 * ses.SR)] < 1.0
+    with pytest.raises(spec.SpecHatasi):
+        _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "satirlar": [{"metin": "a", "db_bas": 3}]}]}])
+
+
+def test_qa_duyulus_esle():
+    """qa.duyulus: Whisper'ın hep başka yazdığı bilinen duyuş kelime farkı sayılmaz."""
+    from wojak.uzun import tts
+    v = _video([{"baslik": "a", "sahneler": [{"tip": "metin", "metin": "x", "satirlar": ["Nejat geldi."]}]}])
+    v.qa_duyulus = {"Nejat": ["Necad"]}
+    assert tts.duyulus_esle(v, "Necad geldi.") == "Nejat geldi."
+    assert tts.kelime_farklari("Nejat geldi.", tts.duyulus_esle(v, "Necad geldi.")) == []
+    assert tts.kelime_farklari("Nejat geldi.", "Necad geldi.")

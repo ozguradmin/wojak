@@ -88,7 +88,7 @@ müzik kipi), `youtube` (açıklamadaki bölüm adı), `sahneler`.
 | Anahtar | Açıklama |
 |---|---|
 | `tip` | `wojak`, `foto`, `manset`, `harita`, `sayac`, `bolum_karti`, `metin`, `zaman_cizelgesi` (takma: `liste`), `bolunmus`, `izgara`, `pano`, `marka`, `bitis`, `kapanis` (takma: `cagri`, `cta`) |
-| `satirlar` | düz metin = anlatıcı; sözlük: `metin` (zorunlu), `ses`, `duygu` (Cartesia emotion; Gemini'de tarza eklenir), `tarz` (Gemini: satıra özel tavır, sesin tarzının yerine), `hiz` (Gemini: sesin taban hızıyla çarpılır), `once` (önceki ara yerine), `sonra` (ek bekleme; vurgu cümlesinden sonra 0,4-0,6), `db` (ortak seviyeden sonra ek kazanç, ±6), `tts` (TTS'e başka metin), `balon` (wojak: karakter kimliği, satır o karakterin balonunda görünür; karakter konuşurken seker), `konusan` (wojak: karakter kimliği; balonsuz, satır boyunca o karakter seker ve kamera ona yaklaşır). Metinde `<break time="500ms"/>` kullanılabilir; altyazıdan çıkarılır (Gemini'ye "..." ya da virgül olarak gider) |
+| `satirlar` | düz metin = anlatıcı; sözlük: `metin` (zorunlu), `ses`, `duygu` (Cartesia emotion; Gemini'de tarza eklenir), `tarz` (Gemini: satıra özel tavır, sesin tarzının yerine), `hiz` (Gemini: sesin taban hızıyla çarpılır), `once` (önceki ara yerine), `sonra` (ek bekleme; vurgu cümlesinden sonra 0,4-0,6), `db` (ortak seviyeden sonra ek kazanç, ±6), `db_bas` ([sn, dB]: yalnız ilk `sn`'ye ek kazanç, sınırda 60 ms geçiş; vurgulu giriş öbeği komşularından yüksekse, ör. `[1.25, -3]`; sınırı öbekler arasındaki sessizliğe koy), `tts` (TTS'e başka metin), `balon` (wojak: karakter kimliği, satır o karakterin balonunda görünür; karakter konuşurken seker), `konusan` (wojak: karakter kimliği; balonsuz, satır boyunca o karakter seker ve kamera ona yaklaşır). Metinde `<break time="500ms"/>` kullanılabilir; altyazıdan çıkarılır (Gemini'ye "..." ya da virgül olarak gider) |
 | `olaylar` | `{tip, satir, ofset, an, t, ...}` — aşağıdaki tablo |
 | `sfx` | `{ad, satir/ofset/an/t, db}`; `ad` = `assets/sfx/<ad>.wav` ya da dosya yolu |
 | `gecis`, `gecis_kare` | bu sahneye GİRİŞ geçişi ve kare sayısı |
@@ -123,7 +123,7 @@ hassasiyetinde, sahneler kare sınırında başlar: görüntü-ses kayması olma
 | `ulke` | harita | `kod` | o ülke (ya da vurgu ülkesi) bu anda yanar |
 | `nokta` | zaman_cizelgesi | `indeks` (1'den) | o nokta bu anda belirir |
 | `ceviri` | metin, bolunmus | `taraf` (bolunmus) | çeviri satırı belirir |
-| `damga` | hepsi | `metin`, `renk` (kirmizi/yesil/mavi/... ya da [r,g,b]), `x`, `y` (0..1), `aci` (-8), `boy` (84), `sure` (yoksa sahne sonuna dek), `kontur` (true = beyaz ya da renk: harf ve çerçeve çevresine ince dolu kenar; koyu/desenli zeminde okunurluk; açık zeminde beyaz damgaya koyu kontur `[24, 24, 30]`), `kart` (pano), `kart_y` (kart merkezine göre, kart yüksekliği oranı; vars. görselli kartta görselin ortası, görselsizde 0.2: başlık okunur kalır), `inik` (true: sahne başında zaten basılı, iniş/ses yok: bölünmüş çekimin devamı; 11. tur: `sure` ile birlikte sahne başından `sure` sn sonra söner: eşleşen kesmede önceki sahnenin damgası taşınır) | lastik damga ekrana çarparak iner (mürekkep dokulu, çift çerçeve); efekt `damga` |
+| `damga` | hepsi | `metin`, `renk` (kirmizi/yesil/mavi/... ya da [r,g,b]), `x`, `y` (0..1), `aci` (-8), `boy` (84), `sure` (yoksa sahne sonuna dek), `kontur` (true = beyaz ya da renk: harf ve çerçeve çevresine ince dolu kenar; koyu/desenli zeminde okunurluk; açık zeminde beyaz damgaya koyu kontur `[24, 24, 30]`), `kart` (pano), `kart_y` (kart merkezine göre, kart yüksekliği oranı; vars. görselli kartta görselin ortası, görselsizde 0.2: başlık okunur kalır), `inik` (true: sahne başında zaten basılı, iniş/ses yok: bölünmüş çekimin devamı; 11. tur: `sure` ile birlikte sahne başından `sure` sn sonra söner: eşleşen kesmede önceki sahnenin damgası taşınır), `inis` (iniş başlangıç ölçeği, 1,85; yüzün yanındaki damgada küçült: `kontrol` inerken yüze binen damgayı bildirir) | lastik damga ekrana çarparak iner (mürekkep dokulu, çift çerçeve); efekt `damga` |
 | `kose` | hepsi | `deger`, `metin`, `sure` (0,6), `takili`, `renk`, `yil` | köşe göstergesi yeni değere sayar (sayı) ya da yuvarlanır (metin); `takili: true` basamaklar karışıp takılır ve ara ara titrer ("1961 -> ????"); yıl göstergesinde (`yil`) takılırken yıl **geriye gitmez** (9. tur, izlenme S1: "40+ YIL SONRA" altında 1948 ve 1987 görünüyordu): eski yıldan hedef yüzyıla ("20??" -> 2000; "????" -> eski + 45) hızla ileri akar, sonra takılır; titreşimde de yalnız eski yıldan sonraki yıllar |
 | `muzik` | hepsi | `db`, `gecis` (rampa sn, 0,5) | müzik seviyesi bu andan itibaren (incelme, bir an sessizlik: `db: -40`) |
 | `deger` | sayac | `deger`, `etiket`, `renk`, `sure` (1,2), `onek`, `sonek` | sayaç bir önceki değerden yenisine sayar; etiket ve renk değişebilir. `sure: 0`: sayım yok (tık yok, yalnız vuruş; 6. tur: 20.000 -> 17 geri sayarken "en az 16.043" görünüyordu); 10. tur (animasyon hakemi S2: "≈20.000" -> "en az 17" tek karede kesme gibiydi): yeni değer 0,26 sn'de tekerlek penceresinde **yuvarlanarak** gelir (eski yukarı çıkar, yeni alttan out_back ile oturur; `SAYAC_GECIS`), oturduğu anda (`varis`) yumruk + renk parlaması ve `hit`. Değişen önek (1.267 -> "≈20.000") 0,22 sn'de açılır. **Her değer, sonraki değişimden önce yerleşir ve en az `tut` (0,6 sn) okunur kalır**: sayım gerekirse kısalır (en az 0,6 sn), yetmezse sonraki değer ertelenir (`kontrol` ikisini de bildirir; animasyon hakemi M2: "1.267 doktor" hiç okunmuyordu) |
@@ -360,7 +360,10 @@ Açıklama YouTube API'sinin 5.000 **bayt** sınırına göre de denetlenir (Tü
 öğelerinin başlangıcı da yukarı yuvarlanır (daha erken başlarsa kapanış sahnesinin üstüne biner). Denetim: >= 3 bölüm, her biri >= 10 sn, artan sıra.
 Kontrol listesinde "Shorts > İlgili video" bağlantısı ve bitiş ekranı maddeleri var. 11. tur (teknik hakem S1): kapanış
 maddesi Studio'nun bitiş ekranında en az bir video/oynatma listesi öğesi isteyebileceğini söyler; yalnız "Abone ol"
-kaydedilmezse bitiş ekranı boş bırakılır ya da kanal filigranı (Özelleştirme > Marka) kullanılır.
+kaydedilmezse bitiş ekranı boş bırakılır. Kanal filigranı talimatı (`paket.filigran_notu`) videonun kendi filigranına
+bağlı: gömülü filigran varsa "kullanma" (YouTube onu sağ alta, yazının üstüne koyar), `filigran: false` ise "AÇ"
+(Gemini turu 2. hakem turu, teknik M1: eski cümle filigransız videoyu markasız yayınlatıyordu; UZUN_FORMAT §2.8). Short
+bağlantısı (`short_url`) açıklamadaysa listede "[Short bağlantısı] dolduruldu" maddesi yazılmaz.
 
 ## 8. Denetimler (`kontrol`)
 
@@ -400,7 +403,15 @@ kaydedilmezse bitiş ekranı boş bırakılır ya da kanal filigranı (Özelleş
   kadraj dışında (sol/sağ/üst; sahne kamerası ve `it` dahil), (b) çizim sırasında SONRA gelen görsel yüz kutusunun
   %10'undan fazlasını örtüyor (nesnede kutu, canlı karakterde gerçek alfa maskesi), (c) sahnenin sabit kutusu (harita
   lejantı, foto atfı) canlı karakterin alfa kutusuna 16 px'ten yakın. 0,4 sn'den kısası bildirilmez. talidomit-turkiye:
-  hakemin bulduğu ikisinin yanında beş yeni yer buldu (0:50, 4:01, 6:40, 8:14, 6:27).
+  hakemin bulduğu ikisinin yanında beş yeni yer buldu (0:50, 4:01, 6:40, 8:14, 6:27). **Gemini turu 2. hakem turu:**
+  (d) yüz kutusunun altı (boyun) alt kenara 8 px'ten yakın ya da altında (`YUZ_ALT_PAY`; kamera zoom/merkez dahil):
+  eski (a) yalnız sol/sağ/üste bakıyordu, dorukta Kaymakçalan'ın çenesi 8 sn kadraj altındaydı ve `kontrol` temizdi.
+  Not: uzun saçlı çizimlerde (Kelsey) boyun satırı saçta bulunabilir; kutu çeneyi kapsamaz, kareyle bak.
+- **İnen damga yüze (Gemini turu 2. hakem turu, `yerlesim._damga_inis_denetle`; animasyon hakemi S5: 9:54'te RUHSAT
+  damgası inerken 3 kare temsilcinin gözünü süpürdü):** damga 1,85 kat büyükten 0,14 sn'de iner; çakışma denetimi inen
+  damgayı saymıyordu. İnişin her karesinde (opaklık >= 0,3) o anki ölçekteki kutu canlı bir yüze 8 px'ten derin
+  giriyorsa bildirilir. Çözüm: damgaya `inis` (iniş başlangıç ölçeği 1,0-1,85, ör. 1,3), yüzden uzaklaştır ya da `boy`.
+  talidomit-turkiye: hakemin bulduğu birinin yanında sekiz yer daha (kanca, 1:52, 3:29, 5:48, doruk, 6:48, 7:44, 10:30).
 - **Vurgu kelimesi sırası (13. tur; animasyon hakemi S1: 4:57.5'te "ABD · FDA · 1960" önceki kelime sönerken aynı yerde
   belirdi, 6 kare çift yazı; çakışma denetimi yarı saydamı saymadığı için kaçırıyordu):** aynı dikey banttaki yeni
   kelime, öncekinin sönmesi bittikten en az 0,3 sn sonra.
@@ -430,7 +441,14 @@ kaydedilmezse bitiş ekranı boş bırakılır ya da kanal filigranı (Özelleş
   satırları dinler. `--yenile N`: başarısız satır en fazla N kez yeniden üretilir, en iyi deneme seçilir
   (`out/<id>-uzun/ses/manifest.json`, `secim`; `secim` elle onarılmış bir dosyaya da işaret edebilir, ör.
   `uzun/talidomit-turkiye/ses_onarim.py`). Döngüye girmez. Not: Whisper nadir adları (talidomit, Lenz) bazen yanlış
-  yazar; rapor dinleyip karar vermek içindir.
+  yazar; rapor dinleyip karar vermek içindir. **Fazla kelime** (Gemini turu): duyulup metinde olmayan >= 2 kelime
+  (Gemini tarz tarifini sesli okuyabiliyor). **Kesik son** (Gemini turu 2. hakem turu, `tts.kuyruk_olcumu`): Gemini
+  cümle sonunu bazen hece bitmeden kesiyor ("Kaymakçalan" -> "Kaymakçala"; 152 satırın ~22'si); Whisper bağlamdan
+  tamamladığı için kelime denetimi görmüyor. Ham çekimin sonunda sessizlik 40 ms'den kısa VE son 10-40 ms penceresi
+  p95'in 26 dB'den az altındaysa çekim "kesik son" farkı sayılır, yeniden alınır; eşit çekimlerde sonu daha sessiz olan
+  seçilir. Yalnız "sessizlik yok" ölçütü kullanılmaz: Gemini çekimlerinin ~%80'i son örnekte biter ama sönümü çoktan
+  25-45 dB aşağıdadır. `--kotu` artık önceki denetimde "tamam" olsa da kesik sonu olan ya da çekimi (tts/telaffuz/tarz/
+  hız) değişen satırı yeniden dinler.
 - **TTS kotası yokken onarım** (`uzun/talidomit-turkiye/ses_onarim.py`, 3. hakem turu): satırlar METNE göre bulunur;
   cümle başındaki bağlaç ya da yanlış okunan ilk cümle kapantı/sessizlik çukurundan kesilir (yaml'da satırın metni de
   kısalır, yeni anahtar onarım dosyasına bağlanır); ikiz ünsüz yanlış okunuyorsa ("cüzzam" -> "cüzdan") z bölümü

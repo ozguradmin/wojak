@@ -29,6 +29,9 @@ ADIM = 0.1             # sn: denetim örnek aralığı
 EN_AZ_SURE = 0.15      # sn: bundan kısa çakışma (geçiş anı) bildirilmez
 KELIME_ARA = 0.3       # sn (13. tur): aynı yerdeki iki vurgu kelimesi arasında, öncekinin sönmesinden sonra en az
 YUZ_DISARI = 0.12      # 13. tur: yüz kutusunun bu oranından fazlası kadraj dışında (sol/sağ/üst) kalırsa uyarılır
+YUZ_ALT_PAY = 8.0      # px (1080p; Gemini turu 2. hakem turu): yüz kutusunun altı (boyun) kadrajın alt kenarına bundan
+                       # yakın ya da altındaysa (çene kesik; kamera zoom/merkez dahil) uyarılır. Eski `dis` terimi yalnız
+                       # sol/sağ/üst kenara bakıyordu: dorukta (B5.3b) Kaymakçalan'ın çenesi 8 sn kadraj altındaydı
 YUZ_ORTU = 0.10        # 13. tur: sonra çizilen görsel bir yüz kutusunun bu oranından fazlasını örterse uyarılır
 SABIT_PAY = 16.0       # px (13. tur): sahnenin sabit kutusu (harita lejantı, foto atfı) ile canlı karakter arası en az
 KARAKTER_SURE = 0.4    # sn: karakter denetimlerinde bundan kısa durum (giriş/çıkış, itme anı) bildirilmez
@@ -188,6 +191,7 @@ def denetle(v, z, W: int = 960) -> list[str]:
             continue
         out += _kelime_sirasi(uk, b0, c)
         out += _karakter_denetle(s, cz, b0, c)
+        out += _damga_inis_denetle(uk, b0, c)
         if not ust:
             continue
         for it in uk.isimler:
@@ -351,7 +355,8 @@ def _kelime_sirasi(uk, b0: float, c) -> list[str]:
 def _karakter_denetle(s, cz, b0: float, c) -> list[str]:
     """13. tur (animasyon hakemi M1: 9:23'te kamera itmesinde makale çizimi anlatıcının yüzünün yarısını örttü, 'fark'
     tepkisi kayboldu; S3: harita lejantı anlatıcının omzuna biniyordu). Sahne boyunca (giriş/çıkış animasyonu dışında):
-    (a) yüz kutusunun `YUZ_DISARI`'dan fazlası kadraj dışında (sol/sağ/üst; kamera ve `it` dahil),
+    (a) yüz kutusunun `YUZ_DISARI`'dan fazlası kadraj dışında (sol/sağ/üst; kamera ve `it` dahil), ya da yüz kutusunun
+        altı (boyun) alt kenara `YUZ_ALT_PAY`'dan yakın (çene kesik: hesap sahibinin 15.10 şikâyeti; UZUN_FORMAT §2.9),
     (b) çizim sırasında SONRA gelen bir görsel (nesne ya da karakter) yüz kutusunun `YUZ_ORTU`'sundan fazlasını örtüyor,
     (c) sahnenin sabit kutusu (harita lejantı, foto atfı) canlı bir karakterin alfa kutusuna `SABIT_PAY`'dan yakın."""
     from . import zaman as Zm
@@ -384,6 +389,9 @@ def _karakter_denetle(s, cz, b0: float, c) -> list[str]:
             dis = max((max(0.0, -fb[0]) + max(0.0, fb[2] - W)) / fw, max(0.0, -fb[1]) / fh)
             if dis > YUZ_DISARI:
                 cak.setdefault((k.ad, "", "dış"), []).append((t, dis))
+            alt = fb[3] - (H - YUZ_ALT_PAY * S)
+            if alt > 0:
+                cak.setdefault((k.ad, "", "alt"), []).append((t, alt / S))
             for k2, kb2, _ in kutular[x + 1:]:
                 if kb2 is None:
                     continue
@@ -407,6 +415,10 @@ def _karakter_denetle(s, cz, b0: float, c) -> list[str]:
             en = [v for t, v in ts if t0 <= t <= t1]
             if tur == "dış":
                 ne = f"{a_ad} yüzünün %{100 * max(en):.0f}'i kadraj dışında — x/boy, kamera ya da `it` hedefini değiştir"
+            elif tur == "alt":
+                ne = (f"{a_ad} yüzünün altı (boyun/çene) kadrajın alt kenarına {YUZ_ALT_PAY:.0f} px'ten yakın ya da "
+                      f"altında (en çok {max(en) - YUZ_ALT_PAY:+.0f} px, 1080p; çene kesik) — kamera `merkez` y'sini "
+                      f"büyüt, zoom'u ya da `boy`'u küçült, `alt`'ı azalt")
             elif tur == "ört":
                 ne = (f"{b_ad} {a_ad} yüzünün %{100 * max(en):.0f}'ini örtüyor (sonra çiziliyor) — yerini/boyunu "
                       f"değiştir ya da karakterler listesinde sırasını")
@@ -414,6 +426,36 @@ def _karakter_denetle(s, cz, b0: float, c) -> list[str]:
                 ne = (f"sabit kutu (lejant/atıf) {a_ad} karakterine {min(en):.0f} px "
                       f"({'biniyor' if min(en) < 0 else 'yakın'}; en az {SABIT_PAY:.0f}) — konuğu kaydır ya da kısalt")
             out.append(f"{Zm.zaman_str(b0 + t0)}-{Zm.zaman_str(b0 + t1 + ADIM)}: {ne}")
+    return out
+
+
+def _damga_inis_denetle(uk, b0: float, c) -> list[str]:
+    """Gemini turu 2. hakem turu (animasyon S5: 9:54'te RUHSAT damgası inerken 3 kare temsilcinin gözünü ve yanağını
+    süpürdü; dorukta da OLUMSUZ GÖRÜŞ): damga 1,85 kat büyükten iner ve oturduğu yer yüzden uzak olsa da ilk karelerde
+    yüze biner. Çakışma denetimi inen damgayı saymıyordu. İnişin her karesinde (opaklık >= INIS_A) damganın o anki
+    ölçekteki kutusu canlı karakterlerin yüz kutusuna `YUZ_DERIN`'den derin giriyorsa bildirilir. Çözüm: `inis`
+    (iniş ölçeği, ör. 1,3), damgayı yüzden uzağa ya da `boy`u küçült."""
+    from . import zaman as Zm
+    S = c.S
+    out = []
+    for d in getattr(uk, "damgalar", []):
+        if d.t0 < -1:   # inik: önceki çekimden basılı gelir, inmez
+            continue
+        en, ad_ = 0.0, None
+        for j in range(1, int(d.INIS * c.fps) + 1):
+            u = j / c.fps
+            if min(1.0, u / (d.INIS * 0.6)) < d.INIS_A:
+                continue
+            s = d.olcek(u)
+            poli = donuk_dikdortgen(d.x, d.y, d.spr.width * s, d.spr.height * s, d.aci)
+            for k_ad, kb in uk.yuz_kutulari(d.t0 + u):
+                dd = derinlik(poli, dikdortgen(*kb))
+                if dd > en:
+                    en, ad_ = dd, k_ad
+        if ad_ is not None and en >= YUZ_DERIN * S:
+            out.append(f"{Zm.zaman_str(b0 + d.t0)}: damga '{d.metin}' inerken (ilk {d.INIS:.2f} sn, {d.inis:.2f} "
+                       f"kattan) {ad_} karakterinin yüzüne {en / S:.0f} px biniyor — `inis: 1.3` ver, damgayı yüzden "
+                       f"uzaklaştır ya da `boy`'u küçült")
     return out
 
 

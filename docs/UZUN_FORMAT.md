@@ -49,6 +49,12 @@
     "Ens-titüsü", `telaffuz`'a); "'hayır'ın" -> "hayır kararının". İsimler (Kaymakçalan, Nejat, Kelsey) doğru.
   - İkinci ses için 5 aday denendi (Kore, Aoede, Sulafat, Leda, Gacrux; aynı üç alıntı): yalnız **Kore** üçünde de
     hatasızdı. Talidomit videosunda ikinci ses Kore.
+  - **Gemini cümle sonunu kesebilir** (2. hakem turu): ~22 satırda son hece sesli kesikti ("Şükrü Kaymakçalan" ->
+    Whisper "Kaymakçala"); Whisper satır dökümünde kelimeyi çoğu zaman bağlamdan tamamlıyor, yalnız mikste duyuluyor.
+    `seslendir --qa` artık ham çekimin sonunu ölçer ("kesik son": sonda < 40 ms sessizlik ve son 10-40 ms p95'in
+    26 dB'den az altında) ve o çekimi yeniden alır. Gemini çekimlerinin çoğu son örnekte biter; sönümü inmişse sorun yok.
+  - Satıra özel `tarz` sesin tarzının YERİNE geçer: anlatıcı satırına not eklerken hesap sahibinin tarz metnini aynen
+    başa koy, notu sona ekle (KP.1 "Tek bir kahraman mı?": soru tonu).
 
 ## 2. Görsel dil: hareket şart
 

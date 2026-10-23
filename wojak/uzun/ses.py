@@ -123,6 +123,21 @@ KUYRUK_SON, KUYRUK_ONCE, KUYRUK_DB = 0.020, 0.045, 20.0
 KUYRUK_TABAN_DB = -45.0   # son pencere klibin tepesinin bu kadar altındaysa (sessizlik üstünde gürültü) sayılmaz
 
 
+def bas_kazanci(x: np.ndarray, sn: float, db: float, rampa: float = 0.06, sr: int = SR) -> np.ndarray:
+    """Satırın ilk `sn` saniyesine `db` ek kazanç; sınırda `rampa` sn'lik yumuşak geçiş (kopya döner). Gemini turu 2.
+    hakem turu (izlenme S4): vurgulu giriş öbeği ("Bu arada bir ayrıntı:") komşularından +3,5 dB, sonra 4,4 dB düşüş;
+    sınır öbekler arasındaki sessizliğe konur."""
+    y = np.array(x, np.float32, copy=True)
+    n = min(len(y), int(round(sn * sr)))
+    r = min(n, int(round(rampa * sr)))
+    g = np.ones(len(y), np.float32)
+    k = np.float32(10 ** (db / 20))
+    g[: n - r] = k
+    if r:
+        g[n - r: n] = np.linspace(k, 1.0, r, dtype=np.float32)
+    return y * g
+
+
 def klip_sondur(x: np.ndarray, sure: float = KLIP_SONU, sr: int = SR) -> np.ndarray:
     """Klibin son `sure` sn'sini yükseltilmiş kosinüsle sıfıra indirir (kopya döner)."""
     n = min(int(round(sure * sr)), len(x))
@@ -588,6 +603,8 @@ def miks(v: Video, z: Zaman, klasor: Path, log=print) -> dict:
             continue
         x = oku(sz.satir.wav, 1)
         x = x * satir_kazanci(x) * (10 ** (sz.satir.db / 20))   # her ses/satır aynı konuşma seviyesinde (+ satır db)
+        if sz.satir.db_bas:
+            x = bas_kazanci(x, *sz.satir.db_bas)
         i = int(round(sz.bas * SR))
         j = min(n, i + len(x))
         if j > i:

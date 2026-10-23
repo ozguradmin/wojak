@@ -121,7 +121,7 @@ OLAY_TIPLERI: dict[str, set[str]] = {
     "etiket": set(),                          # foto: yer-tarih etiketi yazılmaya başlar
     "ceviri": {"taraf"},                      # metin (bolunmus: taraf): çeviri satırı belirir
     # --- 2. tur
-    "damga": {"metin", "renk", "x", "y", "aci", "boy", "sure", "kart", "inik", "kart_y", "kontur"},   # lastik damga (pano: kart'ın üstüne;
+    "damga": {"metin", "renk", "x", "y", "aci", "boy", "sure", "kart", "inik", "kart_y", "kontur", "inis"},   # lastik damga (pano: kart'ın üstüne;
     # kart_y: kartın merkezine göre dikey yer, kart yüksekliği oranında (-0.5 üst .. 0.5 alt; görselli kartta
     # varsayılan görselin ortası, başlık okunur kalsın; görselsiz kartta 0.2)
     # inik: true = sahne başında zaten basılı, iniş ve ses yok: bölünmüş çekimin devamında)
@@ -201,6 +201,8 @@ class Satir:
     balon: str | None = None     # karakter kimliği: satır o karakterin konuşma balonunda görünür
     konusan: str | None = None   # karakter kimliği: satır boyunca o karakter konuşur gibi seker (balonsuz)
     db: float = 0.0              # ortak seviyeye getirildikten sonra ek kazanç (dB; kulağa alçak gelen satır için)
+    db_bas: tuple[float, float] | None = None   # (sn, dB): satırın ilk `sn`'sine ek kazanç (vurgulu giriş öbeği; Gemini
+                                                # turu 2: "Bu arada bir ayrıntı:" komşularından +3,5 dB)
     # hesaplanan
     sure: float | None = None
     wav: Path | None = None
@@ -298,6 +300,9 @@ class Video:
     paket: dict
     qa_isimler: list[str]
     raw: dict
+    # Gemini turu 2. hakem turu: Whisper'ın doğru okunuşu bile hep başka yazdığı kelimeler (ör. "Nejat" -> medium
+    # "Necad", small "Nezat"): {kelime: [kabul edilen duyuş, ...]}. QA farkı saymaz; kulak kontrolü dinleme listesinde
+    qa_duyulus: dict = field(default_factory=dict)
     hareket: dict = field(default_factory=lambda: dict(HAREKET_VARSAYILAN))
 
     @property
@@ -410,8 +415,14 @@ def _satir(v, video_ses: str, video_hiz: float, sesler: dict, yer: str) -> Satir
         return Satir(metin=v.strip(), ses=video_ses, hiz=video_hiz)
     if not isinstance(v, dict):
         _hata(yer, f"satır metin ya da sözlük olmalı: {v!r}")
-    _bilinmeyen(v, {"metin", "ses", "duygu", "hiz", "once", "sonra", "tts", "balon", "konusan", "db", "tarz"}, yer,
-                "satır")
+    _bilinmeyen(v, {"metin", "ses", "duygu", "hiz", "once", "sonra", "tts", "balon", "konusan", "db", "tarz", "db_bas"},
+                yer, "satır")
+    db_bas = None
+    if v.get("db_bas") is not None:
+        x = v["db_bas"]
+        if not (isinstance(x, (list, tuple)) and len(x) == 2):
+            _hata(yer, "db_bas [sn, dB] olmalı (ör. [1.1, -3])")
+        db_bas = (_sayi(x[0], yer, "db_bas sn", 0.05, 30), _sayi(x[1], yer, "db_bas dB", -9, 6))
     if not str(v.get("metin", "")).strip():
         _hata(yer, "satırda 'metin' yok")
     ses = str(v.get("ses", video_ses))
@@ -423,7 +434,7 @@ def _satir(v, video_ses: str, video_hiz: float, sesler: dict, yer: str) -> Satir
                  sonra=None if v.get("sonra") is None else _sayi(v["sonra"], yer, "sonra", 0),
                  tts=v.get("tts"), balon=None if v.get("balon") is None else str(v["balon"]),
                  konusan=None if v.get("konusan") is None else str(v["konusan"]),
-                 db=_sayi(v.get("db", 0.0), yer, "db", -6, 6))
+                 db=_sayi(v.get("db", 0.0), yer, "db", -6, 6), db_bas=db_bas)
 
 
 def _olay(d, yer: str, n_satir: int) -> Olay:
@@ -942,7 +953,9 @@ def yukle_sozluk(raw: dict, base: Path) -> Video:
               filigran=None if raw.get("filigran") is False else str(raw.get("filigran", config.WATERMARK)),
               otomatik_sfx=ctx["otomatik_sfx"], bolumler=bolumler,
               kucukresimler=list(raw.get("kucukresimler") or []), paket=dict(raw.get("paket") or {}),
-              qa_isimler=[str(x) for x in (qa.get("isimler") or [])], raw=raw, hareket=_hareket(raw.get("hareket")))
+              qa_isimler=[str(x) for x in (qa.get("isimler") or [])], raw=raw, hareket=_hareket(raw.get("hareket")),
+              qa_duyulus={str(k): [str(x) for x in (vv if isinstance(vv, list) else [vv])]
+                          for k, vv in (qa.get("duyulus") or {}).items()})
     for i, s in enumerate(v.sahneler):
         s.no = i
         if v.saglayici == "gemini":
