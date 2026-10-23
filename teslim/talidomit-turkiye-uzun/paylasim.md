@@ -1,8 +1,8 @@
 # 46 Ülkede Satılan İlaca Türkiye Neden ‘Hayır’ Dedi? — uzun video paketi
 
-Süre: **10:32** (632.9 sn), 90 sahne, 8 bölüm.
+Süre: **10:56** (656.3 sn), 90 sahne, 8 bölüm.
 Video: `talidomit-turkiye-uzun.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
-Ölçüm (mp4): -14.0 LUFS, tepe -2.0 dBTP; senkron: tamam
+Ölçüm (mp4): -14.0 LUFS, tepe -2.5 dBTP; senkron: tamam
 
 ## Başlık alternatifleri
 
@@ -15,17 +15,17 @@ Video: `talidomit-turkiye-uzun.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
 ```
 Talidomit (Almanya'daki adıyla Contergan) 1957'den itibaren onlarca ülkede satıldı ve 10 binden fazla bebeğin ağır doğumsal kusurlarla dünyaya gelmesine yol açtı. Türkiye'de ise bu ilaca ruhsat verilmedi. Bu videoda o kararın bilinen ve bilinmeyen yanlarını, hikâyenin 2004'teki beklenmedik devamıyla birlikte anlatıyoruz. Türkiye bölümü hakkında not: Bu bölümün bir kısmı belgeye değil tanıklığa dayanıyor. Şükrü Kaymakçalan'ın olumsuz görüşünü meslektaşları anlatıyor (TFD Bülteni, 2012). Süreyya Tahsin Aygün'e atfedilen tavuk embriyosu deneyinin bilinen en eski kaynağı 2008 tarihli bir haber; haberin kaynağı belge sunamadı. Başvurunun yılı, başvuran firma ve Bakanlığın yazısı bugüne kadar yayımlanmadı. O yıllardan bir belgeniz varsa yorumlara yazın.
 
-Kısa hâli (Short): [Short bağlantısı]
+Kısa hâli (Short): https://youtube.com/shorts/Fb77-MsYmRc
 
 Bölümler
 0:00 Giriş
-0:43 1 · Zehirsiz Mucize
-2:09 2 · Dünyayı Dolaşan Hap
-3:12 3 · On İki Gün
-4:52 4 · Hayır Diyen Kadın
-6:02 5 · Ankara'da Bir ‘Hayır’
-8:24 6 · Geri Dönen Hap
-9:51 Kapanış
+0:44 1 · Zehirsiz Mucize
+2:14 2 · Dünyayı Dolaşan Hap
+3:20 3 · On İki Gün
+5:05 4 · Hayır Diyen Kadın
+6:16 5 · Ankara'da Bir ‘Hayır’
+8:40 6 · Geri Dönen Hap
+10:11 Kapanış
 
 Kaynaklar
 - Özdemir O., 'Türkiye'de Talidomid Gerçeği', TFD E-Bülteni 114 (2012): http://www.tfd.org.tr/sites/default/files/Klasor/Dosyalar/ebultenler/114_2012_4_0.pdf
@@ -59,7 +59,7 @@ Görseller ve ses
 - Haritalar: Natural Earth (kamu malı) üzerine kendi çizimimiz; bugünkü sınırlar. Karakterler: wojakland ve wojakparadise topluluk çizimleri (yüz düzenlemeleri bizim); çizimler, müzik ve ses efektleri: tarihselwojak
 - Fotoğraflar kırpıldı, laboratuvar fotoğrafı rötuşlandı. Lisans metinleri: creativecommons.org/licenses
 
-Seslendirme yapay zekâ ile üretilmiştir (Cartesia). Karakterler canlandırmadır.
+Seslendirme yapay zekâ ile üretilmiştir (Google Gemini). Karakterler canlandırmadır.
 
 #talidomit #contergan #tarihselwojak
 ```
@@ -68,13 +68,13 @@ Seslendirme yapay zekâ ile üretilmiştir (Cartesia). Karakterler canlandırmad
 
 ```
 0:00 Giriş
-0:43 1 · Zehirsiz Mucize
-2:09 2 · Dünyayı Dolaşan Hap
-3:12 3 · On İki Gün
-4:52 4 · Hayır Diyen Kadın
-6:02 5 · Ankara'da Bir ‘Hayır’
-8:24 6 · Geri Dönen Hap
-9:51 Kapanış
+0:44 1 · Zehirsiz Mucize
+2:14 2 · Dünyayı Dolaşan Hap
+3:20 3 · On İki Gün
+5:05 4 · Hayır Diyen Kadın
+6:16 5 · Ankara'da Bir ‘Hayır’
+8:40 6 · Geri Dönen Hap
+10:11 Kapanış
 ```
 
 ## Etiketler
@@ -117,36 +117,27 @@ Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yet
 - [ ] Altyazı (.srt) yüklendi, dil: Türkçe
 - [ ] Etiketler yapıştırıldı; kategori: Eğitim (ya da Kişiler ve Bloglar), dil: Türkçe
 - [ ] Kitle: 'Çocuklara özel değil'
-- [ ] Bitiş ekranı (son ~11 sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). İstersen yalnız 'Abone ol' öğesini **10:22**'ten itibaren videodaki sağ üstteki boş alana koy. Studio bitiş ekranını varsayılan olarak son 20 sn'ye koyar: başlangıcını **10:22**'e sürükle (daha erken başlarsa önceki sahnenin yazılarının üstüne biner). Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). Kanal filigranı (Özelleştirme > Marka > Video filigranı) bu videoda kullanma: YouTube onu sağ alta, videodaki 'tarihselwojak' yazısının üstüne koyar
+- [ ] Bitiş ekranı (son ~11 sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). İstersen yalnız 'Abone ol' öğesini **10:45**'ten itibaren videodaki sağ üstteki boş alana koy. Studio bitiş ekranını varsayılan olarak son 20 sn'ye koyar: başlangıcını **10:45**'e sürükle (daha erken başlarsa önceki sahnenin yazılarının üstüne biner). Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). Kanal filigranı (Özelleştirme > Marka > Video filigranı) bu videoda kullanma: YouTube onu sağ alta, videodaki 'tarihselwojak' yazısının üstüne koyar
 - [ ] **Shorts > İlgili video**: kısa sürümün (Short) Studio düzenleme sayfasında 'İlgili video' olarak BU uzun video seçildi (Short izleyicisini uzun videoya taşır)
 - [ ] Short'un açıklamasına 'Uzun hâli kanalda' satırı eklendi; bu açıklamadaki [Short bağlantısı] dolduruldu
-- [ ] Short henüz yayımlanmadıysa açıklamadaki 'Kısa hâli (Short): [Short bağlantısı]' satırı silindi
+- [ ] Short bağlantısı açıklamada doğru
 - [ ] Sabit yorum yazıldı ve sabitlendi
 - [ ] 'Değiştirilmiş ya da yapay içerik' sorusu: 'Hayır' öner. Seslendirme yapay zekâ (Cartesia) ama yalnız anlatıcı ile reklam sloganı ve ürün bilgisi alıntıları; gerçek bir kişinin sesi ya da görüntüsü üretilmedi, sahneler açıkça çizim. Açıklamadaki 'Seslendirme yapay zekâ ile üretilmiştir' satırı kalsın.
-- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:12 (3. bölüm kartı: 3:11.133–3:12.533), 6:02 (5. bölüm kartı: 6:01.100–6:02.500)** (otomatik ara reklam kapalı)
+- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:20 (3. bölüm kartı: 3:19.633–3:21.033), 6:16 (5. bölüm kartı: 6:15.067–6:16.467)** (otomatik ara reklam kapalı)
 - [ ] Görsel atıfları açıklamada (CC BY-SA görseller atıf ister); telif kararları verildi (aşağıdaki 'Telif notu' bölümü)
 - [ ] **Yayından önce kulakla dinle** (yapay zekâ seslendirmesi; satırın başladığı an). Kabul edilemeyen varsa yayımlama, bildir:
-  - 0:16 «Ama ortada yayımlanmış tek bir belge yok.» — 14. tur (dil hakemi 13. tur S6): ses 'yayınlanmış' diyorsa SRT'deki 'yayımlanmış'la ayrışır; ElevenLabs'te 'yayım' okuyan çekimi seç
-  - 0:43 «Aralık 1956. Bir Grünenthal çalışanının kızı dünyaya geliyor.» — ÖNCELİKLİ (14. tur, dil hakemi 13. tur S5): firma adı Whisper'da 4/4 'Gürnental' (1:03'te doğru). Kulak 'Gürnental' duyarsa ElevenLabs'te tek telaffuz kaydı ('Grünental' / 'Grü nental' / 'Grünnental' denenir)
-  - 1:09 «Bu molekülün adı: talidomit.» — 12. tur yeni çekim: ilacın adı ilk kez; 'adı:' sonrası ~0,35 sn durak (eski çekimde 13/16 klip 'Tadidomit'); Whisper 4/4 'talidomit'
-  - 2:18 «…300 milyonu aşkın günlük doz sattığı hesaplanıyor.» — ÖNCELİKLİ (14. tur, dil hakemi 13. tur S3): Whisper tam geçişte ve 4/4 klipte 'günlük dost' yazıyor ('doz'un z'si 'sattığı'nın s'sinden önce ötümsüzleşiyor; ekranda 'günlük doz (hesap)'); mikste 'Grünenthal' 2/2 'Gürbünental'. Kulak 'dost' ya da 'Gürbünental' duyarsa ElevenLabs metni: 'Hesaplara göre yalnız Grünenthal'in sattığı günlük dozlar, Kasım 1961'e kadar 300 milyonu aşıyor.'
-  - 2:55 «Firma, böyle bir yan etkiden haberi olmadığını söylüyor.» — 12. tur yeni çekim (ekrandaki 'HABERİMİZ YOK' ile aynı dil); ilk çekim 'bir iyan etkiden' duyuluyordu, seçilen ikinci çekim 4/4 doğru
-  - 3:41 «Ertesi gün aynı talebi taahhütlü bir mektupla tekrarlıyor.» — ÖNCELİKLİ (14. tur, dil hakemi 13. tur S4): 'taahhütlü' 4 çözümün 0'ında doğru ('tahipli/tahitli'). Kulak 'tahitli' duyarsa ElevenLabs metni: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'
-  - 3:45 «Firmanın yanıtı sert: Lenz'i iftirayla…» — 10. tur çekimi; 12. tur: zarfın giriş efekti 'sert.'in t'sinden 0,2 sn daha uzağa alındı (teknik N1: mikste 'ser')
-  - 6:39 «…göre ruhsatsız bir ilacın tanıtım numunesi bile Türkiye'ye giremiyor.» — 12. tur: rubberband ile ~0,85 tempo (bölümün en hassas ihtiyat cümlesi); doğal duyuluyor mu
-  - 7:12 «Kaymakçalan'ın rolü, meslektaşlarının…» — ÖNCELİKLİ (13. tur, izlenme S7). Gerçek kişinin adı: Whisper'ın 4 hedefli çözümünün 4'ü 'Kaymak Çalan'ın' diye bölüyor, tam geçiş 'Kaymakçalağının' yazdı. Kulak adı bölünmüş ya da yanlış duyarsa ElevenLabs listesine
-  - 7:15 «Ölümünün onuncu yılındaki anma yazıları, Bakanlığa…» — 11. tur: Ankara satırları rubberband ile yavaşlatıldı (0,85-0,92); doğal duyuluyor mu
-  - 7:30 «Sorulduğunda, haberin kaynağı belge gösteremedi.» — 12. tur yeni çekim (dil S9: 'ise' tekrarı); 4/4 doğru
-  - 7:34 «Nejat Eczacıbaşı bir söyleşisinde başarıyı…» — ÖNCELİKLİ. 12. tur yeni metin ve çekim (4 denemeden zorlanmış skorda en iyisi: 'Nejat' > 'Necat/Necdet/Necad'); teslim karışımında ve izde ışın-5 çözüm 'Nejat', açgözlü çözüm 'Necad'. 'Necat/Necdet' duyulursa ElevenLabs listesine
-  - 8:06 «İnternette sık duyulan bir söz var: ‘Etkilenmeyen…» — 12. tur yeni metin ve çekim: iddia tırnaklı ve duraklı; 4/4 doğru
-  - 8:21 «Ama talidomit geri döndü.» — ÖNCELİKLİ (13. tur, izlenme S7). 6. bölümün dönüm cümlesi: tam video Whisper'ı (ışın 5, ipucusuz) 'Ama tarih domit geri döndü' yazdı; mikste hedefli çözümler 2/2 'Tali Domit', anlatım izinde 2/2 'talidomit'. Altlık sesin 29 dB altında: maskeleme değil, Cartesia'nın okuyuşu. Kulak 'tarih' duyarsa ElevenLabs listesine
-  - 8:25 «…Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor.» — ÖNCELİKLİ. z uzatılmış eski çekim (Cartesia ikiz zz'yi yeni çekimde 'cüzdan' okuyor; ekranda 'CÜZZAM (LEPRA)' var); teslim karışımında ve izde ışın-5 'cüzzam', açgözlü 'cüzlam'. 'Cüzdan' duyulursa ElevenLabs listesine
-  - 8:30 «Sheskin, elinde kalan eski bir uyku ilacını…» — 12. tur: 'talidomit.' sonrası +0,5 sn (dil S6: 'Talidomit, beklenmedik…' diye bitişikti). 14. tur (dil hakemi 13. tur S6): 'talidomit' 4/4 'Tali Domit' (vurgu kayması): kulak bölünmüş duyarsa ElevenLabs listesine
-  - 8:49 «Brezilya'da lepra tedavisinde kullanıldığı için,…» — 12. tur yeni metin ve çekim: 'cüzzam' 6/6 'cüzdan' duyuluyordu, yeni çekimde de (z uzatılınca da); satırda 'lepra', ekranda 'LEPRA (CÜZZAM)'; 4/4 doğru
-  - 9:17 «Talidomitin Behçet hastalığındaki etkisini…» — 14. tur (dil hakemi 13. tur S6): 'talidomit' 3/4 'Tali Domit' (kelime ortasında vurgu kayması; izde gerçek sessizlik yok); 'yayımlandı' Whisper'da çoğunlukla 'yayınlandı' (SRT 'yayım-'). ElevenLabs'te 'yayım' okuyan çekimi seç
-  - 9:34 «Bugün bir kanser ilacı olarak kullanılıyor;…» — 12. tur: doruk (9:26-9:38) rubberband 0,88 + durak; 'O reklamı hatırlayın' da 0,88, 'Bugün Türkiye'deki resmî…' yeni çekim (0,88, 'ise' çıktı)
-  - 9:47 «Talidomid, gebe kadınlar (…) tarafından kesinlikle…» — ÖNCELİKLİ. Aylin: 12. tur teslim karışımında ipucusuz Whisper 2/2 'Tarih domit', anlatım izinde 2/2 'Talidomit' (altlık orada sesin 25-35 dB altında: maskeleme değil, okuyuş sınırda; 11. turda teknik hakem 'Talidomit / Tali domit' duydu). Kulak 'Tarih' duyarsa ElevenLabs listesine
-  - 10:07 «Ankara'daki ‘hayır’ın ise bugün yayımlanmış tek bir belgesi bile yok.» — 14. tur (dil hakemi 13. tur S6): 'yayımlanmış' / 'yayınlanmış' ayrımı (yukarıdaki gibi)
+  - 0:31 «Tamamen zehirsiz.» — İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt
+  - 2:19 «Ama haritada bir boşluk var: Türkiye.» — 'var:' ile 'Türkiye.' arasında ~1,8 sn durak (Gemini'nin dramatik durağı): uzun gelirse söyle
+  - 2:24 «Hesaplara göre yalnız Grünenthal'in sattığı günlük dozlar,…» — Firma adı: Whisper 'Gürünentel' yazdı (öteki iki geçişte 'Grünenthal'); Türkçe okunuşa yakın
+  - 3:52 «Ertesi gün aynı talebi taahhütlü bir mektupla tekrarlıyor.» — 'taahhütlü' Whisper'da 'tâhütlü' (doğruya yakın); kulak 'tahitli' duyarsa metin: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'
+  - 6:27 «…biri genç bir farmakolog: Şükrü Kaymakçalan.» — Gerçek kişinin adı: Whisper 'Kaymakçalan' / 'Kaymak Çalan' diye bölüyor (okunuş doğru görünüyor); kulak adı bölünmüş duyarsa söyle, o satır yeniden alınır
+  - 7:17 «…Veteriner Fakültesi'nden virolog Süreyya Tahsin Aygün, ilacı tavuk…» — Bu satırın iki çekimi tarz tarifini sesli okudu ('alçak, sakin ama gergin…'): dördüncü çekim temiz; başında fazladan söz olmadığını dinle
+  - 7:29 «Kaymakçalan'ın rolü, meslektaşlarının…» — Aynı ad, ikinci geçiş ('Kaymak Çalan'ın' yazıldı)
+  - 7:52 «Nejat Eczacıbaşı bir söyleşisinde başarıyı…» — Whisper bu kez 'Nejat' yazdı (Cartesia'da 'Necad'dı); 'Enstitüsü' 'Ens-titüsü' yazımıyla alındı (ilk çekimler 'İntitüsü')
+  - 8:41 «…Jacob Sheskin'in ağır bir lepra hastası uyuyamıyor.» — Bilinçli değişiklik: 'cüzzam' Gemini'de de 4 yazımda 'cüzdan/cüzlem' duyuldu: konuşmada 'lepra', ekranda 'LEPRA (CÜZZAM)'
+  - 9:12 «Ya o soru? Tek bir tablet bu hasarı…» — İlk çekim kesikti (yalnız 'Ya o soru?'): ikinci çekim tam
+  - 10:00 «Tamamen zehirsiz.» — İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt
+  - 10:28 «Ankara'daki ‘hayır’ kararının ise bugün yayımlanmış tek bir…» — Aynı sorun (tarif okundu) + 'hayır'ın' 'hayrını' duyuluyordu: metin 'hayır kararının' oldu; 'yayımlanmış' Whisper'da 'yayınlanmış'
 - [ ] Küçük resim: K1 (zehirsiz) ANA küçük resim. 'Test ve karşılaştır' açılırsa YALNIZ K1 ile K3 (izlenme hakemi: K2 168 px'te en zayıfı; 11. turda harita uzaklaştı ama yine yedek; 12. turda K3'te K1'in temsilcisi yerine belge arayan, terleyen anlatıcı: test yalnız yazıyı değil yüzü de karşılaştırır). K2'yi yalnız başlık 3 ile kullan (yazısı '46 ÜLKEDE SATILDI', başlık 1 ve 2'deki '46 Ülkede'yi tekrar eder). Başlık testi açılırsa başlık 1 ile başlık 3'ü ('10 Binden Fazla Bebeği…': bedeli söyler) karşılaştır. Başlık 2 ('Kimdi?') yedek: video adı yalnız meslektaş tanıklığıyla verebiliyor, 'tık tuzağı' yorumu çekebilir.
 - [ ] Sabit yorum kapanıştaki soruyla aynı (A/B/C): yayından hemen sonra sabitle; ilk cevaplara kalp ver.
 - [ ] Süre (paketin başındaki 'Süre' satırı) UZUN_FORMAT'taki 8-10 dk kararının ~30 sn üstünde (bilinçli: 11. ve 12. turda dil hakeminin isteğiyle yavaşlatılan satırlar ve duraklar, Türkiye vuruşunun tutulması). YouTube için sorun değil; kısaltmak istersen söyle (aday: B6.5 Behçet sahnesi).
