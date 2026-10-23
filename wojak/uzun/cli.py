@@ -497,7 +497,7 @@ def main(argv=None) -> None:
     p.add_argument("--yenile", type=int, default=0, help="denetimde başarısız satırı en fazla N kez yeniden üret")
     p.add_argument("--yeniden", action="store_true", help="önbelleği yok say, hepsini yeniden üret")
     p.add_argument("--tum", action="store_true", help="--qa: yalnız isimli satırları değil bütün satırları dinle")
-    p.add_argument("--paralel", type=int, default=None, help="Gemini: eşzamanlı istek sayısı (varsayılan 4)")
+    p.add_argument("--paralel", type=int, default=None, help="Gemini: eşzamanlı istek sayısı (varsayılan 3; dakikada en çok HIKAYE_TTS_RPM=9 istek)")
     p.set_defaults(fn=cmd_seslendir)
     for ad, fn in (("render", cmd_render), ("onizle", cmd_onizle)):
         p = sp.add_parser(ad)

@@ -74,6 +74,19 @@ GEMINI_SURUM = 1   # Gemini isteği/işleme biçimi değişirse artır
 DUYGU_TARZI = {"content": "Hoşnut, kendinden emin ve güven veren bir tonla söyle."}
 _GCP: dict = {}
 _GCP_KILIT = threading.Lock()
+# Proje kotası: gemini-2.5-pro-tts için dakikada ~10 istek (23.10'da ölçüldü: 4 eşzamanlı istekte HTTP 429). İstek
+# başlangıçları en az 60/RPM sn arayla (HIKAYE_TTS_RPM ile değişir); 429'da bir dakikalık pencere beklenir.
+_HIZ_KILIT = threading.Lock()
+_SON_ISTEK = [0.0]
+
+
+def _hiz_siniri() -> None:
+    rpm = max(1.0, float(os.environ.get("HIKAYE_TTS_RPM", "9") or 9))
+    with _HIZ_KILIT:
+        bekle = _SON_ISTEK[0] + 60.0 / rpm - time.time()
+        if bekle > 0:
+            time.sleep(bekle)
+        _SON_ISTEK[0] = time.time()
 
 
 _BIRLER = ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"]
@@ -162,8 +175,8 @@ def _gcp_kimligi() -> tuple[str, str]:
         return jeton, proje
 
 
-def gemini_istek(ay: dict, deneme_sayisi: int = 6) -> bytes:
-    """Ham WAV (LINEAR16, 48 kHz mono). 429/5xx'te üstel bekleme."""
+def gemini_istek(ay: dict, deneme_sayisi: int = 10) -> bytes:
+    """Ham WAV (LINEAR16, 48 kHz mono). Dakikalık hız sınırı; 429'da 30-60 sn, 5xx'te üstel bekleme."""
     import base64
     import requests
     govde = {"input": {"text": ay["metin"], **({"prompt": ay["tarz"]} if ay["tarz"] else {})},
@@ -172,6 +185,7 @@ def gemini_istek(ay: dict, deneme_sayisi: int = 6) -> bytes:
     bekle, son = 3.0, ""
     for i in range(deneme_sayisi):
         jeton, proje = _gcp_kimligi()
+        _hiz_siniri()
         try:
             r = requests.post(GEMINI_URL, json=govde, timeout=300, headers={
                 "Authorization": f"Bearer {jeton}", "x-goog-user-project": proje, "User-Agent": UA})
@@ -194,7 +208,7 @@ def gemini_istek(ay: dict, deneme_sayisi: int = 6) -> bytes:
                 elif r.status_code not in (408, 409, 425, 429, 500, 502, 503, 504):
                     raise TTSHatasi(f"Gemini TTS isteği başarısız: {son}")
         if i < deneme_sayisi - 1:
-            time.sleep(bekle)
+            time.sleep(max(bekle, 30.0 + 10 * min(i, 3)) if "HTTP 429" in son else bekle)
             bekle = min(bekle * 2, 60)
     raise TTSHatasi(f"Gemini TTS isteği başarısız: {son}")
 
@@ -430,8 +444,8 @@ def sureleri_yukle(v: Video, zorunlu: bool = True) -> list[str]:
 
 
 def seslendir(v: Video, yeniden: bool = False, log=print, paralel: int | None = None) -> list[Sonuc]:
-    """Bütün satırları seslendirir (önbellekte olanlar atlanır). Gemini'de ham çekimler `paralel` (varsayılan 4)
-    eşzamanlı istekle alınır; Cartesia sırayla."""
+    """Bütün satırları seslendirir (önbellekte olanlar atlanır). Gemini'de ham çekimler `paralel` (varsayılan 3)
+    eşzamanlı istekle, dakikalık kota sınırında (HIKAYE_TTS_RPM, varsayılan 9) alınır; Cartesia sırayla."""
     out = []
     ham = ses_klasoru(v) / "ham"
     ham.mkdir(parents=True, exist_ok=True)
@@ -460,7 +474,7 @@ def seslendir(v: Video, yeniden: bool = False, log=print, paralel: int | None = 
         log(f"  [{n}/{toplam}] {yer}: {st.ses} {time.time() - t0:.1f} sn  «{st.altyazi[:60]}»")
         if v.saglayici != "gemini":
             time.sleep(0.2)
-    isci = (paralel or 4) if v.saglayici == "gemini" else 1
+    isci = (paralel or 3) if v.saglayici == "gemini" else 1
     if isci > 1 and len(gerek) > 1:
         with ThreadPoolExecutor(isci) as ex:
             list(ex.map(al, gerek.items()))

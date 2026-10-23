@@ -32,7 +32,7 @@ hiçbir dosyaya, loga, hata mesajına yazılmaz. HTTP isteklerinde genel tarayı
 |---|---|
 | `spec.py` | YAML -> `Video` / `Bolum` / `Sahne` / `Satir` / `Olay` / `Sfx`; bilinmeyen anahtar, yanlış satır no, eksik zorunlu alan yerini söyleyerek hata verir |
 | `zaman.py` | Satır sesleri + aralar -> sahne süresi (kare ızgarası), satır/olay/efekt mutlak zamanları, bölüm başları |
-| `tts.py` | `model: gemini-2.5-pro-tts` -> Google Cloud TTS v1 `text:synthesize` (tarz `input.prompt`, hız ffmpeg `atempo`, 4 eşzamanlı istek, kimlik `HIKAYE_GCP_CREDENTIALS`); `sonic-3` -> Cartesia `POST /tts/bytes`. Önbellek, yeniden deneme, sessizlik kırpma, Whisper QA |
+| `tts.py` | `model: gemini-2.5-pro-tts` -> Google Cloud TTS v1 `text:synthesize` (tarz `input.prompt`, hız ffmpeg `atempo`, 3 eşzamanlı istek ve dakikada en çok 9 (`HIKAYE_TTS_RPM`; proje kotası ~10/dk, 429da bekler), kimlik `HIKAYE_GCP_CREDENTIALS`); `sonic-3` -> Cartesia `POST /tts/bytes`. Önbellek, yeniden deneme, sessizlik kırpma, Whisper QA |
 | `sahneler.py` | 8 temel sahne tipi (wojak, foto, manset, harita, sayac, bolum_karti, metin, zaman_cizelgesi) + üst katmanlar (isim etiketi, vurgu kelimesi, daktilo etiketi, konuşma balonu) + filigran; wojak sahnesinin kamerası (`Kam`) ve konuşma sekmesi |
 | `bilgi.py` | bolunmus (bölünmüş ekran), izgara (nokta ızgarası), pano (soruşturma panosu) |
 | `kanal.py` | marka (kanal imzası / sting), bitis (YouTube bitiş ekranı, iki video kutusu), `logotip()` |
