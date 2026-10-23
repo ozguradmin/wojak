@@ -140,7 +140,9 @@ telaffuz:                          # yalnız TTS metnine; uzun olan önce
 qa:
   # Gemini turu 2. hakem turu: Whisper medium "Nejat"ı doğru okunuşta da hep "Necad" yazıyor (Cartesia'da da öyleydi),
   # small "Nezat" (sürtünmeli j): QA farkı saymasın; kulak kontrolü paket.dinle'de
-  duyulus: {Nejat: [Necad, Nezat]}
+  # Gemini turu 2. hakem turu (3. geçiş): "Widukind Lenz" Almanca okunuşla (Vi-du-kint Lents) medium'da "Vido Kintlens",
+  # small'da "Widow Kindlands"; heceler tam, isim denetimi 0,74-0,80 duyuldu (dil hakemi: Lenz/Lents temiz): fazla kelime sayılmasın
+  duyulus: {Nejat: [Necad, Nezat], Widukind Lenz: [Vido Kintlens, Widow Kindlands], Sidney: [Sydney]}   # Sydney: Whisper İngilizce yazımı (okunuş aynı)
   isimler: [Kaymakçalan, Süreyya Tahsin Aygün, Contergan, talidomit, Talidomid, Grünenthal, Lenz, Kelsey, Kevadon,
             Distaval, Sheskin, Eczacıbaşı, Refik Saydam, Cerrahpaşa, Behçet, SALL4, miyelom, Kennedy, ABD, FDA]
 
@@ -525,7 +527,7 @@ bolumler:
         # 9. tur (izlenme S5): "Reçetesiz satılan bir uyku ilacı ve sakinleştirici olarak." kancadaki satırı (0:21)
         # neredeyse aynen tekrarlıyordu: çıktı (reçetesizlik B1.8'deki balonda ve kancada duruyor)
         satirlar:
-          - {metin: "1 Ekim 1957'de ilaç, Contergan adıyla piyasaya çıkıyor.", sonra: 0.7, hiz: 0.93}   # Gemini turu 2: yeniden alınan (sonu doğal) çekim öncekinden hızlıydı (eklemleme 8,2 hece/sn, anlatıcı medyanı 7,6): hiz 0,93
+          - {metin: "1 Ekim 1957'de ilaç, Contergan adıyla piyasaya çıkıyor.", once: 0.45, sonra: 0.7, hiz: 0.93}   # Gemini turu 2 (3. geçiş): once 0,45: "Bir" geçiş ve takvim whoosh'unun tepesindeydi (ses altlıktan 2 dB yukarıda, Whisper mikste "Hirekim"); Gemini turu 2: yeniden alınan (sonu doğal) çekim öncekinden hızlıydı (eklemleme 8,2 hece/sn, anlatıcı medyanı 7,6): hiz 0,93
         olaylar:
           - {tip: giris, karakter: f, satir: 1, ofset: 1.76}   # Gemini turu 2: yeni çekimin kelime zamanına göre
           - {tip: giris, karakter: e, satir: 1, ofset: 2.16}   # Gemini turu 2: yeni çekimin kelime zamanına göre
@@ -1226,8 +1228,8 @@ bolumler:
         karakterler:
           - {id: k, gorsel: chars/kelsey_v2_supheci.png, taraf: sag, x: 0.84, boy: 0.56, giris: false}
           - {id: t, gorsel: img/cizim/takvim_eylul_1960.png, x: 0.36, boy: 0.56, alt: -0.2, bakis: on, giris: false}
-          - {id: r, gorsel: img/cizim/dosya_sinir_hasari_1961.png, x: 0.43, boy: 0.24, alt: -0.24, bakis: on}   # Gemini turu 2: yığın sağa gelince etiket örtülmesin: x 0,4 -> 0,43
-          - {id: y, gorsel: img/kompozit/yigin_1.png, x: 0.22, boy: 0.34, alt: -0.07, bakis: on}   # Gemini turu 2 (animasyon S4): itme sonunda sol kenarda kesiliyordu: x 0,2 -> 0,22 (0,24 dosya etiketini örtüyordu; kamera da sola)
+          - {id: r, gorsel: img/cizim/dosya_sinir_hasari_1961.png, x: 0.52, boy: 0.22, alt: -0.24, bakis: on}   # Gemini turu 2: yığın sağa gelince etiket örtülmesin: x 0,4 -> 0,52, boy 0,24 -> 0,22
+          - {id: y, gorsel: img/kompozit/yigin_1.png, x: 0.35, boy: 0.28, alt: -0.07, bakis: on}   # Gemini turu 2 (animasyon S4): itme sonunda sol kenarda yarıdan fazlası kesiliyordu (x 0,2): yığın küçük (0,34 -> 0,28) ve içeride, dosya sağda (0,43 -> 0,52, boy 0,24 -> 0,22): itme bitince yığının solu kadrajın içinde, etiket açık
         satirlar:
           - "Kelsey dosyayı eksik buluyor."
           - "Derken sinir hasarı raporları geliyor. Hamilelikte güvenli mi? O da belirsiz."
@@ -1396,7 +1398,7 @@ bolumler:
         bulanik: 8
         karart: 0.35
         doygunluk: 0.7
-        kamera: {zoom: [1.0, 1.12], merkez: [[0.5, 0.5], [0.6, 0.47]], it: 0}
+        kamera: {zoom: [1.0, 1.12], merkez: [[0.5, 0.5], [0.6, 0.51]], it: 0}   # Gemini turu 2 (izlenme N1): bitişte [0,6, 0,47] ile çene alt kenara ~%2 (23 px) yakındı
         gecis: gecis
         karakterler:
           # 9. tur (animasyon S6): dosya isim etiketinin altında kalıyor, itmede sol kenara değiyordu: yukarıda, içeride
@@ -1445,7 +1447,7 @@ bolumler:
           # 9. tur (animasyon S3): damga yüz değişiminin tam üstüne iniyordu (kararlı yüz 4 kare görünmüyordu): önce
           # yüz değişir, damga 0,35 sn sonra dosyanın üstüne iner (daha küçük, yüzden uzak)
           - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_v2_kararli.png, satir: 2, an: son, ofset: 0.05}
-          - {tip: damga, metin: "OLUMSUZ GÖRÜŞ", renk: kirmizi, satir: 2, an: son, ofset: 0.4, x: 0.35, y: 0.5, boy: 104, aci: -7, inis: 1.2}   # 14. tur: dosya x 0.42 / alt -0.25 ile; Gemini turu 2: kamera aşağı, dosya ekranda yukarı: y 0,6 -> 0,5, x 0,42 -> 0,35 (dosyayla), boy 116 -> 104 (sağ ucu saça değiyordu), inis 1,2 (inerken yüzü süpürüyordu)
+          - {tip: damga, metin: "OLUMSUZ GÖRÜŞ", renk: kirmizi, satir: 2, an: son, ofset: 0.4, x: 0.35, y: 0.545, boy: 104, aci: -7, inis: 1.2}   # 14. tur: dosya x 0.42 / alt -0.25 ile; Gemini turu 2: kamera aşağı, dosya ekranda yukarı: y 0,6 -> 0,545 (0,5te çerçevesi etiketin "BAŞVURUSU" yazısının üstünden geçiyordu), x 0,42 -> 0,35 (dosyayla), boy 116 -> 104 (sağ ucu saça değiyordu), inis 1,2 (inerken yüzü süpürüyordu)
           - {tip: muzik, db: -16, satir: 2, an: son, gecis: 0.2}   # 11. tur (izlenme 4): -40'ta 6:26'da -70 dBFS
         sfx: [{ad: boom, satir: 2, an: son, ofset: 0.54, db: -8}]
 
@@ -2042,8 +2044,9 @@ bolumler:
           - {metin: "Peki Türkiye'yi bu felaketten koruyan neydi?", sonra: 0.5}
           # Gemini turu 2. hakem turu (dil S1, izlenme S2): iki çekimde de Whisper 'kahramanla' duyuyordu (soru eki yok):
           # hesap sahibinin anlatıcı tarzı aynen + satıra soru tonu notu
-          - {metin: "Tek bir kahraman mı?", sonra: 0.4,
-             tarz: "Bir gerilim dizisinin anlatıcısı gibi oku: alçak, sakin ama gergin, dinleyene 'sen' diye sesleniyor. Noktalarda ve üç noktada kısa duraklar ver. Doğal İstanbul Türkçesi. Bu bir soru: 'kahraman' ile 'mı' arasında çok kısa bir ayrım olsun, 'mı'yı net ve hafif yükselen soru tonuyla söyle."}
+          # 3. geçiş: o çekimde 'mı' 40 ms'ydi (klipte "kahraman mı?", mikste yine "kahramanla"): 'mı' tam hece, hız 0,92
+          - {metin: "Tek bir kahraman mı?", sonra: 0.4, hiz: 0.92,
+             tarz: "Bir gerilim dizisinin anlatıcısı gibi oku: alçak, sakin ama gergin, dinleyene 'sen' diye sesleniyor. Noktalarda ve üç noktada kısa duraklar ver. Doğal İstanbul Türkçesi. Bu bir soru: 'kahraman' kelimesini bitir, çok kısa bir an dur, sonra soru eki 'mı'yı ayrı ve tam bir hece olarak, net ve yükselen soru tonuyla söyle; 'mı'yı yutma."}
           - {metin: "‘Kanıt yoksa ruhsat yok’ diyen bir kural mı?", hiz: 0.95, sonra: 0.45}
           - "Yoksa biraz da şans mı?"
         olaylar:
@@ -2239,7 +2242,7 @@ paket:
     - {ara: "‘hayır’ kararının ise", not: "'hayır'ın' 'hayrını' duyuluyordu: metin 'hayır kararının'; 'yayımlanmış' Whisper'da 'yayınlanmış' (tireli yazım bile tam tutmuyor): 'yayım-' duyuluyor mu?"}
     - {ara: "Ya o soru?", not: "Hakem turunda son hece kesikti ('yapıyordu?' -3 dB'de bitiyordu): yeni çekim; 'Ya o soru?'dan sonra ~0,9 sn bilinçli durak"}
     - {ara: "Ama haritada bir boşluk var", not: "Hakem turunda 'var:' ile 'Türkiye.' arasında 1,76 sn durak vardı (<break> Gemini'ye '...' gidiyordu): break kaldırıldı, durak ~0,4 sn; Türkiye ve kamera itmesi durakla başlar"}
-    - {ara: "Tek bir kahraman mı?", not: "Hakem turunda Whisper 'kahramanla' duyuyordu (soru eki yok): satıra soru tonu notu (senin tarz metnin aynen + 'mı net ve yükselen'); şimdi iki Whisper modeli de 'kahraman mı?' yazıyor"}
+    - {ara: "Tek bir kahraman mı?", not: "Hakem turunda Whisper 'kahramanla' duyuyordu (soru eki yok; 'mı' 40 ms'lik bir kuyruktu): satıra soru tonu notu (senin tarz metnin aynen + 'mı tam hece, net ve yükselen'), hız 0,92, yeni çekim; klipte ve müzikli miks benzetiminde iki Whisper modeli de 'kahraman mı?' yazıyor. 'mı' duyuluyor mu?"}
     - {ara: "Bu arada bir ayrıntı", not: "Gemini bu girişi komşularından ~3,5 dB yüksek okuyordu: ilk öbek 3 dB kısıldı (db_bas). Sıçrama hâlâ duyuluyorsa söyle"}
     - {ara: "ilaç kurumu (FDA)", not: "FDA iki yerde farklı okunuyordu ('Ef De A' / 'Fe De A'): ikisi de Türkçe harf adlarıyla 'Fe De A'"}
     - {ara: "Tamamen zehirsiz.", not: "İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt"}

@@ -96,13 +96,12 @@ Hesap sahibinin talimatı (15.10): şimdi yeni video ya da düzeltme yok; Eleven
    duygusal) okunur; Whisper isim doğruluğu, hece/sn, duraklar ölçülür; en iyi 3'ü hesap sahibine dinletilir, **seçimi o
    yapar**. Karar UZUN_FORMAT §1'e yazılır.
 4. **Talidomit uzun videosu yeniden seslendirme** (aynı görüntü kurgusu).
-   **Durum (23.10.2026, ara kayıt):** Gemini ile seslendirildi (152/152 satır Whisper'da temiz), filigran yok, yüzler
-   küçültüldü, render edildi (10:56). 1. hakem turu: izlenme 7,5, animasyon 7,5, dil 8,2, teknik 8,5; engel: doruk sahnesi
-   (B6.4, ~6:36) Kaymakçalan'ın çenesi kadrajın altında. Kararlar: `uzun/talidomit-turkiye/HAKEM_GEMINI_1.md`. 2. tur
-   düzeltmesi yarıda durduruldu (hesap sahibi: kota): motor eklemeleri + yeniden çekimler bitti, video.yaml düzeltmeleri
-   yarım; testler geçiyor, `kontrol` temiz. **Devam:** video.yaml düzeltmelerini HAKEM_GEMINI_1.md'ye göre tamamla
-   (önce doruktaki çene), `seslendir --qa --kotu --yenile 3`, `kontrol`, `render`, `kucukresim`, `paket`, `teslim`; sonra
-   dört hakem (`docs/is_akislari/uzun_video.js`, basla: 'hakem'); hepsi >= 8 olunca Telegram'a gönder ve yayın saatini öner.
+   **Durum (23.10.2026):** Gemini ile seslendirildi (152/152 satır Whisper'da temiz), filigran yok, yüzler küçültüldü.
+   1. hakem turu: izlenme 7,5, animasyon 7,5, dil 8,2, teknik 8,5 (kararlar `uzun/talidomit-turkiye/HAKEM_GEMINI_1.md`).
+   2. tur düzeltmesi bitti: doruktaki çene kadrajda (kamera merkezi; `kontrol` artık alttan kesilmeyi de görür), Gemini'nin
+   kesik sonlu ~22 çekimi yeniden alındı (QA "kesik son" ölçüsü), 'kahraman mı?' ve '1 Ekim' mikste duyuluyor, paket
+   metinleri (Gemini, filigran, süre) güncel; render 10:54, -14 LUFS, `kontrol` temiz, QA 0. **Sıradaki:** dört hakem
+   (`docs/is_akislari/uzun_video.js`, basla: 'hakem'); hepsi >= 8 olunca Telegram'a gönder ve yayın saatini öner.
    Eski plan:
    - bütün anlatım yeni sesle; paylasim.md'deki dinleme listesi (Grünenthal, günlük doz, taahhütlü, Kaymakçalan,
      talidomit, Nejat, lepra/cüzzam) özellikle kontrol edilir;
