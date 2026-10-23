@@ -66,7 +66,7 @@ const OWNER = `OWNER'S STANDING RULES (they OUTRANK the judges; see docs/OGRENIL
    videos: filigran: false, YouTube Studio branding watermark instead).
 6. Voice: Google Gemini TTS per docs/UZUN_FORMAT.md §1.1 (owner 23.10): model gemini-2.5-pro-tts only; narrator Charon at 1.25x
    (atempo) with the owner's style text; ready characters Leda/Algenib/Gacrux; a new character = test 2-3 Gemini voices on the same
-   line first. Numbers as words, "..." or commas for pauses, per-line `tarz` for whisper/shout. The Whisper transcript must match
+   line first. Numbers as words, "..." or commas for pauses, per-line 'tarz' for whisper/shout. The Whisper transcript must match
    the text; voice >= 6 dB over music/sfx; master -14 LUFS / -1 dBTP. Synthesize only new or changed lines; the cache keeps the rest.
 7. Packaging: YouTube title must not read like AI slop (no hype adjectives, no emoji, no "ŞOK"; curiosity gap + concrete detail);
    YouTube description 2-3 hashtags; Instagram captions never use hashtags.
