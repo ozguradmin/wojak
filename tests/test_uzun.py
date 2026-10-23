@@ -1978,3 +1978,62 @@ def test_short_youtube_aciklamasi_hikayeyi_tasir():
     assert len(d) <= pack.LIMITS["youtube_desc"]
     uzun = dict(t, youtube_aciklama="x" * 5001)
     assert [w for w in pack.warnings(uzun) if "5000" in w]
+
+
+def _gemini_video(**satir):
+    from wojak.uzun.spec import yukle_sozluk
+    from wojak import config
+    st = {"metin": "Bu molekülün adı: <break time=\"350ms\"/> talidomit."}
+    st.update(satir)
+    return yukle_sozluk({"id": "g", "baslik": "g", "model": "gemini-2.5-pro-tts",
+                         "sesler": {"charon": {"gemini": "Charon", "hiz": 1.25, "tarz": "Belgesel anlatıcısı."},
+                                    "kore": {"gemini": "Kore"}},
+                         "anlatici": {"ses": "charon", "hiz": 1.0},
+                         "bolumler": [{"baslik": "a", "sahneler": [{"tip": "bolum_karti", "baslik": "x",
+                                                                    "satirlar": [st]}]}]}, config.ROOT)
+
+
+def test_gemini_ses_tablosu_ve_anahtar():
+    """Gemini (UZUN_FORMAT §1.1): ses tablosu taban hız × satır hızı = atempo; tarz/hız/metin anahtarı değiştirir;
+    <break> noktalamaya çevrilir; duygu tarza eklenir."""
+    from wojak.uzun import tts
+    v = _gemini_video()
+    st = v.sahneler[0].satirlar[0]
+    assert v.saglayici == "gemini" and v.ses_id("charon") == "Charon"
+    ay = tts.gemini_ayari(v, st)
+    assert ay["tempo"] == 1.25 and ay["tarz"] == "Belgesel anlatıcısı." and "<break" not in ay["metin"]
+    assert ay["metin"] == "Bu molekülün adı: ... talidomit."
+    k = tts.satir_anahtari(v, st)
+    v1 = _gemini_video()
+    assert k.startswith("g") and k == tts.satir_anahtari(v1, v1.sahneler[0].satirlar[0])
+    for kw in ({"hiz": 0.9}, {"tarz": "Fısılda."}, {"metin": "Başka."}):
+        vx = _gemini_video(**kw)
+        assert tts.satir_anahtari(vx, vx.sahneler[0].satirlar[0]) != k
+    assert tts.satir_anahtari(v, st, deneme=1) != k
+    v2 = _gemini_video(hiz=0.9, ses="kore", duygu="content")
+    ay2 = tts.gemini_ayari(v2, v2.sahneler[0].satirlar[0])
+    assert ay2["tempo"] == 0.9 and ay2["ses"] == "Kore" and "kendinden emin" in ay2["tarz"]
+
+
+def test_gemini_ses_tablosu_zorunlu():
+    import pytest
+    from wojak.uzun.spec import SpecHatasi
+    with pytest.raises(SpecHatasi):
+        _gemini_video(ses="murat")   # model gemini ama Cartesia sesi
+
+
+def test_tempo_uygula_sureyi_kisaltir():
+    import numpy as np
+    from wojak.uzun import tts
+    x = (0.3 * np.sin(np.arange(48000) * 2 * np.pi * 220 / 48000)).astype(np.float32)
+    y = tts.tempo_uygula(x, 48000, 1.25)
+    assert abs(len(y) / 48000 - 0.8) < 0.03 and tts.tempo_uygula(x, 48000, 1.0) is x
+
+
+def test_gemini_sayilar_yaziyla():
+    """UZUN_FORMAT §1.1: Gemini metninde sayılar yazıyla; kesme işaretli ek bitişir."""
+    from wojak.uzun.tts import gemini_metni, sayi_yazi
+    assert gemini_metni("1 Ekim 1957'de ilaç") == "bir Ekim bin dokuz yüz elli yedide ilaç"
+    assert gemini_metni("10.000'den fazla bebek, %40'ı") == "on binden fazla bebek, yüzde kırkı"
+    assert sayi_yazi(2018) == "iki bin on sekiz" and sayi_yazi(1100) == "bin yüz" and sayi_yazi(300000000) == "üç yüz milyon"
+    assert gemini_metni("SALL4 proteini") == "SALL4 proteini"

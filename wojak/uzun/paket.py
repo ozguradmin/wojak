@@ -102,7 +102,8 @@ def aciklama(v: Video, z: Zaman) -> str:
         parcalar.append("Kaynaklar\n" + "\n".join(f"- {k}" for k in p["kaynaklar"]))
     if p.get("gorsel_atif"):
         parcalar.append("Görseller ve ses\n" + "\n".join(f"- {k}" for k in p["gorsel_atif"]))
-    parcalar.append("Seslendirme yapay zekâ ile üretilmiştir (Cartesia). Karakterler canlandırmadır.")
+    saglayici = "Google Gemini" if getattr(v, "saglayici", "") == "gemini" else "Cartesia"
+    parcalar.append(f"Seslendirme yapay zekâ ile üretilmiştir ({saglayici}). Karakterler canlandırmadır.")
     et = [str(e).replace(" ", "") for e in (p.get("etiketler") or [])][:3]
     if et:
         parcalar.append(" ".join(f"#{e}" for e in et))

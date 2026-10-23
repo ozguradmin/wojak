@@ -9,7 +9,7 @@
 ```bash
 cp -r uzun/_sablon uzun/<id>                       # id'yi düzelt, görselleri uzun/<id>/img/ (telifliler img/telifli/)
 python -m wojak uzun kontrol    uzun/<id>          # zaman çizelgesi, hareket/bölüm/altyazı denetimi (ses yoksa tahmini süre)
-python -m wojak uzun seslendir  uzun/<id> --qa     # Cartesia TTS + Whisper isim denetimi (--yenile 1: başarısızı 1 kez yeniden üret)
+python -m wojak uzun seslendir  uzun/<id> --qa     # Gemini (ya da Cartesia) TTS + Whisper isim denetimi (--tum: bütün satırlar; --yenile 1: başarısızı 1 kez yeniden üret)
 python -m wojak uzun onizle     uzun/<id>          # 960x540 hızlı ön izleme; --bas 2:10 --bit 3:00 ile yalnız bir aralık
 python -m wojak uzun kare       uzun/<id> --t 1:05 --t 2:30   # tek kareler (PNG)
 python -m wojak uzun render     uzun/<id>          # out/<id>-uzun/<id>.mp4 (+ .srt, anlatım izi, olcum.json, paylasim.md)
@@ -32,7 +32,7 @@ hiçbir dosyaya, loga, hata mesajına yazılmaz. HTTP isteklerinde genel tarayı
 |---|---|
 | `spec.py` | YAML -> `Video` / `Bolum` / `Sahne` / `Satir` / `Olay` / `Sfx`; bilinmeyen anahtar, yanlış satır no, eksik zorunlu alan yerini söyleyerek hata verir |
 | `zaman.py` | Satır sesleri + aralar -> sahne süresi (kare ızgarası), satır/olay/efekt mutlak zamanları, bölüm başları |
-| `tts.py` | Cartesia `POST /tts/bytes` (sonic-3, `Cartesia-Version: 2025-11-04`), önbellek, yeniden deneme, sessizlik kırpma, Whisper QA |
+| `tts.py` | `model: gemini-2.5-pro-tts` -> Google Cloud TTS v1 `text:synthesize` (tarz `input.prompt`, hız ffmpeg `atempo`, 4 eşzamanlı istek, kimlik `HIKAYE_GCP_CREDENTIALS`); `sonic-3` -> Cartesia `POST /tts/bytes`. Önbellek, yeniden deneme, sessizlik kırpma, Whisper QA |
 | `sahneler.py` | 8 temel sahne tipi (wojak, foto, manset, harita, sayac, bolum_karti, metin, zaman_cizelgesi) + üst katmanlar (isim etiketi, vurgu kelimesi, daktilo etiketi, konuşma balonu) + filigran; wojak sahnesinin kamerası (`Kam`) ve konuşma sekmesi |
 | `bilgi.py` | bolunmus (bölünmüş ekran), izgara (nokta ızgarası), pano (soruşturma panosu) |
 | `kanal.py` | marka (kanal imzası / sting), bitis (YouTube bitiş ekranı, iki video kutusu), `logotip()` |
@@ -60,7 +60,7 @@ Yollar önce spesifikasyon klasörüne, sonra repo köküne göre çözülür. T
 | Anahtar | Varsayılan | Açıklama |
 |---|---|---|
 | `id`, `baslik` | zorunlu | id klasör adıyla aynı (`[a-z0-9_-]`) |
-| `sesler` | murat, aylin, leyla, azra | ad -> Cartesia ses kimliği |
+| `sesler` | murat, aylin, leyla, azra | ad -> Cartesia ses kimliği; Gemini için ad -> `{gemini: Charon, hiz: 1.25, tarz: "..."}` (taban hız × satır `hiz`, atempo; `model: gemini-*` iken her satırın sesi böyle olmalı) |
 | `anlatici` | `{ses: murat, hiz: 0.95}` | düz metin satırlarının sesi ve hızı |
 | `model`, `dil` | `sonic-3`, `tr` | |
 | `telaffuz` | `{}` | yazım -> okunuş; **yalnız TTS metninde**, kelime sınırıyla (`Contergan: Kontergan`) |
@@ -88,7 +88,7 @@ müzik kipi), `youtube` (açıklamadaki bölüm adı), `sahneler`.
 | Anahtar | Açıklama |
 |---|---|
 | `tip` | `wojak`, `foto`, `manset`, `harita`, `sayac`, `bolum_karti`, `metin`, `zaman_cizelgesi` (takma: `liste`), `bolunmus`, `izgara`, `pano`, `marka`, `bitis`, `kapanis` (takma: `cagri`, `cta`) |
-| `satirlar` | düz metin = anlatıcı; sözlük: `metin` (zorunlu), `ses`, `duygu` (Cartesia emotion), `hiz`, `once` (önceki ara yerine), `sonra` (ek bekleme; vurgu cümlesinden sonra 0,4-0,6), `db` (ortak seviyeden sonra ek kazanç, ±6), `tts` (TTS'e başka metin), `balon` (wojak: karakter kimliği, satır o karakterin balonunda görünür; karakter konuşurken seker), `konusan` (wojak: karakter kimliği; balonsuz, satır boyunca o karakter seker ve kamera ona yaklaşır). Metinde `<break time="500ms"/>` kullanılabilir; altyazıdan çıkarılır |
+| `satirlar` | düz metin = anlatıcı; sözlük: `metin` (zorunlu), `ses`, `duygu` (Cartesia emotion; Gemini'de tarza eklenir), `tarz` (Gemini: satıra özel tavır, sesin tarzının yerine), `hiz` (Gemini: sesin taban hızıyla çarpılır), `once` (önceki ara yerine), `sonra` (ek bekleme; vurgu cümlesinden sonra 0,4-0,6), `db` (ortak seviyeden sonra ek kazanç, ±6), `tts` (TTS'e başka metin), `balon` (wojak: karakter kimliği, satır o karakterin balonunda görünür; karakter konuşurken seker), `konusan` (wojak: karakter kimliği; balonsuz, satır boyunca o karakter seker ve kamera ona yaklaşır). Metinde `<break time="500ms"/>` kullanılabilir; altyazıdan çıkarılır (Gemini'ye "..." ya da virgül olarak gider) |
 | `olaylar` | `{tip, satir, ofset, an, t, ...}` — aşağıdaki tablo |
 | `sfx` | `{ad, satir/ofset/an/t, db}`; `ad` = `assets/sfx/<ad>.wav` ya da dosya yolu |
 | `gecis`, `gecis_kare` | bu sahneye GİRİŞ geçişi ve kare sayısı |

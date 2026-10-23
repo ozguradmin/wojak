@@ -192,8 +192,9 @@ def ara_sureleri(s: str) -> float:
 class Satir:
     metin: str                   # ekranda/altyazıda görünen metin (etiketler altyazıdan çıkarılır)
     ses: str                     # ses adı (sesler anahtarı) ya da doğrudan Cartesia ses kimliği
-    hiz: float = 1.0
+    hiz: float = 1.0             # Gemini: sesin taban hızıyla çarpılır (atempo); Cartesia: generation_config.speed
     duygu: str | None = None
+    tarz: str | None = None      # Gemini: bu satıra özel tavır tarifi (fısıltı, bağırma...); sesin tarzının yerine geçer
     once: float | None = None    # bu satırdan önce bekleme (sahnenin 'ara'sı yerine)
     sonra: float | None = None   # bu satırdan sonra ek bekleme
     tts: str | None = None       # TTS'e giden metin (verilmezse metin + telaffuz)
@@ -281,7 +282,7 @@ class Video:
     id: str
     baslik: str
     dir: Path
-    sesler: dict[str, str]
+    sesler: dict[str, Any]       # ad -> Cartesia ses kimliği (str) ya da Gemini {gemini, hiz, tarz}
     anlatici_ses: str
     anlatici_hiz: float
     model: str
@@ -310,7 +311,18 @@ class Video:
         return config.OUT / f"{self.id}-uzun"
 
     def ses_id(self, ad: str) -> str:
-        return self.sesler.get(ad, ad)
+        x = self.sesler.get(ad, ad)
+        return x["gemini"] if isinstance(x, dict) else x
+
+    def ses_ayari(self, ad: str) -> dict:
+        """Gemini sesi: {gemini, hiz, tarz}; Cartesia sesi için boş sözlük."""
+        x = self.sesler.get(ad)
+        return dict(x) if isinstance(x, dict) else {}
+
+    @property
+    def saglayici(self) -> str:
+        """'gemini' (model gemini-*: Google Cloud TTS) ya da 'cartesia' (sonic-*)."""
+        return "gemini" if self.model.startswith("gemini") else "cartesia"
 
     def yol(self, p) -> Path:
         return yol_coz(p, self.dir)
@@ -398,7 +410,8 @@ def _satir(v, video_ses: str, video_hiz: float, sesler: dict, yer: str) -> Satir
         return Satir(metin=v.strip(), ses=video_ses, hiz=video_hiz)
     if not isinstance(v, dict):
         _hata(yer, f"satır metin ya da sözlük olmalı: {v!r}")
-    _bilinmeyen(v, {"metin", "ses", "duygu", "hiz", "once", "sonra", "tts", "balon", "konusan", "db"}, yer, "satır")
+    _bilinmeyen(v, {"metin", "ses", "duygu", "hiz", "once", "sonra", "tts", "balon", "konusan", "db", "tarz"}, yer,
+                "satır")
     if not str(v.get("metin", "")).strip():
         _hata(yer, "satırda 'metin' yok")
     ses = str(v.get("ses", video_ses))
@@ -406,7 +419,7 @@ def _satir(v, video_ses: str, video_hiz: float, sesler: dict, yer: str) -> Satir
         _hata(yer, f"ses '{ses}' tanımlı değil (sesler: {', '.join(sesler)})")
     return Satir(metin=str(v["metin"]).strip(), ses=ses,
                  hiz=_sayi(v.get("hiz", video_hiz), yer, "hiz", 0.5, 2.0),
-                 duygu=v.get("duygu"), once=None if v.get("once") is None else _sayi(v["once"], yer, "once", 0),
+                 duygu=v.get("duygu"), tarz=None if v.get("tarz") is None else str(v["tarz"]), once=None if v.get("once") is None else _sayi(v["once"], yer, "once", 0),
                  sonra=None if v.get("sonra") is None else _sayi(v["sonra"], yer, "sonra", 0),
                  tts=v.get("tts"), balon=None if v.get("balon") is None else str(v["balon"]),
                  konusan=None if v.get("konusan") is None else str(v["konusan"]),
@@ -839,8 +852,16 @@ def yukle_sozluk(raw: dict, base: Path) -> Video:
     vid = str(raw["id"])
     if not re.fullmatch(r"[a-z0-9][a-z0-9_-]*", vid):
         raise SpecHatasi(f"id '{vid}': küçük harf, rakam, - ve _ kullan")
-    sesler = dict(VARSAYILAN_SESLER)
-    sesler.update({str(k): str(v) for k, v in (raw.get("sesler") or {}).items()})
+    sesler: dict[str, Any] = dict(VARSAYILAN_SESLER)
+    for k, sv in (raw.get("sesler") or {}).items():
+        if isinstance(sv, dict):   # Gemini sesi (UZUN_FORMAT §1.1): {gemini: Charon, hiz: 1.25, tarz: "..."}
+            _bilinmeyen(sv, {"gemini", "hiz", "tarz"}, "sesler", f"'{k}' sesi")
+            if not sv.get("gemini"):
+                raise SpecHatasi(f"sesler.{k}: Gemini sesinde 'gemini' (ses adı, ör. Charon) zorunlu")
+            sesler[str(k)] = {"gemini": str(sv["gemini"]), "hiz": _sayi(sv.get("hiz", 1.0), "sesler", f"{k}.hiz", 0.5, 2.0),
+                              "tarz": str(sv.get("tarz") or "").strip()}
+        else:
+            sesler[str(k)] = str(sv)
     an = raw.get("anlatici") or {}
     an_ses = str(an.get("ses", "murat"))
     if an_ses not in sesler:
@@ -924,6 +945,11 @@ def yukle_sozluk(raw: dict, base: Path) -> Video:
               qa_isimler=[str(x) for x in (qa.get("isimler") or [])], raw=raw, hareket=_hareket(raw.get("hareket")))
     for i, s in enumerate(v.sahneler):
         s.no = i
+        if v.saglayici == "gemini":
+            for j, st in enumerate(s.satirlar):
+                if not v.ses_ayari(st.ses):
+                    raise SpecHatasi(f"{s.yer}, satır {j + 1}: model {v.model} ama ses '{st.ses}' bir Gemini sesi değil "
+                                     f"(sesler: {{{st.ses}: {{gemini: Charon, hiz: 1.25, tarz: ...}}}})")
     return v
 
 

@@ -1,7 +1,7 @@
 """Uzun format komutları: python -m wojak uzun <komut> uzun/<id> [seçenekler]
 
     kontrol     spesifikasyon + zaman çizelgesi + hareket/bölüm/altyazı denetimi (ses yoksa süreler tahmini)
-    seslendir   Cartesia TTS (önbellekli). --qa: Whisper ile isim denetimi; --yenile N: başarısızları N kez yeniden üret
+    seslendir   Gemini ya da Cartesia TTS (önbellekli). --qa: Whisper ile isim denetimi; --yenile N: başarısızları N kez yeniden üret
     onizle      yarım çözünürlük (960x540) hızlı ön izleme; --bas 1:10 --bit 2:00 ile yalnız bir aralık
     render      1920x1080 30 fps, -14 LUFS; + .srt, anlatım izi, ölçümler (out/<id>-uzun/)
     kare        tek kare(ler): --t 12.5 --t 1:03
@@ -223,6 +223,49 @@ def bakis_denetimi(v) -> list[str]:
     return out
 
 
+YUZ_SINIR, YUZ_DRAMATIK, YUZ_DRAMATIK_SAYI = 0.80, 0.88, 2
+
+
+def etkin_boylar(v) -> list[tuple[float, str, str, Path]]:
+    """UZUN_FORMAT §2.9: canlı karakterin (chars/ ya da kit görseli) ekrandaki etkin boyu = `boy` × (1 - 0,3 derinlik)
+    × kameranın en büyük `zoom`u × (1 + konuşma itmesi `it`) × vurgu itmeleri (`it` olayları). Konuk (wojak dışı
+    sahnede köşedeki karakter) kamerasızdır: etkin boy = `boy`. Dekor görselleri (kapı, telefon, makale) sayılmaz."""
+    from .sahneler import olaylar
+    out = []
+    for s in v.sahneler:
+        if s.tip == "wojak":
+            kam = s.p.get("kamera") or {}
+            zz = kam.get("zoom", [1.0, 1.07])
+            zm = float(zz) if isinstance(zz, (int, float)) else max(float(x) for x in zz)
+            konusan = any(st.balon or st.konusan for st in s.satirlar)
+            it = float(kam.get("it", 0.05 if konusan else 0.0))
+            ek = 1.0
+            for o in olaylar(s, "it"):
+                ek *= 1 + max(0.0, float(o.p.get("guc", 0.08)))
+            kars = [(c, zm * (1 + it) * ek) for c in s.p.get("karakterler", []) or []]
+        else:
+            kars = [(c, 1.0) for c in s.p.get("konuk", []) or []]
+        for c, carpan in kars:
+            p = Path(str(c["gorsel"]))
+            if not ({"chars", "kit"} & set(p.parts)):
+                continue
+            e = float(c.get("boy", 0.66)) * (1 - 0.30 * float(c.get("derinlik", 0) or 0)) * carpan
+            out.append((round(e, 3), s.yer, str(c.get("id", "?")), p))
+    return out
+
+
+def yuz_boyu_denetimi(v) -> list[str]:
+    """Etkin boy > 0,80: uyarı. 0,80-0,88 arası bilinçli dramatik yakın plan videoda en çok 2 kez; > 0,88 her zaman."""
+    eb = [x for x in etkin_boylar(v) if x[0] > YUZ_SINIR + 1e-6]
+    out = []
+    dramatik = [x for x in eb if x[0] <= YUZ_DRAMATIK + 1e-6]
+    for e, yer, kid, p in eb:
+        if e > YUZ_DRAMATIK + 1e-6 or len(dramatik) > YUZ_DRAMATIK_SAYI:
+            out.append(f"{yer}: karakter {kid} ({p.name}) etkin boyu {e:.2f} (> {YUZ_SINIR:.2f}; dramatik yakın plan "
+                       f"en çok {YUZ_DRAMATIK:.2f} ve {YUZ_DRAMATIK_SAYI} kez) — `boy`u ya da kamera zoom/it'i küçült")
+    return out
+
+
 def C_sayi(v) -> str:
     from .cizim import say_bicimle
     return say_bicimle(v)
@@ -236,7 +279,7 @@ def cmd_kontrol(a) -> None:
         print(f"  aynı kayıt ({len(g)} kez, tek seslendirme): " + " = ".join(g))
     ps = altyazi.parcalar(z)
     u = (hareket_denetimi(v, z) + gecis_denetimi(z) + ziplama_denetimi(v, z) + sayac_denetimi(z) + yerlesim.denetle(v, z)
-         + bakis_denetimi(v) + ses.klip_denetimi(z) + paket.uyarilar(v, z) + altyazi.denetle(ps)
+         + bakis_denetimi(v) + yuz_boyu_denetimi(v) + ses.klip_denetimi(z) + paket.uyarilar(v, z) + altyazi.denetle(ps)
          + [f"altyazı kelime farkı: {x}" for x in altyazi.kelime_farki(z, ps)] + tekrar_uyari)
     for x in u:
         print(f"  ⚠ {x}")
@@ -248,7 +291,7 @@ def cmd_kontrol(a) -> None:
 def cmd_seslendir(a) -> None:
     v = spec.yukle(a.yol)
     t0 = time.time()
-    sonuc = tts.seslendir(v, yeniden=a.yeniden)
+    sonuc = tts.seslendir(v, yeniden=a.yeniden, paralel=a.paralel)
     yeni = sum(1 for r in sonuc if not r.onbellek)
     print(f"{len(sonuc)} satır ({yeni} yeni, {len(sonuc) - yeni} önbellekte), toplam ses "
           f"{sum(r.sure for r in sonuc):.1f} sn, {time.time() - t0:.1f} sn")
@@ -454,6 +497,7 @@ def main(argv=None) -> None:
     p.add_argument("--yenile", type=int, default=0, help="denetimde başarısız satırı en fazla N kez yeniden üret")
     p.add_argument("--yeniden", action="store_true", help="önbelleği yok say, hepsini yeniden üret")
     p.add_argument("--tum", action="store_true", help="--qa: yalnız isimli satırları değil bütün satırları dinle")
+    p.add_argument("--paralel", type=int, default=None, help="Gemini: eşzamanlı istek sayısı (varsayılan 4)")
     p.set_defaults(fn=cmd_seslendir)
     for ad, fn in (("render", cmd_render), ("onizle", cmd_onizle)):
         p = sp.add_parser(ad)

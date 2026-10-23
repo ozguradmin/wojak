@@ -3,7 +3,7 @@
 Karar belgesi: docs/UZUN_FORMAT.md. Kullanım ve spesifikasyon: docs/UZUN_MOTOR.md.
 
     python -m wojak uzun kontrol     uzun/<id>   # spesifikasyon + zaman çizelgesi + hareket denetimi
-    python -m wojak uzun seslendir   uzun/<id>   # Cartesia TTS (önbellekli), --qa ile isim denetimi
+    python -m wojak uzun seslendir   uzun/<id>   # Gemini/Cartesia TTS (önbellekli), --qa ile isim denetimi
     python -m wojak uzun onizle      uzun/<id>   # yarım çözünürlük hızlı ön izleme (--bas/--bit)
     python -m wojak uzun render      uzun/<id>   # 1920x1080 30 fps, -14 LUFS
     python -m wojak uzun kucukresim  uzun/<id>   # 1280x720 küçük resim varyantları

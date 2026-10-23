@@ -1,10 +1,17 @@
-"""Cartesia sonic-3 seslendirme: önbellek, yeniden deneme, sessizlik kırpma, isteğe bağlı Whisper denetimi.
+"""Seslendirme: Google Gemini TTS (23.10.2026'dan beri) ya da Cartesia sonic-3; önbellek, yeniden deneme, sessizlik
+kırpma, isteğe bağlı Whisper denetimi.
 
-- Uç nokta: POST https://api.cartesia.ai/tts/bytes, başlıklar X-API-Key + Cartesia-Version: 2025-11-04.
-- Anahtar YALNIZ ortamdan / ~/.config/wojak/secrets.env'den (config.load_secrets) okunur; hiçbir yere
+Sağlayıcı video.yaml'daki `model`den: `gemini-*` -> Gemini (UZUN_FORMAT §1.1), `sonic-*` -> Cartesia.
+- Gemini: Cloud Text-to-Speech v1 `text:synthesize` (`voice.modelName` = model, `input.prompt` = tarz tarifi).
+  Kimlik HIKAYE_GCP_CREDENTIALS (authorized_user JSON) ortamdan ya da ~/.config/wojak/secrets.env'den; proje
+  HIKAYE_GCP_PROJECT (yoksa kimliğin gördüğü ilk etkin proje bulunur). Hız parametresi yok: ses tablosundaki taban
+  hız × satırın `hiz`ı, üretimden sonra ffmpeg `atempo` ile (ton değişmez). `<break .../>` etiketleri Gemini'ye
+  noktalama olarak gider ("..." ya da virgül). Ham yanıt ham/ klasöründe saklanır.
+- Cartesia: POST https://api.cartesia.ai/tts/bytes, başlıklar X-API-Key + Cartesia-Version: 2025-11-04.
+- Anahtarlar YALNIZ ortamdan / ~/.config/wojak/secrets.env'den (config.load_secrets) okunur; hiçbir yere
   yazılmaz, loglanmaz, hata mesajına konmaz.
-- Önbellek: out/<id>-uzun/ses/ham/<anahtar>.wav (API'nin ham çıktısı) ve out/<id>-uzun/ses/<anahtar>.wav (kırpılmış).
-  Anahtar = sha1(model, ses, transkript, hız, duygu, dil, sürüm). Metin değişmedikçe yeniden istek atılmaz.
+- Önbellek: out/<id>-uzun/ses/ham/<anahtar>.wav (API'nin ham çıktısı) ve out/<id>-uzun/ses/<anahtar>.wav (işlenmiş).
+  Anahtar = sha1(sağlayıcı, model, ses, transkript, hız, duygu/tarz, dil, sürüm). Metin değişmedikçe yeniden istek atılmaz.
 - Kırpma: tüm satırlarda aynı kural (eşik + sabit ön/arka pay + kısa yumuşatma), böylece aralar tutarlı.
 - Denetim (--qa): faster-whisper "medium"; sesi ffmpeg ile 16 kHz float diziye kendimiz çözeriz
   (faster_whisper'ın kendi çözücüsü kurulu PyAV ile bozuk). Listelenen isimleri duyamadığı satırları
@@ -20,8 +27,10 @@ import os
 import re
 import subprocess
 import sys
+import threading
 import time
 import wave
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -55,6 +64,150 @@ def anahtar(model: str, ses_id: str, transkript: str, hiz: float, duygu: str | N
     if deneme:
         d["deneme"] = deneme
     return hashlib.sha1(json.dumps(d, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:20]
+
+
+# ---------------------------------------------------------------- Gemini (Google Cloud Text-to-Speech)
+
+GEMINI_URL = "https://texttospeech.googleapis.com/v1/text:synthesize"
+GEMINI_SR = 48000
+GEMINI_SURUM = 1   # Gemini isteği/işleme biçimi değişirse artır
+DUYGU_TARZI = {"content": "Hoşnut, kendinden emin ve güven veren bir tonla söyle."}
+_GCP: dict = {}
+_GCP_KILIT = threading.Lock()
+
+
+_BIRLER = ["", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"]
+_ONLAR = ["", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"]
+
+
+def sayi_yazi(n: int) -> str:
+    """Türkçe okunuş: 1957 -> 'bin dokuz yüz elli yedi', 10000 -> 'on bin' (0 <= n < 10^9)."""
+    if n == 0:
+        return "sıfır"
+
+    def uc(k):   # 0-999
+        y, r = divmod(k, 100)
+        o, b = divmod(r, 10)
+        return " ".join(x for x in ((("" if y == 1 else _BIRLER[y] + " ") + "yüz") if y else "", _ONLAR[o],
+                                    _BIRLER[b]) if x)
+    parcalar = []
+    for bolen, ad in ((10 ** 6, "milyon"), (1000, "bin")):
+        q, n = divmod(n, bolen)
+        if q:
+            parcalar.append("bin" if (q == 1 and ad == "bin") else f"{uc(q)} {ad}")
+    if n:
+        parcalar.append(uc(n))
+    return " ".join(parcalar)
+
+
+def sayilari_yaziya(s: str) -> str:
+    """Rakamları yazıya çevirir, kesme işaretli eki bitiştirir: 1957'de -> 'bin dokuz yüz elli yedide', 10.000'den ->
+    'on binden' (yazılı ek zaten okunuşa uyumlu). UZUN_FORMAT §1.1: sayılar yazıyla."""
+    def cevir(m):
+        return sayi_yazi(int(m.group(1).replace(".", ""))) + (m.group(2) or "")
+    s = re.sub(r"%\s?(\d+)", lambda m: "yüzde " + m.group(1), s)
+    return re.sub(r"(?<![\w.,])(\d{1,3}(?:\.\d{3})+|\d+)(?![.,]\d)(?:['’](\w+))?", cevir, s)
+
+
+def gemini_metni(s: str) -> str:
+    """Cartesia'nın <break time="..."/> etiketleri Gemini'de sesli okunabilir: noktalamaya çevrilir
+    (>= 250 ms "...", daha kısası virgül; UZUN_FORMAT §1.1: durak için "..." ya da virgül)."""
+    from .spec import BREAK_RE
+
+    def cevir(m):
+        sn = float(m.group(1)) / (1000 if m.group(2).lower() == "ms" else 1)
+        return " ... " if sn >= 0.25 else ", "
+    s = sayilari_yaziya(BREAK_RE.sub(cevir, s))
+    s = re.sub(r"\s*([,.:;!?])\s*(\.\.\.|,)\s*", lambda m: m.group(1) + (" ... " if m.group(2) == "..." else " "), s)
+    return re.sub(r"\s+,", ",", re.sub(r"[ \t]+", " ", s)).strip()
+
+
+def gemini_ayari(v: Video, satir: Satir) -> dict:
+    """İsteği ve işlemeyi tanımlayan her şey (önbellek anahtarı bundan): ses, tarz, tempo, metin."""
+    ay = v.ses_ayari(satir.ses)
+    tarz = satir.tarz if satir.tarz is not None else ay.get("tarz", "")
+    if satir.duygu and satir.tarz is None:
+        tarz = (tarz + " " + DUYGU_TARZI.get(str(satir.duygu), f"Duygu: {satir.duygu}.")).strip()
+    return {"model": v.model, "ses": ay["gemini"], "tarz": tarz, "metin": gemini_metni(v.transkript(satir)),
+            "tempo": round(float(ay.get("hiz", 1.0)) * float(satir.hiz), 4), "dil": "tr-TR" if v.dil == "tr" else v.dil}
+
+
+def _gcp_kimligi() -> tuple[str, str]:
+    """(erişim jetonu, proje). Jeton ~1 saat geçerli; 50 dk'da bir yenilenir. Kimlik/jeton hiçbir yere yazılmaz."""
+    import requests
+    with _GCP_KILIT:
+        if _GCP.get("jeton") and time.time() < _GCP.get("bitis", 0):
+            return _GCP["jeton"], _GCP["proje"]
+        config.load_secrets()
+        raw = os.environ.get("HIKAYE_GCP_CREDENTIALS", "").strip()
+        if not raw:
+            raise TTSHatasi("HIKAYE_GCP_CREDENTIALS yok (ortam değişkeni ya da ~/.config/wojak/secrets.env)")
+        try:
+            c = json.loads(raw)
+            r = requests.post("https://oauth2.googleapis.com/token", timeout=60, data={
+                "client_id": c["client_id"], "client_secret": c["client_secret"],
+                "refresh_token": c["refresh_token"], "grant_type": "refresh_token"})
+            jeton = r.json()["access_token"]
+        except Exception as e:  # içerik değil yalnız tür
+            raise TTSHatasi(f"Google kimliği yenilenemedi: {type(e).__name__}") from None
+        proje = os.environ.get("HIKAYE_GCP_PROJECT", "").strip() or _GCP.get("proje", "")
+        if not proje:
+            r = requests.get("https://cloudresourcemanager.googleapis.com/v1/projects", timeout=60,
+                             headers={"Authorization": f"Bearer {jeton}"}, params={"filter": "lifecycleState:ACTIVE"})
+            ps = [x["projectId"] for x in r.json().get("projects", [])] if r.ok else []
+            if not ps:
+                raise TTSHatasi("Google projesi bulunamadı: HIKAYE_GCP_PROJECT ortam değişkenini ver")
+            proje = ps[0]
+        _GCP.update(jeton=jeton, proje=proje, bitis=time.time() + 50 * 60)
+        return jeton, proje
+
+
+def gemini_istek(ay: dict, deneme_sayisi: int = 6) -> bytes:
+    """Ham WAV (LINEAR16, 48 kHz mono). 429/5xx'te üstel bekleme."""
+    import base64
+    import requests
+    govde = {"input": {"text": ay["metin"], **({"prompt": ay["tarz"]} if ay["tarz"] else {})},
+             "voice": {"languageCode": ay["dil"], "name": ay["ses"], "modelName": ay["model"]},
+             "audioConfig": {"audioEncoding": "LINEAR16", "sampleRateHertz": GEMINI_SR}}
+    bekle, son = 3.0, ""
+    for i in range(deneme_sayisi):
+        jeton, proje = _gcp_kimligi()
+        try:
+            r = requests.post(GEMINI_URL, json=govde, timeout=300, headers={
+                "Authorization": f"Bearer {jeton}", "x-goog-user-project": proje, "User-Agent": UA})
+        except requests.RequestException as e:
+            son = type(e).__name__
+        else:
+            if r.status_code == 200:
+                data = base64.b64decode(r.json()["audioContent"])
+                if data[:4] == b"RIFF":
+                    return data
+                son = "yanıt WAV değil"
+            else:
+                try:
+                    msg = r.json().get("error", {}).get("message", "")[:200]
+                except ValueError:
+                    msg = r.text[:200]
+                son = f"HTTP {r.status_code}: {msg.replace(jeton, '***')}"
+                if r.status_code == 401:
+                    _GCP.clear()
+                elif r.status_code not in (408, 409, 425, 429, 500, 502, 503, 504):
+                    raise TTSHatasi(f"Gemini TTS isteği başarısız: {son}")
+        if i < deneme_sayisi - 1:
+            time.sleep(bekle)
+            bekle = min(bekle * 2, 60)
+    raise TTSHatasi(f"Gemini TTS isteği başarısız: {son}")
+
+
+def tempo_uygula(x: np.ndarray, sr: int, tempo: float) -> np.ndarray:
+    """ffmpeg atempo (perde korunur); 0.5-2.0 arası tek süzgeç."""
+    if abs(tempo - 1.0) < 1e-3:
+        return x
+    pcm = (np.clip(x, -1, 1) * 32767).astype(np.int16).tobytes()
+    out = subprocess.run(["ffmpeg", "-v", "error", "-f", "s16le", "-ar", str(sr), "-ac", "1", "-i", "-",
+                          "-af", f"atempo={tempo:.4f}", "-f", "s16le", "-ar", str(sr), "-ac", "1", "-"],
+                         input=pcm, capture_output=True, check=True).stdout
+    return np.frombuffer(out, np.int16).astype(np.float32) / 32768
 
 
 def istek_govdesi(v: Video, satir: Satir) -> dict:
@@ -193,9 +346,33 @@ def _yer(v: Video):
             yield s, i, st
 
 
+def satir_anahtari(v: Video, satir: Satir, deneme: int = 0) -> str:
+    if v.saglayici == "gemini":
+        d = {"g": gemini_ayari(v, satir), "k": KIRPMA, "r": GEMINI_SURUM}
+        if deneme:
+            d["deneme"] = deneme
+        return "g" + hashlib.sha1(json.dumps(d, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:19]
+    return anahtar(v.model, v.ses_id(satir.ses), v.transkript(satir), satir.hiz, satir.duygu, v.dil, deneme)
+
+
 def satir_wav(v: Video, satir: Satir, deneme: int = 0) -> tuple[str, Path]:
-    k = anahtar(v.model, v.ses_id(satir.ses), v.transkript(satir), satir.hiz, satir.duygu, v.dil, deneme)
+    k = satir_anahtari(v, satir, deneme)
     return k, ses_klasoru(v) / f"{k}.wav"
+
+
+def ham_uret(v: Video, satir: Satir) -> bytes:
+    """Sağlayıcıdan ham WAV (önbelleğe ham/ altında yazılır)."""
+    if v.saglayici == "gemini":
+        return gemini_istek(gemini_ayari(v, satir))
+    return _istek(istek_govdesi(v, satir))
+
+
+def ham_isle(v: Video, satir: Satir, ham: Path, hedef: Path) -> None:
+    """Ham çekim -> (Gemini: atempo) -> tutarlı sessizlik kırpma -> hedef wav."""
+    x, sr = wav_oku(ham)
+    if v.saglayici == "gemini":
+        x = tempo_uygula(x, sr, gemini_ayari(v, satir)["tempo"])
+    wav_yaz(hedef, sessizlik_kirp(x, sr)[0], sr)
 
 
 def tekrarlar(v: Video) -> tuple[list[list[str]], list[str]]:
@@ -252,14 +429,16 @@ def sureleri_yukle(v: Video, zorunlu: bool = True) -> list[str]:
     return eksik
 
 
-def seslendir(v: Video, yeniden: bool = False, log=print) -> list[Sonuc]:
-    """Bütün satırları seslendirir (önbellekte olanlar atlanır)."""
+def seslendir(v: Video, yeniden: bool = False, log=print, paralel: int | None = None) -> list[Sonuc]:
+    """Bütün satırları seslendirir (önbellekte olanlar atlanır). Gemini'de ham çekimler `paralel` (varsayılan 4)
+    eşzamanlı istekle alınır; Cartesia sırayla."""
     out = []
     ham = ses_klasoru(v) / "ham"
     ham.mkdir(parents=True, exist_ok=True)
     man = _manifest(v)
     secim = man.get("secim", {})
     toplam = sum(1 for _ in _yer(v))
+    plan = []
     for n, (s, i, st) in enumerate(_yer(v), 1):
         k, p = satir_wav(v, st)
         if secim.get(k) and not yeniden:
@@ -267,19 +446,32 @@ def seslendir(v: Video, yeniden: bool = False, log=print) -> list[Sonuc]:
             p2 = ses_klasoru(v) / f"{k2}.wav"
             if p2.exists():
                 k, p = k2, p2
+        plan.append((n, s, i, st, k, p))
+    gerek = {}   # ham dosya -> (n, yer, satir): aynı anahtarı paylaşan satırlar tek istek
+    for n, s, i, st, k, p in plan:
+        hp = ham / f"{k}.wav"
+        if (not p.exists() or yeniden) and (not hp.exists() or yeniden):
+            gerek.setdefault(hp, (n, f"{s.yer}, satır {i + 1}", st))
+
+    def al(item):
+        hp, (n, yer, st) = item
+        t0 = time.time()
+        hp.write_bytes(ham_uret(v, st))
+        log(f"  [{n}/{toplam}] {yer}: {st.ses} {time.time() - t0:.1f} sn  «{st.altyazi[:60]}»")
+        if v.saglayici != "gemini":
+            time.sleep(0.2)
+    isci = (paralel or 4) if v.saglayici == "gemini" else 1
+    if isci > 1 and len(gerek) > 1:
+        with ThreadPoolExecutor(isci) as ex:
+            list(ex.map(al, gerek.items()))
+    else:
+        for it in gerek.items():
+            al(it)
+    for n, s, i, st, k, p in plan:
         yer = f"{s.yer}, satır {i + 1}"
-        onb = p.exists() and not yeniden
-        if not onb:
-            hp = ham / f"{k}.wav"
-            if not hp.exists() or yeniden:
-                t0 = time.time()
-                data = _istek(istek_govdesi(v, st))
-                hp.write_bytes(data)
-                log(f"  [{n}/{toplam}] {yer}: {st.ses} {time.time() - t0:.1f} sn  «{st.altyazi[:60]}»")
-                time.sleep(0.2)
-            x, sr = wav_oku(hp)
-            y, a, b = sessizlik_kirp(x, sr)
-            wav_yaz(p, y, sr)
+        onb = p.exists() and not yeniden and (ham / f"{k}.wav") not in gerek
+        if not p.exists() or yeniden:
+            ham_isle(v, st, ham / f"{k}.wav", p)
         with wave.open(str(p), "rb") as w:
             sure = w.getnframes() / w.getframerate()
         st.wav, st.sure, st.tahmini = p, sure, False
@@ -419,14 +611,12 @@ def qa(v: Video, yenile: int = 0, log=print, tum: bool = False) -> list[dict]:
         deneme = 0
         while not all(ok for _, ok, _ in r) and deneme < yenile:
             deneme += 1
-            k2 = anahtar(v.model, v.ses_id(st.ses), v.transkript(st), st.hiz, st.duygu, v.dil, deneme)
-            p2 = ses_klasoru(v) / f"{k2}.wav"
+            k2, p2 = satir_wav(v, st, deneme)
             if not p2.exists():
                 hp = ses_klasoru(v) / "ham" / f"{k2}.wav"
                 if not hp.exists():
-                    hp.write_bytes(_istek(istek_govdesi(v, st)))
-                x, sr = wav_oku(hp)
-                wav_yaz(p2, sessizlik_kirp(x, sr)[0], sr)
+                    hp.write_bytes(ham_uret(v, st))
+                ham_isle(v, st, hp, p2)
             duy2, r2 = puanla(p2)
             if sum(ok for _, ok, _ in r2) > sum(ok for _, ok, _ in r) or \
                     (sum(ok for _, ok, _ in r2) == sum(ok for _, ok, _ in r) and
