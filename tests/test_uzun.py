@@ -2037,3 +2037,15 @@ def test_gemini_sayilar_yaziyla():
     assert gemini_metni("10.000'den fazla bebek, %40'ı") == "on binden fazla bebek, yüzde kırkı"
     assert sayi_yazi(2018) == "iki bin on sekiz" and sayi_yazi(1100) == "bin yüz" and sayi_yazi(300000000) == "üç yüz milyon"
     assert gemini_metni("SALL4 proteini") == "SALL4 proteini"
+
+
+def test_gemini_ham_anahtari_hizdan_bagimsiz():
+    """Gemini'de hız atempo ile sonradan: `hiz` değişince ham çekim (istek) aynı kalır, işlenmiş dosya değişir."""
+    from wojak.uzun import tts
+    a, b = _gemini_video(), _gemini_video(hiz=0.9)
+    sa, sb = a.sahneler[0].satirlar[0], b.sahneler[0].satirlar[0]
+    assert tts.ham_anahtari(a, sa) == tts.ham_anahtari(b, sb)
+    assert tts.satir_anahtari(a, sa) != tts.satir_anahtari(b, sb)
+    assert tts.ham_anahtari(a, sa, 1) != tts.ham_anahtari(a, sa)
+    assert tts.secili_deneme(a, sa, {"deneme": {tts.ham_anahtari(a, sa): 2}}) == 2
+    assert tts.secili_deneme(a, sa, {"secim": {tts.satir_anahtari(a, sa): tts.satir_anahtari(a, sa, 3)}}) == 3

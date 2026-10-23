@@ -370,8 +370,44 @@ def satir_anahtari(v: Video, satir: Satir, deneme: int = 0) -> str:
 
 
 def satir_wav(v: Video, satir: Satir, deneme: int = 0) -> tuple[str, Path]:
+    """İşlenmiş (hızı uygulanmış, kırpılmış) çekimin anahtarı ve yolu."""
     k = satir_anahtari(v, satir, deneme)
     return k, ses_klasoru(v) / f"{k}.wav"
+
+
+def ham_anahtari(v: Video, satir: Satir, deneme: int = 0) -> str:
+    """Ham çekimin anahtarı. Gemini'de hız istekte değil (atempo sonradan): `hiz` değişince aynı çekim yeniden
+    işlenir, yeni istek atılmaz ve seçilen deneme korunur."""
+    if v.saglayici == "gemini":
+        ay = dict(gemini_ayari(v, satir))
+        ay.pop("tempo")
+        d = {"g": ay, "r": GEMINI_SURUM}
+        if deneme:
+            d["deneme"] = deneme
+        return "h" + hashlib.sha1(json.dumps(d, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:19]
+    return satir_anahtari(v, satir, deneme)
+
+
+def ham_yolu(v: Video, satir: Satir, deneme: int = 0) -> Path:
+    p = ses_klasoru(v) / "ham" / f"{ham_anahtari(v, satir, deneme)}.wav"
+    if not p.exists():   # 23.10 öncesi adlandırma (hız ham anahtarındaydı): taşı
+        eski = ses_klasoru(v) / "ham" / f"{satir_anahtari(v, satir, deneme)}.wav"
+        if eski.exists() and eski != p:
+            eski.replace(p)
+    return p
+
+
+def secili_deneme(v: Video, satir: Satir, man: dict) -> int:
+    """QA'nın seçtiği çekim (manifest 'deneme': ham anahtarı -> deneme no; eski 'secim' eşlemesi de okunur)."""
+    d = man.get("deneme", {}).get(ham_anahtari(v, satir, 0))
+    if d is not None:
+        return int(d)
+    alt = man.get("secim", {}).get(satir_anahtari(v, satir, 0))
+    if alt:
+        for n in range(1, 10):
+            if satir_anahtari(v, satir, n) == alt:
+                return n
+    return 0
 
 
 def ham_uret(v: Video, satir: Satir) -> bytes:
@@ -424,15 +460,19 @@ def _manifest(v: Video) -> dict:
 
 def sureleri_yukle(v: Video, zorunlu: bool = True) -> list[str]:
     """Önbellekteki seslerle satır sürelerini doldurur. Eksik satırların yerlerini döndürür.
-    Manifest'te QA sonrası yeniden üretilmiş (deneme>0) bir sürüm varsa o kullanılır."""
+    QA'nın seçtiği çekim (deneme>0) varsa o kullanılır. Gemini'de ham çekim varsa ama hızı değişmiş işlenmiş dosya
+    yoksa burada işlenir (istek atılmaz)."""
     man = _manifest(v)
     eksik = []
     for s, i, st in _yer(v):
-        k0, p0 = satir_wav(v, st)
-        p = p0
-        alt = man.get("secim", {}).get(k0)
-        if alt and (ses_klasoru(v) / f"{alt}.wav").exists():
-            p = ses_klasoru(v) / f"{alt}.wav"
+        d = secili_deneme(v, st, man)
+        k, p = satir_wav(v, st, d)
+        if not p.exists():
+            hp = ham_yolu(v, st, d)
+            if not hp.exists() and d:
+                d, (k, p), hp = 0, satir_wav(v, st, 0), ham_yolu(v, st, 0)
+            if not p.exists() and hp.exists():
+                ham_isle(v, st, hp, p)
         if p.exists():
             st.wav = p
             with wave.open(str(p), "rb") as w:
@@ -447,23 +487,18 @@ def seslendir(v: Video, yeniden: bool = False, log=print, paralel: int | None = 
     """Bütün satırları seslendirir (önbellekte olanlar atlanır). Gemini'de ham çekimler `paralel` (varsayılan 3)
     eşzamanlı istekle, dakikalık kota sınırında (HIKAYE_TTS_RPM, varsayılan 9) alınır; Cartesia sırayla."""
     out = []
-    ham = ses_klasoru(v) / "ham"
-    ham.mkdir(parents=True, exist_ok=True)
+    (ses_klasoru(v) / "ham").mkdir(parents=True, exist_ok=True)
     man = _manifest(v)
-    secim = man.get("secim", {})
     toplam = sum(1 for _ in _yer(v))
     plan = []
     for n, (s, i, st) in enumerate(_yer(v), 1):
-        k, p = satir_wav(v, st)
-        if secim.get(k) and not yeniden:
-            k2 = secim[k]
-            p2 = ses_klasoru(v) / f"{k2}.wav"
-            if p2.exists():
-                k, p = k2, p2
-        plan.append((n, s, i, st, k, p))
+        d = 0 if yeniden else secili_deneme(v, st, man)
+        if d and not ham_yolu(v, st, d).exists() and not satir_wav(v, st, d)[1].exists():
+            d = 0
+        k, p = satir_wav(v, st, d)
+        plan.append((n, s, i, st, k, p, ham_yolu(v, st, d)))
     gerek = {}   # ham dosya -> (n, yer, satir): aynı anahtarı paylaşan satırlar tek istek
-    for n, s, i, st, k, p in plan:
-        hp = ham / f"{k}.wav"
+    for n, s, i, st, k, p, hp in plan:
         if (not p.exists() or yeniden) and (not hp.exists() or yeniden):
             gerek.setdefault(hp, (n, f"{s.yer}, satır {i + 1}", st))
 
@@ -481,18 +516,18 @@ def seslendir(v: Video, yeniden: bool = False, log=print, paralel: int | None = 
     else:
         for it in gerek.items():
             al(it)
-    for n, s, i, st, k, p in plan:
+    for n, s, i, st, k, p, hp in plan:
         yer = f"{s.yer}, satır {i + 1}"
-        onb = p.exists() and not yeniden and (ham / f"{k}.wav") not in gerek
+        onb = p.exists() and not yeniden and hp not in gerek
         if not p.exists() or yeniden:
-            ham_isle(v, st, ham / f"{k}.wav", p)
+            ham_isle(v, st, hp, p)
         with wave.open(str(p), "rb") as w:
             sure = w.getnframes() / w.getframerate()
         st.wav, st.sure, st.tahmini = p, sure, False
         out.append(Sonuc(st, yer, k, p, sure, onb))
+    man = _manifest(v)   # QA ile eşzamanlı yazılmış olabilir: en son hâli
     man["satirlar"] = [{"yer": r.yer, "anahtar": r.anahtar, "ses": r.satir.ses, "sure": round(r.sure, 3),
                         "metin": r.satir.altyazi, "transkript": v.transkript(r.satir)} for r in out]
-    man["secim"] = secim
     manifest_yolu(v).write_text(json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
     return out
 
@@ -595,56 +630,76 @@ def yaziya_dok(p: Path, dil: str = "tr", ipucu: str | None = None) -> str:
     return " ".join(s.text.strip() for s in segs).strip()
 
 
-def qa(v: Video, yenile: int = 0, log=print, tum: bool = False) -> list[dict]:
-    """İsim geçen satırları (tum=True: bütün satırları) Whisper ile dinler; duyulmayan isimleri ve isim dışı
-    kelime farklarını (kelime_farklari) raporlar: ikisinden biri varsa "KONTROL ET".
-    yenile>0: başarısız satırları en fazla o kadar kez yeniden üretir (önbellek anahtarına deneme no eklenir),
-    en iyi sonucu seçer (manifest 'secim'). Asla sonsuz döngüye girmez."""
+def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = False) -> list[dict]:
+    """İsim geçen satırları (tum=True: bütün satırları; kotu=True: yalnız önceki denetimde "tamam" olmayanları) Whisper
+    ile dinler; duyulmayan isimleri ve isim dışı kelime farklarını (kelime_farklari) raporlar: biri varsa "KONTROL ET".
+    yenile>0: başarısız (isim duyulmayan YA DA kelime farkı olan: Gemini kuralı, döküm metinle birebir) satırları en
+    fazla o kadar kez yeniden üretir (önbellek anahtarına deneme no eklenir), en iyi sonucu seçer (manifest 'secim':
+    önce duyulan isim sayısı, sonra daha az kelime farkı, sonra isim benzerliği). Asla sonsuz döngüye girmez."""
     sonuc = []
     man = _manifest(v)
     secim = man.setdefault("secim", {})
+    onceki = {x.get("yer"): x for x in man.get("qa", [])}
     for s, i, st in _yer(v):
+        yer = f"{s.yer}, satır {i + 1}"
         isimler = satirdaki_isimler(v, st)
-        if not isimler and not tum:
+        if kotu:
+            if onceki.get(yer, {}).get("durum") == "tamam" and onceki[yer].get("metin") == st.altyazi:
+                sonuc.append(onceki[yer])
+                continue
+        elif not isimler and not tum:
             continue
         k0, p0 = satir_wav(v, st)
-        aday = secim.get(k0, k0)
-        p = ses_klasoru(v) / f"{aday}.wav"
+        hk0 = ham_anahtari(v, st, 0)
+        secili = secili_deneme(v, st, man)
+        aday, p = satir_wav(v, st, secili)
+        if not p.exists() and ham_yolu(v, st, secili).exists():
+            ham_isle(v, st, ham_yolu(v, st, secili), p)
         if not p.exists():
-            p, aday = p0, k0
+            secili, (aday, p) = 0, (k0, p0)
         if not p.exists():
-            sonuc.append({"yer": f"{s.yer}, satır {i + 1}", "durum": "ses yok", "isimler": isimler})
+            sonuc.append({"yer": yer, "durum": "ses yok", "isimler": isimler})
             continue
+        haric = isimler + [v.telaffuz.get(a, a) for a in isimler]
 
         def puanla(path):
             duy = yaziya_dok(path, v.dil)
             r = [(a, *isim_duyuldu_mu(a, duy, v.telaffuz.get(a))) for a in isimler]
-            return duy, r
+            return duy, r, kelime_farklari(st.altyazi, duy, haric=haric)
 
-        duy, r = puanla(p)
+        def skor(r, fark):
+            return (sum(ok for _, ok, _ in r), -len(fark), sum(x for _, _, x in r))
+
+        duy, r, fark = puanla(p)
         deneme = 0
-        while not all(ok for _, ok, _ in r) and deneme < yenile:
+        while (not all(ok for _, ok, _ in r) or fark) and deneme < yenile:
             deneme += 1
+            if deneme == secili:
+                continue
             k2, p2 = satir_wav(v, st, deneme)
             if not p2.exists():
-                hp = ses_klasoru(v) / "ham" / f"{k2}.wav"
+                hp = ham_yolu(v, st, deneme)
                 if not hp.exists():
                     hp.write_bytes(ham_uret(v, st))
                 ham_isle(v, st, hp, p2)
-            duy2, r2 = puanla(p2)
-            if sum(ok for _, ok, _ in r2) > sum(ok for _, ok, _ in r) or \
-                    (sum(ok for _, ok, _ in r2) == sum(ok for _, ok, _ in r) and
-                     sum(x for _, _, x in r2) > sum(x for _, _, x in r)):
-                duy, r, aday = duy2, r2, k2
-                secim[k0] = k2
-        fark = kelime_farklari(st.altyazi, duy, haric=isimler + [v.telaffuz.get(a, a) for a in isimler])
+            duy2, r2, fark2 = puanla(p2)
+            if skor(r2, fark2) > skor(r, fark):
+                duy, r, fark, aday, secili = duy2, r2, fark2, k2, deneme
+        if secili:
+            secim[k0] = aday
+            man.setdefault("deneme", {})[hk0] = secili
+        else:
+            secim.pop(k0, None)
+            man.setdefault("deneme", {}).pop(hk0, None)
         durum = "tamam" if all(ok for _, ok, _ in r) and not fark else "KONTROL ET"
-        kayit = {"yer": f"{s.yer}, satır {i + 1}", "durum": durum, "metin": st.altyazi, "duyulan": duy,
+        kayit = {"yer": yer, "durum": durum, "metin": st.altyazi, "duyulan": duy,
                  "isimler": [{"isim": a, "duyuldu": ok, "benzerlik": x} for a, ok, x in r],
-                 "kelime_farki": fark, "anahtar": aday, "deneme": deneme}
+                 "kelime_farki": fark, "anahtar": aday, "deneme": secili}
         sonuc.append(kayit)
         log(f"  {durum:<10} {kayit['yer']}: " + ", ".join(f"{a} {'✓' if ok else '✗'}{x:.2f}" for a, ok, x in r)
             + (f" fark: {', '.join(fark)}" if fark else "") + f"  | duyulan: {duy[:90]}")
+        man["secim"] = secim
+        manifest_yolu(v).write_text(json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
     man["qa"] = sonuc
     manifest_yolu(v).write_text(json.dumps(man, ensure_ascii=False, indent=1), encoding="utf-8")
     return sonuc

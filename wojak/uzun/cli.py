@@ -297,7 +297,7 @@ def cmd_seslendir(a) -> None:
           f"{sum(r.sure for r in sonuc):.1f} sn, {time.time() - t0:.1f} sn")
     if a.qa:
         print("Whisper denetimi (faster-whisper medium):")
-        q = tts.qa(v, yenile=a.yenile, tum=a.tum)
+        q = tts.qa(v, yenile=a.yenile, tum=a.tum, kotu=a.kotu)
         kotu = [x for x in q if x["durum"] != "tamam"]
         print(f"denetim: {len(q)} satır, {len(kotu)} kontrol gerektiriyor "
               f"(rapor: {tts.manifest_yolu(v)})")
@@ -497,6 +497,7 @@ def main(argv=None) -> None:
     p.add_argument("--yenile", type=int, default=0, help="denetimde başarısız satırı en fazla N kez yeniden üret")
     p.add_argument("--yeniden", action="store_true", help="önbelleği yok say, hepsini yeniden üret")
     p.add_argument("--tum", action="store_true", help="--qa: yalnız isimli satırları değil bütün satırları dinle")
+    p.add_argument("--kotu", action="store_true", help="--qa: yalnız önceki denetimde 'tamam' olmayan satırları dinle")
     p.add_argument("--paralel", type=int, default=None, help="Gemini: eşzamanlı istek sayısı (varsayılan 3; dakikada en çok HIKAYE_TTS_RPM=9 istek)")
     p.set_defaults(fn=cmd_seslendir)
     for ad, fn in (("render", cmd_render), ("onizle", cmd_onizle)):
