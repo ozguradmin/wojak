@@ -1389,7 +1389,7 @@ bolumler:
         karakterler:
           # 9. tur (animasyon S6): dosya isim etiketinin altında kalıyor, itmede sol kenara değiyordu: yukarıda, içeride
           - {id: d, gorsel: img/cizim/dosya_ruhsat_basvurusu.png, x: 0.36, boy: 0.3, alt: -0.33, bakis: on, giris: 0.3, golge: true, canli: false}
-          - {id: s, gorsel: chars/kaymakcalan_v2_sakin.png, taraf: sag, x: 0.75, boy: 0.7, alt: 0.13}   # 7. tur: sol alttaki isim etiketine yer; 11. tur: biraz aşağıda (B5.3b'nin ilk karesiyle aynı yükseklik, üstteki yazılar başına binmesin)
+          - {id: s, gorsel: chars/kaymakcalan_v2_sakin.png, taraf: sag, x: 0.75, boy: 0.7, alt: 0.0}   # Gemini turu: boy 0,84 -> 0,7 ile alt 0,13 yüzü çenede kesiyordu   # 7. tur: sol alttaki isim etiketine yer; 11. tur: biraz aşağıda (B5.3b'nin ilk karesiyle aynı yükseklik, üstteki yazılar başına binmesin)
         satirlar:
           - {metin: "Meslektaşlarının anlattığına göre, başvuru hakkında görüş verenlerden biri genç bir farmakolog: Şükrü Kaymakçalan.", sonra: 0.4}
         olaylar:
