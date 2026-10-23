@@ -661,7 +661,7 @@ Kanıtlanmış yol bu bölümde baştan sona ~50 dk sürdü (tahmin 55-75 dk). Y
   `teslim` uyarsın.
 - `tools/`: Commons ham dosya sayfasından lisans şablonunu okuyan küçük doğrulayıcı (`action=raw`).
 
-### Ek dersler (23.10.2026 akşam, `ayasofya-viking-yazisi`, iki hakemden 8/8, ~45 dk)
+### Ek dersler (23.10.2026 akşam, `ayasofya-viking-yazisi`, iki hakemden 8/8, ~31 dk ölçüldü)
 
 Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 
@@ -695,14 +695,14 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 
 | Adım | Karun (21.10) | Kanuni (23.10) | Ayasofya (23.10 akşam) |
 |---|---|---|---|
-| Hazırlık + okuma | ~6 dk | ~8 dk | ~6 dk |
-| Konu + olgu | ~11 dk | ~7 dk | ~4 dk |
-| Görsel avı | ~17 dk | ~6 dk | ~8 dk |
+| Hazırlık + okuma | ~6 dk | ~8 dk | ~5 dk |
+| Konu + olgu | ~11 dk | ~7 dk | ~2 dk |
+| Görsel avı | ~17 dk | ~6 dk | ~10 dk |
 | Karakter + yüz | ~10 dk | ~5 dk | ~5 dk |
-| yaml → teslim | ~5 dk | ~4 dk | ~3 dk |
-| Ön kontrol + hakem turları | 2 tur + kart/kupür turları | ~10 dk | ~8 dk (ön kontrol + 2 tur) |
-| Teslim + commit + belge | ~8 dk | ~10 dk | ~10 dk |
-| **Toplam** | ~2 sa | ~50 dk | **~45 dk** |
+| yaml → teslim | ~5 dk | ~4 dk | ~2 dk |
+| Ön kontrol + hakem turları | 2 tur + kart/kupür turları | ~10 dk | ~5 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~8 dk | ~10 dk | ~3 dk |
+| **Toplam** | ~2 sa | ~50 dk | **~31 dk** |
 
 Ücretli API: 0.
 

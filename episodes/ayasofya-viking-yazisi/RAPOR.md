@@ -107,18 +107,19 @@ Internet Archive'a gerek olmadı.
 
 ## Adım süreleri (UTC, 23.10.2026)
 
-| Adım | Süre |
+| Adım | Süre (saat damgasıyla ölçüldü) |
 |---|---|
-| Ölçüm + hazırlık (pip, font, referans, 81 test ~21 sn) | ~3 dk |
-| Belgeleri okuma (CLAUDE, ADIM_ADIM, STIL, OGRENILENLER, YAYIN_PLANI §0, KONSEPT, GUNDEM §5/§7, kisa_reel.js, KONU_HAVUZU) | ~3 dk |
-| Konu tarama + 3 aday | ~2 dk |
-| Olgu araştırması (2 web araması; 6+ kaynak) | ~2 dk |
-| Görsel avı (Commons API + md5 yolu; birkaç 429, yeniden denemeyle geçti; 26 aday) | ~8 dk |
+| Ölçüm + hazırlık + belgeleri okuma (81 test ~21 sn) | ~5 dk |
+| Konu tarama + 3 aday + olgu araştırması (2 web araması; 6+ kaynak) | ~2 dk |
+| Görsel avı (Commons API + md5 yolu; birkaç 429; 26 aday) | ~10 dk |
 | Karakterler + yüz varyantı (`chars/uret.py`) | ~5 dk |
-| episode.yaml + check + frames + render + teslim | ~3 dk |
-| Ön kontrol + 2 hakem turu + düzeltmeler | ~8 dk |
-| §4 listesi, RAPOR, teslim kopyaları, commit/push, OGRENILENLER | ~10 dk |
-| **Toplam** | **~45 dk** |
+| episode.yaml + check + frames + render + teslim | ~2 dk |
+| Ön kontrol + 2 hakem turu + düzeltmeler | ~5 dk |
+| RAPOR, teslim kopyaları, commit/push, OGRENILENLER | ~3 dk |
+| **Toplam** | **~31 dk** |
+
+Not: özel depodaki RAPOR kopyası adım başına daha yüksek bir tahmin (~45 dk) taşıyor. Yayın botu tetiklenmesin diye
+o kopya değiştirilmedi; ölçülen değer bu tablodur.
 
 **Yaklaşık maliyet:** Ücretli API kullanılmadı (TTS ve görsel üretimi yok), 0 TL. Model kullanımı oturum içi.
 
