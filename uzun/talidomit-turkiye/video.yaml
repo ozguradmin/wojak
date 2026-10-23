@@ -2199,30 +2199,20 @@ paket:
       İstersen kalan baytla atıflara tek satır eklenebilir: 'Görsellerin dosya bağlantıları ve lisansları:
       <repodaki uzun/talidomit-turkiye/VARLIKLAR.md bağlantısı>'. Eklemedim: bağlantı GitHub hesabını kanala bağlar
       (gizlilik kararı senin)."
-  # Yayından önce kulakla dinlenecek satırlar. 5. tur: hesap sahibinin yeni Cartesia anahtarlarıyla 30 satır yeniden
-  # seslendirildi (kesik/uzatılmış çekimler temiz çekimle değişti); listede yalnız hâlâ kulak isteyenler var.
-  dinle:   # 12. tur: yeni yedi çekim + yavaşlatılan satırlar + Whisper'ın hâlâ yanlış yazdıkları (dil ve teknik hakem 11. tur)
-    - {ara: "Bu molekülün adı", not: "12. tur yeni çekim: ilacın adı ilk kez; 'adı:' sonrası ~0,35 sn durak (eski çekimde 13/16 klip 'Tadidomit'); Whisper 4/4 'talidomit'"}
-    - {ara: "yan etkiden haberi", not: "12. tur yeni çekim (ekrandaki 'HABERİMİZ YOK' ile aynı dil); ilk çekim 'bir iyan etkiden' duyuluyordu, seçilen ikinci çekim 4/4 doğru"}
-    - {ara: "Firmanın yanıtı sert", not: "10. tur çekimi; 12. tur: zarfın giriş efekti 'sert.'in t'sinden 0,2 sn daha uzağa alındı (teknik N1: mikste 'ser')"}
-    - {ara: "Talidomid, gebe kadınlar", not: "ÖNCELİKLİ. Aylin: 12. tur teslim karışımında ipucusuz Whisper 2/2 'Tarih domit', anlatım izinde 2/2 'Talidomit' (altlık orada sesin 25-35 dB altında: maskeleme değil, okuyuş sınırda; 11. turda teknik hakem 'Talidomit / Tali domit' duydu). Kulak 'Tarih' duyarsa ElevenLabs listesine"}
-    - {ara: "Kaymakçalan'ın rolü", not: "ÖNCELİKLİ (13. tur, izlenme S7). Gerçek kişinin adı: Whisper'ın 4 hedefli çözümünün 4'ü 'Kaymak Çalan'ın' diye bölüyor, tam geçiş 'Kaymakçalağının' yazdı. Kulak adı bölünmüş ya da yanlış duyarsa ElevenLabs listesine"}
-    - {ara: "Nejat Eczacıbaşı", not: "ÖNCELİKLİ. 12. tur yeni metin ve çekim (4 denemeden zorlanmış skorda en iyisi: 'Nejat' > 'Necat/Necdet/Necad'); teslim karışımında ve izde ışın-5 çözüm 'Nejat', açgözlü çözüm 'Necad'. 'Necat/Necdet' duyulursa ElevenLabs listesine"}
-    - {ara: "Sorulduğunda, haberin kaynağı", not: "12. tur yeni çekim (dil S9: 'ise' tekrarı); 4/4 doğru"}
-    - {ara: "tanıtım numunesi bile", not: "12. tur: rubberband ile ~0,85 tempo (bölümün en hassas ihtiyat cümlesi); doğal duyuluyor mu"}
-    - {ara: "İnternette sık duyulan", not: "12. tur yeni metin ve çekim: iddia tırnaklı ve duraklı; 4/4 doğru"}
-    - {ara: "Ama talidomit geri döndü", not: "ÖNCELİKLİ (13. tur, izlenme S7). 6. bölümün dönüm cümlesi: tam video Whisper'ı (ışın 5, ipucusuz) 'Ama tarih domit geri döndü' yazdı; mikste hedefli çözümler 2/2 'Tali Domit', anlatım izinde 2/2 'talidomit'. Altlık sesin 29 dB altında: maskeleme değil, Cartesia'nın okuyuşu. Kulak 'tarih' duyarsa ElevenLabs listesine"}
-    - {ara: "cüzzam hastası", not: "ÖNCELİKLİ. z uzatılmış eski çekim (Cartesia ikiz zz'yi yeni çekimde 'cüzdan' okuyor; ekranda 'CÜZZAM (LEPRA)' var); teslim karışımında ve izde ışın-5 'cüzzam', açgözlü 'cüzlam'. 'Cüzdan' duyulursa ElevenLabs listesine"}
-    - {ara: "Sheskin, elinde kalan", not: "12. tur: 'talidomit.' sonrası +0,5 sn (dil S6: 'Talidomit, beklenmedik…' diye bitişikti). 14. tur (dil hakemi 13. tur S6): 'talidomit' 4/4 'Tali Domit' (vurgu kayması): kulak bölünmüş duyarsa ElevenLabs listesine"}
-    - {ara: "lepra tedavisinde", not: "12. tur yeni metin ve çekim: 'cüzzam' 6/6 'cüzdan' duyuluyordu, yeni çekimde de (z uzatılınca da); satırda 'lepra', ekranda 'LEPRA (CÜZZAM)'; 4/4 doğru"}
-    - {ara: "günlük doz sattığı", not: "ÖNCELİKLİ (14. tur, dil hakemi 13. tur S3): Whisper tam geçişte ve 4/4 klipte 'günlük dost' yazıyor ('doz'un z'si 'sattığı'nın s'sinden önce ötümsüzleşiyor; ekranda 'günlük doz (hesap)'); mikste 'Grünenthal' 2/2 'Gürbünental'. Kulak 'dost' ya da 'Gürbünental' duyarsa ElevenLabs metni: 'Hesaplara göre yalnız Grünenthal'in sattığı günlük dozlar, Kasım 1961'e kadar 300 milyonu aşıyor.'"}
-    - {ara: "Bir Grünenthal çalışanının", not: "ÖNCELİKLİ (14. tur, dil hakemi 13. tur S5): firma adı Whisper'da 4/4 'Gürnental' (1:03'te doğru). Kulak 'Gürnental' duyarsa ElevenLabs'te tek telaffuz kaydı ('Grünental' / 'Grü nental' / 'Grünnental' denenir)"}
-    - {ara: "taahhütlü bir mektupla", not: "ÖNCELİKLİ (14. tur, dil hakemi 13. tur S4): 'taahhütlü' 4 çözümün 0'ında doğru ('tahipli/tahitli'). Kulak 'tahitli' duyarsa ElevenLabs metni: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'"}
-    - {ara: "Talidomitin Behçet", not: "14. tur (dil hakemi 13. tur S6): 'talidomit' 3/4 'Tali Domit' (kelime ortasında vurgu kayması; izde gerçek sessizlik yok); 'yayımlandı' Whisper'da çoğunlukla 'yayınlandı' (SRT 'yayım-'). ElevenLabs'te 'yayım' okuyan çekimi seç"}
-    - {ara: "Ama ortada yayımlanmış", not: "14. tur (dil hakemi 13. tur S6): ses 'yayınlanmış' diyorsa SRT'deki 'yayımlanmış'la ayrışır; ElevenLabs'te 'yayım' okuyan çekimi seç"}
-    - {ara: "bugün yayımlanmış tek bir belgesi", not: "14. tur (dil hakemi 13. tur S6): 'yayımlanmış' / 'yayınlanmış' ayrımı (yukarıdaki gibi)"}
-    - {ara: "Bugün bir kanser ilacı", not: "12. tur: doruk (9:26-9:38) rubberband 0,88 + durak; 'O reklamı hatırlayın' da 0,88, 'Bugün Türkiye'deki resmî…' yeni çekim (0,88, 'ise' çıktı)"}
-    - {ara: "Ölümünün onuncu yılındaki", not: "11. tur: Ankara satırları rubberband ile yavaşlatıldı (0,85-0,92); doğal duyuluyor mu"}
+  # Yayından önce kulakla dinlenecek satırlar (Gemini turu, 23.10.2026). 152 satırın hepsi Whisper (medium) dökümünde
+  # metinle aynı; aşağıdakiler yine de kulak ister (isim okunuşu, bilinçli değişiklik, sorunlu çekimden kurtarılanlar).
+  dinle:
+    - {ara: "Şükrü Kaymakçalan", not: "Gerçek kişinin adı: Whisper 'Kaymakçalan' / 'Kaymak Çalan' diye bölüyor (okunuş doğru görünüyor); kulak adı bölünmüş duyarsa söyle, o satır yeniden alınır"}
+    - {ara: "Kaymakçalan'ın rolü", not: "Aynı ad, ikinci geçiş ('Kaymak Çalan'ın' yazıldı)"}
+    - {ara: "Nejat Eczacıbaşı", not: "Whisper bu kez 'Nejat' yazdı (Cartesia'da 'Necad'dı); 'Enstitüsü' 'Ens-titüsü' yazımıyla alındı (ilk çekimler 'İntitüsü')"}
+    - {ara: "Hesaplara göre yalnız Grünenthal", not: "Firma adı: Whisper 'Gürünentel' yazdı (öteki iki geçişte 'Grünenthal'); Türkçe okunuşa yakın"}
+    - {ara: "taahhütlü bir mektupla", not: "'taahhütlü' Whisper'da 'tâhütlü' (doğruya yakın); kulak 'tahitli' duyarsa metin: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'"}
+    - {ara: "ağır bir lepra hastası", not: "Bilinçli değişiklik: 'cüzzam' Gemini'de de 4 yazımda 'cüzdan/cüzlem' duyuldu: konuşmada 'lepra', ekranda 'LEPRA (CÜZZAM)'"}
+    - {ara: "virolog Süreyya Tahsin Aygün", not: "Bu satırın iki çekimi tarz tarifini sesli okudu ('alçak, sakin ama gergin…'): dördüncü çekim temiz; başında fazladan söz olmadığını dinle"}
+    - {ara: "‘hayır’ kararının ise", not: "Aynı sorun (tarif okundu) + 'hayır'ın' 'hayrını' duyuluyordu: metin 'hayır kararının' oldu; 'yayımlanmış' Whisper'da 'yayınlanmış'"}
+    - {ara: "Ya o soru?", not: "İlk çekim kesikti (yalnız 'Ya o soru?'): ikinci çekim tam"}
+    - {ara: "Ama haritada bir boşluk var", not: "'var:' ile 'Türkiye.' arasında ~1,8 sn durak (Gemini'nin dramatik durağı): uzun gelirse söyle"}
+    - {ara: "Tamamen zehirsiz.", not: "İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt"}
   telif_notu:
     - "Videoda ve küçük resimlerde telifli görsel YOK: fotoğrafların hepsi CC lisanslı ya da kamu malı (atıfları
       açıklamada), geri kalanı kendi çizimimiz. Fotoğraflar kırpıldı; laboratuvar fotoğrafında rötuş yapıldı."

@@ -37,6 +37,18 @@
 - **Kaynak araç:** aynı ayarlar `ozguradmin/galaktik-simulasyon` deposundaki `tools/tts.py` (CAST tablosu) ve
   `research/28_tts/README.md`'de; wojak motorunda `wojak/uzun/tts.py` (`model: gemini-2.5-pro-tts`).
 - İlk test (23.10): "Merhaba, bu bir deneme." anlatıcı 1,73 sn, Whisper birebir, ham satır −17,9 LUFS / −1,3 dBFS.
+- **Talidomit uzun videosunda öğrenilenler (23.10, 152 satır):**
+  - Proje kotası dakikada ~10 istek (Vertex `global_generate_content_requests_per_minute`): motor 3 eşzamanlı istekle
+    dakikada en çok 9 istek atar (`HIKAYE_TTS_RPM`), 429'da bir dakika bekler. 152 satır ~20 dk.
+  - **Gemini bazen tarz tarifini sesli okur** (152 satırda 2 çekim: "alçak, sakin ama gergin…" satırın başında; satır
+    süresi 2-4 katına çıkar). `seslendir --qa` artık fazla kelimeyi de yakalar ve o çekimi seçmez; satır süresine de bak.
+  - Ara sıra kesik çekim gelir (yalnız ilk cümle). Eksik kelime denetimi yakalar; yeniden çekim (`--yenile 3`) çözer.
+  - 1,25x'te ortalama 6,0 hece/sn; 7,0'ı aşan kısa satırlara `hiz` (0,7-0,95) verildi. Hız değişince istek atılmaz,
+    aynı ham çekim yeniden işlenir.
+  - Okunuş: "cüzzam" hiçbir yazımda olmadı ("cüzdan") -> "lepra"; tireli yazım işe yarıyor ("yayım-lanmış",
+    "Ens-titüsü", `telaffuz`'a); "'hayır'ın" -> "hayır kararının". İsimler (Kaymakçalan, Nejat, Kelsey) doğru.
+  - İkinci ses için 5 aday denendi (Kore, Aoede, Sulafat, Leda, Gacrux; aynı üç alıntı): yalnız **Kore** üçünde de
+    hatasızdı. Talidomit videosunda ikinci ses Kore.
 
 ## 2. Görsel dil: hareket şart
 
