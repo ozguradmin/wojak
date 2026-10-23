@@ -489,9 +489,13 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
    dokunma).
 8. **episode.yaml:** `python -m wojak new <id>`, talidomit ve bu bölümü şablon al. `music: {file:
    imza_v2_ic_cekis.m4a}`. Süreler 0,5 katı, toplam 14,0.
+   *(23.10 düzeltme: müzik artık `music: kanal` = imza_v2_golge; bu ortamda ffmpeg/loudnorm hatası yüzünden
+   `music: {file: kanal, volume: 0.197}` yaz ve LUFS'u ölç. Bkz. "Ek dersler (23.10.2026, kanuni-gizlenen-olum)")*
 9. **Kanıt kareye sığar:** renderer 1080'den uzun kanıtı kesmez, kareye sığdırır → yanlarda bant. Kanıtı **1080x1080**
    (ya da ≤1080 yüksek) hazırla; uzun nesneyi nesnesiz kenar şeridiyle kareye tamamla.
 10. **Son kare = gerçekçi kupür** (`kupur.py`), düz kart değil. Serbest görsel yoksa üret.
+    *(23.10 düzeltme: kupür varsayılan değil; son kare kanıtın kendi biçimine uyar, son 5 bölümle aynı tür arka
+    arkaya gelmez. Tarihî olayda dönemin kamu malı minyatürü/belgesi iyi bir son kare: `kanuni-gizlenen-olum`)*
 11. **Döngü:** `check` (uyarısız; imza müzik uyarısı bilinçli) → `frames` → kareye bak → `render` → `teslim`.
 12. **Hakem:** 2 bağımsız mercek, yan yana + ölçüm. Metinde alıntı birebir, canlandırmayı açıkça yaz. İlk seferde
     8/8 hedefle (aşağıda "kalite çıtası").
@@ -595,6 +599,67 @@ depo. Süre: ~8 dk. Tasarruf: RAPOR'u üretirken yaz, sonradan değil.
 - **Açıklamalardaki yıldızlı kelimeler kasıtlı** (örneğin "*leceğini", "*lümünden"). `wojak/censor.py` hassas
   kelimeleri platform metinlerinde bilinçli olarak maskeler. Hata değil; elle düzeltme, "düzeltmek" için paketi
   değiştirme.
+
+### Ek dersler (23.10.2026, `kanuni-gizlenen-olum`, iki hakemden 8/8, ~50 dk)
+
+Kanıtlanmış yol bu bölümde baştan sona ~50 dk sürdü (tahmin 55-75 dk). Yeni kanıtlanan adımlar:
+
+- **Sesi ölç, güvenme (bu ortamda ZORUNLU):** ffmpeg 6.1.1'de `loudnorm` TP aralığı -9..0. `wojak/audio.py` TP=-17
+  verince filtre hata veriyor, kod sessizce `anull`'a düşüyor ve video -15,5 LUFS çıkıyor (hedef -29,5). Her render'dan
+  sonra ölç: `ffmpeg -i teslim/<id>/<id>.mp4 -af ebur128=peak=true -f null - 2>&1 | grep -E "I:|Peak:" | tail -2`.
+  Kod değişmeden çözüm: `music: {file: kanal, volume: 0.197}` (imza_v2_golge -15,4 LUFS → -29,6 LUFS, tepe -17,0).
+  Başka müzik dosyasında katsayı = 10^((-29,5 - dosyanın LUFS'u)/20).
+- **Tarihî olayda kanıt = dönemin kendi resimli kroniği:** Commons'ta Osmanlı minyatürleri kamu malı (PD-Art /
+  PD-US) ve olayı birebir gösterir. Örnek: "Category:Funeral of Suleiman I", "Nehzetu'l-Ahbar der Sefer-i Sigetvar",
+  "History of Sultan Süleyman (CBL T 413)". Kupür üretmeden, telifsiz ve çeşitli bir son kare olur. Kırp, 1080
+  genişliğe ölçekle, piksellere dokunma. Arama İngilizce + olayın geçtiği yerin dili (Macarca "Szigetvári vár").
+- **Commons dosya sayfasını ham metinle doğrula:** `index.php?title=File:<ad>&action=raw` lisans şablonunu
+  (`{{PD-self}}`, `{{PD-Art|...}}`) ve kaynağı tek istekte verir. API'nin "Public domain" kısa adı yetmez.
+  Dikkat: aynı yükleyicinin ardışık dosyaları ("vár 2" / "vár 3") karışabilir. Önizlemeyi dosya adıyla eşleyerek
+  bak (bu bölümde ilk kırpım yanlış dosyadan, modern bir anıtlı kareden yapılmıştı).
+- **Uzun başlıklı karakterde yüz küçük kalıyor (börk, kavuk):** PNG'yi alttan kes (bilek/göğüs; büst zaten
+  kadrajın altından kesik). Aynı `height`'ta yüz büyür. İki karakterin `height`'ını eşitle ki yazı bloğu sabit
+  kalsın (0,55 iki tarafta da). Telefon testi: 390 px'te alt yarıda eşik 40, yüz değişimi ≥ %0,40 (bu bölüm %0,33 →
+  %0,48).
+- **Kesimde yarı saydam kalan kontur:** wojakland PNG'lerinde profil çizgisi alfa 100-160 kalabiliyor, koyu zeminde
+  kayboluyor. Koyu RGB + alfa > 30 olan pikselleri opak yap (`chars/uret.py:kontur_sabitle`). Yüz silerken silme
+  kutusunu konturdan 4-5 px içeride başlat, yoksa profil çizgisi ten rengine döner.
+- **"Feels good" sevinç pozu → dehşet:** gözleri kapalı, elleri yanakta janissary çiziminde yalnız gözleri (iri,
+  küçük göz bebeği), kaşları (iç uçlar yukarı) ve ağzı ("O") değiştirmek yetiyor. Eller yerinde kalınca poz kendiliğinden
+  dehşete dönüyor. Yöntem: `episodes/kanuni-gizlenen-olum/chars/uret.py`.
+- **Sansürün bozduğu kelimeyi metinde kullanma:** `censor.py` "ölüm"ü "*lüm", "silahdar"ı "S!lahdar" yapıyor.
+  Tarihî metinde "vefat", "son nefesini verdi" ve unvansız ad doğal ve temiz. Teslimden sonra kontrol:
+  `grep -n "\*\|!" teslim/<id>/metinler/*.txt`.
+- **Hakem kendi kendine yürütülürken önce üretici ön kontrolü:** ses (ebur128), kesmeler (kare farkı), telefon yüz
+  değişimi ve satır sonu yetim kelime. Bu dördü bu bölümde ilk render'da üç MUST çıkardı; hakem turundan önce
+  yakalandı.
+
+**Çalışmayan (deneme):**
+- `music: kanal` tek başına: bu ortamda -15,5 LUFS (yukarıdaki ffmpeg/loudnorm hatası).
+- Hikâye metninde "Silahdar": sansür "S!lahdar" yapıyor.
+- Commons `iiurlwidth`/thumburl: hâlâ 429. Özgün md5 yolu 3-4 denemede (15 sn arayla) geçti.
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Karun (21.10) | Kanuni (23.10) |
+|---|---|---|
+| Hazırlık + okuma | ~6 dk | ~8 dk |
+| Konu + olgu | ~11 dk | ~7 dk |
+| Görsel avı | ~17 dk | ~6 dk |
+| Karakter + yüz | ~10 dk | ~5 dk |
+| yaml → teslim | ~5 dk | ~4 dk |
+| Ön kontrol + hakem turları | tur başına 2-3 dk, 2 tur + kart/kupür turları | ~10 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~8 dk | ~10 dk |
+| **Toplam** | ~2 sa (3 teslim turu) | **~50 dk** |
+
+Ücretli API: 0 (TTS ve görsel üretimi yok).
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `wojak/audio.py`: loudnorm TP'yi -9 ile sınırla (ya da ölçüp `volume` ile doğrusal kazanç uygula) ve filtre hata
+  verirse sessizce `anull`'a düşme, hata ver. `check`/`teslim` çıktı videonun LUFS'unu ölçüp ±1 LU dışında uyarsın.
+- `wojak/censor.py`: "silahdar" gibi unvanları ve "vefat" eş anlamlısını istisna listesine al; metinde yıldız kalınca
+  `teslim` uyarsın.
+- `tools/`: Commons ham dosya sayfasından lisans şablonunu okuyan küçük doğrulayıcı (`action=raw`).
 
 ---
 

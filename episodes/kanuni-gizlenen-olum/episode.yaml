@@ -1,0 +1,135 @@
+# Kanuni Sultan Süleyman'ın gizlenen ölümü (Zigetvar, 1566). Araştırma notu: scratchpad olgular.md (repoya girmez).
+# Altın dönem kalıbı: C2Fr (diyalog -> kart -> diyalog -> kanıt) + C4V3/C12O yüz varyantı. AYNI YER: Zigetvar
+# önündeki Osmanlı ordugâhı, Eylül-Ekim 1566.
+#   A (hep solda): adsız bir yeniçeri (bakış açısı karakteri; ters köşe yüzü onun). Kurgu karakter.
+#   B (hep sağda): sadrazam (Sokullu Mehmed Paşa'ya karşılık gelir; videoda ad yok). Kötü/sırıtan yüz yok: ciddi,
+#      sakin. Replikleri belgeli tutumuna dayanır: ölümü gizledi, askere padişahın hasta olduğu söylendi.
+# Olgu sınırları:
+#   - S1 "kale düştü": padişah 6/7 Eylül gecesi öldü, kale hemen ardından düştü (AA 2026, Vikipedi, Afyoncu/Sabah,
+#     Sözcü). Müjde isteği canlandırma (askerin bilmediği belgeli: AA "yakın çevresi tarafından gizlendi").
+#   - S2 "hasta, kimseyi kabul etmiyor": ölüm vezirlerden bile gizlendi; cuma günü padişahın rahatsızlığı arttığı
+#     için namaza gelemeyeceği ilan edildi (ihya, Haber Kıbrıs, netyazı); dönüş yolunda "Hasta padişah arabasında
+#     seyahat ediyor" dendi (İlber Ortaylı, Hürriyet 2016).
+#   - Kart "Birkaç hafta sonra": ordu Selim'i beklemek için haftalarca Zigetvar çevresinde kaldı (Afyoncu/Sabah).
+#   - S3 "arabasında, yola çıkıyoruz": İlber Ortaylı (Hürriyet): "Hasta padişah arabasında seyahat ediyor" dendi.
+#   - S4 "neden hiç konuşmuyor": canlandırma; padişahın ağzından fermanları yazısı ona benzeyen Silahdar Cafer
+#     Ağa yazdı (ihya, Haber Kıbrıs, Gündem Arşivi; Yeni Şafak "Hatt-ı Hümayunlar bile yazdırıldı").
+#     Arabada padişaha benzeyen bir hizmetkâr / naaşın oturtulması tartışmalı: metinde "anlatılana göre".
+#   - Kanıt 1: Seyyid Lokman, Tarih-i Sultan Süleyman (CBL T 413): naaşı taşıyan araba, sarığı içinde. Kamu malı.
+#   - Kanıt 2 (son kare, ARŞİV MİNYATÜRÜ; kupür değil): Nüzhet-i Esrârü'l-Ahyâr (Topkapı H.1339, 107b): naaş
+#     Belgrad'a varır, II. Selim siyah kaftanla arabanın önünde dua eder. Kamu malı.
+# Gün sayısı kaynaklarda 42-48 (Afyoncu 42, Vikipedi/Smithsonian 48): ekranda sayı yok, metinde aralık.
+# Karakterler: chars/uret.py. Görseller: gorsel.py. Render: python -m wojak render episodes/kanuni-gizlenen-olum
+id: kanuni-gizlenen-olum
+title: "Zigetvar'da padişahın çadırında haftalarca saklanan sır"
+
+# Kanal imzası (22.10'dan beri bizim imza_v2_golge.m4a). "orijinal" asla.
+# volume: bu ortamın ffmpeg 6.1.1'inde loudnorm TP=-17'yi reddediyor (aralık -9..0), audio.py sessizce "anull"a
+# düşüp -15,5 LUFS veriyordu. Kod değişmeden STIL hedefi (-29,5 LUFS) için sabit kazanç: -15,4 -> -29,5 = x0,197.
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (yeniçeri, sol, gözleri kapalı sevinç). Dramatik ironi: müjdeyi vereceği padişah artık yok.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_szigetvar.jpg
+    blur: 3.2   # kaynak keskin (kenar Laplace varyansı orijinallerin üstünde): 2,5 -> 3,2
+    chars:
+      - {img: chars/yeniceri_mutlu.png, side: left, faces: sol, height: 0.55}
+    text: "Paşam, kale düştü, müjdeyi padişaha ben vereyim"
+
+  # 2) CEVAP — B (sadrazam, sağ, ciddi). Belgeli bahane: padişah hasta.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_szigetvar.jpg
+    blur: 3.2   # kaynak keskin (kenar Laplace varyansı orijinallerin üstünde): 2,5 -> 3,2
+    chars:
+      - {img: chars/vezir_sakin.png, side: right, faces: sol, height: 0.55}
+    text: "Olmaz, padişahımız hasta, kimseyi kabul etmiyor"
+
+  # 3) KART — ileri zaman (ordu Selim'i beklerken haftalarca Zigetvar'da kaldı)
+  - type: card
+    duration: 1.5
+    text: "Birkaç hafta sonra"
+
+  # 4) B, aynı yüz. "Hasta padişah arabasında seyahat ediyor" dendi (İlber Ortaylı). "arabasında" kanıtları hazırlar.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_szigetvar.jpg
+    blur: 3.2   # kaynak keskin (kenar Laplace varyansı orijinallerin üstünde): 2,5 -> 3,2
+    chars:
+      - {img: chars/vezir_sakin.png, side: right, faces: sol, height: 0.55}
+    text: "Padişahımız arabasında,\nyola çıkıyoruz"   # elle kırım: greedy "çıkıyoruz"u yalnız bırakıyordu
+
+  # 5) TERS KÖŞE — A, aynı kutu, yüz varyantı (iri gözler, açık ağız, mavi soğuk ter + damlalar; eller yanakta)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_szigetvar.jpg
+    blur: 3.2   # kaynak keskin (kenar Laplace varyansı orijinallerin üstünde): 2,5 -> 3,2
+    chars:
+      - {img: chars/yeniceri_sok.png, side: left, faces: sol, height: 0.55}
+    text: "Bekle, padişah neden\nhiç konuşmuyor?"   # elle kırım: soru öbeği bütün kalsın
+
+  # 6-7) KANIT — 16. yüzyıl Osmanlı minyatürleri (kamu malı): önce naaşı taşıyan araba (sarık içinde), sonra
+  #      Belgrad'da II. Selim'in arabanın önünde duası. Etiket/bant yok.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_araba.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2_belgrad.jpg]
+
+# Kapak: ters köşe yüzü + soru (STIL §12; kanca karesi alternatif: cover_scene 1)
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  Kanuni Sultan Süleyman'ın gizlenen vefatı (Zigetvar, 1566)
+  Olayın tamamı sabit yorumda 👇
+# YouTube: ilk 2'si + #shorts (pack.py); Instagram'da hashtag yok
+hashtags: [kanunisultansüleyman, zigetvar]
+
+pinned_comment: |
+  Kanuni'nin gizlenen vefatı, Kanuni Sultan Süleyman'ın 1566'da Macaristan'daki Zigetvar Kuşatması sırasında hayatını kaybetmesinin haftalarca ordudan saklandığı olaydır.
+
+  72 yaşındaki ve gut hastası olan Kanuni, 1566 baharında 13. ve son seferine çıktı. Ordu Ağustos'ta Zigetvar Kalesi'ni kuşattı; padişah kuşatmayı hasta hâlde otağından izledi. 6'yı 7 Eylül'e bağlayan gece, kale düşmeden hemen önce otağında son nefesini verdi.
+
+  Sadrazam Sokullu Mehmed Paşa, askerin morali bozulmasın ve taht sorunsuz el değiştirsin diye vefatı vezirlerden bile gizledi. Padişahın iç organları otağın bulunduğu yere gömüldü, naaşı tahnit edilip tahtın altına saklandı. Kale hemen ardından düştü. Askere padişahın hasta olduğu söylendi. Anlatılana göre yazısı padişahınkine benzeyen Cafer Ağa, onun ağzından fermanlar yazdı. Dönüş yolunda "Hasta padişah arabasında seyahat ediyor" dendi; bazı kaynaklara göre arabada padişaha benzeyen bir hizmetkâr oturup askeri selamladı.
+
+  Vefat haberi, yeni padişah II. Selim Belgrad'a ulaştıktan sonra, ordu Belgrad'a yaklaşırken açıklandı. Kaynaklar sırrın 42 ile 48 gün sürdüğünü yazar. Kanuni, İstanbul'da Süleymaniye Camii'nin yanındaki türbesine defnedildi. İç organlarının gömüldüğü yere yapılan türbenin kalıntıları ise 2015'te Zigetvar yakınlarında, Macarların "Turbek" dediği yerde bulundu.
+
+  Sizce Sokollu'nun sırrı saklaması doğru muydu, yoksa askerin bilmeye hakkı var mıydı?
+
+# Kamu malı görseller: atıf zorunlu değil, yine de kaynak verilir
+credits: "Arka plan: Csanády, Szigetvár kalesi (Wikimedia Commons, kamu malı; kırpıldı, renk düzeltildi). Minyatürler: Seyyid Lokman, Tarih-i Sultan Süleyman (Chester Beatty Library, 1579-80) ve Feridun Ahmed Bey, Nüzhet-i Esrârü'l-Ahyâr (Topkapı Sarayı Müzesi H.1339, 1568-69), kamu malı (kırpıldı)"
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır:** yeniçeri kurgu karakter; sadrazamın replikleri belgeli tutumuna dayanır (askere padişahın hasta olduğu söylendi; dönüşte \"Hasta padişah arabasında seyahat ediyor\" dendi). Arabada padişaha benzeyen hizmetkâr anlatısı tartışmalı, metinde \"anlatılana göre\""
+  - "**Gün sayısı tartışmalı:** kaynaklar 42 ile 48 gün arasında; ekranda sayı yok. Yorumlarda \"48 değil 42\" ya da tersi gelirse ikisi de kaynaklarda var"
+  - "**Kanıtlar 16. yüzyıl Osmanlı minyatürleri** (kamu malı): son kare naaşın Belgrad'a varışı, II. Selim siyah kaftanla arabanın önünde"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette; Muhteşem Yüzyıl dizisi ve Sokollu/Hürrem tartışmaları yorumlarda kavgaya dönerse hakaret içerenleri sil"
+  - "İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): \"Sokollu'nun yerinde olsanız siz de saklar mıydınız?\""
+
+sources:
+  # Doğrulama (araştırma notu: olgular.md, 23.10.2026)
+  - "AA, 2026 — Kanuni'nin son seferinin izleri Zigetvar'da arkeolojiyle gün yüzüne çıkıyor (6/7 Eylül gecesi ölüm, kale kısa süre sonra düştü, ölüm yakın çevrece gizlendi, iç organlar, 2015 kazısında türbe): https://www.aa.com.tr/tr/kultur/kanuninin-son-seferinin-izleri-zigetvarda-arkeolojiyle-gun-yuzune-cikiyor/4049355 · aynı haber TRT Haber: https://www.trthaber.com/haber/kultur-sanat/kanuninin-son-seferinin-izleri-zigetvarda-arkeolojiyle-gun-yuzune-cikiyor-956135.html"
+  - "Vikipedi (TR) — I. Süleyman (13. sefer, 72 yaşında, ölüm 48 gün saklandı, Süleymaniye'ye defin): https://tr.wikipedia.org/wiki/I._S%C3%BCleyman · Wikipedia (EN) — Suleiman the Magnificent (48 gün; organlar Turbék'te): https://en.wikipedia.org/wiki/Suleiman_the_Magnificent"
+  - "Erhan Afyoncu, Sabah, 09.09.2018 — Kanunî'nin ölümü 42 gün gizlendi (Selim'i beklemek için Zigetvar çevresinde zaman geçirildi; Belgrad'a yaklaşınca açıklandı): https://www.sabah.com.tr/yazarlar/erhan-afyoncu/2018/09/09/kanunnin-olumu-42-gun-gizlendi"
+  - "İlber Ortaylı, Hürriyet, 2016 — Osmanlı tarihinin en kritik yolculuğu ('Dönüş yolunda \"Hasta padişah arabasında seyahat ediyor\" dendi'; kaynak Feridun Ahmed Bey'in Nüzhet-ül Esrar'ı): https://www.hurriyet.com.tr/yazarlar/ilber-ortayli/osmanli-tarihinin-en-kritik-yolculugu-40225639"
+  - "ihya.org — Kanuni Sultan Süleyman'ın Ölümü (Silahdar Cafer Ağa'ya hatt-ı hümayunlar yazdırıldı; cuma namazına gelemeyeceği ilanı; benzeyen hizmetli arabada; 12 kişiyle cenaze namazı): https://tarih.ihya.org/osmanli/kanuni-donemi/kanuni-sultan-suleyman-in-olumu.html · aynı anlatı Haber Kıbrıs 2019: https://haberkibris.com/kanuninin-cesedi-neden-gizlendi-2019-09-06.html"
+  - "Yeni Şafak — Kanuni Sultan Süleyman'ın ölümü askerden böyle saklandı ('Hatt-ı Hümayunlar bile yazdırıldı', Hasan Ağa arabada): https://www.yenisafak.com/galeri/hayat/kanuni-sultan-suleymanin-olumu-askerden-boyle-saklandi-2033649"
+  - "Gündem Arşivi — Sultan Süleyman'ın Ölümü 43 Gün Gizlendi (Cafer Ağa fermanlar; benzeyen hizmetli): https://www.gundemarsivi.com/sultan-suleymanin-olumu-43-gun-gizlendi/"
+  - "Daily Sabah, 12.09.2018 — The last days of Suleiman the Magnificent (organlar çıkarıldı, naaş tahtın altında, gizli cenaze namazı; Belgrad'a yaklaşınca açıklandı): https://www.dailysabah.com/feature/2018/09/12/the-last-days-of-suleiman-the-magnificent"
+  - "HistoryNet — The Siege of Szigetvár, 1566 (6 Eylül ölüm, 48 gün gizli): https://historynet.com/szigetvar-hungary/ · Smithsonian — Suleiman's lost tomb might be found (48 gün; Pap, Turbék): https://www.smithsonianmag.com/smart-news/suleimans-magnificents-lost-tomb-might-finally-be-found-180957517/"
+  - "Sözcü — Kanuni Sultan Süleyman nasıl öldü (6-7 Eylül gecesi, ertesi gün kale alındı, vezirlerden bile gizlendi): https://www.sozcu.com.tr/kanuni-sultan-suleyman-nasil-oldu-wp529388"
+  - "osmanlitarihi.net — Sokollu Mehmed Paşa (gizliliğin süresi kaynaklarda farklı; TDV İA Afyoncu maddesine dayanır): https://www.osmanlitarihi.net/duraklama-donemi/devlet-adamlari/sokollu-mehmed-pasa"
+  - "Türbe: AA — Kanuni'nin türbesini gösteren harita bulundu (2015'te iç organların defnedildiği yer): https://www.aa.com.tr/tr/dunya/kanuninin-turbesinin-yerini-gosteren-harita-bulundu/1088352 · Arkeolojik Haber — Zigetvar kazıları (türbe kalıntıları 2015'te): https://www.arkeolojikhaber.com/haber-zigetvar-arkeoloji-kazilarina-dair-bilinmesi-gerekenler-16642/"
+  # Görseller ve lisanslar (gorsel.py)
+  - "GÖRSEL img/arka_szigetvar.jpg (tüm diyalog) — 'Szigetvár vár 3.jpg' (Szigetvár kalesinin köşe burcu), Csanády, 2006, PD-self (Commons dosya sayfasında doğrulandı 23.10.2026): https://commons.wikimedia.org/wiki/File:Szigetv%C3%A1r_v%C3%A1r_3.jpg . Değişiklikler: kare kırpım x 120-1664, 1080x1080, doygunluk x0,66"
+  - "GÖRSEL img/kanit_1_araba.jpg (kanıt 1, 10,5-12,0 sn) — '1566-The Funeral of Sultan Suleyman the Magnificent-left-large.jpg', Seyyid Lokman, Tarih-i Sultan Süleyman (Chester Beatty Library T 413, 1579-80), Commons: PD-US (16. yüzyıl): https://commons.wikimedia.org/wiki/File:1566-The_Funeral_of_Sultan_Suleyman_the_Magnificent-left-large.jpg . Değişiklik: kırpım (300,760)-(1200,1520), 1080x912"
+  - "GÖRSEL img/kanit_2_belgrad.jpg (kanıt 2, son kare, 12,0-14,0 sn) — 'The body of Suleiman I arrives to Belgrade, Selim II is waiting for it A.jpg', Feridun Ahmed Bey, Nüzhet-i Esrârü'l-Ahyâr der Sefer-i Sigetvar (Topkapı Sarayı Müzesi H.1339, 107b, 1568-69), Commons: PD-Art (PD-old-100-expired), tarama Szilas (Fehér Géza, Török miniatúrák, 1978): https://commons.wikimedia.org/wiki/File:The_body_of_Suleiman_I_arrives_to_Belgrade,_Selim_II_is_waiting_for_it_A.jpg . Değişiklik: kırpım (80,1180)-(1650,2120), 1080x647"
+  # Karakterler (chars/uret.py)
+  - "KARAKTER A yeniçeri (sol): wojakland 'Janissary Ottoman Feels Good Wojak' https://wojakland.com/gmedia/janissary_ottoman_feels_good_wojak-png/ (yeniceri_mutlu.png = kaynağın kendisi). Ters köşe yeniceri_sok.png: aynı çizim ve kutu; kapalı göz yayları, kaşlar ve gülen ağız silinip aynı çizgi kalınlığında yeniden çizildi (kalkık kaşlar, iri açık gözler, açık ağız) + alında mavi soğuk ter çizgileri + 2 ter damlası (tools/kit_varyant.py)"
+  - "KARAKTER B sadrazam (sağ): wojakland 'Sultan Chad' https://wojakland.com/gmedia/sultan_chad-png/ (vezir_sakin.png = kaynağın kendisi; büyük beyaz kavuk, sakal)"
