@@ -610,6 +610,24 @@ def kelime_farklari(beklenen: str, duyulan: str, esik: float = 0.96, haric: list
     return out
 
 
+def fazla_kelimeler(beklenen: list[str], duyulan: str, esik: float = 0.75) -> list[str]:
+    """Duyulup metinde (ya da TTS metninde) karşılığı olmayan kelimeler. Gemini bazen tarz tarifini de sesli okuyor
+    (23.10: "alçak, sakin ama gergin, dinleyene sen diye sesleniyor..." iki satırın başında): kelime_farklari eksik
+    kelimeyi yakalar, fazlayı yakalamaz. Bölünerek yazılan isimler ('Kaymak Çalan') birleşik metinde aranır."""
+    bek = set()
+    bitisik = ""
+    for b in beklenen:
+        bek |= set(_sayisiz(b))
+        bitisik += "".join(ascii_kat(tr_norm(re.sub(r"['’`-]", "", b))).split()) + "|"
+    out = []
+    for w in _sayisiz(duyulan):
+        if len(w) < 4 or w in bitisik:
+            continue
+        if max((difflib.SequenceMatcher(None, w, b).ratio() for b in bek), default=0.0) < esik:
+            out.append(w)
+    return out
+
+
 def satirdaki_isimler(v: Video, satir: Satir) -> list[str]:
     adaylar = list(dict.fromkeys(v.qa_isimler + list(v.telaffuz)))
     m = tr_norm(satir.altyazi)
@@ -653,8 +671,10 @@ def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = Fal
         yer = f"{s.yer}, satır {i + 1}"
         isimler = satirdaki_isimler(v, st)
         if kotu:
-            if onceki.get(yer, {}).get("durum") == "tamam" and onceki[yer].get("metin") == st.altyazi:
-                sonuc.append(onceki[yer])
+            o = onceki.get(yer, {})
+            if o.get("durum") == "tamam" and o.get("metin") == st.altyazi and \
+                    len(fazla_kelimeler([st.altyazi, v.transkript(st)], o.get("duyulan", ""))) < 2:
+                sonuc.append(o)
                 continue
         elif not isimler and not tum:
             continue
@@ -674,12 +694,21 @@ def qa(v: Video, yenile: int = 0, log=print, tum: bool = False, kotu: bool = Fal
         def puanla(path):
             duy = yaziya_dok(path, v.dil)
             r = [(a, *isim_duyuldu_mu(a, duy, v.telaffuz.get(a))) for a in isimler]
-            return duy, r, kelime_farklari(st.altyazi, duy, haric=haric)
+            fz = fazla_kelimeler([st.altyazi, v.transkript(st)], duy)
+            return duy, r, kelime_farklari(st.altyazi, duy, haric=haric) + [f"+{w}" for w in fz[:8]] * (len(fz) >= 2)
 
         def skor(r, fark):
-            return (sum(ok for _, ok, _ in r), -len(fark), sum(x for _, _, x in r))
+            fz = sum(1 for f in fark if f.startswith("+"))
+            return (-fz, sum(ok for _, ok, _ in r), -len(fark), sum(x for _, _, x in r))
 
-        duy, r, fark = puanla(p)
+        if kotu and onceki.get(yer, {}).get("metin") == st.altyazi and onceki[yer].get("anahtar") == aday \
+                and onceki[yer].get("duyulan"):
+            duy = onceki[yer]["duyulan"]   # aynı çekim: yeniden çözmeye gerek yok
+            r = [(a, *isim_duyuldu_mu(a, duy, v.telaffuz.get(a))) for a in isimler]
+            fz = fazla_kelimeler([st.altyazi, v.transkript(st)], duy)
+            fark = kelime_farklari(st.altyazi, duy, haric=haric) + [f"+{w}" for w in fz[:8]] * (len(fz) >= 2)
+        else:
+            duy, r, fark = puanla(p)
         deneme = 0
         while (not all(ok for _, ok, _ in r) or fark) and deneme < yenile:
             deneme += 1
