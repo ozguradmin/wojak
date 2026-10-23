@@ -82,8 +82,19 @@
 # (animasyon S6), SRT blok ipuçları ("Aralık 1956." ve "Firma bastırıyor."; ses aynı), sayaçta orta hızda iz yok (motor).
 id: talidomit-turkiye
 baslik: "46 Ülkede Satılan İlaca Türkiye Neden ‘Hayır’ Dedi?"   # 7. tur: somut ayrıntı + merak; abartı sıfatı/emoji yok
+filigran: false   # Gemini turu (23.10): gömülü filigran yok; YouTube Studio markalama filigranı (UZUN_FORMAT §2.8)
 
-anlatici: {ses: murat, hiz: 1.0}   # hız testi (uretici_raporu.md): 0.95 ile 1.0 arasında süre farkı ~%1, 1.0 seçildi
+# Ses (23.10.2026, hesap sahibi): Google Gemini TTS, UZUN_FORMAT §1.1. Anlatıcı Charon 1,25x (atempo), hesap sahibinin
+# tarzı aynen; ikinci ses (eski Aylin: alıntı, reklam sloganı, resmî uyarı) ses denemesiyle seçildi. Satırdaki `hiz` sesin
+# taban hızıyla çarpılır (eski Cartesia vurgu yavaşlatmaları korunur). Cartesia önbelleği ve ses_onarim.py artık
+# kullanılmıyor (tarihçe).
+model: gemini-2.5-pro-tts
+sesler:
+  charon: {gemini: Charon, hiz: 1.25,
+           tarz: "Bir gerilim dizisinin anlatıcısı gibi oku: alçak, sakin ama gergin, dinleyene 'sen' diye sesleniyor. Noktalarda ve üç noktada kısa duraklar ver. Doğal İstanbul Türkçesi."}
+  kadin: {gemini: Kore, hiz: 1.0,
+          tarz: "Bir belgeselde alıntı okuyan kadın sesi gibi oku: net, sakin ve tarafsız. Doğal İstanbul Türkçesi."}
+anlatici: {ses: charon, hiz: 1.0}
 # ElevenLabs'le yeniden seslendirmede (hesap sahibi: Cartesia sesi beğenilmedi; o zamana dek yalnız değişen satırlar)
 # Ankara bölümü yavaş okunsun (dil hakemi 10. tur S4: bölüm 5 ort. 6,9 hece/sn, öteki bölümler 6,4-6,6; hız ~0,9 ya
 # da virgül/iki noktada ~250 ms): "Ama zehirlilik deneylerinin…" (B5.3b), "Amerika'da 20.000 kişiye ulaşan o
@@ -309,7 +320,7 @@ bolumler:
         konuk: [{id: m, gorsel: chars/anne_adayi_sakin.png, x: 0.12, boy: 0.62, giris: false, yon: sol}]
         satirlar:
           - "Reklamlarına göre bu ilaç…"
-          - {ses: aylin, metin: "Tamamen zehirsiz.", duygu: content, once: 0.5}
+          - {ses: kadin, metin: "Tamamen zehirsiz.", tarz: "1950'lerin bir radyo reklamındaki kadın spiker gibi söyle: tatlı, güven veren, ikna edici.", once: 0.5}
         olaylar: [{tip: ceviri, satir: 2, ofset: -0.05}]
 
       # SA.6-SA.7 · kısa videoya selam. 4. tur (izlenme hakemi S3: SA.3'ü tekrarlıyordu): kapının ikinci çalınışı;
@@ -318,7 +329,7 @@ bolumler:
         arka: img/arka_koridor_cizim.jpg
         bulanik: 3
         karart: 0.08
-        kamera: {zoom: [1.0, 1.24], merkez: [[0.55, 0.5], [0.42, 0.5]], it: 0, paralaks: 0}   # 5. tur: vuruş kapıya yakın
+        kamera: {zoom: [1.0, 1.1], merkez: [[0.55, 0.5], [0.42, 0.5]], it: 0, paralaks: 0}   # 5. tur: vuruş kapıya yakın
         kose: {metin: "{}", deger: 1961, yil: true}
         gecis: gecis               # 9. tur (animasyon S7): kâğıttan koridora kesmede parlaklık sıçraması (ortak karakter yok)
         muzik_db: -6
@@ -326,7 +337,7 @@ bolumler:
           - {id: d, gorsel: img/cizim/kapi_kapali.png, x: 0.3, boy: 0.84, alt: 0.04, bakis: on, giris: false, canli: false}
           - {id: a, gorsel: chars/temsilci2000_sakin.png, taraf: sag, x: 0.72, boy: 0.62, giris: 0.4}
         satirlar:
-          - "Bu hikâye 1961'de bitmedi."      # ses: 'Üstelik' kesildi (ses_onarim.py ustelik)
+          - "Ama bu hikâye, ilaç toplatılınca bitmedi."   # Gemini turu (23.10): dil hakeminin önerisi (13. tur)
           - {metin: "Aynı ilaç, 40 yılı aşkın bir süre sonra, Türkiye'nin kapısını bir kez daha çalacaktı.",
              tts: "Aynı ilaç, kırk yılı aşkın bir süre sonra, Türkiye'nin kapısını bir kez daha çalacaktı.", sonra: 0.25}
           - "Bu, o kapının hikâyesi."
@@ -658,8 +669,8 @@ bolumler:
         gecis: gecis
         konuk: [{id: e, gorsel: chars/eczaci_v2_sakin.png, x: 0.9, boy: 0.39, giris: 0.4, yon: sag}]
         satirlar:
-          - {metin: "Kasım 1961'e kadar yalnız Grünenthal'in 300 milyonu aşkın günlük doz sattığı hesaplanıyor.",   # 8. tur (dil S4): 'yalnızca' çekimi denendi: Whisper 'yalnız'ı eskisinde de doğru duyuyor, yenisinde 'Grünenthal' bozuldu ('Grunertal'): eski kayıt kaldı
-             tts: "Kasım 1961'e kadar yalnız Grünenthal'in üç yüz milyonu aşkın günlük doz sattığı hesaplanıyor."}
+          - {metin: "Hesaplara göre yalnız Grünenthal'in sattığı günlük dozlar, Kasım 1961'e kadar 300 milyonu aşıyor.",   # Gemini turu (23.10): dil hakemi 13. tur önerisi   # 8. tur (dil S4): 'yalnızca' çekimi denendi: Whisper 'yalnız'ı eskisinde de doğru duyuyor, yenisinde 'Grünenthal' bozuldu ('Grunertal'): eski kayıt kaldı
+             tts: "Hesaplara göre yalnız Grünenthal'in sattığı günlük dozlar, Kasım 1961'e kadar üç yüz milyonu aşıyor."}
         olcek: log                 # 9. tur (izlenme N1): her basamak eşit sürede eklenir ("0" 1 sn bekleyip 9 basamağa sıçrıyordu)
         olaylar: [{tip: basla, satir: 1, ofset: 0.1}]   # 9. tur: sayım satırla başlar
 
@@ -675,7 +686,7 @@ bolumler:
         konuk: [{id: m, gorsel: chars/anne_adayi_sakin.png, x: 0.915, boy: 0.44, giris: false, yon: sag}]   # 8. tur: saçı kartın "child."ına değiyordu
         satirlar:
           - {metin: "İngiltere'deki bir reklam ise daha da ileri gidiyor:", hiz: 0.92}
-          - {ses: aylin, metin: "Distaval, hamile kadınlara ve emziren annelere tam bir güvenle verilebilir. Anneye de çocuğa da olumsuz bir etkisi yoktur.", once: 0.4}
+          - {ses: kadin, metin: "Distaval, hamile kadınlara ve emziren annelere tam bir güvenle verilebilir. Anneye de çocuğa da olumsuz bir etkisi yoktur.", once: 0.4, tarz: "1950'lerin bir radyo reklamındaki kadın spiker gibi söyle: tatlı, güven veren, ikna edici."}
         olaylar:
           - {tip: vurgula, kutu: 1, satir: 2, ofset: 1.0}
           - {tip: vurgula, kutu: 2, satir: 2, ofset: 3.4}
@@ -695,7 +706,7 @@ bolumler:
         doku: true                 # 7. tur: fotoğraf zeminine gren + toz (karakter net)
         gecis: kesme               # 8. tur (animasyon S7): anne adayı sağda çıkıp soldan yarı saydam giriyordu: aynı tarafta, yerinde
         karakterler:
-          - {id: m, gorsel: chars/anne_adayi_sakin.png, taraf: sag, x: 0.72, boy: 0.72, giris: false}
+          - {id: m, gorsel: chars/anne_adayi_sakin.png, taraf: sag, x: 0.72, boy: 0.67, giris: false}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
           - {id: e, gorsel: chars/eczaci_v2_sakin.png, taraf: sol, x: 0.27, boy: 0.53, giris: 0.25}
         satirlar:
           - {metin: "Hamilelikteki bulantıya karşı da öneriliyor.", hiz: 0.92}
@@ -780,7 +791,7 @@ bolumler:
         muzik_db: -9
         muzik_mod: gerilim         # tehlike: gerilim katmanı (B3.4'teki nabza dek; "Anne karnında." anında müzik susar)
         karakterler:   # 8. tur (animasyon S9): 5,6 sn düz kartonda yalnız anlatıcı: Voss'un uyarı mektubu solda, "asıl tehlike"de çıkar
-          - {id: z, gorsel: chars/anlatici_v2_dusunceli.png, taraf: orta, x: 0.5, boy: 0.72, giris: 0.1}
+          - {id: z, gorsel: chars/anlatici_v2_dusunceli.png, taraf: orta, x: 0.5, boy: 0.6, giris: 0.1}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
           - {id: m, gorsel: img/cizim/zarf.png, x: 0.2, boy: 0.24, alt: -0.36, bakis: on, giris: 0.35, canli: false, golge: true}
         satirlar:
           - {metin: "Sinir hasarı bir uyarıydı.", sonra: 0.35}
@@ -1238,7 +1249,7 @@ bolumler:
         muzik_mod: drone
         karakterler:   # 6. tur (izlenme S12): Kelsey yakın (B4.2-B4.5 aynı kadrajdı); şişe küçük, damga üstte
           - {id: s, gorsel: img/cizim/doz_sisesi.png, x: 0.27, boy: 0.5, alt: -0.12, bakis: on, giris: 0.1}
-          - {id: k, gorsel: chars/kelsey_v2_kararli.png, taraf: sag, x: 0.77, boy: 0.76, giris: false}   # 7. tur (B3): 0.86'da üstteki kelime saçına biniyordu; 11. tur: karanlıktan yerinde açılır
+          - {id: k, gorsel: chars/kelsey_v2_kararli.png, taraf: sag, x: 0.77, boy: 0.72, giris: false}   # 7. tur (B3): 0.86'da üstteki kelime saçına biniyordu; 11. tur: karanlıktan yerinde açılır
         satirlar:
           - {metin: "Onay beklenirken ilaç, ‘klinik deneme’ adı altında doktorlara dağıtılıyor.", sonra: 0.9}
         olaylar:
@@ -1374,7 +1385,7 @@ bolumler:
         karakterler:
           # 9. tur (animasyon S6): dosya isim etiketinin altında kalıyor, itmede sol kenara değiyordu: yukarıda, içeride
           - {id: d, gorsel: img/cizim/dosya_ruhsat_basvurusu.png, x: 0.36, boy: 0.3, alt: -0.33, bakis: on, giris: 0.3, golge: true, canli: false}
-          - {id: s, gorsel: chars/kaymakcalan_v2_sakin.png, taraf: sag, x: 0.75, boy: 0.84, alt: 0.13}   # 7. tur: sol alttaki isim etiketine yer; 11. tur: biraz aşağıda (B5.3b'nin ilk karesiyle aynı yükseklik, üstteki yazılar başına binmesin)
+          - {id: s, gorsel: chars/kaymakcalan_v2_sakin.png, taraf: sag, x: 0.75, boy: 0.7, alt: 0.13}   # 7. tur: sol alttaki isim etiketine yer; 11. tur: biraz aşağıda (B5.3b'nin ilk karesiyle aynı yükseklik, üstteki yazılar başına binmesin)
         satirlar:
           - {metin: "Meslektaşlarının anlattığına göre, başvuru hakkında görüş verenlerden biri genç bir farmakolog: Şükrü Kaymakçalan.", sonra: 0.4}
         olaylar:
@@ -1401,7 +1412,7 @@ bolumler:
         gecis: karart
         kamera: {zoom: [1.3, 1.2], merkez: [[0.66, 0.42], [0.42, 0.5]], it: 0}   # 10. tur: 0.52 -> 0.5 (baş üstteki yazıdan aşağıda); 11. tur (kontrol): kesmede baş 97 px zıplıyordu: B5.3a'da karakter aşağıda (alt 0.13), burada başlangıç y 0.42
         karakterler:
-          - {id: s, gorsel: chars/kaymakcalan_v2_dusunceli.png, taraf: sag, x: 0.73, boy: 0.74, giris: false}
+          - {id: s, gorsel: chars/kaymakcalan_v2_dusunceli.png, taraf: sag, x: 0.73, boy: 0.66, giris: false}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
           - {id: d, gorsel: img/cizim/dosya_ruhsat_basvurusu.png, x: 0.4, boy: 0.42, alt: -0.25, bakis: on, giris: false}   # 14. tur (animasyon S4): 0.32de "RUHSAT BAŞVURUSU" etiketi sol kenara teğetti; alt -0.36 -> -0.25 (dosya aşağıda): iki satırlık yazı dosyanın üst kenarına biniyordu
         satirlar:
           - {metin: "Aynı tanıklıklara göre Kaymakçalan, ilacın etkili olabileceğini kabul ediyor.", sonra: 0.35, hiz: 0.85}   # 6. tur (dil S2; 0,9 hızı ancak %2 yavaşlatıyordu)
@@ -1517,7 +1528,7 @@ bolumler:
         karakterler:
           - {id: y, gorsel: img/cizim/yumurta_tablasi.png, x: 0.3, boy: 0.24, alt: -0.33, bakis: on, giris: 0.4, canli: false, golge: true}   # 7. tur: masanın üstünde; sol alt isim etiketine
           - {id: f, gorsel: img/kompozit/baski_tavuk.png, x: 0.3, boy: 0.5, alt: -0.36, bakis: on, canli: false}
-          - {id: b, gorsel: chars/veteriner_v2_sakin.png, taraf: sag, x: 0.72, boy: 0.78, giris: 0.1}
+          - {id: b, gorsel: chars/veteriner_v2_sakin.png, taraf: sag, x: 0.72, boy: 0.7, giris: 0.1}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
         satirlar:
           - {metin: "Sık anlatılan ama kimsenin belgeleyemediği ikinci bir hikâye daha var.", sonra: 0.4,   # 8. tur (dil N1): virgülsüz (TDK); kayıt aynı
              tts: "Sık anlatılan, ama kimsenin belgeleyemediği ikinci bir hikâye daha var."}
@@ -1757,7 +1768,7 @@ bolumler:
         # 9. tur (izlenme S3): 13 sn kilitli kamera: yavaş itme + "talidomit."te kısa vurgu itmesi
         kamera: {zoom: [1.0, 1.16], merkez: [[0.5, 0.5], [0.4, 0.5]], it: 0, paralaks: 0}   # 7. tur: kutu komodinin üstünde
         karakterler:
-          - {id: s, gorsel: chars/sheskin_v2_sakin.png, taraf: sol, x: 0.28, boy: 0.73, giris: 0.2}
+          - {id: s, gorsel: chars/sheskin_v2_sakin.png, taraf: sol, x: 0.28, boy: 0.63, giris: 0.2}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
           - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.7, boy: 0.12, alt: -0.335, bakis: on, canli: false, yon: pop, golge: true}   # 11. tur (animasyon S1): alttan yerin ve komodinin içinden yükseliyor, su bardağını örtüyordu: yatağın üstünde yerinde belirir
         satirlar:
           - "1964, Kudüs. Dermatolog Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor."
@@ -1961,7 +1972,7 @@ bolumler:
         muzik_mod: drone
         satirlar:
           - {metin: "O reklamı hatırlayın:", db: 0.5}   # 9. tur (dil S5): +1,7 dB, ardından Aylin -0,6: 2,3 dB basamak; 12. tur (dil S4): 0,88 tempo (ses_onarim)
-          - {ses: aylin, metin: "Tamamen zehirsiz.", duygu: content, db: 0.0, once: 0.6, sonra: 0.5}   # 12. tur (dil S4): alıntının çevresinde nefes
+          - {ses: kadin, metin: "Tamamen zehirsiz.", tarz: "1950'lerin bir radyo reklamındaki kadın spiker gibi söyle: tatlı, güven veren, ikna edici.", db: 0.0, once: 0.6, sonra: 0.5}   # 12. tur (dil S4): alıntının çevresinde nefes
           - {metin: "Bugün Türkiye'deki resmî ürün bilgisinde şu uyarı var:", hiz: 0.88}   # 12. tur (dil S4): doruk aceleye geliyordu; "ise" çıktı
         olaylar:
           - {tip: ceviri, taraf: sol, satir: 2, ofset: -0.05}
@@ -1977,7 +1988,7 @@ bolumler:
         son: 0.75
         sfx_db: -6                 # 5. tur (dil #17): kalem sesi "gebe kadınlar"ın 10-12 dB altındaydı
         satirlar:
-          - {ses: aylin, metin: "Talidomid, gebe kadınlar (…) tarafından kesinlikle kullanılmamalıdır.",   # 8. tur (dil N2): kısaltılmış alıntı; kayıt aynı
+          - {ses: kadin, metin: "Talidomid, gebe kadınlar (…) tarafından kesinlikle kullanılmamalıdır.", tarz: "Resmî bir ilaç uyarısını okur gibi oku: ciddi, net ve ağır.",   # 8. tur (dil N2): kısaltılmış alıntı; kayıt aynı
              tts: "Talidomid, gebe kadınlar tarafından kesinlikle kullanılmamalıdır."}
         olaylar:
           - {tip: muzik, db: -16, t: 0.0, gecis: 0.5}   # 11. tur (izlenme 4): -40'ta 9:38'de -78 dBFS
@@ -2053,7 +2064,7 @@ bolumler:
         doygunluk: 0.7
         gecis: kaydir
         karakterler:
-          - {id: s, gorsel: chars/kaymakcalan_v2_sakin.png, taraf: sol, x: 0.3, boy: 0.84, giris: 0.1}
+          - {id: s, gorsel: chars/kaymakcalan_v2_sakin.png, taraf: sol, x: 0.3, boy: 0.73, giris: 0.1}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
         satirlar: ["O yıllardan bir belge, bir gazete haberi\nya da ailenizden dinlediğiniz bir anı varsa yorumlara yazın."]   # 8. tur (dil M1): 'kupürü' "kupuru" okunuyordu
         olaylar:
           - {tip: isim, ad: "Şükrü Kaymakçalan", unvan: "farmakolog (1923–1984)", satir: 1, ofset: 0.5, sure: 3.4, konum: sag}   # 7. tur: solda çenesine biniyordu
@@ -2159,7 +2170,7 @@ paket:
     2012). Süreyya Tahsin Aygün'e atfedilen tavuk embriyosu deneyinin bilinen en eski kaynağı 2008 tarihli bir
     haber; haberin kaynağı belge sunamadı. Başvurunun yılı, başvuran firma ve Bakanlığın yazısı bugüne kadar yayımlanmadı. O yıllardan
     bir belgeniz varsa yorumlara yazın.
-  short_url: ""
+  short_url: "https://youtube.com/shorts/Fb77-MsYmRc"   # 23.10: kısa sürüm YouTube'da yayında
   short_baglanti: "teslim/talidomit-turkiye (Short; 'İlgili video' olarak bu uzun video bağlanır). Uzun video
     yayımlanınca: episodes/talidomit-turkiye/episode.yaml uzun_video + python -m wojak paket episodes/talidomit-turkiye
     (Short'un açıklamasına 'Uzun hâli kanalda' satırı)"

@@ -62,10 +62,12 @@ const OWNER = `OWNER'S STANDING RULES (they OUTRANK the judges; see docs/OGRENIL
    0.55-0.75); a deliberate dramatic close-up may reach 0.88 at most 1-2 times per video, with the whole head and chin inside the
    frame. The owner noticed oversized, bottom-cropped faces in the first video (0.94-0.96 in four scenes).
 4. END: no "next video" boxes; the subscribe/like/comment call is engaging and tied to the story's open question (kapanis scene).
-5. Watermark: follow docs/UZUN_FORMAT.md §2 (decision recorded there; from the ElevenLabs re-voice on, no burned-in watermark on long
+5. Watermark: follow docs/UZUN_FORMAT.md §2 (decision recorded there; from the Gemini re-voice on, no burned-in watermark on long
    videos: filigran: false, YouTube Studio branding watermark instead).
-6. Voice: provider and voices per docs/UZUN_FORMAT.md §1 (Cartesia was disliked; ElevenLabs replaces it once its adapter exists).
-   Synthesize only new or changed lines; the cache keeps the rest.
+6. Voice: Google Gemini TTS per docs/UZUN_FORMAT.md §1.1 (owner 23.10): model gemini-2.5-pro-tts only; narrator Charon at 1.25x
+   (atempo) with the owner's style text; ready characters Leda/Algenib/Gacrux; a new character = test 2-3 Gemini voices on the same
+   line first. Numbers as words, "..." or commas for pauses, per-line `tarz` for whisper/shout. The Whisper transcript must match
+   the text; voice >= 6 dB over music/sfx; master -14 LUFS / -1 dBTP. Synthesize only new or changed lines; the cache keeps the rest.
 7. Packaging: YouTube title must not read like AI slop (no hype adjectives, no emoji, no "ŞOK"; curiosity gap + concrete detail);
    YouTube description 2-3 hashtags; Instagram captions never use hashtags.
 ${A.ozel ? `\nOWNER NOTES FOR THIS VIDEO:\n${A.ozel}` : ''}`
