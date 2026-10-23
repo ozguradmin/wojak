@@ -132,6 +132,9 @@ telaffuz:                          # yalnız TTS metnine; uzun olan önce
   FDA: Ef De A                     # 5. tur (dil hakemi): "FTA" duyuluyordu
   Talidomid: Talidomit
   taahhütlü: taahütlü              # 9. tur (dil S2): 'tavuklu/tahitli' duyuluyordu
+  yayımlanmış: yayım-lanmış        # Gemini turu (23.10): yazımla "yayınlanmış" duyuluyordu; tireyle "yayımlanmış"
+  yayımlandı: yayım-landı
+  yayımlanmadı: yayım-lanmadı
 qa:
   isimler: [Kaymakçalan, Süreyya Tahsin Aygün, Contergan, talidomit, Talidomid, Grünenthal, Lenz, Kelsey, Kevadon,
             Distaval, Sheskin, Eczacıbaşı, Refik Saydam, Cerrahpaşa, Behçet, SALL4, miyelom, Kennedy, ABD, FDA]
@@ -1771,14 +1774,14 @@ bolumler:
           - {id: s, gorsel: chars/sheskin_v2_sakin.png, taraf: sol, x: 0.28, boy: 0.63, giris: 0.2}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
           - {id: k, gorsel: img/cizim/numune_kutusu.png, x: 0.7, boy: 0.12, alt: -0.335, bakis: on, canli: false, yon: pop, golge: true}   # 11. tur (animasyon S1): alttan yerin ve komodinin içinden yükseliyor, su bardağını örtüyordu: yatağın üstünde yerinde belirir
         satirlar:
-          - "1964, Kudüs. Dermatolog Jacob Sheskin'in ağır bir cüzzam hastası uyuyamıyor."
+          - "1964, Kudüs. Dermatolog Jacob Sheskin'in ağır bir lepra hastası uyuyamıyor."   # Gemini turu (23.10): "cüzzam" 4 yazımda da "cüzdan/cüzlem" duyuldu; video boyunca "lepra"
           - {metin: "Sheskin, elinde kalan eski bir uyku ilacını veriyor: talidomit.", sonra: 0.5, tts: "Sheskin, elinde kalan eski bir uyku ilacını veriyor: <break time=\"300ms\"/> talidomit."}   # 12. tur (dil S6): "Talidomit, beklenmedik…" diye bitişik duyuluyordu   # 10. tur (dil N2): önceki cümlenin öznesi hasta: kimin verdiği belirsizdi
           - {metin: "Beklenmedik bir şey oluyor: Birkaç gün içinde hastanın yaraları iyileşmeye başlıyor.",   # 9. tur (dil S3): iki noktada durak
              tts: "Beklenmedik bir şey oluyor: <break time=\"300ms\"/> Birkaç gün içinde hastanın yaraları iyileşmeye başlıyor."}
         olaylar:
           - {tip: isim, ad: "Jacob Sheskin", unvan: "dermatolog, Kudüs", satir: 1, ofset: 1.6, sure: 4.0, konum: sag}   # 7. tur: solda çenesine biniyordu
           - {tip: giris, karakter: k, satir: 2, ofset: 2.0}   # 10. tur: "uyku ilacını" sözüyle ("Sheskin," eklendi)
-          - {tip: kelime, metin: "CÜZZAM (LEPRA)", satir: 1, an: son, ofset: -1.5, sure: 2.0, konum: ust}
+          - {tip: kelime, metin: "LEPRA (CÜZZAM)", satir: 1, an: son, ofset: -1.5, sure: 2.0, konum: ust}
           - {tip: yuz, karakter: s, gorsel: chars/sheskin_v2_saskin.png, satir: 3, ofset: 0.5}
           - {tip: kelime, metin: "YARALAR İYİLEŞİYOR", satir: 3, an: son, ofset: -2.0, sure: 2.2, konum: ust}
           - {tip: it, satir: 2, an: son, ofset: -0.05, guc: 0.07, sure: 0.45}
@@ -1796,8 +1799,8 @@ bolumler:
         y: 0.5
         konuk: [{id: s, gorsel: chars/sheskin_v2_saskin.png, x: 0.1, boy: 0.5, giris: false}]
         noktalar:
-          - {tarih: "1964", metin: "Kudüs · cüzzamda ilk gözlem"}
-          - {tarih: "1998", metin: "ABD · cüzzam komplikasyonu (ENL)"}
+          - {tarih: "1964", metin: "Kudüs · leprada ilk gözlem"}
+          - {tarih: "1998", metin: "ABD · lepra komplikasyonu (ENL)"}
           - {tarih: "2006", metin: "ABD · multipl miyelom"}
           - {tarih: "2008", metin: "Avrupa · multipl miyelom"}
         # 8. tur (dil M2): 'multipl' "multi", 'cüzzamın' "cüzdanın" duyuluyordu. 3 'cüzzamın' çekiminin hiçbiri 2 nat

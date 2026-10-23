@@ -566,8 +566,17 @@ SAYI_KOKLERI = ("bir", "iki", "uc", "dort", "bes", "alti", "yedi", "sekiz", "dok
                 "elli", "altmis", "yetmis", "seksen", "doksan", "yuz", "bin", "milyon", "milyar")
 
 
+SIRA_EKI = re.compile(r"(?:i|u|ı)?nc(?:i|u|ı)(?:[a-z]{0,4})$")
+
+
 def _sayi_kelimesi(k: str) -> bool:
-    """'kırk', 'binden', 'kırkı', 'yirmi' gibi yazıyla sayı (Whisper bunları rakamla yazar)."""
+    """'kırk', 'binden', 'kırkı', 'yirmi', 'onuncu', 'yüzde' gibi yazıyla sayı (Whisper bunları rakamla, "%40", "10."
+    diye yazar)."""
+    if k == "yuzde":
+        return True
+    kok = SIRA_EKI.sub("", k)
+    if kok != k and ({kok, kok + "i", kok + "u", kok[:-1] + "t"} & set(SAYI_KOKLERI)):   # sıra sayısı: onuncu,
+        return True                                                                     # yedinci, dördüncü
     return any(k == r or (k.startswith(r) and len(k) - len(r) <= 3 and r not in ("bir", "on", "uc", "yuz"))
                for r in SAYI_KOKLERI)
 
