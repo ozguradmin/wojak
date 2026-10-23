@@ -661,6 +661,56 @@ Kanıtlanmış yol bu bölümde baştan sona ~50 dk sürdü (tahmin 55-75 dk). Y
   `teslim` uyarsın.
 - `tools/`: Commons ham dosya sayfasından lisans şablonunu okuyan küçük doğrulayıcı (`action=raw`).
 
+### Ek dersler (23.10.2026 akşam, `ayasofya-viking-yazisi`, iki hakemden 8/8, ~45 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Ortam:** taze konteynerde `/home/user` olmayabilir; önce `mkdir -p /home/user`, sonra `ln -sfn`. Testler 81/81
+  geçti (hashtag testi bu sefer düşmedi).
+- **Arka plan yumuşaklığını ölç, varsayılan blur'a güvenme:** büyük bir fotoğrafı 1080'e küçültüp varsayılan
+  `blur: 2,5` verince kenar Laplace varyansı (720 ölçeği) ~7 çıktı; orijinal medyan ~22. Ölçüm: görseli
+  `GaussianBlur(b)` ile birkaç değerde dene, üst şerit + iki yan şeridin `scipy.ndimage.laplace` varyansına bak.
+  Bu bölümde `blur: 1.6` → ~20. Kural: küçültülen keskin kaynakta 1,2-1,6; zaten yumuşak kaynakta 2,5-3,2.
+- **Kanıtı telefon boyunda kırp:** ilk kırpımda runler 390 px'te seçilmiyordu, levha yazısı küçüktü (görsel hakem
+  7,5). Nesneyi ve yazıyı kadrajın büyük kısmına alan sıkı kırpım (16:9'a yakın, yine tam genişlik) 8'e çıkardı.
+  Hakemden önce: `ffmpeg -ss <t> -frames:v 1 -vf scale=390:-1` ile kanıt karelerine bak.
+- **Yeni son kare türü: nesnenin kendisi + yanındaki resmî levha.** Olay basında değil taşın/nesnenin üstünde
+  kayıtlıysa (yazıt, grafiti, anıt), nesnenin serbest lisanslı fotoğrafı ve müze/yapı levhası kupürden daha dürüst ve
+  çeşitli bir son kare. Commons "Category:Runic inscriptions in Hagia Sophia" gibi kategoriler hem yakın plan hem
+  levhalı kare veriyor.
+- **İroni kalıbı "kimse fark etmez" → levha:** C2fa iskeletinin geçiştirme repliği ("Bir şey olmaz, ...") son kanıtın
+  kendisiyle ödenebilir: A "kimse fark etmez" der, son kare bin yıldır korunan, levhalı yazıyı gösterir. Ters köşe
+  yüzü uyaran karakterde (B) olabilir: "Delirdin mi, burası Ayasofya" + şok yüzü yerin adını da verir.
+- **Yüzü miğferli/kapalı karakterde değişim alanı küçük:** muhafızın yalnız gözleri ve ağzı değişince telefonda
+  %0,37 çıktı. İki karakterin `height`'ını 0,48 → 0,52 yapmak (yazı bloğu yine sabit) ve ter damlalarını büyütmek
+  %0,44'e çıkardı. `height` 1080'lik karenin oranıdır (0,52 → 562 px).
+- **Kendi teslimini yeniden üretmek:** `teslim` var olan klasörün üstüne yazmaz; düzeltme turlarında bilinçli
+  `--zorla`.
+
+**Çalışmayan (deneme):**
+- Varsayılan `blur: 2,5` küçültülmüş keskin fotoğrafta: orijinallerden belirgin yumuşak (Laplace ~7).
+- Kanıtı geniş kırpıp "bağlam" vermek (nef + korkuluk + runler): telefonda nesne kayboluyor.
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Karun (21.10) | Kanuni (23.10) | Ayasofya (23.10 akşam) |
+|---|---|---|---|
+| Hazırlık + okuma | ~6 dk | ~8 dk | ~6 dk |
+| Konu + olgu | ~11 dk | ~7 dk | ~4 dk |
+| Görsel avı | ~17 dk | ~6 dk | ~8 dk |
+| Karakter + yüz | ~10 dk | ~5 dk | ~5 dk |
+| yaml → teslim | ~5 dk | ~4 dk | ~3 dk |
+| Ön kontrol + hakem turları | 2 tur + kart/kupür turları | ~10 dk | ~8 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~8 dk | ~10 dk | ~10 dk |
+| **Toplam** | ~2 sa | ~50 dk | **~45 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `wojak/compose.py`/`check`: arka planın kenar Laplace varyansını ölçüp blur önersin (hedef ~20, 720 ölçeği).
+- `check`: kanıt görselini 390 px'e küçültüp "küçük ayrıntı" uyarısı (ör. kenar yoğunluğu düşükse) versin.
+- `tools/wojak_lib.py get`: çıktı `head` ile kesilince BrokenPipeError veriyor (zararsız, ama gürültü).
+
 ---
 
 ## 7. Uzun formata ne taşınır?
