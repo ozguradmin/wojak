@@ -12,13 +12,31 @@
 | Süre | **8-10 dk** (hedef ~9 dk, ~1.200-1.350 kelime anlatım) | 8 dk üstü videoya ara reklam konabilir; tek bir olayın hikâyesi bu sürede şişirilmeden anlatılır; yüzü görünmeyen belgesel kanallarında izlenme süresi en verimli aralık |
 | Görüntü | 1920x1080, 30 fps, H.264 yüksek profil, AAC 48 kHz | YouTube standardı |
 | Ses düzeyi | **-14 LUFS**, tepe -1 dBTP | YouTube normalizasyon hedefi; kısa reel'lerdeki -29,5 değil |
-| Ses sağlayıcısı | **ElevenLabs'e geçilecek** (hesap sahibi 13.10 Cartesia sesini beğenmedi; başvuru sonucu ve API anahtarı bekleniyor). Seçim ölçerek, son kararı hesap sahibi verir (YAYIN_PLANI §4) | Aşağıdaki Cartesia satırları ilk videonun kaydıdır |
+| Ses sağlayıcısı | **Google Gemini TTS** (hesap sahibi 23.10; ElevenLabs beklenmiyor): model `gemini-2.5-pro-tts` (başka model yok), Cloud Text-to-Speech v1 `text:synthesize`, kimlik `HIKAYE_GCP_CREDENTIALS` (authorized_user JSON; yalnız ortamdan/secrets.env, asla yazdırılmaz/kaydedilmez). Ayrıntı: §1.1 | Hesap sahibinin seçimi (Hikâye Simülasyonu ses denemeleri, 23.10); Google Cloud kredisi, ticari kullanıma uygun. Aşağıdaki Cartesia satırları ilk videonun kaydıdır |
 | Anlatıcı | **Murat** (Cartesia sonic-3, `5a31e4fb-…`), hız 0,95 | Türkçe derin erkek anlatıcı, "tarih/gizem" türünün sesi; testte en çok vurgulu duraklama |
 | İkinci ses | **Aylin** (`bb2347fe-…`) alıntılar, reklam sloganları, kadın karakterler | İsimleri en doğru okuyan kadın ses; ses değişimi dikkati tazeler |
 | Yedek kadın sesler | Leyla (`fa7bfcdc-…`, ifadeli), Azra (`0f95596c-…`, resmî) | Duygusal tanıklıkta Leyla denenebilir |
 | Müzik | Kendi sentezimiz (`tools/make_music.py` ailesi), anlatımın altında ~-22 dB, konuşmada otomatik kısılır | Kanalın Instagram "orijinal ses"i YouTube'da Content ID riski taşır; uzun videoda 13,75 sn'lik döngü de bıktırır |
 | Efekt | Kendi sentez efektlerimiz (`assets/sfx`): geçişte whoosh, fotoğrafta deklanşör, açılışta düşük boom, balonda hafif pop | Hareketli kurgunun ritmini sesle de verir; kısa reel'deki "efekt yok" kuralı uzun formatta geçerli değil |
 | Altyazı | `.srt` dosyası (YouTube'a yüklenir; alıntılar italik); ekranda yalnız vurgu kelimeleri | Tam altyazıyı YouTube kendisi gösterir; ekrana gömülü tam altyazı görseli kalabalıklaştırır |
+
+### 1.1 Gemini TTS ayarları (hesap sahibi 23.10.2026)
+
+- **Model:** `gemini-2.5-pro-tts` (varsayılan; başka model kullanılmaz). Tarz tarifi `input.prompt` alanına gider, metne
+  yazılmaz. Gemini sesleri hızı parametreyle değil, **üretimden sonra `atempo`** ile hızlandırılır (ton değişmez).
+- **Anlatıcı:** **Charon**, **1,25x**. Tarz: gergin bir dizi/belgesel anlatıcısı; alçak, sakin ama gergin; dinleyenle
+  doğrudan konuşur; noktalarda ve üç noktada kısa duraklar; doğal İstanbul Türkçesi.
+- **Hazır karakter sesleri (1,0x):** Leda (genç, heyecanlı kız), Algenib (yaşlı, kalın sesli, alaycı adam), Gacrux
+  (telaşlı yaşlı kadın). Yeni karakter: önce 2-3 Gemini sesini (Puck, Fenrir, Kore, Aoede, Orus, Sulafat…) aynı
+  repliğe okutup seç, sonra ses tablosuna tarifiyle ekle; karakter bölüm içinde tanımlanmaz.
+- **Satır tavrı:** fısıltı, bağırma gibi özel tavır satırın `tarz` alanına (ör. "Fısıltıya yakın, yavaş ve ağır söyle.").
+- **Metin kuralları:** her satır tek cümle ya da kısa replik; sayılar yazıyla ("sekiz dakika yirmi saniye"); durak için
+  "..." ya da virgül; doğal, konuşulan İstanbul Türkçesi.
+- **Kontrol:** Whisper dökümü metinle birebir aynı olmalı; yanlış okunan kelimede metin düzeltilir ve yalnız o satır
+  yeniden üretilir (önbellek). Ses, müzik ve efektlerden en az 6 dB yüksek; master −14 LUFS / −1 dBTP.
+- **Kaynak araç:** aynı ayarlar `ozguradmin/galaktik-simulasyon` deposundaki `tools/tts.py` (CAST tablosu) ve
+  `research/28_tts/README.md`'de; wojak motorunda `wojak/uzun/tts.py` (`model: gemini-2.5-pro-tts`).
+- İlk test (23.10): "Merhaba, bu bir deneme." anlatıcı 1,73 sn, Whisper birebir, ham satır −17,9 LUFS / −1,3 dBFS.
 
 ## 2. Görsel dil: hareket şart
 
@@ -76,6 +94,8 @@ Shorts'ta **İlgili video** olarak uzun videoyu bağlama talimatı eklenir.
 
 ## 5. Gizlilik ve lisans
 
+- `HIKAYE_GCP_CREDENTIALS` (Gemini TTS) ortam değişkeni ya da `~/.config/wojak/secrets.env`; değeri hiçbir yere
+  yazılmaz, yazdırılmaz, commit edilmez.
 - `CARTESIA_API_KEY` yalnız `~/.config/wojak/secrets.env` içinde (repo dışı, izin 600); kalıcılık için ortam
   değişkeni olarak eklenmeli (GEREKENLER.md §1'deki gibi).
 - Telifli arşiv görselleri `img/telifli/` altında (repoya girmez); hesap sahibi lisans kararını verir.

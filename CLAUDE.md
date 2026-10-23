@@ -4,7 +4,8 @@ Read this first. Specs and lessons live in `docs/`; this file only points to the
 **New to the project? Start with `docs/ADIM_ADIM.md`**: the step-by-step runbook for short reels and long videos.
 
 **Current status (21.10.2026):** new **short reels may be produced now** (owner, 21.10): one topic at a time, never a topic
-the channel already did. **Long videos still wait for the ElevenLabs API key.** The long `talidomit-turkiye` is approved.
+the channel already did. **Long videos now use Google Gemini TTS** (owner, 23.10; no ElevenLabs): `gemini-2.5-pro-tts`, narrator
+Charon at 1.25x, settings in `docs/UZUN_FORMAT.md` §1.1. The long `talidomit-turkiye` is approved.
 Queued long-form work: `docs/YAYIN_PLANI.md` §4. YouTube got a violation: read `docs/YAYIN_PLANI.md` §0 before producing.
 Signature music (22.10): `music: kanal` now plays OUR OWN waltz (`assets/music/imza_v2_golge.m4a`); the old channel audio is
 `music: orijinal` only (YouTube risk). Variants `imza_v2_*.m4a` may rotate per video.
@@ -57,7 +58,7 @@ that misses the quality bar, waits for the owner (`BEKLET`). Instagram is still 
 | `docs/STIL.md` | **The law for short reels:** 30 originals measured frame by frame (structure, lines, text, characters, background, evidence, audio). Renderer defaults and `check` follow it |
 | `docs/OGRENILENLER.md` | Lessons from 3/10 to 8/10, failure modes and fixes, **pre-delivery checklist**, the research → produce → two judges → fix workflow, time notes |
 | `docs/ADIM_ADIM.md` | **Step-by-step runbook** (setup, short reel, long video, self-check, delivery, budgets, common problems) |
-| `docs/YAYIN_PLANI.md` | Publishing schedule (long at noon, short in the evening, every 2-3 days) and the queued work for when ElevenLabs arrives |
+| `docs/YAYIN_PLANI.md` | Publishing schedule (long at noon, short in the evening, every 2-3 days) and the queued long-video work (§4) |
 | `docs/is_akislari/` | Reusable workflow scripts with the exact producer/judge prompts (`kisa_reel.js`, `uzun_video.js`) |
 | `docs/UZUN_FORMAT.md` | Long-form decisions (length, voices, loudness, motion grammar, **face size**, **watermark**, story template, package) |
 | `docs/UZUN_MOTOR.md` | Long-form engine guide, if present; otherwise the docstring of `wojak/uzun/cli.py` and `uzun/demo/video.yaml` |
@@ -108,16 +109,19 @@ python -m pytest tests/ -q                        # or: python tests/test_uzun.p
   delivery flow); `tools/yt_yukle.py` is not used for shorts any more (duplicate risk). The API cannot pin; the owner pins in Studio.
 - No AI-generated images (16.10): backgrounds and evidence are real photos/documents (or our own flat drawings);
   characters are ready-made wojak drawings. `tools/gorsel_uret.py` and the SOL gateway are not used.
-- Short reels: produce now (21.10). Long videos: wait for ElevenLabs, then follow `docs/YAYIN_PLANI.md` §4 in order.
+- Voice (23.10): long videos use Gemini TTS (`gemini-2.5-pro-tts` only; narrator Charon 1.25x via atempo; characters Leda,
+  Algenib, Gacrux; credential `HIKAYE_GCP_CREDENTIALS`, never printed or saved). Numbers as words, "..." for pauses, the Whisper
+  transcript must match the text, voice ≥ 6 dB over music/sfx, master -14 LUFS / -1 dBTP. Details: `docs/UZUN_FORMAT.md` §1.1.
+- Short reels: produce now (21.10). Long videos: follow `docs/YAYIN_PLANI.md` §4 in order (now with Gemini TTS).
 - Publishing plan: one topic every 2-3 days, 2-3 per week. The long video goes to YouTube at noon; the same topic's
   Shorts and Reels go out in the evening, and their descriptions point to the long video.
-- Long videos: no burned-in watermark from the ElevenLabs re-voice on (`filigran: false`; use the YouTube Studio branding
+- Long videos: no burned-in watermark from the Gemini re-voice on (`filigran: false`; use the YouTube Studio branding
   watermark instead). Short reels keep it.
 - Long videos: keep each character's effective height (`boy` × camera zoom × `yakin`) at or below 0.80 of the frame.
   The owner noticed oversized, cropped faces.
 - Short reels should get the long video's character quality (better faces) as a B version; the owner picks.
 - Push for the best possible result ("benchmarktasın gibi"); never ship a known flaw silently.
-- Long videos: voice will be redone with ElevenLabs when credits arrive (owner disliked the Cartesia voice).
+- Long videos: the Cartesia voice is replaced by Gemini TTS (owner disliked the Cartesia voice; ElevenLabs dropped 23.10).
 - Characters: prefer ready-made clothed wojaks; do not paint clothes onto wojak heads. Face variants must be clean.
 - No end-screen video boxes for now; the subscribe/like/comment call must be engaging, tied to the story.
 - Instagram captions: no hashtags. YouTube: 2-3 hashtags allowed. Titles must not read like AI slop.

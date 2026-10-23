@@ -80,7 +80,11 @@
 | Cuma | **12:00** konu B uzun · **20:00** konu B kısa | Konu D araştırma |
 | Pazar | **20:00** konu C kısa | – |
 
-## 4. Sıradaki işler: ElevenLabs gelince (hesap sahibi API anahtarını iletecek)
+## 4. Sıradaki işler: uzun videolar (23.10: ses sağlayıcısı Gemini TTS; ElevenLabs beklenmiyor)
+
+> 23.10.2026: hesap sahibi ElevenLabs yerine Google Gemini TTS'i seçti (UZUN_FORMAT §1.1). Aşağıdaki sıra aynen
+> geçerli; "ElevenLabs" geçen yerlerde Gemini TTS okunur (anahtar `HIKAYE_GCP_CREDENTIALS`, ses seçimi yapıldı: anlatıcı
+> Charon 1,25x).
 
 Hesap sahibinin talimatı (15.10): şimdi yeni video ya da düzeltme yok; ElevenLabs sonucu gelince başlanır. Sıra:
 
