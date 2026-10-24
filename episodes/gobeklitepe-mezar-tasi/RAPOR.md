@@ -102,17 +102,19 @@ başlığından." satırı da açıklamalarda. Serbest görsel araması: Commons
 ve Internet Archive'a gerek kalmadı. Gazete manşetinin serbest lisanslı gerçek görüntüsü yok (Hürriyet sayfası telifli);
 bu yüzden kupür kendimiz dizildi.
 
-## Adım süreleri (ölçülen, toplam ~32 dk)
+## Adım süreleri (ölçülen duvar saati: başlangıç 11:09, özel depoya push 11:33; toplam ~25 dk)
 
 | Adım | Süre |
 |---|---|
 | Hazırlık + ölçüm + okuma | ~5 dk |
-| Konu tarama + 3 aday + olgu araştırması (5 arama + 1 sayfa) | ~5 dk |
-| Görsel avı (Commons API + küçük resim temas sayfası + ham lisans + md5 indirme) | ~3 dk |
+| Konu tarama + 3 aday + olgu araştırması (5 arama + 1 sayfa) | ~4 dk |
+| Görsel avı (Commons API + küçük resim temas sayfası + ham lisans + md5 indirme) | ~2 dk |
 | Karakter + yüz varyantı (uret.py, kontur onarımı) | ~4 dk |
-| gorsel.py + kupur.py + episode.yaml + check/frames/render/teslim | ~4 dk |
-| Ön kontrol + 2 hakem turu + düzeltme | ~4 dk |
-| RAPOR + outputs + iki depo commit + OGRENILENLER | ~7 dk |
+| gorsel.py + kupur.py + episode.yaml + check/frames/render/teslim | ~3 dk |
+| Ön kontrol + 2 hakem turu + düzeltme | ~3 dk |
+| RAPOR + outputs + iki depo commit + OGRENILENLER | ~4 dk |
+
+(Özel depodaki RAPOR kopyasında ilk tahmin ~32 dk yazıyor; yayın tetiklememek için o kopya yeniden push'lanmadı.)
 
 ## Yaklaşık maliyet
 
