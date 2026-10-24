@@ -1,0 +1,125 @@
+# Kaşıkçı Elması'nın çöplükten saraya uzanan efsanesi (İstanbul, 1679). Araştırma notu: scratchpad olgular.md
+# (repoya girmez). Altın dönem kalıbı: C2Fr (diyalog -> kart -> diyalog -> kanıt) + C4V3/C12O yüz varyantı.
+# AYNI YER: Eğrikapı (İstanbul surları), 17. yüzyıl sonu.
+#   A (hep solda): çöplükte taşı bulan adsız yoksul adam (bakış açısı karakteri; ters köşe yüzü onun). Kurgu.
+#   B (hep sağda): adsız kaşıkçı (seyyar satıcı). Kurgu; kötü/sırıtan yüz yok, emin ve sakin.
+# Olgu sınırları (anlatı EFSANE/RİVAYET; metinde "anlatılana göre"):
+#   - Kaynak anlatı: Defterdar Sarı Mehmed Paşa, Zübde-i Vekayiât, 1090 (1679) olayları (Hürriyet/Topkapı açıklaması,
+#     Milliyet-Sinan Genim, arkeolojikhaber, kozmikturk): Eğrikapı'daki çöplükte yuvarlak bir taş bulunur; bulan
+#     kişi onu üç kaşık karşılığında bir kaşıkçıya (yaymacı) verir; kaşıkçı hırdavatının arasına bırakır; bir
+#     kuyumcu 10 akçeye alır; meslektaşıyla pay kavgası; kuyumcubaşı birer kese akçe verip alır; sadrazam ister;
+#     padişah IV. Mehmed hatt-ı hümayunla saraya aldırır; işlenince büyük bir elmas çıkar.
+#   - S1 "cam gibi": Raşid'e atfedilen anlatıda bulan kişi taşı "cam zannetti" (Hürriyet 'Elmasların elması bulundu',
+#     gelisenbeyin; aynı metnin kopyası, tek kök). Ekranda benzetme ("cam gibi"), olgu değil.
+#   - S2 "üç tahta kaşık": Vikipedi (Reşad Ekrem Koçu aktarımı) ve gzt "üç tahta kaşık". "Fazlası etmez" canlandırma
+#     (kaşıkçının taşı hırdavat arasına bırakması değer vermediğini gösterir).
+#   - S3 canlandırma (yoksulluk; ironi).
+#   - S4 "neden sarayda": taş sonunda padişahın emriyle saraya alındı (Hürriyet, Milliyet). Fark etme canlandırma.
+#   - Kanıt 1: Topkapı Sarayı Hazine Dairesi (Fatih Köşkü), kamu malı. Kanıt 2 (son kare, NESNENİN KENDİSİ; kupür
+#     değil): Kaşıkçı Elması, Topkapı, 2023, CC BY 4.0.
+# Adın kökeni tartışmalı (kaşık biçimi de denir); Napolyon'un annesi rivayeti İrepoğlu'na göre kronolojik olarak
+# tutmuyor; saraya girişine dair arşiv belgesi yok (Genim). Bunlar metinde açıkça yazılı.
+# Karakterler: chars/uret.py. Görseller: gorsel.py. Render: python -m wojak render episodes/kasikci-elmasi
+id: kasikci-elmasi
+title: "Çöplükte bulduğu taşı üç kaşığa verdiği anlatılan adam"
+
+# Kanal imzası (22.10'dan beri bizim imza_v2_golge.m4a). "orijinal" asla.
+# volume: bu ortamın ffmpeg 6.1.1'inde loudnorm TP=-17'yi reddediyor; sabit kazanç -15,4 -> -29,5 LUFS = x0,197.
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (yoksul adam, sol). Masum soru; sonunu bilen için "eyvah, Kaşıkçı Elması".
+  - type: dialog
+    duration: 3.0
+    bg: img/arka_egrikapi.jpg
+    blur: 2.8   # ölçüldü: 1,6 -> Laplace ~143 (servi çok keskin); 2,8 -> ~20 (orijinal medyan 22)
+    chars:
+      - {img: chars/bulan_sakin.png, side: left, faces: sag, height: 0.52}
+    text: "Çöplükte cam gibi bir taş buldum, alır mısın?"
+
+  # 2) CEVAP — B (kaşıkçı, sağ, emin). "kaşık" kelimesi ekilir: elmasın adı.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_egrikapi.jpg
+    blur: 2.8   # ölçüldü: 1,6 -> Laplace ~143 (servi çok keskin); 2,8 -> ~20 (orijinal medyan 22)
+    chars:
+      - {img: chars/kasikci_emin.png, side: right, faces: sol, height: 0.52}
+    text: "Üç tahta kaşık veririm,\nfazlası etmez"   # elle kırım: virgülde
+
+  # 3) A kabul eder (dramatik ironi)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_egrikapi.jpg
+    blur: 2.8   # ölçüldü: 1,6 -> Laplace ~143 (servi çok keskin); 2,8 -> ~20 (orijinal medyan 22)
+    chars:
+      - {img: chars/bulan_sakin.png, side: left, faces: sag, height: 0.52}
+    text: "Anlaştık, evde kaşığımız\nyok zaten"   # elle kırım: greedy "zaten"i yalnız bırakıyordu
+
+  # 4) KART — ileri zaman (taş kuyumcudan kuyumcubaşına, oradan saraya gitti)
+  - type: card
+    duration: 1.5
+    text: "Bir süre sonra"
+
+  # 5) TERS KÖŞE — A, aynı kutu, yüz varyantı (iri gözler, "O" ağız, mavi soğuk ter + damlalar)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_egrikapi.jpg
+    blur: 2.8   # ölçüldü: 1,6 -> Laplace ~143 (servi çok keskin); 2,8 -> ~20 (orijinal medyan 22)
+    chars:
+      - {img: chars/bulan_sok.png, side: left, faces: sag, height: 0.52}
+    text: "Bekle, benim taşım\nneden sarayda?"   # elle kırım: soru öbeği bütün
+
+  # 6-7) KANIT — Topkapı Sarayı Hazine Dairesi, sonra elmasın kendisi (son kare). Etiket/bant yok.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_hazine.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_elmas.jpg]
+
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  Üç tahta kaşığa verilen taşın hikâyesi
+  Olayın tamamı sabit yorumda 👇
+hashtags: [kaşıkçıelması, topkapısarayı, istanbul]
+
+pinned_comment: |
+  Kaşıkçı Elması, İstanbul'daki Topkapı Sarayı Müzesi'nde sergilenen, 86 karat ağırlığında, armut biçimli bir elmastır. Çevresi çift sıra hâlinde 49 pırlantayla süslüdür.
+
+  Elmasın Osmanlı hazinesine nasıl girdiği kesin olarak bilinmiyor. En bilinen anlatı, Defterdar Sarı Mehmed Paşa'nın Zübde-i Vekayiât adlı tarihinde 1679 yılı olayları arasında geçer. Anlatılana göre İstanbul'un Eğrikapı semtindeki bir çöplükte yuvarlak bir taş bulundu. Taşı bulan kişi onu üç kaşık karşılığında bir kaşıkçıya verdi; kaşıkçı da taşı hırdavatının arasına bıraktı.
+
+  Taşı gören bir kuyumcu onu 10 akçeye satın alıp bir meslektaşına gösterdi. Taşın elmas olduğu anlaşılınca ikisi pay yüzünden kavgaya tutuştu. Olay kuyumcubaşına ulaştı; o da iki kuyumcuya birer kese akçe verip taşı aldı. Sadrazam da taşı istedi, ama mesele padişah IV. Mehmed'e ulaşınca taş saraya getirtildi ve işlendi. Kuyumcubaşına kapıcıbaşılık rütbesi verildi.
+
+  Elmasın adının bu üç kaşıktan geldiği söylenir; adın, taşın kaşığa benzeyen biçiminden geldiğini düşünenler de var. Elmasın Napolyon'un annesinden alındığı da anlatılır, ama sanat tarihçisi Gül İrepoğlu'nun araştırmasına göre elmas Napolyon'dan önce, I. Abdülhamid döneminde sarayda kullanılıyordu. Saraya nasıl girdiğini gösteren bir arşiv belgesine bugüne kadar rastlanmadı.
+
+  Sizce o taşı bulan adam, üç kaşığa verdiği şeyin ne olduğunu hiç öğrendi mi?
+
+credits: "Isabeau (Eğrikapı surları, CC BY-SA 4.0) ve Karakalem (Kaşıkçı Elması, 2023, CC BY 4.0), Wikimedia Commons (kırpıldı). Hazine Dairesi fotoğrafı: Gryffindor, Wikimedia Commons, kamu malı."
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır ve anlatı bir rivayettir:** taşı bulan adam ve kaşıkçı adsız kurgu karakterler. Belgeli olan, Defterdar Sarı Mehmed Paşa'nın Zübde-i Vekayiât'ındaki anlatı (çöplük, üç kaşık, 10 akçe, kuyumcubaşı, saray). \"Fazlası etmez\", \"evde kaşığımız yoktu\" ve son fark etme repliği canlandırma; metin hikâyeyi \"anlatılana göre\" diye veriyor"
+  - "**Adın kökeni ve Napolyon rivayeti tartışmalı:** metin iki görüşü de veriyor; yorumlarda \"Napolyon'un annesinden alındı\" diyenlere metin İrepoğlu'nun bulgusunu zaten yazıyor"
+  - "**Son kare elmasın kendisi** (Topkapı'da çekilmiş gerçek fotoğraf, CC BY 4.0; atıf açıklamada). Kupür ya da canlandırma kart yok"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette; \"çalıntı\", \"geri verin\" gibi kimlik/milliyet kavgası ya da hakaret içeren yorumları sil"
+  - "İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): \"Kaşıkçı Elması'nı Topkapı'da gören var mı? Fotoğraftaki kadar parlıyor mu?\""
+
+sources:
+  # Doğrulama (araştırma notu: olgular.md, 24.10.2026)
+  - "Hürriyet — 'Kaşıkçı Elması' yeniden sergilenmeye başladı (Topkapı açıklaması: Defterdar Sarı Mehmed Paşa, Zübde-i Vekaiyat, 1090/Mayıs 1679 olayları; Eğrikapı çöplüğü, yaymacı üç kaşık, 10 akçe, kuyumcubaşı birer kese, Vezir-i Azam, padişahın emri, kapıcıbaşılık; 86 karat, 49 pırlanta): https://www.hurriyet.com.tr/gundem/kasikci-elmasi-yeniden-sergilenmeye-basladi-goren-buyuleniyor-41346247"
+  - "Milliyet, Sinan Genim — Kaşıkçı Elması'yla ilgili hikâyeler (TSM H2/7610, 86 karat; XVII. yy IV. Mehmed; Zübde-i Vekayiât anlatısı birebir; arşiv belgesi yok; Pigot/Napolyon rivayeti; Gül İrepoğlu: I. Abdülhamid sorgucu): https://www.milliyet.com.tr/yazarlar/sinan-genim/kasikci-elmasiyla-ilgili-hikayeler-6754350"
+  - "Vikipedi — Kaşıkçı Elması (86 karat, 49 elmas; hazineye girişi kesin değil; ad kaşık biçiminden olabilir; Koçu aktarımı: çöplük, 3 tahta kaşık; kuyumcu, kuyumcubaşı, IV. Mehmed): https://tr.wikipedia.org/wiki/Ka%C5%9F%C4%B1k%C3%A7%C4%B1_Elmas%C4%B1"
+  - "Arkeolojik Haber — Kaşıkçı Elması efsaneleri (Zübde-i Vekaiyat alıntısı; Raşid anlatısı: üç tahta kaşık): https://www.arkeolojikhaber.com/haber-kasikci-elmasi-kasikci-elmasi-efsaneleri-23398/ · Kozmiktürk (aynı Topkapı açıklaması): https://kozmikturk.com/gundem/kasikci-elmasi-nin-ilginc-hikayesi-15553"
+  - "Hürriyet — Elmasların elması bulundu (rivayet: Eğrikapı çöplüğü, bulan adam taşı 'cam zannettiği' için üç tahta kaşığa değişir; 86 karat, 49 pırlanta): https://www.hurriyet.com.tr/dunya/elmaslarin-elmasi-bulundu-9955214 · aynı metin: https://www.gelisenbeyin.net/kasikci-elmasi.html"
+  - "GZT — Kaşıkçı Elması hakkında bilinmesi gerekenler (rivayet; üç tahta kaşık; ad kaşık biçiminden; Napolyon rivayeti): https://www.gzt.com/jurnalist/kasikci-elmasi-hakkinda-bilinmesi-gerekenler-2819133"
+  - "Tarihten Yazılar — Kaşıkçı Elması'nın ilginç hikâyesi (Gül İrepoğlu: I. Abdülhamid'in sorgucunda; Napolyon rivayetinin doğru olmadığı): https://tarihtenyazilar.com/2023/05/07/kasikci-elmasinin-ilginc-hikayesi/"
+  # Görseller ve lisanslar (gorsel.py; lisanslar Commons dosya sayfasının ham metninden doğrulandı, 24.10.2026)
+  - "GÖRSEL img/arka_egrikapi.jpg (tüm diyalog) — 'Eğri Kapı (possibly the Kaligaria Gate) of the Blachernae Walls of Constantinople.jpg', Isabeau, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}): https://commons.wikimedia.org/wiki/File:E%C4%9Fri_Kap%C4%B1_(possibly_the_Kaligaria_Gate)_of_the_Blachernae_Walls_of_Constantinople.jpg . Değişiklik: kırpım (800,0)-(2350,1550) 3840 px sürümünden, 1080x1080 (trafik tabelaları kadraj dışında)"
+  - "GÖRSEL img/kanit_1_hazine.jpg (kanıt 1, 11,0-12,5 sn) — 'Imperial Treasury Topkapi 69.JPG', Gryffindor, kamu malı ({{PD-self}}): https://commons.wikimedia.org/wiki/File:Imperial_Treasury_Topkapi_69.JPG . Değişiklik: kırpım (0,150)-(1600,1050), 1080x608"
+  - "GÖRSEL img/kanit_2_elmas.jpg (kanıt 2, son kare, 12,5-14,0 sn) — 'Spoonmaker's Diamond5, Topkapi Palace, Istanbul 2023.jpg', Karakalem, CC BY 4.0 ({{self|cc-by-4.0}}): https://commons.wikimedia.org/wiki/File:Spoonmaker%27s_Diamond5,_Topkapi_Palace,_Istanbul_2023.jpg . Değişiklik: kırpım (0,200)-(1920,2150) 1920 px sürümünden; 1080x816 oranına iki yan fotoğrafın elmassız koyu kenarı uzatılıp bulanıklaştırılarak tamamlandı (elmasın piksellerine dokunulmadı)"
+  # Karakterler (chars/uret.py)
+  - "KARAKTER A taşı bulan adam (sol): wojakland 'Peasant Wojak' https://wojakland.com/wp-content/grand-media/image/original/peasant_wojak.png (bulan_sakin.png: yüzdeki üç kahverengi leke ve gri gölge silindi, alttan kesildi; bulan_sok.png: aynı kutu, iri gözler, kalkık kaşlar, \"O\" ağız, mavi soğuk ter + 2 ter damlası)"
+  - "KARAKTER B kaşıkçı (sağ): wojakland 'Turban 2 Chad' https://wojakland.com/wp-content/grand-media/image/original/turban_2_chad.png (kasikci_emin.png = kaynağın kendisi, kontur opak)"

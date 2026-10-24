@@ -771,6 +771,65 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
   parametreli); iki bölümde iki ayrı kopya var.
 - `tests/`: sabit `/home/user/wojak` yolu yerine depo kökünü kullanan test (taze konteynerde bağsız düşmesin).
 
+### Ek dersler (24.10.2026 akşam, `kasikci-elmasi`, iki hakemden 8/8, ~25 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Depolar ayrık HEAD'de açılabilir:** iki depo da `HEAD detached` başladı. Önce `git fetch origin`, sonra
+  varsayılan dala geç (`git checkout claude/kind-albattani-vcp4vk` / `main`) ve `git pull`. Ayrık HEAD'de commit atma.
+- **Yapraklı arka planda blur daha yüksek:** servi + ağaç tacı ağırlıklı kırpımda `blur: 1.6` kenar Laplace ~143
+  verdi (orijinal medyan 22); 2,5 → 29, **2,8 → ~20**, 3,2 → 12. Ayasofya'daki 1,2-1,6 kuralı taş/iç mekân için;
+  yaprak ve gökyüzü kenarı çoksa 2,5-3,0. Ölçüm: `GaussianBlur(b)` sonrası 720 ölçeğinde üst şerit + iki yan şerit.
+- **Tarihî sahnede modern öğe:** gerçek yerin bugünkü fotoğrafında trafik tabelası, şerit ya da araba varsa kırpımı
+  kaydır. Dört kırpımı tek temas sayfasında karşılaştır, karakterlerin örtmediği yarıya bak: tek konuşmacılı sahnede
+  karşı taraf hep açıkta kalır. Eğrikapı'da (800,0)-(2350,1550) kırpımı servi + kule + sur + Osmanlı hazire
+  parmaklığını aldı; tabelalar dışarıda kaldı.
+- **Hazır çizimdeki leke ve gri gradyan temizliği:** wojakland "Peasant Wojak"ın yüzündeki kahverengi çamur lekeleri
+  telefonda yara gibi okunuyordu, alt yüzdeki gri yumuşak gölge de düz MS-Paint değildi. Çözüm iki adımlı:
+  lekeyi kutu içinde `sil(..., tol=-1)` ile beyaza boya; yüz kutusunda nötr açık gri pikselleri (en küçük kanal
+  ≥ 168, kanal farkı < 14) beyaza çevir. Çizgiler ve kenar yumuşatması korunuyor (`kasikci-elmasi/chars/uret.py:bulan_temel`).
+- **17. yüzyıl Osmanlı halkı için hazır karakter:** `wojak_lib.py search ottoman` sonuçlarının neredeyse hepsi fesli
+  ve takım elbiseli (19.-20. yüzyıl). Fes 1829'dan sonra; daha eski sahnede kullanma. wojakland'de `peasant_wojak.png`
+  (siyah takke + entari, klasik beyaz yüz) ve `turban_2_chad.png` (beyaz sarık, kır sakal, sola bakan profil; yüzü
+  sakin, düzenleme gerekmedi) işe yaradı. Sorgu: `wojak_site.py sheet "turban|peasant|17th|medieval_man" --site wl`.
+- **Yeni son kare türü: müze nesnesinin kendisi.** Olay bir nesneyle bitiyorsa (elmas, hançer, mühür) nesnenin gerçek
+  yakın plan fotoğrafı kupürden daha dürüst ve çeşitli bir son kare. Commons'ta Topkapı Hazinesi nesnelerinin
+  ziyaretçi fotoğrafları CC BY 4.0 (ör. "Spoonmaker's Diamond5, Topkapi Palace, Istanbul 2023.jpg", 9 aday).
+  Önüne mekânın kendisi (Hazine binası, kamu malı) konunca sıra "nerede → ne" oluyor.
+- **Dikey nesneyi 1080x816'ya sığdırma:** nesneyi kesmeden tam yüksekliği al, gereken genişliği iki yana fotoğrafın
+  nesnesiz koyu kenarını (son 8 sütunun ortalaması) yatay uzatarak ekle. Uzatılan şeridi Gauss 24 ile bulanıklaştır,
+  fotoğrafa 40 px içeriden yumuşak maskeyle bağla (`kasikci-elmasi/gorsel.py:kanit2`). Koyu vitrin zemininde dikiş
+  görünmüyor; ayna kullanılmadı.
+- **Kelime tohumu ve adın karşılığı:** S2'de ekilen sıradan kelime ("üç tahta kaşık") son karede nesnenin adında
+  karşılığını bulunca ters köşe repliği olgu iddiası taşımadan ödenir. Türk izleyici "Kaşıkçı"yı 3. saniyede yakalar.
+- **Commons küçük resim (24.10 akşam):** `iiurlwidth=2000` + `thumburl` 5 dosyanın 4'ünde 200 döndü, biri 429 verdi;
+  429 alan dosya md5 özgün yolundan ilk denemede indi.
+
+**Çalışmayan (deneme):**
+- `blur: 1.6` yapraklı/servili arka planda (Laplace ~143).
+- `wojak_lib.py search ottoman` ile 17. yüzyıl halkı (fes + takım elbise, dönem dışı).
+- Gerçek yerin tam kare kırpımı (Eğrikapı kapısı): trafik tabelaları ve sarı-siyah şerit karenin ortasında kalıyordu.
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Kanuni (23.10) | Ayasofya (23.10 akşam) | Göbeklitepe (24.10 sabah) | Kaşıkçı (24.10 akşam) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~8 dk | ~5 dk | ~5 dk | ~3 dk |
+| Konu + olgu | ~7 dk | ~2 dk | ~4 dk | ~2 dk |
+| Görsel avı | ~6 dk | ~10 dk | ~2 dk | ~3 dk |
+| Karakter + yüz | ~5 dk | ~5 dk | ~4 dk | ~3 dk |
+| yaml → teslim | ~4 dk | ~2 dk | ~3 dk | ~3 dk |
+| Ön kontrol + hakem turları | ~10 dk | ~5 dk | ~3 dk | ~5 dk (ön kontrol + blur + 1 tur) |
+| Teslim + commit + belge | ~10 dk | ~3 dk | ~4 dk | ~5 dk |
+| **Toplam** | ~50 dk | ~31 dk | ~25 dk | **~25 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `tools/`: dikey nesne kanıtını 1080x816'ya kenar uzatma + bulanıklaştırmayla tamamlayan küçük yardımcı (iki bölümde
+  elle yazıldı: Karun kare tamamlama, Kaşıkçı 816 tamamlama).
+- `tools/wojak_lib.py` / `wojak_site.py`: dönem süzgeci (ör. `--once 1829` fesli sonuçları gizlesin).
+
 ---
 
 ## 7. Uzun formata ne taşınır?
