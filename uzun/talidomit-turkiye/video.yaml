@@ -132,7 +132,7 @@ telaffuz:                          # yalnız TTS metnine; uzun olan önce
   FDA: Fe De A                     # 5. tur (dil hakemi): "FTA" duyuluyordu; Gemini turu 2. hakem turu (dil N): 5:12 "Ef De A",
                                    # 5:25 "Fe De A" okunuyordu: ikisi de Türkçe harf adlarıyla
   Talidomid: Talidomit
-  taahhütlü: taahütlü              # 9. tur (dil S2): 'tavuklu/tahitli' duyuluyordu
+  taahhütlü: ta-ah-hüt-lü          # 9. tur (dil S2): 'tavuklu/tahitli' duyuluyordu; cila turu (izlenme S3): "taahütlü" Gemini'de "tahitli" duyuluyordu
   yayımlanmış: yayım-lanmış        # Gemini turu (23.10): yazımla "yayınlanmış" duyuluyordu; tireyle "yayımlanmış"
   yayımlandı: yayım-landı
   yayımlanmadı: yayım-lanmadı
@@ -179,7 +179,7 @@ bolumler:
         kose: {metin: "{} ÜLKE", deger: 1}
         konuk: [{id: z, gorsel: chars/anlatici_v2_sakin.png, x: 0.6, boy: 0.4, giris: false, yon: alt}]
         satirlar:
-          - {metin: "46 ülkede satılan bir ilaç.", hiz: 0.78, tts: "Kırk altı ülkede satılan bir ilaç."}
+          - {metin: "46 ülkede satılan bir ilaç.", hiz: 0.8, tts: "Kırk altı ülkede satılan... bir ilaç.", db: 1.5}   # cila: "ilaç" müziğin altında kalıyordu (doğrulayıcı)
         olaylar:
           - {tip: basla, satir: 1, ofset: -0.1}
           # 12. tur (animasyon S1): kesmede haritanın ortasından sayacın köşesine ışınlanıyordu (+%23 boy): kesmeden
@@ -360,6 +360,9 @@ bolumler:
           # 9. tur (izlenme S1): 9 sn tek kompozisyon: son satırda temsilci çıkar, kamera kapıya itilir
           - {tip: cikis, karakter: a, satir: 3, ofset: 0.0}
           - {tip: it, satir: 3, ofset: 0.05, guc: 0.14, sure: 1.1, x: 0.32, y: 0.5}
+          # cila turu (izlenme S2): takılı gösterge son karede titreşime denk gelip bindirme kartında 1,2 sn "2005" donuyordu:
+          # son satırda takılma biter, gösterge "20??"de kalır
+          - {tip: kose, deger: "20??", satir: 3, ofset: 0.0}
           - {tip: kelime, metin: "O KAPININ HİKÂYESİ", satir: 3, ofset: 0.2, sure: 1.8, konum: ust, y: 0.3}   # Gemini turu: zoom 1,1 ile 0,3 (kapının içinde). 14. tur (kontrol kenar bandı): itmede kapının üst kasası yazının altındaydı: yazı kapının üstünde (içinde)
         sfx:   # kapı vuruşu cümle bitince (kelimenin üstünde değil)
           - {ad: kapi, satir: 2, an: son, ofset: 0.02, db: -6}
@@ -501,7 +504,7 @@ bolumler:
           - {id: b, gorsel: img/kompozit/serit_gebe_deney.png, x: 0.47, boy: 0.22, alt: -0.44, bakis: on, yon: alt, canli: false}   # 7. tur: alttan (a'nın üstünden geçmesin)
           - {id: z, gorsel: chars/anlatici_v2_terli.png, x: 0.88, boy: 0.37, yon: alt, giris: 0.6}
         satirlar:
-          - "Oysa kandaki ilaç düzeyini ölçen yok."
+          - {metin: "Oysa kandaki ilaç düzeyini ölçen yok.", tts: "Oysa, kandaki ilaç düzeyini ölçen yok."}   # cila turu (izlenme N2): "Oysa"dan sonra 0,92 sn durak vardı
           - {metin: "En önemlisi: İlaç hiçbir gebe hayvanda denenmiyor.", sonra: 1.0,
              tts: "En önemlisi: <break time=\"300ms\"/> İlaç hiçbir gebe hayvanda denenmiyor."}
         olaylar:
@@ -559,7 +562,7 @@ bolumler:
           - "Bu farkı aklınızda tutun."
         olaylar:
           - {tip: ceviri, taraf: sol, satir: 1, ofset: 2.6}
-          - {tip: panel, taraf: sag, satir: 2, ofset: -0.45}
+          - {tip: panel, taraf: sag, satir: 2, ofset: -0.15}   # cila turu (animasyon S2): -0,45 ile çıkan anlatıcı açılan TÜRKİYE panelinin üstündeydi
           - {tip: giris, karakter: z, satir: 1, ofset: 0.3}   # 6. tur: ilk 7 sn karaktersizdi; 14. tur: büyük anlatıcı erken
           - {tip: cikis, karakter: z, satir: 2, ofset: -0.8}
           - {tip: giris, karakter: y, satir: 2, ofset: 0.3}
@@ -747,7 +750,7 @@ bolumler:
         karakterler:
           - {id: r, gorsel: img/cizim/eczane_raf_turkiye_bos.png, x: 0.58, boy: 0.72, alt: -0.08, bakis: on, giris: 0.05, canli: false}
           - {id: z, gorsel: chars/anlatici_v2_sakin.png, taraf: sol, x: 0.16, boy: 0.56, giris: 0.3}   # 7. tur (B7)
-        satirlar: [{metin: "Türkiye'de ise bu ilaç eczanelerde satılamıyor: Ruhsatı yok.", sonra: 1.0}]
+        satirlar: [{metin: "Türkiye'de ise bu ilaç eczanelerde satılamıyor: Ruhsatı yok.", sonra: 1.0, tts: "Türkiye'de ise bu ilaç eczanelerde satılamıyor: Ruh-satı yok."}]   # cila: h zayıftı ("Rusatı")
         olaylar:
           - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_fark.png, satir: 1, an: son, ofset: 0.0}
           - {tip: damga, metin: "RUHSAT YOK", renk: beyaz, satir: 1, an: son, ofset: 0.05, x: 0.58, y: 0.86, boy: 100, aci: -6}
@@ -1029,7 +1032,7 @@ bolumler:
         muzik_mod: drone
         muzik_db: 3                # 5. tur: duygu kabarması (müzik konuşmanın ~20 dB altında hissedilmiyordu)
         gecis: karart              # 11. tur (animasyon M2): anlatıcı soldan (B3.8) sağa kesmede sıçrıyordu: karanlıktan geçiş
-        konuk: [{id: z, gorsel: chars/anlatici_v2_sakin.png, x: 0.93, boy: 0.6, giris: false}]   # 8. tur (animasyon M3): "sonra" yakasının altındaydı
+        konuk: [{id: z, gorsel: chars/anlatici_v2_sakin.png, x: 0.90, boy: 0.6, giris: false}]   # cila turu (animasyon N2): 0,93te başı sağ kenardan taşıyordu   # 8. tur (animasyon M3): "sonra" yakasının altındaydı
         satirlar:
           - {metin: "Dünyada 10.000'den fazla bebek etkileniyor. Bazı tahminler 20.000'i buluyor.", sonra: 0.45,   # 14. tur (dil S1): ölüm oranı cümlesi nefes alsın
              tts: "Dünyada on binden fazla bebek etkileniyor. Bazı tahminler yirmi bini buluyor."}   # ses: 'Bilanço ağır.' kesildi
@@ -1201,7 +1204,7 @@ bolumler:
         gecis: karart              # 11. tur (animasyon S2): fotoğraf ofisten çizim büroya yer değişimi (8. tur: çapraz
         #                            geçişte Kelsey iki kez görünüyordu; kesmede yeri/boyu zıplıyordu)
         karakterler:
-          - {id: k, gorsel: chars/kelsey_v2_sakin.png, taraf: sag, x: 0.84, boy: 0.56, giris: false}   # 6. tur (S12): küçük
+          - {id: k, gorsel: chars/kelsey_v2_sakin.png, taraf: sag, x: 0.82, boy: 0.56, giris: false}   # cila turu (animasyon N2): 0,84te saçı sağ kenardan taşıyordu   # 6. tur (S12): küçük
           - {id: t, gorsel: img/cizim/takvim_eylul_1960.png, x: 0.36, boy: 0.56, alt: -0.2, bakis: on, giris: 0.15}
         satirlar:
           - {metin: "Kural şu: FDA 60 gün içinde yanıt vermezse, ilaç kendiliğinden onaylanmış sayılıyor.",   # 8. tur (dil N5, izlenme S7): 'FTA' duyuluyordu: Türkçe harf adlarıyla
@@ -1226,17 +1229,17 @@ bolumler:
         # 13. tur (izlenme N4): kesmede Kelsey'nin yüzü sıkışmasız şüpheci -> sakin -> (0,5 sn sonra) şüpheci
         # gidip geliyordu: B4.3'ün son yüzüyle (şüpheci) başlar
         karakterler:
-          - {id: k, gorsel: chars/kelsey_v2_supheci.png, taraf: sag, x: 0.84, boy: 0.56, giris: false}
+          - {id: k, gorsel: chars/kelsey_v2_supheci.png, taraf: sag, x: 0.82, boy: 0.56, giris: false}   # cila turu: B4.3 ile aynı yer
           - {id: t, gorsel: img/cizim/takvim_eylul_1960.png, x: 0.36, boy: 0.56, alt: -0.2, bakis: on, giris: false}
           - {id: r, gorsel: img/cizim/dosya_sinir_hasari_1961.png, x: 0.52, boy: 0.22, alt: -0.24, bakis: on}   # Gemini turu 2: yığın sağa gelince etiket örtülmesin: x 0,4 -> 0,52, boy 0,24 -> 0,22
           - {id: y, gorsel: img/kompozit/yigin_1.png, x: 0.35, boy: 0.28, alt: -0.07, bakis: on}   # Gemini turu 2 (animasyon S4): itme sonunda sol kenarda yarıdan fazlası kesiliyordu (x 0,2): yığın küçük (0,34 -> 0,28) ve içeride, dosya sağda (0,43 -> 0,52, boy 0,24 -> 0,22): itme bitince yığının solu kadrajın içinde, etiket açık
         satirlar:
           - "Kelsey dosyayı eksik buluyor."
           - "Derken sinir hasarı raporları geliyor. Hamilelikte güvenli mi? O da belirsiz."
-          - {metin: "Firma bastırıyor.\nKelsey her seferinde daha fazla veri istiyor.", sonra: 0.4}   # 12. tur (dil S10): SRT "Kelsey"i 1. satırın sonunda bırakıyordu
+          - {metin: "Firma bastırıyor.\nKelsey her seferinde daha fazla veri istiyor.", sonra: 0.4, hiz: 0.82}   # 12. tur (dil S10): SRT "Kelsey"i 1. satırın sonunda bırakıyordu
           - "Reddetmiyor ama onay da vermiyor."   # 8. tur (dil S1): Scientific American "Not rejected. Not approved."
         olaylar:
-          - {tip: damga, metin: "OTOMATİK ONAY", renk: [168, 0, 22], t: 0.0, x: 0.36, y: 0.88, boy: 80, aci: -6, kontur: true, inik: true, sure: 0.45}
+          - {tip: damga, metin: "OTOMATİK ONAY", renk: [168, 0, 22], t: 0.0, x: 0.36, y: 0.88, boy: 80, aci: -6, kontur: true, inik: true, sure: 0.15}   # cila turu (animasyon S3): takvim çıkarken damga 0,45 sn havada kalıyordu
           - {tip: cikis, karakter: t, t: 0.2}
           # GÜN 0'dan sonra zaman ilerler: sinir hasarı raporları 1961'de (dosya çizimindeki tarih)
           # 14. tur (animasyon M1): "GÜN 0" -> 9 kare çıplak "0" -> "1961" sıçrıyordu (şablon olay anında, değer yarı
@@ -1246,13 +1249,13 @@ bolumler:
           - {tip: giris, karakter: r, satir: 2, ofset: 0.88}   # Gemini turu 2: yeni çekimin kelime zamanına göre
           - {tip: kelime, metin: "GEBELİKTE GÜVENLİ Mİ?", satir: 2, an: son, ofset: -3.47, sure: 2.2, konum: ust}   # Gemini turu 2: yeni çekimin kelime zamanına göre
           - {tip: giris, karakter: y, satir: 3, ofset: 0.0}
-          - {tip: yuz, karakter: y, gorsel: img/kompozit/yigin_2.png, satir: 3, ofset: 1.6}
-          - {tip: yuz, karakter: y, gorsel: img/kompozit/yigin_3.png, satir: 3, an: son, ofset: -0.6}
+          - {tip: yuz, karakter: y, gorsel: img/kompozit/yigin_2.png, satir: 3, ofset: 2.05}   # cila turu: yeni hız/çekimin kelime zamanına göre
+          - {tip: yuz, karakter: y, gorsel: img/kompozit/yigin_3.png, satir: 3, an: son, ofset: -0.83}
           - {tip: yuz, karakter: k, gorsel: chars/kelsey_v2_kararli.png, satir: 4, ofset: 0.0}
           - {tip: kelime, metin: "ONAY YOK", satir: 4, ofset: 0.2, sure: 1.8, konum: ust}
         sfx:
-          - {ad: pop, satir: 3, ofset: 1.6, db: -8}
-          - {ad: pop, satir: 3, an: son, ofset: -0.6, db: -8}
+          - {ad: pop, satir: 3, ofset: 2.05, db: -8}
+          - {ad: pop, satir: 3, an: son, ofset: -0.83, db: -8}
 
       # B4.5 · 'klinik deneme' (Kevadon şişesi hesap sahibinin kararında; yedek: adsız şişe çizimi). 4. tur: "Arada bir
       # boşluk var:" satırı çıktı (dil hakemi: deyim gibi duyuluyordu "arada bir = ara sıra"); büro çizimi zemin;
@@ -1281,7 +1284,7 @@ bolumler:
         etiket: "doktor"
         ust: "‘Klinik deneme’ · ABD"
         gecis: karart              # 12. tur (kontrol, animasyon S3): kesmede Kelsey kaybolup köşeye yeniden giriyordu
-        konuk: [{id: k, gorsel: chars/kelsey_v2_kararli.png, x: 0.9, boy: 0.5, giris: 0.1, yon: sag}]   # 11. tur (M2): büronun yakın çekiminden kesmede köşede küçülerek zıplıyordu: sağdan girer
+        konuk: [{id: k, gorsel: chars/kelsey_v2_kararli.png, x: 0.88, boy: 0.5, giris: 0.1, yon: sag}]   # cila turu (animasyon N2)   # 11. tur (M2): büronun yakın çekiminden kesmede köşede küçülerek zıplıyordu: sağdan girer
         satirlar:
           - {metin: "1.267 doktor.", hiz: 0.95, tts: "Bin iki yüz altmış yedi doktor."}
           - {metin: "Yaklaşık 20.000 hasta.", tts: "Yaklaşık yirmi bin hasta."}
@@ -1387,7 +1390,7 @@ bolumler:
           - {tip: etiket, t: 0.4}
           - {tip: balon, karakter: a, metin: "Almanya'da reçetesiz satılıyor!", satir: 1, ofset: 0.9, sure: 2.3,
              agiz: [chars/temsilci_gulumsuyor_konusuyor_yari.png, chars/temsilci_gulumsuyor_konusuyor.png]}   # 9. tur (animasyon S10); 11. tur (animasyon S6): ara yarık ağız
-          - {tip: balon, karakter: a, metin: "Tamamen zehirsiz!", satir: 2, ofset: 0.35, sure: 1.6,
+          - {tip: balon, karakter: a, metin: "Tamamen zehirsiz!", satir: 2, ofset: 0.35, sure: 1.3,   # cila turu (izlenme N1): 1,6 sn ile "FİRMA? YIL? AD?" balonun üstüne biniyordu
              agiz: [chars/temsilci_gulumsuyor_konusuyor_yari.png, chars/temsilci_gulumsuyor_konusuyor.png]}
           - {tip: kelime, metin: "FİRMA? YIL? AD?", satir: 2, ofset: 1.8, sure: 2.2, konum: ust}
 
@@ -1436,18 +1439,18 @@ bolumler:
           - {id: s, gorsel: chars/kaymakcalan_v2_dusunceli.png, taraf: sag, x: 0.73, boy: 0.66, giris: false}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
           - {id: d, gorsel: img/cizim/dosya_ruhsat_basvurusu.png, x: 0.37, boy: 0.42, alt: -0.25, bakis: on, giris: false}   # Gemini turu 2: x 0,4 -> 0,37 (damga yüzden uzak inebilsin); 14. tur (animasyon S4): 0.32de "RUHSAT BAŞVURUSU" etiketi sol kenara teğetti; alt -0.36 -> -0.25 (dosya aşağıda): iki satırlık yazı dosyanın üst kenarına biniyordu
         satirlar:
-          - {metin: "Aynı tanıklıklara göre Kaymakçalan, ilacın etkili olabileceğini kabul ediyor.", sonra: 0.35, hiz: 0.85}   # 6. tur (dil S2; 0,9 hızı ancak %2 yavaşlatıyordu)
-          - {metin: "Ama zehirlilik deneylerinin yetersiz olduğunu söylüyor\nve olumsuz görüş veriyor.", hiz: 0.84, sonra: 1.6}
+          - {metin: "Aynı tanıklıklara göre Kaymakçalan, ilacın etkili olabileceğini kabul ediyor.", sonra: 0.35, hiz: 0.75}   # 6. tur (dil S2; 0,9 hızı ancak %2 yavaşlatıyordu)
+          - {metin: "Ama zehirlilik deneylerinin yetersiz olduğunu söylüyor\nve olumsuz görüş veriyor.", hiz: 0.78, sonra: 1.6}
         olaylar:
           - {tip: etiket, t: 0.2}
           - {tip: muzik, db: 3, t: 0.0, gecis: 1.5}   # 5. tur: dorukta kabarma
-          - {tip: kelime, metin: "ETKİLİ OLABİLİR…", satir: 1, ofset: 2.2, sure: 2.2, konum: ust, y: 0.15}   # 14. tur (animasyon S1, kontrol kenar bandı): yazı görselin üst kenarına biniyordu (dosya)
+          - {tip: kelime, metin: "ETKİLİ OLABİLİR…", satir: 1, ofset: 3.08, sure: 2.2, konum: ust, y: 0.15}   # 14. tur (animasyon S1, kontrol kenar bandı): yazı görselin üst kenarına biniyordu (dosya)
           - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_v2_ciddi.png, satir: 2, ofset: 0.3}
-          - {tip: kelime, metin: "…AMA ZEHİRLİLİK DENEYLERİ YETERSİZ", satir: 2, ofset: 0.6, sure: 2.3, konum: ust, y: 0.12}   # 10. tur (kontrol): sonunda saçına biniyordu; Gemini turu 2: kamera aşağı inince 0,14 -> 0,12
+          - {tip: kelime, metin: "…AMA ZEHİRLİLİK DENEYLERİ YETERSİZ", satir: 2, ofset: 0.45, sure: 2.3, konum: ust, y: 0.12}   # 10. tur (kontrol): sonunda saçına biniyordu; Gemini turu 2: kamera aşağı inince 0,14 -> 0,12
           # 9. tur (animasyon S3): damga yüz değişiminin tam üstüne iniyordu (kararlı yüz 4 kare görünmüyordu): önce
           # yüz değişir, damga 0,35 sn sonra dosyanın üstüne iner (daha küçük, yüzden uzak)
           - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_v2_kararli.png, satir: 2, an: son, ofset: 0.05}
-          - {tip: damga, metin: "OLUMSUZ GÖRÜŞ", renk: kirmizi, satir: 2, an: son, ofset: 0.4, x: 0.35, y: 0.545, boy: 104, aci: -7, inis: 1.2}   # 14. tur: dosya x 0.42 / alt -0.25 ile; Gemini turu 2: kamera aşağı, dosya ekranda yukarı: y 0,6 -> 0,545 (0,5te çerçevesi etiketin "BAŞVURUSU" yazısının üstünden geçiyordu), x 0,42 -> 0,35 (dosyayla), boy 116 -> 104 (sağ ucu saça değiyordu), inis 1,2 (inerken yüzü süpürüyordu)
+          - {tip: damga, metin: "OLUMSUZ GÖRÜŞ", renk: kirmizi, satir: 2, an: son, ofset: 0.4, x: 0.35, y: 0.555, boy: 104, aci: -7, inis: 1.2}   # cila turu (animasyon N4): 0,545te çerçevenin üstü etiket kutusuna değiyordu; 14. tur: dosya x 0.42 / alt -0.25 ile; Gemini turu 2: kamera aşağı, dosya ekranda yukarı: y 0,6 -> 0,545 (0,5te çerçevesi etiketin "BAŞVURUSU" yazısının üstünden geçiyordu), x 0,42 -> 0,35 (dosyayla), boy 116 -> 104 (sağ ucu saça değiyordu), inis 1,2 (inerken yüzü süpürüyordu)
           - {tip: muzik, db: -16, satir: 2, an: son, gecis: 0.2}   # 11. tur (izlenme 4): -40'ta 6:26'da -70 dBFS
         sfx: [{ad: boom, satir: 2, an: son, ofset: 0.54, db: -8}]
 
@@ -1463,9 +1466,9 @@ bolumler:
           - {id: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gulumsuyor.png, taraf: sol, x: 0.3, giris: false}
           - {id: k, gorsel: img/cizim/numune_kutusu_tabletler.png, x: 0.6, boy: 0.26, alt: -0.1, bakis: on, giris: false}
         satirlar:
-          - {metin: "Bakanlık da bu görüşe uyuyor. İlaca ruhsat verilmiyor.", sonra: 1.15}   # 6. tur (dil S4): 'Talih domite' bölünmesi   # damga + müzik nefesi
+          - {metin: "Bakanlık da bu görüşe uyuyor. İlaca ruhsat verilmiyor.", sonra: 1.15, hiz: 0.88}   # 6. tur (dil S4): 'Talih domite' bölünmesi   # damga + müzik nefesi
         olaylar:
-          - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 1, an: son, ofset: -1.5}
+          - {tip: yuz, karakter: a, gorsel: episodes/talidomit-turkiye/chars/temsilci_gergin.png, satir: 1, an: son, ofset: -2.24}   # cila turu: yeni hız/çekimin kelime zamanına göre ("uyuyor" sonu)
           - {tip: damga, metin: "RUHSAT VERİLMEDİ", renk: [0, 80, 35], satir: 1, an: son, ofset: 0.08, x: 0.755, y: 0.6, boy: 88, aci: -7, kontur: true, inis: 1.22}   # Gemini turu 2 (kontrol: inen damga): 1,85 kattan inerken temsilcinin yüzüne 244 px biniyordu; 6. tur (S4): gri-yeşil duvarda okunmuyordu; 10. tur (kontrol): şapkasının ucuna biniyordu
           - {tip: muzik, db: 4, satir: 1, an: son, ofset: 0.3, gecis: 0.6}
         sfx: [{ad: turkiye, satir: 1, an: son, ofset: 0.05, db: -11}]
@@ -1551,13 +1554,13 @@ bolumler:
           - {id: f, gorsel: img/kompozit/baski_tavuk.png, x: 0.3, boy: 0.5, alt: -0.36, bakis: on, canli: false}
           - {id: b, gorsel: chars/veteriner_v2_sakin.png, taraf: sag, x: 0.72, boy: 0.7, giris: 0.1}   # Gemini turu (23.10): etkin yüz boyu <= 0,80 (UZUN_FORMAT §2.9)
         satirlar:
-          - {metin: "Sık anlatılan ama kimsenin belgeleyemediği ikinci bir hikâye daha var.", sonra: 0.4,   # 8. tur (dil N1): virgülsüz (TDK); kayıt aynı
+          - {metin: "Sık anlatılan ama kimsenin belgeleyemediği ikinci bir hikâye daha var.", sonra: 0.4, hiz: 0.85,   # 8. tur (dil N1): virgülsüz (TDK); kayıt aynı
              tts: "Sık anlatılan, ama kimsenin belgeleyemediği ikinci bir hikâye daha var."}
           - {metin: "Anlatılana göre,\nAnkara'daki Veteriner Fakültesi'nden¦virolog Süreyya Tahsin Aygün,\nilacı tavuk embriyolarında denemiş ve Bakanlığı uyarmış.", sonra: 0.4, hiz: 0.9,   # 14. tur (dil S7): "Ankara'daki | Veteriner Fakültesi'nden" iki bloğa bölünüyordu   # 11. tur (dil S2a): SRT özel adı bölüyordu
              tts: "Anlatılana göre Ankara'daki Veteriner Fakültesi'nden virolog Süreyya Tahsin Aygün, ilacı tavuk embriyolarında denemiş ve Bakanlığı uyarmış."}   # 8. tur (dil S2): kurum adı + yavaş; 10. tur (dil S1): SRT kırma ipucu sesin durduğu yerde ("Aygün,"dan sonra 0,35 sn)
         olaylar:   # 2. hakem turu: gerçek kişiye balon (uydurma söz) yok; isim önce, özet "anlatılana göre" ile
           # 10. tur (animasyon M1): uzun etiket 5 sn çenesinin ve ağzının altındaydı (motor küçültüyordu): kısa ad + unvan
-          - {tip: isim, ad: "Süreyya Tahsin Aygün", unvan: "Ord. Prof. · virolog (1895–1981)", satir: 1, ofset: 0.94, sure: 5.2, konum: sol}   # 7. tur (animasyon B5): sağda çenesine biniyordu   # Gemini turu 2: yeni çekimin kelime zamanına göre
+          - {tip: isim, ad: "Süreyya Tahsin Aygün", unvan: "Ord. Prof. · virolog (1895–1981)", satir: 1, ofset: 1.11, sure: 5.2, konum: sol}   # 7. tur (animasyon B5): sağda çenesine biniyordu   # Gemini turu 2: yeni çekimin kelime zamanına göre
           - {tip: kelime, metin: "ANLATILANA GÖRE", satir: 2, ofset: 0.1, sure: 2.0, konum: ust}
           - {tip: kelime, metin: "TAVUK EMBRİYOSU DENEYİ?", satir: 2, an: son, ofset: -3.28, sure: 2.4, konum: ust, y: 0.1}   # 14. tur (animasyon S1, kontrol kenar bandı): yazı görselin üst kenarına biniyordu   # Gemini turu 2: yeni çekimin kelime zamanına göre
           - {tip: giris, karakter: f, satir: 2, an: son, ofset: -3.88}   # Gemini turu 2: yeni çekimin kelime zamanına göre
@@ -1582,19 +1585,19 @@ bolumler:
           - {id: b, metin: "ANMA YAZILARI, 1994", alt: "danışmanlık: var", gorsel: img/kompozit/bulten_kagit.jpg, x: 0.15, y: 0.71, en: 300, egim: 2}
         satirlar:
           - {metin: "Şimdi elimizdekilere bakalım.", hiz: 0.86}
-          - {metin: "Kaymakçalan'ın rolü, meslektaşlarının tanıklığına dayanıyor.", sonra: 0.4}
-          - {metin: "Ölümünün onuncu yılındaki anma yazıları, Bakanlığa ilaç konusunda danışmanlık yaptığını anlatıyor.", hiz: 0.92}   # 8. tur (dil S3): bölündü (8,2 hece/sn)
-          - {metin: "Ama bu yazılarda talidomitten hiç söz edilmiyor.", once: 0.35, sonra: 0.6}   # 9. tur (dil S1): özne belirsizdi (Kaymakçalan söz etmiyor gibi)
+          - {metin: "Şükrü Kaymakçalan'ın rolü, meslektaşlarının tanıklığına dayanıyor.", sonra: 0.4, hiz: 0.84}   # cila turu (dil N1): Whisper "Kaymak Çalan'ın" bölüyordu; tam ad. Yeni çekim 8,1 hece/sn idi: 0,84 (komşu satırla aynı; medium "Kaymakçalan'ın")
+          - {metin: "Ölümünün onuncu yılındaki anma yazıları, Bakanlığa ilaç konusunda danışmanlık yaptığını anlatıyor.", hiz: 0.84}   # 8. tur (dil S3): bölündü (8,2 hece/sn)
+          - {metin: "Ama bu yazılarda talidomitten hiç söz edilmiyor.", once: 0.35, sonra: 1.15}   # cila turu (animasyon S1): 0,6 ile "TALİDOMİT: YOK" 0,8 sn duruyordu; 1,15 ile oturduktan sonra ~1,3 sn   # 9. tur (dil S1): özne belirsizdi (Kaymakçalan söz etmiyor gibi)
         olaylar:
           - {tip: kart, id: m, t: 0.0}   # 12. tur (izlenme 6): 2 sn boş/tek kartlı mantar görünüyordu
           - {tip: kart, id: k, satir: 1, an: son, ofset: 0.0}
           - {tip: ip, a: k, b: m, satir: 1, an: son, ofset: 0.4}   # 15. tur (animasyon M1b): sabit ipler ucu iğneye 55 px varmıyordu
           - {tip: giris, karakter: s, satir: 2, ofset: 0.4}
           - {tip: kart, id: b, satir: 3, ofset: 0.2}
-          - {tip: ip, a: b, b: k, satir: 3, an: son, ofset: -2.0}   # 6. tur: 6 sn yeni vuruş yoktu
+          - {tip: ip, a: b, b: k, satir: 3, an: son, ofset: -2.19}   # 6. tur: 6 sn yeni vuruş yoktu
           # Gemini turu 2 (izlenme N3, animasyon N7): yavaş okumayla panoda 3,6 sn durağan an: "danışmanlık" sözünde
           # (Gemini kelime zamanı 4,06) Kaymakçalan sakin yüze geçer (anma yazısının söylediği), sonra talidomit yok: ciddi
-          - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_v2_sakin.png, satir: 3, ofset: 4.05}
+          - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_v2_sakin.png, satir: 3, ofset: 4.45}   # cila turu: yeni hız/çekimin kelime zamanına göre ("danışmanlık" 4,46)
           - {tip: yuz, karakter: s, gorsel: chars/kaymakcalan_v2_ciddi.png, satir: 4, ofset: 0.0}   # 14. tur (izlenme S5): 7:19-7:23 arası 4,6 sn yeni görsel yoktu
           - {tip: damga, kart: b, metin: "TALİDOMİT: YOK", satir: 4, an: son, ofset: 0.05, boy: 72, aci: -6}   # 8. tur: satır ikiye bölündü
           - {tip: sarsinti, satir: 4, an: son, ofset: 0.19, guc: 5, sure: 0.1}   # damganın kâğıda değdiği an (iniş 0,14 sn)
@@ -1617,12 +1620,12 @@ bolumler:
           - {id: n, metin: "BELGE SUNULAMADI", alt: "TFD Bülteni, 2012", stil: merkez, x: 0.8, y: 0.64, en: 290, egim: 6}
         ipler: [[g, m]]
         satirlar:
-          - "Tavuk embriyosu deneyinin bilinen en eski kaynağı, 2008'de çıkan bir haber."
+          - {metin: "Tavuk embriyosu deneyinin bilinen en eski kaynağı, 2008'de çıkan bir haber.", hiz: 0.88}
           - {metin: "Sorulduğunda, haberin kaynağı belge gösteremedi.", sonra: 1.0, hiz: 0.9}   # 12. tur (dil S9): "ise" tekrarı azaldı
         olaylar:
           - {tip: kart, id: g, satir: 1, ofset: 0.3}
-          - {tip: ip, a: g, b: m, satir: 1, ofset: 1.6}
-          - {tip: damga, metin: "İLK KAYNAK: 2008 HABERİ", renk: kirmizi, kontur: true, satir: 1, an: son, ofset: -0.4, x: 0.39, y: 0.8, boy: 56, aci: -4, sure: 3.4, inis: 1.2}   # 14. tur (animasyon N1): 0.42'de AYGÜN kartının köşesine değiyordu
+          - {tip: ip, a: g, b: m, satir: 1, ofset: 1.72}
+          - {tip: damga, metin: "İLK KAYNAK: 2008 HABERİ", renk: kirmizi, kontur: true, satir: 1, an: son, ofset: -0.5, x: 0.39, y: 0.8, boy: 56, aci: -4, sure: 3.4, inis: 1.2}   # 14. tur (animasyon N1): 0.42'de AYGÜN kartının köşesine değiyordu
           - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_ciddi.png, satir: 2, ofset: 0.5}
           - {tip: kart, id: n, satir: 2, an: son, ofset: -0.9}
         sfx: [{ad: hit, satir: 2, an: son, ofset: 0.1, db: -10}]
@@ -1711,7 +1714,7 @@ bolumler:
         olaylar:
           - {tip: basla, t: 0.1}
           # 10. tur (izlenme S5): damga Kuzey Denizi/İskandinavya'ya taşıyordu: küçük ve Almanya'nın tam üstünde
-          - {tip: damga, metin: "DOĞU ALMANYA: VAKA VAR", renk: [196, 16, 28], t: 0.5, x: 0.742, y: 0.272, boy: 58, aci: -5, sure: 2.6, kontur: true}   # 14. tur (izlenme N9): turuncu/lacivert telefonda okunmuyordu
+          - {tip: damga, metin: "DOĞU ALMANYA: VAKA VAR", renk: [196, 16, 28], t: 0.5, x: 0.70, y: 0.272, boy: 58, aci: -5, sure: 2.6, kontur: true, inis: 1.35}   # cila turu (animasyon N1): inerken sağ kenardan taşıyordu   # 14. tur (izlenme N9): turuncu/lacivert telefonda okunmuyordu
           - {tip: ulke, kod: TUR, satir: 1, an: son, ofset: 0.0}
           - {tip: kelime, metin: "SAYILI ÜLKELERDEN BİRİ", satir: 2, ofset: 1.6, sure: 2.4, konum: ust}
         sfx: [{ad: turkiye, satir: 2, an: son, ofset: 0.1, db: -11}]
@@ -1827,16 +1830,17 @@ bolumler:
         # 8. tur (dil M2): 'multipl' "multi", 'cüzzamın' "cüzdanın" duyuluyordu. 3 'cüzzamın' çekiminin hiçbiri 2 nat
         # eşiğini geçmedi (-0,24 / +1,44 / -0,18): kelime "bu hastalığın" oldu (bir önceki sahne cüzzam; ekrandaki kart
         # "cüzzam komplikasyonu (ENL)" ve "multipl miyelom" yazıyor)
-        satirlar: ["Talidomit yavaş yavaş geri dönüyor: önce bu hastalığın bir komplikasyonu için, sonra bir kan kanseri olan miyelom için."]
+        satirlar: ["İlaç yavaş yavaş geri dönüyor: önce bu hastalığın bir komplikasyonu için, sonra bir kan kanseri olan miyelom için."]   # cila turu (dil S2): "Talidomit" iki satır önce söylendi
         olaylar:
           - {tip: nokta, indeks: 1, t: 0.3}
-          - {tip: nokta, indeks: 2, satir: 1, ofset: 2.4}
-          - {tip: nokta, indeks: 3, satir: 1, an: son, ofset: -2.4}
-          - {tip: nokta, indeks: 4, satir: 1, an: son, ofset: -1.0}
-          - {tip: it, satir: 1, ofset: 2.4, guc: 0.04, sure: 0.9, x: 0.56, y: 0.5}
-          - {tip: it, satir: 1, an: son, ofset: -2.4, guc: 0.04, sure: 0.9, x: 0.6, y: 0.5}
-          - {tip: it, satir: 1, an: son, ofset: -1.0, guc: 0.04, sure: 0.9, x: 0.64, y: 0.5}
-          - {tip: yuz, karakter: s, gorsel: chars/sheskin_v2_sakin.png, satir: 1, ofset: 2.4}
+          # cila turu: yeni çekim ("İlaç yavaş yavaş…"): noktalar "Önce" (1,96 -> 2,06), "sonra" (4,25 -> 4,32), "olan" (5,33 -> 5,38) sözlerinde
+          - {tip: nokta, indeks: 2, satir: 1, ofset: 1.96}
+          - {tip: nokta, indeks: 3, satir: 1, an: son, ofset: -1.98}
+          - {tip: nokta, indeks: 4, satir: 1, an: son, ofset: -0.9}
+          - {tip: it, satir: 1, ofset: 1.96, guc: 0.04, sure: 0.9, x: 0.56, y: 0.5}
+          - {tip: it, satir: 1, an: son, ofset: -1.98, guc: 0.04, sure: 0.9, x: 0.6, y: 0.5}
+          - {tip: it, satir: 1, an: son, ofset: -0.9, guc: 0.04, sure: 0.9, x: 0.64, y: 0.5}
+          - {tip: yuz, karakter: s, gorsel: chars/sheskin_v2_sakin.png, satir: 1, ofset: 1.96}
 
       # B6.3 · Brezilya: geri dönüşün bedeli (kutudaki uyarı: çarpılı kadın başı); 4. tur: baskı sola, anlatıcı sağda
       - tip: foto
@@ -1934,7 +1938,7 @@ bolumler:
           - {tip: etiket, t: 0.3}
           - {tip: giris, karakter: m, satir: 1, ofset: 0.5}
           # 14. tur (izlenme S6): gururlu vuruş gri çizgili makalede küçük, soluk damgalarla geçiyordu: 58 pt, koyu + kontur
-          - {tip: damga, metin: "ADINI VEREN: HULUSİ BEHÇET (1889–1948)", renk: [40, 40, 40], kontur: true, satir: 2, ofset: 2.08, x: 0.3, y: 0.2, boy: 58, aci: -3, sure: 3.8}   # Gemini turu 2: yeni çekimin kelime zamanına göre
+          - {tip: damga, metin: "ADINI VEREN: HULUSİ BEHÇET (1889–1948)", renk: [40, 40, 40], kontur: true, satir: 2, ofset: 2.08, x: 0.36, y: 0.2, boy: 58, aci: -3, sure: 3.8, inis: 1.2}   # cila turu (animasyon N1): inerken sol kenardan taşıyordu   # Gemini turu 2: yeni çekimin kelime zamanına göre
           - {tip: damga, metin: "ANN INTERN MED · 1998", renk: mavi, kontur: true, satir: 2, an: son, ofset: -1.0, x: 0.26, y: 0.42, boy: 58, aci: -5}
           - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_mutlu.png, satir: 1, an: son, ofset: -0.6}   # 9. tur (animasyon S9): mutlu yüz
           - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_fark.png, satir: 3, ofset: 0.45}   # 14. tur (animasyon S2): damga 0,35'te iner; 1,0'da tepki 0,65 sn geç kalıyordu
@@ -1995,7 +1999,8 @@ bolumler:
         gecis: kaydir
         muzik_mod: drone
         satirlar:
-          - {metin: "O reklamı hatırlayın:", hiz: 0.71, db: 0.5}   # 9. tur (dil S5): +1,7 dB, ardından Aylin -0,6: 2,3 dB basamak; 12. tur (dil S4): 0,88 tempo (ses_onarim)
+          - {metin: "Şimdi o reklamı hatırlayın:", hiz: 0.85, once: 0.15, db: 0.5,
+             tarz: "Bir gerilim dizisinin anlatıcısı gibi oku: alçak, sakin ama gergin, dinleyene 'sen' diye sesleniyor. Noktalarda ve üç noktada kısa duraklar ver. Doğal İstanbul Türkçesi. Bu satırı yavaş ve tane tane söyle; reklamı kelimesi net duyulsun."}   # cila turu (dil S1): "O reklamı" kısa ve hızlıydı   # 9. tur (dil S5): +1,7 dB, ardından Aylin -0,6: 2,3 dB basamak; 12. tur (dil S4): 0,88 tempo (ses_onarim)
           - {ses: kadin, metin: "Tamamen zehirsiz.", tarz: "1950'lerin bir radyo reklamındaki kadın spiker gibi söyle: tatlı, güven veren, ikna edici.", db: 0.0, once: 0.6, sonra: 0.5}   # 12. tur (dil S4): alıntının çevresinde nefes
           - {metin: "Bugün Türkiye'deki resmî ürün bilgisinde şu uyarı var:", hiz: 0.88}   # 12. tur (dil S4): doruk aceleye geliyordu; "ise" çıktı
         olaylar:
@@ -2067,13 +2072,13 @@ bolumler:
         gecis: kesme               # 8. tur (M2)
         konuk: [{id: z, gorsel: chars/anlatici_v2_dusunceli.png, x: 0.89, boy: 0.46, giris: false, yon: sag}]   # 5. tur
         satirlar:
-          - {metin: "Amerika, ‘hayır’ diyen uzmanını ödüllendirdi; adını tarihe yazdı.", sonra: 0.5}
+          - {metin: "Amerika, ‘hayır’ diyen uzmanını ödüllendirdi; adını tarihe yazdı.", sonra: 0.5, hiz: 0.88}
           # 6. tur (izlenme M1): videonun tezi; damga cümle bitince iner ve 1,3 sn sessizlikte okunur (0,55 sn'ydi)
           - {metin: "Ankara'daki ‘hayır’ kararının ise bugün yayımlanmış tek bir belgesi bile yok.", sonra: 1.3, hiz: 0.92,
              tts: "Ankara'daki hayır kararının ise bugün yayımlanmış tek bir belgesi bile yok."}   # 10. tur (dil S2): "hayrın" (iyilik) okunuyordu; Gemini turu: "hayır kararının"
         olaylar:
           - {tip: giris, karakter: z, satir: 1, ofset: 0.3}   # 6. tur (S5): ilk 5 sn boş fotoğraftı
-          - {tip: kelime, metin: "ADINI TARİHE YAZDI", satir: 1, an: son, ofset: -1.2, sure: 1.6, konum: ust}
+          - {tip: kelime, metin: "ADINI TARİHE YAZDI", satir: 1, an: son, ofset: -1.2, sure: 1.6, konum: ust}   # cila turu: yeni hız/çekimin kelime zamanına göre ("adını")
           - {tip: panel, taraf: sag, satir: 2, ofset: 0.0}
           - {tip: yuz, karakter: z, gorsel: chars/anlatici_v2_ciddi.png, satir: 2, an: son, ofset: -0.2}
           - {tip: soluk, taraf: sol, satir: 2, ofset: 1.0}
@@ -2214,11 +2219,11 @@ paket:
       ile başlık 3'ü ('10 Binden Fazla Bebeği…': bedeli söyler) karşılaştır. Başlık 2 ('Kimdi?') yedek: video adı
       yalnız meslektaş tanıklığıyla verebiliyor, 'tık tuzağı' yorumu çekebilir."
     - "Sabit yorum kapanıştaki soruyla aynı (A/B/C): yayından hemen sonra sabitle; ilk cevaplara kalp ver."
-    - "Süre 10:54 (paketin başındaki 'Süre' satırı): UZUN_FORMAT'taki 8-10 dk kararının 54 sn, ADIM_ADIM'daki 10:15
-      sınırının 39 sn üstünde. Neden: Gemini anlatıcısı (Charon 1,25x) Cartesia'dan ~%4 yavaş okuyor (onayladığın
-      10:33'lük kurgu +21 sn); 2. hakem turunda kesik sonlu satırlar doğal sönümle yeniden alındı, haritadaki 1,8 sn'lik
-      durak kısaldı. YouTube için sorun değil (ara reklam 8 dk'dan sonra serbest); kısaltmak istersen söyle, aday:
-      Behçet sahnesi (~20 sn)."
+    - "Süre 10:59 (paketin başındaki 'Süre' satırı): UZUN_FORMAT'taki 8-10 dk kararının 59 sn, ADIM_ADIM'daki 10:15
+      sınırının 44 sn üstünde. Neden: Gemini anlatıcısı (Charon 1,25x) Cartesia'dan ~%4 yavaş okuyor (onayladığın
+      10:33'lük kurgu +26 sn); 2. hakem turunda kesik sonlu satırlar doğal sönümle yeniden alındı; cila turunda
+      hakemlerin isteğiyle doruk (Ankara) ve birkaç vurgu satırı yavaşladı (+5 sn). YouTube için sorun değil (ara reklam
+      8 dk'dan sonra serbest); kısaltmak istersen söyle, aday: Behçet sahnesi (~20 sn)."
     - "Short (teslim/talidomit-turkiye/, 22.10'da yeni müzik ve kanıtla yeniden render edildi, yayında:
       https://youtube.com/shorts/Fb77-MsYmRc): Short paketi uzun videoya henüz bağlı değil. Uzun video yayınlanınca:
       episodes/talidomit-turkiye/episode.yaml'a uzun_video: <uzun videonun bağlantısı>, sonra python -m wojak paket
@@ -2232,11 +2237,18 @@ paket:
   # dökümünde metinle aynı ve hiçbirinin sonu sesli kesik değil (QA'nın yeni "kesik son" ölçüsü); aşağıdakiler yine de kulak
   # ister (gerçek kişi adı, bilinçli değişiklik, yeniden alınan çekim).
   dinle:
-    - {ara: "Şükrü Kaymakçalan", not: "Gerçek kişinin adı, dorukta tanıtım anı. Hakem turunda ilk çekim adın son sesinde kesikti (Whisper 'Kaymakçala'): sonu doğal biten yeni çekim, biraz yavaş (0,9). Adın sonundaki 'n' duyuluyor mu?"}
-    - {ara: "Kaymakçalan'ın rolü", not: "Aynı ad, ikinci geçiş (Whisper 'Kaymak Çalan'ın' diye bölüyor; okunuş tek kelime mi?)"}
+    - {ara: "farmakolog: Şükrü Kaymakçalan", not: "Gerçek kişinin adı, dorukta tanıtım anı. Hakem turunda ilk çekim adın son sesinde kesikti (Whisper 'Kaymakçala'): sonu doğal biten yeni çekim, biraz yavaş (0,9). Adın sonundaki 'n' duyuluyor mu?"}
+    - {ara: "Şükrü Kaymakçalan'ın rolü", not: "Cila turu: metin 'Şükrü Kaymakçalan'ın rolü…' (tam ad), yeni çekim, hız 0,84; medium tam 'Şükrü Kaymakçalan'ın' yazıyor, small her geçişte olduğu gibi 'kaymak çalanın' diye bölüyor (sözlük etkisi). Ad tek kelime gibi akıyor mu?"}
     - {ara: "Nejat Eczacıbaşı", not: "Whisper medium bu adı 7 çekimin 6'sında 'Necad' yazıyor (small 'Nezat': j sürtünmeli duyuluyor); seçilen çekim 'Ne-jat' yazımıyla ve sonu kesik değil. 'Necat' gibi duyarsan söyle"}
     - {ara: "Hesaplara göre yalnız Grünenthal", not: "Firma adı: Whisper 'Gürünentel' yazdı (öteki iki geçişte 'Grünenthal'); Türkçe okunuşa yakın"}
-    - {ara: "taahhütlü bir mektupla", not: "'taahhütlü' Whisper'da 'tâhütlü' (doğruya yakın); kulak 'tahitli' duyarsa metin: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'"}
+    - {ara: "taahhütlü bir mektupla", not: "Cila turu: okunuş 'ta-ah-hüt-lü', 4 çekimden seçilen çekimde medium ve small ikisi de 'taahütlü' yazıyor (iki a duyuluyor; eski çekim 'tahitli' gibiydi). Hâlâ 'tahitli' duyarsan yedek metin: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'"}
+    - {ara: "Şimdi o reklamı hatırlayın", not: "Cila turu: 'O reklamı' 'O rekamı' duyuluyordu: metin 'Şimdi o reklamı hatırlayın:', yavaş ve tane tane (senin tarz metnin aynen + not), yeni çekim; medium ve small ikisi de doğru yazıyor. 'reklamı'nın l'si duyuluyor mu?"}
+    - {ara: "Oysa kandaki", not: "Cila turu: 'Oysa'dan sonra 0,92 sn durak vardı; TTS'e virgül, yeni çekim (durak ~0,15 sn). Akış doğal mı?"}
+    - {ara: "Bakanlık da bu görüşe", not: "Cila turu: dorukta hız 0,88; 7 çekimden medium ve small'un ikisinin de doğru yazdığı tek çekim seçildi (öteki çekimler 'göreşe/görüşü'). Son hece '-yor' yumuşak sönüyor (ham sonu -27 dB): 'verilmiyor' tam mı?"}
+    - {ara: "Tavuk embriyosu", not: "Cila turu: hız 0,88 ile eski çekim 'emriyosu' duyuluyordu: yeni çekim (medium 'embriyosu', small 'embryosu'). 'b' duyuluyor mu?"}
+    - {ara: "İlaç yavaş yavaş geri dönüyor", not: "Cila turu: 'Talidomit' tekrarı yerine 'İlaç' (yeni çekim). 'miyelom' Whisper'da 'mielom' (y kayması; okunuş aynı)"}
+    - {ara: "eczanelerde satılamıyor", not: "'Ruhsatı yok.': medium doğru, small 'Rus satı yok' yazıyor (h zayıf). Önbellekte başka çekim yok; kulak 'ruhsat' duyuyor mu?"}
+    - {ara: "Aynı tanıklıklara göre", not: "Cila turu: doruk yavaşladı (hız 0,75 / 0,78 / 0,88; 'Sık anlatılan' 0,85, 'Ölümünün onuncu' 0,84). Yavaşlatma (atempo) sesi bozuyor mu, yoksa ağırbaşlı mı?"}
     - {ara: "ağır bir lepra hastası", not: "Bilinçli değişiklik: 'cüzzam' Gemini'de de 4 yazımda 'cüzdan/cüzlem' duyuldu: konuşmada 'lepra', ekranda 'LEPRA (CÜZZAM)'"}
     - {ara: "virolog Süreyya Tahsin Aygün", not: "Bu satırın iki eski çekimi tarz tarifini sesli okumuştu; seçilen çekim temiz ve sonu kesik değil (hakem turunda 'uyarmış' kesikti): başında fazladan söz olmadığını dinle"}
     - {ara: "‘hayır’ kararının ise", not: "'hayır'ın' 'hayrını' duyuluyordu: metin 'hayır kararının'; 'yayımlanmış' Whisper'da 'yayınlanmış' (tireli yazım bile tam tutmuyor): 'yayım-' duyuluyor mu?"}

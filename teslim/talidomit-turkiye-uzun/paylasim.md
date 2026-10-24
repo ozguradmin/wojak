@@ -1,8 +1,8 @@
 # 46 Ülkede Satılan İlaca Türkiye Neden ‘Hayır’ Dedi? — uzun video paketi
 
-Süre: **10:54** (654.6 sn), 90 sahne, 8 bölüm.
+Süre: **11:00** (660.3 sn), 90 sahne, 8 bölüm.
 Video: `talidomit-turkiye-uzun.mp4` (1920x1080, 30 fps, H.264 + AAC 48 kHz)
-Ölçüm (mp4): -14.0 LUFS, tepe -2.5 dBTP; senkron: tamam
+Ölçüm (mp4): -14.0 LUFS, tepe -2.3 dBTP; senkron: tamam
 
 ## Başlık alternatifleri
 
@@ -19,13 +19,13 @@ Kısa hâli (Short): https://youtube.com/shorts/Fb77-MsYmRc
 
 Bölümler
 0:00 Giriş
-0:44 1 · Zehirsiz Mucize
+0:46 1 · Zehirsiz Mucize
 2:14 2 · Dünyayı Dolaşan Hap
 3:19 3 · On İki Gün
 5:03 4 · Hayır Diyen Kadın
-6:14 5 · Ankara'da Bir ‘Hayır’
-8:37 6 · Geri Dönen Hap
-10:09 Kapanış
+6:15 5 · Ankara'da Bir ‘Hayır’
+8:42 6 · Geri Dönen Hap
+10:14 Kapanış
 
 Kaynaklar
 - Özdemir O., 'Türkiye'de Talidomid Gerçeği', TFD E-Bülteni 114 (2012): http://www.tfd.org.tr/sites/default/files/Klasor/Dosyalar/ebultenler/114_2012_4_0.pdf
@@ -68,13 +68,13 @@ Seslendirme yapay zekâ ile üretilmiştir (Google Gemini). Karakterler canland�
 
 ```
 0:00 Giriş
-0:44 1 · Zehirsiz Mucize
+0:46 1 · Zehirsiz Mucize
 2:14 2 · Dünyayı Dolaşan Hap
 3:19 3 · On İki Gün
 5:03 4 · Hayır Diyen Kadın
-6:14 5 · Ankara'da Bir ‘Hayır’
-8:37 6 · Geri Dönen Hap
-10:09 Kapanış
+6:15 5 · Ankara'da Bir ‘Hayır’
+8:42 6 · Geri Dönen Hap
+10:14 Kapanış
 ```
 
 ## Etiketler
@@ -117,33 +117,40 @@ Videoda yanlış bulduğunuz bir bilgi varsa kaynağıyla birlikte yazmanız yet
 - [ ] Altyazı (.srt) yüklendi, dil: Türkçe
 - [ ] Etiketler yapıştırıldı; kategori: Eğitim (ya da Kişiler ve Bloglar), dil: Türkçe
 - [ ] Kitle: 'Çocuklara özel değil'
-- [ ] Bitiş ekranı (son ~12 sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). İstersen yalnız 'Abone ol' öğesini **10:43**'ten itibaren videodaki sağ üstteki boş alana koy. Studio bitiş ekranını varsayılan olarak son 20 sn'ye koyar: başlangıcını **10:43**'e sürükle (daha erken başlarsa önceki sahnenin yazılarının üstüne biner). Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). Kanal filigranını AÇ: Studio > Özelleştirme > Markalama > **Video filigranı** (tıklanınca abone olunur; görünme: videonun tamamı). Bu videoda gömülü filigran yok (UZUN_FORMAT §2.8, senin 15.10 kararın)
+- [ ] Bitiş ekranı (son ~11 sn, kapanış çağrısı): video kutusu EKLEME (kanalda henüz yeterli uzun video yok; sahnenin kendi abone/zil/beğen animasyonu var). İstersen yalnız 'Abone ol' öğesini **10:49**'ten itibaren videodaki sağ üstteki boş alana koy. Studio bitiş ekranını varsayılan olarak son 20 sn'ye koyar: başlangıcını **10:49**'e sürükle (daha erken başlarsa önceki sahnenin yazılarının üstüne biner). Not: Studio bitiş ekranında en az bir video ya da oynatma listesi öğesi isteyebilir; yalnız 'Abone ol' kaydedilmezse bitiş ekranını BOŞ bırak (kapanış sahnesi çağrıyı zaten yapıyor). Kanal filigranını AÇ: Studio > Özelleştirme > Markalama > **Video filigranı** (tıklanınca abone olunur; görünme: videonun tamamı). Bu videoda gömülü filigran yok (UZUN_FORMAT §2.8, senin 15.10 kararın)
 - [ ] **Shorts > İlgili video**: kısa sürümün (Short) Studio düzenleme sayfasında 'İlgili video' olarak BU uzun video seçildi (Short izleyicisini uzun videoya taşır)
 - [ ] Short'un açıklamasına 'Uzun hâli kanalda' satırı eklendi
 - [ ] Short bağlantısı açıklamada doğru (https://youtube.com/shorts/Fb77-MsYmRc)
 - [ ] Sabit yorum yazıldı ve sabitlendi
 - [ ] 'Değiştirilmiş ya da yapay içerik' sorusu: 'Hayır' öner. Seslendirme yapay zekâ (Google Gemini TTS) ama yalnız anlatıcı ile reklam sloganı ve ürün bilgisi alıntıları; gerçek bir kişinin sesi ya da görüntüsü üretilmedi, sahneler açıkça çizim. Açıklamadaki 'Seslendirme yapay zekâ ile üretilmiştir (Google Gemini)' satırı kalsın.
-- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:19 (3. bölüm kartı: 3:18.633–3:20.033), 6:14 (5. bölüm kartı: 6:13.867–6:15.267)** (otomatik ara reklam kapalı)
+- [ ] Para kazanma: video 8 dk'yı geçiyorsa ara reklam yerleri elle yerleştirildi: **3:19 (3. bölüm kartı: 3:18.600–3:20.000), 6:15 (5. bölüm kartı: 6:14.867–6:16.267)** (otomatik ara reklam kapalı)
 - [ ] Görsel atıfları açıklamada (CC BY-SA görseller atıf ister); telif kararları verildi (aşağıdaki 'Telif notu' bölümü)
 - [ ] **Yayından önce kulakla dinle** (yapay zekâ seslendirmesi; satırın başladığı an). Kabul edilemeyen varsa yayımlama, bildir:
-  - 0:31 «Tamamen zehirsiz.» — İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt
-  - 1:41 «Bu arada bir ayrıntı: Batı Almanya'da o…» — Gemini bu girişi komşularından ~3,5 dB yüksek okuyordu: ilk öbek 3 dB kısıldı (db_bas). Sıçrama hâlâ duyuluyorsa söyle
-  - 2:19 «Ama haritada bir boşluk var: Türkiye.» — Hakem turunda 'var:' ile 'Türkiye.' arasında 1,76 sn durak vardı (<break> Gemini'ye '...' gidiyordu): break kaldırıldı, durak ~0,4 sn; Türkiye ve kamera itmesi durakla başlar
+  - 0:32 «Tamamen zehirsiz.» — İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt
+  - 1:28 «Oysa kandaki ilaç düzeyini ölçen yok.» — Cila turu: 'Oysa'dan sonra 0,92 sn durak vardı; TTS'e virgül, yeni çekim (durak ~0,15 sn). Akış doğal mı?
+  - 1:42 «Bu arada bir ayrıntı: Batı Almanya'da o…» — Gemini bu girişi komşularından ~3,5 dB yüksek okuyordu: ilk öbek 3 dB kısıldı (db_bas). Sıçrama hâlâ duyuluyorsa söyle
+  - 2:20 «Ama haritada bir boşluk var: Türkiye.» — Hakem turunda 'var:' ile 'Türkiye.' arasında 1,76 sn durak vardı (<break> Gemini'ye '...' gidiyordu): break kaldırıldı, durak ~0,4 sn; Türkiye ve kamera itmesi durakla başlar
   - 2:24 «Hesaplara göre yalnız Grünenthal'in sattığı günlük dozlar,…» — Firma adı: Whisper 'Gürünentel' yazdı (öteki iki geçişte 'Grünenthal'); Türkçe okunuşa yakın
-  - 3:51 «Ertesi gün aynı talebi taahhütlü bir mektupla tekrarlıyor.» — 'taahhütlü' Whisper'da 'tâhütlü' (doğruya yakın); kulak 'tahitli' duyarsa metin: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'
-  - 5:09 «1960'ta ABD'nin ilaç kurumu (FDA), yeni bir uzmanı işe…» — FDA iki yerde farklı okunuyordu ('Ef De A' / 'Fe De A'): ikisi de Türkçe harf adlarıyla 'Fe De A'
-  - 6:26 «…biri genç bir farmakolog: Şükrü Kaymakçalan.» — Gerçek kişinin adı, dorukta tanıtım anı. Hakem turunda ilk çekim adın son sesinde kesikti (Whisper 'Kaymakçala'): sonu doğal biten yeni çekim, biraz yavaş (0,9). Adın sonundaki 'n' duyuluyor mu?
-  - 7:13 «…Veteriner Fakültesi'nden virolog Süreyya Tahsin Aygün, ilacı tavuk…» — Bu satırın iki eski çekimi tarz tarifini sesli okumuştu; seçilen çekim temiz ve sonu kesik değil (hakem turunda 'uyarmış' kesikti): başında fazladan söz olmadığını dinle
-  - 7:25 «Kaymakçalan'ın rolü, meslektaşlarının…» — Aynı ad, ikinci geçiş (Whisper 'Kaymak Çalan'ın' diye bölüyor; okunuş tek kelime mi?)
-  - 7:48 «Nejat Eczacıbaşı bir söyleşisinde başarıyı…» — Whisper medium bu adı 7 çekimin 6'sında 'Necad' yazıyor (small 'Nezat': j sürtünmeli duyuluyor); seçilen çekim 'Ne-jat' yazımıyla ve sonu kesik değil. 'Necat' gibi duyarsan söyle
-  - 8:38 «…Jacob Sheskin'in ağır bir lepra hastası uyuyamıyor.» — Bilinçli değişiklik: 'cüzzam' Gemini'de de 4 yazımda 'cüzdan/cüzlem' duyuldu: konuşmada 'lepra', ekranda 'LEPRA (CÜZZAM)'
-  - 9:09 «Ya o soru? Tek bir tablet bu hasarı…» — Hakem turunda son hece kesikti ('yapıyordu?' -3 dB'de bitiyordu): yeni çekim; 'Ya o soru?'dan sonra ~0,9 sn bilinçli durak
-  - 9:58 «Tamamen zehirsiz.» — İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt
-  - 10:13 «Tek bir kahraman mı?» — Hakem turunda Whisper 'kahramanla' duyuyordu (soru eki yok; 'mı' 40 ms'lik bir kuyruktu): satıra soru tonu notu (senin tarz metnin aynen + 'mı tam hece, net ve yükselen'), hız 0,92, yeni çekim; klipte ve müzikli miks benzetiminde iki Whisper modeli de 'kahraman mı?' yazıyor. 'mı' duyuluyor mu?
-  - 10:26 «Ankara'daki ‘hayır’ kararının ise bugün yayımlanmış tek bir…» — 'hayır'ın' 'hayrını' duyuluyordu: metin 'hayır kararının'; 'yayımlanmış' Whisper'da 'yayınlanmış' (tireli yazım bile tam tutmuyor): 'yayım-' duyuluyor mu?
+  - 2:49 «Türkiye'de ise bu ilaç eczanelerde satılamıyor: Ruhsatı yok.» — 'Ruhsatı yok.': medium doğru, small 'Rus satı yok' yazıyor (h zayıf). Önbellekte başka çekim yok; kulak 'ruhsat' duyuyor mu?
+  - 3:50 «Ertesi gün aynı talebi taahhütlü bir mektupla tekrarlıyor.» — Cila turu: okunuş 'ta-ah-hüt-lü', 4 çekimden seçilen çekimde medium ve small ikisi de 'taahütlü' yazıyor (iki a duyuluyor; eski çekim 'tahitli' gibiydi). Hâlâ 'tahitli' duyarsan yedek metin: 'Ertesi gün aynı talebi bu kez yazılı olarak, bir mektupla tekrarlıyor.'
+  - 5:10 «1960'ta ABD'nin ilaç kurumu (FDA), yeni bir uzmanı işe…» — FDA iki yerde farklı okunuyordu ('Ef De A' / 'Fe De A'): ikisi de Türkçe harf adlarıyla 'Fe De A'
+  - 6:27 «…verenlerden biri genç bir farmakolog: Şükrü Kaymakçalan.» — Gerçek kişinin adı, dorukta tanıtım anı. Hakem turunda ilk çekim adın son sesinde kesikti (Whisper 'Kaymakçala'): sonu doğal biten yeni çekim, biraz yavaş (0,9). Adın sonundaki 'n' duyuluyor mu?
+  - 6:34 «Aynı tanıklıklara göre Kaymakçalan, ilacın etkili…» — Cila turu: doruk yavaşladı (hız 0,75 / 0,78 / 0,88; 'Sık anlatılan' 0,85, 'Ölümünün onuncu' 0,84). Yavaşlatma (atempo) sesi bozuyor mu, yoksa ağırbaşlı mı?
+  - 6:47 «Bakanlık da bu görüşe uyuyor. İlaca ruhsat…» — Cila turu: dorukta hız 0,88; 7 çekimden medium ve small'un ikisinin de doğru yazdığı tek çekim seçildi (öteki çekimler 'göreşe/görüşü'). Son hece '-yor' yumuşak sönüyor (ham sonu -27 dB): 'verilmiyor' tam mı?
+  - 7:17 «…Veteriner Fakültesi'nden virolog Süreyya Tahsin Aygün, ilacı tavuk…» — Bu satırın iki eski çekimi tarz tarifini sesli okumuştu; seçilen çekim temiz ve sonu kesik değil (hakem turunda 'uyarmış' kesikti): başında fazladan söz olmadığını dinle
+  - 7:28 «Şükrü Kaymakçalan'ın rolü, meslektaşlarının…» — Cila turu: metin 'Şükrü Kaymakçalan'ın rolü…' (tam ad), yeni çekim, hız 0,84; medium tam 'Şükrü Kaymakçalan'ın' yazıyor, small her geçişte olduğu gibi 'kaymak çalanın' diye bölüyor (sözlük etkisi). Ad tek kelime gibi akıyor mu?
+  - 7:43 «Tavuk embriyosu deneyinin bilinen en eski…» — Cila turu: hız 0,88 ile eski çekim 'emriyosu' duyuluyordu: yeni çekim (medium 'embriyosu', small 'embryosu'). 'b' duyuluyor mu?
+  - 7:53 «Nejat Eczacıbaşı bir söyleşisinde başarıyı…» — Whisper medium bu adı 7 çekimin 6'sında 'Necad' yazıyor (small 'Nezat': j sürtünmeli duyuluyor); seçilen çekim 'Ne-jat' yazımıyla ve sonu kesik değil. 'Necat' gibi duyarsan söyle
+  - 8:43 «…Jacob Sheskin'in ağır bir lepra hastası uyuyamıyor.» — Bilinçli değişiklik: 'cüzzam' Gemini'de de 4 yazımda 'cüzdan/cüzlem' duyuldu: konuşmada 'lepra', ekranda 'LEPRA (CÜZZAM)'
+  - 8:58 «İlaç yavaş yavaş geri dönüyor: önce bu hastalığın bir…» — Cila turu: 'Talidomit' tekrarı yerine 'İlaç' (yeni çekim). 'miyelom' Whisper'da 'mielom' (y kayması; okunuş aynı)
+  - 9:13 «Ya o soru? Tek bir tablet bu hasarı…» — Hakem turunda son hece kesikti ('yapıyordu?' -3 dB'de bitiyordu): yeni çekim; 'Ya o soru?'dan sonra ~0,9 sn bilinçli durak
+  - 10:00 «Şimdi o reklamı hatırlayın:» — Cila turu: 'O reklamı' 'O rekamı' duyuluyordu: metin 'Şimdi o reklamı hatırlayın:', yavaş ve tane tane (senin tarz metnin aynen + not), yeni çekim; medium ve small ikisi de doğru yazıyor. 'reklamı'nın l'si duyuluyor mu?
+  - 10:03 «Tamamen zehirsiz.» — İkinci ses (Kore, 1950'ler radyo reklamı tarzı); iki geçişte aynı kayıt
+  - 10:18 «Tek bir kahraman mı?» — Hakem turunda Whisper 'kahramanla' duyuyordu (soru eki yok; 'mı' 40 ms'lik bir kuyruktu): satıra soru tonu notu (senin tarz metnin aynen + 'mı tam hece, net ve yükselen'), hız 0,92, yeni çekim; klipte ve müzikli miks benzetiminde iki Whisper modeli de 'kahraman mı?' yazıyor. 'mı' duyuluyor mu?
+  - 10:32 «Ankara'daki ‘hayır’ kararının ise bugün yayımlanmış tek bir…» — 'hayır'ın' 'hayrını' duyuluyordu: metin 'hayır kararının'; 'yayımlanmış' Whisper'da 'yayınlanmış' (tireli yazım bile tam tutmuyor): 'yayım-' duyuluyor mu?
 - [ ] Küçük resim: K1 (zehirsiz) ANA küçük resim. 'Test ve karşılaştır' açılırsa YALNIZ K1 ile K3 (izlenme hakemi: K2 168 px'te en zayıfı; 11. turda harita uzaklaştı ama yine yedek; 12. turda K3'te K1'in temsilcisi yerine belge arayan, terleyen anlatıcı: test yalnız yazıyı değil yüzü de karşılaştırır). K2'yi yalnız başlık 3 ile kullan (yazısı '46 ÜLKEDE SATILDI', başlık 1 ve 2'deki '46 Ülkede'yi tekrar eder). Başlık testi açılırsa başlık 1 ile başlık 3'ü ('10 Binden Fazla Bebeği…': bedeli söyler) karşılaştır. Başlık 2 ('Kimdi?') yedek: video adı yalnız meslektaş tanıklığıyla verebiliyor, 'tık tuzağı' yorumu çekebilir.
 - [ ] Sabit yorum kapanıştaki soruyla aynı (A/B/C): yayından hemen sonra sabitle; ilk cevaplara kalp ver.
-- [ ] Süre 10:54 (paketin başındaki 'Süre' satırı): UZUN_FORMAT'taki 8-10 dk kararının 54 sn, ADIM_ADIM'daki 10:15 sınırının 39 sn üstünde. Neden: Gemini anlatıcısı (Charon 1,25x) Cartesia'dan ~%4 yavaş okuyor (onayladığın 10:33'lük kurgu +21 sn); 2. hakem turunda kesik sonlu satırlar doğal sönümle yeniden alındı, haritadaki 1,8 sn'lik durak kısaldı. YouTube için sorun değil (ara reklam 8 dk'dan sonra serbest); kısaltmak istersen söyle, aday: Behçet sahnesi (~20 sn).
+- [ ] Süre 10:59 (paketin başındaki 'Süre' satırı): UZUN_FORMAT'taki 8-10 dk kararının 59 sn, ADIM_ADIM'daki 10:15 sınırının 44 sn üstünde. Neden: Gemini anlatıcısı (Charon 1,25x) Cartesia'dan ~%4 yavaş okuyor (onayladığın 10:33'lük kurgu +26 sn); 2. hakem turunda kesik sonlu satırlar doğal sönümle yeniden alındı; cila turunda hakemlerin isteğiyle doruk (Ankara) ve birkaç vurgu satırı yavaşladı (+5 sn). YouTube için sorun değil (ara reklam 8 dk'dan sonra serbest); kısaltmak istersen söyle, aday: Behçet sahnesi (~20 sn).
 - [ ] Short (teslim/talidomit-turkiye/, 22.10'da yeni müzik ve kanıtla yeniden render edildi, yayında: https://youtube.com/shorts/Fb77-MsYmRc): Short paketi uzun videoya henüz bağlı değil. Uzun video yayınlanınca: episodes/talidomit-turkiye/episode.yaml'a uzun_video: <uzun videonun bağlantısı>, sonra python -m wojak paket episodes/talidomit-turkiye (açıklamaya '▶ Uzun hali:' satırı ve hikâye metni gelir); Studio'da Short'un açıklamasını bu metinle güncelle ve 'İlgili video' olarak uzun videoyu seç (yukarıdaki kontrol listesi).
 - [ ] Açıklama YouTube'un 5.000 bayt sınırına yakın: bağlantı ya da satır ekleme (Short bağlantısı payı hesapta). İstersen kalan baytla atıflara tek satır eklenebilir: 'Görsellerin dosya bağlantıları ve lisansları: <repodaki uzun/talidomit-turkiye/VARLIKLAR.md bağlantısı>'. Eklemedim: bağlantı GitHub hesabını kanala bağlar (gizlilik kararı senin).
 
