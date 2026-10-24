@@ -711,6 +711,66 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - `check`: kanıt görselini 390 px'e küçültüp "küçük ayrıntı" uyarısı (ör. kenar yoğunluğu düşükse) versin.
 - `tools/wojak_lib.py get`: çıktı `head` ile kesilince BrokenPipeError veriyor (zararsız, ama gürültü).
 
+### Ek dersler (24.10.2026 sabah, `gobeklitepe-mezar-tasi`, iki hakemden 8/8,5, ~32 dk ölçüldü)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Ortam sırası:** sembolik bağ testlerden ÖNCE kurulmalı. `mkdir -p /home/user` olmadan `ln` sessizce başarısız
+  oluyor ve `test_short_youtube_aciklamasi_hikayeyi_tasir` düşüyor (eski sabit yol). Bağdan sonra 81/81.
+- **Commons küçük resim (24.10 düzeltme notu):** bu oturumda `iiurlwidth=500` + `thumburl` 21 dosyada **429 vermedi**
+  (istekler ~2 sn arayla). Temas sayfası için önce bunu dene; yalnız seçilen 3-4 dosyayı md5 özgün yolundan (≥12 sn arayla)
+  indir. Arama: `generator=search&gsrnamespace=6&prop=imageinfo&iiprop=url|size|extmetadata` lisansı da verir.
+- **Gerçek yerin ayırt edici nesnesi iyi arka plan:** Göbeklitepe'nin doruğundaki dilek ağacı (Commons "Gobekli Tepe
+  Wishing tree in 2014") hem gerçek yer hem 1963'te de oradaydı; kazı çatısı/yürüme yolu gibi modern yapılar kadrajda yok.
+  Ağacı karenin ortasına al: iki karakter yanlarda, ağaç aralarında kalır.
+- **Hazır çizimden sigara/çubuk gibi konturu kesen öğeyi silmek:** yüz dışındaki kısmı saydam yap, kesilen yanağı
+  beyazla doldur, kopan konturu `Cizim.cizgi` ile aynı kalınlıkta yeniden çiz, uçtan kalan tek tük pikselleri temizle
+  (`episodes/gobeklitepe-mezar-tasi/chars/uret.py:arkeolog_temel`). Sırıtan yüz (smug) kanalda kötü karakter okunur:
+  kaş/göz/ağız silinip sakin yüz çizildi, sonra yatay aynalandı (B sağda, sola bakar).
+- **Ter damlası göze yakınsa telefonda gözyaşı gibi okunuyor.** Yüz kapalıysa (kask, şapka) damlaları başın dış yanına,
+  kontur dışına koy (bakılan karakter tarafına). Düşük çözünürlüklü büst (439 px) göğüs cebinden kesilince (y 370) aynı
+  `height`ta yüz büyüdü, telefonda yüz değişimi %0,61.
+- **Satır sonu yetim kelime ilk karelerde üç replikte çıktı** (55 px'te satır ~26-27 karakterde kırılıyor). Çözüm:
+  virgülde elle kırım ("Mezar taşı bunlar,\neski bir mezarlık", "Daha kazmadınız ki,\nnasıl anladınız?") ya da tek
+  satıra sığan kısaltma ("Hocam bu dev taşlar ne?"). `frames` şeridine bakmadan render etme.
+- **Kupür tek görünüm değil, parametrelerle değişti** (`episodes/gobeklitepe-mezar-tasi/kupur.py`, ~1 sn): 2018 renkli
+  hafta sonu eki gibi daha beyaz kâğıt, Source Serif 4 900 manşet (Karun'da grotesk), **renkli CMYK raster** (C 15°,
+  M 75°, Y 0°, K 45°, hücre 3,6 px; soluk kaynağı yüzdelikle ger, doygunluğu x1,35), dikey katlanma izi, alt kenar yırtık,
+  +1,2° eğik, mavi-gri kumaş zemin. Gerçek başlık hiyerarşiye bölünebilir, metin değişmeden: üst başlık "Tarihi
+  değiştiren dünya mirası:" + ana manşet "Göbeklitepe" + spot aynı haberin spotundan birebir bir cümle. Kanıt yüksekliği
+  ≤ 816 px (ilk sürüm 820 idi, `check` uyarmıyor).
+- **Kupürdeki alıntılanan sayı bilimsel kaynaktan farklıysa** (Hürriyet "Stonehenge'den 7 bin", Smithsonian ~6.000):
+  alıntıyı değiştirme; hikâye metninde sayı vermeden yaz ("binlerce yıl daha eski") ve RAPOR'a kusur olarak yaz.
+- **Dramatik ironi + yüz varyantı:** son replik bir fark etme sorusu olmak zorunda değil; yanılan karakterin kendinden
+  emin sözü ("Kazmaya değmez, burada önemli bir şey yok") aynı kutuda ter + kaçan gözlerle söylenince ters köşe olur, cevabı
+  son kare verir. Canlandırma repliğini belgeli olgunun sınırında tut ve `ek_maddeler`'e yaz.
+
+**Çalışmayan (deneme):**
+- `ln -sfn ... /home/user/wojak` `/home/user` yokken (sessizce başarısız, bir test düşer).
+- Ter damlasını göz altına koymak (telefonda gözyaşı).
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Karun (21.10) | Kanuni (23.10) | Ayasofya (23.10 akşam) | Göbeklitepe (24.10 sabah) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~6 dk | ~8 dk | ~5 dk | ~5 dk |
+| Konu + olgu | ~11 dk | ~7 dk | ~2 dk | ~5 dk |
+| Görsel avı | ~17 dk | ~6 dk | ~10 dk | ~3 dk |
+| Karakter + yüz | ~10 dk | ~5 dk | ~5 dk | ~4 dk |
+| yaml → teslim (kupür dahil) | ~5 dk | ~4 dk | ~2 dk | ~4 dk |
+| Ön kontrol + hakem turları | 2 tur + kart/kupür turları | ~10 dk | ~5 dk | ~4 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~8 dk | ~10 dk | ~3 dk | ~7 dk |
+| **Toplam** | ~2 sa | ~50 dk | ~31 dk | **~32 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `check`: satır sonunda tek kelime kalan replikte uyarı versin (greedy kırımın son satırı 1 kelimeyse).
+- `check`: kanıt görseli 816 px'ten yüksekse uyarsın (STIL §8).
+- `tools/`: `kupur.py`'yi genelleştiren üretici (kâğıt yaşı, manşet fontu, gri/renkli raster, yırtık kenar, eğim, zemin
+  parametreli); iki bölümde iki ayrı kopya var.
+- `tests/`: sabit `/home/user/wojak` yolu yerine depo kökünü kullanan test (taze konteynerde bağsız düşmesin).
+
 ---
 
 ## 7. Uzun formata ne taşınır?
