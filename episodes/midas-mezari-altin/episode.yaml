@@ -1,0 +1,130 @@
+# Midas Tümülüsü'nün açılması (Gordion, Polatlı/Ankara, 1957): "dokunduğu her şeyi altına çeviren" kralın adını taşıyan
+# mezardan tek bir altın çıkmadı.
+# Araştırma notu: scratchpad olgular.md (repoya girmez). Altın dönem kalıbı: C2fa (niyet -> uyarı/cevap -> kart -> yüz
+# varyantıyla fark etme) + C3iX soru-cevap.
+# AYNI YER, AYNI AN: Midas Tümülüsü'nün önü, 1957 kazısı. Konuşanlar kazıya Zonguldak'tan getirilen madenciler.
+#   A (hep solda): genç madenci (bakış açısı karakteri; ters köşe yüzü onun). Kurgu karakter.
+#   B (hep sağda): madencilerin ustabaşısı. Kurgu karakter (Young 1958: madenciler "kendi ustabaşılarını" getirdi).
+#   Arkeolog (Rodney Young) ekranda yok; adı yalnız hikâye metninde.
+# Olgu sınırları:
+#   - Tünel Zonguldak maden bölgesinden getirilen madencilerce kazıldı (Young 1958, Penn Expedition; Hürriyet Daily News
+#     2026; HeritageDaily 2026; Penn Digital Gordion). Ustabaşı + üç vardiya yalnız Young'da -> metinde "Young'ın anlattığına göre".
+#   - Mezar soyulmamıştı; altın yoktu (Penn Expedition "contained no gold"; Penn Gazette "no trace of gold"; Science News;
+#     Penn Almanac; Broad Street Review "untouched").
+#   - Oda MÖ ~740 (ağaç halkası); Midas Asur kayıtlarında MÖ 709'da hayatta -> büyük olasılıkla babası Gordias; mezarda ad
+#     yok (Penn Expedition "Tumulus MM"; BBC/T24; Hürriyet Daily News).
+#   - Tünel uzunluğu kaynaklarda 82 m / ~70 m / 230 ft -> verilmez. Bronz kap sayısı (180+ / "onlarca") -> "çok sayıda".
+#   - S1-S3 ve S4 canlandırma; "Kral Midas" adı 1957'de tepenin adıydı (Midas Mound). S2 efsanenin kendisi.
+#   - Kanıt 1: mezar odasının kütük duvarı (CC BY-SA 2.0). Kanıt 2 (son kare, MÜZE NESNESİ): tümülüsten çıkan sirenli bronz
+#     kazan, içi bronz kaselerle dolu (CC BY-SA 4.0). Son 5 bölümün son karesi: minyatür, levha, kupür, müze nesnesi
+#     (Kaşıkçı), pul (Hezarfen) -> arka arkaya aynı tür yok.
+# Karakterler: chars/uret.py. Görseller: gorsel.py. Render: python -m wojak render episodes/midas-mezari-altin
+id: midas-mezari-altin
+title: "Kral Midas'ın mezarına tünel kazan Zonguldaklı madenciler"   # tur 1: eski başlık ters köşeyi söylüyordu
+
+# Kanal imzası (22.10'dan beri bizim imza_v2_golge.m4a). "orijinal" asla.
+# volume: bu ortamın ffmpeg 6.1.1'inde loudnorm TP=-17'yi reddediyor; sabit kazanç -15,4 -> -29,5 LUFS = x0,197.
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (genç madenci, sol). Arka planda tümülüs: "bu tepe" ilk saniyede görünüyor.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_tumulus.jpg
+    blur: 2.2   # ölçüldü: 2,0 -> yan şerit Laplace ~32, 2,5 -> ~15 (orijinal medyan 22)
+    chars:
+      - {img: chars/madenci_sakin.png, side: left, faces: sag, height: 0.5}
+    text: "Usta, bu tepenin altında\nkim yatıyor?"
+
+  # 2) CEVAP — B (ustabaşı, sağ). Efsane: altın dokunuş.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_tumulus.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/usta_sakin.png, side: right, faces: sol, height: 0.5}
+    text: "Kral Midas, dokunduğu\nher şey altın olurmuş"
+
+  # 3) A — dramatik ironi (kelime tohumu: "altın")
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_tumulus.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/madenci_sakin.png, side: left, faces: sag, height: 0.5}
+    text: "O zaman içerisi\naltın doludur"
+
+  # 4) ARA KART — ileri zaman (tünel: Young'a göre 25 gün)
+  - type: card
+    duration: 1.5
+    text: "Bir süre sonra"
+
+  # 5) TERS KÖŞE — A, aynı kutu, yüz varyantı (iri göz, kalkık kaş, "O" ağız, ter damlaları)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_tumulus.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/madenci_sok.png, side: left, faces: sag, height: 0.5}
+    text: "Usta, neden hiç altın yok?"   # cevabı son iki kare: kütük oda, bronz kazan
+
+  # 6-7) KANIT — mezar odası, sonra bronz kazan (son kare). Etiket/bant yok.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_mezar_odasi.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_bronz_kazan.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Midas'ın mezarından ne çıktı?
+  Olayın tamamı sabit yorumda 👇
+hashtags: [midas, gordion, ankara]
+
+pinned_comment: |
+  Midas Tümülüsü, Ankara'nın Polatlı ilçesindeki Frig başkenti Gordion'da bulunan ve 1957'de açıldığında içinden tek bir altın eşya çıkmayan dev mezar tepesidir. 53 metre yüksekliğindeki, yaklaşık 300 metre çapındaki tepe, efsanede dokunduğu her şeyi altına çeviren Kral Midas'ın adıyla anılıyordu.
+
+  1957'de Pennsylvania Üniversitesi Müzesi'nden arkeolog Rodney Young'ın ekibi önce sondajla mezar odasının yerini buldu. Tüneli Zonguldak maden bölgesinden getirilen madenciler kazdı. Young'ın anlattığına göre madenciler kendi ustabaşılarını da getirmiş, üç vardiya hâlinde gece gündüz çalışmıştı. Tünel bir taş duvara dayandı; duvarın ve kütük katmanlarının ardında, binlerce yıldır kimsenin girmediği ahşap bir mezar odası vardı.
+
+  İçeride 60-65 yaşlarında bir adamın iskeleti, işlemeli ahşap mobilyalar, çok sayıda bronz kazan, kap ve çatal iğne bulundu. Mezar hiç soyulmamıştı ama içinde tek bir altın yoktu.
+
+  Sonraki yıllarda ağaç halkalarıyla yapılan tarihleme, odanın MÖ 740 civarında yapıldığını gösterdi. Asur kayıtlarına göre Midas MÖ 709'da hâlâ hayattaydı. Bu yüzden bugün araştırmacılar mezarın büyük olasılıkla Midas'ın babası Gordias'a ait olduğunu düşünüyor; mezarda sahibinin adını veren bir yazı yok.
+
+  Kazanların dibindeki kalıntılar da incelendi: cenaze yemeğinde koyun ya da keçi etiyle pişmiş mercimekli bir yahni yenmiş, şarap, bira ve bal şarabı karışımı bir içki içilmişti. Bronz eşyaların bir kısmı bugün Ankara'daki Anadolu Medeniyetleri Müzesi'nde sergileniyor.
+
+  Sizce Kral Midas'ın altınları gerçekten var mıydı, yoksa hepsi bir efsane mi?
+
+credits: "Mark Landon (Midas Tümülüsü 1993, CC BY 4.0; kırpıldı, renk düzeltildi), Carole Raddato (mezar odası, CC BY-SA 2.0; kırpıldı) ve Dosseman (bronz kazan, CC BY-SA 4.0; kırpıldı), Wikimedia Commons."
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır:** genç madenci ve ustabaşı kurgu karakter; konuşmalar canlandırma. Belgeli olan: tüneli Zonguldak'tan getirilen madenciler kazdı (kazıyı yöneten Young'a göre kendi ustabaşılarıyla), mezar soyulmamıştı ve içinden altın çıkmadı. Arkeoloğun adı yalnız metinde"
+  - "**\"Midas'ın mezarı değil ki\" yorumlarına hazır ol:** metin bunu yazıyor; ağaç halkası tarihlemesine göre mezar büyük olasılıkla babası Gordias'ın. Tepe 1957'de de bugün de halk arasında Midas Tümülüsü diye anılıyor"
+  - "**Son kare gerçek bir müze nesnesi:** tümülüsten çıkan bronz kazan (Anadolu Medeniyetleri Müzesi, ziyaretçi fotoğrafı, CC BY-SA 4.0). Kupür ya da canlandırma kart yok"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette; \"definecilik\" çağrısı yapan ya da tümülüs kazmaya özendiren yorumları sil"
+  - "İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): \"Aranızda Zonguldaklı ya da Polatlı'yı gezen var mı? Tünelin içi hâlâ açık\""
+
+sources:
+  # Doğrulama (25.10.2026)
+  - "Penn Museum Expedition, Young, R. S. (1958) 'The Gordion Tomb' (Zonguldak maden bölgesinden getirilen madenciler kendi ustabaşıları ve bir marangozla geldi; üç vardiya, 25 günde ~230 ft tünel; taş duvar; iskelet 60-65 yaş, Prof. Muzaffer Şenyürek): https://www.penn.museum/sites/expedition/the-gordion-tomb/"
+  - "Penn Museum Expedition, Simpson, E. 'Reconstructing an Ancient Table' (Tumulus MM 53 m yükseklik, ~300 m çap; sondajla yer tespiti; Türk madenciler; ~65 yaşında adam; 'contained no gold'; 180'den fazla bronz kap): https://www.penn.museum/sites/expedition/reconstructing-an-ancient-table/"
+  - "Penn Museum Expedition, 'Tumulus MM' (oda ~MÖ 740; Midas Asur kayıtlarında MÖ 709'a kadar; büyük olasılıkla Midas'ın babası; cenaze yemeği: kuzu/keçi + mercimek yahni): https://www.penn.museum/sites/expedition/tumulus-mm/"
+  - "The Pennsylvania Gazette, 'New Treasures From King Midas' Tomb' ('no trace of gold'; iskelet 60-65 yaş; bronz kazanlar): https://thepenngazette.com/new-treasures-from-king-midas-tomb/"
+  - "Science News, 'King Midas' Modern Mourners' (mezarda altın yok; içki: bira, şarap, bal şarabı): https://www.sciencenews.org/article/king-midas-modern-mourners"
+  - "Popular Archaeology, 'Behind the Myth of King Midas' (sağlam/soyulmamış kraliyet mezarı; bronz kazanlar; yahni ve karışık içki): https://popular-archaeology.com/article/behind-the-myth-of-king-midas/"
+  - "Broad Street Review, 'The Golden Age of King Midas at Penn Museum' ('no gold was found in the untouched Midas Mound'): https://www.broadstreetreview.com/articles/the-golden-age-of-king-midas-at-penn-museum"
+  - "T24 / BBC Türkçe, 'Gordion: Antik kenti yöneten altın dokunuşlu Kral Midas gerçekte kimdi?' (1957'de Türk kömür madencileri; ağaç halkası MÖ 740; Midas MÖ 709'da hayatta): https://t24.com.tr/kultur-sanat/gordion-antik-kenti-yoneten-altin-dokunuslu-kral-midas-gercekte-kimdi,1157354"
+  - "Hürriyet Daily News (2026), 'Gordion tumulus identified as tomb of King Midas' father' (Zonguldak'tan getirilen madenciler; 53 m / 300 m; Gordias): https://www.hurriyetdailynews.com/gordion-tumulus-identified-as-tomb-of-king-midas-father-225462"
+  - "HeritageDaily (2026), '3,200-year-old tomb revealed as burial place of King Midas' father' (Zonguldak madencileri; eserler Anadolu Medeniyetleri Müzesi ve Gordion Müzesi'nde): https://www.heritagedaily.com/2026/08/3200-year-old-tomb-revealed-as-burial-place-of-king-midas-father/158904"
+  - "Penn Museum Digital Gordion, 'Modern Gordion' (tüneli Zonguldaklı kömür madencileri kazdı; Tumulus MM buluntuları Anadolu Medeniyetleri Müzesi'nde): https://www.penn.museum/sites/gordion/history/modern-gordion/"
+  # Görseller ve lisanslar (gorsel.py; lisanslar Commons dosya sayfasının ham metninden doğrulandı, 25.10.2026)
+  - "GÖRSEL img/arka_tumulus.jpg (tüm diyalog) — 'Gordion Midas mound (1993).jpg', Mark Landon, CC BY 4.0 ({{self|cc-by-4.0}}): https://commons.wikimedia.org/wiki/File:Gordion_Midas_mound_(1993).jpg . Değişiklik: kırpım (900,150)-(3600,2850), 1080x1080, doygunluk x0,75, parlaklık x0,93"
+  - "GÖRSEL img/kanit_1_mezar_odasi.jpg (kanıt 1, 11,0-12,5 sn) — 'Tumulus of King Midas 03.jpg', Carole Raddato (Flickr 'The Great Tumulus of Gordion, assumed to be the tomb of Midas' father Gordias'), CC BY-SA 2.0: https://commons.wikimedia.org/wiki/File:Tumulus_of_King_Midas_03.jpg . Değişiklik: kırpım (813,244)-(4607,3090), 1080x810"
+  - "GÖRSEL img/kanit_2_bronz_kazan.jpg (kanıt 2, son kare, 12,5-14,0 sn) — 'Museum of Anatolian Civilizations Phrygian Smaller sirens' cauldron in 2019 06.jpg', Dosseman, CC BY-SA 4.0 (açıklama: Young'ın 1957 raporundaki üç kazandan biri, Gordion buluntusu): https://commons.wikimedia.org/wiki/File:Museum_of_Anatolian_Civilizations_Phrygian_Smaller_sirens%27_cauldron_in_2019_06.jpg . Değişiklik: 3840 px sürümünden kırpım (512,107)-(3755,2517), 1080x803"
+  # Karakterler (chars/uret.py)
+  - "KARAKTER A genç madenci (sol): wojakland 'Worker 2 Wojak' https://wojakland.com/wp-content/grand-media/image/original/worker_2_wojak.png (madenci_sakin.png: kaynağın kendisi, göğüsten kesik; madenci_sok.png: aynı kutu, iri göz, kalkık kaş, 'O' ağız, 3 ter damlası)"
+  - "KARAKTER B ustabaşı (sağ): wojakland 'Worker Wojak' https://wojakland.com/wp-content/grand-media/image/original/worker_wojak.png (usta_sakin.png: yatay aynalandı, göğüsten kesik; yüz değişmedi)"

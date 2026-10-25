@@ -885,6 +885,59 @@ sayfa) ve dev kavuklu padişahın yüz yerleşimi.
   konumuna göre (yüz kutusu alanı) boy önerisi verilebilir.
 - `tools/`: Commons'ta yıl kategorisinden pul arayan küçük yardımcı ("Category:<yıl> stamps of Turkey", PD-TR süzgeci).
 
+### Ek dersler (25.10.2026 akşam, `midas-mezari-altin`, iki hakemden 8/8, ~32 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Başlık ters köşeyi söylemesin (ilk turdaki tek MUST):** "Ne?!" cümlesi ("Midas'ın mezarını açtılar, içinden tek
+  bir altın çıkmadı") konu seçimi için doğru ölçü ama başlıkta spoiler. Başlık kanca + somut ayrıntı olsun, cevap
+  videoda kalsın: "Kral Midas'ın mezarına tünel kazan Zonguldaklı madenciler". `title`'ı yazarken son replikle
+  karşılaştır: başlık son repliğin cevabını veriyorsa değiştir.
+- **Kazıyı yöneten arkeoloğun birincil raporu altın kaynak:** Penn Museum Expedition dergisinin eski sayıları
+  (`penn.museum/sites/expedition/<baslik>/`) açık erişimli; kazı ekibinin kendi anlatımı ayrıntı veriyor (Zonguldaklı
+  madenciler "kendi ustabaşılarını" getirdi, üç vardiya, 25 gün). Tek kaynaklı ayrıntı metinde "X'in anlattığına
+  göre" olur; karakter seçimini de belgeye bağlar (B = ustabaşı).
+- **Türk bağlantısını yan karakterde bul:** yabancı ekibin kazısında konuşanları yabancı arkeolog yerine işi yapan Türk
+  işçiler yapmak (Zonguldaklı madenci + ustabaşı) hem yerelliği hem kancayı ("Usta, bu tepenin altında kim yatıyor?")
+  güçlendirdi; arkeoloğun adı yalnız metinde.
+- **1950'ler Türk işçisi için hazır karakter:** wojakland `worker_2_wojak.png` (gri kasket, bıyık + keçi sakal,
+  tulum; 1153 px, klasik beyaz yüz) ve `worker_wojak.png` (kahverengi kasket, kirli sakal; 464 px, aynalanarak B).
+  Sorgu: `wojak_site.py sheet "worker|miner|construction" --site wl`. Kütüphanede (`wojak_lib.py`) maden işçisi yok.
+- **Kasketli/şapkalı karakterde mavi ter çizgisi:** alın kapalıysa çizgiyi yanağa koyma (telefonda gözyaşı gibi). İri
+  göz + kalkık kaş + büyük "O" ağız + başın önünde 3 damla yetti: telefonda alt yarıda %0,87.
+- **Gerçek yerin eski (film) fotoğrafı:** Commons'ta "<yer> (1993)" gibi taranmış eski fotoğraflar bugünkü giriş yapısı,
+  yürüme yolu, tabela olmadan yeri gösteriyor; tarihî sahneye daha uygun ve zaten yumuşak (`blur: 2.2` ile yan şerit
+  Laplace ~22). Renk: `ImageEnhance.Color(0.75)` + `Brightness(0.93)` → doygunluk 0,28, parlaklık 124.
+- **Commons özgün md5 yolu (25.10 akşam):** 5 dosyanın 4'ü 12 sn arayla 1-5 denemede indi; biri 5 denemede de 429
+  verdi, aynı dosya `iiurlwidth=2400` thumburl'ünden ilk denemede indi. Kural: md5 yolu 3 kez 429 verirse thumburl'e geç.
+  Temas sayfası için 26 küçük resim (`iiurlwidth=500`, 2 sn arayla) hiç 429 vermedi.
+
+**Çalışmayan (deneme):**
+- `ln -sfn` taze konteynerde `/home/user` yokken (yine oldu; önce `mkdir -p /home/user`).
+- Kasketli karakterin yanağına mavi ter çizgisi (gözyaşı gibi okunuyor).
+- Ters köşeyi söyleyen başlık (takipçi hakemi MUST).
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Göbeklitepe (24.10 sabah) | Kaşıkçı (24.10 akşam) | Hezarfen (25.10 sabah) | Midas (25.10 akşam) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~5 dk | ~3 dk | ~3 dk | ~5 dk |
+| Konu + olgu | ~4 dk | ~2 dk | ~5 dk | ~5 dk |
+| Görsel avı | ~2 dk | ~3 dk | ~4 dk | ~5 dk |
+| Karakter + yüz | ~4 dk | ~3 dk | ~7 dk | ~5 dk |
+| yaml → teslim | ~3 dk | ~3 dk | ~2 dk | ~3 dk |
+| Ön kontrol + hakem turları | ~3 dk | ~5 dk | ~5 dk | ~3 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~4 dk | ~5 dk | ~3 dk | ~6 dk |
+| **Toplam** | ~25 dk | ~25 dk | ~29 dk | **~32 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `check`: başlık ile son diyalog repliğinin anahtar kelimelerini karşılaştırıp "başlık ters köşeyi söylüyor olabilir"
+  uyarısı (ör. son replikteki olumsuzlanan ad başlıkta "çıkmadı/yok" ile geçiyorsa).
+- `tools/`: Commons indiricisi md5 yolu 3 kez 429 verince otomatik `iiurlwidth` thumburl'üne düşsün.
+- `tests/`: sabit `/home/user/wojak` yolu yerine depo kökü (taze konteynerde hâlâ düşüyor; önceki öneri).
+
 ---
 
 ## 7. Uzun formata ne taşınır?
