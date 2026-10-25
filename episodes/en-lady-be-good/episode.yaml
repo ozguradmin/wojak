@@ -26,7 +26,7 @@ scenes:
     duration: 2.0
     bg: img/arka_plan_dakhla.jpg
     chars:
-      - {img: chars/b_sakin.png, side: right, faces: sol}
+      - {img: chars/b_sakin.png, side: right}
     text: "Still over the Mediterranean?"
 
   # 3) ARA KART — ileri zaman (EN kuralı: "... later").
@@ -47,7 +47,7 @@ scenes:
     duration: 2.5
     bg: img/arka_plan_dakhla.jpg
     chars:
-      - {img: chars/b_kaygili.png, side: right, faces: sol}
+      - {img: chars/b_kaygili.png, side: right}
     text: "Wait, where's the sea?"
 
   # 6) KANIT 1 — uçağın kuyruğu, sağlam (USAF, kamu malı; tarih belirtilmiyor).

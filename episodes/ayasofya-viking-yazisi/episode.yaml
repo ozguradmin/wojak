@@ -39,7 +39,7 @@ scenes:
     bg: img/arka_galeri.jpg
     blur: 1.6   # kenar Laplace varyansı (720 ölçeği) 2,5 ile ~7 (orijinal medyan ~22); 1,6 ile ~20
     chars:
-      - {img: chars/muhafiz_sakin.png, side: right, faces: sol, height: 0.52}
+      - {img: chars/muhafiz_sakin.png, side: right, height: 0.52}
     text: "Sessiz ol, herkes bize bakıyor"
 
   # 3) A, ironik niyet + geçiştirme ("kimse fark etmez" -> son kare: levhalı, korumalı yazı)
@@ -57,7 +57,7 @@ scenes:
     bg: img/arka_galeri.jpg
     blur: 1.6   # kenar Laplace varyansı (720 ölçeği) 2,5 ile ~7 (orijinal medyan ~22); 1,6 ile ~20
     chars:
-      - {img: chars/muhafiz_sok.png, side: right, faces: sol, height: 0.52}
+      - {img: chars/muhafiz_sok.png, side: right, height: 0.52}
     text: "Delirdin mi, burası Ayasofya"
 
   # 5-6) KANIT — gerçek fotoğraflar: önce galerideki korkulukta runler, sonra müze levhası "HALVDAN adı

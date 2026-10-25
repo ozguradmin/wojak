@@ -39,6 +39,10 @@
   "faces": "right",
   "file": "assets/kit/klasik/mutlu.png"
  },
+ "1d7b2a2adf43ed34ccee4e0440db65d4c1999e21": {
+  "faces": "right",
+  "file": "episodes\\midas-mezari-altin\\chars\\madenci_sok.png"
+ },
  "207fdc64df6a928e637bba9a8a786aed5c3ce3f3": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
@@ -115,6 +119,10 @@
   "faces": "right",
   "file": "assets/kit/klasik/uzgun.png"
  },
+ "3daa325b8099dbf2a5d4ec74563399a45803ef42": {
+  "faces": "left",
+  "file": "episodes\\kanuni-gizlenen-olum\\chars\\yeniceri_mutlu.png"
+ },
  "3f4d31c5d8d022f11843cdd61a1c7a74cb2a2098": {
   "faces": "right",
   "file": "assets/kit/klasik/cok_terli.png"
@@ -130,6 +138,10 @@
  "42bae1c5422264144a711f9480bf0f054612f4ec": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_terli.png"
+ },
+ "43e07d18ec53bdfbb6ef6e3304f49d22883be17e": {
+  "faces": "left",
+  "file": "episodes\\gobeklitepe-mezar-tasi\\chars\\arkeolog_terli.png"
  },
  "449f847a279776d4333d44d02bf0ad31342b03cd": {
   "faces": "right",
@@ -151,9 +163,21 @@
   "faces": "right",
   "file": "assets/kit/klasik/gozyasli.png"
  },
+ "49a3be826a4e6965cdb84ac2516843c1fc9e22d2": {
+  "faces": "right",
+  "file": "episodes\\midas-mezari-altin\\chars\\madenci_sakin.png"
+ },
+ "49f18e3a17415a949768278c06ca6060764a31bb": {
+  "faces": "left",
+  "file": "episodes\\kanuni-gizlenen-olum\\chars\\vezir_sakin.png"
+ },
  "4b0a3598c148e0a16b3bf805fdba10086db813e3": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915_biyikli/gulumsuyor.png"
+ },
+ "4d238fe6c3a86ddf7f7374203351d261795c4e4a": {
+  "faces": "right",
+  "file": "episodes\\kasikci-elmasi\\chars\\bulan_sok.png"
  },
  "4d74384580c926c56d3dc31063cc887d9895d337": {
   "faces": "front",
@@ -166,6 +190,10 @@
  "51f7a3e469b7b28b2067f75a54ae3a61ac234fc7": {
   "faces": "right",
   "file": "assets/kit/klasik/agliyor.png"
+ },
+ "525c84672fd40d5b495d247456d85441efba9fe3": {
+  "faces": "right",
+  "file": "episodes\\kasikci-elmasi\\chars\\bulan_sakin.png"
  },
  "53669d9d580e8d816123af1b6384f9210678e1d0": {
   "faces": "right",
@@ -215,6 +243,10 @@
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_baba.png"
  },
+ "62da4359940bc315755ea69f1fb51b5331e2983c": {
+  "faces": "right",
+  "file": "episodes\\ayasofya-viking-yazisi\\chars\\muhafiz_sakin.png"
+ },
  "63e57287048f9d4891c4da5279f062d06fbb1956": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/voss_sakin.png"
@@ -234,6 +266,10 @@
  "6a380fa2967f1ab25ffb231cbdb85527eab25885": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_fark.png"
+ },
+ "6a9eb0629da7fcff203287dca661e35397999f42": {
+  "faces": "right",
+  "file": "episodes\\hezarfen-galata-ucusu\\chars\\hezarfen_emin.png"
  },
  "6cc312cba452973ecae99211f7ec41155e4bdb89": {
   "faces": "right",
@@ -303,6 +339,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci_notr.png"
  },
+ "7f4e21cf2ae472785b4dbf780f61e63ce05210ab": {
+  "faces": "left",
+  "file": "episodes\\kanuni-gizlenen-olum\\chars\\yeniceri_sok.png"
+ },
  "808a7b1ad6963741e82f761fdd66a4492cafe0fd": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/musteri_v2_sakin.png"
@@ -371,9 +411,21 @@
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/cok_terli.png"
  },
+ "9e66b305e1a9ae31447e22948f626b618a6da4b1": {
+  "faces": "right",
+  "file": "episodes\\hezarfen-galata-ucusu\\chars\\hezarfen_sok.png"
+ },
+ "9f5d3171b9d83512db35371fc460d6f2640d33f9": {
+  "faces": "right",
+  "file": "episodes\\ayasofya-viking-yazisi\\chars\\viking_sikkin.png"
+ },
  "a02a473620f5ce1a94224b6220c138f384f0817e": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_sakin.png"
+ },
+ "aad499cd4e00da655b854e1280ac53cba3b47457": {
+  "faces": "left",
+  "file": "episodes\\kasikci-elmasi\\chars\\kasikci_emin.png"
  },
  "ab795e0baa11a4983b1f7120475aff4af014f70a": {
   "faces": "right",
@@ -427,6 +479,14 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_kararli.png"
  },
+ "c4d8fa492ce23821baf5912cb781f515dcf44743": {
+  "faces": "left",
+  "file": "episodes\\midas-mezari-altin\\chars\\usta_sakin.png"
+ },
+ "c51054560cd785c04dbe704d747f94dfdd7fe3e9": {
+  "faces": "right",
+  "file": "episodes\\ayasofya-viking-yazisi\\chars\\muhafiz_sok.png"
+ },
  "c63de61d756d066397ffb590f99ea19a2ab63bd2": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_ciddi.png"
@@ -434,6 +494,10 @@
  "c72f82d513a9e86b5a1bfdfd378339312593879a": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/sakin.png"
+ },
+ "c97d9c5ba713573c4f1cd32db5fc2fea8725ba59": {
+  "faces": "right",
+  "file": "episodes\\karun-hazinesi-bros\\chars\\mufettis_sok.png"
  },
  "ca74112f568126536d95ad0a7510f36daa49e97e": {
   "faces": "right",
@@ -495,6 +559,10 @@
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans.png"
  },
+ "e4164dd5c77428d03dfb87678bbee51bab7dd75c": {
+  "faces": "right",
+  "file": "episodes\\karun-hazinesi-bros\\chars\\mudur_sakin.png"
+ },
  "e637ebcfbc4beb352d32c9e317000e3d701000f9": {
   "faces": "front",
   "file": "assets/characters/sovyet_kiz_gozluklu.png"
@@ -518,6 +586,18 @@
  "e928d7e8392936c903fd4a29bd43daa400f960d9": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
+ },
+ "e981730a9828ec06dc312585f487c3248eb922e8": {
+  "faces": "left",
+  "file": "episodes\\hezarfen-galata-ucusu\\chars\\murad_sakin.png"
+ },
+ "ea13a194cb4d979c0c6efedc7df2348c1ecfe682": {
+  "faces": "right",
+  "file": "episodes\\gobeklitepe-mezar-tasi\\chars\\koylu_merakli.png"
+ },
+ "ebc3a62215403a45858c2ba69b0c030a611d86f2": {
+  "faces": "left",
+  "file": "episodes\\gobeklitepe-mezar-tasi\\chars\\arkeolog_emin.png"
  },
  "ec161ae5609fcdd12b714c564d031bd46972f2d9": {
   "faces": "right",

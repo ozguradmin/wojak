@@ -88,14 +88,25 @@ def guess(path: Path) -> tuple[str, float]:
     return ("right" if s > 0.07 else "left" if s < -0.04 else "front"), float(s)
 
 
-def resolve(path: Path, override: str | None = None) -> tuple[str, bool]:
-    """(yön, kayıtlı_mı). Öncelik: sahnedeki 'faces' > kayıt > tahmin."""
+def resolve(path: Path, override: str | None = None, kayit_once: bool = False) -> tuple[str, bool]:
+    """(yön, kayıtlı_mı). Öncelik: sahnedeki 'faces' > kayıt > tahmin.
+    kayit_once=True (kısa reel): kayıt > 'faces' > tahmin. Ajanlar 'faces'e görselin kendi yönü yerine
+    karakterin bakması gereken yönü yazdı (solda 'sag', sağda 'sol'); kayıt bunu ezemesin diye
+    (Lady Be Good ve Ayasofya'da sağdaki karakter dışarı baktı, hesap sahibinin geri bildirimi, 2026-10-25)."""
+    r = registered(path)
+    if kayit_once and r:
+        return r, True
     if override:
         return ALIASES[override.lower()], True
-    r = registered(path)
     if r:
         return r, True
     return guess(path)[0], False
+
+
+def faces_celiski(path: Path, override: str | None) -> str | None:
+    """Sahnedeki 'faces' kayıtla çelişiyorsa kayıttaki yön (yoksa None)."""
+    r = registered(path)
+    return r if override and r and ALIASES[override.lower()] != r else None
 
 
 def needs_flip(faces: str, center_x: float) -> bool:

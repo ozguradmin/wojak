@@ -108,9 +108,9 @@ def _char_layers(scene: Scene, box: int) -> list[CharLayer]:
     for c in scene.chars:
         im = trim_alpha(load_rgba(c.img))
         # Karakter her zaman kadrajın içine baksın (solda -> sağa, sağda -> sola). Yön kayıtlıysa
-        # (ya da sahnede faces: verildiyse) 'flip' yok sayılır ve otomatik karar verilir.
+        # (ya da sahnede faces: verildiyse) 'flip' yok sayılır ve otomatik karar verilir. Kayıt 'faces'ten önce gelir.
         cx = c.x if c.x is not None else {"left": 0.2, "right": 0.8}.get(c.side, 0.5)
-        faces, known = facing.resolve(c.img, c.faces)
+        faces, known = facing.resolve(c.img, c.faces, kayit_once=True)
         flip = facing.needs_flip(faces, cx) if known and faces != "front" else c.flip
         if flip:
             im = ImageOps.mirror(im)

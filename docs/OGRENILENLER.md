@@ -442,8 +442,10 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
 - **Basılı birinci sayfa en iyi son kare:** Milliyet Gazete Arşivi (`gazetearsivi.milliyet.com.tr/Arsiv/YYYY/AA/GG`)
   üyeliksiz tam sayfa görüntü veriyor (sayfadaki `_next/image?url=` içindeki API adresi ~1900x2700). 2000'lerin
   olaylarında altın dönem dilindeki kalın manşeti buradan bul (telifli, `img/telifli/`).
-- **Bakış kaydı repoya yazmadan:** `episode.yaml`'da karakter başına `faces: sag|sol|on` yeterli; `check` uyarmaz,
-  `data/karakter_yon.json`'a dokunulmaz. Yazma izni yalnız bölüm klasörü olan oturumlarda bunu kullan.
+- **Bakış (25.10.2026'dan itibaren):** `faces:` kullanma. Her karakter PNG'sini `python -m wojak yon <png> --yon
+  sag|sol|on` ile kaydet: PNG DOSYASININ KENDİ baktığı yön (burun ve göz bebekleri dosyada hangi yana). Karakterin
+  bakması gereken yönü yazma; aynalamayı motor yapar. Eski kural (`faces:` yeter) yüzünden ajanlar solda `sag`,
+  sağda `sol` yazdı, kayıt ezildi ve Ayasofya ile Lady Be Good'da sağdaki karakter dışarı baktı.
 - **Ağ (bu sandbox):** Commons API ve küçük resim (`thumburl`) adresleri sık 429 veriyor; `upload.wikimedia.org`
   üzerindeki özgün dosya adresi (md5 yolu) ise sorunsuz iniyor (istekler arası ≥ 12 sn). Openverse
   (`tools/bg_ara.py`) yanıt vermedi. Playwright'ta `ignore_https_errors=True` gerekiyor (vekilin sertifikası).
@@ -485,8 +487,10 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
    adresi (`upload.wikimedia.org/.../<md5>`) sorunsuz. `tools/orute` yerine md5 yolu (aşağıda K-komutları).
 6. **Karakterler:** `uzun/talidomit-turkiye/chars/*_v2_*` hazır; yoksa `wojak_lib.py`/`wojak_site.py` get. Yüz
    varyantını `episodes/<id>/chars/uret.py` ile çiz (talidomit `hazir_uret.py`'yi kopyala). Her PNG'ye bak.
-7. **Bakış:** `episode.yaml`'da karakter başına `faces: sag|sol|on` (repoya yazmadan; `data/karakter_yon.json`'a
-   dokunma).
+7. **Bakış:** her karakter PNG'sini aç ve DOSYANIN baktığı yönü kaydet: `python -m wojak yon <png> --yon sag|sol|on`
+   (`faces:` yazma). Render sonrası `python -m wojak bakis episodes/<id>` -> `out/<id>/kareler/bakis.jpg`: solda
+   duranın yüzü ve göz bebekleri sağa, sağdakinin sola bakmalı. Değilse kaydı düzelt ve yeniden render et;
+   görsel hakem de bu sayfayı görür. `teslim` kayıtsız ya da çelişkili bakışta durur.
 8. **episode.yaml:** `python -m wojak new <id>`, talidomit ve bu bölümü şablon al. `music: {file:
    imza_v2_ic_cekis.m4a}`. Süreler 0,5 katı, toplam 14,0.
    *(23.10 düzeltme: müzik artık `music: kanal` = imza_v2_golge; bu ortamda ffmpeg/loudnorm hatası yüzünden

@@ -47,16 +47,62 @@ def _denetle(ep: episode.Episode) -> None:
         print("  GÜNDEM bölümü: yayından önce docs/GUNDEM.md > 5. Kontrol listesi (yayın yasağı kontrolü dahil).")
 
 
-def cmd_check(a) -> None:
+def bakis_sorunlari(ep: episode.Episode) -> list[str]:
+    """Kısa reel: her karakter görselinin bakış yönü data/karakter_yon.json'da kayıtlı olmalı. 'faces' tek başına
+    yetmez: ajanlar oraya görselin kendi yönü yerine olması gereken yönü yazdı ve karakter dışarı baktı (2026-10-25)."""
     from . import facing
+    out, gor = [], set()
+    for i, s in enumerate(ep.scenes, 1):
+        for c in s.chars:
+            p = Path(c.img)
+            if p in gor:
+                continue
+            gor.add(p)
+            if not facing.registered(p):
+                out.append(f"[bakış] sahne {i}: {p.name} kayıtlı değil (tahmin: {facing.guess(p)[0]}). PNG'yi aç, "
+                           f"burun ve göz bebeklerinin DOSYADA hangi yana baktığını kaydet: python -m wojak yon {p} "
+                           f"--yon sag|sol|on (karakterin bakması gereken yönü değil; aynalamayı motor yapar)")
+            elif facing.faces_celiski(p, c.faces):
+                out.append(f"[bakış] sahne {i}: {p.name} için faces: {c.faces} kayıtla çelişiyor "
+                           f"(kayıt: {facing.registered(p)}); kayıt kullanıldı, faces satırını sil")
+    return out
+
+
+def cmd_bakis(a) -> None:
+    """Diyalog sahnelerinin karelerini tek sayfada toplar: her karakter kadrajın ortasına bakmalı."""
+    from PIL import ImageDraw
+    ep = episode.load(a.episode)
+    out_dir = config.OUT / ep.id / "kareler"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    w, kutular = 360, []
+    for i, s in enumerate(ep.scenes):
+        if s.type != "dialog" or not s.chars:
+            continue
+        im = Image.open(render.still(ep, i, out_dir / f"bakis_{i + 1:02d}.jpg", at=0.9, square=True)).resize((w, w))
+        c = s.chars[0]
+        cx = c.x if c.x is not None else {"left": 0.2, "right": 0.8}.get(c.side, 0.5)
+        hedef = "SAGA" if cx < 0.42 else "SOLA" if cx > 0.58 else "ONE/serbest"
+        ImageDraw.Draw(im).rectangle((0, 0, w, 22), fill="black")
+        ImageDraw.Draw(im).text((6, 5), f"sahne {i + 1}: {c.side} -> {hedef} bakmali", fill="yellow")
+        kutular.append(im)
+    if not kutular:
+        sys.exit("diyalog sahnesi yok")
+    sayfa = Image.new("RGB", (w * len(kutular), w), "black")
+    for i, im in enumerate(kutular):
+        sayfa.paste(im, (i * w, 0))
+    sayfa.save(out_dir / "bakis.jpg", quality=88)
+    for u in bakis_sorunlari(ep):
+        print(f"  ⚠ {u}")
+    print(f"-> {out_dir / 'bakis.jpg'}  (her karede yüz ve göz bebekleri sarı yazıdaki yöne bakmalı)")
+
+
+def cmd_check(a) -> None:
     ep = episode.load(a.episode)
     _summary(ep)
     _denetle(ep)
+    for u in bakis_sorunlari(ep):
+        print(f"UYARI: {u}")
     for i, s in enumerate(ep.scenes, 1):
-        for c in s.chars:
-            if not c.faces and not facing.registered(c.img):
-                print(f"UYARI: sahne {i} karakterinin bakış yönü kayıtlı değil (tahmin: {facing.guess(c.img)[0]}). "
-                      f"Bak ve kaydet: python -m wojak yon {c.img} --yon sag|sol|on")
         if s.label:
             print(f"UYARI: sahne {i} 'label' içeriyor; videolarda etiket/atıf kullanılmıyor (hesap sahibi kararı)")
     if not 7 <= ep.duration <= 30:
@@ -144,6 +190,12 @@ def cmd_teslim(a) -> None:
         print(f"  ⚠ {w}")
     if sinir and not a.zorla:
         sys.exit("Paket sınırları aşıldı ya da hikâye boş; düzelt ya da bilerek --zorla kullan.")
+    bakis = bakis_sorunlari(ep)
+    for u in bakis:
+        print(f"  ⚠ {u}")
+    if bakis and not a.zorla:
+        sys.exit("Karakter bakış kaydı eksik ya da çelişkili; kaydet, `python -m wojak bakis` ile kareleri gözle kontrol "
+                 "et, yeniden render et. Bilerek geçmek için --zorla.")
     yml = ep.dir / "episode.yaml"
     if yml.exists() and mp4.stat().st_mtime < yml.stat().st_mtime:
         print("  ⚠ video episode.yaml'dan eski: sahneler değiştiyse önce yeniden render et")
@@ -205,7 +257,7 @@ def main(argv=None) -> None:
     p.add_argument("--preview", action="store_true")
     p.add_argument("--dolgu", action="store_true", help="üst/alt bantları karenin bulanık hâliyle doldur")
     p.set_defaults(fn=cmd_render)
-    for name, fn in (("check", cmd_check), ("frames", cmd_frames), ("paket", cmd_paket)):
+    for name, fn in (("check", cmd_check), ("frames", cmd_frames), ("paket", cmd_paket), ("bakis", cmd_bakis)):
         p = sp.add_parser(name)
         p.add_argument("episode")
         p.set_defaults(fn=fn)
@@ -216,7 +268,8 @@ def main(argv=None) -> None:
     p = sp.add_parser("yon", help="karakter görselinin bakış yönü: göster ya da kaydet")
     p.add_argument("png", nargs="+")
     p.add_argument("--yon", choices=["sag", "sol", "on", "right", "left", "front"],
-                   help="gözle bakıp kaydet (yoksa kayıt + tahmin gösterilir)")
+                   help="PNG dosyasının KENDİ baktığı yön (burun/göz bebekleri); karakterin bakması gereken yön "
+                        "değil, aynalamayı motor yapar. Yoksa kayıt + tahmin gösterilir")
     p.set_defaults(fn=cmd_yon)
     p = sp.add_parser("new")
     p.add_argument("id")

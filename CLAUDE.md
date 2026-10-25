@@ -86,7 +86,11 @@ STIL.md wins.
 - `episodes/<id>/episode.yaml`: one short reel, with `img/`, `img/telifli/` (git-ignored), `chars/` and
   per-episode helper scripts. Start new ones from `episodes/_sablon/` with `python -m wojak new <id>`.
 - `assets/kit/<name>/`: reusable character kits (`uret.py` + `kit.json` + face variants).
-  `data/karakter_yon.json` is the gaze registry.
+  `data/karakter_yon.json` is the gaze registry. Characters always look INTO the frame (left one looks right, right
+  one looks left); the renderer mirrors automatically from the registry. Register every new PNG with the direction
+  the file itself faces (nose and pupils as drawn). Do not write `faces:` in episode.yaml: agents wrote the wanted
+  direction there and two published reels had a character looking out (2026-10-25). `teslim` now refuses an
+  unregistered or conflicting gaze; check `out/<id>/kareler/bakis.jpg` before the judges.
 - `uzun/<id>/video.yaml`: one long video (demo: `uzun/demo/`). `wojak/` is the short renderer and
   `wojak/uzun/` the long-form engine. `tools/` holds asset search, music, sfx and research tools.
 - `out/` (renders) and `referans/` (original reels) are git-ignored.
@@ -99,7 +103,8 @@ python -m wojak check  episodes/<id>      # validation + timeline + [stil] warni
 python -m wojak frames episodes/<id>      # one frame per scene -> out/<id>/kareler/ (LOOK at them)
 python -m wojak render episodes/<id>      # out/<id>/: mp4 + kapak.jpg + paylasim.md + metinler/
 python -m wojak teslim episodes/<id>      # -> teslim/<id>/ (--zorla only deliberately)
-python -m wojak yon <png> --yon sag|sol|on   # register a character's gaze after looking at it
+python -m wojak yon <png> --yon sag|sol|on   # register the gaze OF THE PNG FILE ITSELF (not where it should look)
+python -m wojak bakis episodes/<id>      # dialog frames on one sheet: every face must look INTO the frame
 
 # long form
 python -m wojak uzun kontrol   uzun/<id>
