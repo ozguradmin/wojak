@@ -1,0 +1,124 @@
+# Hezarfen Ahmed Çelebi'nin Galata Kulesi'nden Üsküdar'a uçuşu ve sürgünü (İstanbul, IV. Murad dönemi, 1630'lar).
+# Araştırma notu: scratchpad olgular.md (repoya girmez). Altın dönem kalıbı: C2fa/C3iX soru-cevap + C4V3/C12O yüz varyantı.
+# AYNI YER, AYNI AN: Topkapı Sarayı (arka planda saraydan görünen Galata Kulesi), uçuştan sonra.
+#   A (hep solda): Hezarfen Ahmed Çelebi (bakış açısı karakteri; ters köşe yüzü onun). Benzerlik genel (portresi yok).
+#   B (hep sağda): IV. Murad. Kötü/sırıtan yüz yok; ciddi ve sakin.
+# Olgu sınırları (TEK KAYNAK Evliya Çelebi, Seyahatnâme I; metinde "Evliya Çelebi'ye göre", "anlatılana göre"):
+#   - Okmeydanı'nda kartal kanatlarıyla 8-9 kez talim; padişah Sarayburnu'ndaki Sinan Paşa Köşkü'nden izlerken Galata
+#     Kulesi'nin tepesinden lodosla uçup Üsküdar'da Doğancılar Meydanı'na indi; IV. Murad bir kese altın verdi ve "Bu adam pek
+#     korkulacak bir adamdır, her ne murad ederse elinden gelir, böyle kimselerin bekası câiz değil" diyerek Cezayir'e
+#     sürdü; orada vefat etti (TDV İA "Hezarfen Ahmed Çelebi"; İstanbul Ansiklopedisi/Koçu; GZT Seyahatnâme alıntısı; en.wiki).
+#   - YIL KAYNAKTA YOK: 1632 / 1638 / "1630-1632" sonradan verilen tahminler -> ekranda ve metinde yıl yok.
+#   - Mesafe kaynaklarda 3.358 m / 6 km -> verilmez. "Lodosa karşı" (TDV) / "lodos rüzgârıyla" (Koçu) -> yalnız "lodosla".
+#   - Başka kaynakta geçmiyor; bazı tarihçiler efsane sayıyor -> metinde açıkça yazılı.
+#   - S1 "uçtum", S2 "kese altın", S4 korku gerekçesi + Cezayir Evliya'dakinin özü. S3 övünme ve S5 fark etme repliği canlandırma.
+#   - Kanıt 1: Galata Kulesi'nden Sarayburnu (Topkapı), CC BY-SA 3.0. Kanıt 2 (son kare, PUL; kupür/nesne değil): 1950 PTT
+#     ICAO Kongresi 20 kuruşluk hatıra pulu, Hezarfen'in Galata'dan uçuşu (PD-TR).
+# Karakterler: chars/uret.py. Görseller: gorsel.py. Render: python -m wojak render episodes/hezarfen-galata-ucusu
+id: hezarfen-galata-ucusu
+title: "Galata Kulesi'nden Üsküdar'a uçan adama padişahın verdiği ödül"
+
+# Kanal imzası (22.10'dan beri bizim imza_v2_golge.m4a). "orijinal" asla.
+# volume: bu ortamın ffmpeg 6.1.1'inde loudnorm TP=-17'yi reddediyor; sabit kazanç -15,4 -> -29,5 LUFS = x0,197.
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (Hezarfen, sol, kendinden emin). Arka planda kule: "Ne?!" ilk saniyede.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_galata_harem.jpg
+    blur: 2.5   # ölçüldü: 2,5 -> kenar Laplace ~20 (orijinal medyan 22)
+    chars:
+      - {img: chars/hezarfen_emin.png, side: left, faces: sag, height: 0.55}
+    text: "Padişahım, Galata Kulesi'nden\nÜsküdar'a uçtum"   # elle kırım: virgülde
+
+  # 2) CEVAP — B (IV. Murad, sağ). Belgeli: bir kese altın.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_galata_harem.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/murad_sakin.png, side: right, faces: sol, height: 0.55}
+    text: "Gördüm, al şu bir kese altını"
+
+  # 3) A övünür (dramatik ironi; Evliya'daki "her ne murad ederse elinden gelir"i hazırlar)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_galata_harem.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/hezarfen_emin.png, side: left, faces: sag, height: 0.55}
+    text: "Sağ olun, daha neler\nyapabilirim neler"
+
+  # 4) B'nin gerekçesi + sürgün (Evliya: "Bu adam pek korkulacak bir adamdır ... diye Cezayire nefi eylemiştir")
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_galata_harem.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/murad_sakin.png, side: right, faces: sol, height: 0.55}
+    text: "Böyle adamdan korkulur,\nCezayir'e gideceksin"
+
+  # 5) TERS KÖŞE — A, aynı kutu, yüz varyantı (iri göz, kalkık kaş, açık ağız, mavi soğuk ter + damlalar)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_galata_harem.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/hezarfen_sok.png, side: left, faces: sag, height: 0.55}
+    text: "Nasıl yani, uçtum diye\nsürgün mü?"   # cevabı son kare (pul: uçuşun kendisi)
+
+  # 6-7) KANIT — Galata Kulesi'nden Sarayburnu (padişahın izlediği yer), sonra 1950 pulu (son kare). Etiket/bant yok.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_sarayburnu.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_pul.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Boğaz'ı kanatla geçen adamın ödülü
+  Olayın tamamı sabit yorumda 👇
+hashtags: [hezarfen, galatakulesi, istanbul]
+
+pinned_comment: |
+  Hezarfen Ahmed Çelebi, 17. yüzyılda İstanbul'da yaşadığı ve kendi yaptığı kanatlarla Galata Kulesi'nden Üsküdar'a uçtuğu anlatılan Osmanlı bilginidir. "Hezarfen", bin fenli, yani pek çok bilimden anlayan demektir.
+
+  Onun hakkında bilinenlerin tek kaynağı Evliya Çelebi'nin Seyahatnâme'sidir. Evliya Çelebi'ye göre Ahmed Çelebi önce Okmeydanı'nda, rüzgârın sert estiği günlerde "kartal kanatları" ile sekiz dokuz kez havalanarak talim etti. Sonra, IV. Murad'ın saltanatında, padişah Sarayburnu'ndaki Sinan Paşa Köşkü'nden izlerken Galata Kulesi'nin tepesinden lodosla havalandı, Boğaz'ı geçip Üsküdar'da Doğancılar Meydanı'na indi.
+
+  Padişah ona bir kese altın verdi. Ardından, Evliya Çelebi'nin aktardığına göre, "Bu adam pek korkulacak bir adamdır, her ne murad ederse elinden gelir, böyle kimselerin bekası câiz değil!" diyerek onu Cezayir'e sürgün etti. Ahmed Çelebi'nin hayatının geri kalanını orada geçirdiği anlatılır.
+
+  Uçuşun yılı Seyahatnâme'de yazmıyor; sonradan verilen tarihler birbirini tutmuyor. Olay başka hiçbir kayıtta geçmediği için bazı tarihçiler onu bir efsane sayıyor.
+
+  Sürgüne gönderilen adam, 1950'de İstanbul'da toplanan Milletlerarası Sivil Havacılık Kongresi için basılan 20 kuruşluk hatıra pulunda, Galata Kulesi'nden uçarken resmedildi.
+
+  Sizce Hezarfen gerçekten Boğaz'ı uçarak geçti mi, yoksa bu Evliya Çelebi'nin anlattığı bir hikâye mi?
+
+credits: "Derzsi Elekes Andor (Galata Kulesi, Harem'den, CC BY-SA 4.0) ve Moonik (Galata Kulesi'nden Topkapı Sarayı, CC BY-SA 3.0), Wikimedia Commons (kırpıldı). Pul: Türkiye Cumhuriyeti Postaları, 1950, kamu malı."
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır ve anlatı tek kaynaklıdır:** uçuş, bir kese altın, padişahın korku gerekçesi ve Cezayir sürgünü yalnız Evliya Çelebi'nin Seyahatnâme'sinde geçiyor; metin bunu ve efsane görüşünü açıkça yazıyor. Hezarfen'in \"daha neler yapabilirim\" övünmesi ve son fark etme repliği canlandırma; padişahın korku ve Cezayir repliği Seyahatnâme'deki sözün özü"
+  - "**Yıl yok, bilerek:** yorumlarda \"1632\" ya da \"1638\" diyenler olabilir; ikisi de sonradan verilen tahmin, kaynakta yıl yok"
+  - "**Son kare gerçek bir pul:** 1950 PTT ICAO Kongresi 20 kuruşluk hatıra pulu (kamu malı). Kupür ya da canlandırma kart yok"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette; padişaha ya da Osmanlı'ya yönelik siyasi kavga ve hakaret içeren yorumları sil"
+  - "İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): \"Galata Kulesi'nden Üsküdar'a uçmak sizce mümkün mü? Mühendisler yoruma\""
+
+sources:
+  # Doğrulama (araştırma notu: olgular.md, 25.10.2026)
+  - "TDV İslâm Ansiklopedisi — Hezarfen Ahmed Çelebi (bilgiler yalnız Seyahatnâme'ye dayanır; Okmeydanı'nda kartal kanatlarıyla denemeler; Galata Kulesi'nden Doğancılar Meydanı'na; IV. Murad Sinan Paşa Köşkü'nden izledi; 1 kese altın; söz ve Cezayir sürgünü; Evliya Çelebi I, 670): https://islamansiklopedisi.org.tr/hezarfen-ahmed-celebi"
+  - "İstanbul Ansiklopedisi (Reşad Ekrem Koçu), Ahmed Çelebi (Hezarfen), c. 1, s. 344-345 (yalnız Evliya Çelebi bahseder; alıntı: 'Bu adam pek korkulacak bir adamdır, her ne murad ederse elinden gelir, böyle kimselerin bekası câiz değil!'; Cezayir'e nefy, orada merhum oldu; PTT 1950'de 17 Ekim'de İstanbul'da toplanan Milletlerarası Sivil Havacılık Kongresi için zeytuni yeşil-mavi 20 kuruşluk pulda uçuş sahnesi): https://istanbulansiklopedisi.org/handle/rek/3361"
+  - "GZT — Hezarfen Ahmet Çelebi efsanesi ve tarihî gerçeklik (Seyahatnâme 1. cilt metni; tek kaynak; neden başka kaynakta yok sorusu): https://www.gzt.com/kultur/hezarfen-ahmet-celebi-efsanesi-ve-tarihi-gercek-4020131"
+  - "Wikipedia — Hezârfen Ahmed Çelebi (Evliya'ya göre, ~1630-1632 tahmini; Okmeydanı 8-9 deneme; Sinan Paşa Köşkü; Doğancılar; kese altın; Cezayir sürgünü): https://en.wikipedia.org/wiki/Hez%C3%A2rfen_Ahmed_%C3%87elebi"
+  - "Pul ve Posta — 1950 ICAO Kongresi anma pulları (20 kuruşlukta Hezarfen'in Galata Kulesi'nden uçuş denemesi; kongre İstanbul'da): https://pulveposta.com/2018/01/28/1950-icao-kongresi-anma-pullari-serisi/"
+  # Görseller ve lisanslar (gorsel.py; lisanslar Commons dosya sayfasının ham metninden doğrulandı, 25.10.2026)
+  - "GÖRSEL img/arka_galata_harem.jpg (tüm diyalog) — 'Galata Tower from the Harem - 2014.10.23 (1).JPG', Derzsi Elekes Andor, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Galata_Tower_from_the_Harem_-_2014.10.23_(1).JPG . Değişiklik: 3840 px sürümünden kırpım (360,0)-(3240,2880), 1080x1080"
+  - "GÖRSEL img/kanit_1_sarayburnu.jpg (kanıt 1, 11,0-12,5 sn) — 'View of Topkapı Palace from the Galata Tower, Istanbul, Turkey 001 cropped.jpg', Moonik, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:View_of_Topkap%C4%B1_Palace_from_the_Galata_Tower,_Istanbul,_Turkey_001_cropped.jpg . Değişiklik: kırpım (700,120)-(2700,1420), 1080x702"
+  - "GÖRSEL img/kanit_2_pul.jpg (kanıt 2, son kare, 12,5-14,0 sn) — 'Hezarfen Ahmed Çelebi.jpg', Türkiye Cumhuriyeti Postaları, 1950 hatıra pulu (üzerinde 'Kongresi 17-X-1950 İstanbul'; Commons tarihi 1950-11-17; Michel TR 1261), kamu malı ({{PD-TR}}): https://commons.wikimedia.org/wiki/File:Hezarfen_Ahmed_%C3%87elebi.jpg . Değişiklik: pulun üst kısmı tam genişlikte kırpıldı (0,22)-(319,263), 1080x816'ya büyütüldü, hafif keskinleştirildi"
+  # Karakterler (chars/uret.py)
+  - "KARAKTER A Hezarfen (sol): wojakland 'Panjabi Muslim Chad' https://wojakland.com/wp-content/grand-media/image/original/Panjabi_Muslim_chad.png (hezarfen_emin.png: kaynağın kendisi, göğüsten kesik; hezarfen_sok.png: aynı kutu, iri göz, kalkık kaş, açık ağız, mavi soğuk ter + 2 ter damlası)"
+  - "KARAKTER B IV. Murad (sağ): wojakland 'Sultan Wojak' https://wojakland.com/wp-content/grand-media/image/original/sultan_wojak_3.png (murad_sakin.png: kır sakal koyu kahveye boyandı, dişlerini sıkan ağız silinip düz ağız çizildi, alttan kesildi)"

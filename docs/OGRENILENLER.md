@@ -830,6 +830,61 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
   elle yazıldı: Karun kare tamamlama, Kaşıkçı 816 tamamlama).
 - `tools/wojak_lib.py` / `wojak_site.py`: dönem süzgeci (ör. `--once 1829` fesli sonuçları gizlesin).
 
+### Ek dersler (25.10.2026 sabah, `hezarfen-galata-ucusu`, iki hakemden 8/8, ~39 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Yeni son kare türü: posta pulu.** Olay seyahatname/kronik kaynaklıysa ve basında çıkmadıysa, devletin sonradan
+  bastığı hatıra pulu hem resmî hem kamu malı bir kanıt: Commons'ta Türk pulları `{{PD-TR}}` (ör. "Hezarfen Ahmed
+  Çelebi.jpg", 1950 ICAO pulu). Pul dikeyse tam genişlikte, dişleri iki yanda görünecek biçimde üst kısmından 1080x816
+  kırp (başlık + tarih + sahne kadrajda kalsın). 319 px'lik tarama 3,4 kat büyüdü: telefonda net, 1:1'de yumuşak
+  (LANCZOS + `UnsharpMask(2, 60, 2)`). Commons'ta "1950 stamps of Turkey" gibi yıl kategorileri var.
+- **Dev başlıklı (kavuk + sorguç) karakterde yüz kadrajın en altına düşüyor:** `height` 0,55'i aşınca `check` ve
+  `render` `[stil]` uyarısı veriyor (0,58 ve 0,62 denendi). Doğrusu 0,55'te kalmak ve PNG'yi **sakalın altından** kesmek
+  (Sultan Wojak 1518x1400 → y 1235). Yüz yine alt yarıda kalır ama okunur; iki karakter 0,55'te yazı bloğu sabit.
+  Not: `check` çıktısını `grep -v "^ "` ile süzme; `[stil]` satırları girintili, süzgeç onları da siler (bu oturumda
+  uyarı bu yüzden önce gözden kaçtı, render'da görüldü).
+- **Kaynak çizimin ağzı anlamı bozuyorsa değiştir:** Sultan Wojak dişlerini sıkıyordu (kanalda öfkeli/kötü okunur).
+  Ağız bölgesini sakal rengine boya (`sil(..., tol=-1)`), düz ve hafif aşağı kıvrık tek çizgi çiz. Sakal rengini
+  değiştirirken (kır → koyu, genç padişah) **bağlı bölge** kullan (`scipy.ndimage.label`, tohum sakalın içinde); düz renk
+  eşiği benzer tondaki kürk yakayı da boyadı.
+- **Chad profilinde ters köşe yüzü telefonda zor okunur:** ilk varyant %0,25'ti. Göz beyazını büyüt (yarıçap ~60/46 px,
+  1024 px çizimde), açık ağzı pembe dudak + koyu iç olarak sakalın içine çiz (koyu ağız siyah sakalda kaybolur), alına
+  5 kalın mavi soğuk ter çizgisi (11 px) ve başın önüne, kontur dışına 3 damla (44/36/26) koy: %0,40. Tuvali sağa 70 px
+  aç ki damlalar kesilmesin.
+- **Ters köşe repliğinin bilgisi bir önceki replikte ekilmeli:** ilk turda "Cezayir'e mi sürüyorsunuz?" birden
+  geliyordu (sürgünü ekranda kimse söylemiyordu). Bilgiyi B'ye ver ("Böyle adamdan korkulur, Cezayir'e gideceksin"),
+  A'nın fark etme sorusunu son karenin göstereceği şeye bağla ("Nasıl yani, uçtum diye sürgün mü?" → pulda uçuş).
+- **Arka planda kenarı kesen yapı parçası:** gerçek yerin fotoğrafında karenin kenarında yarım kalan baca/sütun bej bir
+  şerit gibi göze batıyor; kırpımı 80 px kaydırmak yetti. Dikey öğeyi (kule) karakterlerin başının üstüne denk getir:
+  karakterler hep kare tabanında, kule hep görünür kalır.
+
+**Çalışmayan (deneme):**
+- `height` 0,58 / 0,62 (yüzü büyütmek için): `check`/`render` `[stil]` uyarısı.
+- Sakal rengini düz renk eşiğiyle değiştirmek (kürk yaka da boyandı).
+- wojakland "Muslim Wojak" (klasik yüzlü sarıklı): büstsüz kafa, alt kenardan kesilince "kafa havada" kalıyor.
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Ayasofya (23.10 akşam) | Göbeklitepe (24.10 sabah) | Kaşıkçı (24.10 akşam) | Hezarfen (25.10 sabah) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~5 dk | ~5 dk | ~3 dk | ~6 dk |
+| Konu + olgu | ~2 dk | ~4 dk | ~2 dk | ~6 dk |
+| Görsel avı | ~10 dk | ~2 dk | ~3 dk | ~5 dk |
+| Karakter + yüz | ~5 dk | ~4 dk | ~3 dk | ~6 dk |
+| yaml → teslim | ~2 dk | ~3 dk | ~3 dk | ~4 dk |
+| Ön kontrol + hakem turları | ~5 dk | ~3 dk | ~5 dk | ~6 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~3 dk | ~4 dk | ~5 dk | ~6 dk |
+| **Toplam** | ~31 dk | ~25 dk | ~25 dk | **~39 dk** |
+
+Ücretli API: 0. Bu bölüm daha uzun sürdü: 17. yüzyıl Osmanlı bilgini için hazır karakter araması (üç kaynak, iki
+sayfa) ve dev kavuklu padişahın yüz yerleşimi.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `check`/`compose`: başlığı yüksek karakterde (kavuk, sarık) yazı bloğu %32 alt sınırına yapışıyor; yüzün PNG içindeki
+  konumuna göre (yüz kutusu alanı) boy önerisi verilebilir.
+- `tools/`: Commons'ta yıl kategorisinden pul arayan küçük yardımcı ("Category:<yıl> stamps of Turkey", PD-TR süzgeci).
+
 ---
 
 ## 7. Uzun formata ne taşınır?
