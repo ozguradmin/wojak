@@ -179,12 +179,15 @@ def cmd_yon(a) -> None:
 
 
 def cmd_new(a) -> None:
+    if a.kanal == "en" and not a.id.startswith("en-"):
+        sys.exit("İngilizce kanal (Wojak Past Files) bölüm id'si 'en-' ile başlar")
     dst = config.ROOT / "episodes" / a.id
     if dst.exists():
         sys.exit(f"zaten var: {dst}")
     shutil.copytree(config.ROOT / "episodes" / "_sablon", dst)
     yml = dst / "episode.yaml"
-    yml.write_text(yml.read_text(encoding="utf-8").replace("id: sablon", f"id: {a.id}"), encoding="utf-8")
+    head = f"id: {a.id}" + (f"\nkanal: {a.kanal}  # {config.KANALLAR[a.kanal]['ad']}" if a.kanal != "tr" else "")
+    yml.write_text(yml.read_text(encoding="utf-8").replace("id: sablon", head), encoding="utf-8")
     print(f"-> {dst}")
 
 
@@ -217,6 +220,8 @@ def main(argv=None) -> None:
     p.set_defaults(fn=cmd_yon)
     p = sp.add_parser("new")
     p.add_argument("id")
+    p.add_argument("--kanal", choices=sorted(config.KANALLAR), default="tr",
+                   help="kanal profili: tr = Tarihsel Wojak, en = Wojak Past Files (id 'en-' ile başlar)")
     p.set_defaults(fn=cmd_new)
     sp.add_parser("uzun", help="uzun format (YouTube 16:9) motoru: python -m wojak uzun --help")
     a = ap.parse_args(argv)

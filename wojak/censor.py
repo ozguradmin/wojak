@@ -47,6 +47,32 @@ _METIN = _EKRAN + [
     (W + r"bomba", "b0mba"),
 ]
 
+# İngilizce kanal (kanal: en). Aynı ilke: kelime başında eşleşir, ek korunur; "skill", "deadline", "diet",
+# "gunther", "bloodhound" gibi sıradan kelimeler bozulmasın diye kelime sonu ayrıca sınırlanır.
+_EN_EKRAN = [
+    (W + r"kill(?=ed\b|er\b|ers\b|ing\b|s\b|\b)", "k*ll"),
+    (W + r"murder", "m*rder"),
+    (W + r"suicide", "s*icide"),
+    (W + r"rape(?=d\b|s\b|\b)", "r*pe"),
+    (W + r"corpse", "c*rpse"),
+    (W + r"dead(?!\w)", "d*ad"),
+    (W + r"death(?=s?\b)", "d*ath"),
+    (W + r"die(?=[ds]?\b)", "d*e"),
+    (W + r"blood(?=y?\b)", "bl**d"),
+]
+_EN_METIN = _EN_EKRAN + [
+    (W + r"gun(?=s?\b)", "g*n"),
+    (W + r"knife", "kn*fe"),
+    (W + r"stab(?=s?\b|bed\b|bing\b)", "st*b"),
+    (W + r"strangl", "str*ngl"),
+    (W + r"drug(?=s?\b)", "dr*g"),
+    (W + r"abuse", "ab*se"),
+    (W + r"pedophil", "p3d0phil"),
+    (W + r"terror", "t3rror"),
+    (W + r"bomb(?=s?\b|ed\b|ing\b)", "b0mb"),
+]
+_KURALLAR = {"tr": (_EKRAN, _METIN), "en": (_EN_EKRAN, _EN_METIN)}
+
 
 def _apply(text: str, rules) -> str:
     for pat, rep in rules:
@@ -57,9 +83,9 @@ def _apply(text: str, rules) -> str:
     return text
 
 
-def ekran(text: str) -> str:
-    return _apply(text, _EKRAN)
+def ekran(text: str, kanal: str = "tr") -> str:
+    return _apply(text, _KURALLAR[kanal][0])
 
 
-def metin(text: str) -> str:
-    return _apply(text, _METIN)
+def metin(text: str, kanal: str = "tr") -> str:
+    return _apply(text, _KURALLAR[kanal][1])

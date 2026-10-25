@@ -99,6 +99,7 @@ class Episode:
     telif_notu: str = ""         # telifli görseller için hesap sahibine özel lisans notu (paylaşım paketinde)
     ek_maddeler: list[str] = field(default_factory=list)  # paylaşım kontrol listesine bölüme özel maddeler
     uzun_video: str = ""         # aynı konunun uzun YouTube videosu (bağlantı ya da "yakında"); Shorts açıklamasına eklenir
+    kanal: str = "tr"            # kanal profili (config.KANALLAR): tr = Tarihsel Wojak, en = Wojak Past Files
 
     @property
     def duration(self) -> float:
@@ -190,13 +191,16 @@ def load(path: str | Path) -> Episode:
             m["file"] = str(config.MUSIC_CHANNEL if config.MUSIC_CHANNEL.exists() else config.MUSIC_FALLBACK)
         m["file"] = _resolve(base, m["file"], "music")
         music = Music(**m)
+    kanal = str(raw.get("kanal") or "tr")
+    if kanal not in config.KANALLAR:
+        raise EpisodeError(f"bilinmeyen kanal '{kanal}' (geçerli: {sorted(config.KANALLAR)})")
     return Episode(
         id=raw.get("id") or base.name,
         dir=base,
         title=raw.get("title", base.name),
         scenes=scenes,
         layout=raw.get("layout", "square"),
-        watermark=raw.get("watermark", config.WATERMARK),
+        watermark=raw.get("watermark", config.KANALLAR[kanal]["watermark"]),
         top_text=raw.get("top_text"),
         music=music,
         caption=raw.get("caption", "") or "",
@@ -213,4 +217,5 @@ def load(path: str | Path) -> Episode:
         telif_notu=str(raw.get("telif_notu") or "").strip(),
         ek_maddeler=[str(x) for x in raw.get("ek_maddeler") or []],
         uzun_video=str(raw.get("uzun_video") or "").strip(),
+        kanal=kanal,
     )

@@ -57,6 +57,16 @@ LOUDNESS_TP = -17.0
 MAX_DURATION = 14.0
 
 WATERMARK = "tarihselwojak"
+# Kanal profilleri (episode.yaml: `kanal: tr | en`, varsayılan tr). Yalnız kanala/dile bağlı değerler; video stili aynı.
+# en = Wojak Past Files (İngilizce, global izleyici; teslim wojak-en-ozel deposuna, bölüm id'leri "en-" ile başlar).
+KANALLAR = {
+    "tr": {"ad": "Tarihsel Wojak", "watermark": WATERMARK,
+           "default_tags": ["#wojak", "#tarihselwojak", "#keşfet", "#olay", "#gizem"],
+           "brand_tags": ["#tarihselwojak", "#wojak"], "credit": "Görseller", "uzun": "▶ Uzun hali"},
+    "en": {"ad": "Wojak Past Files", "watermark": "wojakpastfiles",
+           "default_tags": ["#wojak", "#wojakpastfiles", "#history", "#mystery", "#truestory"],
+           "brand_tags": ["#wojakpastfiles", "#wojak"], "credit": "Images", "uzun": "▶ Full version"},
+}
 # Sahne etiketleri ("Gerçek fotoğraf · ...", "İddia · 1965") videoda gösterilmez: hesap sahibi istemiyor
 # (2026-10-09) ve altın dönem videolarında yoktu. Atıf açıklamada (credits).
 SHOW_LABELS = False

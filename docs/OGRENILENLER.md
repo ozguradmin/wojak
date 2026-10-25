@@ -938,6 +938,18 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - `tools/`: Commons indiricisi md5 yolu 3 kez 429 verince otomatik `iiurlwidth` thumburl'üne düşsün.
 - `tests/`: sabit `/home/user/wojak` yolu yerine depo kökü (taze konteynerde hâlâ düşüyor; önceki öneri).
 
+### EN kanalı (Wojak Past Files, 25.10.2026'dan itibaren)
+
+İngilizce ikinci kanal. Konsept, stil, müzik ve kalite çıtası yukarıdakiyle aynı; yukarıdaki kanıtlanmış yol burada da
+geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (yalnız ekleme, tarihli).
+- Profil: `episode.yaml`'da `kanal: en` (filigran `wojakpastfiles`, `Images:` atfı, İngilizce hashtag, İngilizce sansür
+  ve denetim). Yeni bölüm: `python -m wojak new en-<id> --kanal en`. Bölüm id'leri `en-` ile başlar.
+- Teslim: `wojak-en-ozel/teslim/<id>/` (tek commit; push anında yayın). `wojak-ozel`'e en bölümü konmaz.
+- Ekip: yapımcı ve araştırmacı Claude Haiku 5.5; iki bağımsız hakem Claude Sonnet 5.5 (ayrı bağlam).
+- Ara kart İngilizcede "... later" ile biter ("A few hours later"); `check` bunu denetler.
+- Atıf satırı: açıklamaya "Images: ..." ve kupür/kart varsa "The final frame is a recreation; the quote is from
+  <publication>, <date>." yazılır.
+
 ---
 
 ## 7. Uzun formata ne taşınır?

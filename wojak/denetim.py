@@ -27,6 +27,17 @@ _HUKUM = ["katil", "cani", "sapık", "itiraf", "canavar", "vahşi", "şeytan", "
 _YASAK = {"intihar": "intihar olayları işlenmez (DSÖ rehberi; yöntem/mekân verilmez)",
           "tecavüz": "cinsel suç konusu işlenmez",
           "istismar": "istismar konusu işlenmez"}
+# İngilizce kanal (kanal: en): aynı kurallar, İngilizce kelimelerle
+_HUKUM_EN = ["killer", "murderer", "guilty", "monster", "psycho", "confessed", "evil"]
+_YASAK_EN = {"suicide": "intihar olayları işlenmez (DSÖ rehberi; yöntem/mekân verilmez)",
+             "rape": "cinsel suç konusu işlenmez",
+             "abuse": "istismar konusu işlenmez"}
+_DIL = {
+    "tr": {"hukum": _HUKUM, "yasak": _YASAK, "cocuk": r"(?<!\w)(?:[1-9]|1[0-7]) yaşındaki",
+           "kaynak": ("Kaynak:", "açıklamasına göre"), "kart": r"sonra$"},
+    "en": {"hukum": _HUKUM_EN, "yasak": _YASAK_EN, "cocuk": r"(?<!\w)(?:[1-9]|1[0-7])-year-old",
+           "kaynak": ("Source:", "according to"), "kart": r"later$"},
+}
 
 
 def _texts(ep: Episode) -> dict[str, str]:
@@ -47,14 +58,15 @@ def check(ep: Episode) -> list[str]:
     """Uyarı listesi döndürür (boş = sorun bulunmadı)."""
     out: list[str] = []
     texts = _texts(ep)
+    dil = _DIL[ep.kanal]
     if ep.gundem:
         if not ep.kesin_hukum:
-            for w in _HUKUM:
+            for w in dil["hukum"]:
                 r = _rx(w)
                 for where, txt in texts.items():
                     if r.search(txt or ""):
                         out.append(f"[masumiyet] '{w}' ({where}) — hüküm kesinleşmemiş: 'şüpheli', 'iddiaya göre' kullan")
-        for w, why in _YASAK.items():
+        for w, why in dil["yasak"].items():
             r = _rx(w)
             if any(r.search(t or "") for t in texts.values()):
                 out.append(f"[kırmızı çizgi] '{w}': {why}")
@@ -64,9 +76,9 @@ def check(ep: Episode) -> list[str]:
             out.append("[başlık] sadece isim/etiket gibi duruyor; 'kim + sıradan eylem + ters dönen son' kalıbı daha iyi")
         if not ep.top_text:
             out.append("[bağlam] güncel olayda üst yazıya tarih/yer bağlamı ekle (YouTube: bağlam videonun içinde olmalı)")
-        if "Kaynak:" not in ep.pinned_comment and "açıklamasına göre" not in ep.pinned_comment:
+        if not any(k in ep.pinned_comment for k in dil["kaynak"]):
             out.append("[kaynak] sabit yorumda resmi kaynak ve tarih yok ('X Valiliği'nin 12.10 14:30 açıklamasına göre...')")
-    if re.search(r"(?<!\w)(?:[1-9]|1[0-7]) yaşındaki", " ".join(t for t in texts.values() if t)):
+    if re.search(dil["cocuk"], " ".join(t for t in texts.values() if t), re.IGNORECASE):
         out.append("[çocuk] 18 yaş altı kişi geçiyor: isim, yüz, okul, mahalle, ebeveyn adı olmamalı")
     return out
 
@@ -97,8 +109,9 @@ def stil(ep: Episode) -> list[str]:
         elif seen_evidence:
             out.append(f"[stil] {tag}: kanıttan sonra {s.type} var; orijinallerde video kanıtla biter (0/30)")
         if s.type == "card":
-            if s.text and not re.search(r"sonra$", s.text.strip()):
-                out.append(f"[stil] {tag}: kart yalnız ileri zaman atlaması olmalı ('Bir süre sonra', 'Birkaç saat sonra')")
+            if s.text and not re.search(_DIL[ep.kanal]["kart"], s.text.strip(), re.IGNORECASE):
+                ornek = "'Bir süre sonra', 'Birkaç saat sonra'" if ep.kanal == "tr" else "'A while later', 'A few hours later'"
+                out.append(f"[stil] {tag}: kart yalnız ileri zaman atlaması olmalı ({ornek})")
             if not 1.4 <= s.duration <= 2.0:
                 out.append(f"[stil] {tag}: kart süresi {s.duration} sn (orijinal 1,5)")
         if s.type == "dialog":

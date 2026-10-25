@@ -14,18 +14,18 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from . import censor
+from . import censor, config
 from .episode import Episode
 
-DEFAULT_TAGS = ["#wojak", "#tarihselwojak", "#keşfet", "#olay", "#gizem"]
+DEFAULT_TAGS = config.KANALLAR["tr"]["default_tags"]
 LIMITS = {"instagram": 2200, "instagram_tags": 5, "youtube_title": 100, "youtube_desc": 5000, "tiktok": 4000,
           "youtube_tags": 3}   # hesap sahibi (13.10.2026): YouTube'da 2-3 hashtag
-BRAND_TAGS = ["#tarihselwojak", "#wojak"]
+BRAND_TAGS = config.KANALLAR["tr"]["brand_tags"]
 
 
 def hashtags(ep: Episode, n: int = 8) -> str:
     tags = []
-    for t in ep.hashtags + DEFAULT_TAGS:
+    for t in ep.hashtags + config.KANALLAR[ep.kanal]["default_tags"]:
         t = t if t.startswith("#") else f"#{t}"
         if t.lower() not in (x.lower() for x in tags):
             tags.append(t)
@@ -34,29 +34,31 @@ def hashtags(ep: Episode, n: int = 8) -> str:
 
 def instagram_tags(ep: Episode) -> str:
     """Instagram gönderi başına en fazla 5 hashtag kabul ediyor (Aralık 2025'ten beri): 3 konu + 2 marka."""
-    own = [t for t in hashtags(ep, 20).split() if t.lower() not in BRAND_TAGS]
-    return " ".join(own[:LIMITS["instagram_tags"] - len(BRAND_TAGS)] + BRAND_TAGS)
+    brand = config.KANALLAR[ep.kanal]["brand_tags"]
+    own = [t for t in hashtags(ep, 20).split() if t.lower() not in brand]
+    return " ".join(own[:LIMITS["instagram_tags"] - len(brand)] + brand)
 
 
 def _plain_title(title: str) -> str:
-    """'(Olayı yorumlara yazdım)' gibi yoruma yönlendiren ekleri atar (Instagram'da hikâye açıklamada)."""
-    return re.sub(r"\s*\([^)]*yorum[^)]*\)", "", title).strip()
+    """'(Olayı yorumlara yazdım)' / '(story in the comments)' gibi yoruma yönlendiren ekleri atar."""
+    return re.sub(r"\s*\([^)]*(?:yorum|comment)[^)]*\)", "", title, flags=re.IGNORECASE).strip()
 
 
 def texts(ep: Episode) -> dict[str, str]:
     """Platform metinleri. Hassas kelimeler censor.metin ile (üslup; hukuki koruma değildir)."""
-    title = censor.metin(ep.title.strip())
-    story = censor.metin(ep.pinned_comment.strip())
+    k = config.KANALLAR[ep.kanal]
+    title = censor.metin(ep.title.strip(), ep.kanal)
+    story = censor.metin(ep.pinned_comment.strip(), ep.kanal)
     tags = hashtags(ep)
     head = _plain_title(title)
-    credit = f"Görseller: {ep.credits}" if ep.credits else ""  # CC BY atfı
+    credit = f"{k['credit']}: {ep.credits}" if ep.credits else ""  # CC BY atfı
     return {
         # Hesap Instagram'da hashtag kullanmıyor (sahibin düzeni, 13.10.2026): başlık + hikâye + atıf
         "instagram_aciklama": "\n\n".join(x for x in (head, story, credit) if x),
         "youtube_baslik": title,
         # 23.10: açıklama hikâyenin tamamını taşır; 'caption' ("tamamı sabit yorumda 👇") YouTube'a girmez
         "youtube_aciklama": "\n\n".join(x for x in (
-            head, f"▶ Uzun hali: {ep.uzun_video}" if ep.uzun_video else "", story, credit,
+            head, f"{k['uzun']}: {ep.uzun_video}" if ep.uzun_video else "", story, credit,
             hashtags(ep, LIMITS["youtube_tags"] - 1) + " #shorts") if x),   # 2 konu + #shorts (eskiden 8 + #shorts)
         "youtube_sabit_yorum": story,
         "tiktok_aciklama": "\n\n".join(x for x in (head, story, credit, tags) if x),
@@ -82,7 +84,7 @@ def warnings(t: dict[str, str], ep: Episode | None = None) -> list[str]:
     if not t["youtube_sabit_yorum"]:
         w.append("Hikâye metni (pinned_comment) boş")
     if ep is not None:
-        bad = [h for h in ep.hashtags if censor.metin(h) != h]
+        bad = [h for h in ep.hashtags if censor.metin(h, ep.kanal) != h]
         if bad:
             w.append(f"Hassas kelimeli hashtag ({', '.join(bad)}): sansürlenemez, çıkar")
     return w
@@ -130,7 +132,9 @@ def write(ep: Episode, out_dir: Path, video: Path | None = None, denetim: list[s
            f"şu görseller haber ajansı/gazete malı (telifli): {', '.join(f'`{n}`' for n in telifli)}. Kanal eskiden "
            "de böyle kullanıyordu; istemezsen serbest lisanslı yedekle değiştiririm (kaynaklar aşağıda)")]
           if telifli or ep.telif_notu else []),
-        "- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)",
+        *(["- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)"]
+          if ep.kanal == "tr" else
+          ["- [ ] YouTube'u yayın botu yükler (wojak-en-ozel). Instagram: ABD akşamı (TR 01:00-04:00) önerilir"]),
         "- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır",
         "- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme",
         "- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)",

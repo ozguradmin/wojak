@@ -51,6 +51,19 @@ that misses the quality bar, waits for the owner (`BEKLET`). Instagram is still 
 5. **Long videos are not automated.** Deliver them into `teslim/<id>-uzun/`; the owner watches and approves.
 6. Never hand-edit files under `teslim/`. Change `episode.yaml` (or `video.yaml`) and regenerate.
 
+### Second channel: Wojak Past Files (English)
+
+Same concept and style, in English for a global audience. Channel profile `kanal: en` in `episode.yaml`
+(`config.KANALLAR`; default `tr`). New episode: `python -m wojak new en-<id> --kanal en`.
+- The profile sets the watermark (`wojakpastfiles`), the `Images:` credit label, English hashtags, the English
+  censor list and the English wording checks. Video style, music and quality bar are the same as for `tr`.
+- Episode ids start with `en-`. Produced by the Console agent "Wojak EN Video Producer" (Claude Haiku 5.5) with a
+  researcher (Haiku 5.5) and two independent judges (Claude Sonnet 5.5) as sub-agents.
+- Deliveries go to the private repo `ozguradmin/wojak-en-ozel` under `teslim/<id>/`; its own bot publishes to the
+  "Wojak Past Files" channel (America/New_York hours, Telegram tagged `[EN]`). Each bot checks the channel name,
+  so an `en` video never reaches the Turkish channel. Never put an `en` episode into `wojak-ozel`.
+- Lessons specific to this channel go under "EN kanalı" in `docs/OGRENILENLER.md` §6.2.
+
 ## Where the specs are
 
 | File | Use it for |
