@@ -131,14 +131,12 @@ B sürümü (telifli) **yok**. Telifli görsel hiçbir sürüme girmedi. Lisans 
 
 | Adım | Süre |
 |---|---|
-| Hazırlık (git, pip, font, referans, 81 test) + ortam ölçümü | ~2 dk |
-| Belge okuma (CLAUDE, ADIM_ADIM, STIL, OGRENILENLER, KONSEPT, GUNDEM, YAYIN_PLANI, kisa_reel.js) | ~4 dk |
-| Konu tarama + kanıt ön kontrolü (3 aday) | ~4 dk |
-| Olgu araştırması (2 web araması yetti) | ~2 dk |
-| Karakter avı + yüz varyantları + görsel avı + kırpımlar | ~11 dk |
-| episode.yaml → check → frames → render → teslim | ~4 dk |
-| Ön kontrol (yüz konumu, yüz değişimi) + 2 hakem turu + düzeltmeler | ~6 dk |
-| RAPOR, teslim kopyaları, commit, belge | ~6 dk |
-| **Toplam** | **~39 dk** |
+| Hazırlık (git, pip, font, referans, 81 test) + ortam ölçümü + belge okuma | ~3 dk |
+| Konu tarama + kanıt ön kontrolü (3 aday, Commons) | ~4 dk |
+| Karakter avı + yüz varyantları + olgu araştırması (2 web araması) + görsel avı + kırpımlar | ~12 dk |
+| episode.yaml → check → frames → render → teslim + ön kontrol (yüz konumu, yüz değişimi) | ~4 dk |
+| 2 hakem turu + düzeltmeler | ~3 dk |
+| RAPOR, teslim kopyaları, iki depoya commit, belge | ~3 dk |
+| **Toplam (saatle ölçüldü)** | **~29 dk** |
 
 **Yaklaşık maliyet:** ücretli API yok (TTS ve görsel üretimi yok). Yalnız model kullanımı (oturumun token tüketimi).

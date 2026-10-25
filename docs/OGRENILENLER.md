@@ -830,7 +830,7 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
   elle yazıldı: Karun kare tamamlama, Kaşıkçı 816 tamamlama).
 - `tools/wojak_lib.py` / `wojak_site.py`: dönem süzgeci (ör. `--once 1829` fesli sonuçları gizlesin).
 
-### Ek dersler (25.10.2026 sabah, `hezarfen-galata-ucusu`, iki hakemden 8/8, ~39 dk)
+### Ek dersler (25.10.2026 sabah, `hezarfen-galata-ucusu`, iki hakemden 8/8, ~29 dk)
 
 Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 
@@ -868,16 +868,16 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 
 | Adım | Ayasofya (23.10 akşam) | Göbeklitepe (24.10 sabah) | Kaşıkçı (24.10 akşam) | Hezarfen (25.10 sabah) |
 |---|---|---|---|---|
-| Hazırlık + okuma | ~5 dk | ~5 dk | ~3 dk | ~6 dk |
-| Konu + olgu | ~2 dk | ~4 dk | ~2 dk | ~6 dk |
-| Görsel avı | ~10 dk | ~2 dk | ~3 dk | ~5 dk |
-| Karakter + yüz | ~5 dk | ~4 dk | ~3 dk | ~6 dk |
-| yaml → teslim | ~2 dk | ~3 dk | ~3 dk | ~4 dk |
-| Ön kontrol + hakem turları | ~5 dk | ~3 dk | ~5 dk | ~6 dk (ön kontrol + 2 tur) |
-| Teslim + commit + belge | ~3 dk | ~4 dk | ~5 dk | ~6 dk |
-| **Toplam** | ~31 dk | ~25 dk | ~25 dk | **~39 dk** |
+| Hazırlık + okuma | ~5 dk | ~5 dk | ~3 dk | ~3 dk |
+| Konu + olgu | ~2 dk | ~4 dk | ~2 dk | ~5 dk |
+| Görsel avı | ~10 dk | ~2 dk | ~3 dk | ~4 dk |
+| Karakter + yüz | ~5 dk | ~4 dk | ~3 dk | ~7 dk |
+| yaml → teslim | ~2 dk | ~3 dk | ~3 dk | ~2 dk |
+| Ön kontrol + hakem turları | ~5 dk | ~3 dk | ~5 dk | ~5 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~3 dk | ~4 dk | ~5 dk | ~3 dk |
+| **Toplam** | ~31 dk | ~25 dk | ~25 dk | **~29 dk** |
 
-Ücretli API: 0. Bu bölüm daha uzun sürdü: 17. yüzyıl Osmanlı bilgini için hazır karakter araması (üç kaynak, iki
+Ücretli API: 0. En uzun adım karakterdi: 17. yüzyıl Osmanlı bilgini için hazır karakter araması (üç kaynak, iki
 sayfa) ve dev kavuklu padişahın yüz yerleşimi.
 
 **Kod değişikliği önerileri (uygulanmadı):**
