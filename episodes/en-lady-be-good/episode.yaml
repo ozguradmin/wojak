@@ -1,0 +1,102 @@
+# Lady Be Good (B-24D, 4 Nisan 1943; Libya çölünde 1958'de bulundu). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (2+ kaynak). Görseller: /tmp/arastirma/gorseller.md.
+# CANLANDIRMA: iki karakter adsız ve temsilîdir; replikler uydurmadır, hiçbir gerçek mürettebat üyesine söz atfedilmez.
+#   Açıklamada "dramatized" notu var. "Still over the Mediterranean?" olguya dayanır: 1943 resmî soruşturması "believed" dedi.
+# Tur 2 (hakem turu 1 sonrası): son kare MACR belgesinden (grup/filo numarası uyuşmuyor, kimlik doğrulanamadı) kaldırıldı;
+#   iki USAF uçak fotoğrafı; arka plan Dakhla kumulları (parlaklık ve doku ölçüldü); B karakteri farklı taban (ingiliz_er_1915).
+# Görseller: arka plan Dakhla Oasis kumulları (CC BY 4.0). Kanıt 1 ve 2: USAF fotoğrafları (kamu malı).
+# Karakterler: A klasik (gulumsuyor / cok_terli), B ingiliz_er_1915 (sakin / kaygili). Kıyafet boyanmadı.
+id: en-lady-be-good
+kanal: en  # Wojak Past Files
+title: "The WWII bomber that thought it was still over the sea"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol). Uçuş sonu, "neredeyse eve geldik" havası.
+  - type: dialog
+    duration: 3.0
+    bg: img/arka_plan_dakhla.jpg
+    chars:
+      - {img: chars/a_gulumsuyor.png, side: left, faces: sag}
+    text: "Almost home, just the sea ahead"
+
+  # 2) CEVAP — B (sağ). Soru: navigasyon hatası, deniz sanılan kara.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_plan_dakhla.jpg
+    chars:
+      - {img: chars/b_sakin.png, side: right, faces: sol}
+    text: "Still over the Mediterranean?"
+
+  # 3) ARA KART — ileri zaman (EN kuralı: "... later").
+  - type: card
+    duration: 1.5
+    text: "A few hours later"
+
+  # 4) A — yakıt bitti, atlayın. (Atlama ~02:00, 5 Nisan; yaklaşık 2 saat güneye uçuş sonrası.)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_plan_dakhla.jpg
+    chars:
+      - {img: chars/a_cok_terli.png, side: left, faces: sag}
+    text: "No fuel left, everyone jump"
+
+  # 5) TERS KÖŞE — B, aynı kutu, yüz varyantı (kaygili). Son replik fark etme sorusu.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_plan_dakhla.jpg
+    chars:
+      - {img: chars/b_kaygili.png, side: right, faces: sol}
+    text: "Wait, where's the sea?"
+
+  # 6) KANIT 1 — uçağın kuyruğu, sağlam (USAF, kamu malı; tarih belirtilmiyor).
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_kuyruk.jpg]
+
+  # 7) KANIT 2 — son kare: 1960'da çekilen enkaz, burunda "64" (USAF, kamu malı).
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_burun_1960.jpg]
+
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  Lady Be Good (1943): the bomber that thought it was over the sea
+  The full story is in the pinned comment 👇
+
+# YouTube: 2-3 etiket (Instagram'da yok)
+hashtags: [history, worldwarii, mystery]
+
+pinned_comment: |
+  In April 1943, a B-24D Liberator bomber of the US Army Air Forces, nicknamed Lady Be Good, disappeared on its first combat mission, a raid on Naples. A sandstorm forced many bombers back to base, but this one pressed on into the night.
+
+  Investigators concluded that the nine-man crew probably believed they were still over the Mediterranean. The bomber overflew its base and flew about two hours south until its fuel ran critically low. Around 2 a.m. on 5 April, the crew bailed out, and the empty aircraft flew on about 16 miles before belly-landing in the Libyan desert.
+
+  Eight men walked northwest together for roughly 80 miles, and three of them went farther. None of the nine survived.
+
+  In 1958, a British oil-exploration team working for D'Arcy Exploration (later part of BP) spotted the wreck from the air, about 400 to 440 miles inland. The aircraft was almost intact. Remains were recovered in 1960; one airman was never found.
+
+  The dialogue in the video is dramatized: the wojak characters are fictional and do not represent any named crew member.
+
+  Would you have walked toward home, or stayed with the plane?
+
+# Dramatization note: the two wojak characters are unnamed; the lines are invented.
+ek_maddeler:
+  - "**Dramatization:** the two characters are unnamed; the dialogue in the video is invented and labelled as such in the pinned comment."
+  - "**Gerçek kişi:** no crew member is named anywhere. Living relatives are not mentioned."
+
+credits: "Photo: Vyacheslav Argenberg, Wikimedia Commons, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0), cropped to square (Western Desert dunes, Egypt, not the crash site); U.S. Air Force photos of the wreck, public domain."
+ai_generated: false
+
+sources:
+  - "USAF National Museum, Lady Be Good fact sheet: https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196178/lady-be-good/"
+  - "John Lowery, 'Lady Be Good', Air Force Magazine, Feb 2014 (Air & Space Forces Magazine): https://www.airandspaceforces.com/PDF/MagazineArchive/Documents/2014/February%202014/0214lady.pdf"
+  - "US Army Quartermaster Museum, 'The Lady Be Good Story': https://qmmuseum.army.mil/research/history-heritage/mortuary-affairs/The-Lady-Be-Good-Story.html"
+  - "Kaitlyn Crain Enriquez, 'Lost and Found: The Story of Lady Be Good and Her Crew', The Unwritten Record (National Archives), 16 June 2017: https://unwritten-record.blogs.archives.gov/2017/06/16/lost-and-found-the-story-of-lady-be-good-and-her-crew/"
+  - "Alan Bellows, 'The Remains of Lady Be Good', Damn Interesting (2006): https://www.damninteresting.com/the-remains-of-lady-be-good/"
+  - "Image 1 (evidence): 'Tail view of the crashed Consolidated B-24D Lady Be Good', U.S. Air Force, public domain: https://commons.wikimedia.org/wiki/File:Tail_view_of_the_crashed_Consolidated_B-24D_%22Lady_Be_Good.%22.jpg"
+  - "Image 2 (evidence, final frame): 'Lady Be Good crash photos 1960 -3', U.S. Air Force, public domain: https://commons.wikimedia.org/wiki/File:Lady_Be_Good_crash_photos_1960_-3.jpg"
+  - "Background: 'Sand dunes, Libyan Desert, Dakhla Oasis, Egypt', Vyacheslav Argenberg, CC BY 4.0 (square crop; the dune sea of the Western Desert, not the exact crash site): https://commons.wikimedia.org/wiki/File:Sand_dunes,_Libyan_Desert,_Dakhla_Oasis,_Egypt.jpg"

@@ -950,6 +950,30 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 - Atıf satırı: açıklamaya "Images: ..." ve kupür/kart varsa "The final frame is a recreation; the quote is from
   <publication>, <date>." yazılır.
 
+**Ek dersler (25.10.2026, `en-lady-be-good`, iki hakemden 8/8, iki tur, ~35 dk duvar saati):**
+- **Ters köşe ve kanıt sırası İngilizcede de tutuyor:** "Almost home, just the sea ahead" → "Still over the Mediterranean?"
+  → ara kart "A few hours later" → "Wait, where's the sea?" → iki kanıt. Hakem: kart 5,0 sn'de başlamalı; S1 3,0 sn.
+- **Belge kanıtı tehlikeli:** askerî kayıp raporunun görüntüsünde grup/filo numarası uyuşmadı (Lady Be Good'un
+  376. BG/514. BS'i yerine 333/466), yani kimlik doğrulanamadı. Kanıtı kimliği doğrulanmış fotoğrafla değiştir (USAF
+  enkaz fotoğrafı). Belge kullanılacaksa önce Commons dosya sayfasında birim numarasını ve arşiv kimliğini doğrula.
+- **Kırpma büyütmesi:** yatay belge kırpımı 560 px genişlikten 1080'e büyütülünce 1,93x bulanıklık ve yetersiz kenar
+  üretti (görsel hakem: 482 px yükseklik, 537 altı). Kanıt için tam genişlikte, büyütmesiz görsel seç.
+- **Arka plan ölçütü:** düz gökyüzü ağırlıklı kare Laplacian ~2 (hakem: "gradyan, gerçek yer değil"). Kumul rippleli
+  ve gölgeli kırpım (Dakhla, CC BY 4.0) Laplacian ~15-20 ve parlaklık ~111 verdi; hakem "kabul" dedi.
+- **Düşük çözünürlüklü hazır karakter yüz ifadesini bozuyor:** 205 px'lik `klasik/uzgun` 2,5x büyütüldü ve yumuşadı.
+  Renderer'a girmeden önce PNG boyutunu kontrol et (en az ~600 px yükseklik); küçükse aynı kitte büyük varyant seç.
+- **Aynı taban yüz iki karakter gibi görünüyor:** A ve B aynı klasik kafa olunca hakem "tek ailede iki yüz" dedi.
+  B'yi farklı taban (`ingiliz_er_1915`) ile ayır; kostüm dönemi uymazsa (pith kaskı) bunu RAPOR'da kusur olarak yaz.
+- **Ses ayarı (bu ortamda yine):** `music: {file: kanal, volume: 0.197}` → −29,6 LUFS, tepe −17,0 (§ 23.10 notu).
+- **Sansür beklenmedik kelime yakalıyor:** İngilizce listesi "died" kelimesini "d*ed" yaptı. Açıklamada "did not survive"
+  gibi karşılığı kullan; sansürden sonra `teslim/<id>/metinler/*.txt` kontrol et.
+- **Dramatizasyon etiketi:** iki wojak adsız; replikler uydurma; açıklamada ve sabit yorumda "dramatized" notu zorunlu.
+  Karakterlere gerçek kişi adı ya da akraba bilgisi girmez. Hakem bunu olgu kontrolünde ayrıca doğruladı.
+- **Olgu düzeltmeleri:** yaygın tekrarlanan tarih/sayı farkları (kalıntılar 1960'ta bulundu, 1959'da değil; keşif 1958; yer ziyareti 1959; mesafe 400-440 mil)
+  kaynak tablosunda tek satırda uzlaştırıldı; metinde aralık ("400 to 440 miles") kullanıldı.
+- **Hakem kalıbı:** iki hakem aynı iş parçacığında ikinci tur için çağrıldı; önceki bulguları bağlamda kaldı, MUST
+  kapanışını satır satır tek tek doğruladı. Yeni bağlamda sıfırdan başlatmaya gerek kalmadı.
+
 ---
 
 ## 7. Uzun formata ne taşınır?
