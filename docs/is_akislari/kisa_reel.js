@@ -104,8 +104,10 @@ HARD RULES (docs/STIL.md; renderer defaults already match it, do not override th
   evidence images at the very END (1.5 s each, last may be 2.0); nothing after evidence.
 - Two speakers in the same place and time; A always left, B always right; one character per dialogue scene; present tense, first
   person, colloquial Turkish; 1-11 words (median 5); no '.' or '…'; twist = same character, same box, face variant.
-- Clean flat MS-Paint wojak only, ready-made clothed; LOOK at every PNG and register its gaze (python -m wojak yon <png> --yon
-  sag|sol|on).
+- Clean flat MS-Paint wojak only, ready-made clothed; LOOK at every PNG and register the direction THE FILE ITSELF faces (nose
+  and pupils as drawn; not where it should look, the renderer mirrors): python -m wojak yon <png> --yon sag|sol|on. Never write
+  faces: in episode.yaml. After render run python -m wojak bakis episodes/${ID} and look at out/${ID}/kareler/bakis.jpg: the left
+  character must look right, the right one left.
 - One real colour background photo for the dialogue (max 2, second only after the card); no zoom/shake/flash/pop/sfx/label/banner;
   music: kanal; no sfx.
 - Title per KONSEPT §4 (not AI slop); story text (pinned_comment) 150-250 words, <= ~1,950 characters, encyclopedic first sentence,
@@ -127,7 +129,9 @@ Method (mandatory): extract frames every 0.5 s from our reel and from at least 3
 C2kkZ8BsngB and C4V3eMFM6lF); also compare with the approved teslim/van-depremi-azra-bebek reel. Build same-scale side-by-side sheets
 (the 1080 square at identical scale) plus zoomed crops of every character face next to the originals' characters, and LOOK carefully.
 Measure what you claim (text block centre and gap above the head, character height and centre x, background luminance/saturation/
-softness, evidence size and placement, cut times via frame difference, in-scene motion). Run python -m wojak check episodes/${ID}.
+softness, evidence size and placement, cut times via frame difference, in-scene motion). Run python -m wojak check episodes/${ID}
+and python -m wojak bakis episodes/${ID}, then open out/${ID}/kareler/bakis.jpg: every face (nose and pupils) must point INTO the
+frame (left character -> right, right character -> left); any face looking toward the frame edge is a MUST.
 Score 1-10: 10 = indistinguishable from a golden-era original; 8 = a long-time follower would notice nothing off at normal phone
 viewing; 6 = a decent imitation; 4 = obviously not the channel. Sub-scores: format/timing/text, characters (flat MS-Paint wojak
 family, ready-made costume fit, size, inward gaze, visible face-variant change at phone size), background, evidence, cover. The
