@@ -978,6 +978,31 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 - **Hakem kalıbı:** iki hakem aynı iş parçacığında ikinci tur için çağrıldı; önceki bulguları bağlamda kaldı, MUST
   kapanışını satır satır tek tek doğruladı. Yeni bağlamda sıfırdan başlatmaya gerek kalmadı.
 
+**Ek dersler (25.10.2026, `en-d-b-cooper`, D.B. Cooper; görsel 4 → 7 → 8, izleyici 6 → 7 → 8; üç tur, ~45 dk duvar saati):**
+- **Kafa kesikliği en büyük kusurdu:** kütüphane PNG'si (500x500) üst kısmından kesikti; görsel hakem "kafa düz çizgiyle
+  kesilmiş" dedi. Yeni karakter eklemeden önce PNG'nin tepesinin kapalı ve yuvarlak olduğunu aç ve bak. Kit tabanları
+  (`assets/kit/klasik`) bu sorunu yaşamadı; önce kit, sonra kütüphane.
+- **Kit varyantı ters köşe için yeterli:** `klasik/cok_terli` (kit'in hazır ter varyantı) telefon boyunda okundu; boyama
+  yerine kit kullanıldı. Kaş/göz de değişsin istenirse yeni kit varyantı çizilir (hakem SHOULD olarak kaldı).
+- **Gün batımı doygun, gün ışığı kabul:** Columbia gün batımı (CC BY-SA) doygunluk 0,57 verdi, hakem reddetti. Gündüz,
+  düşük doygunluklu yeni bir fotoğraf (N474US, Northwest 727, doygunluk 0,26) kabul edildi. Hedef: parlaklık ≥ 100,
+  doygunluk ≤ 0,35.
+- **"Kamu malı" etiketi her ülkede güvenli değil:** Commons'taki bir uçak fotoğrafı "yayımlandı 1978-1989, ihbarsız"
+  etiketiyle PD görünüyordu; izleyici hakemi UK ve Almanya telif uyarısı nedeniyle MUST saydı. Kamu malı yalnız ABD
+  hükümeti belgelerinde (FBI, NARA) güvenli; sivil fotoğraf CC BY-SA ile.
+- **Teletype kanıtı tam satırla kesilir:** yarım satır ("…REVEALS THAT THEY") anlamı kaybettirdi. Satır sınırı arasında
+  kes; kağıdı 537 px ve üstüne tamamla; redaksiyon kutularını bozma. Teletype 2,0 sn, son kare 1,5 sn.
+- **Kanca bağlamı ilk cümlede:** "Just sit down with me" (ironik ama bağlamsız) izleyiciye hangi olay olduğunu
+  söylemiyordu; "Sit down, this is a hijacking" yapıldı. Dramatik ironi için bağlam kelimesi (uçak, kaçırma) ilk
+  replikte olmalı.
+- **Son replik süre sınırı:** "Wait, they found my money?" (5 kelime) 2,0 sn'ye sığdı; 7 kelime 2,4 sn istedi. Kısaltıp
+  `check` ile doğrula. Son replik "para nehirde" biçiminde olay dışı bilgiyi (kaçıranın hayatta olduğunu) çağrıştırmaz.
+- **Sansür "bomb" kelimesini bozuyor:** "b0mb" okunmuyordu; NARA'nın "explosive device" ifadesi kullanıldı.
+- **Atıf ayrıntısı:** CC BY-SA için kredi "uçak türü ve tescil, tarih, yer, yazar, lisans bağlantısı, kırpma/yumuşatma
+  ve büyütme" içermeli; ayrıca "hijack uçağı değil" notu. İzleyici hakemi bu tam biçimi istedi.
+- **Olgu notu:** para miktarı FBI ve HISTORY'de 5.800 dolar; Wikipedia 6.000 yazıyor. Metinde "about $5,800" ve kaynak
+  satırı yeterli; çelişki açıklamada yazılmaz.
+
 ---
 
 ## 7. Uzun formata ne taşınır?

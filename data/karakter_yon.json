@@ -125,7 +125,7 @@
  },
  "3f4d31c5d8d022f11843cdd61a1c7a74cb2a2098": {
   "faces": "right",
-  "file": "assets/kit/klasik/cok_terli.png"
+  "file": "episodes/en-d-b-cooper/chars/a_klasik_terli.png"
  },
  "40da4ab664ecb8405c65d95f805e7b4f4990bbf2": {
   "faces": "right",
@@ -243,6 +243,10 @@
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_baba.png"
  },
+ "612ee24779f29faec1b85c242345c67283fd5f46": {
+  "faces": "right",
+  "file": "episodes/en-d-b-cooper/chars/b_takim.png"
+ },
  "62da4359940bc315755ea69f1fb51b5331e2983c": {
   "faces": "right",
   "file": "episodes\\ayasofya-viking-yazisi\\chars\\muhafiz_sakin.png"
@@ -261,7 +265,7 @@
  },
  "6973d2c0f4c37747e15e339aa05b32cee732cc5e": {
   "faces": "right",
-  "file": "assets/kit/klasik/sakin.png"
+  "file": "episodes/en-d-b-cooper/chars/a_klasik.png"
  },
  "6a380fa2967f1ab25ffb231cbdb85527eab25885": {
   "faces": "right",
@@ -463,6 +467,10 @@
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/sakin.png"
  },
+ "b5f4fe6b423cc425a29caaf6071b086414490155": {
+  "faces": "front",
+  "file": "episodes/en-d-b-cooper/chars/a_ter.png"
+ },
  "b74600a78a78ea055a83f8a5cfc02a70506809f5": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
@@ -470,6 +478,10 @@
  "b9194f4eb5c26e1f1b24deed586b848506f581d0": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_fark.png"
+ },
+ "ba840f1db5cbfe73a45ca26fd0fa92fa3aff2506": {
+  "faces": "front",
+  "file": "episodes/en-d-b-cooper/chars/a_ter.png"
  },
  "baf9fde2cf34ea557b9185e0cff52f26e02f95d1": {
   "faces": "right",
@@ -506,6 +518,10 @@
  "cc48e5f2034f20fdd2d0ee443c38d5d35831aef5": {
   "faces": "right",
   "file": "assets/kit/bizans_prenses/sakin.png"
+ },
+ "cd14514ac357a09199333d8aeec627c9334dd254": {
+  "faces": "front",
+  "file": "episodes/en-d-b-cooper/chars/b_hemsire.png"
  },
  "d0f22cbac08bd394a5438d7841830e7d001f4c89": {
   "faces": "right",
@@ -562,6 +578,10 @@
  "e4164dd5c77428d03dfb87678bbee51bab7dd75c": {
   "faces": "right",
   "file": "episodes\\karun-hazinesi-bros\\chars\\mudur_sakin.png"
+ },
+ "e4ae396f61d5e195c61a3e70d8d5576e57530461": {
+  "faces": "front",
+  "file": "episodes/en-d-b-cooper/chars/a_isadami.png"
  },
  "e637ebcfbc4beb352d32c9e317000e3d701000f9": {
   "faces": "front",

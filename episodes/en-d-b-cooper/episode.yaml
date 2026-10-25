@@ -1,0 +1,102 @@
+# D.B. Cooper (1971 hijacking; ransom money found in 1980). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/konu_tarama.md (FBI resmi sayfası açıldı ve doğrulandı; NARA, HISTORY, Wikipedia).
+# CANLANDIRMA: iki karakter adsız ve temsilîdir; replikler uydurmadır. Hijacker'ın kimliği hiç kanıtlanmadı;
+#   "D.B." adı FBI'a göre basının uydurduğu bir isim. Bulan çocuk adsız, görseli ya da adı yok.
+#   Açıklamada "dramatized" notu zorunlu.
+# Karakterler: A = Front Wojak (Businessman, siyah kravat, gözlük; hazır giyimli, kıyafet boyanmadı),
+#   ters köşe varyantı a_ter.png (alında ter damlaları, kaygılı ağız; aynı taban, aynı kutu).
+#   B = klasik kit "sakin" (kit taban, sağa bakar; sağ tarafta render sola çevirir).
+id: en-d-b-cooper
+kanal: en  # Wojak Past Files
+title: "The 1971 hijacker who jumped out with $200,000"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol). Masum ama ürkütücü bir istek.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_plan_ucak.jpg
+    chars:
+      - {img: chars/a_klasik.png, side: left, height: 0.46}
+    text: "Sit down, this is a hijacking"
+
+  # 2) CEVAP — B (sağ). Kabin memuru ya da yolcu gibi tepki.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_plan_ucak.jpg
+    chars:
+      - {img: chars/b_takim.png, side: right, height: 0.46}
+    text: "Sir, what do you want?"
+
+  # 3) TALEP — A (sol). Bomba notunun gerçek talebi: dört paraşüt ve 200.000 dolar.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_plan_ucak.jpg
+    chars:
+      - {img: chars/a_klasik.png, side: left, height: 0.46}
+    text: "Four parachutes and $200,000"
+
+  # 4) ARA KART — ileri zaman (EN kuralı: "... later", noktalama yok).
+  - type: card
+    duration: 1.5
+    text: "Eight years later"
+
+  # 5) TERS KÖŞE — A, aynı kutu, yüz varyantı (ter). Son replik fark etme sorusu.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_plan_ucak.jpg
+    chars:
+      - {img: chars/a_klasik_terli.png, side: left, height: 0.46}
+    text: "Wait, my money's in the river?"
+
+  # 6) KANIT 1 — FBI teletype, Şubat 1980, sayfa 3: paranın nehir kıyısında bulunduğu ve seri numaraları (kamu malı; kırpıldı, redaksiyon kutuları aynen).
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_1_teletype.png]
+
+  # 7) KANIT 2 — son kare: FBI'ın 1980'de bulunan, çürümüş 20 dolarlık paralar (kamu malı).
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_para.jpg]
+
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  D.B. Cooper (1971): the hijacker who jumped out with $200,000
+  The full story is in the pinned comment 👇
+
+# YouTube: 2-3 etiket (Instagram'da yok)
+hashtags: [history, mystery, unsolved]
+
+pinned_comment: |
+  "D.B. Cooper" is the name of a hijacker who was never identified. On 24 November 1971, a man calling himself Dan Cooper bought a one-way ticket on Northwest Orient Flight 305, from Portland, Oregon, to Seattle, Washington.
+
+  Soon after takeoff, he handed a flight attendant a note saying he had an explosive device. He demanded four parachutes and $200,000 in twenty-dollar bills. In Seattle the passengers were released in exchange for the money and parachutes, and the plane took off again toward Mexico City.
+
+  Somewhere between Seattle and Reno, a little after 8 p.m., he jumped from the back of the plane into the night, with a parachute and the money. He was never found.
+
+  According to the FBI, the name "D.B. Cooper" was apparently a myth created by the press. It questioned one man with the initials D.B., but he was not the hijacker.
+
+  In 1980, a boy found a rotting package of twenty-dollar bills on a riverbank near Vancouver, Washington. There were about $5,800 in all, and the serial numbers matched the ransom. The FBI says the find gave an added boost to the theory that Cooper did not survive the jump. The FBI has never identified him. In 2016 it redirected its resources away from the case, which remains one of its great unsolved mysteries.
+
+  The two wojak characters in the video are invented, and their lines are dramatized. No real person's words are quoted.
+
+  Do you think he survived the jump?
+
+# Dramatization note: the two wojak characters are unnamed; the lines are invented.
+ek_maddeler:
+  - "**Dramatization:** the two characters are unnamed; the dialogue in the video is invented and labelled as such in the pinned comment."
+  - "**Gerçek kişi:** the hijacker was never identified and is not named; the boy who found the money is not named or shown."
+
+credits: "Background: Northwest Airlines Boeing 727-51 N474US (a different airframe from the hijacked N467US), Miami, 3 November 1989, Michael Bernhard, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Northwest_Airlines_Boeing_727-51_N474US.jpg), cropped to square, trimmed at the bottom, softened and resized. Images: FBI, public domain (U.S. government), in the FBI records on D.B. Cooper."
+
+sources:
+  - "FBI, D.B. Cooper Hijacking: https://www.fbi.gov/history/cases-and-criminals/db-cooper-hijacking"
+  - "National Archives Seattle, D.B. Cooper: https://www.archives.gov/seattle/highlights/d-b-cooper"
+  - "HISTORY, Who Was D.B. Cooper: https://www.history.com/articles/who-was-d-b-cooper"
+  - "FBI teletype, Feb 1980, page 3 (evidence 1; cropped; redaction boxes kept), archive.org file 'D.B. Cooper Part 09 of 09.pdf': https://archive.org/details/D.B.Cooper"
+  - "Background image: Northwest Airlines Boeing 727-51 N474US, Michael Bernhard, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Northwest_Airlines_Boeing_727-51_N474US.jpg"
+  - "Evidence 2 (money photo): 'Money stolen by D. B. Cooper', FBI, public domain: https://commons.wikimedia.org/wiki/File:Money_stolen_by_D._B._Cooper.jpg"
+  - "Wikipedia, D. B. Cooper (cross-check): https://en.wikipedia.org/wiki/D._B._Cooper"
