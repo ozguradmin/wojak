@@ -141,12 +141,14 @@ Verilmeyenler: tünel uzunluğu (82 m / ~70 m / ~230 ft çelişiyor), bronz kap 
 | Adım | Süre |
 |---|---|
 | Hazırlık (git, pip, font, referans, 81 test) + ortam ölçümü + belge okuma | ~5 dk |
-| Konu tarama + olgu araştırması (3 web araması) | ~5 dk |
+| Konu tarama + olgu araştırması (3 web araması) | ~4 dk |
 | Görsel avı (Commons, 26 aday, 4 tam çözünürlük) | ~5 dk |
-| Karakter avı + yüz varyantı | ~5 dk |
-| episode.yaml → check → frames → render → teslim + ön kontrol | ~3 dk |
+| Karakter avı + yüz varyantı | ~4 dk |
+| episode.yaml → check → frames → render → teslim + ön kontrol | ~2 dk |
 | 2 hakem turu + düzeltmeler | ~3 dk |
-| RAPOR, teslim kopyaları, iki depoya commit, belge | ~6 dk |
-| **Toplam** | **~32 dk** |
+| RAPOR, teslim kopyaları, iki depoya commit, belge | ~3 dk |
+| **Toplam (saatle ölçüldü: 19:00 → 19:26)** | **~26 dk** |
+
+(Not: özel depodaki RAPOR kopyası teslimden önce yazıldı ve tahmini ~32 dk diyor; ölçülen süre bu tablodaki.)
 
 **Yaklaşık maliyet:** ücretli API yok (TTS ve görsel üretimi yok). Yalnız model kullanımı (oturumun token tüketimi).

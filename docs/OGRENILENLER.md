@@ -885,7 +885,7 @@ sayfa) ve dev kavuklu padişahın yüz yerleşimi.
   konumuna göre (yüz kutusu alanı) boy önerisi verilebilir.
 - `tools/`: Commons'ta yıl kategorisinden pul arayan küçük yardımcı ("Category:<yıl> stamps of Turkey", PD-TR süzgeci).
 
-### Ek dersler (25.10.2026 akşam, `midas-mezari-altin`, iki hakemden 8/8, ~32 dk)
+### Ek dersler (25.10.2026 akşam, `midas-mezari-altin`, iki hakemden 8/8, ~26 dk)
 
 Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 
@@ -922,13 +922,13 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 | Adım | Göbeklitepe (24.10 sabah) | Kaşıkçı (24.10 akşam) | Hezarfen (25.10 sabah) | Midas (25.10 akşam) |
 |---|---|---|---|---|
 | Hazırlık + okuma | ~5 dk | ~3 dk | ~3 dk | ~5 dk |
-| Konu + olgu | ~4 dk | ~2 dk | ~5 dk | ~5 dk |
+| Konu + olgu | ~4 dk | ~2 dk | ~5 dk | ~4 dk |
 | Görsel avı | ~2 dk | ~3 dk | ~4 dk | ~5 dk |
-| Karakter + yüz | ~4 dk | ~3 dk | ~7 dk | ~5 dk |
-| yaml → teslim | ~3 dk | ~3 dk | ~2 dk | ~3 dk |
+| Karakter + yüz | ~4 dk | ~3 dk | ~7 dk | ~4 dk |
+| yaml → teslim | ~3 dk | ~3 dk | ~2 dk | ~2 dk |
 | Ön kontrol + hakem turları | ~3 dk | ~5 dk | ~5 dk | ~3 dk (ön kontrol + 2 tur) |
-| Teslim + commit + belge | ~4 dk | ~5 dk | ~3 dk | ~6 dk |
-| **Toplam** | ~25 dk | ~25 dk | ~29 dk | **~32 dk** |
+| Teslim + commit + belge | ~4 dk | ~5 dk | ~3 dk | ~3 dk |
+| **Toplam** | ~25 dk | ~25 dk | ~29 dk | **~26 dk** |
 
 Ücretli API: 0.
 
