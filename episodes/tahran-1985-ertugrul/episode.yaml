@@ -1,0 +1,135 @@
+# Tahran operasyonu (19 Mart 1985): İran-Irak Savaşı'nda Irak'ın İran hava sahasındaki bütün uçakları vuracağını ilan
+# ettiği gün, hiçbir havayolunun almadığı 215 Japonu THY'nin özel seferi çıkardı. Ters köşe: 95 yıl önce (1890)
+# Kuşimoto köylüleri batan Osmanlı fırkateyni Ertuğrul'un 69 denizcisini kurtarmıştı.
+# Araştırma notu: scratchpad olgular.md (repoya girmez). Altın dönem kalıbı: A B A B soru-cevap (C3iX, Kız Kulesi ritmi),
+# kartsız; son replik dramatik ironi ("Dokundu, 95 yıl önce"), cevabı iki kanıt sessizce verir.
+# AYNI YER, AYNI AN: Tahran Mehrabad Havalimanı apronu, 19 Mart 1985, THY uçağının kapısı.
+#   A (hep solda): Japon mühendis (215 kişi arasında bir Japon firmasının çalışanları ve aileleri vardı).
+#     Kurgu karakter, ad yok.
+#   B (hep sağda): THY kabin görevlisi (hostes). Kurgu karakter, ad yok; gerçek ekipten kimseyi temsil etmez.
+#   Pilotlar, büyükelçiler, Özal ekranda yok; adları yalnız hikâye metninde.
+# Olgu sınırları (her biri en az 2 kaynak; sources'a bak):
+#   - Irak saldırı süresinin bitiminde İran hava sahasındaki askerî ve sivil uçakları vuracağını ilan etti (AA 2025, Hürriyet
+#     2004/2018). Süre kaynaklarda 48 ya da 72 saat -> verilmez. Son gün 19 Mart (Hürriyet 2018, ResearchGate) -> S1 "Bu akşam".
+#   - Japon havayolları İran ve Irak'tan güvence olmadan uçmadı; yabancı havayolları önceliği kendi vatandaşlarına verdi
+#     (Hürriyet 2004/2018, Habertürk, Numata'nın 2015 sözü: AA/Daily Sabah) -> S1 "bize yer yok".
+#   - Japon Büyükelçi Nomura Türk Büyükelçi Birsel'den istedi, Özal onayladı, THY "İzmir" (TC-JAY, DC-10) 215 Japonu aldı ve
+#     süre dolmadan ~3 saat önce kalktı (Hürriyet 2004/2018, AA 2014/2025, Akşam, ResearchGate).
+#   - Ertuğrul 16 Eylül 1890 akşamı Kuşimoto açıklarında tayfunda battı; 500'den fazla ölü (kaynaklarda 530-587) -> "500'den
+#     fazla"; 69 kurtulan, Japon halkı yardım etti, Hiei ve Kongo ile İstanbul'a getirildi (T.C. Tokyo BE, AA/CNN Türk 2025,
+#     Vikipedi). Gemilerin İstanbul'a mı girdiği, kazazedelerin Çanakkale'de mi aktarıldığı kaynaklarda farklı (GZT) ->
+#     metinde "Türkiye'ye götürüldü". 1985-1890 = 95.
+#   - 1985 jestinin Ertuğrul'a bağlanması Türk yetkililerin ve basının anlatımı (AA 2014: Büyükelçi Kılıç "Japon halkının
+#     gösterdiği kahramanlığa küçük bir cevap"; AA 2025). Kararın gerekçesi o gün belgelenmiş değil: metinde "bağlanır".
+#   - S4 hostesin sözü canlandırma (gerçek kişiye uydurma söz yok). ek_maddeler'de açıkça yazıldı.
+#   - Kanıt 1: Osman Nuri Paşa'nın Ertuğrul tablosu (fırtınada, PD). Kanıt 2 (son kare, ARŞİV FOTOĞRAFI): Japonya'da
+#     Ertuğrul kazazedeleri için tören, torii kapısında Osmanlı bayrağı (1890, PD-Japan-oldphoto). Son 5 bölümün son karesi:
+#     levha (Ayasofya), kupür (Göbeklitepe), müze nesnesi (Kaşıkçı), pul (Hezarfen), müze nesnesi (Midas) -> arşiv
+#     fotoğrafı yeni tür.
+# Karakterler: chars/uret.py. Görseller: gorsel.py. Render: python -m wojak render episodes/tahran-1985-ertugrul
+id: tahran-1985-ertugrul
+title: "Tahran'da hiçbir havayolunun almadığı 215 Japon"
+
+# Kanal imzası (22.10'dan beri bizim imza_v2_golge.m4a). "orijinal" asla.
+# volume: bu ortamın ffmpeg 6.1.1'inde loudnorm TP=-17'yi reddediyor; sabit kazanç -15,4 -> -29,5 LUFS = x0,197.
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (Japon mühendis, sol). Arka planda Mehrabad apronu, IRAN AIR uçağı: yer ilk saniyede okunur.
+  - type: dialog
+    duration: 3.0
+    bg: img/arka_mehrabad.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/japon_endise.png, side: left, height: 0.5}
+    text: "Bu akşam uçakları vuracaklar,\nTahran'da bize yer yok"
+
+  # 2) CEVAP — B (hostes, sağ)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_mehrabad.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/hostes_sakin.png, side: right, height: 0.5}
+    text: "Hadi binin, sizi THY götürüyor"
+
+  # 3) A — kelime tohumu: "iyiliğimiz dokundu"
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_mehrabad.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/japon_endise.png, side: left, height: 0.5}
+    text: "Neden? Bizim size ne\niyiliğimiz dokundu ki?"
+
+  # 4) TERS KÖŞE — B, aynı kutu, yüz varyantı (hüzünlü kaş, dolu göz, gözyaşı). Cevabı iki kanıt verir.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_mehrabad.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/hostes_duygulu.png, side: right, height: 0.5}
+    text: "Dokundu, 95 yıl önce"
+
+  # 5-6) KANIT — Ertuğrul fırtınada (tablo), sonra Japonya'daki tören, Osmanlı bayrağı (son kare). Etiket/bant yok.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_ertugrul.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2_cenaze.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Türkler neden bu riske girdi?
+  Olayın tamamı sabit yorumda 👇
+hashtags: [ertugrul, japonya, tahran]
+
+pinned_comment: |
+  Tahran operasyonu, İran-Irak Savaşı sırasında, 19 Mart 1985'te Tahran'da mahsur kalan 215 Japon vatandaşının Türk Hava Yolları'nın özel seferiyle Türkiye'ye getirildiği olaydır. Japonlar bu uçuşu "yüzyılın sınır ötesi kurtarma operasyonu" diye anar.
+
+  Mart 1985'te Irak, verdiği süre dolunca İran hava sahasındaki askerî ve sivil bütün uçakları vuracağını ilan etti. Ülkeler vatandaşlarını apar topar çıkarırken Japon havayolu şirketleri İran ve Irak'tan güvence alamadıkları için uçmadı; yabancı havayolları da önceliği kendi vatandaşlarına verdi. Aralarında aileler ve çocuklar da bulunan 215 Japon açıkta kaldı.
+
+  Japonya'nın Tahran Büyükelçisi Yutaka Nomura, dostu olan Türk Büyükelçisi İsmet Birsel'den yardım istedi. Başbakan Turgut Özal'ın onayıyla THY'nin "İzmir" adlı DC-10 uçağı Tahran'a gönderildi. Uçak, 215 Japonu alıp süre dolmadan yaklaşık üç saat önce havalandı.
+
+  Bu jest Türkiye'de ve Japonya'da çoğu zaman 95 yıl önceki bir olaya bağlanır. 16 Eylül 1890 akşamı, Japonya ziyaretinden dönen Osmanlı fırkateyni Ertuğrul, Kuşimoto açıklarında tayfuna yakalanıp kayalıklara çarptı; 500'den fazla denizci hayatını kaybetti. Kuşimoto halkı hayatta kalan 69 denizciyi kurtardı, yaralarını sardı. Kazazedeler, Japon İmparatoru'nun talimatıyla Hiei ve Kongo gemileriyle Türkiye'ye götürüldü.
+
+  2015'te iki olayı birlikte anlatan "Ertuğrul 1890" filmi çekildi.
+
+  Sizce bir iyiliğin karşılığı 95 yıl sonra gelir mi?
+
+credits: "Mehrabad Havalimanı 1971 (Land of Kings, Tahran 1971; kamu malı, kırpıldı, renk düzeltildi), Osman Nuri Paşa'nın Ertuğrul tablosu (İstanbul Deniz Müzesi; kamu malı, kırpıldı) ve Japonya'da Ertuğrul kazazedeleri için tören, 1890 (kamu malı; kırpıldı, kontrast), Wikimedia Commons."
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır:** Japon mühendis ve hostes kurgu karakter; konuşmalar canlandırma ve gerçek ekipten kimseyi temsil etmez. Hostesin \"95 yıl önce\" sözü belgeli bir alıntı değil; 1985 jestinin Ertuğrul'a bağlanması Türk yetkililerin ve basının anlatımı (metinde \"bağlanır\" diye yazıldı)"
+  - "**\"Kendi vatandaşlarını bırakıp Japonları aldılar\" yorumlarına hazır ol:** bu, 2015 filmindeki sahneden yayıldı; kaynaklar Türklerin nasıl çıktığı konusunda farklı (tek uçak / iki uçak). Metin bunu iddia etmiyor"
+  - "**Son kare gerçek bir arşiv fotoğrafı:** 1890'da Japonya'da Ertuğrul kazazedeleri için yapılan tören; torii kapısında Osmanlı bayrağı, yandaki direkte \"Türk savaş gemisi kazazedeleri mezarlığı\" yazıyor (kamu malı). Kupür ya da canlandırma kart yok"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette; Iraklılar, İranlılar ya da Japonlar hakkında aşağılayıcı ve siyasi kavga çıkaran yorumları sil"
+  - "İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): \"Kuşimoto'da her yıl Ertuğrul için tören yapılıyor. Aranızda 1985'te THY'de çalışan bir yakını olan var mı?\""
+
+sources:
+  # Doğrulama (26.10.2026)
+  - "AA (2025), 'İran'da mahsur kalan Japonların Türkiye tarafından kurtarılmalarının 40. yılında tören' (Irak tüm uçaklara saldıracağını ilan etti; Nomura-Birsel; Özal; 215 Japon; THY; pilot Orhan Suyolcu; Ertuğrul bağlantısı): https://www.aa.com.tr/tr/dunya/iranda-mahsur-kalan-japonlarin-turkiye-tarafindan-kurtarilmalarinin-40-yilinda-toren-duzenlendi/3514385"
+  - "Hürriyet (2004), 'Yüzyılın operasyonu' (Japon havayolları güvencesiz uçmadı; Nomura-Birsel; Özal; Morinaga; DC-10; saldırıya 3 saat kala kalkış): https://www.hurriyet.com.tr/gundem/yuzyilin-operasyonu-38565277"
+  - "Hürriyet (2018), 'Japonya tarihi uçuşun mürettebatını unutmadı' (19 Mart 1985, TC-JAY 'İzmir' DC-10; yabancı havayolları kendi vatandaşlarına öncelik verdi; 'yüzyılın sınır ötesi kurtarma operasyonu'): https://www.hurriyet.com.tr/dunya/japonya-tarihi-ucusun-murettebatini-unutmadi-41043812"
+  - "Akşam, 'Yüzyılın kurtarma operasyonu' (215 Japon mühendis ve teknik eleman; Nomura-Birsel; Özal; 3 saat önce kalkış): https://www.aksam.com.tr/cumartesi/yuzyilin-kurtarma-operasyonu/haber-745528"
+  - "AA (2014), 'Japonlar kahraman Türk pilotunu unutmadı' (THY 'İzmir' uçağı, 215 Japon; Büyükelçi Serdar Kılıç: 'Japon halkının gösterdiği kahramanlığa küçük bir cevap'; Ertuğrul 500'ün üzerinde şehit): https://www.aa.com.tr/tr/arsiv/japonlar-kahraman-turk-pilotunu-unutmadi/180287"
+  - "ResearchGate, 'The Turkish Rescue of Japanese Citizens From Tehran' (19 Mart 1985; Nomura-Birsel; 215 kişi 15 dakikada alındı; süreden 3 saat önce kalkış): https://www.researchgate.net/publication/339366070_The_Turkish_Rescue_of_Japanese_Citizens_From_Tehran"
+  - "Daily Sabah / AA (2015), 'Turkish Airlines flight hails Turkish-Japanese friendship' (Numata: 'no airplane carrier willing to let us board'; 215 Japon; Özal): https://www.dailysabah.com/turkey/2015/11/30/turkish-airlines-flight-hails-turkish-japanese-friendship"
+  - "Turkish Airlines basın bülteni (2015), 'Kushimoto Lands in Narita Airport' (1985 DC-10, 215 Japon; Ertuğrul 1890 filmi): https://www.turkishairlines.com/en-us/press-room/featured-news/press-release-2/"
+  - "Habertürk, 'Japonlar'ı kurtarma operasyonu film oldu' (Japon havayolları garanti alamadığı için uçmadı; Nomura-Birsel-Özal): https://www.haberturk.com/japonlar-i-kurtarma-operasyonu-film-oldu-2245720"
+  - "T.C. Tokyo Büyükelçiliği, 'Ertuğrul Fırkateyni Faciası' (yöre halkının yardımı; 69 denizci Hiei ve Kongo ile İstanbul'a; Kuşimoto anıtı): https://tokyo-be.mfa.gov.tr/Mission/ShowInfoNote/133573"
+  - "CNN Türk / AA (2025), 'Deniz Müzesi'nde yaşayan tarih: Ertuğrul Fırkateyni 135 yaşında' (16 Eylül 1890 akşamı Kuşimoto açıklarında battı; 500'ün üzerinde şehit, 69 kurtulan; Kongo ve Hiei): https://www.cnnturk.com/turkiye/deniz-muzesinde-yasayan-tarih-ertugrul-firkateyni-135-yasinda-2336205"
+  - "Vikipedi, 'Ertuğrul (fırkateyn)' (69 denizci Hiei ve Kongo ile İstanbul'a; 2015 Ertuğrul 1890 filmi): https://tr.wikipedia.org/wiki/Ertu%C4%9Frul_(f%C4%B1rkateyn)"
+  - "Wikipedia, '125 Years Memory' (Kainan 1890 / Ertuğrul 1890, 2015 Japon-Türk ortak yapımı; 16 Eylül 1890; 69 denizci; 1985 Tahran): https://en.wikipedia.org/wiki/125_Years_Memory"
+  # Görseller ve lisanslar (gorsel.py; lisanslar Commons dosya sayfasının ham metninden doğrulandı, 26.10.2026)
+  - "GÖRSEL img/arka_mehrabad.jpg (tüm diyalog) — 'Mehrabad-1971.jpg', Land of Kings (Tahran: Information Ministry Press, 1971), yazar bilinmiyor, kamu malı ({{PD-Art|PD-Iran}}): https://commons.wikimedia.org/wiki/File:Mehrabad-1971.jpg . Değişiklik: kırpım (300,0)-(1208,908), 1080x1080, doygunluk x0,62, parlaklık x0,9"
+  - "GÖRSEL img/kanit_1_ertugrul.jpg (kanıt 1, 10,5-12,0 sn) — 'Voyage of frigate Ertugrul to Japan by Commodore Mirliva Nuri 1839 1906.jpg', Osman Nuri Paşa (1839-1906), İstanbul Deniz Müzesi, kamu malı (PD-old-100, PD-Turkey; PD-scan): https://commons.wikimedia.org/wiki/File:Voyage_of_frigate_Ertugrul_to_Japan_by_Commodore_Mirliva_Nuri_1839_1906.jpg . Değişiklik: kırpım (140,560)-(1440,1540), 1080x814"
+  - "GÖRSEL img/kanit_2_cenaze.jpg (kanıt 2, son kare, 12,0-14,0 sn) — 'Cérémonie funéraire Ertugrul.jpg', 1890, fotoğrafçı bilinmiyor, kamu malı ({{PD-Japan-oldphoto}}; kaynak İstanbul Araştırmaları Enstitüsü sergisi): https://commons.wikimedia.org/wiki/File:C%C3%A9r%C3%A9monie_fun%C3%A9raire_Ertugrul.jpg . Değişiklik: kırpım (738,539)-(5622,4225), 1080x815, otomatik kontrast (%1 / %0,5)"
+  # Karakterler (chars/uret.py)
+  - "KARAKTER A Japon mühendis (sol): wojakland 'Japan Business Wojak' https://wojakland.com/wp-content/grand-media/image/original/japan_business_wojak.png (japon_endise.png: kaynak, bel hizasından kesik, başın önünde iki ter damlası)"
+  - "KARAKTER B hostes (sağ): wojakland 'Flight Attendant Female Wojak' https://wojakland.com/wp-content/grand-media/image/original/flight_attendant_female_wojak.png (hostes_sakin.png: kaynak, göğüsten kesik; hostes_duygulu.png: aynı kutu, hüzünlü kaş, dolu göz, gözyaşı)"

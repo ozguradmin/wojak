@@ -15,6 +15,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_ciddi.png"
  },
+ "09486f327cccc250f07de5df55cb5aadf584efd5": {
+  "faces": "right",
+  "file": "episodes/tahran-1985-ertugrul/chars/japon_endise.png"
+ },
  "0dc88746faae6e9f9ea7cd70afa2e8c10821df52": {
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
@@ -299,6 +303,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_dusunceli.png"
  },
+ "71fff396e3cbdad513c9e73fa6496bcc640294fd": {
+  "faces": "right",
+  "file": "episodes/tahran-1985-ertugrul/chars/hostes_duygulu.png"
+ },
  "72c6a3a98826d49f06a960303f595096b2a73ce7": {
   "faces": "right",
   "file": "episodes/talidomit-turkiye/chars/temsilci_gergin.png"
@@ -346,6 +354,10 @@
  "7f4e21cf2ae472785b4dbf780f61e63ce05210ab": {
   "faces": "left",
   "file": "episodes\\kanuni-gizlenen-olum\\chars\\yeniceri_sok.png"
+ },
+ "80094b731835a607574aac82e20538e1ef488dc9": {
+  "faces": "right",
+  "file": "episodes/tahran-1985-ertugrul/chars/hostes_sakin.png"
  },
  "808a7b1ad6963741e82f761fdd66a4492cafe0fd": {
   "faces": "right",

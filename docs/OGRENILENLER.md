@@ -942,6 +942,61 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - `tools/`: Commons indiricisi md5 yolu 3 kez 429 verince otomatik `iiurlwidth` thumburl'üne düşsün.
 - `tests/`: sabit `/home/user/wojak` yolu yerine depo kökü (taze konteynerde hâlâ düşüyor; önceki öneri).
 
+### Ek dersler (26.10.2026 sabah, `tahran-1985-ertugrul`, iki hakemden 8/8, ~26 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Yeni son kare türü: arşiv fotoğrafı.** Olay basından çok anma töreniyle hatırlanıyorsa dönemin kamu malı fotoğrafı
+  güçlü ve dürüst bir son kare. Commons "Cérémonie funéraire Ertugrul.jpg" ({{PD-Japan-oldphoto}}) torii kapısında
+  Osmanlı bayrağını gösteriyor: soruyu ("95 yıl önce ne oldu?") tek karede cevaplıyor. Soluk sepya baskıda yalnız
+  `ImageOps.autocontrast(cutoff=(1, 0.5))`; ton değişmez.
+- **Dikkat: okuma aracı büyük görseli küçültüp gösteriyor.** 6266 px'lik dosyanın kırpım koordinatlarını gösterilen
+  görüntüden okuyunca ilk kırpım yanlış yere düştü. Kırpmadan önce `Image.open(...).size` yazdır, koordinatı ölçekle çarp.
+- **Gerçek yerin arşiv fotoğrafı arka plan olarak:** "Mehrabad-1971.jpg" ({{PD-Art|PD-Iran}}, 1971 kitap taraması) apronu,
+  uçağı ve terminali gösteriyor. Basılı taramanın deseni `blur: 2.2` ile yumuşadı (yalnız arka planda üst ~19, yanlar ~10-13).
+  Renk: `Color(0.62)` + `Brightness(0.9)` → arka plan doygunluğu ~0,21.
+- **Kenar Laplace ölçümünü yazının olmadığı yerde yap.** Videodan alınan karede sol şerit (720 ölçeğinde x<150) repliğin
+  ucunu içerdiği için 260 çıktı. Arka planı `img/` dosyasından `GaussianBlur(b)` ile ölç ya da yazının altındaki şeridi kullan.
+- **Ters köşe yüzü "duygulanma" (korku değil):** animemsi kadın çiziminde kaşları silip iç uçları kalkık kalın (20-21 px)
+  kaş çiz, irise iki beyaz parıltı koy, alt kapak boyunca ince (10 px) mavi gözyaşı birikintisi ve yanaktan inen kalın
+  (20-22 px) gözyaşı ekle. İlk sürüm (14 px gözyaşı, 13 px kaş) telefonda %0,29 kaldı; güçlendirilince %0,46. Yanaktaki
+  gözyaşını yüz konturundan en az 15 px içeride tut. Yöntem: `episodes/tahran-1985-ertugrul/chars/uret.py`.
+- **Kelime tohumu deyimle:** "Bizim size ne iyiliğimiz dokundu ki?" → "Dokundu, 95 yıl önce". Deyimin fiili son replikte
+  tek kelimelik cevap olunca ters köşe 4 kelimeye iner, son kanıt (Osmanlı bayrağı Japonya'da) sessizce öder.
+- **Satır kırımı özel adı bölmesin:** "Türk Hava / Yolları" okunmuyordu. Kurumun halk arasındaki kısa adı ("THY") tek satıra
+  sığdırdı.
+- **Bakış kaydında eski sha1:** varyantı her yeniden ürettiğinde `yon` yeni girdi ekliyor. Teslimden önce bu bölümün
+  dosyalarına ait, güncel sha1'le eşleşmeyen girdileri sil (başkasının girdisine dokunma). Bu bölümde 2 eski girdi silindi.
+- **Hassas konu ayrımı:** 1985 olayında pilotlar ve kabin ekibi gerçek ve kısmen hayatta. Adlarını ekrana ve metne koymamak
+  ve hostesi "gerçek ekipten kimseyi temsil etmeyen kurgu karakter" diye `ek_maddeler`'e yazmak BEKLET gerektirmedi. Metinde
+  yalnız kamu görevlileri (büyükelçiler, başbakan) var.
+
+**Çalışmayan (deneme):**
+- Okuma aracında görülen küçültülmüş görüntüden büyük dosyanın kırpım koordinatını almak (yanlış kırpım).
+- Yazı içeren video karesinde kenar Laplace ölçmek (yazı konturu ölçümü şişiriyor).
+- İnce gözyaşı (14 px) ve ince kaş (13 px) ile "duygulanma" yüzü: telefonda %0,29.
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Kaşıkçı (24.10 akşam) | Hezarfen (25.10 sabah) | Midas (25.10 akşam) | Tahran-Ertuğrul (26.10 sabah) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~3 dk | ~3 dk | ~5 dk | ~3 dk |
+| Konu + olgu | ~2 dk | ~5 dk | ~4 dk | ~3 dk |
+| Görsel avı | ~3 dk | ~4 dk | ~5 dk | ~3 dk |
+| Karakter + yüz | ~3 dk | ~7 dk | ~4 dk | ~4 dk |
+| yaml → teslim | ~3 dk | ~2 dk | ~2 dk | ~3 dk |
+| Ön kontrol + hakem turları | ~5 dk | ~5 dk | ~3 dk | ~4 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~5 dk | ~3 dk | ~3 dk | ~6 dk |
+| **Toplam** | ~25 dk | ~29 dk | ~26 dk | **~26 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `wojak/facing.py`: `yon` aynı dosya yolu için yeni sha1 kaydederken o yolun eski girdilerini silsin (ya da `yon --temizle`).
+- `check`: telefon boyu (390 px) yüz değişimini ters köşe sahnesi için kendisi ölçüp %0,40 altında uyarsın (her bölümde elle
+  ölçülüyor).
+- `check`: satır kırımı bir özel adı (art arda iki büyük harfli kelime) iki satıra bölüyorsa uyarsın.
+
 ### EN kanalı (Wojak Past Files, 25.10.2026'dan itibaren)
 
 İngilizce ikinci kanal. Konsept, stil, müzik ve kalite çıtası yukarıdakiyle aynı; yukarıdaki kanıtlanmış yol burada da
