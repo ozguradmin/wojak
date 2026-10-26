@@ -1131,6 +1131,28 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 - **Olgu notu:** para miktarı FBI ve HISTORY'de 5.800 dolar; Wikipedia 6.000 yazıyor. Metinde "about $5,800" ve kaynak
   satırı yeterli; çelişki açıklamada yazılmaz.
 
+**Ek dersler (26.10.2026, `en-lusitania-warning`, Lusitania uyarı ilanı; görsel 7/10, izleyici 8/10; BEKLET: karakter lisansı + eşik; üç tur):**
+- **Görseli tam boyutta incele, önce:** kaynak karakter PNG'si (wojakland `wl_victorian_man_wojak`) şapkada "ChrisClipArt"
+  filigranı taşıyordu; küçük önizlemede görünmedi. Yeni karakter için tam boyut gri zeminde bak; filigran, imza, site adı yok mu.
+- **Tam yükseklik taşması:** kare kutuda kare ya da yüksek bir kaynak, kutunun tamamına (1080) büyür; alt filigran
+  (y≈1495) kanıtın son satırına biner. Çözüm: kaynağı yatayda siyah pay ile genişletmek (1000x826 → kanıt ~890 px).
+- **Tek satır replik:** bu bölümde ~28 karakterin üstü ikinci satıra düştü ("Read the paper? She can be / sunk"; "We
+  booked the Lusitania for / Saturday"). Hakem yetim kelimeyi MUST saydı. Replik 28 karakter altında tutuldu.
+- **Sansür "died" sözcüğünü bozuyor** (yine: "d*ed"). Açıklamada "did not survive" kullanıldı; teslimden sonra
+  `metinler/*.txt` kontrol edildi.
+- **Kanıt sayfası:** NYT 1915 sayfası gerçek ve kamu malı; Chronicling America (LOC) bu ortamdan 403 (Cloudflare).
+  İkincil bir NYT sayfa kopyası yerine Internet Archive taraması yeterli oldu.
+- **Karakter lisansı EN kanalı için ana sorun:** wojakland ve HF dataset "Wojaks" topluluk sanatı, lisans sayfası yok ya da
+  WTFPL iddiası kazınmış sanata dayanıyor. EN kanalındaki önceki bölümler de kütüphane karakteri kullandı; sahip, kanal
+  genelinde bir karar vermeli (BEKLET ile bölüm bazında yönetiliyor).
+- **Ter varyantı yetersiz kaldı:** kit tarzı damlalar (üç büyük damla) telefonda görünür ama hakemler yüz ifadesinin
+  değişmesini istedi. Golden-era ters köşeleri yüzü değiştirir; EN kanalına temiz bir yüz varyantı kiti gerekir
+  (kendi boyamamız değil, hazır çizim).
+- **Hakem döngüsü:** tur 1 (görsel 6, izleyici 6) → tur 2 (7, 7) → tur 3 (7, 8). Aynı iş parçacığında ikinci ve üçüncü
+  tur; hakemler önceki MUST listesini tek tek kapattı; bu yöntem işe yaradı.
+- **Renderer konsolu:** render satırı süreyi bazen yanlış basıyor (10,9 sn; ffprobe 13,95 sn). Kod hatası görünmüyor;
+  ilerde `video` satırındaki süre ffprobe ile doğrulanmalı.
+
 ---
 
 ## 7. Uzun formata ne taşınır?

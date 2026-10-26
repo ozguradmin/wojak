@@ -1,0 +1,101 @@
+# Lusitania warning (1915). Wojak Past Files (kanal: en).
+# Olgu dosyası: /tmp/uretim/en-lusitania-warning/arastirma/olgular.md (NYT 1 May 1915 s.19 birincil; iki bağımsız kaynak).
+# CANLANDIRMA: iki wojak adsız ve temsilîdir; replikler uydurmadır. Gerçek kişinin sözü yok; alıntılar yalnız
+#   Alman büyükelçiliği uyarısı ve Cunard ilanının birebir metni. Açıklamada "dramatized" notu zorunlu.
+# Karakterler: A = "smug" wojak, smokin (hazır giyimli; kıyafet boyanmadı), sağa bakar. Ter varyantı a_smug_terli.png
+#   (aynı kutu, aynı poz). B = wl doomer girl (koyu elbise), ön görünüm.
+# BEKLET nedeni: karakter lisansı doğrulanamadı (wojakland ve HF dataset, topluluk sanatı). Sahip kararı bekleniyor.
+id: en-lusitania-warning
+kanal: en  # Wojak Past Files
+title: "This Lusitania ad ran on the same page as a German warning"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA: A (sol). Dramatik ironi: kimse batırmaz.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_pier54.jpg
+    chars:
+      - {img: chars/a_smug.png, side: left, height: 0.46}
+    text: "Nobody sinks the Lusitania"
+
+  # 2) UYARI: B (sağ). Gazetedeki uyarıya işaret ediyor.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_pier54.jpg
+    chars:
+      - {img: chars/b_dress.png, side: right, height: 0.52}
+    text: "Saw the paper? She could sink"
+
+  # 3) RAHATLIK: A (sol). Uyarıyı önemsemiyor.
+  - type: dialog
+    duration: 2.0
+    bg: img/bg_pier54.jpg
+    chars:
+      - {img: chars/a_smug.png, side: left, height: 0.46}
+    text: "Relax, we're booked Saturday"
+
+  # 4) ARA KART: ileri zaman (1 Mayıs'tan 7 Mayıs'a: altı gün).
+  - type: card
+    duration: 1.5
+    text: "Six days later"
+
+  # 5) TERS KÖŞE: A, aynı kutu, ter varyantı. Fark etme sorusu.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_pier54.jpg
+    chars:
+      - {img: chars/a_smug_terli.png, side: left, height: 0.46}
+    text: "Wait, why did we sail?"
+
+  # 6) KANIT 1: Cunard satış ilanı, aynı NYT sayfası (1 Mayıs 1915, s.19; kamu malı).
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_cunard.png]
+
+  # 7) KANIT 2 (son kare): Alman büyükelçiliğinin "NOTICE!" uyarısı, aynı sayfa (kamu malı).
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_notice.png]
+
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  She sailed anyway: a German warning ran on her sailing-ad page
+  The full story is in the pinned comment 👇
+
+# YouTube: 2-3 etiket (Instagram'da yok)
+hashtags: [history, worldwar1, lusitania]
+
+pinned_comment: |
+  The RMS Lusitania was a Cunard ocean liner that was torpedoed off the Irish coast on 7 May 1915.
+
+  On Saturday, 1 May 1915, The New York Times printed Cunard's sailing advertisement for the ship: "Fastest and Largest Steamer now in Atlantic Service Sails SATURDAY, MAY 1, 10 A.M." On the same page ran a boxed notice from the Imperial German Embassy in Washington. It began: "TRAVELLERS intending to embark on the Atlantic voyage are reminded that a state of war exists between Germany and her allies and Great Britain and her allies." It went on: "vessels flying the flag of Great Britain, or any of her allies, are liable to destruction in those waters and that travellers sailing in the war zone on ships of Great Britain or her allies do so at their own risk." The notice was dated April 22, 1915.
+
+  The embassy's notice reached the New York papers the night before she sailed. The Lusitania left that day with roughly 1,950 people aboard, passengers and crew.
+
+  On 7 May, a German U-boat torpedoed her off southern Ireland. She sank within about 20 minutes. About 1,200 people did not survive, including more than 120 Americans. Germany said the ship carried war cargo. Britain denied that at the time. Later accounts put about 173 tons of munitions aboard.
+
+  Dramatized: the wojak dialogue is invented. The dates, figures and quoted wording are sourced.
+
+  Would you have booked that crossing?
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are unnamed; the dialogue is invented and is labelled as such in the pinned comment."
+  - "**BEKLET:** the two wojak characters have no verified licence (wojakland and HF dataset community art). Owner decides before publishing."
+  - "**Kontrol:** the Cunard ad and the notice are cropped from the same NYT page (1 May 1915, p. 19); say 'the same page' in any text, not 'side by side'."
+
+credits: "The New York Times, 1 May 1915, p. 19 (public domain, US publication 1915), via Internet Archive (https://archive.org/details/sim_new-york-times_the-new-york-times_1915-05-01_64_20916), cropped in two frames. Background: a 2008 photo of the Cunard Pier 54 arch, New York (a modern view of the rebuilt terminal, not a 1915 scene), Jim.henderson, public domain (own work), Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Cunard_steel_arch_pier_54.JPG)."
+
+sources:
+  - "The New York Times, 1 May 1915, p. 19 (cunard ad and German notice): https://archive.org/details/sim_new-york-times_the-new-york-times_1915-05-01_64_20916"
+  - "History.com, German submarine sinks Lusitania (7 May 1915): https://www.history.com/this-day-in-history/may-7/german-submarine-sinks-lusitania"
+  - "Smithsonian NMAH, Remember the Lusitania: 3 pieces of World War I propaganda: https://americanhistory.si.edu/explore/stories/remember-lusitania-3-pieces-world-war-i-propaganda"
+  - "The Huntington Library, Lusitania's Anchor to the Past (2015): https://www.huntington.org/verso/lusitanias-anchor-past"
+  - "Lusitania Resource, Final Crossing: https://www.rmslusitania.info/lusitania/final-crossing/"
+  - "Lusitania Resource, Mayer Opinion pages 11-17 (notice transcription): https://www.rmslusitania.info/primary-docs/mayer-opinion/pages-11-17/"
+  - "Background photo, Cunard Pier 54: https://commons.wikimedia.org/wiki/File:Cunard_steel_arch_pier_54.JPG"
+
+telif_notu: "Karakter A (hf_5 smug / HF dataset, WTFPL over wojakparadise.net scrapes; kaynak a2_hf_smugjak962) ve B (wojakland, lisans sayfası yok) topluluk sanatıdır. Lisans doğrulanamadı: BEKLET. Kanıt ve arka plan kamu malıdır."
