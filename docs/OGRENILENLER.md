@@ -509,6 +509,9 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
     grep -E '\.mp4$|telifli'`). Özel teslim `wojak-ozel`'e (video dahil).
 15. **Ortam tuzakları:** Commons 429 (≥12 sn, md5 yolu); Openverse (`bg_ara.py`) yanıt vermiyor; Playwright
     `ignore_https_errors=True` + `python -m playwright install chromium` (tek sefer); gazete arşivi için Playwright.
+16. *(26.10 ek)* **İş başında iki deponun dalını kontrol et:** ayrık HEAD'de açılıyorlar (`git status | head -1`); dosya yazmadan
+    önce varsayılan dala geç. **Son kare türleri şimdiye kadar:** levha, kupür, müze nesnesi, pul, arşiv fotoğrafı, kitap sayfası
+    (Internet Archive, `yerebatan-bodrum-balik`). Son 5 bölüme bak, aynısını arka arkaya kullanma.
 
 ### Adım adım (çalışan yol / vakit kaybı / süre / tasarruf)
 
@@ -996,6 +999,76 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - `check`: telefon boyu (390 px) yüz değişimini ters köşe sahnesi için kendisi ölçüp %0,40 altında uyarsın (her bölümde elle
   ölçülüyor).
 - `check`: satır kırımı bir özel adı (art arda iki büyük harfli kelime) iki satıra bölüyorsa uyarsın.
+
+### Ek dersler (26.10.2026 akşam, `yerebatan-bodrum-balik`, iki hakemden 8/8, ~40 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Depolar yine ayrık HEAD'de açıldı** (Kaşıkçı dersi geçerli): `git pull` "commit or stash" diye durdu. Çözüm: `git stash -u`
+  → `git checkout <varsayılan dal>` (`git remote show origin | grep "HEAD branch"`) → `git pull --rebase origin <dal>` → `git stash pop`.
+  Bunu iş başında, dosya yazmadan önce yap.
+- **Yeni son kare türü: kitap sayfası (Internet Archive, kamu malı).** Olayın kaydı bir seyahatname/kronikse, olayı birebir
+  anlatan sayfanın taraması en dürüst son kare. Yol:
+  `archive.org/advancedsearch.php?q=title:(<sözcükler>)+AND+mediatype:texts&fl[]=identifier&fl[]=year&output=json` → tam metin
+  `archive.org/download/<id>/<id>_djvu.txt` içinde pasajı grep'le (18. yy. baskısında uzun s "f" diye okunur: "Fifh", "Ciftern")
+  → `<id>_page_numbers.json` sayfa numarasından `leafNum` verir → `archive.org/download/<id>/page/n<leaf>_w2000.jpg` (1711x2922,
+  ilk denemede indi). 1080x816 kırp, satır aralığında kes, yalnız `autocontrast`. Okunabilir: 55 px'lik replik gibi değil ama
+  telefonda seçiliyor. Türk izleyici için hikâye metnine "Videonun son karesi … sayfasıdır" cümlesi ekle (takipçi hakemi SHOULD).
+  Pasajda aşağılayıcı ifade varsa (burada "Contempt … in the Inhabitants") kırpımı o satırların dışından al.
+- **Turuncu/kırmızı silindir takke telefonda fes okunuyor.** 1829 öncesi sahnede wojakland `medieval_2_wojak`ın turuncu
+  takkesi fes gibi duruyordu. Bağlı bölge (`scipy.ndimage.label`, tohum takkenin içinde) koyu kahve keçeye boyandı, tonlama
+  korundu (`episodes/yerebatan-bodrum-balik/chars/uret.py:takke_boya`). Hakemden önce kendin sor: "Bu başlık dönem dışı bir şeye
+  benziyor mu?"
+- **Küçük kaynak PNG (353-523 px):** önce 2-3x LANCZOS + `UnsharpMask(2, 60, 2)` ile büyüt (alfa ayrı korunur), yüz çizimini
+  büyütülmüş tuvalde yap. Yeni çizgiler kaynakla aynı kalınlıkta ve temiz çıkıyor.
+- **Sakalın içindeki ağzı silmek:** kutuyu `sil(..., tol=-1)` ile beyaza boyamak sakalı da beyazlatır. Yalnız düşük doygunluklu
+  koyu pikselleri (max-min < 30, toplam < 640) beyaza çevir (`siyah_sil`); kahve sakal kalır, eski ağız çizgisi ve gri kenar
+  yumuşatması gider.
+- **Gerçek yerin bugünkü fotoğrafında modern yürüme yolu:** sarnıç fotoğrafında sağdaki çelik korkuluk A'nın sahnelerinde
+  açıkta kalıyordu (B'nin arkasında saklanıyor sanılır ama tek konuşmacılı sahnede karşı taraf açıkta; Kaşıkçı dersi). Kırpımı
+  korkuluğun soluna aldım; kaçış noktası %63'e kaydı, sorun olmadı.
+- **Sıcak ışıklı iç mekân doygunluğu:** turuncu aydınlatmalı sarnıçta `Color(0.85)` 0,33-0,35 verdi; `Color(0.6)` → 0,25-0,27
+  (orijinaller 0,20-0,27). Blur 2,4 → kenar Laplace ~20-25.
+- **Bodrum/kuyu sahnesi için serbest fotoğraf yok:** "Ottoman house well courtyard", "kuyu bileziği", "wellhead courtyard
+  Istanbul" boş döndü. Diyalogu olayın belgeli ikinci anına (kayıkla sarnıçta) taşımak hem gerçek yeri verdi hem kancayı
+  güçlendirdi ("bodrumda balık" + arkada Yerebatan).
+- **Commons (26.10 akşam):** `generator=search` / `categorymembers` + `iiurlwidth=400/1600` ~2-3 sn arayla 120'den fazla küçük
+  resimde hiç 429 vermedi; 1600 istenince 1920 px döndü, arka plan ve kanıt için yetti (özgün dosya indirmeye gerek kalmadı).
+- **Hakemler ayrı bağlamda çalıştırılamadı** (bu oturumda alt ajan aracı yoktu): her tur JUDGE_* istemleriyle sıfırdan, yalnız
+  teslim dosyalarına bakılarak yürütüldü. Üretici ön kontrolü (ses, kesme, telefon yüz değişimi, yetim kelime, modern öğe,
+  dönem dışı kostüm, doygunluk) hakem turundan önce dört sorun yakaladı.
+- **Bakış kaydı:** karakter yeniden üretilince eski sha1 girdisi kaldı; `facing.py` biçimiyle (`indent=1, sort_keys=True`) silindi.
+  `json.dump(indent=2)` bütün dosyayı yeniden biçimlendirip 1300 satırlık fark yaratıyor, kullanma.
+
+**Çalışmayan (deneme):**
+- `git pull` ayrık HEAD'de ve izlenmeyen dosyalar varken (önce stash + checkout).
+- Sakal içindeki ağzı `sil(tol=-1)` ya da yalnız `toplam < 260` eşiğiyle silmek (koyu kahve sakal pikselleri de gitti).
+- Bodrum/kuyu için serbest arka plan araması (Commons'ta uygun sonuç yok).
+- Turuncu silindir takkeyi olduğu gibi bırakmak (fes gibi okunuyor).
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Hezarfen (25.10 sabah) | Midas (25.10 akşam) | Tahran-Ertuğrul (26.10 sabah) | Yerebatan (26.10 akşam) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~3 dk | ~5 dk | ~3 dk | ~5 dk |
+| Konu + olgu | ~5 dk | ~4 dk | ~3 dk | ~5 dk |
+| Görsel avı | ~4 dk | ~5 dk | ~3 dk | ~6 dk |
+| Karakter + yüz | ~7 dk | ~4 dk | ~4 dk | ~5 dk |
+| yaml → teslim | ~2 dk | ~2 dk | ~3 dk | ~4 dk |
+| Ön kontrol + hakem turları | ~5 dk | ~3 dk | ~4 dk | ~8 dk (ön kontrol + 2 tur + 4 düzeltme) |
+| Teslim + commit + belge | ~3 dk | ~3 dk | ~6 dk | ~7 dk |
+| **Toplam** | ~29 dk | ~26 dk | ~26 dk | **~40 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `tools/`: Internet Archive sayfa indirici (`<id> <sayfa no>` → `page_numbers.json`'dan leaf → `_w2000.jpg`; djvu metninde pasaj
+  arama). Bu bölümde elle curl ile yapıldı.
+- `tools/wojak_site.py get`: küçük kaynakları (< 700 px) isteğe bağlı 2-3x büyütüp keskinleştiren `--buyut` seçeneği.
+- `check`: diyalog arka planının doygunluğunu ölçüp 0,30 üstünde uyarsın (her bölümde elle ölçülüyor).
+- `tests/`: `/home/user` yokken düşen test yine düştü (önceki öneri).
+- Bakış kaydı (`data/karakter_yon.json`) sistem isteminin yazma listesinde yok, ama `teslim` kayıt istiyor. Kurala bu dosya
+  açıkça eklenmeli ya da kayıt bölüm klasörüne taşınmalı.
 
 ### EN kanalı (Wojak Past Files, 25.10.2026'dan itibaren)
 

@@ -251,6 +251,10 @@
   "faces": "right",
   "file": "episodes/en-d-b-cooper/chars/b_takim.png"
  },
+ "61fb0a64e39323ee8a029f134425e935b869a8b0": {
+  "faces": "right",
+  "file": "episodes/yerebatan-bodrum-balik/chars/evsahibi_sakin.png"
+ },
  "62da4359940bc315755ea69f1fb51b5331e2983c": {
   "faces": "right",
   "file": "episodes\\ayasofya-viking-yazisi\\chars\\muhafiz_sakin.png"
@@ -286,6 +290,10 @@
  "6cd8ca867ca109f4f214b87847e656d50a76350e": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
+ "6d8a992d2d5d3ab3b23e523dcf65fe46b73af2d0": {
+  "faces": "right",
+  "file": "episodes/yerebatan-bodrum-balik/chars/gyllius_sok.png"
  },
  "6f8ccdfb81a40c4cf6405b35392571e584766452": {
   "faces": "right",
@@ -438,6 +446,10 @@
  "a02a473620f5ce1a94224b6220c138f384f0817e": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_sakin.png"
+ },
+ "a654ed98c2ed7752d72ed9cd1668864348719972": {
+  "faces": "right",
+  "file": "episodes/yerebatan-bodrum-balik/chars/gyllius_sakin.png"
  },
  "aad499cd4e00da655b854e1280ac53cba3b47457": {
   "faces": "left",
