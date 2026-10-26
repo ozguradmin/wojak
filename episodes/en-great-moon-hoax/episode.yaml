@@ -1,0 +1,101 @@
+# The Great Moon Hoax (1835). Wojak Past Files (kanal: en).
+# Olgu: New York Sun, 25 Ağustos - 16 Eylül 1835 (Wikipedia, LOC Folklife, JSTOR Daily, civicsforlife). Kaynaklar aşağıda `sources`.
+# CANLANDIRMA: iki wojak adsız ve uydurma; diyalog Herschel ya da Locke'a söz atfetmiyor. B, gazetenin (yazarın) yerini tutuyor.
+#   Açıklamada "dramatized" notu zorunlu.
+# Karakterler: A = klasik kit (sakin -> agliyor ters köşe, aynı kutu), B = kütüphane "Aristocrat Smug" (5_Smugjak/523).
+#   B'nin peruğu 1835 modasıyla tam uyuşmaz (RAPOR'da kusur).
+# BEKLET nedeni: karakter lisansı (kit ve kütüphane topluluk sanatı, lisans sayfası yok). Sahip kararı bekleniyor.
+id: en-great-moon-hoax
+kanal: en  # Wojak Past Files
+title: "In 1835, a New York paper said bat-men lived on the Moon"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA: A (sol), inanmış okuyucu.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_1.jpg
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.48}
+    text: "Did you read about the Moon bat-men?"
+
+  # 2) CEVAP: B (sağ), gazetenin sözcüsü gibi. Seriyi onaylıyor.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_1.jpg
+    chars:
+      - {img: chars/b_smug.png, side: right, height: 0.48}
+    text: "Yeah, our paper says Herschel saw them"
+
+  # 3) DRAMATİK İRONİ: B, aynı kutu. Herschel Cape'te, kimse kontrol edemez.
+  - type: dialog
+    duration: 2.0
+    bg: img/bg_1.jpg
+    chars:
+      - {img: chars/b_smug.png, side: right, height: 0.48}
+    text: "Nobody can check, he's in Africa"
+
+  # 4) ARA KART: ileri zaman (25 Ağustos'tan 16 Eylül'deki kabule yaklaşık üç hafta)
+  - type: card
+    duration: 1.5
+    text: "Three weeks later"
+
+  # 5) TERS KÖŞE: A, aynı kutu, yüz varyantı agliyor (gözler ve kaşlar değişir). Fark etme sorusu.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_1.jpg
+    chars:
+      - {img: chars/a_agliyor.png, side: left, height: 0.48}
+    text: "Wait, you made up the bat-men?"
+
+  # 6) KANIT 1: 1836 man-bat gravürü, kare kırpım (kamu malı, NYPL/Commons)
+  - type: evidence
+    duration: 1.5
+    images: [img/evidence_1.jpg]
+
+  # 7) KANIT 2 (son kare): 1835 "Lunar animals" baskısının başlık bloğu (kamu malı, LOC via Commons; Benjamin Day tescili)
+  - type: evidence
+    duration: 1.5
+    images: [img/evidence_3.jpg]
+
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  In 1835, a New York paper said bat-men lived on the Moon
+  The full story is in the pinned comment 👇
+
+# YouTube: 2-3 etiket (Instagram'da yok)
+hashtags: [history, newspapers, astronomy]
+
+pinned_comment: |
+  In August 1835 The Sun, a New York penny paper, began a six-part series that was presented as a reprint from an Edinburgh journal. It said the British astronomer Sir John Herschel had used a huge new telescope at the Cape of Good Hope to study the Moon. The articles described bison-like animals, one-horned goats, tailless beavers that walked on two legs, and winged, bat-like humanoids the paper called Vespertilio-homo, or man-bats.
+
+  Herschel really was at the Cape at that time, from 1834 to 1838. He had made no such discovery and knew nothing about the articles beforehand. The articles named Dr Andrew Grant, an invented companion of Herschel, as their author.
+
+  Historians credit Richard Adams Locke, a reporter on the Sun. Locke later said it was satire, aimed at a popular belief in the 1830s that other worlds were full of life. The paper sold well. Many readers, and several other newspapers, took the articles as real news. On 16 September 1835 the Sun admitted that the articles were fabricated, though it never printed a formal retraction. Herschel found the hoax amusing at first, but later grew tired of letters from people who believed it.
+
+  Dramatized: the two wojak characters and their dialogue are invented. The reporter on the right stands in for the paper's writer. No words are put in Herschel's mouth. The dates, the names and the description of the articles are sourced.
+
+  Would you have believed it in 1835?
+
+ek_maddeler:
+  - "**Dramatization:** the two wojak characters are unnamed; the dialogue is invented, and the pinned comment says so."
+  - "**BEKLET:** the wojak characters have no verified licence (library and kit community art). Owner decides before publishing."
+  - "**Kontrol:** the background is the Cape of Good Hope coast (Cape Point), not Herschel's observatory site; the 'Africa' line refers to the Cape region."
+
+credits: "Man-bat portrait from a Naples edition of the moon series, 1836, courtesy of the New York Public Library, via Wikimedia Commons (public domain). Final frame: the title block of an 1835 print published at the Sun office (Lunar animals and other objects, discovered by Sir John Herschel...), copyright claimant Benjamin Henry Day, Library of Congress via Wikimedia Commons (public domain); cropped to the title. Background: Cape Town - Cape of Good Hope seen from lighthouse, Romaine, 2018, CC0 (Wikimedia Commons); colour reduced."
+
+ai_generated: false
+
+telif_notu: ""
+
+sources:
+  - "Wikipedia, Great Moon Hoax (25 Aug 1835 first article; 16 Sept 1835 admission; Locke attribution; Herschel and Cape): https://en.wikipedia.org/wiki/Great_Moon_Hoax"
+  - "Library of Congress, Folklife Today, Belief, Legend, and the Great Moon Hoax (2014): https://blogs.loc.gov/folklife/2014/08/the-great-moon-hoax/"
+  - "Civics for Life, The Great Moon Hoax of 1835 (Herschel at the Cape 1834-1838, Dr Andrew Grant, no formal retraction, Locke's satirical purpose): https://civicsforlife.org/great-moon-hoax-1835/"
+  - "JSTOR Daily, How the Sun Conned the World With The Great Moon Hoax (Vespertilio-homo, man-bats, Locke, Herschel): https://daily.jstor.org/how-the-sun-conned-the-world-with-the-moon-hoax/"
+  - "Images: Commons, 1836 man-bat engraving (NYPL credit): https://commons.wikimedia.org/wiki/File:1836_the-great-moon-hoax-new-inhabitants-of-the-moon.png"
+  - "Images: Commons, Lunar animals and other objects (LOC LCCN 2003665049): https://commons.wikimedia.org/wiki/File:Lunar_animals_and_other_objects_Discovered_by_Sir_John_Herschel_in_his_observatory_at_the_Cape_of_Good_Hope_and_copied_from_sketches_in_the_Edinburgh_Journal_of_Science._LCCN2003665049.jpg"
+  - "Image: Commons, Cape Town - Cape of Good Hope seen from lighthouse (CC0): https://commons.wikimedia.org/wiki/File:Cape_Town_-_Cape_of_Good_Hope_seen_from_lighthouse.jpg"

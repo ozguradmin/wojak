@@ -23,6 +23,10 @@
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
  },
+ "0f4c17a4c0ba793b930f32054c86a8555b00962b": {
+  "faces": "right",
+  "file": "episodes/en-great-moon-hoax/chars/b_smug.png"
+ },
  "12a1346a4b4f1fc943deea4f258e5d6fc65d9b94": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci2000_gergin.png"
@@ -121,7 +125,7 @@
  },
  "3d7e09bde97cb3e0f5d135ce6a0f9378bcf219e5": {
   "faces": "right",
-  "file": "assets/kit/klasik/uzgun.png"
+  "file": "episodes/en-great-moon-hoax/chars/a_uzgun.png"
  },
  "3daa325b8099dbf2a5d4ec74563399a45803ef42": {
   "faces": "left",
@@ -129,7 +133,7 @@
  },
  "3f4d31c5d8d022f11843cdd61a1c7a74cb2a2098": {
   "faces": "right",
-  "file": "episodes/en-d-b-cooper/chars/a_klasik_terli.png"
+  "file": "episodes/en-great-moon-hoax/chars/a_cok_terli.png"
  },
  "40da4ab664ecb8405c65d95f805e7b4f4990bbf2": {
   "faces": "right",
@@ -193,7 +197,7 @@
  },
  "51f7a3e469b7b28b2067f75a54ae3a61ac234fc7": {
   "faces": "right",
-  "file": "assets/kit/klasik/agliyor.png"
+  "file": "episodes/en-great-moon-hoax/chars/a_agliyor.png"
  },
  "525c84672fd40d5b495d247456d85441efba9fe3": {
   "faces": "right",
@@ -273,7 +277,7 @@
  },
  "6973d2c0f4c37747e15e339aa05b32cee732cc5e": {
   "faces": "right",
-  "file": "episodes/en-d-b-cooper/chars/a_klasik.png"
+  "file": "episodes/en-great-moon-hoax/chars/a_sakin.png"
  },
  "6a380fa2967f1ab25ffb231cbdb85527eab25885": {
   "faces": "right",

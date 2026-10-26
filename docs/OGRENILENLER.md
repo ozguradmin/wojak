@@ -1153,6 +1153,17 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 - **Renderer konsolu:** render satırı süreyi bazen yanlış basıyor (10,9 sn; ffprobe 13,95 sn). Kod hatası görünmüyor;
   ilerde `video` satırındaki süre ffprobe ile doğrulanmalı.
 
+**Ek dersler (26.10.2026, `en-great-moon-hoax`, The Great Moon Hoax 1835; görsel 7 → 7,5 → 8, izleyici 7 → 8 → 8; üç tur, ~2 saat duvar saati):**
+- **Teslim klasörü yeniden kurulur:** `python -m wojak teslim` `teslim/<id>/` içini siler; RAPOR.md oraya yazılırsa kaybolur. Raporu teslimden sonra bir yedek konumda tut ve wojak-en-ozel'e kopyala.
+- **Ters köşe yüzü gözleri de değiştirmeli:** yalnız ter damlası (`cok_terli`) sakin yüzle aynı göz ve kaşları taşıdığı için hakem 7'de kaldı. Klasik kitte gözyaşlı yüz `agliyor` (855 px, göz ve kaşlar değişiyor) iki hakemde de kabul edildi. `uzgun.png` 205 px: kullanılamaz (boy kontrolü).
+- **Kanıt başlığı en az 35 px cap ister:** büyük LOC baskısının başlık bloğu 1080 genişliğe ölçeklenince cap ~38 px okundu. 1080x245'lik ince bant hakemde MUST oldu; 1080x720 (alt gravür + başlık) kabul edildi.
+- **Commons açıklama alanı kredi kaynağıdır:** "courtesy of the New York Public Library" satırı açıklamadaydı, hakem arama özetinde göremedi. Kredi metnini Commons `ImageDescription` alanından al ve API ile doğrula (`iiprop=extmetadata`).
+- **Gazete arşivi 403:** Chronicling America ve loc.gov bu ortamdan erişilemedi. Gerçek 1835 Sun sayfası alınamadı; aynı dönemden baskı (LOC başlık bloğu) kanıt olarak kullanıldı ve açıklamada "print published at the Sun office" yazıldı.
+- **Kanıt ve kadraj:** arka plan kenarındaki modern yürüyüşçü kadrajdan çıkarıldı (bg kenar kırpma, zoom yok). Kenar kırpması yalnız görüntünün yatay penceresini kaydırır; ölçek aynı kalır.
+- **"Kim konuşuyor" netliği:** B'nin "gazete" olduğu ilk iki replikte belli edildi ("Yeah, our paper says ..."). Açıklamada B'nin yazarın yerini tuttuğu yazıldı.
+- **Çelişkili olgu tek cümlede:** "16 Eylül kabulü" Wikipedia'da "admitted fabricated", Civics for Life'ta "resmî düzeltme yok". Metin ikisini de söyledi ("admitted ... though it never printed a formal retraction").
+- **Karakter lisansı EN kanalında hâlâ açık:** kit ve kütüphane (wojakland/HF) karakterleri için lisans sayfası yok. Bu bölümde PNG'ler herkese açık depoya konmadı; BEKLET ile sahip kararı bekleniyor.
+
 ---
 
 ## 7. Uzun formata ne taşınır?
