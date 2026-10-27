@@ -1298,6 +1298,18 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 - **Paylaşımlı yön kaydı:** `python -m wojak yon` kaydı `data/karakter_yon.json` içinde sha1 anahtarlarıyla tutar; aynı PNG baytları başka bölümde varsa dosya yolu değişebilir. Commit öncesi `git diff data/karakter_yon.json` ile kontrol edilip başka bölümün girdisi geri alınır.
 - **Render satırı süresi yanlış basabiliyor:** render "12,2 sn" yazdı; ffprobe 13,45 sn ve 403 kare gösterdi. Teslimde süre ffprobe ile doğrulanır.
 
+**Ek dersler (27.10.2026, `en-mincemeat`, Operation Mincemeat 1943; görsel 7 → 7,5 → 8, izleyici 5 → 7 → 8; üç tur, ~33 dk duvar saati):**
+- **Yön kaydı paylaşımlı, commit öncesi kontrol:** `python -m wojak yon` aynı baytlı mevcut kit PNG'lerinin `data/karakter_yon.json` `file` alanını yeni bölüme çevirir ve bir dosyayı silinmiş bırakabilir. Yönler değişmez; yine de `git diff data/karakter_yon.json` ile kontrol edip başka bölümün girdisini `git checkout` ile geri al.
+- **Replik tek satırda kalmalı:** 2 satıra düşen replikte son kelime yalnız kalıyordu ("major", "novel?"); görsel hakem MUST saydı. "Dress him as a Royal Marine" ve "Wait, it came from a novel?" tek satırda kaldı ve kapak kadrajı temizlendi.
+- **Sansür "dead", "died", "corpse", "death" kelimelerini bozar:** başlık ve açıklamada "body" ve "passed away" kullanıldı; teslim sonrası `metinler/*.txt` kontrol edildi.
+- **Olgu çelişkisi plaket üzerinde:** plaket ölüm tarihini 24 Nisan 1943 yazıyor (kapak hikâyesi tarihi); kayıtlar Ocak 1943. Açıklamada bu tek cümleyle açıklandı; izleyici hakemi MUST 3'ü bununla kapattı.
+- **Kelepçe ayrıntısı kaynaklarda çelişiyor** (bilek ya da palto kemeri): metin "chained ... to him" yazdı, ayrıntı vermedi. Tartışmalı ayrıntıyı tek ifadeyle geçmek MUST'ı kapattı.
+- **Kimlik kartı fotoğrafı bir MI5 subayına ait:** adını yazmadık (yaşam durumu doğrulanmadı); yalnız "an MI5 officer, not Michael" notu.
+- **Arka plan reçetesi (Huelva kıyısı):** 1620x1620 kırpma (gökyüzü ~%25), `ImageEnhance.Color(0.6)` ve `Brightness(0.93)`: ölçü S 0,31, L 122; görsel hakem 0,24-0,27 ve 128-136 ölçtü, kabul.
+- **Plaket 1080 genişlikte 871 px yüksek:** 40 px üst ve alt kırpma ile 816 px'e indi (spec 537-816).
+- **1915 kaskı (ingiliz_er_1915) 1943 subayı için yanlış dönem:** tek renkli 1939-45 İngiliz karakteri kütüphanede yok; HF renkli adaylar stil uyumsuzluğu yarattı. Bilinen kusur olarak raporlandı; kanal için 1940'lar kit ihtiyacı açık.
+- **Ters köşe yalnız ter damlasıyla** (klasik/cok_terli, aynı kutu): telefonda okunur bulundu, görsel hakem 8/10'da kabul etti; kaş ve göz değişimi daha iyi olurdu (SHOULD, açık).
+
 ---
 
 **Karakter lisansı (hesap sahibinin kararı, 27.10.2026, iki kanal için):** kütüphanedeki wojak karakterleri (kit,

@@ -1,0 +1,98 @@
+id: en-mincemeat
+kanal: en  # Wojak Past Files
+title: "They dressed a body as a Royal Marines major to fool Hitler"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA: A (sol), planlayıcı. İronik: kimsenin sahiplenmeyeceği bir ceset.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_huelva.jpg
+    chars:
+      - {img: chars/a_ingiliz.png, side: left, height: 0.48}
+    text: "Find us a body nobody will claim"
+
+  # 2) CEVAP: B (sağ). Planın özü: cesede sahte kimlik.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_huelva.jpg
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.48}
+    text: "Dress him as a Royal Marine"
+
+  # 3) TIRMANIŞ: A, sakin. Planın hedefi: Hitler'in kâğıtlara inanması.
+  - type: dialog
+    duration: 2.0
+    bg: img/bg_huelva.jpg
+    chars:
+      - {img: chars/a_ingiliz.png, side: left, height: 0.48}
+    text: "Hitler will trust his papers"
+
+  # 4) ARA KART: ileri zaman (Sicilya çıkarması Temmuz 1943).
+  - type: card
+    duration: 1.5
+    text: "Two months later"
+
+  # 5) TERS KÖŞE: B, aynı kutu, yüz varyantı cok_terli (5 ter damlası, panik). Fikir bir romandan.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_huelva.jpg
+    chars:
+      - {img: chars/b_cok_terli.png, side: right, height: 0.48}
+    text: "Wait, it came from a novel?"
+
+  # 6) KANIT 1: "Major Martin" kimlik kartı, 1943 (kamu malı, UK Crown belgesi).
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_major_martin.jpg]
+
+  # 7) KANIT 2 (son kare): Aberbargoed anıt plaketi, adı yazılı (CC BY-SA 2.0, Jaggery). Üstten ve alttan 40 px kırpıldı.
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2_plaque.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  They dressed a body as a Royal Marines major to fool Hitler
+  The full story is in the pinned comment 👇
+
+# YouTube: 2-3 etiket (Instagram'da yok)
+hashtags: [ww2, history, mincemeat]
+
+pinned_comment: |
+  Operation Mincemeat was a British deception of 1943, and it began with a body.
+
+  Glyndwr Michael, a homeless Welshman, passed away in January 1943. British intelligence dressed him as Major William Martin of the Royal Marines, gave him a forged identity card and personal letters, and chained a briefcase of fake invasion letters to him. In late April 1943 he was released from the submarine HMS Seraph off the coast of Spain, and a fisherman found him at Huelva on 30 April.
+
+  Spain passed the papers to German intelligence. Hitler moved forces to Greece and Sardinia. In July 1943 the Allies invaded Sicily, the target the plan had tried to hide.
+
+  The idea is widely attributed to a 1939 memo, linked to Ian Fleming, which borrowed a scheme from a 1937 crime novel. The photo on the identity card shows an MI5 officer, not Michael. Michael's real name was only added to Martin's headstone in 1997.
+
+  The memorial plaque in Aberbargoed, Wales, now carries his name. It prints 24 April 1943, the date on Martin's headstone. Records show he passed away in January.
+
+  Dramatized: the two wojak characters and their dialogue are invented. The ship, the people and the events are sourced. The background is a Huelva beach, not the exact landing spot.
+
+  Would you have believed the papers?
+
+ek_maddeler:
+  - "**Dramatization:** the two wojak characters are unnamed; the dialogue is invented and the pinned comment says so."
+  - "**Licence (owner's call):** the plaque photo is CC BY-SA 2.0 (share-alike, attribution in credits). The Times press photo of the body vehicle was rejected because its public-domain basis is an age claim with an unverified photographer."
+  - "**Dates:** the plaque prints 24 April 1943 as the death date (the headstone date); records show January 1943. The script says 'passed away in January 1943'."
+  - "**Character style:** the ingiliz_er_1915 kit (pith helmet) is a 1915 costume; a 1943 officer would not wear it. Known weakness, see RAPOR."
+
+sources:
+  - "National WWII Museum, Secret Agents, Secret Armies: Operation Mincemeat (body, Huelva, Hitler's reaction, Sicily 1943; 1997 headstone; 1939 Trout memo and Fleming): https://www.nationalww2museum.org/war/articles/secret-agents-secret-armies-operation-mincemeat"
+  - "Erskine Veterans Charity, The strange tale of Operation Mincemeat (Seraph release, Spain, identity 'Major Martin', 1997 headstone): https://www.erskine.org.uk/news/the-strange-tale-of-operation-mincemeat"
+  - "Britannica, Operation Mincemeat (1939 memo, 1937 novel, Ian Fleming attribution): https://www.britannica.com/event/Operation-Mincemeat-WWII-1943"
+  - "Cradle of Aviation Museum, Operation Mincemeat (Huelva, Germany's reaction, Sicily invasion): https://www.cradleofaviation.org/history/history/historical_events/operation-mincemeat.html"
+  - "Wikipedia, Operation Mincemeat (identity card photo of an MI5 officer; headstone inscription; Trout memo): https://en.wikipedia.org/wiki/Operation_Mincemeat"
+  - "Images: Commons, 'Major Martin' Naval Identity Card, 1943 (public domain, PD-UKGov; from Montagu, The Man Who Never Was, 1953): https://commons.wikimedia.org/wiki/File:Major_Martin.jpg"
+  - "Images: Commons, Aberbargoed war memorial plaque, Jaggery, 6 Sep 2019 (CC BY-SA 2.0): https://commons.wikimedia.org/wiki/File:Glyndwr-michael-aberbargoed-y-dyn-na-fu-erioed.jpg ; Geograph: https://www.geograph.org.uk/photo/6258082"
+  - "Images: Commons, Playa del Espigón, Huelva (own work, Juan José Rodríguez Macías, 2007; public domain): https://commons.wikimedia.org/wiki/File:Espig%C3%B3n_Huelva_001.JPG"
+
+credits: "Background: Playa del Espigón, Huelva, Juan José Rodríguez Macías, 2007, public domain (https://commons.wikimedia.org/wiki/File:Espig%C3%B3n_Huelva_001.JPG); a Huelva coast photo, not the exact landing spot; cropped, saturation -40%, brightness -7%, slight blur. Major Martin ID card, 1943, public domain (https://commons.wikimedia.org/wiki/File:Major_Martin.jpg; Montagu, The Man Who Never Was, 1953). Aberbargoed plaque, Jaggery, 2019, CC BY-SA 2.0 (https://commons.wikimedia.org/wiki/File:Glyndwr-michael-aberbargoed-y-dyn-na-fu-erioed.jpg; Geograph https://www.geograph.org.uk/photo/6258082); trimmed top and bottom."
+
+ai_generated: false
