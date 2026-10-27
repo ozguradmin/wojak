@@ -99,6 +99,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_fark.png"
  },
+ "3336125c88491e3e0ede365d5ebef926c88a1400": {
+  "faces": "right",
+  "file": "episodes/karakoy-tunel-1874/chars/esnaf_sakin.png"
+ },
  "33725fe0f5b0da95e1d1cc146fde844e63db2d09": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_gozyasli.png"
@@ -391,6 +395,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/veteriner_v2_ciddi.png"
  },
+ "8860f2a1c058c3f8bb30f8d3634e78c6d61b79a1": {
+  "faces": "right",
+  "file": "episodes/karakoy-tunel-1874/chars/memur_sakin.png"
+ },
  "88e6b510b21caeb8bfdbe4c1435c5c412ad24bae": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/eczaci_v2_konusuyor_yari.png"
@@ -666,6 +674,10 @@
  "f4afc247400801a4434e9cbb1be5d823d950919c": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/agliyor.png"
+ },
+ "f5562cea239e6f4c16c5a8feba7fa33f0d377264": {
+  "faces": "right",
+  "file": "episodes/karakoy-tunel-1874/chars/esnaf_sok.png"
  },
  "f55bd366499e4b93b630d4c9ad3e1dca3db9611d": {
   "faces": "right",

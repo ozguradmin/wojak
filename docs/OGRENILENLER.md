@@ -514,6 +514,9 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
     (Internet Archive, `yerebatan-bodrum-balik`). Son 5 bölüme bak, aynısını arka arkaya kullanma.
 17. *(27.10 ek)* **Son kare türlerine eklendi: kamu malı tablo** (Zonaro 1903, `orban-topu-bizans`). Varsayılan dal:
     `git ls-remote --symref origin HEAD`. Ayrıntı: "Ek dersler (27.10.2026 sabah, `orban-topu-bizans`)".
+18. *(27.10 akşam ek)* **Commons 429 kesin çözümü:** `iiurlwidth` dosyanın özgün genişliğinden KÜÇÜK olsun (ör. 2000 px dosyaya
+    1900, 905 px dosyaya 500). Eşit ya da büyükse API `thumburl` olarak özgün yolu verir ve o yol 429'da kalır. Son kare
+    türlerine eklendi: **mühendis çizimi** (kitaptaki teknik levha) + **SALT arşiv fotoğrafı** (`karakoy-tunel-1874`).
 
 ### Adım adım (çalışan yol / vakit kaybı / süre / tasarruf)
 
@@ -1125,6 +1128,66 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
   fotoğraflarını tek temas sayfasında gösteren). Bu bölümde elle yapıldı.
 - `wojak/render`: render satırındaki süre yine yanlış (8,5 sn yazdı; ffprobe 13,95 sn). Süre ffprobe'dan okunmalı.
 - Önceki öneriler hâlâ açık: `tests/` sabit `/home/user/wojak` yolu; `data/karakter_yon.json` yazma izni.
+
+### Ek dersler (27.10.2026 akşam, `karakoy-tunel-1874`, iki hakemden 8/8, ~50 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Ortam:** iki depo yine ayrık HEAD'de açıldı; `/home/user` yine yoktu (bağdan önce 1 test düştü, sonra 99/99). wojak
+  uzak deposunda `ls-remote` yalnız `claude/kind-albattani-vcp4vk` dalını gösteriyor (varsayılan dal o).
+- **Commons 429, kesin yol:** `Tünel-train.png` (905 px) ve `Chemin de fer...jpg` (2000 px) için md5 özgün yolu 10+ denemede
+  429 verdi. Sebep: `iiurlwidth` ≥ özgün genişlik olunca API `thumburl` olarak özgün dosyanın yolunu döndürüyor. Özgünden küçük
+  genişlik istenince (`1900`, `500`) gerçek `/thumb/` yolu geliyor ve ilk denemede iniyor. Kanıt için 1920 px yetti.
+- **Gerçek yerin bugünkü fotoğrafı dönem dışıysa nesnenin kendisi:** Tünel'in içi (CC BY 4.0, CC BY-SA) kablo kanalı, flüoresan,
+  kırmızı yangın borusuyla dolu. Diyalog arka planı olarak müzedeki gerçek ahşap vagonun yan cephesi (Commons, CC0, "Tünel
+  Carriage and railway winding engine" kategorisi) kullanıldı; levha ve çatı kadraj dışında. Camdaki modern mavi tabela
+  yansıması HSV maskesiyle (ton 125-185, doygunluk > 60) doygunluğu x0,25 yapılarak nötrlendi (`gorsel.py:arka`).
+- **Yeni son kare türleri:** (1) **mühendis çizimi**: olayın mühendisinin kendi kitabındaki levha (Gavand 1876, "Profil en long":
+  Galata Kulesi'nin altından geçen tünel; kamu malı). Soluk çizgi telefonda kayboluyordu: `gamma 1.8` + `autocontrast(cutoff=
+  (0.3, 20))` -> çizgi koyu, kâğıt ≥ 243. (2) **SALT Araştırma arşiv fotoğrafı**: Flickr Commons'tan Commons'a aktarılmış, lisansı
+  "No restrictions"; 19. yüzyıl İstanbul'u için zengin ("SALT Research <yer>" ya da "<yer>, İstanbul (1296...).jpg").
+- **19. yüzyıl Osmanlı (1829 sonrası) halkı için hazır karakter:** kütüphanede `5_Doomer/13970` (fes, siyah frak, pipo, siyah bıyık)
+  ve `5_Crying_Wojak/438` (fes, kır saç, kır bıyık). İkisinde de mavi gözyaşı var; kutuda "mavi" (b > r+25, g > r+10) pikseller
+  beyaza, koyu mavi kenar siyaha, açık hayalet kenar (toplam > 330) beyaza çevrilince sakin, ağır kapaklı yüz kalıyor
+  (`karakoy-tunel-1874/chars/uret.py:gozyasi_sil`). İki fesli karakter saç rengiyle ayrışıyor (siyah / kır).
+- **Filigranlı karakter:** wojakland `victorian_man_wojak.png` (silindir şapka) şapka dokusunda "ChrisClipArt" yazıyor; ancak tam
+  boyda görünüyor. Küçük temas sayfasında gözden kaçar: her karakteri tam boyda aç.
+- **Fesli karakterde yüz küçük:** PNG'yi göğüsten kes (A, 1x y 450) ama yüzü PNG'de aşağıda olan karakterde çene kadrajdan çıkar
+  (B'de y 440 çeneyi kesti, tam boy 492'de kaldı). `bakis.jpg`'de iki tarafın çenesine bak.
+- **Kapak ile başlık birlikte okunur:** başlık soruysa ("ilk kim bindi?") ters köşe karesi kapakta cevabı veriyor. Kapak S1 kancası
+  yapıldı; ters köşe kapağı hesap sahibine seçenek.
+- **Ters köşe "efsane düzeltme" ile güçlenir:** hikâye metninde yaygın anlatıyı ("fetvayla yasaklandı, uzun süre yalnız hayvan
+  taşındı") kaynağıyla (Vahdettin Engin'in araştırması) düzeltmek, ekrandaki şaka gibi ters köşeye belge ağırlığı veriyor.
+- **wojak-ozel commit yazarı:** depoda son commit yayın botunun; `git log -1 --format=%an` ile yazar almak botu yazar yapar.
+  Commit'te açıkça `-c user.name=Claude -c user.email=noreply@anthropic.com` kullan.
+
+**Çalışmayan (deneme):**
+- Commons'ta `iiurlwidth` ≥ özgün genişlik (özgün yola düşüyor, 429) ve md5 özgün yolu (aynı 429).
+- Tünel içi fotoğraflarını 1874 sahnesine arka plan yapmak (modern donanım her kırpımda).
+- Internet Archive'da Gavand'ın 1876 kitabını aramak (yok).
+- wojakland `victorian_man_wojak.png` (filigran dokulu şapka).
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Tahran-Ertuğrul (26.10 sabah) | Yerebatan (26.10 akşam) | Orban (27.10 sabah) | Karaköy Tünel (27.10 akşam) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~3 dk | ~5 dk | ~2 dk | ~6 dk |
+| Konu + olgu | ~3 dk | ~5 dk | ~3 dk | ~9 dk |
+| Görsel avı | ~3 dk | ~6 dk | ~6 dk | ~12 dk (429) |
+| Karakter + yüz | ~4 dk | ~5 dk | ~4 dk | ~6 dk |
+| yaml → teslim | ~3 dk | ~4 dk | ~3 dk | ~3 dk |
+| Ön kontrol + hakem turları | ~4 dk | ~8 dk | ~3 dk | ~6 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~6 dk | ~7 dk | ~4 dk | ~8 dk |
+| **Toplam** | ~26 dk | ~40 dk | ~25 dk | **~50 dk** |
+
+Ücretli API: 0. En uzun adım görsel avıydı: Commons 429 ve hayvanlı deneme seferini doğrudan gösteren serbest görsel arayışı
+(yok; manşet de yok).
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `tools/`: Commons indiricisi `iiurlwidth`'i özgün genişliğin altında seçsin (429'un asıl çözümü; yukarıda).
+- `check`: başlık soru biçimindeyse ve `cover_scene` ters köşe sahnesiyse uyarsın (kapak cevabı veriyor olabilir).
+- `tools/wojak_site.py get`: indirilen karakterin tam boy önizlemesini kaydetsin (filigran dokusu küçük sayfada görünmüyor).
+- Önceki öneriler hâlâ açık: `tests/` sabit `/home/user/wojak` yolu; `data/karakter_yon.json` yazma izni; render satırındaki süre.
 
 ### EN kanalı (Wojak Past Files, 25.10.2026'dan itibaren)
 
