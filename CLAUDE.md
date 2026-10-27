@@ -64,6 +64,12 @@ Same concept and style, in English for a global audience. Channel profile `kanal
   so an `en` video never reaches the Turkish channel. Never put an `en` episode into `wojak-ozel`.
 - Lessons specific to this channel go under "EN kanalı" in `docs/OGRENILENLER.md` §6.2.
 
+**Character licence (owner's decision, 2026-10-27, both channels):** wojak characters from `assets/kit/` and the meme
+libraries (wojakparadise, wojakland, HF `clayshoaf/Wojaks`, ...) are the channel standard and allowed. A missing licence
+page is not a doubt and never a reason for `BEKLET`; no credit needed. Never use a character with a watermark, signature
+or site name (inspect at full size). Commit the character PNGs under `episodes/<id>/chars/`. The licence rules (public
+domain, CC0, CC BY, CC BY-SA) apply to evidence, backgrounds and clippings only.
+
 ## Where the specs are
 
 | File | Use it for |

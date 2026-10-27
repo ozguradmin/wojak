@@ -1222,6 +1222,11 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 
 ---
 
+**Karakter lisansı (hesap sahibinin kararı, 27.10.2026, iki kanal için):** kütüphanedeki wojak karakterleri (kit,
+wojakparadise, wojakland, HF clayshoaf/Wojaks) kanal standardıdır ve serbesttir; lisans sayfası olmaması BEKLET nedeni
+değildir. Filigranlı, imzalı ya da site adı taşıyan karakter kullanılmaz. `en-lusitania-warning` ve `en-great-moon-hoax`
+yalnız bu yüzden bekletilmişti; Moon Hoax (8/8) bu kararla yayına açıldı, Lusitania hakem eşiği (7/10) yüzünden bekliyor.
+
 ## 7. Uzun formata ne taşınır?
 
 UZUN_FORMAT.md bazı kısa format kurallarını bilerek tersine çevirir: sürekli hareket (4-6 sn'de bir yeni şey),
