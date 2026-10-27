@@ -512,6 +512,8 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
 16. *(26.10 ek)* **İş başında iki deponun dalını kontrol et:** ayrık HEAD'de açılıyorlar (`git status | head -1`); dosya yazmadan
     önce varsayılan dala geç. **Son kare türleri şimdiye kadar:** levha, kupür, müze nesnesi, pul, arşiv fotoğrafı, kitap sayfası
     (Internet Archive, `yerebatan-bodrum-balik`). Son 5 bölüme bak, aynısını arka arkaya kullanma.
+17. *(27.10 ek)* **Son kare türlerine eklendi: kamu malı tablo** (Zonaro 1903, `orban-topu-bizans`). Varsayılan dal:
+    `git ls-remote --symref origin HEAD`. Ayrıntı: "Ek dersler (27.10.2026 sabah, `orban-topu-bizans`)".
 
 ### Adım adım (çalışan yol / vakit kaybı / süre / tasarruf)
 
@@ -1069,6 +1071,60 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - `tests/`: `/home/user` yokken düşen test yine düştü (önceki öneri).
 - Bakış kaydı (`data/karakter_yon.json`) sistem isteminin yazma listesinde yok, ama `teslim` kayıt istiyor. Kurala bu dosya
   açıkça eklenmeli ya da kayıt bölüm klasörüne taşınmalı.
+
+### Ek dersler (27.10.2026 sabah, `orban-topu-bizans`, iki hakemden 8,5/8,5, ~33 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Varsayılan dal bulmak:** `git ls-remote --symref origin HEAD` tek satırda verir (wojak: `claude/kind-albattani-vcp4vk`,
+  wojak-ozel: `main`). İki depo yine ayrık HEAD'de açıldı; dosya yazmadan `git checkout <dal> && git pull origin <dal>`.
+  `/home/user` yine yoktu (önce `mkdir -p`). Testler 99/99.
+- **Yeni son kare türü: kamu malı tablo.** Olayın çağdaş görseli yoksa, olayı sahneleyen 19.-20. yüzyıl tablosu
+  (ressam 70+ yıl önce ölmüş, Commons `{{PD-old}}`) hem telifsiz hem güçlü bir son kare. Örnek: Zonaro 1903, dev top
+  öküzlerle şehre çekiliyor ("Category:Fall of Constantinople in art", "Category:Ottoman cannons"). Türk izleyici
+  Fatih tablosunu anında tanıyor. Kırpım: konu (top) ile kişiyi (Fatih) birlikte tut, 1080x~610.
+- **Çağdaş minyatür her zaman olayı göstermez:** BnF fr. 2691 (Chartier) kuşatma minyatüründe top yok; Le Tavernier kuşbakışı
+  harita. Minyatürü seçmeden önce tam boyutta aç ve sorunun cevabı (burada "dev top") görünüyor mu, bak.
+- **Müze nesnesini dürüst adlandır:** Commons'ta müze kategorisi ("Category:Cannons at Istanbul Military Museum") nesnenin
+  levha fotoğrafını da veriyor; levhayı oku ("Fatih Sultan Mehmet dönemi 1451-1481"). Olayın kendi nesnesi yoksa
+  ("Orban'ın topu günümüze ulaşmadı") metinde ve `ek_maddeler`'de benzer dönem nesnesi olduğunu açıkça yaz.
+- **Kanıt fotoğrafında arka plan:** müze bahçesindeki çöp kutusu, direk ve bina telefonda göze batıyor (görsel hakem
+  SHOULD). Nesneyi kesmeden üstten kırp; yükseklik 537 px'in altına düşecekse bir yandan da kırp (burada 1080x560).
+- **Dramatik ironi + kelime tohumu (C2fa iskeleti):** "İmparatorum, size dev bir top dökebilirim" → "Hazinede o kadar para
+  yok" → "O zaman Osmanlı'ya giderim" → kart → aynı kutuda "Bekle, o dev top da ne?". İzleyici sonu sezse de yüz varyantı ve
+  tanıdık tablo ters köşeyi ödüyor. Belgeli nedeni (para) replikte kullan, uydurma tavır (kibir) yazma.
+- **Taçlı karakterde yüz küçük kalıyor ama okunuyor:** taç boyun yarısını alınca yüz ~200 px. İri yuvarlak göz + küçük göz
+  bebeği + "O" ağız + başın önünde üç damla telefonda alt yarıda %1,04 değişim verdi. Damlaları kontura 20 px yakın tut
+  (ilk sürümde 35 px uzaktı, kopuk duruyordu).
+- **Başlıkta fiil kaynağa uysun:** "top satmaya gelen" (gevşek) yerine "dev top teklif eden" (kaynaklar "offered"). Tartışmalı
+  bir pay ("Saruca'nın da payı vardı") metinde kesin hüküm olmasın: "bazı kaynaklar ... bağlar; tartışılır".
+- **Commons (27.10 sabah):** `iiurlwidth=400/1800/2400` + `thumburl` ~20 istekte, 2-3 sn arayla hiç 429 vermedi. Özgün dosya
+  (1600 px) API'deki `url` alanından ilk denemede indi.
+
+**Çalışmayan (deneme):**
+- Kuşatma minyatürünü (BnF fr. 2691) "dev top" sorusunun cevabı sanmak: minyatürde top yok.
+- Ter damlalarını başın konturundan ~35 px uzağa koymak (kopuk ve büyük duruyor).
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Midas (25.10 akşam) | Tahran-Ertuğrul (26.10 sabah) | Yerebatan (26.10 akşam) | Orban (27.10 sabah) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~5 dk | ~3 dk | ~5 dk | ~3 dk |
+| Konu + olgu | ~4 dk | ~3 dk | ~5 dk | ~4 dk |
+| Görsel avı | ~5 dk | ~3 dk | ~6 dk | ~7 dk |
+| Karakter + yüz | ~4 dk | ~4 dk | ~5 dk | ~4 dk |
+| yaml → teslim | ~2 dk | ~3 dk | ~4 dk | ~3 dk |
+| Ön kontrol + hakem turları | ~3 dk | ~4 dk | ~8 dk | ~4 dk (ön kontrol + 2 tur + 4 SHOULD) |
+| Teslim + commit + belge | ~3 dk | ~6 dk | ~7 dk | ~8 dk |
+| **Toplam** | ~26 dk | ~26 dk | ~40 dk | **~33 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `tools/`: Commons kategori + levha yardımcısı (müze kategorisindeki nesne fotoğraflarını ve "text"/"label" adlı levha
+  fotoğraflarını tek temas sayfasında gösteren). Bu bölümde elle yapıldı.
+- `wojak/render`: render satırındaki süre yine yanlış (8,5 sn yazdı; ffprobe 13,95 sn). Süre ffprobe'dan okunmalı.
+- Önceki öneriler hâlâ açık: `tests/` sabit `/home/user/wojak` yolu; `data/karakter_yon.json` yazma izni.
 
 ### EN kanalı (Wojak Past Files, 25.10.2026'dan itibaren)
 

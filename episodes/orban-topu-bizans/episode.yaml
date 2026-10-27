@@ -1,0 +1,135 @@
+# Orban'ın topu (1452-1453): Macar top ustası Orban (Urban) dev bir top dökmeyi önce Bizans İmparatoru XI. Konstantinos'a
+# teklif eder; Bizans hazinesi ustanın istediği ücreti ödeyemez. Orban, şehri kuşatmaya hazırlanan II. Mehmed'e gider; top
+# Edirne'de dökülür ve 1453 kuşatmasında surları döver. Ters köşe (dramatik ironi): imparatorun parası yetmediği için geri
+# çevirdiği "dev top" birkaç ay sonra surların karşısındadır.
+# Araştırma notu: scratchpad olgular.md (repoya girmez). Kalıp: C2fa iskeleti (A niyet -> B ret -> A karar -> kart -> B aynı
+# kutuda yüz varyantıyla fark etme sorusu); cevabı iki kanıt sessizce verir. Kelime tohumu: S1 "dev bir top" -> S4 "o dev top".
+# AYNI YER, AYNI AN: 1452, Konstantinopolis, Blakhernai sarayı (bugünkü Tekfur Sarayı, kara surlarının bitişiği).
+#   A (hep solda): Orban, top ustası (ölümü 1453). B (hep sağda): XI. Konstantinos Palaiologos, son Bizans imparatoru (öl. 1453).
+#   Konstantinos sevecen/üzgün yüzle çizilir (kanalda sırıtma kötü karakter demek); kaynaklara göre ustayı istiyordu ama
+#   ödeyemedi. Replikler canlandırma; gerçek kişilere tırnaklı söz yazılmaz.
+# Olgu sınırları (her biri en az 2 kaynak; sources'a bak):
+#   - 1452'de Bizans'a hizmet teklif etti; imparator istediği yüksek ücreti karşılayamadı, malzeme de yoktu (EN/TR Vikipedi,
+#     Halkokondilis alıntısı Ancient Origins'te, Daily News Hungary, Dünya gazetesi "yoksul Bizans").
+#   - II. Mehmed'e gitti; "Babil surlarını bile" toz edeceğini söyledi (Dukas; Vikipedi, camrea/Ancient Origins).
+#   - Top yaklaşık üç ayda Edirne'de döküldü, öküzlerle getirildi (Dukas; Vikipedi 'Orbán', 'Basilic').
+#   - Büyük top Aya Romanos kapısının karşısına kuruldu; kapı fetihten sonra "Top Kapısı" diye anıldı (AA/haberler.com,
+#     NTV, istanpolis, Yeditepe Fatih).
+#   - Orban'ın ölümü "anlatılana göre" (Vikipedi "is said to have died"). Şahiyi kimin döktüğü tartışmalı (TR Vikipedi:
+#     bazı kaynaklarda Saruca) -> metinde açıkça "tartışılır".
+#   - Kanıt 1: Fatih dönemine ait tunç top, İstanbul Askerî Müze (müze levhası: "Fatih Sultan Mehmet dönemi 1451-1481");
+#     Orban'ın topu değil, günümüze ulaşmadı -> metinde böyle yazıldı. Kanıt 2 (son kare, TABLO): Fausto Zonaro, 1903,
+#     "Mehmed II conquering Constantinople" (Dolmabahçe Sarayı; kamu malı): dev top öküzlerle şehre çekiliyor.
+#     Son 5 bölümün son karesi: kitap sayfası (Yerebatan), arşiv fotoğrafı (Tahran), müze nesnesi (Midas), pul (Hezarfen),
+#     müze nesnesi (Kaşıkçı) -> tablo yeni tür.
+# Karakterler: chars/uret.py. Görseller: gorsel.py. Render: python -m wojak render episodes/orban-topu-bizans
+id: orban-topu-bizans
+title: "Bizans imparatoruna dev top teklif eden Macar usta"
+
+# Kanal imzası (22.10'dan beri bizim imza_v2_golge.m4a). "orijinal" asla.
+# volume: bu ortamın ffmpeg 6.1.1'inde loudnorm TP=-17'yi reddediyor; sabit kazanç -15,4 -> -29,5 LUFS = x0,197.
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (Orban, sol). Arka planda Bizans sarayının tuğla-taş cephesi.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_tekfur.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/usta_sakin.png, side: left, height: 0.5}
+    text: "İmparatorum, size\ndev bir top dökebilirim"
+
+  # 2) RET — B (Konstantinos, sağ): belgeli neden, ücreti ödeyemedi
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_tekfur.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/imparator_sakin.png, side: right, height: 0.5}
+    text: "Hazinede o kadar para yok"
+
+  # 3) KARAR — A: II. Mehmed'e gitti (dramatik ironi)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_tekfur.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/usta_sakin.png, side: left, height: 0.5}
+    text: "O zaman Osmanlı'ya giderim"
+
+  # 4) İLERİ ZAMAN — 1452 -> Nisan 1453
+  - type: card
+    duration: 1.5
+    text: "Bir süre sonra"
+
+  # 5) TERS KÖŞE — B, aynı kutu, yüz varyantı (iri göz, kalkık kaş, "O" ağız, ter). S1'deki "dev bir top"un karşılığı.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_tekfur.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/imparator_sok.png, side: right, height: 0.5}
+    text: "Bekle, o dev top da ne?"
+
+  # 6-7) KANIT — Fatih dönemi tunç top (Askerî Müze), sonra Zonaro'nun 1903 tablosu (son kare). Etiket/bant yok.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_top.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2_zonaro.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  İmparatorun parasını ödeyemediği top nereye gitti?
+  Olayın tamamı sabit yorumda 👇
+hashtags: [istanbulunfethi, bizans, tarih]
+
+pinned_comment: |
+  Orban'ın topu, 1452 yılında Macar top ustası Orban'ın (Urban) dev bir top dökmeyi önce Bizans İmparatoru XI. Konstantinos'a teklif ettiği, imparatorun ise ustanın istediği parayı ödeyemediği olay olarak bilinir.
+
+  Bizanslı tarihçiler Dukas ve Halkokondilis'e göre Orban, 1452'de Konstantinopolis'e gelip hizmetini imparatora sundu. Bizans hazinesi ustanın istediği ücreti karşılayamıyordu; böyle büyük bir topu dökecek malzeme de yoktu. Halkokondilis, Orban'ın daha iyi bir maaş için Rumlardan ayrıldığını yazar.
+
+  Orban bunun üzerine şehri kuşatmaya hazırlanan Osmanlı Sultanı II. Mehmed'e gitti. Dukas'ın aktardığına göre sultana, topunun Babil'in surlarını bile toza çevireceğini söyledi. Sultan ona bol para ve malzeme verdi. Top yaklaşık üç ayda Edirne'de döküldü ve öküzlerle İstanbul önlerine getirildi.
+
+  6 Nisan 1453'te başlayan kuşatmada büyük top, Bizanslıların Aya Romanos dediği kapının karşısına kuruldu. Fetihten sonra bu kapı "Top Kapısı" diye anılmaya başladı; Topkapı semtinin adı da buradan gelir. Şehir 29 Mayıs 1453'te fethedildi. Anlatılana göre Orban, kuşatma sırasında toplarından biri patlayınca hayatını kaybetti.
+
+  Bazı kaynaklar büyük topları Saruca gibi Osmanlı ustalarına bağlar; şahiyi kimin döktüğü tarihçiler arasında hâlâ tartışılır. Orban'ın topu günümüze ulaşmadı. Videodaki ilk kanıt İstanbul Askerî Müzesi'ndeki Fatih dönemine ait bir tunç top, son kare ise Fausto Zonaro'nun dev bir topun öküzlerle şehre çekildiği 1903 tarihli tablosudur.
+
+  Sizce Bizans o gün ustaya parayı verseydi tarih değişir miydi?
+
+credits: "Tekfur Sarayı, 2007 (Gryffindor, kamu malı; kırpıldı), Fatih dönemi tunç top, İstanbul Askerî Müzesi (Dosseman, CC BY-SA 4.0; kırpıldı), Wikimedia Commons; Fausto Zonaro, Fatih'in İstanbul'u fethi, 1903, Dolmabahçe Sarayı (kamu malı; kırpıldı)."
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır:** ekrandaki konuşmalar Orban ile XI. Konstantinos'a ait belgeli sözler değil. Belgeli olan: Orban'ın 1452'de hizmetini Bizans'a sunduğu, imparatorun istenen ücreti karşılayamadığı, ustanın II. Mehmed'e gittiği ve topun 1453 kuşatmasında kullanıldığı (Dukas, Halkokondilis)"
+  - "**Kanıtlar:** ilk kare İstanbul Askerî Müzesi'ndeki Fatih dönemine ait tunç top (müze levhası: 'Fatih Sultan Mehmet dönemi 1451-1481'); Orban'ın topu değildir, o top günümüze ulaşmadı. Son kare Fausto Zonaro'nun 1903 tablosu (Dolmabahçe Sarayı), kuşatmanın sonradan yapılmış bir resmi; kupür ya da kendi ürettiğimiz kart yok"
+  - "**\"Topu Urban değil Saruca döktü\" yorumlarına hazır ol:** metin bunu zaten söylüyor (tartışmalı); tartışmayı kibar tut, Bizans/Osmanlı üzerinden hakaret ve nefret içeren yorumları sil"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+  - "İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): \"Bugün Topkapı dediğimiz semtin adı, bu topun kurulduğu sur kapısından geliyor. Sizce Bizans parayı bulsaydı ne olurdu?\""
+
+sources:
+  # Doğrulama (27.10.2026)
+  - "Wikipedia, 'Orbán (ironmaster)' (1452'de Bizans'a hizmet teklif etti; XI. Konstantinos yüksek ücreti karşılayamadı, malzeme de yoktu; II. Mehmed'e gitti, 'Babil surlarını bile' dedi; Edirne'de üç ayda döktü, altmış öküzle getirildi; kuşatmada bir topun patlamasıyla öldüğü söylenir): https://en.wikipedia.org/wiki/Orb%C3%A1n_(ironmaster)"
+  - "Vikipedi, 'Urban' (1452'de Bizanslılar adına çalıştı; XI. Konstantinos talep ettiği yüksek maaşı karşılayamadı, malzeme de yoktu; şahiyi dökenin Urban olduğu tartışmalı, bazı kaynaklarda Saruca Muslihiddin): https://tr.wikipedia.org/wiki/Urban"
+  - "Ancient Origins (Cam Rea), 'Orban: The Man Whose Cannon Brought Down the Walls of Constantinople – Part I' (Halkokondilis: 'daha iyi bir maaş için Rumlardan ayrılıp sultanın kapısına geldi'; Konstantinos'un parası ve malzemesi yoktu; Dukas'tan 'Babil surları' alıntısı): https://www.ancient-origins.net/history/orban-man-whose-cannon-brought-down-walls-constantinople-part-i-008056"
+  - "Cam Rea, camrea.org, aynı yazı (Dukas: 'üç ayda korkunç ve eşi görülmemiş bir canavar döküldü'): https://www.camrea.org/2017/09/11/orban-the-man-who-brought-down-the-walls-of-constantinople-part-i/"
+  - "Wikipedia, 'Basilic (cannon)' (top önce 1452'de Konstantinos'a önerildi, gereken parayı bulamadı; II. Mehmed yaptırdı; 60-90 öküzle taşındı): https://en.wikipedia.org/wiki/Basilic_(cannon)"
+  - "Daily News Hungary, 'Did you know that Master Orbán's cannons brought down the walls of Istanbul for the Ottomans?' (Bizans'ın mali durumu kötüydü, yeterli ücret ve malzeme veremedi): https://dailynewshungary.com/did-you-know-that-master-orbans-cannons-brought-down-the-walls-of-istanbul-for-the-ottomans/"
+  - "Dünya gazetesi, Levent Akbay, 'Çağ değiştiren toplar' (Urban 'yoksul' Bizans'tan Fatih'e geçti; Osmanlı'da Urban'dan önce ve sonra başka top ustaları da vardı): https://www.dunya.com/kose-yazisi/cag-degistiren-toplar/695380"
+  - "Shadows of Constantinople, 'Fall of Constantinople' (Dukas'tan Orban-Mehmed konuşması; Babil surları): https://shadowsofconstantinople.com/fall-of-constantinople/"
+  - "Haberler.com (AA), '1500 yıllık Topkapı, fetihte en yoğun top ateşini aldı' (Şahi topu bu sur bölümünün karşısına yerleştirildi; fetihten sonra kapı 'Top Kapısı' diye anıldı): https://www.haberler.com/guncel/1500-yillik-topkapi-fetihte-en-yogun-top-atesini-20301969-haberi/"
+  - "NTV, 'İstanbul'un kapıları, semt isimlerinde yaşıyor' (II. Mehmet karargâhını Bizans'taki adı Ayios Romanos olan Top Kapısı önüne kurdu; en ağır top atışları buradan): https://www.ntv.com.tr/ekonomi/istanbulun-kapilari-semt-isimlerinde-yasiyor,4TypKgyW10KX0tCM41naZg"
+  - "istanpolis.org, 'Topkapı' (semtin adı 1453'te kapıya karşı kurulan Osmanlı toplarına atıfla 'Top Kapısı'ndan; önceki adı Romanos Kapısı): https://www.istanpolis.org/post/topkap%C4%B1-%CF%84%CF%8C%CF%80%CE%BA%CE%B1%CF%80%CE%B9"
+  - "Yeditepe Fatih, 'Şehrin kapıları' (Topkapı adını Fatih'in buraya yerleştirdiği en büyük topundan aldı): https://yeditepefatih.com/2023/nisan-mayis-haziran/sehrin-kapilari/"
+  # Görseller ve lisanslar (gorsel.py; lisanslar Commons ham dosya sayfasından doğrulandı, 27.10.2026)
+  - "GÖRSEL img/arka_tekfur.jpg (tüm diyalog) — 'Palace of Porphyrogenitus 2007 016.jpg', Gryffindor, 2007, {{PD-self}} (kamu malı): https://commons.wikimedia.org/wiki/File:Palace_of_Porphyrogenitus_2007_016.jpg . Değişiklik: kırpım (300,20)-(1300,1020), 1080x1080 (inşaat malzemesi ve iskele kadraj dışında)"
+  - "GÖRSEL img/kanit_1_top.jpg (kanıt 1, 10,5-12,0 sn) — 'Istanbul Military Museum Bronze cannon from the time of Mehmet the Conqueror in 2018 08 006.jpg', Dosseman, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Istanbul_Military_Museum_Bronze_cannon_from_the_time_of_Mehmet_the_Conqueror_in_2018_08_006.jpg . Değişiklik: kırpım (438,850)-(3840,2614) [3840 px küçük resim], 1080x560 (bahçedeki çöp kutusu, direk ve bina kadraj dışında). Müze levhası (aynı yükleyici, 'Istanbul Military Museum Bronze cannon from the time of Mehmet the Conqueror text in 2012 6445.jpg'): 'Tunç top (darbuzen), Osmanlı, Fatih Sultan Mehmet dönemi (1451-1481), 11 ton, gülle 218 kg'"
+  - "GÖRSEL img/kanit_2_zonaro.jpg (kanıt 2, son kare, 12,0-14,0 sn) — 'Conquest of Constantinople, Zonaro.jpg', Fausto Zonaro (1854-1929), 'Mehmet II conquering Constantinople', 1903, yağlıboya, Dolmabahçe Sarayı; {{PD-old}} (kamu malı): https://commons.wikimedia.org/wiki/File:Conquest_of_Constantinople,_Zonaro.jpg . Değişiklik: kırpım (240,290)-(1600,1060), 1080x611"
+  # Karakterler (chars/uret.py)
+  - "KARAKTER A Orban (sol): wojakland 'Medieval Man' https://wojakland.com/wp-content/grand-media/image/original/Medieval_Man.png (usta_sakin.png: 2x büyütme; yüz değişmedi)"
+  - "KARAKTER B XI. Konstantinos (sağ): wojakland 'Roman Emperor Wojak' https://wojakland.com/wp-content/grand-media/image/original/roman_emperor_wojak.png (imparator_sakin.png: 2x büyütme, hafif gülümseme yerine düz ağız; imparator_sok.png: aynı kutu, iri göz, kalkık kaş, 'O' ağız, üç ter damlası)"

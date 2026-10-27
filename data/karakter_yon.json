@@ -19,6 +19,10 @@
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/japon_endise.png"
  },
+ "0c5467939e38f0e85cbeea2b50f314ba264d043b": {
+  "faces": "right",
+  "file": "episodes/orban-topu-bizans/chars/imparator_sok.png"
+ },
  "0dc88746faae6e9f9ea7cd70afa2e8c10821df52": {
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
@@ -287,6 +291,10 @@
   "faces": "right",
   "file": "episodes\\hezarfen-galata-ucusu\\chars\\hezarfen_emin.png"
  },
+ "6c447f5a26fce474e58db6eeca27b912d0fc657e": {
+  "faces": "right",
+  "file": "episodes/orban-topu-bizans/chars/imparator_sakin.png"
+ },
  "6cc312cba452973ecae99211f7ec41155e4bdb89": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/gazi_yasli.png"
@@ -426,6 +434,10 @@
  "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/papaz_urkek.png"
+ },
+ "9a7442fe5d159f5446adf4331ca4a5b4ab71f8bb": {
+  "faces": "right",
+  "file": "episodes/orban-topu-bizans/chars/usta_sakin.png"
  },
  "9aadfb736579e7d739b53946669f385c73702d97": {
   "faces": "right",
