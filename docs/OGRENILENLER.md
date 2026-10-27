@@ -1072,7 +1072,7 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - Bakış kaydı (`data/karakter_yon.json`) sistem isteminin yazma listesinde yok, ama `teslim` kayıt istiyor. Kurala bu dosya
   açıkça eklenmeli ya da kayıt bölüm klasörüne taşınmalı.
 
-### Ek dersler (27.10.2026 sabah, `orban-topu-bizans`, iki hakemden 8,5/8,5, ~33 dk)
+### Ek dersler (27.10.2026 sabah, `orban-topu-bizans`, iki hakemden 8,5/8,5, ~25 dk)
 
 Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 
@@ -1109,14 +1109,14 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 
 | Adım | Midas (25.10 akşam) | Tahran-Ertuğrul (26.10 sabah) | Yerebatan (26.10 akşam) | Orban (27.10 sabah) |
 |---|---|---|---|---|
-| Hazırlık + okuma | ~5 dk | ~3 dk | ~5 dk | ~3 dk |
-| Konu + olgu | ~4 dk | ~3 dk | ~5 dk | ~4 dk |
-| Görsel avı | ~5 dk | ~3 dk | ~6 dk | ~7 dk |
+| Hazırlık + okuma | ~5 dk | ~3 dk | ~5 dk | ~2 dk |
+| Konu + olgu | ~4 dk | ~3 dk | ~5 dk | ~3 dk |
+| Görsel avı | ~5 dk | ~3 dk | ~6 dk | ~6 dk |
 | Karakter + yüz | ~4 dk | ~4 dk | ~5 dk | ~4 dk |
 | yaml → teslim | ~2 dk | ~3 dk | ~4 dk | ~3 dk |
-| Ön kontrol + hakem turları | ~3 dk | ~4 dk | ~8 dk | ~4 dk (ön kontrol + 2 tur + 4 SHOULD) |
-| Teslim + commit + belge | ~3 dk | ~6 dk | ~7 dk | ~8 dk |
-| **Toplam** | ~26 dk | ~26 dk | ~40 dk | **~33 dk** |
+| Ön kontrol + hakem turları | ~3 dk | ~4 dk | ~8 dk | ~3 dk (ön kontrol + 2 tur + 4 SHOULD) |
+| Teslim + commit + belge | ~3 dk | ~6 dk | ~7 dk | ~4 dk |
+| **Toplam** | ~26 dk | ~26 dk | ~40 dk | **~25 dk** |
 
 Ücretli API: 0.
 

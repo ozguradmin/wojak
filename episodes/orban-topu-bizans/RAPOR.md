@@ -107,12 +107,12 @@ Lisanslar Commons ham dosya sayfasından (`action=raw`) doğrulandı. Yalnız A 
 | Adım | Süre |
 |---|---|
 | Hazırlık (ortam, font, referans, 99 test) | ~1 dk |
-| Okuma (belgeler) | ~2 dk |
-| Konu taraması + olgu araştırması | ~4 dk |
+| Okuma (belgeler) | ~1 dk |
+| Konu taraması + olgu araştırması | ~3 dk |
 | Görsel avı (Commons) + karakter + yüz varyantı + yaml | ~13 dk |
 | check → frames → render → teslim | ~1 dk |
-| Ön kontrol + 2 hakem turu + düzeltme | ~4 dk |
-| Teslim + commit + belge | ~8 dk |
-| **Toplam** | **~33 dk** |
+| Ön kontrol + 2 hakem turu + düzeltme | ~3 dk |
+| Teslim + commit + belge | ~3 dk |
+| **Toplam (11:08-11:33)** | **~25 dk** |
 
 **Yaklaşık maliyet:** ücretli API 0 (TTS ve görsel üretimi yok). Yalnız oturumun model kullanımı.
