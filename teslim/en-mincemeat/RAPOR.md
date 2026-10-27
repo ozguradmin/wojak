@@ -1,3 +1,5 @@
+**BEKLET (hesap sahibi kararı):** kimlik kartı (Major Martin, 1943) görselinin kamu malı dayanağı çıkarımdır (UK hükümet belgesi; Commons PD-UKGov), araştırmacı da bunu "çıkarım" olarak işaretledi. Kurallar kanıt görselinde lisans şüphesinde BEKLET ister. Kararı hesap sahibi verir: kart onaylanırsa BEKLET dosyasını silmek yeterli. Plaket (CC BY-SA 2.0) ayrı bir paylaşım koşulu taşır; bu da onayla birlikte değerlendirilmeli.
+
 # en-mincemeat: üretim raporu (Wojak Past Files, kanal: en)
 
 **Durum:** BEKLET yok. İki bağımsız hakem üçüncü turda 8/10 ve MUST 0 verdi (görsel 8,0; izleyici 8).
