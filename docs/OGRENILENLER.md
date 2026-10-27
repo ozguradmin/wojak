@@ -1283,6 +1283,21 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 - **Çelişkili olgu tek cümlede:** "16 Eylül kabulü" Wikipedia'da "admitted fabricated", Civics for Life'ta "resmî düzeltme yok". Metin ikisini de söyledi ("admitted ... though it never printed a formal retraction").
 - **Karakter lisansı EN kanalında hâlâ açık:** kit ve kütüphane (wojakland/HF) karakterleri için lisans sayfası yok. Bu bölümde PNG'ler herkese açık depoya konmadı; BEKLET ile sahip kararı bekleniyor.
 
+
+**Ek dersler (27.10.2026, `en-violet-jessop`, Violet Jessop, Titanic/Britannic; görsel 6 → 7 → 8, izleyici 6 → 7 → 8, olgu 7 → 9 → 9; üç tur, ~25 dk duvar saati):**
+- **Ters köşe kelimesi olgusal olmalı:** "Not the Britannic again?" izleyici hakemine göre yanlıştı (Violet Britannic'e daha önce binmemişti; "again" tarihe aykırıydı). Fark etme repliği olgunun içinde kalmalı: "Wait, this is its sister ship?" tur 3'te kabul edildi.
+- **Yaş ve sayı cümleleri tek kaynaktaysa yazılmaz:** "at the age of 63" yalnız National Geographic'te vardı, başka kaynak 61 diyordu. Emeklilik yılı ve "about 42 years at sea" bırakıldı.
+- **Kit varyantında silüet ve boyut kontrolü:** `klasik/agliyor` (855x1015) kafası küçük ve alt kenarda beyaz blok bıraktı, görsel hakem MUST verdi. `klasik/gozyasli` (899x1022, sakin ile aynı silüet) aynı kutuda kaldı: 6,0 ve 8,5 sn kareleri IoU 0,984 (fark yalnız gözyaşı çizgileri). Ters köşe varyantı seçilirken PNG boyutu ve baş tepesi (y≈997) sakinle karşılaştırılır.
+- **Sansür "died" yine bozdu:** "d*ed" çıktı. "lost their lives" ve "lived until" kullanıldı; teslimden sonra `metinler/*.txt` kontrol edildi.
+- **Kredi "not cropped" yazarsa hakem düzeltir:** Moudros'un CC BY-SA kredisi "not cropped by us" diyordu, oysa kare kırpılmış ve bulanıklaştırılmıştı; izleyici hakemi MUST yaptı. Değişiklik notu zorunlu: kırpma, doygunluk yüzdesi, parlaklık, bulanıklık, lisans bağlantısı.
+- **Açıklama sınırı kredi ve yasal notla aşılır:** "Dramatized" notu ve kredi eklenince Instagram metni 2261 karaktere çıktı (sınır 2200). Kaynak bağlantıları `sources` listesinde zaten var; kredi satırından çıkarıldı.
+- **Commons Artist alanı kredi kaynağıdır:** fotoğrafçı adı (Allan C. Green) `extmetadata` içindeki Artist alanından alındı; sayfa açılmasa da API ile doğrulanabildi.
+- **"Own work" etiketi tutarsız olabilir:** c. 1915 portre Commons'ta "Own work by ..." diyordu. Kamu malı yaşa göre; not edilir, kırpılmış sürümle karşılaştırılır.
+- **Dönem karakteri yoksa kusur olarak yaz:** kütüphanedeki hemşireler modern kıyafetli; 1912–16 kadın wojak bulunamadı. Klasik erkek çizim kullanıldı, RAPOR'da bilinen kusur.
+- **Arka plan doygunluğu:** sahil fotoğrafının gökyüzü doygunluğu 0,60 "kartpostal" dedirtti; %55 doygunluk ve −%10 parlaklık ile 0,40 altına indi (görsel hakem 8).
+- **Paylaşımlı yön kaydı:** `python -m wojak yon` kaydı `data/karakter_yon.json` içinde sha1 anahtarlarıyla tutar; aynı PNG baytları başka bölümde varsa dosya yolu değişebilir. Commit öncesi `git diff data/karakter_yon.json` ile kontrol edilip başka bölümün girdisi geri alınır.
+- **Render satırı süresi yanlış basabiliyor:** render "12,2 sn" yazdı; ffprobe 13,45 sn ve 403 kare gösterdi. Teslimde süre ffprobe ile doğrulanır.
+
 ---
 
 **Karakter lisansı (hesap sahibinin kararı, 27.10.2026, iki kanal için):** kütüphanedeki wojak karakterleri (kit,

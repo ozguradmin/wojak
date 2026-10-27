@@ -1,0 +1,98 @@
+# Violet Jessop (1887-1971): Olympic (1911), Titanic (1912), Britannic (1916). Wojak Past Files (kanal: en).
+# Olgu: Wikipedia (Violet Jessop), Encyclopedia Titanica, National Geographic, Molly Brown House Museum (memoir alıntıları).
+# CANLANDIRMA: iki wojak adsız ve uydurma; diyalog Jessop'a söz atfetmiyor, yalnız ironiyi kuruyor. Açıklamada "dramatized" notu zorunlu.
+# Karakterler: A = klasik kit (sakin; ters köşe gozyasli, aynı kutu ve silüet, gözyaşı). B = ingiliz_er_1915 (pith helmet, 1915 kostümü).
+#   A bir kadın (Jessop), ama kütüphanede 1912-1916 dönemine uyan kadın wojak yok (hemşire olanlar modern kıyafetli): RAPOR'da kusur.
+# Kanıt 1: HMHS Britannic, State Library of Victoria (kamu malı, c. 1915-16). Kanıt 2 (son kare): Jessop'un VAD üniformalı portresi (c. 1915-17).
+id: en-violet-jessop
+kanal: en  # Wojak Past Files
+title: "She survived the Titanic, then boarded its sister ship"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA: A (sol), Britannic'te, hastane gemisi Mudros'tan çıkıyor.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_moudros_muted.jpg
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.48}
+    text: "They say this ship can't sink"
+
+  # 2) CEVAP: B (sağ). Titanic'e gönderme: dramatik ironi.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_moudros_muted.jpg
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.48}
+    text: "They said that about the Titanic"
+
+  # 3) TIRMANIŞ: A (sol), aynı poz. Titanic'i yaşadığını söylüyor.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_moudros_muted.jpg
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.48}
+    text: "I know, I was on it"
+
+  # 4) TERS KÖŞE: A, aynı kutu, yüz varyantı gozyasli (aynı silüet ve boyut). Kardeş gemi (Britannic) ekranda fotoğrafla ilk kez burada beliriyor.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_moudros_muted.jpg
+    chars:
+      - {img: chars/a_gozyasli.png, side: left, height: 0.48}
+    text: "Wait, this is its sister ship?"
+
+  # 5) KANIT 1: HMHS Britannic, hastane gemisi renkleriyle (kamu malı, SLV via Commons). Tam genişlik.
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_britannic.jpg]
+
+  # 6) KANIT 2 (son kare): Violet Jessop, VAD üniformasıyla (kamu malı, c. 1915-17). Hikâyenin adı: "Miss Unsinkable".
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_violet.jpg]
+
+cover_scene: 4
+cover_at: 0.5
+
+caption: |
+  She survived the Titanic, then boarded its sister ship
+  The full story is in the pinned comment 👇
+
+# YouTube: 2-3 etiket (Instagram'da yok)
+hashtags: [titanic, history, ww1]
+
+pinned_comment: |
+  In 1916 she was aboard HMHS Britannic, the Titanic's sister ship, when it sank.
+
+  Violet Constance Jessop was an Argentine-born stewardess for the White Star Line. In 1911 she was aboard the Olympic when it collided with the British warship HMS Hawke in the Solent. In April 1912 she joined the Titanic, survived its sinking and reached New York on the rescue ship Carpathia. According to her memoir, an officer handed her a baby in her lifeboat, and a woman took the baby back on the Carpathia.
+
+  During the First World War she served as a Voluntary Aid Detachment nurse aboard HMHS Britannic, the third of the Olympic-class liners, converted into a hospital ship. On 21 November 1916 the Britannic struck a German mine in the Aegean Sea and sank. Thirty people lost their lives. In her memoir she wrote that she jumped from a lifeboat being drawn toward the ship's propellers, was pulled under the keel and struck her head. She survived. Years later a doctor found that she had fractured her skull.
+
+  She became known as "Miss Unsinkable". She returned to the White Star Line in 1920 and retired in 1950, after about 42 years at sea.
+
+  Dramatized: the wojak characters and all the dialogue, including "can't sink", are invented. The ships, dates and events are sourced.
+
+  Would you have gone back to sea after three close calls?
+
+ek_maddeler:
+  - "**Dramatization:** the two wojak characters are unnamed; the dialogue is invented and the pinned comment says so."
+  - "**Britannic date:** sources give 21 November 1916 (Wikipedia, National Geographic); one gives 16 November. The text uses the 21st; no conflict is written into the story."
+  - "**Evidence 2 (final frame):** the portrait of Jessop in VAD uniform. The Commons page lists 'Own work by HefePine23', which conflicts with a c. 1915 photograph. Public domain by age either way; the cropped version on Commons credits en-wiki and WWI-era photography. Owner may prefer the cropped version (500x620)."
+  - "**Known flaw:** the wojak playing Jessop is a classic male drawing; no period woman wojak fitted the 1912-16 costume."
+
+credits: "Background: Harbor in Moudros, Lemnos Greece, by Σαλαμούρας Σπύρος (Wikimedia Commons user), 2013, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Harbor_in_Moudros,_Lemnos_Greece.jpg). Changes: cropped to the frame, colour saturation reduced to 55 percent, brightness reduced by 10 percent, softened with a slight blur. A modern view of the harbour, not a 1916 scene. HMHS Britannic, c. 1915-16, photographer Allan C. Green, State Library of Victoria via Wikimedia Commons, public domain. Violet Jessop in Voluntary Aid Detachment uniform, c. 1915-17, photographer unknown, public domain by age (https://commons.wikimedia.org/wiki/File:Violet_Jessop_in_Voluntary_Aid_Detachment_Uniform.jpg)."
+
+ai_generated: false
+
+telif_notu: ""
+
+sources:
+  - "Wikipedia, Violet Jessop (birth, Olympic-Hawke 1911, Titanic lifeboat, Britannic, 1971 death; VAD nurse): https://en.wikipedia.org/wiki/Violet_Jessop"
+  - "Encyclopedia Titanica, Violet Constance Jessop (Olympic collision, Britannic service, memoir baby account): https://www.encyclopedia-titanica.org/titanic-survivor/violet-constance-jessop.html"
+  - "National Geographic, She survived the Titanic but it wasn't the only time she faced death at sea (Britannic 21 Nov 1916, mine, propellers, 1920 return, retirement 1950 at 63): https://www.nationalgeographic.com/magazine/article/titanic-woman-survivor-nurse-illness-unsinkable"
+  - "Molly Brown House Museum, Servants at Sea: Violet Jessop (42-year career at sea; memoir Titanic Survivor, 1997): https://mollybrown.org/servants-at-sea-violet-jessop/"
+  - "Images: Commons, Harbor in Moudros, Lemnos Greece (CC BY-SA 3.0): https://commons.wikimedia.org/wiki/File:Harbor_in_Moudros,_Lemnos_Greece.jpg"
+  - "Images: Commons, HMHS Britannic (State Library of Victoria; public domain): https://commons.wikimedia.org/wiki/File:HMHS_Britannic.jpg"
+  - "Images: Commons, Violet Jessop in Voluntary Aid Detachment Uniform (public domain by age): https://commons.wikimedia.org/wiki/File:Violet_Jessop_in_Voluntary_Aid_Detachment_Uniform.jpg"
