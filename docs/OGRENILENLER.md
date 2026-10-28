@@ -515,11 +515,16 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
 17. *(27.10 ek)* **Son kare türlerine eklendi: kamu malı tablo** (Zonaro 1903, `orban-topu-bizans`). Varsayılan dal:
     `git ls-remote --symref origin HEAD`. Ayrıntı: "Ek dersler (27.10.2026 sabah, `orban-topu-bizans`)".
 18. *(27.10 akşam ek)* **Commons 429 kesin çözümü:** `iiurlwidth` dosyanın özgün genişliğinden KÜÇÜK olsun (ör. 2000 px dosyaya
-    1900, 905 px dosyaya 500). Eşit ya da büyükse API `thumburl` olarak özgün yolu verir ve o yol 429'da kalır. Son kare
+    1900, 905 px dosyaya 500). Eşit ya da büyükse API `thumburl` olarak özgün yolu verir ve o yol 429'da kalır. *(28.10 akşam düzeltme: özgünden küçük olmak da yetmiyor, genişlik standart olmalı: 960/1280/1920; madde 20.)* Son kare
     türlerine eklendi: **mühendis çizimi** (kitaptaki teknik levha) + **SALT arşiv fotoğrafı** (`karakoy-tunel-1874`).
 19. *(28.10 sabah ek)* **Son kare türlerine eklendi: gerçek kamu malı gazete sayfası** (NYT 13.08.1914, Internet Archive
     `page/n0_w4000.jpg`; `goeben-fes-1914`). 1929 öncesi ABD gazetesi varsa kupür üretme, gerçeğini kırp. Commons API'yi ≥10 sn
     arayla ve 429'da geri çekilerek çağır. Yazar ve lisansı ham dosya sayfasından (`action=raw`) doğrula.
+
+20. *(28.10 akşam ek)* **Commons küçük resmi yalnız standart genişlikte iste: 960, 1280 ya da 1920.** Başka bir `iiurlwidth`
+    (ör. 1800, 2400, 790) artık `thumbnail_unscaled` (özgün yol) döndürüyor ve 429'da kalıyor; standart genişlik `thumb.wikimedia.org`
+    üzerinden ilk denemede iniyor. **Son kare türlerine eklendi: olayın geçtiği odanın bugünkü renkli fotoğrafı** (Pera Palas 411,
+    CC BY-SA 4.0; `pera-palas-anahtar-1979`). Bir önceki bölümün son karesiyle aynı tür olan kanıtı (gazete sayfası) ilk kanıta al.
 
 ### Adım adım (çalışan yol / vakit kaybı / süre / tasarruf)
 
@@ -1257,6 +1262,73 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - `tools/`: yeniden deneyen, ≥10 sn bekleyen Commons API yardımcısı (bu bölümde `/tmp` altında elle yazıldı; her oturumda yeniden yazılıyor).
 - `wojak/censor.py`: "silahsızlandırmak" ve "bombalamak" tarihî metinde sık; istisna listesi ya da `teslim`'de yıldız/rakam uyarısı.
 - Önceki öneriler hâlâ açık: `data/karakter_yon.json` yazma izni; render satırındaki süre (yine "9,6 sn", ffprobe 13,95).
+
+### Ek dersler (28.10.2026 akşam, `pera-palas-anahtar-1979`, iki hakemden 8/8, ~40 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Ortam:** iki depo yine ayrık HEAD'de, `/home/user` yine yoktu. Bağdan önce `test_short_youtube_aciklamasi_hikayeyi_tasir` düştü,
+  bağdan sonra 99/99. wojak'ın yerel dalı uzaktan geride açıldı: `git checkout <dal> && git pull origin <dal>` şart.
+- **Commons 429, yeni kural (27.10 dersinin düzeltmesi):** `iiurlwidth=2600/1800/2400/790` istekleri `thumburl` olarak
+  `upload.wikimedia.org/...?...utm_content=thumbnail_unscaled` (özgün yol) döndürdü; 4 denemede de 429 verdi ve 5 dk kaybettirdi.
+  Aynı dosyalar `iiurlwidth=960/1280/1920` ile `thumb.wikimedia.org/.../1280px-...` yolundan ilk denemede indi. Kural: temas sayfası
+  için 330 ya da 500, kullanılacak görsel için 1280 ya da 1920 iste. İsteğe yazılan genişliği yanıttaki `thumburl` ile karşılaştır:
+  `thumbnail_unscaled` görürsen istemeden standart genişliğe geç.
+- **Yeni son kare türü: olayın geçtiği odanın bugünkü renkli fotoğrafı.** Olay belli bir odada geçtiyse ve oda bugün aynı adla
+  korunuyorsa ("Agatha Christie Odası"), Commons'taki ziyaretçi fotoğrafı dürüst bir son kare. Odanın kimliğini veren ayrıntıyı
+  (duvardaki portre) kadrajda tut, televizyon gibi modern öğeyi dışarıda bırak. Diyalog arka planı aynı odanın kopyası olmasın:
+  aynı binanın başka bir odası kullanıldı ("eenpersoonskamer in 2004", yenilemeden önceki hâli).
+- **Son kare çeşitliliği için kanıt sırası:** bir önceki bölümün son karesi gazete sayfasıysa, bu bölümdeki gazete sayfası ilk kanıta
+  alınır. Bedeli: son kare manşet kadar vurucu olmuyor (görsel hakem 8'de tuttu). Telefonda okunur bir gerçek gazete sayfası ilk
+  kanıtta da sorunun "kimin" kısmını cevaplıyor.
+- **1926 İngiliz gazetesi kamu malı:** Commons'ta "Christie at Hydro.jpg" (Daily Herald, 15.12.1926, s. 1, yazarı bilinmiyor,
+  `{{PD-old-70}}`). 1927 öncesi yayın ABD'de de kamu malı; dosyadaki "Unclear-PD-US" uyarısı eskimiş. 800 px tarama manşet + spot +
+  alt başlık üst kırpımıyla (800x575 → 1080x776) telefonda net okunuyor.
+- **Gölgeli hazır çizimi düz MS-Paint'e çevirmek:** wojakland `bow_tie_suit_wojak.png` (papyon + yelek; otel görevlisi ya da garson)
+  yüzünde gri-mavi yumuşak gölge vardı, başın üstünde ve sağında siyah kontur yoktu. (1) Açık gri-mavi pikseller (en küçük kanal
+  ≥ 168, kanal farkı < 40) beyaz. (2) Alfa maskesi `gaussian_filter(2) > 0.5` ile yumuşatıldı. Maskenin 5 px'lik dış şeridi siyah
+  yapıldı. Maske dışındaki yarı saydam beyaz hale silindi. Sonuç temiz, eşit kalınlıkta kontur
+  (`pera-palas-anahtar-1979/chars/uret.py:otelci`). İlk denemede şerit yalnız "koyu çizgiden uzak" yerlere konmuştu; mevcut
+  konturun dışında beyaz benekler kaldı, hepsi siyah yapılınca düzeldi.
+- **1970'ler Türk erkeği için hazır karakter:** wojakland `grey_suit_wojak.png` (siyah saç, gri ceket, açık yaka, klasik beyaz yüz,
+  900 px). Düzenleme gerekmedi. Ters köşe yüzü: göz/kaş/ağız kutuları beyaza, iri yuvarlak göz (8 px kontur), iç ucu kalkık kaş,
+  "O" ağız, alında saç çizgisiyle kırışık arasına 5 mavi çizgi, yüzün önüne 3 damla. Telefonda değişim %1,5.
+- **Ters köşe repliği nesneyi değil imkânsızlığı sorsun:** "Bekle, bu paslı anahtar da ne?" izleyicinin S1'den beklediğini
+  söylüyordu. "Bekle, anahtarın yerini nereden bildi?" asıl "Ne?!"yi (medyumun yeri bilmesi) soruyor ve yorumda "reklam mı, gerçek
+  mi" tartışması açıyor. Özne bir önceki replikte ("Telefonda ... diyor") ekili olduğu için tek başına anlaşılıyor.
+- **"Kapının dibini sökün"** kapının kendisini sökmek gibi okunuyordu, "kapının dibindeki döşemeyi sökün" oldu. Replikteki fiilin
+  nesnesi tek anlamlı olsun.
+- **Kaynaklar bir kişide çelişiyorsa ad yazma:** 2 milyon doları kimin istediği kaynaklarda farklı (otelin sahibi, müdürü, "o dönem
+  işletme başkasındaydı"). Metinde "otel yönetimi" yazıldı. Medyumun adı da yazılmadı: yaşıyor olabilir ve "reklam kurgusu" görüşü
+  onu dolaylı suçlayabilirdi. `ek_maddeler`'e gerekçesi yazıldı.
+
+**Çalışmayan (deneme):**
+- Commons'ta standart dışı `iiurlwidth` (790/1800/2400/2600): `thumbnail_unscaled` özgün yol, 429.
+- Openverse API (üç sorgu, 35 sn zaman aşımı; yine yanıt yok).
+- Kapı askısındaki kartı `cv2.inpaint` ile silmek (koyu kapıda gri leke). Alttaki aynı kapı panelinden blok kopya işe yaradı.
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Orban (27.10 sabah) | Karaköy Tünel (27.10 akşam) | Goeben (28.10 sabah) | Pera Palas (28.10 akşam) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~2 dk | ~6 dk | ~7 dk | ~4 dk |
+| Konu + olgu | ~3 dk | ~9 dk | ~4 dk | ~4 dk |
+| Görsel avı | ~6 dk | ~12 dk (429) | ~10 dk (429) | ~12 dk (5 dk'sı 429) |
+| Karakter + yüz | ~4 dk | ~6 dk | ~6 dk | ~6 dk |
+| yaml → teslim | ~3 dk | ~3 dk | ~4 dk | ~3 dk |
+| Ön kontrol + hakem turları | ~3 dk | ~6 dk | ~6 dk | ~5 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~4 dk | ~8 dk | ~8 dk | ~8 dk |
+| **Toplam** | ~25 dk | ~50 dk | ~45 dk | **~40 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `tools/`: Commons indiricisi `iiurlwidth`'i standart genişliklere yuvarlasın (330/500/960/1280/1920) ve `thumbnail_unscaled`
+  dönen `thumburl`'ü reddetsin. 429'un bugünkü asıl çözümü bu.
+- `tools/`: hazır çizimdeki gri gölgeyi düzleştirip eksik baş konturunu ekleyen küçük yardımcı (`otelci()` kalıbı); gölgeli
+  wojakland çizimlerinde her bölümde elle yazılıyor.
+- Önceki öneriler hâlâ açık: render satırındaki süre (yine "11,2 sn", ffprobe 13,95); `tests/` sabit `/home/user/wojak` yolu;
+  `data/karakter_yon.json` yazma izni; Commons API yardımcısı her oturumda `/tmp` altında yeniden yazılıyor.
 
 ### EN kanalı (Wojak Past Files, 25.10.2026'dan itibaren)
 

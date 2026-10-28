@@ -87,6 +87,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
  },
+ "2a0efc7e975b7f8369e7e90dbc409c15fd0bac88": {
+  "faces": "right",
+  "file": "episodes/pera-palas-anahtar-1979/chars/b_gazeteci.png"
+ },
  "2adb11d433df6412a80f83cf7964cd70c08b24bf": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
@@ -327,6 +331,10 @@
   "faces": "right",
   "file": "assets/kit/bizans_prenses/cok_terli.png"
  },
+ "7050edd94f150d66241767c312cbbd8086df5461": {
+  "faces": "left",
+  "file": "episodes/pera-palas-anahtar-1979/chars/a_otelci.png"
+ },
  "71b006f143837f5a05071df03860a7bdeb3162a9": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_dusunceli.png"
@@ -454,6 +462,10 @@
  "9aadfb736579e7d739b53946669f385c73702d97": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_terli.png"
+ },
+ "9ab8a15e8ca35843a712ff7b563645c7085be6df": {
+  "faces": "right",
+  "file": "episodes/pera-palas-anahtar-1979/chars/b_gazeteci_sok.png"
  },
  "9be670926a436edfd45192ea709f0fb874b5fadd": {
   "faces": "right",
