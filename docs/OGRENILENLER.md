@@ -1451,6 +1451,18 @@ geçerli. Bu alt başlığa yalnız İngilizce kanala özgü dersler eklenir (ya
 - **1915 kaskı (ingiliz_er_1915) 1943 subayı için yanlış dönem:** tek renkli 1939-45 İngiliz karakteri kütüphanede yok; HF renkli adaylar stil uyumsuzluğu yarattı. Bilinen kusur olarak raporlandı; kanal için 1940'lar kit ihtiyacı açık.
 - **Ters köşe yalnız ter damlasıyla** (klasik/cok_terli, aynı kutu): telefonda okunur bulundu, görsel hakem 8/10'da kabul etti; kaş ve göz değişimi daha iyi olurdu (SHOULD, açık).
 
+
+**Ek dersler (28.10.2026, `en-mona-lisa`, Mona Lisa'yı Italy'ye satmaya çalışan hırsız, Peruggia 1911-1913; görsel 7 → 7 → 7, izleyici 6 → 8; üç tur, BEKLET: görsel 7/10):**
+- **Bakış kaydı dosyanın kendi gözüyle yapılır, ama render ile birlikte doğrulanır:** PNG'nin gözbebekleri göz merkezinin sağındaysa dosya sağa bakar, kayıt `sag` olmalı. Yanlış kayıt (`sol`) render'da görüntüyü aynalayıp karakteri dışa bakar hale getirdi. Ayrıca gözlerin "sakin" hali ile "şok" varyantı ayrı kontrol edilir: aynı kayıt iki dosyada da doğru olsa bile gözbebeği yerleşimi ayrı ayrı ölçülür.
+- **El ile yüz varyantında gözbebeği sonradan ayarlanır:** `klasik` kitinde olmayan şok yüzünü kütüphane gövdesine çizdik; gözbebeği içe bakmadı, nokta kaldı. Hakem 1:1 ölçümüyle yakaladı. Düzeltme: beyaz boyayla eski göz içini silip gözbebeğini oval içinde sağa taşımak, nokta silmek. Sakin göz de aynı mantıkla yeniden çizildi (temiz oval, sağda gözbebeği).
+- **İkinci satır yetim kelime:** "The Louvre's Mona Lisa? Seriously?" tek satıra sığmadı, "Seriously?" tek başına kaldı. Elle satır kırma (`\n`) ile iki eşit satır yapıldı; hakem kabul etti.
+- **Noktasız repliklerde virgül:** "I've got the Mona Lisa. Want her?" denetimde ve hakemde nokta olarak kaldı. "I've got the Mona Lisa, want her?" yazıldı; konuşma dili korundu.
+- **Kanıt kırpımı küçük bir kızın ölümünü gösterebilirdi:** NYT sayfasının orta sütununda bir bomba haberi (küçük bir kız ölümü) vardı. Kırpım manşet sütunu ve bir sonraki sütunun başına kadar yapıldı; alt satır tam kesilmedi. Kanıt kırpımında gazete sayfasının başka haberlerini kontrol et.
+- **Olgu ASFi ile düzeltildi:** "Paris'te sandıkta sakladı" ifadesi ASFi'de yok: sandık (çift dipli) Floransa otel odasında arama sırasında bulundu. Mektup İtalya'ya satış teklifi içeriyor; "geri verme" ise Peruggia'nın kendi iddiası. Metinde "offered to sell the painting to Italy" ve iddia "Peruggia said ..." biçiminde. Mektup imzası "Leonard V.", "Leonardo Vincenzo" değil. 500.000 lira "later accounts" ile.
+- **Sansür "died" kelimesini bozdu:** "d*ed" yine çıktı; "passed away" kullanıldı, `metinler/*.txt` sansürden sonra kontrol edildi.
+- **Görsel hakem: karakter boyu ve kare** 0,48 → 0,53 (STIL aralığı içinde) yüzleri büyüttü; arka plan (Floransa, Palazzo Vecchio, CC0) turistik kartpostal gibi bulundu: bilinen kusur.
+- **Kostüm dönemi:** 1911 Louvre işçisinin beyaz önlüğü yerine tulum ve kasket kullanıldı; Geri'nin fötr şapkası 1913 için biraz geç. Kütüphanede uygun dönem karakteri bulunamadı; bilinen kusur olarak RAPOR'da.
+
 ---
 
 **Karakter lisansı (hesap sahibinin kararı, 27.10.2026, iki kanal için):** kütüphanedeki wojak karakterleri (kit,

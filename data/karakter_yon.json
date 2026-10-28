@@ -211,6 +211,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/sheskin_saskin.png"
  },
+ "50a167479e1cd02bf6bcdd68092b6c8b8e972eb5": {
+  "faces": "right",
+  "file": "episodes/en-mona-lisa/chars/geri.png"
+ },
  "51f7a3e469b7b28b2067f75a54ae3a61ac234fc7": {
   "faces": "right",
   "file": "episodes/en-great-moon-hoax/chars/a_agliyor.png"
@@ -495,6 +499,10 @@
   "faces": "left",
   "file": "episodes\\kasikci-elmasi\\chars\\kasikci_emin.png"
  },
+ "ab54c0b4f3a74cf2ed6e623acedde33821818160": {
+  "faces": "right",
+  "file": "episodes/en-mona-lisa/chars/peruggia.png"
+ },
  "ab795e0baa11a4983b1f7120475aff4af014f70a": {
   "faces": "right",
   "file": "assets/kit/klasik/cokkun.png"
@@ -622,6 +630,10 @@
  "d77d046cdb6aebf0154c90d6caee83a47be6224e": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
+ },
+ "d8f8657d4b0bfb84dcbbd13ac8e2cf450fbbdca1": {
+  "faces": "right",
+  "file": "episodes/en-mona-lisa/chars/peruggia_sok.png"
  },
  "daa5727f03e399eadb611bb4a4e09733e34034ed": {
   "faces": "right",
