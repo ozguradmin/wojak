@@ -517,6 +517,9 @@ araştırma ──► üretim ──► iki bağımsız hakem (paralel) ──�
 18. *(27.10 akşam ek)* **Commons 429 kesin çözümü:** `iiurlwidth` dosyanın özgün genişliğinden KÜÇÜK olsun (ör. 2000 px dosyaya
     1900, 905 px dosyaya 500). Eşit ya da büyükse API `thumburl` olarak özgün yolu verir ve o yol 429'da kalır. Son kare
     türlerine eklendi: **mühendis çizimi** (kitaptaki teknik levha) + **SALT arşiv fotoğrafı** (`karakoy-tunel-1874`).
+19. *(28.10 sabah ek)* **Son kare türlerine eklendi: gerçek kamu malı gazete sayfası** (NYT 13.08.1914, Internet Archive
+    `page/n0_w4000.jpg`; `goeben-fes-1914`). 1929 öncesi ABD gazetesi varsa kupür üretme, gerçeğini kırp. Commons API'yi ≥10 sn
+    arayla ve 429'da geri çekilerek çağır. Yazar ve lisansı ham dosya sayfasından (`action=raw`) doğrula.
 
 ### Adım adım (çalışan yol / vakit kaybı / süre / tasarruf)
 
@@ -1188,6 +1191,72 @@ Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
 - `check`: başlık soru biçimindeyse ve `cover_scene` ters köşe sahnesiyse uyarsın (kapak cevabı veriyor olabilir).
 - `tools/wojak_site.py get`: indirilen karakterin tam boy önizlemesini kaydetsin (filigran dokusu küçük sayfada görünmüyor).
 - Önceki öneriler hâlâ açık: `tests/` sabit `/home/user/wojak` yolu; `data/karakter_yon.json` yazma izni; render satırındaki süre.
+
+### Ek dersler (28.10.2026 sabah, `goeben-fes-1914`, iki hakemden 8/8, ~45 dk)
+
+Kanıtlanmış yol yine baştan sona çalıştı. Yeni kanıtlanan adımlar:
+
+- **Ortam:** iki depo yine ayrık HEAD'de, `/home/user` yine yoktu (önce `mkdir -p /home/user`, sonra `ln -sfn`). Testler 99/99.
+- **Yeni son kare türü: gerçek (kamu malı) gazete sayfası.** ABD'de 1929 öncesi gazeteler kamu malı. Commons'ta "The New York
+  Times 1914-08-13- Vol 63 Iss 20655 ...pdf" gibi günlük sayılar ve "Victoria Daily Times (1914-08-12)" var. Sayfa önizlemesi:
+  `iiurlparam=page1-1500px` ile `thumburl`. Yüksek çözünürlük için Internet Archive'daki kimliği kullan
+  (`per_new-york-times-magazine_the-new-york-times_<YYYY-MM-DD>_<cilt>_<sayı>`, `victoriadailytimes<YYYYMMDD>`). Komut:
+  `archive.org/download/<id>/page/n0_w4000.jpg`, ilk denemede 6889x8561 indi. Tek sütunluk haberi iki komşu sütundan birer şeritle
+  1080x780'e kırp (1,1 kat büyütme, manşetin büyük harf yüksekliği ~65 px; telefonda okunuyor). Kendi kupürümüzü üretmeye gerek
+  kalmadı, "Son kare canlandırmadır" satırı da gerekmedi. Hikâye metnine İngilizce manşetin Türkçesini yaz (takipçi hakemi SHOULD).
+- **Tarihî grup fotoğrafı için kitap taraması:** "Ambassador Morgenthau's Story" (1918) gibi kamu malı kitapların fotoğraf
+  sayfaları Commons'ta. Altyazılı tarama (Jay Dobkin, CC BY-SA 2.0, 1709 px) altyazısız PD-1923 sürümünden (1131 px) büyüktü.
+  Altyazıdaki bilgi ("en sol ve en sağdakiler dışında hepsi Alman") hem `ek_maddeler`'e hem `sources`'a girer. Taramanın kenarı eğik
+  olabilir: kırpımdan sonra iki yan şeridi büyüterek bak (ilk kırpımda sağda 15 px sayfa beyazı kalmıştı).
+- **Görsel tohum:** B'nin başındaki fes, S2'de ters köşenin nesnesini önceden gösteriyor. Son replik ("Bekle, neden bize fes
+  verdiler?") kostüm değiştirmeden ödenir. "takıyoruz" denseydi A'nın başında fes olmadığı göze batardı; "verdiler" çelişmiyor.
+- **Hazır çizimdeki ülke işaretini silmek:** İspanyol denizci kepindeki kırmızı ponpon ve "MARINA" yazısı Alman denizcisinde dönem
+  ve ülke hatası olurdu. Ponpon: ponponun alt konturunu (kepin üst çizgisi) bir eğriyle tanımla, eğrinin 3 px üstünü saydam yap,
+  eğriyi aynı kalınlıkta yeniden çiz. Yazı: açık gri harfleri `cv2.inpaint` (TELEA, r=9) ile kapat. Alın beyazını maskeden 13x13
+  genişletip çıkar, yoksa inpaint şeride beyaz taşıyor (`goeben-fes-1914/chars/uret.py:denizci_temel`).
+  Koordinat tuzağı: ızgara görselinin etiketleri gerçek koordinattır, ama ölçek 2x olunca göz kararı okuma kaydı. Kırpmadan önce
+  3x ızgarada tekrar bak.
+- **Sırıtan hazır karakteri sakinleştirmek:** Twinkjak Osmanlı subayının dişli yarım sırıtışı silinip düz ağız çizildi. Göz bebekleri
+  yarığın sağ ucuna alınınca dosya "sag" kaydedildi, sağda aynalanınca içeri bakıyor. Uzun fesli karakterde yüz küçük kalıyordu;
+  PNG göğüsten kesilince (1148 → 880 px) aynı `height`'ta yüz ~%30 büyüdü, yazı bloğu yerinde kaldı.
+- **Arka plan: aynı türden yer, dönem gemisi güvertesi.** Commons'ta "Category:Battleship Texas State Historic Site"
+  (USS Texas 1914'te hizmete girdi) iyi bir kaynak. Mikasa'nın fotoğraflarının çoğunda modern binalar ve turistler var. Güvertedeki
+  turuncu kablo (modern): ton maskesi + maskeli pikseli 34 px yandaki tahtadan kopyalama (iki eşikle iki geçiş). `cv2.inpaint`
+  tahtada bulanık bir iz bırakıyordu. Blur 1,8 → kenar Laplace ~20-30 (direk halatları ölçüyü şişiriyor).
+- **Sansür yine yakaladı:** "silahsızlandırmak" → "s!lahsızlandırmak", "bombaladı" → "b0mbaladı". Kullanılan karşılıklar:
+  "savaş bitene kadar alıkoymak" (tarafsızlık hukukundaki karşılığı) ve "topa tuttu".
+- **Commons 429 (28.10 sabah):** art arda arama (generator=search, ~3 sn arayla) dördüncü istekte 429 verdi. Yeniden deneyen ve
+  istekler arasında ≥10 sn bekleyen küçük bir `api()` yardımcısı (15/30/45 sn geri çekilme) sonrasında hiç takılmadı. Ham dosya
+  sayfası (`index.php?title=File:...&action=raw`) 429 vermedi; yazar ve lisansı oradan doğrula (ilk taslakta yazar adı uydurma
+  kalmıştı, ham sayfayla düzeltildi).
+
+**Çalışmayan (deneme):**
+- Openverse API (yine yanıt yok).
+- Mikasa güvertesi arka plan olarak (turist ve modern bina her kırpımda).
+- `cv2.inpaint` ile tahta güvertedeki kabloyu silmek (bulanık iz).
+- `iiurlwidth` ≥ özgün genişlik (Morgenthau p185, 1131 px): yine 429 (27.10 dersi geçerli).
+
+**Süre ve maliyet (güncel):**
+
+| Adım | Yerebatan (26.10 akşam) | Orban (27.10 sabah) | Karaköy Tünel (27.10 akşam) | Goeben (28.10 sabah) |
+|---|---|---|---|---|
+| Hazırlık + okuma | ~5 dk | ~2 dk | ~6 dk | ~7 dk |
+| Konu + olgu | ~5 dk | ~3 dk | ~9 dk | ~4 dk |
+| Görsel avı | ~6 dk | ~6 dk | ~12 dk (429) | ~10 dk (429) |
+| Karakter + yüz | ~5 dk | ~4 dk | ~6 dk | ~6 dk |
+| yaml → teslim | ~4 dk | ~3 dk | ~3 dk | ~4 dk |
+| Ön kontrol + hakem turları | ~8 dk | ~3 dk | ~6 dk | ~6 dk (ön kontrol + 2 tur) |
+| Teslim + commit + belge | ~7 dk | ~4 dk | ~8 dk | ~8 dk |
+| **Toplam** | ~40 dk | ~25 dk | ~50 dk | **~45 dk** |
+
+Ücretli API: 0.
+
+**Kod değişikliği önerileri (uygulanmadı):**
+- `tools/`: Internet Archive gazete sayfası indirici (`<id>` + sayfa → `page/n<k>_w4000.jpg`) ve Commons PDF sayfa önizlemesi
+  (`iiurlparam=page<n>-<w>px`). Bu bölümde elle yapıldı.
+- `tools/`: yeniden deneyen, ≥10 sn bekleyen Commons API yardımcısı (bu bölümde `/tmp` altında elle yazıldı; her oturumda yeniden yazılıyor).
+- `wojak/censor.py`: "silahsızlandırmak" ve "bombalamak" tarihî metinde sık; istisna listesi ya da `teslim`'de yıldız/rakam uyarısı.
+- Önceki öneriler hâlâ açık: `data/karakter_yon.json` yazma izni; render satırındaki süre (yine "9,6 sn", ffprobe 13,95).
 
 ### EN kanalı (Wojak Past Files, 25.10.2026'dan itibaren)
 

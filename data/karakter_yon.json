@@ -3,6 +3,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_v2_sakin.png"
  },
+ "00e818d97efb10d115e94843e5bf468620b5422e": {
+  "faces": "right",
+  "file": "episodes/goeben-fes-1914/chars/denizci_sok.png"
+ },
  "01437181fdaa6abbfb983e34ab4a65b144711c5d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_ciddi.png"
@@ -591,6 +595,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/eczaci_v2_sakin.png"
  },
+ "d5503a7c300abfbf79165acd4752d281c46c2457": {
+  "faces": "right",
+  "file": "episodes/goeben-fes-1914/chars/denizci_sakin.png"
+ },
  "d6a7b4ef68c78b554f5e53024bde40516eca0bb3": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_sakin.png"
@@ -650,6 +658,10 @@
  "e8a4521a3153bc9748377c808fa11a3ba2868921": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_saskin.png"
+ },
+ "e8da46a7c8444faa7d41adf223032ac3c194eaaf": {
+  "faces": "right",
+  "file": "episodes/goeben-fes-1914/chars/osmanli_sakin.png"
  },
  "e928d7e8392936c903fd4a29bd43daa400f960d9": {
   "faces": "right",
