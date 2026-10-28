@@ -43,6 +43,8 @@ def _denetle(ep: episode.Episode) -> None:
         print(f"  ⚠ {u}")
     for u in denetim.stil(ep):
         print(f"  ✎ {u}")
+    for u in denetim.hakem_oncesi(ep):
+        print(f"  ✎ {u}")
     if ep.gundem:
         print("  GÜNDEM bölümü: yayından önce docs/GUNDEM.md > 5. Kontrol listesi (yayın yasağı kontrolü dahil).")
 
@@ -172,6 +174,11 @@ def cmd_paket(a) -> None:
         print(f"teslim metinleri güncellendi -> {dst}")
 
 
+# Teslimin üretmediği, elle konan dosyalar: yeniden teslimde silinmez. RAPOR.md teslimle silindi (en-great-moon-hoax,
+# 26.10); BEKLET silinirse bot bölümü yayınlar; YAYINLANDI.json'a hiç dokunulmaz (CLAUDE.md).
+TESLIM_KORUNAN = ("RAPOR.md", "BEKLET", "YAYINLANDI.json")
+
+
 def cmd_teslim(a) -> None:
     """Onaya gidecek her şeyi tek klasörde toplar (repoda kalır, hesap sahibi GitHub'dan da indirebilir)."""
     ep = episode.load(a.episode)
@@ -196,14 +203,19 @@ def cmd_teslim(a) -> None:
     if bakis and not a.zorla:
         sys.exit("Karakter bakış kaydı eksik ya da çelişkili; kaydet, `python -m wojak bakis` ile kareleri gözle kontrol "
                  "et, yeniden render et. Bilerek geçmek için --zorla.")
+    for u in denetim.hakem_oncesi(ep):   # yalnız uyarı: teslimi durdurmaz
+        print(f"  ✎ {u}")
     yml = ep.dir / "episode.yaml"
     if yml.exists() and mp4.stat().st_mtime < yml.stat().st_mtime:
         print("  ⚠ video episode.yaml'dan eski: sahneler değiştiyse önce yeniden render et")
     pack.write(ep, src, mp4, denetim=uyarilar)
     dst = config.ROOT / "teslim" / ep.id
+    korunan = {n: (dst / n).read_bytes() for n in TESLIM_KORUNAN if (dst / n).is_file()}
     if dst.exists():
         shutil.rmtree(dst)
     (dst / "metinler").mkdir(parents=True)
+    for n, b in korunan.items():
+        (dst / n).write_bytes(b)
     shutil.copy2(mp4, dst / mp4.name)
     # kenarlık A/B testi sürümü varsa o da gider (KONSEPT §3)
     for name in ("kapak.jpg", "paylasim.md", f"{ep.id}_dolgu.mp4", "kapak_dolgu.jpg"):

@@ -39,11 +39,26 @@ def _load() -> dict:
 
 
 def register(path: Path, faces: str) -> str:
+    """Yalnız bu dosyanın sha1 girdisini yazar. Aynı baytlar başka bölümde kayıtlıysa (kit PNG kopyası) o girdinin
+    'file' alanı, dosya hâlâ duruyorsa korunur: eskiden yeni bölüme çevriliyordu ve her teslimde başka bölümün girdisi
+    `git checkout` ile geri alınıyordu (en-violet-jessop, en-mincemeat, 27.10). Bozuk kayıt dosyası boş sayılıp
+    üzerine yazılmaz (bütün kayıt silinirdi)."""
     faces = ALIASES[faces.lower()]
-    reg = _load()
+    try:
+        reg = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        reg = {}
+    except ValueError as e:
+        raise SystemExit(f"{REGISTRY} okunamadı ({e}); birleştirme çakışması olabilir, önce düzelt") from None
     p = Path(path).resolve()
     rel = str(p.relative_to(config.ROOT)) if p.is_relative_to(config.ROOT) else str(p)
-    reg[_sha1(p)] = {"faces": faces, "file": rel}
+    key = _sha1(p)
+    eski = reg.get(key) or {}
+    if eski.get("faces") == faces and eski.get("file") and (config.ROOT / eski["file"]).exists():
+        return faces   # aynı kayıt zaten var: dosyaya dokunma
+    if eski.get("file") and (config.ROOT / eski["file"]).exists():
+        rel = eski["file"]
+    reg[key] = {"faces": faces, "file": rel.replace("\\", "/")}
     REGISTRY.write_text(json.dumps(reg, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     return faces
 

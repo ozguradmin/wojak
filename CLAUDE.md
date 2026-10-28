@@ -1,6 +1,10 @@
 # CLAUDE.md: Tarihsel Wojak production pipeline
 
 Read this first. Specs and lessons live in `docs/`; this file only points to them and lists the hard rules.
+**Short reel session (both channels, 29.10.2026): read ONLY `docs/KISA_REEL_EL_KITABI.md`** after `bash tools/hazirla.sh
+<private-repo>`; open other docs only at the section its index points to. Do not read `docs/OGRENILENLER.md` front to back and do
+not append to it: new lessons go to `docs/DERS_KUTUSU.md` (max 10 lines), code proposals to `docs/KOD_ONERILERI.md`.
+Commons images: `python tools/commons.py` (rate limit and standard widths built in; do not write your own helper).
 **New to the project? Start with `docs/ADIM_ADIM.md`**: the step-by-step runbook for short reels and long videos.
 
 **Current status (21.10.2026):** new **short reels may be produced now** (owner, 21.10): one topic at a time, never a topic

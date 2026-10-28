@@ -66,21 +66,44 @@ def build(ep: Episode, out: Path, total: float, fps: int) -> Path:
     return out
 
 
-def _loudnorm(src: Path, dst: Path) -> None:
-    """İki geçişli EBU R128: orijinal reel'lerin seviyesine (-29,5 LUFS, -17 dBTP) doğrusal ayar."""
-    I, TP = config.LOUDNESS_LUFS, config.LOUDNESS_TP
+def _olc(src: Path) -> tuple[float, float]:
+    """(entegre LUFS, gerçek tepe dBTP). loudnorm yalnız ÖLÇER: hedef TP ffmpeg'in izin verdiği -9..0 aralığına
+    kırpılır (ölçülen değerler hedefe bağlı değil). Ölçülemezse ValueError."""
+    tp = min(0.0, max(-9.0, config.LOUDNESS_TP))
     r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(src), "-af",
-                        f"loudnorm=I={I}:TP={TP}:LRA=7:print_format=json", "-f", "null", "-"],
+                        f"loudnorm=I={config.LOUDNESS_LUFS}:TP={tp}:LRA=7:print_format=json", "-f", "null", "-"],
                        capture_output=True, text=True)
     err = r.stderr
     try:
         m = json.loads(err[err.rindex("{"):err.rindex("}") + 1])
-        if m["input_i"] in ("-inf", "inf"):
-            raise ValueError("sessiz")
-        af = (f"loudnorm=I={I}:TP={TP}:LRA=7:measured_I={m['input_i']}:measured_TP={m['input_tp']}:"
-              f"measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:"
-              f"offset={m['target_offset']}:linear=true")
-    except (ValueError, KeyError):
-        af = "anull"
+        return float(m["input_i"]), float(m["input_tp"])
+    except (ValueError, KeyError) as e:
+        raise ValueError(f"loudnorm ölçümü okunamadı: {err.strip().splitlines()[-1:] or e}") from None
+
+
+def _loudnorm(src: Path, dst: Path) -> None:
+    """Orijinal reel'lerin seviyesine (-29,5 LUFS, -17 dBTP) ölçüp DOĞRUSAL kazanç (volume=dB) uygular.
+
+    Eskiden loudnorm'a TP=-17 veriliyordu; ffmpeg TP'yi -9..0 aralığında kabul ettiği için filtre hata veriyor, kod
+    sessizce 'anull'a düşüyor ve video -15,5 LUFS çıkıyordu (kanuni-gizlenen-olum, 23.10; o günden beri her bölüm
+    `volume: 0.197` ile elle düzeltiliyordu). Şimdi ölçüm + tek kazanç; tepe TP'yi aşacaksa kazanç tepeye göre kısılır
+    (imza_v2_golge: -15,7 LUFS / -2,9 dBTP -> -29,8 LUFS / -17,0 dBTP, 0.197 ile aynı) ve hedefin 1 LU'dan fazla altında
+    kalırsa uyarılır. Ölçülemezse ses değiştirilmeden geçer ama bu artık sessiz değil, uyarılır."""
+    I, TP = config.LOUDNESS_LUFS, config.LOUDNESS_TP
+    try:
+        li, ltp = _olc(src)
+    except ValueError as e:
+        print(f"  ⚠ ses normalize EDİLEMEDİ ({e}); video hedef {I} LUFS'tan farklı çıkar, ebur128 ile ölç")
+        li = ltp = float("-inf")
+    if li in (float("-inf"), float("inf")) or li != li:
+        af = "anull"   # sessiz iz (ya da ölçülemedi): kazanç anlamsız
+    else:
+        gain = I - li
+        if ltp + gain > TP:
+            gain = TP - ltp
+        if I - (li + gain) > 1.0:   # ±1 LU tolerans (notlardaki öneri); imza müziği ~0,3 LU altında kalır
+            print(f"  ⚠ ses: tepe {ltp:.1f} dBTP, {I} LUFS'a çekilince {TP} dBTP'yi aşıyordu; kazanç tepeye göre "
+                  f"kısıldı -> ~{li + gain:.1f} LUFS")
+        af = f"volume={gain:.2f}dB"
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(src), "-af", af,
                     "-ar", "48000", "-ac", "2", str(dst)], check=True)
