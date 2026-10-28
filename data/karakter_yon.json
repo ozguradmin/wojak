@@ -99,6 +99,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_ciddi.png"
  },
+ "2bca371890031009c7a612b34ffa50909721c068": {
+  "faces": "right",
+  "file": "episodes/en-mechanical-turk/chars/a_sakin.png"
+ },
  "2d6fd0e2178cfc076970b8ab4bc88b9643adefed": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_sakin.png"
@@ -126,6 +130,10 @@
  "39357d8ce2356404243747c8313e8343a229d972": {
   "faces": "left",
   "file": "assets/kit/prenses_genc/korku.png"
+ },
+ "3a18372bc5d69b96f889311f74519583bd0f058c": {
+  "faces": "right",
+  "file": "episodes/en-mechanical-turk/chars/a_sok.png"
  },
  "3bd087dffb2e0d19bf95a17f991530320b453437": {
   "faces": "right",
@@ -722,6 +730,10 @@
  "f967de52d4e68f03878fbd6633780e877d4ae876": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci_gergin_konusuyor_yari.png"
+ },
+ "fc0c59fd2bb68cfd12c85070b412dc89427a2086": {
+  "faces": "right",
+  "file": "episodes/en-mechanical-turk/chars/b_sakin.png"
  },
  "fcb62cc249d8853528fac04717b2b86179cd5f00": {
   "faces": "right",

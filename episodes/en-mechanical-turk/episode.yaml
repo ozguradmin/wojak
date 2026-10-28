@@ -1,0 +1,95 @@
+# The Mechanical Turk (1770-1854). Wojak Past Files (kanal: en).
+# Olgu: bkz. /tmp/arastirma/olgular_turk.md (Britannica, HISTORY.com, Smithsonian, Wikipedia + Willis 1821, Mitchell 1857, Poe 1836).
+# CANLANDIRMA: iki adsız wojak; diyalog gerçek kişiye söz atfetmez. Racknitz 1789 kesiti kendi tahminidir (bazı ayrıntılar yanlış).
+# Karakterler: A = 5_Tired_Wojak/10347 (genel 1790'lar yurttaşı; ters köşe a_sok = el çizimi şaşkın yüz), B = wojakland 1700s British Soldier Flag (bayrak silindi). Dönem yaklaşık: RAPOR'da kusur.
+id: en-mechanical-turk
+kanal: en  # Wojak Past Files
+title: "The 1770 chess robot that reportedly played Napoleon"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_court.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.54}
+    text: "They say this chess\nrobot beat Napoleon"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/bg_court.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.54}
+    text: "Did anyone check inside it?"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_court.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.54}
+    text: "The showman opened every\ndoor, candle in hand"
+
+  - type: card
+    duration: 1.5
+    text: "One game later"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_court.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.54}
+    text: "Wait, how does it\nsee my moves?"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1_turk_kapaklar.jpg]
+
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2_turk_ici.jpg]
+
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  The 1770 chess robot that reportedly played Napoleon
+  The full story is in the pinned comment 👇
+
+hashtags: [history, mystery, chess]
+
+pinned_comment: |
+  The Mechanical Turk was a chess-playing "automaton" shown from 1770, built by the inventor Wolfgang von Kempelen for Empress Maria Theresa's court in Vienna. It was a wooden figure in Ottoman robes and a turban, seated behind a large cabinet, and it moved the pieces with its own arm.
+
+  Before each game, the showman opened the cabinet doors one by one and held a candle inside, so the audience saw only machinery. From 1770 to 1854 it was exhibited in Europe and America. It reportedly played Benjamin Franklin, and in 1809 Napoleon reportedly played it, tried illegal moves and lost. There is no firm record of those games, and accounts disagree.
+
+  The secret was a person. A skilled chess player sat inside the cabinet on a sliding seat, while dummy machinery slid across to hide him. He followed the game with the help of magnets under the pieces and moved the arm with levers. Operators included Jacques Mouret and William Schlumberger.
+
+  In 1827 two teenagers in Baltimore reportedly saw an operator climb out. The full explanation came in 1857, three years after a fire in Philadelphia destroyed the machine. The final frame is Joseph Racknitz's 1789 reconstruction of what was inside; he got some details wrong.
+
+  Dramatized: the wojak characters and all dialogue are invented. The Turk, its operators and the dates are sourced.
+
+  If the cabinet had opened for you, would you have believed it?
+
+credits: "Racknitz, 'The Turk' plates 1 and 3 (1789), Humboldt University Library, public domain, cropped, via Wikimedia Commons; Martin van Meytens, 'Wedding Supper' (1763), a painting of a Habsburg court banquet in Vienna (background), public domain, via Google Art Project / Wikimedia Commons, cropped, color reduced, blurred. Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Dramatization:** the two wojak characters are unnamed; dialogue is invented and the pinned comment says so."
+  - "**Costumes are approximate:** A wears a 1790s-style coat, B a mid-1700s tricorn and redcoat; no ready-made wojak in a 1770 Vienna court costume was found."
+  - "Napoleon and Franklin games are reported in later accounts, not firmly documented: kept as 'reportedly' in title and comment."
+sources:
+  - "Britannica, The Mechanical Turk: AI Marvel or Parlor Trick? (Kempelen built it for Maria Theresa; Philidor beat it): https://www.britannica.com/story/the-mechanical-turk-ai-marvel-or-parlor-trick"
+  - "HISTORY.com, How a Phony 18th-Century Chess Robot Fooled the World (candle ritual, hidden operator, 1854 fire): https://www.history.com/articles/how-a-phony-18th-century-chess-robot-fooled-the-world"
+  - "Smithsonian Magazine (Eschner 2017): sliding panels and rolling chair, Poe's wrong guess: https://www.smithsonianmag.com/smart-news/debunking-mechanical-turk-helped-set-edgar-allan-poe-path-mystery-writing-180964059/"
+  - "Wikipedia, Mechanical Turk (operators, Baltimore 1827 Gazette, Mitchell 1857, 5 July 1854 fire; cites Willis 1821, Ewart 1980): https://en.wikipedia.org/wiki/Mechanical_Turk"
+  - "Poe, Maelzel's Chess-Player (Southern Literary Messenger, April 1836): https://www.eapoe.org/works/essays/maelzel.htm"
+  - "Jefferson Medical College magazine (pantograph, Mitchell): https://magazine.jefferson.edu/issues/summer-2022/automaton-chess-player.html"
+  - "American Heritage, Echec! (Napoleon at Schönbrunn 1809, game reported): https://www.americanheritage.com/echec"
+  - "Founders Online, Kempelen to Franklin 28 May 1783 (invitation; no record of a game): https://founders.archives.gov/documents/Franklin/01-40-02-0041"
+  - "GÖRSEL img/ev_2_turk_ici.jpg (son kare) — 'Racknitz - The Turk 3.jpg', Joseph Racknitz 1789, Humboldt University Library, public domain: https://commons.wikimedia.org/wiki/File:Racknitz_-_The_Turk_3.jpg. Değişiklik: kırpım"
+  - "GÖRSEL img/ev_1_turk_kapaklar.jpg — 'Racknitz - The Turk 1.jpg', public domain: https://commons.wikimedia.org/wiki/File:Racknitz_-_The_Turk_1.jpg. Değişiklik: kırpım"
+  - "GÖRSEL img/bg_court.jpg — 'Wedding Supper - Martin van Meytens - Google Cultural Institute.jpg', 1763, public domain: https://commons.wikimedia.org/wiki/File:Wedding_Supper_-_Martin_van_Meytens_-_Google_Cultural_Institute.jpg. Değişiklik: kare kırpım, renk azaltıldı, parlaklık, bulanıklık"
