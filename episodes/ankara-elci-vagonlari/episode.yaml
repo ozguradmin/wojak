@@ -1,0 +1,125 @@
+# Ankara elçi vagonları (Mart 1925): Ankara 13 Ekim 1923'te başkent olunca İstanbul'daki yabancı elçilikler taşınmakta
+# acele etmedi; Ankara'ya iş için gelen büyükelçiler geceyi (ve işi) Ankara Garı'ndaki vagonlarda geçirdi. İngiltere
+# Büyükelçisi Lindsay Mart 1925'te altı kişilik heyetle iki vagon getirdi (salon = çalışma odası + kançılarya, bir de yataklı
+# vagon); vagonlar garda yaklaşık bir hafta durdu (Room for Diplomacy; Erdem 2017 / Hâkimiyet-i Milliye 16.3.1925).
+# 29 EKİM ÖZEL: ironi yalnız dönemin şartlarına ve yabancı elçinin yanılgısına. Atatürk çizilmez, konuşturulmaz, adı replikte
+# yok; Cumhuriyet, Meclis ve millet alay konusu değil. Kapanış: bugünkü Ankara (gururlu, slogansız).
+# Ters köşe (dramatik ironi): A (yabancı elçilik görevlisi, kurgu) "nasılsa İstanbul'a döneriz" der; B Sovyetlerin çoktan
+# yerleştiğini söyleyince aynı kutuda yüz varyantıyla "Bekle, başkent gerçekten Ankara'da mı kalacak?" diye sorar.
+# Kanıt: NYT Magazine 30.5.1926 (ilk Amerikan temsilcisi yük vagonunda, ziyaretçi diplomatlara yataklı vagon), sonra bugünkü
+# Ankara (son kare = cevap). Son 5 bölümün son karesi: kitap sayfası, arşiv fotoğrafı, tablo, oda fotoğrafı, arşiv fotoğrafı
+# -> bu bölümde son kare bugünkü şehir panoraması; gerçek kamu malı gazete sayfası ilk kanıtta.
+# AYNI YER, AYNI AN: Mart 1925, Ankara'da bir sokak (arka plan: Hacı Bayram Camii ve Afgan elçiliğinin bulunduğu sokak, Aralık 1922).
+#   A (hep solda): yabancı bir elçilikte görevli (kurgu; ülkesi belirtilmez, gerçek kimseyi temsil etmez).
+#   B (hep sağda): istasyon memuru (kurgu). Fes 1925 Kasım'ındaki Şapka Kanunu'ndan önce uygundur.
+# Araştırma notu: scratchpad /tmp/arastirma/olgular.md (repoya girmez). Karakterler: chars/uret.py. Görseller: gorsel.py.
+id: ankara-elci-vagonlari
+title: "Cumhuriyet'in ilk yıllarında Ankara Garı'nda bir hafta tren vagonunda çalışan elçilik"
+
+# Kanal imzası (22.10'dan beri bizim imza_v2_golge.m4a). "orijinal" asla.
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (elçilik görevlisi, sol). Arkada Ankara, Aralık 1922 (Gadmer otokromu): Hacı Bayram sokağı, Afgan elçiliği.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_angora_1922.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_diplomat.png, side: left, height: 0.50}
+    text: "Elçilik bir hafta\ntren vagonunda mı çalışacak"
+
+  # 2) UYARI — B (istasyon memuru, sağ)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_angora_1922.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_memur.png, side: right, height: 0.50}
+    text: "Kalacaksanız ev tutun efendim"
+
+  # 3) GEÇİŞTİRME — A (elçilikler İstanbul'da kaldı; Ankara'yı geçici sayıyorlardı)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_angora_1922.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_diplomat.png, side: left, height: 0.50}
+    text: "Gerek yok, nasılsa\nİstanbul'a döneriz"
+
+  # 4) TOHUM — B (Sovyet temsilciliği 1920'den, büyükelçi Suritz Haziran 1923'ten beri Ankara'da)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_angora_1922.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_memur.png, side: right, height: 0.50}
+    text: "Sovyetler çoktan buraya\nyerleşti ama"
+
+  # 5) TERS KÖŞE — A, aynı kutu, yüz varyantı (iri göz, kalkık kaş, "O" ağız, alında mavi çizgiler, ter damlaları)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka_angora_1922.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_diplomat_sok.png, side: left, height: 0.50}
+    text: "Bekle, başkent gerçekten\nAnkara'da mı kalacak"
+
+  # 6-7) KANIT — NYT Magazine 30.5.1926 s. 23 (vagonlar), sonra bugünkü Ankara (son kare, cevap)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1_nyt_1926.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2_ankara_bugun.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Cumhuriyet'in ilk yıllarında Ankara Garı'nda bir hafta tren vagonunda çalışan elçilik
+  29 Ekim Cumhuriyet Bayramımız kutlu olsun. Olayın tamamı sabit yorumda 👇
+hashtags: [29Ekim, ankara, cumhuriyet]
+
+pinned_comment: |
+  Cumhuriyet'in ilk yıllarında Ankara'ya iş için gelen yabancı elçilerin, kentte otel ve konut bulamayınca Ankara Garı'ndaki tren vagonlarında kalıp çalıştığı dönem, 1923'te Ankara'nın başkent olmasından sonra yaşandı ve 1920'lerin ortasına kadar sürdü.
+
+  Ankara, Cumhuriyet'in 29 Ekim 1923'teki ilanından iki hafta önce, 13 Ekim'de başkent oldu. İstanbul'daki yabancı elçiliklerin çoğu yerinde kaldı; birçok devlet Ankara'nın başkentliğini geçici sayıyordu. Sovyet Rusya ve Afganistan'ın temsilcilikleri ise Ankara'daydı.
+
+  Ankara'ya trenle gelen elçilerin bir kısmı geceyi istasyondaki vagonlarda geçirdi. Alman Elçisi Rudolf Nadolny'nin, Haziran 1924'te itimatnamesini sunmaya giderken otel bulamadığı için tren vagonunda kaldığı anılarında anlatılır. İngiltere Büyükelçisi Sir Ronald Lindsay ise Mart 1925'te altı kişilik heyetiyle iki vagonla geldi: biri çalışma odası ve kançılarya olan salon vagonu, öbürü yataklı vagondu. Vagonlar garda yaklaşık bir hafta durdu.
+
+  1925'te Türkiye, elçilik yapacak devletlere ücretsiz arsa verdi ve yurt dışından gelecek inşaat malzemesini gümrükten muaf tuttu. İngilizler 1926'da Çankaya'da ev kiraladı; Fransa Büyükelçisi Charles de Chambrun 1928'de Ankara'ya yerleşti.
+
+  Videodaki ilk kanıt The New York Times Magazine'in 30 Mayıs 1926 sayısıdır (çeviri): "Ankara'daki ilk Amerikan temsilcisi dönüştürülmüş bir yük vagonunda yaşadı. Çok sonra, ziyarete gelen diplomatlara kısa ziyaretleri için yataklı vagonlar verildi." Son kare bugünkü Ankara'dır. 1923'te nüfusu 20 ila 35 bin arasında tahmin edilen şehir, bugün 5 milyon 910 bin kişilik bir il ve Türkiye'deki yaklaşık 140 büyükelçiliğe ev sahipliği yapıyor.
+
+  Cumhuriyet'in 103. yıl dönümünde, o vagonlarda kalan elçiler bugünkü Ankara'yı görse sizce ne derdi?
+
+credits: "Turquie, Angora, Mosquée Hadji Baïram et Ambassade Afghane, 1922 (Frédéric Gadmer, Musée Albert-Kahn, CC BY-SA 4.0; kırpıldı, temizlendi, renk düzeltildi), A view of Ankara from Anıtkabir 2 (Alexkom000, CC BY 4.0; küçültüldü), Wikimedia Commons; The New York Times Magazine, 30.05.1926, s. 23 (ABD'de kamu malı; kırpıldı), Internet Archive."
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır:** elçilik görevlisi ve istasyon memuru kurgu karakterlerdir, gerçek kişileri ve belirli bir ülkeyi temsil etmez; ekrandaki sözler belgeli alıntı değildir. Belgeli olan: elçiliklerin Ankara'ya taşınmakta acele etmediği, Ankara'ya gelen elçilerin garda vagonlarda kaldığı (Lindsay heyeti Mart 1925'te iki vagonla yaklaşık bir hafta), Sovyet temsilciliğinin Ankara'da olduğu, Fransa'nın 1928'de taşındığı"
+  - "**29 Ekim tonu:** ironi yalnız dönemin şartlarına ve yabancı elçinin yanılgısına; Atatürk videoda yok, Cumhuriyet/Meclis/millet hakkında alaycı söz yok. Yorumlarda tartışma çıkarsa saygılı kal"
+  - "**Kanıtlar:** ilk kare The New York Times Magazine'in 30 Mayıs 1926 sayfası (gerçek sayfa, ABD'de kamu malı), son kare bugünkü Ankara (Commons, CC BY 4.0). Kupür ya da kendi ürettiğimiz kart yok"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+  - "İsteğe bağlı ilk yorum (hesaptan, paylaşır paylaşmaz): \"İngiliz Büyükelçisi'nin vagonlarından biri çalışma odası ve kançılaryaydı. Siz bir hafta vagonda çalışabilir miydiniz?\""
+
+sources:
+  # Doğrulama (29.10.2026)
+  - "Ufuk Erdem, 'İngiltere'nin Yeni Başkent Ankara'yı Kabullen(emeye)işi ve İngiliz Büyükelçilik Binasının İnşası', ITOBIAD 6/5, 2017 (13 Ekim 1923; İngiltere'nin elçiliği İstanbul'da tutması; Lindsay 15-16 Mart 1925, Hâkimiyet-i Milliye 16.3.1925 s.1: heyet istasyondaki hususi vagonlarında kalacak; Nadolny'nin 1924'te otel olmadığı için vagonda kaldığı anılarında; 1925 bütçe kanunuyla ücretsiz arsa ve gümrük muafiyeti; Çankaya'da ev): https://dergipark.org.tr/tr/pub/itobiad/article/325640"
+  - "Room for Diplomacy, Catalogue of British embassy and consulate buildings, Ankara (misyonlar yeni hükümetin kısa süreceğini düşündü; Lindsay Mart 1925'te itimatname; iki vagon: salon = çalışma odası + kançılarya, bir yataklı vagon; garda bir yan hatta yaklaşık bir hafta; 1926'da Çankaya'da ev): https://roomfordiplomacy.com/ankara/"
+  - "The New York Times Magazine, 30 Mayıs 1926, s. 23, Rose Lee, 'New Turkey Progresses at High Speed' (ilk Amerikan temsilcisi dönüştürülmüş yük vagonunda; ziyaretçi diplomatlara kısa ziyaretlerinde yataklı vagon): https://archive.org/details/sim_new-york-times_1926-05-30_75_24963_1"
+  - "Smithsonian Magazine, 2024 (ABD temsilcisi Robert Imbrie ve eşinin Ankara'da dönüştürülmüş yük vagonunda yaşadığı): https://www.smithsonianmag.com/history/a-century-ago-a-mob-brutally-attacked-an-american-diplomat-in-persia-his-death-shaped-us-iran-relations-for-decades-180985016/"
+  - "Küçük, History (Wiley), Ankara'daki ilk yabancı temsilcilik 1920'de Sovyet Rusya: https://onlinelibrary.wiley.com/doi/10.1111/1468-229x.70146 ; STRASAM, 'Ataturk and Afghanistan' (başkentlik sonrası Ankara'da SSCB ve Afganistan): https://strasam.org/en/history/history-of-turkish-republic/ataturk-and-afghanistan-207 ; Harry A. Franck, The Fringe of the Moslem World (1928), s. 250: 'Only the Russians ... have moved their embassy to Angora'"
+  - "Fransa Diplomatik Arşivleri (CADN), Ankara fonu tanıtımı (Chambrun 1928'de ikametini ve bürolarını Ankara'ya kurdu): https://archivesdiplomatiques.diplomatie.gouv.fr/ark:/14366/tch3qz50lxf4 ; Fransa Ankara Büyükelçiliği, büyükelçiler listesi: https://tr.ambafrance.org/1525-ten-itibaren-Buyukelciler"
+  - "TÜİK ADNKS 2025 (Ankara ili 5.910.320): https://www.hurriyet.com.tr/yerel-haberler/ankara/nufusumuz-6-milyona-yaklasti-43106666 ; https://www.haberankara.com/ankara/tuik-acikladi-ankaranin-nufusu-5-milyon-910-bin-320-kisi-oldu-309710"
+  - "Türkiye'de 140 büyükelçilik (AA, Sayılarla 2025'te Türk dış politikası): https://www.aa.com.tr/tr/2025-boyle-gecti/sayilarla-2025te-turk-dis-politikasi/3779414 ; Vikipedi, Türkiye'deki diplomatik temsilcilikler listesi (Ankara'da 139): https://tr.wikipedia.org/wiki/T%C3%BCrkiye'deki_diplomatik_temsilcilikler_listesi"
+  - "1923 nüfusu tahmin (yaklaşık 20-25 bin): Türk Maarif Ansiklopedisi 'Ankara': https://turkmaarifansiklopedisi.org.tr/ankara"
+  # Görseller ve lisanslar
+  - "GÖRSEL img/arka_angora_1922.jpg (tüm diyalog) — 'Turquie, Angora, Mosquée Hadji Baïram et Ambassade Afghane - A36980.jpg', Frédéric Gadmer (Archives de la Planète, Musée Albert-Kahn), 24.12.1922, CC BY-SA 4.0 ({{cc-by-sa-4.0}}): https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_Mosqu%C3%A9e_Hadji_Ba%C3%AFram_et_Ambassade_Afghane_-_A36980.jpg . Değişiklik: kırpım (360,40)-(1700,1380) (cam plaka kenarları dışarıda), gökyüzündeki tozlar yerel medyanla temizlendi, autocontrast (ton korunarak), beyaz dengesi, 1080x1080, Color 2,9, Brightness 0,76"
+  - "GÖRSEL img/kanit_1_nyt_1926.jpg (kanıt 1, 11,0-12,5 sn) — The New York Times Magazine, 30 Mayıs 1926, s. 23, sol sütun (ABD'de kamu malı, 1926 yayını), Internet Archive sayfa görüntüsü: https://archive.org/download/sim_new-york-times_1926-05-30_75_24963_1/page/n22_w4000.jpg . Değişiklik: kırpım (300,1394)-(1000,1744) (sağda sütun çizgisi ve komşu sütun), 1080x540, renk ve ton değiştirilmedi"
+  - "GÖRSEL img/kanit_2_ankara_bugun.jpg (kanıt 2, son kare, 12,5-14,0 sn) — '2025-05-02 A view of Ankara from Anıtkabir 2.jpg', Alexkom000, CC BY 4.0 ({{self|cc-by-4.0}}): https://commons.wikimedia.org/wiki/File:2025-05-02_A_view_of_Ankara_from_An%C4%B1tkabir_2.jpg . Değişiklik: kırpım (0,200)-(1920,1250), 1080x591"
+  # Karakterler (chars/uret.py)
+  - "KARAKTER A elçilik görevlisi (sol): wojakland '1930s Top Hat Wojak' (melon şapka, gri takım; 352x405 kaynak, 3x büyütüldü, çizgiler netleştirildi; a_diplomat_sok.png: iri göz, kalkık kaş, 'O' ağız, alında mavi ter çizgileri, üç ter damlası)"
+  - "KARAKTER B istasyon memuru (sağ): episodes/karakoy-tunel-1874/chars/memur_sakin.png (bordo fes; değişmedi)"

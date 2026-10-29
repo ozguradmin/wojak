@@ -111,6 +111,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_fark.png"
  },
+ "30db62d81b2f0691364361e06b71dfafa352e56a": {
+  "faces": "right",
+  "file": "episodes/ankara-elci-vagonlari/chars/a_diplomat_sok.png"
+ },
  "3336125c88491e3e0ede365d5ebef926c88a1400": {
   "faces": "right",
   "file": "episodes/karakoy-tunel-1874/chars/esnaf_sakin.png"
@@ -570,6 +574,10 @@
  "ba840f1db5cbfe73a45ca26fd0fa92fa3aff2506": {
   "faces": "front",
   "file": "episodes/en-d-b-cooper/chars/a_ter.png"
+ },
+ "bae2ef3f8d055e216502803911d9da208e081d1a": {
+  "faces": "right",
+  "file": "episodes/ankara-elci-vagonlari/chars/a_diplomat.png"
  },
  "baf9fde2cf34ea557b9185e0cff52f26e02f95d1": {
   "faces": "right",
