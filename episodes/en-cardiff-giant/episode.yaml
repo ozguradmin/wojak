@@ -1,0 +1,94 @@
+# The Cardiff Giant (1869). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgular.md (HISTORY, Britannica, Smithsonian, Wikipedia, Museum of Hoaxes, Archaeology 2005, Public Domain Review).
+# CANLANDIRMA: iki adsız wojak; diyalog gerçek kişiye söz atfetmez. Arka plan Cardiff çiftliği DEĞİL, aynı dönem Kuzeydoğu ABD çiftliği (LoC stereograf).
+# Karakterler: A = wojakland Farmer Wojak (ters köşe a_sok = el çizimi şaşkın yüz; şapka siperi sivriltildi), B = wojakland Top Hat British Chad 1 (silindir şapka, redingot; 1860'lara uygun).
+id: en-cardiff-giant
+kanal: en  # Wojak Past Files
+title: "The 10-foot \"petrified man\" dug up on a New York farm in 1869"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Farmers dug up a 10-foot\npetrified man"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Who told them where to dig?"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Who cares, it's 50 cents a look"
+
+  - type: card
+    duration: 1.5
+    text: "Six weeks later"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, why does he have\nchisel marks?"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2.jpg]
+
+cover_scene: 5
+cover_at: 0.5
+
+caption: |
+  The 10-foot "petrified man" dug up on a New York farm in 1869
+  The full story is in the pinned comment 👇
+
+hashtags: [history, hoax, cardiffgiant]
+
+pinned_comment: |
+  The Cardiff Giant was a hoax: a ten-foot gypsum statue, carved in Chicago in 1868, buried on a New York farm and "discovered" as a petrified man in October 1869. Two well diggers on William Newell's farm in Cardiff struck a stone foot. Newell later charged visitors 50 cents to see it.
+
+  George Hull, a cigar maker, had argued with a preacher about the giants of Genesis and decided to fake a petrified man. A block of Iowa gypsum was carved in Chicago, shipped to his relative's farm and buried in November 1868, almost a year before the "find." The diggers were not just lucky: according to Smithsonian and Archaeology, Newell told them where to dig.
+
+  In late November 1869, Yale paleontologist Othniel C. Marsh called it "of very recent origin, and a most decided humbug," noting that soft gypsum could not keep fresh tool marks after centuries underground. P. T. Barnum said he offered $50,000 for the original, was refused, and displayed a plaster copy in New York that December; by his own account it drew more visitors.
+
+  The first evidence frame is a detail of a lithograph of the giant; the print's own caption reads "Exhumed at Cardiff, Onondaga Co., N.Y., Oct. 16, 1869." The final frame is a New York State historical marker for the giant, photographed in 2013.
+
+  Dramatized: the characters and dialogue are invented.
+
+  Would you have paid 50 cents to see it?
+
+credits: "The Onondaga giant (lithograph), Popular Graphic Arts, Library of Congress (LCCN 2003666806), public domain, cropped, contrast adjusted; Cardiff Giant, Cooperstown, NY (8906282793), photo by Martin Lewison, CC BY-SA 2.0 (https://creativecommons.org/licenses/by-sa/2.0), via Wikimedia Commons (commons.wikimedia.org/wiki/File:Cardiff_Giant,_Cooperstown,_NY_(8906282793).jpg), cropped; Two story farm house and barns with bare trees, stereograph by Hiram D. Adams, c. 1880, Library of Congress (LCCN 2024722495), public domain, cropped, darkened, blurred (background; not the Cardiff farm). Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction; no real person is represented and the lines are not documented quotes. Sourced: the 10-foot gypsum figure, the 1869 dig, Marsh's verdict (quoted verbatim), the Barnum copy."
+  - "Arka plan Cardiff çiftliği değil: aynı dönemin Kuzeydoğu ABD çiftliği (LoC stereograf, yeri kayıtta yok). Kredide ve sabit yorumda belirtildi; hesap sahibi isterse değiştirir."
+  - "Kanıt 1 litografında çıplak taş heykel var (tarihî baskı; grafik değil). YouTube'a uygunluğunu hesap sahibi bilsin."
+  - "Son kare CC BY-SA 2.0 (Martin Lewison); atıf kredide, paylaşım koşulu hesap sahibi kararı (en-mincemeat da aynı)."
+  - "Kart 'Six weeks later': keşif 16 Ekim 1869, Marsh'ın yazılı hükmü 25 Kasım 1869 (40 gün)."
+
+sources:
+  - "Cardiff Giant ayrıntıları (10 ft, Newell'in çiftliği, 16 Ekim 1869, Fort Dodge alçıtaşı, Chicago 1868, gömülme Kasım 1868): https://www.britannica.com/event/Cardiff-Giant ; https://www.history.com/articles/the-cardiff-giant-fools-the-nation-145-years-ago ; https://en.wikipedia.org/wiki/Cardiff_Giant"
+  - "Kazıcılara yeri Newell'in söylemesi: https://www.smithsonianmag.com/smart-news/cardiff-giant-was-just-big-hoax-180965274/ ; https://archive.archaeology.org/online/features/hoaxes/giants.html ; https://hoaxes.org/archive/permalink/the_cardiff_giant"
+  - "Marsh hükmü ('of very recent origin, and a most decided humbug', 25 Kasım 1869), alet izi gerekçesi: https://archive.archaeology.org/online/features/hoaxes/giants.html ; https://www.history.com/articles/the-cardiff-giant-fools-the-nation-145-years-ago ; https://en.wikipedia.org/wiki/Cardiff_Giant"
+  - "Barnum teklifi ve alçı kopya (Aralık 1869; kalabalık iddiası Barnum'un kendi anlatısı): https://archive.archaeology.org/online/features/hoaxes/giants.html ; https://www.history.com/articles/the-cardiff-giant-fools-the-nation-145-years-ago ; https://publicdomainreview.org/collection/cardiff-giant/"
+  - "GÖRSEL img/kanit_1.jpg — 'The Onondaga giant', litografi, Popular Graphic Arts, LoC LCCN 2003666806 (no known restrictions; Commons PD-1923): https://www.loc.gov/item/2003666806/ . Değişiklik: üstteki figürün gövde+baş kırpımı, autocontrast. Baskının kendi yazısı 'Exhumed at Cardiff, Oct. 16, 1869'."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Cardiff Giant, Cooperstown, NY (8906282793)', Martin Lewison, 2013, CC BY-SA 2.0 (ham sayfa doğrulandı): https://commons.wikimedia.org/wiki/File:Cardiff_Giant,_Cooperstown,_NY_(8906282793).jpg . New York eyalet levhası: 'Cardiff Giant, The Great American Hoax, dug up in Cardiff N.Y. October 16, 1869, now at the Farmers' Museum'. Değişiklik: 1080x560 kırpım."
+  - "GÖRSEL img/bg.jpg (arka plan) — 'Two story farm house and barns with bare trees', stereograf, Hiram D. Adams, c.1875-1885, LoC LCCN 2024722495 (no known restrictions): https://www.loc.gov/item/2024722495/ . Değişiklik: sol kare kırpımı, parlaklık 0,76, blur 1,7."

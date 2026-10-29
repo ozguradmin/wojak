@@ -1,4 +1,8 @@
 {
+ "00059cac9f060aa8c1ab39db12eabfcbe9cd9a82": {
+  "faces": "right",
+  "file": "episodes/en-cardiff-giant/chars/a_sok.png"
+ },
  "00dec93cf3697ef79b35a8011ca14d7b9a06f7ce": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_v2_sakin.png"
@@ -383,6 +387,10 @@
   "faces": "right",
   "file": "episodes/nusret-mayin-gemisi/chars/itilaf_deniz_subayi.png"
  },
+ "757130c5365f864eda26caf24a86f99dbc8db3f8": {
+  "faces": "right",
+  "file": "episodes/en-cardiff-giant/chars/a_sakin.png"
+ },
  "7621d605282adae2a5218f0f0aa758d7b8c6ed69": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
@@ -422,6 +430,10 @@
  "81f96fdd044779d5ea2f4e8789bdfa38fe7724ff": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_sepet.png"
+ },
+ "863c7d4111b78e4761e9511f1fc24699ab9d099f": {
+  "faces": "left",
+  "file": "episodes/en-cardiff-giant/chars/b_sakin.png"
  },
  "8807874d10784938fdee8d7c0fb52bb797c61ffa": {
   "faces": "right",
