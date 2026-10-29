@@ -135,6 +135,10 @@
   "faces": "right",
   "file": "episodes/en-mechanical-turk/chars/a_sok.png"
  },
+ "3ab328d10271b94f8d83d1e7ee603b822622f090": {
+  "faces": "right",
+  "file": "episodes/schliemann-sal-1873/chars/isci_sok.png"
+ },
  "3bd087dffb2e0d19bf95a17f991530320b453437": {
   "faces": "right",
   "file": "assets/characters/sovyet_asker_kis.png"

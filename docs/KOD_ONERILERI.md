@@ -52,6 +52,7 @@
 ## Testler
 
 - `tests/`: sabit `/home/user/wojak` yolu yerine depo kökünü kullan (taze konteynerde bağ yokken `test_short_youtube_aciklamasi_hikayeyi_tasir` düşüyor); talidomit telifli görseline bağlı hashtag testi ortam eksiğinde düşmesin.
+- `wojak check`/denetim: kanıt görsellerinde koyu piksel oranı (<15) > %1 ise `[stil]` uyarısı (yarı ton taramada ezik gölge; schliemann-sal-1873 tur 1 MUST'ı).
 
 ## Belge düzeltmeleri (eski bilgi taşıyanlar)
 
