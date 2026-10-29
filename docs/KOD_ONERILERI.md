@@ -60,3 +60,4 @@
 - `CLAUDE.md` sert kural 3 ve `docs/ADIM_ADIM.md` §9: Wikimedia "≥ 10 sn" kuralı `tools/commons.py` ile güncellenmeli.
 - `docs/ADIM_ADIM.md` §3 ve §8: "kısa reel ~1 iş günü" (gerçekleşen 25-50 dk), §1 "71 test" (şimdi 99), §6 Telegram teslimi (yerine yayın botu).
 - `docs/OGRENILENLER.md` §5 madde 6 ve §6.2 "Hızlı başlangıç" 8, 10, 13: eski müzik dosyası, kupür varsayılanı, `/mnt/session/outputs` teslimi; el kitabı geçerli.
+- `tools/wojak_lib.py get`: `--yon` seçeneği var ama yazmıyor ("bakış yönü kayıtlı değil" uyarısı); `get` sonrası `python -m wojak yon` otomatik sorulsun ya da `--yon` gerçekten kaydetsin (en-dancing-plague-1518).

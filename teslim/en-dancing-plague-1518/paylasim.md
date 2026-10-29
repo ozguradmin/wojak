@@ -1,0 +1,124 @@
+# en-dancing-plague-1518 — paylaşım paketi
+
+Süre: 14.0 sn · 7 sahne · video: `en-dancing-plague-1518.mp4` · kapak: `kapak.jpg`
+
+## Instagram Reels
+
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2066/2200
+
+```
+In 1518, Strasbourg hired musicians for people who couldn't stop dancing
+
+The Dancing Plague of 1518 was a wave of uncontrollable dancing in Strasbourg, then a free city of the Holy Roman Empire. In mid-July, a woman known in later accounts as Frau Troffea reportedly began dancing in a street and kept going for days. Dozens joined her; estimates range from about 50 to 400.
+
+The city's physicians reportedly blamed a natural illness brought on by summer heat, and more dancing was seen as the cure. So the city hired musicians to keep the dancers going. Later chronicles add a stage in the grain market, a detail some historians doubt. The dancing did not stop. Later accounts also say some dancers did not survive, but no contemporary city record mentions anyone losing their life.
+
+From late July the worst affected were reportedly sent to a shrine of St Vitus near Saverne, and on 2 August 1518 the council banned public dancing, with a few exceptions for private celebrations. By early September the outbreak had reportedly faded.
+
+The cause is debated: many historians favour stress-driven mass psychogenic illness; ergot poisoning is doubted.
+
+The first image is the city register page dated 2 August 1518, signed by city secretary Sebastian Brant. The last image is a 1592 painting by Pieter Brueghel the Younger, after his father's lost work, of St John's dancers with bagpipers at Molenbeek near Brussels: not Strasbourg. Dramatized: the wojak characters and all dialogue are invented.
+
+If your doctor told you to dance it off, would you?
+
+Images: Sébastien Brant (1458-1521), ban on public dancing, Strasbourg, 2 August 1518 (city archives AVES 1 MR3 f.72r), public domain, cropped, via Wikimedia Commons; Pieter Brueghel the Younger (1564-1638), 'Saint John's Dancers in Molenbeeck' (1592), public domain, via Wikimedia Commons, resized; 'Strasbourg Cathedral Exterior' by Diliff (2014), CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons, cropped to a square, color reduced, blurred. Characters: ready-made wojak art.
+```
+
+## YouTube Shorts
+
+### Başlık — 72/100
+
+```
+In 1518, Strasbourg hired musicians for people who couldn't stop dancing
+```
+
+### Açıklama
+
+```
+In 1518, Strasbourg hired musicians for people who couldn't stop dancing
+
+The Dancing Plague of 1518 was a wave of uncontrollable dancing in Strasbourg, then a free city of the Holy Roman Empire. In mid-July, a woman known in later accounts as Frau Troffea reportedly began dancing in a street and kept going for days. Dozens joined her; estimates range from about 50 to 400.
+
+The city's physicians reportedly blamed a natural illness brought on by summer heat, and more dancing was seen as the cure. So the city hired musicians to keep the dancers going. Later chronicles add a stage in the grain market, a detail some historians doubt. The dancing did not stop. Later accounts also say some dancers did not survive, but no contemporary city record mentions anyone losing their life.
+
+From late July the worst affected were reportedly sent to a shrine of St Vitus near Saverne, and on 2 August 1518 the council banned public dancing, with a few exceptions for private celebrations. By early September the outbreak had reportedly faded.
+
+The cause is debated: many historians favour stress-driven mass psychogenic illness; ergot poisoning is doubted.
+
+The first image is the city register page dated 2 August 1518, signed by city secretary Sebastian Brant. The last image is a 1592 painting by Pieter Brueghel the Younger, after his father's lost work, of St John's dancers with bagpipers at Molenbeek near Brussels: not Strasbourg. Dramatized: the wojak characters and all dialogue are invented.
+
+If your doctor told you to dance it off, would you?
+
+Images: Sébastien Brant (1458-1521), ban on public dancing, Strasbourg, 2 August 1518 (city archives AVES 1 MR3 f.72r), public domain, cropped, via Wikimedia Commons; Pieter Brueghel the Younger (1564-1638), 'Saint John's Dancers in Molenbeeck' (1592), public domain, via Wikimedia Commons, resized; 'Strasbourg Cathedral Exterior' by Diliff (2014), CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons, cropped to a square, color reduced, blurred. Characters: ready-made wojak art.
+
+#history #medieval #shorts
+```
+
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1475 karakter
+
+```
+The Dancing Plague of 1518 was a wave of uncontrollable dancing in Strasbourg, then a free city of the Holy Roman Empire. In mid-July, a woman known in later accounts as Frau Troffea reportedly began dancing in a street and kept going for days. Dozens joined her; estimates range from about 50 to 400.
+
+The city's physicians reportedly blamed a natural illness brought on by summer heat, and more dancing was seen as the cure. So the city hired musicians to keep the dancers going. Later chronicles add a stage in the grain market, a detail some historians doubt. The dancing did not stop. Later accounts also say some dancers did not survive, but no contemporary city record mentions anyone losing their life.
+
+From late July the worst affected were reportedly sent to a shrine of St Vitus near Saverne, and on 2 August 1518 the council banned public dancing, with a few exceptions for private celebrations. By early September the outbreak had reportedly faded.
+
+The cause is debated: many historians favour stress-driven mass psychogenic illness; ergot poisoning is doubted.
+
+The first image is the city register page dated 2 August 1518, signed by city secretary Sebastian Brant. The last image is a 1592 painting by Pieter Brueghel the Younger, after his father's lost work, of St John's dancers with bagpipers at Molenbeek near Brussels: not Strasbourg. Dramatized: the wojak characters and all dialogue are invented.
+
+If your doctor told you to dance it off, would you?
+```
+
+## TikTok (isteğe bağlı)
+
+### Açıklama — 2129/4000
+
+```
+In 1518, Strasbourg hired musicians for people who couldn't stop dancing
+
+The Dancing Plague of 1518 was a wave of uncontrollable dancing in Strasbourg, then a free city of the Holy Roman Empire. In mid-July, a woman known in later accounts as Frau Troffea reportedly began dancing in a street and kept going for days. Dozens joined her; estimates range from about 50 to 400.
+
+The city's physicians reportedly blamed a natural illness brought on by summer heat, and more dancing was seen as the cure. So the city hired musicians to keep the dancers going. Later chronicles add a stage in the grain market, a detail some historians doubt. The dancing did not stop. Later accounts also say some dancers did not survive, but no contemporary city record mentions anyone losing their life.
+
+From late July the worst affected were reportedly sent to a shrine of St Vitus near Saverne, and on 2 August 1518 the council banned public dancing, with a few exceptions for private celebrations. By early September the outbreak had reportedly faded.
+
+The cause is debated: many historians favour stress-driven mass psychogenic illness; ergot poisoning is doubted.
+
+The first image is the city register page dated 2 August 1518, signed by city secretary Sebastian Brant. The last image is a 1592 painting by Pieter Brueghel the Younger, after his father's lost work, of St John's dancers with bagpipers at Molenbeek near Brussels: not Strasbourg. Dramatized: the wojak characters and all dialogue are invented.
+
+If your doctor told you to dance it off, would you?
+
+Images: Sébastien Brant (1458-1521), ban on public dancing, Strasbourg, 2 August 1518 (city archives AVES 1 MR3 f.72r), public domain, cropped, via Wikimedia Commons; Pieter Brueghel the Younger (1564-1638), 'Saint John's Dancers in Molenbeeck' (1592), public domain, via Wikimedia Commons, resized; 'Strasbourg Cathedral Exterior' by Diliff (2014), CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons, cropped to a square, color reduced, blurred. Characters: ready-made wojak art.
+
+#history #medieval #mystery #wojak #wojakpastfiles #truestory
+```
+
+## Yükleme kontrol listesi
+
+- [ ] YouTube'u yayın botu yükler (wojak-en-ozel). Instagram: ABD akşamı (TR 01:00-04:00) önerilir
+- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
+- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
+- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
+- [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
+- [ ] **Dramatization:** the two wojak characters are unnamed; dialogue is invented and the pinned comment says so.
+- [ ] **The last image is not Strasbourg:** a 1592 Brueghel the Younger painting of the St John's dancers at Molenbeek; stated in the pinned comment. The register page (first image) is Strasbourg 1518, handwritten German, not readable on a phone.
+- [ ] **Costumes are approximate:** A wears a plain brown tunic, B a peasant hood and red-trimmed cloak; the cathedral stood in 1518, but the dancing was not staged at the cathedral.
+- [ ] Death toll, cause, exact start day (14 or 15 July), the stage in the grain market (later chronicles; Rue89 Strasbourg says the sick were not placed on a stage) and the order of pilgrimage and ban are contested; the title and video claim only the musicians and the 2 August ban.
+
+Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
+
+## Kaynaklar (doğrulama için, paylaşılmaz)
+
+- History.com, What Was the Dancing Plague of 1518? (July 1518 start, theories): https://www.history.com/articles/what-was-the-dancing-plague-of-1518
+- Popular Science, The mysterious dancing plague that killed people in 1518 (stage, musicians, St Vitus shrine, Waller on ban): https://www.popsci.com/science/dancing-plague-medieval-strasbourg/
+- Public Domain Review, The Dancing Plague of 1518 (stage, Brant's exceptions, ban until September, 1518 register folio): https://publicdomainreview.org/essay/the-dancing-plague-of-1518/
+- Waller, A forgotten plague, The Lancet 373 (2009) (authorities hired musicians, ergot doubted): https://www.thelancet.com/article/S0140-6736(09)60386-X/fulltext
+- Rue89 Strasbourg (register extract: ban on public dances, Brant, 2 Aug 1518, AVES 1 MR3 f.72r): https://www.rue89strasbourg.com/strasbourg-epidemie-de-danse-de-1518-143726
+- Musees de Strasbourg exhibition text '1518 La fievre de la danse' (same register entry and date): https://elisabethitti.fr/2020/03/30/1518-la-fievre-de-la-danse/
+- Wikipedia, Dancing plague of 1518 (hot blood cure, 50-400 estimate, deaths disputed): https://en.wikipedia.org/wiki/Dancing_plague_of_1518
+- fr.Wikipedia, Epidemie dansante de 1518 (no contemporary author mentions deaths; no consensus on cause): https://fr.wikipedia.org/wiki/%C3%89pid%C3%A9mie_dansante_de_1518
+- GÖRSEL img/kanit_1_brant.jpg — 'Interdiction danse Strasbourg Sebastien Brant 1518.jpg', Sébastien Brant (d. 1521), {{PD-old-70}}: https://commons.wikimedia.org/wiki/File:Interdiction_danse_Strasbourg_Sebastien_Brant_1518.jpg. Değişiklik: alt yarı kırpım
+- GÖRSEL img/kanit_2_bruegel.jpg (son kare) — 'Saint John’s Dancers in Molenbeeck’ (1592) by Pieter Brueghel II.jpg', Pieter Brueghel the Younger (d. 1638), public domain: https://commons.wikimedia.org/wiki/File:Saint_John%E2%80%99s_Dancers_in_Molenbeeck%E2%80%99_(1592)_by_Pieter_Brueghel_II.jpg. Değişiklik: yalnız yeniden boyutlandırma
+- GÖRSEL img/bg_katedral.jpg — 'Strasbourg Cathedral Exterior - Diliff.jpg', Diliff, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:Strasbourg_Cathedral_Exterior_-_Diliff.jpg. Değişiklik: kare kırpım (gökyüzü atıldı), renk azaltıldı, bulanıklık

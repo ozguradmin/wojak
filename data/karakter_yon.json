@@ -503,6 +503,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_sakin.png"
  },
+ "a0cc99f9cb2c5ac781fbd6a6ca8262e515e17a49": {
+  "faces": "right",
+  "file": "episodes/en-dancing-plague-1518/chars/a_sakin.png"
+ },
  "a654ed98c2ed7752d72ed9cd1668864348719972": {
   "faces": "right",
   "file": "episodes/yerebatan-bodrum-balik/chars/gyllius_sakin.png"
@@ -574,6 +578,10 @@
  "bb95713531bfc7e6a46ba704605d41796f39f18a": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_kararli.png"
+ },
+ "bfaa856bf5a852e406be406c2297ff1b4f8b1de1": {
+  "faces": "right",
+  "file": "episodes/en-dancing-plague-1518/chars/b_sok.png"
  },
  "c4d8fa492ce23821baf5912cb781f515dcf44743": {
   "faces": "left",
@@ -722,6 +730,10 @@
  "f4afc247400801a4434e9cbb1be5d823d950919c": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/agliyor.png"
+ },
+ "f51528bf0c260a2371429a44c74a44103c662666": {
+  "faces": "right",
+  "file": "episodes/en-dancing-plague-1518/chars/b_sakin.png"
  },
  "f5562cea239e6f4c16c5a8feba7fa33f0d377264": {
   "faces": "right",
