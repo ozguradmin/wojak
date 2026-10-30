@@ -1,0 +1,96 @@
+# The bat bomb (Project X-Ray, WWII). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgular.md (NPS, Air & Space Forces 1990, Task & Purpose, Warfare History Network, MHQ/Neer 2013, AFTC, Atlas Obscura, Smithsonian, Wikipedia işaretçi).
+# CANLANDIRMA: iki adsız wojak; gerçek kişi temsil edilmez, replikler belgeli alıntı değil. Tarih "1943" (15 Mayıs tartışmalı), neden "reportedly".
+# Karakterler: A = wojakland '1950s Businessman Wojak' (planı anlatan görevli; ters köşe a_sok = el çizimi şaşkın yüz), B = wojakland 'Suit Wojak' (fötr şapkalı şüpheci).
+id: en-bat-bomb
+kanal: en  # Wojak Past Files
+title: "The US Army's WWII plan to firebomb Japan with bats"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Our new weapon: bats\nwith tiny firebombs"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Won't they just fly off?"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Relax, we chill them\nto sleep first"
+
+  - type: card
+    duration: 1.5
+    text: "One test later"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, why is our\nbase on fire?"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The US Army's WWII plan to firebomb Japan with bats
+  The full story is in the pinned comment 👇
+
+hashtags: [history, ww2, batbomb]
+
+pinned_comment: |
+  Project X-Ray, as it was later codenamed, was a secret US weapon project of World War II that tried to set Japanese cities on fire with bats. It began weeks after Pearl Harbor. Lytle S. Adams, a dental surgeon from Irwin, Pennsylvania, had visited Carlsbad Caverns in New Mexico, home to colonies of Mexican free-tailed bats. In January 1942 he wrote to the White House, and President Roosevelt reportedly judged the idea wild but worth looking into.
+
+  Bats would be chilled into hibernation, each fitted with a small incendiary capsule, and about 1,040 of them packed into a canister dropped from a bomber. Waking as they fell, they would roost in the attics and eaves of wooden buildings, and the capsules would start fires. The first evidence frame is a 1942 photo of a canister.
+
+  In 1943, a demonstration at a new Army airfield near Carlsbad went wrong. According to several accounts, bats carrying live incendiaries woke in the New Mexico heat, flew off and roosted under buildings. The control tower, barracks and other buildings burned, and reportedly no one was hurt. Sources differ on the date and cause.
+
+  The Navy took over later in 1943, then the Marines, and the project was cancelled in 1944. The weapon was never used in combat.
+
+  The final frame is a U.S. Army Air Forces photograph of the fire at the Carlsbad base.
+
+  Dramatized: the characters and dialogue are invented.
+
+  Would you have trusted a plan that depended on bats staying asleep?
+
+credits: "Bat Bomb Canister (1942) and Carlsbad AAF Fire after Bat Bomb Accident (1943), photographs by the United States Army Air Forces, public domain, via Wikimedia Commons (canister: top and bottom edges extended; fire: cropped); A giant of the skyways poises for flight, Langley Field, Va. (YB-17 bomber, May 1942), photograph by Alfred T. Palmer, U.S. Office of War Information, Library of Congress (LC-USW36-1053), public domain, square crop, blurred, used as background (not the Carlsbad base). Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction; no real person is represented and the lines are not documented quotes. Sourced: the Adams proposal (Jan 1942), chilled bats with incendiaries, the 1943 Carlsbad fire, cancellation in 1944."
+  - "Kart 'One test later': hazırlık ve 1943 Carlsbad gösterisi; kesin tarih kaynaklarda çelişkili (15 Mayıs 1943 ve mayıs sonu), videoda ve metinde yalnız '1943'."
+  - "Arka plan Carlsbad değil: 1942 Kodachrome, Langley Field (Virginia) Ordu Hava Kuvvetleri sahası, bir YB-17 (LoC, Alfred T. Palmer, OWI); Carlsbad'ın renkli serbest fotoğrafı yok. Kredide belirtildi."
+  - "Konu savaş silahı (Japon şehirlerine yangın planı); video kurban/sivil alayı içermez, ironi plan ve ordu üzerinedir. Hesap sahibi hassasiyeti bilsin; BEKLET nedeni sayılmadı."
+  - "Yangın fotoğrafının Commons tarihi '15 Mayıs 1943' (Couffer'ın kitabından); tarih kesin olmadığından yazılmadı."
+
+sources:
+  - "Fikir ve teklif (Adams, Irwin PA diş hekimi, Carlsbad Caverns, Ocak 1942 Beyaz Saray mektubu, FDR onayı): https://www.airandspaceforces.com/article/1090bats/ ; https://warfarehistorynetwork.com/article/bat-bombs-wwiis-project-x-ray/ ; https://www.aftc.af.mil/News/On-This-Day-in-Test-History/Article-Display-Test-History/Article/2555256/may-2-1943-a-team-headed-by-dr-lytle-adams-arrived-to-conduct-air-drop-tests-on/ ; https://www.atlasobscura.com/articles/the-almost-perfect-world-war-ii-plot-to-bomb-japan-with-bats"
+  - "Mekanizma (serinletilmiş yarasa, yangın kapsülü, ~1.040 yarasalık kovan, çatı altlarına tünemesi, Japon ahşap yapıları): https://www.nps.gov/articles/batbombsandballoons.htm ; https://www.airandspaceforces.com/article/1090bats/ ; https://www.military-history.org/weapons-technology/bat-bombs.htm ; https://www.atlasobscura.com/articles/the-almost-perfect-world-war-ii-plot-to-bomb-japan-with-bats"
+  - "1943 Carlsbad yangını (yarasalar sıcakta uyandı, kule + kışla + binalar yandı, yaralanma bildirilmedi; neden/tarih kaynaklara göre değişir — 'According to several accounts'): https://www.nps.gov/articles/batbombsandballoons.htm ; https://www.military-history.org/weapons-technology/bat-bombs.htm ; https://taskandpurpose.com/history/bat-bombs-burned-base/ ; https://www.airandspaceforces.com/article/1090bats/"
+  - "Donanma devri (1943), Deniz Piyadeleri, 1944 iptal, savaşta kullanılmadı: https://www.airandspaceforces.com/article/1090bats/ ; https://warfarehistorynetwork.com/article/bat-bombs-wwiis-project-x-ray/ ; https://www.military-history.org/weapons-technology/bat-bombs.htm"
+  - "GÖRSEL img/kanit_1.jpg — 'Bat Bomb Canister.jpg', United States Army Air Forces, 1942, Commons PD (USAAF; kaynak: J. Couffer, Bat Bomb, UT Press 1992): https://commons.wikimedia.org/wiki/File:Bat_Bomb_Canister.jpg . Değişiklik: 1080 genişliğe kesim, üst ve alt kenar nesnesiz bez dokusu olarak 57 px uzatıldı (1080x540)."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Carlsbad AAF Fire after Bat Bomb Accident.jpg', United States Army Air Forces, 1943, Commons PD (PD-USGov-Military-Air_Force): https://commons.wikimedia.org/wiki/File:Carlsbad_AAF_Fire_after_Bat_Bomb_Accident.jpg . Değişiklik: alt kısım kırpımı (kule + yanan bina), 1080x816."
+  - "GÖRSEL img/bg.jpg (arka plan) — 'A giant of the skyways poises for flight, Langley Field, Va. (YB-17 bomber)', Alfred T. Palmer, OWI, Mayıs 1942, Kodachrome, LoC FSA/OWI Color (LC-USW36-1053; 'No known restrictions on publication'; ABD hükümeti fotoğrafçısı): https://www.loc.gov/item/2017878478/ . Değişiklik: master TIFF'ten iç alanın kare kırpımı, blur 1,7. Arka plan Carlsbad değil, aynı dönem Ordu Hava Kuvvetleri sahası (Langley Field, Virginia); kredide ve ek_maddeler'de belirtildi."

@@ -539,6 +539,10 @@
   "faces": "right",
   "file": "episodes/en-dancing-plague-1518/chars/a_sakin.png"
  },
+ "a20f8a28f443ad6466d659a984b9ad1fe71f9d19": {
+  "faces": "right",
+  "file": "episodes/en-bat-bomb/chars/a_sakin.png"
+ },
  "a654ed98c2ed7752d72ed9cd1668864348719972": {
   "faces": "right",
   "file": "episodes/yerebatan-bodrum-balik/chars/gyllius_sakin.png"
@@ -634,6 +638,10 @@
  "c63de61d756d066397ffb590f99ea19a2ab63bd2": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_ciddi.png"
+ },
+ "c6c446a6396c25d2c28fb5ae0028af144a34d4f2": {
+  "faces": "left",
+  "file": "episodes/en-bat-bomb/chars/b_sakin.png"
  },
  "c72f82d513a9e86b5a1bfdfd378339312593879a": {
   "faces": "right",
@@ -770,6 +778,10 @@
  "ec161ae5609fcdd12b714c564d031bd46972f2d9": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
+ },
+ "ede385aef7cf2374126f33909203e5dc53c1987f": {
+  "faces": "right",
+  "file": "episodes/en-bat-bomb/chars/a_sok.png"
  },
  "f4afc247400801a4434e9cbb1be5d823d950919c": {
   "faces": "right",
