@@ -327,6 +327,10 @@
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_gulumser.png"
  },
+ "676b181f02454f80642abdec7c833ec365e20ab9": {
+  "faces": "left",
+  "file": "episodes/en-emu-war/chars/a_sok.png"
+ },
  "681bf79e27f6014782da5201b1831ac740bbf384": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_kararli.png"
@@ -547,6 +551,10 @@
   "faces": "right",
   "file": "episodes/yerebatan-bodrum-balik/chars/gyllius_sakin.png"
  },
+ "a8013d389fa98a357c6f48392b51a07f58ff0aea": {
+  "faces": "left",
+  "file": "episodes/en-emu-war/chars/a_sakin.png"
+ },
  "aad499cd4e00da655b854e1280ac53cba3b47457": {
   "faces": "left",
   "file": "episodes\\kasikci-elmasi\\chars\\kasikci_emin.png"
@@ -622,6 +630,10 @@
  "bb95713531bfc7e6a46ba704605d41796f39f18a": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_kararli.png"
+ },
+ "bea5a7bca2817842e8f13b5427abfb1f5c48de29": {
+  "faces": "right",
+  "file": "episodes/en-emu-war/chars/b_sakin.png"
  },
  "bfaa856bf5a852e406be406c2297ff1b4f8b1de1": {
   "faces": "right",
