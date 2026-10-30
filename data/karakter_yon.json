@@ -103,6 +103,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_ciddi.png"
  },
+ "2b7f5b99c1c5b9e0d665dcfcbcdd1d1487575c0a": {
+  "faces": "right",
+  "file": "episodes/uluburun-kulakli-biskuvi/chars/b_reis_sok.png"
+ },
  "2bca371890031009c7a612b34ffa50909721c068": {
   "faces": "right",
   "file": "episodes/en-mechanical-turk/chars/a_sakin.png"
@@ -150,6 +154,10 @@
  "3bd087dffb2e0d19bf95a17f991530320b453437": {
   "faces": "right",
   "file": "assets/characters/sovyet_asker_kis.png"
+ },
+ "3bd6aa3ba9fdbd32c07e32aa3dff98339b8fe076": {
+  "faces": "right",
+  "file": "episodes/uluburun-kulakli-biskuvi/chars/b_reis.png"
  },
  "3c5758573fc38c9b8c553edf6150a907ea1ab45b": {
   "faces": "right",
@@ -206,6 +214,10 @@
  "498395ad191f2d60e1002883cb93094c0c549621": {
   "faces": "right",
   "file": "assets/kit/klasik/gozyasli.png"
+ },
+ "4992e07157f74f2f0aee7465065202e176b234dc": {
+  "faces": "right",
+  "file": "episodes/uluburun-kulakli-biskuvi/chars/a_sungerci.png"
  },
  "49a3be826a4e6965cdb84ac2516843c1fc9e22d2": {
   "faces": "right",

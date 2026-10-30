@@ -1,0 +1,110 @@
+# Uluburun batığı (1982, Kaş açıkları). Bodrumlu bir sünger avcısı ~45 m'de, INA'nın aktarımıyla "kulaklı metal
+# bisküviler" gördüğünü anlattı; bunlar ~3.300 yıllık bir Tunç Çağı gemisinin bakır "öküz postu" külçeleriydi
+# (yaklaşık 10 ton bakır; külçe başına ortalama ~24 kg).
+# İskelet A-B-A-B: A (süngerci, sol) kanca → B (reis, sağ) "getirseydin" → A "45 metrede sıra sıra" (tohum: derinlik)
+# → B ters köşe (aynı kutu, yüz varyantı): "45 metreye bisküviyi kim koymuş?" (imkânsızlık) → kanıt 1: Bodrum Sualtı
+# Arkeoloji Müzesi'ndeki Uluburun gemisi modelinin ambarı (sıra sıra külçeler; 3711) → son kare: dört kulaklı bakır
+# külçenin yakın planı (MÜZE NESNESİ YAKIN PLANI; "kulaklı bisküvi"nin karşılığı, döngüde ilk repliğe bağlanır).
+# Son 5 bölümün son karesi: şehir panoraması (Ankara), arşiv fotoğrafı (Schliemann), kitap sayfası (Yerebatan),
+# arşiv fotoğrafı (Tahran), oda fotoğrafı (Pera Palas) -> bu bölümde müze nesnesi; kupür yok.
+# Süngerci Ocak 2026'da vefat etti: videoda ve metinlerde adı yok; karakterler kurgu (BEKLET: son 10 yılda ölen kişi).
+id: uluburun-kulakli-biskuvi
+title: "1982'de Kaş açıklarında kulaklı metal bisküviler gördüğünü anlatan süngerci"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (süngerci, sol). Arkada 1984 Datça'sında ahşap balıkçı tekneleri.
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/a_sungerci.png, side: left, height: 0.52}
+    text: "Reis, dipte kulaklı\nmetal bisküviler gördüm"
+
+  # 2) B (reis, sağ)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/b_reis.png, side: right, x: 0.80, height: 0.52}
+    text: "Bisküvi mi? Getirseydin\nbari bir tane"
+
+  # 3) A: ~45 m (Fawcett & Zietsman, Hürriyet; Pulak 42-61 m), külçeler sıra sıra (Pulak 2008 "four rows") (tohum: derinlik)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/a_sungerci.png, side: left, height: 0.52}
+    text: "Çok derin, 45 metrede\nsıra sıra dizilmişler"
+
+  # 4) TERS KÖŞE — B, aynı kutu, yüz varyantı (iri göz, kalkık kaş, "O" ağız, alında mavi çizgiler, ter damlaları)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/b_reis_sok.png, side: right, x: 0.80, height: 0.52}
+    text: "Bekle, 45 metreye\nbisküviyi kim koymuş?"
+
+  # 5-6) KANIT — gemi rekonstrüksiyonu (ambarda külçe yığınları), sonra dört kulaklı bakır külçe (son kare)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  1982'de Kaş açıklarında kulaklı metal bisküviler gördüğünü anlatan süngerci
+  Olayın tamamı sabit yorumda 👇
+hashtags: [uluburun, kaş, bodrum]
+
+pinned_comment: |
+  Uluburun batığı, 1982 yılında Antalya'nın Kaş ilçesi açıklarında bir sünger avcısının bulduğu ve Geç Tunç Çağı'nın en zengin buluntu topluluklarından birini barındıran bir batıktır. Yaklaşık 15 metrelik gemi, 3.300 yıl kadar önce, MÖ 14. yüzyılın sonunda batmıştır.
+
+  Bodrumlu genç bir sünger avcısı, 1982 yazında yaklaşık 45 metre derinlikte dalarken, Sualtı Arkeoloji Enstitüsü'nün (INA) aktarımıyla, İngilizce "metal biscuits with ears" (kulaklı metal bisküviler) diye tarif edilen nesneler gördüğünü anlattı. Nesneler deniz tabanında sıralar halinde duruyordu. Haber Bodrum müzesine ve INA'ya ulaştı; arkeologlar alanı aynı yılın sonbaharında ziyaret etti.
+
+  "Bisküviler", çoğunun dört köşesinde tutamak gibi çıkıntılar bulunan "öküz postu" biçimli bakır külçelerdi; her biri ortalama 24 kilogram geliyordu. Kazıyı 1984'te INA'nın kurucusu Prof. George F. Bass başlattı; 1985'ten itibaren Prof. Dr. Cemal Pulak yönetti.
+
+  Gemiden yaklaşık 10 ton bakır, yaklaşık 1 ton kalay ve üzerinde Mısır Kraliçesi Nefertiti'nin adı yazılı altın bir skarabe çıktı. Buluntular bugün Bodrum Sualtı Arkeoloji Müzesi'nde sergileniyor. Sık sık "dünyanın en eski batığı" diye anılsa da daha eski batıklar bilinmektedir.
+
+  Kanıtlar: müzedeki gemi modelinin ambarı ve batıktan çıkan dört kulaklı bir bakır külçe.
+
+  Video bir canlandırmadır; replikler kurgudur.
+
+  Siz dipte böyle bir şey görseniz ilk kime söylerdiniz?
+
+credits: "Datça – 2 alte Fischerboote (1984) (ingostrutz, CC BY-SA 3.0, creativecommons.org/licenses/by-sa/3.0; kırpıldı, renk düzeltildi, yumuşatıldı), Wikimedia Commons; Bodrum Museum Uluburun shipwreck reconstruction in 2015 3711 (Dosseman, CC BY-SA 4.0, creativecommons.org/licenses/by-sa/4.0; kırpıldı, doygunluk azaltıldı), Wikimedia Commons; Uluburun copper ingot oxhide shaped (Zunkir, CC BY-SA 4.0, creativecommons.org/licenses/by-sa/4.0; kırpıldı, küçültüldü, kontrast ve gama açıldı), Wikimedia Commons."
+ai_generated: false
+
+ek_maddeler:
+  - "**YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)"
+  - "**Video bir canlandırmadır:** süngerci ve reis kurgu karakterlerdir, gerçek kişileri temsil etmez; ekrandaki sözler belgeli alıntı değildir. Belgeli olan: 1982 yazında Bodrumlu bir süngercinin ~45 m'de INA'nın aktarımıyla 'kulaklı metal bisküvilere' benzeyen nesneler gördüğü, haberin Bodrum müzesine ve INA'ya ulaştığı; nesnelerin dipte sıralar halinde durduğu (Pulak 2008)"
+  - "**Süngerci Ocak 2026'da vefat etti:** adı videoda ve metinlerde bilerek yok. Yorumlarda adı ya da vefatı sorulursa saygılı kısa yanıt; özel hayatına dair ayrıntı verme"
+  - "**Kanıtlar:** ilk kare Bodrum Sualtı Arkeoloji Müzesi'ndeki Uluburun gemisi modelinin ambarı, sıra sıra külçeler (2015 fotoğrafı; batığın kendisi değil, müze canlandırması); son kare batıktan çıkan dört kulaklı bakır külçe (müze nesnesi). Kupür ya da kendi ürettiğimiz kart yok"
+  - "Arka plan 1984'te Datça'da çekilmiş ahşap balıkçı tekneleridir (Kaş değil; 1982'ye en yakın serbest dönem fotoğrafı)"
+  - "Yorumlarda 'dünyanın en eski batığı' denirse: daha eski batıklar biliniyor (Dokos; Ekim 2026'da Kekova açıklarında duyurulan batık); Uluburun en zengin Tunç Çağı yüklerinden biri"
+  - "İlk yorum önerisi: 'Bisküvilerin her biri ortalama 24 kilo bakırmış'"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "Pulak, C. 2008, 'The Uluburun Shipwreck and Late Bronze Age Trade', Beyond Babylon (Met/Yale) s. 288-310 — 1982 yazı, ilk ziyaret sonbahar 1982, 42-61 m, ~15 m gemi, ~10 ton bakır / 354 külçe (ort. ~24 kg), ~1 ton kalay, Nefertiti skarabesi, MÖ 14. yy sonu, 22.400+ dalış, 1984-94: https://cgs.la.psu.edu/wp-content/uploads/sites/27/2020/12/Pulak-2008-Reading.pdf"
+  - "INA, Uluburun Late Bronze Age Shipwreck Excavation — 1982, 'metal biscuits with ears' tarifi, Kaş yakını, 1984-94, 22.000+ dalış, 354 külçe, Nefertiti skarabesi: https://nauticalarch.org/projects/uluburun-late-bronze-age-shipwreck-excavation/"
+  - "Fawcett, N. & Zietsman, J.C. 2001, Akroterion 46:5-20 (doi:10.7445/46-0-116) — genç süngerci kaptanına anlattı, 'metal biscuits with ears', ~45 m, müzeye bildirildi"
+  - "Cumhuriyet, Özgen Acar — 1982 yazı, süngerci → Bodrum müzesi (Oğuz Alpözen), 354 külçe / 10 ton, 1984-94: https://www.cumhuriyet.com.tr/yazarlar/ozgen-acar/denizalti-arkeolojisinin-devi-toprak-oldu-1820001"
+  - "Milliyet, 17.12.2022, Prof. Dr. Cemal Pulak röportajı — Bass/Pulak, 10 ton bakır, 1 ton kalay, Nefertiti: https://www.milliyet.com.tr/gundem/cigir-acan-uluburun-batti-mi-batirildi-mi-sungerci-mehmet-buldu-turk-profesor-noktayi-koydu-6872405"
+  - "Hürriyet, 2008 — 45-60 m derinlik (Müze Müdürü): https://www.hurriyet.com.tr/gundem/uluburun-batigi-eserleri-metropolitan-muzesi-nde-10294639"
+  - "Bodrumlife, 2005 — 'kulaklı bisküit'e benzer şeyler' ihbarı, Uluburun salonu: https://www.bodrumlife.com.tr/uluburun-batigi-salonu-bodrum-muzesinde-acildi/"
+  - "Apaçık Radyo — 'kulakları olan metal bisküviler': https://apacikradyo.com.tr/akdenizde-pusulasiz/batan-geminin-mallari-uluburun-3300-yasinda"
+  - "T.C. Kültür ve Turizm Bakanlığı, Bodrum Sualtı Arkeoloji Müzesi — sergileme: https://muze.gov.tr/muze-detay?sectionId=BSA01&distId=MRK"
+  - "Daha eski batıklar (en eski değil): https://en.wikipedia.org/wiki/Dokos_shipwreck ; https://greekreporter.com/2026/10/15/world-oldest-shipwreck-discovered-mediterranean/"
+  - "GÖRSEL img/arka.jpg — 'Datça – 2 alte Fischerboote (1984).jpg', ingostrutz, {{cc-by-sa-3.0}}: https://commons.wikimedia.org/wiki/File:Dat%C3%A7a_%E2%80%93_2_alte_Fischerboote_(1984).jpg. Değişiklik: kırpım (110,120,1236,1246), 1080'e küçültme, Color 0,52, Brightness 1,18, render'da blur 1,8"
+  - "GÖRSEL img/kanit_1.jpg — 'Bodrum Museum Uluburun shipwreck reconstruction in 2015 3711.jpg', Dosseman, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Bodrum_Museum_Uluburun_shipwreck_reconstruction_in_2015_3711.jpg. Değişiklik: kırpım (240,180,1840,1080), 1080x608'e küçültme, Color 0,70"
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Uluburun copper ingot oxhide shaped.jpg', Zunkir, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Uluburun_copper_ingot_oxhide_shaped.jpg. Değişiklik: kırpım (30,45,1890,1060), 1080x589'a küçültme, autocontrast (%1), gama 0,78"
