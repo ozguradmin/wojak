@@ -19,6 +19,10 @@
   "faces": "right",
   "file": "episodes/piri-reis-haritasi-1929/chars/b_bilgin.png"
  },
+ "049816cb64bec63d1069c0d89450c8d289ccbaa2": {
+  "faces": "right",
+  "file": "episodes/en-apollo-moon-disaster/chars/b_sok.png"
+ },
  "04b78b01df6753f641aab4d5b2cc4dafb18a8fb8": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci_gulumsuyor_konusuyor_yari.png"
@@ -746,6 +750,10 @@
  "d77d046cdb6aebf0154c90d6caee83a47be6224e": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
+ },
+ "d846deedc78203e1e490a585ebe2e5674a687555": {
+  "faces": "right",
+  "file": "episodes/en-apollo-moon-disaster/chars/b_sakin.png"
  },
  "d8f8657d4b0bfb84dcbbd13ac8e2cf450fbbdca1": {
   "faces": "right",

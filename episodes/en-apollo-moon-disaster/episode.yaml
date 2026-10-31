@@ -1,0 +1,92 @@
+# The "In Event of Moon Disaster" memo (Apollo 11, July 1969). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/apollo-olgu.md (NARA exhibit + scan, Nixon Library blog, Newsweek, History.com, Spokesman-Review/J. Mann, Jalopnik, Live Science, Watergate.info).
+# CANLANDIRMA: iki adsız wojak; Safire/Haldeman temsil edilmez, replikler belgeli alıntı değil. Not Nixon'a ulaştı mı: yalnız Safire'nin sonraki anlatımı -> "According to Safire's later account".
+# Karakterler: A = wojakland 'Grey Suit Wojak' (konuşma yazarı), B = wojakland 'Suit Wojak' fötr şapkalı (amir; ters köşe b_sok = el çizimi şaşkın yüz).
+id: en-apollo-moon-disaster
+kanal: en  # Wojak Past Files
+title: "Nixon's team wrote a speech in case Apollo 11 failed"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "What if the Apollo\nastronauts never return?"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Don't even say that"
+
+  - type: dialog
+    duration: 3.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Relax, the President's\nspeech is already written"
+
+  - type: dialog
+    duration: 3.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, you wrote their eulogy\nbefore they even landed?"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Nixon's team wrote a speech in case Apollo 11 failed
+  The full story is in the pinned comment 👇
+
+hashtags: [history, apollo11, nasa]
+
+pinned_comment: |
+  The "In Event of Moon Disaster" memo is a contingency speech draft that presidential speechwriter William Safire wrote in July 1969, while Apollo 11 was on its way to the Moon. Dated July 18, it went to H. R. Haldeman, the White House chief of staff, and planned for a scenario nobody wanted: two astronauts stranded on the lunar surface.
+
+  The draft opens: "Fate has ordained that the men who went to the moon to explore in peace will stay on the moon to rest in peace." It goes on to imagine a mourning world and says the crew were laying down their lives for mankind's most noble goal.
+
+  Safire also added instructions. The President was to telephone each of the widows-to-be before his statement. After it, at the point when NASA ended communications with the men, a clergyman would commend their souls to "the deepest of the deep" and close with the Lord's Prayer.
+
+  The speech was never needed: the crew landed on July 20 and came home safely. According to Safire's later account, the draft was never handed to the President, and it became public only in 1999. The National Archives holds a copy.
+
+  The photo shows Buzz Aldrin on the Moon, taken by Neil Armstrong in 1969. The final frame is page one of the memo.
+
+  Dramatized: the characters and dialogue are invented.
+
+  Would you have written the speech, or trusted the rocket?
+
+credits: "Memo, William Safire to H. R. Haldeman, 18 July 1969 (page 1 cropped and contrast-adjusted), Richard Nixon Presidential Library and Museum, courtesy of the National Archives and Records Administration (U.S. government record, public domain); Aldrin Apollo 11 (AS11-40-5903, 20 July 1969), photograph by Neil A. Armstrong, NASA, public domain, via Wikimedia Commons (cropped); Apollo 11 Launch (GPN-2000-000630, 16 July 1969), NASA, public domain, via Wikimedia Commons (square crop, desaturated, blurred, used as background). Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction; no real person is represented and the lines are not documented quotes. Sourced: the memo (18 July 1969, Safire to Haldeman), its opening sentence, the widows-to-be and clergyman instructions, release in 1999."
+  - "Hesap sahibi notu: Buzz Aldrin hayatta (memoda adı geçiyor); videoda ve metinde adı yalnız Ay fotoğrafı açıklamasında geçiyor, ölüm ima edilmiyor. Yayın günü kısa bir 'ölüm haberi' kontrolü önerilir (ekim 2026'da tek bir düşük güvenilirlikli sitede çürütülen bir söylenti vardı)."
+  - "Notun Nixon'a ulaştığı: yalnız Safire'nin sonraki anlatımına dayanıyor ('According to Safire's later account'); bağımsız doğrulama yok."
+  - "Memo lisansı: ABD hükümeti kaydı (Beyaz Saray personelinin resmî notu), NARA sergisi taraması; kamu malı olması beklenir ama NARA ayrıca telif beyanı vermiyor. Hesap sahibi bilsin; BEKLET nedeni sayılmadı."
+  - "Replik 4'teki 'before they even landed': not 18 Temmuz'da, kalkıştan (16 Temmuz) sonra ve inişten (20 Temmuz) önce yazıldı. 'Eulogy' replikte anlatım kısaltmasıdır; notun kendisi konuşma taslağı (statement/speech)."
+
+sources:
+  - "Not: tarih (18 Temmuz 1969), Safire -> Haldeman, başlık, açılış cümlesi, 'widows-to-be' ve papaz talimatı (birebir): NARA taraması https://www.archives.gov/files/presidential-libraries/events/centennials/nixon/images/exhibit/rn100-6-1-2.pdf ; NARA sergi sayfası https://www.archives.gov/presidential-libraries/events/centennials/nixon/exhibit/nixon-online-exhibit-disaster.html ; Newsweek https://www.newsweek.com/first-man-moon-neil-armstrong-buzz-aldrin-richard-nixon-641030 ; Live Science https://www.livescience.com/65948-nixon-secret-moon-disaster-speech.html"
+  - "Amaç (astronotlar Ay'da mahsur kalırsa), 1999'da kamuya açılma, Nixon Library kopyası: https://www.history.com/articles/what-if-the-moon-landing-had-failed ; https://watergate.info/1969/07/18/an-undelivered-nixon-speech.html ; https://prologue.blogs.archives.gov/2017/10/25/moon-landings-at-the-nixon-library/ ; https://www.spokesman.com/stories/2019/jul/20/james-mann-the-speech-richard-nixon-would-have-giv/"
+  - "Notun Nixon'a verilmediği (Safire'nin sonraki anlatımı; tek kaynak türü, 'According to Safire's later account'): https://www.spokesman.com/stories/2019/jul/20/james-mann-the-speech-richard-nixon-would-have-giv/ ; https://www.astronomy.com/space-exploration/if-the-apollo-11-astronauts-had-died-heres-the-speech-nixon-would-have-read/"
+  - "Kalkış 16 Temmuz, iniş 20 Temmuz 1969, mürettebat sağ salim döndü: https://chicago.suntimes.com/2021/4/28/22408020/astronaut-michael-collins-apollo-11-pilot-dead-of-cancer ; https://www.militarytimes.com/news/your-military/2021/04/28/astronaut-michael-collins-apollo-11-pilot-dies-at-90/"
+  - "GÖRSEL img/kanit_2.jpg (son kare) — Safire notu s.1, NARA/Nixon Library, ABD hükümeti kaydı (kamu malı): https://www.archives.gov/files/presidential-libraries/events/centennials/nixon/images/exhibit/rn100-6-1-2.pdf . Değişiklik: üst kısım kırpımı, 1080 genişlik (1,27x), otomatik kontrast."
+  - "GÖRSEL img/kanit_1.jpg — 'Aldrin Apollo 11.jpg' (AS11-40-5903), Neil A. Armstrong / NASA, kamu malı: https://commons.wikimedia.org/wiki/File:Aldrin_Apollo_11.jpg . Değişiklik: figür kırpımı, 1080x816."
+  - "GÖRSEL img/bg.jpg (arka plan) — 'Apollo 11 Launch - GPN-2000-000630.jpg', NASA, 16 Temmuz 1969, kamu malı: https://commons.wikimedia.org/wiki/File:Apollo_11_Launch_-_GPN-2000-000630.jpg . Değişiklik: kare kırpım, renk 0,42, parlaklık 1,15, blur 1,7."

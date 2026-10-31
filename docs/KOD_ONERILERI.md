@@ -66,3 +66,4 @@
 - `wojak/text.py` / `check`: iki satıra sığmayan replik (ör. 37 karakterlik ilk satır) `frames`/`render`'da `RuntimeError: raqm_layout() failed` ile çöküyor, `check` uyarmıyor; `check` satır genişliğini ölçüp "satır sığmıyor, kısalt" desin (31.10, hope-elmasi-posta-1958).
 - `tools/commons.py ara`: dosya adını ~60 karakterde kesiyor; uzun Commons adlarında `indir`/`bilgi` için tam ad yazdırılsın (`--tam`) (31.10, sultanahmet-alti-minare).
 - `tools/wojak_site.py sheet`: `a|b|c` biçimli çok parçalı sorgu bazı kelime kombinasyonlarında "sonuç yok" döner ("gentleman_wojak|smug_suit..."); tek tek sorgu çalışır; alt çizgi/boşluk normalizasyonu ve | desteği tutarlı olsun (31.10, en-lustig-eiffel-tower).
+- `wojak/config.py`: EN TikTok varsayılan etiketleri (`#mystery`) gizem olmayan belgeli konulara da ekleniyor (izleyici hakem SHOULD, en-apollo-moon-disaster); bölümün `hashtags`ından türet ya da yaml ile ezilebilir yap (TR için aynı öneri yukarıda var).
