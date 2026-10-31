@@ -143,6 +143,10 @@
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/sakin.png"
  },
+ "3890f244e8ddd008b8ae4b68b16d152135e8e3ee": {
+  "faces": "right",
+  "file": "episodes/hope-elmasi-posta-1958/chars/a_kuyumcu.png"
+ },
  "39357d8ce2356404243747c8313e8343a229d972": {
   "faces": "left",
   "file": "assets/kit/prenses_genc/korku.png"
@@ -599,6 +603,10 @@
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/sakin.png"
  },
+ "b551dba46ca167cbcc9d3a1818ecd612c7f7c1ed": {
+  "faces": "right",
+  "file": "episodes/hope-elmasi-posta-1958/chars/b_memur.png"
+ },
  "b5f4fe6b423cc425a29caaf6071b086414490155": {
   "faces": "front",
   "file": "episodes/en-d-b-cooper/chars/a_ter.png"
@@ -794,6 +802,10 @@
  "ede385aef7cf2374126f33909203e5dc53c1987f": {
   "faces": "right",
   "file": "episodes/en-bat-bomb/chars/a_sok.png"
+ },
+ "f34463a4232bccdeeedf1814b43b8183897985a8": {
+  "faces": "right",
+  "file": "episodes/hope-elmasi-posta-1958/chars/b_memur_sok.png"
  },
  "f4afc247400801a4434e9cbb1be5d823d950919c": {
   "faces": "right",

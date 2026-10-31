@@ -63,3 +63,4 @@
 - `tools/wojak_lib.py get`: `--yon` seçeneği var ama yazmıyor ("bakış yönü kayıtlı değil" uyarısı); `get` sonrası `python -m wojak yon` otomatik sorulsun ya da `--yon` gerçekten kaydetsin (en-dancing-plague-1518).
 - `wojak/config.py`: TR TikTok varsayılan etiketleri (`#olay #gizem`) gizem olmayan konulara da ekleniyor; bölümün `hashtags`ından türet ya da yaml ile ezilebilir yap (30.10, uluburun-kulakli-biskuvi).
 - `tools/commons.py`: LoC FSA/OWI renkli koleksiyon araması (`loc.gov/collections/fsa-owi-color-photographs/?q=&fo=json`) ve master TIFF indirme eklensin; renkli 1940'lar arka planı her seferinde elle aranıyor (30.10, en-bat-bomb).
+- `wojak/text.py` / `check`: iki satıra sığmayan replik (ör. 37 karakterlik ilk satır) `frames`/`render`'da `RuntimeError: raqm_layout() failed` ile çöküyor, `check` uyarmıyor; `check` satır genişliğini ölçüp "satır sığmıyor, kısalt" desin (31.10, hope-elmasi-posta-1958).
