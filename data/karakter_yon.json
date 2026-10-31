@@ -191,6 +191,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_sakin.png"
  },
+ "41464fc99123d0309f60b863a71c74cab16df189": {
+  "faces": "left",
+  "file": "episodes/sultanahmet-alti-minare/chars/aga_sakin.png"
+ },
  "41913db1ef904b17b10d0b45c3b6927cb63a4572": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_sakin.png"
@@ -531,6 +535,10 @@
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/cok_terli.png"
  },
+ "9d6d6b3deedcdf8239f70a338fac530653d63ac6": {
+  "faces": "right",
+  "file": "episodes/sultanahmet-alti-minare/chars/usta_sakin.png"
+ },
  "9e66b305e1a9ae31447e22948f626b618a6da4b1": {
   "faces": "right",
   "file": "episodes\\hezarfen-galata-ucusu\\chars\\hezarfen_sok.png"
@@ -646,6 +654,10 @@
  "bfaa856bf5a852e406be406c2297ff1b4f8b1de1": {
   "faces": "right",
   "file": "episodes/en-dancing-plague-1518/chars/b_sok.png"
+ },
+ "c16f393f784e27d515cf3271f28120d3f45f3438": {
+  "faces": "right",
+  "file": "episodes/sultanahmet-alti-minare/chars/usta_sok.png"
  },
  "c4d8fa492ce23821baf5912cb781f515dcf44743": {
   "faces": "left",
