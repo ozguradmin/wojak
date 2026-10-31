@@ -31,6 +31,10 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
+- **31.10 Ses:** "Videolarda müzik kısık." Hedef **−14 LUFS entegre, gerçek tepe ≤ −1,5 dBTP** (YouTube'un referans
+  seviyesi). Eski −29,5 LUFS altın dönem reellerinin ölçüsüydü; telefonda öteki videoların ~15 dB altında kalıyordu.
+  Render bunu kendisi ayarlar (`config.LOUDNESS_*`); imza müziği tepe sınırı yüzünden ~−14,3 LUFS çıkar, bu normaldir.
+- **31.10 Konu:** izlenmeyi en çok konu ve ilk replik belirliyor; §5 veriyle yeniden yazıldı. Puan tablosu zorunlu.
 - **27.10 Karakter lisansı:** `assets/kit/` ve kütüphane karakterleri (wojakland, wojakparadise, HF `clayshoaf/Wojaks`)
   kanal standardıdır ve serbesttir; lisans sayfası olmaması BEKLET nedeni değildir, atıf gerekmez. Filigran, imza ya da site
   adı taşıyan karakter kullanılmaz (tam boyda bak). Karakter PNG'leri `episodes/<id>/chars/` altında commit edilir.
@@ -55,9 +59,13 @@
 ## 3. Ekip, turlar, BEKLET ve yayın
 
 **Roller.** Yapımcı (tr: Opus, en: Sonnet; araştırmacı ve hakemler Sonnet) bölümü kurar ve **kendini hiç puanlamaz**.
-- **Araştırmacı alt ajanı:** konu taraması (3 aday), olgu doğrulaması (olgu tablosu + kaynaklar + güvenli ifade + hikâye
-  taslağı), görsel avı (arka plan 3 aday, 2-3 kanıt, karakter önerisi, lisanslar, temas sayfası). Yapımcı bu işleri kendi
-  bağlamında yapmaz; yalnız özet dosyaları okur (`olgular.md`, `gorseller.md`).
+- **Araştırmacı alt ajanı:** olgu doğrulaması (olgu tablosu + kaynaklar + güvenli ifade + hikâye taslağı), görsel avı
+  (arka plan 3 aday, 2-3 kanıt, karakter önerisi, lisanslar, temas sayfası). Yapımcı bu işleri kendi bağlamında yapmaz;
+  yalnız özet dosyaları okur (`olgular.md`, `gorseller.md`).
+- **Araştırmacı bütçesi (31.10; araştırmacılar oturum maliyetinin ~%40'ı, $5-8):** en çok **2 iş parçacığı** (olgu,
+  görsel); ayrı "konu tarama" oturumu açma, adayları §5 tablosuyla sen çıkar, araştırmacıya yalnız seçilen konu + 1 yedek
+  gitsin. Görsel avı en çok ~15 araç çağrısı: yalnız `tools/commons.py ara|bilgi|indir` (Commons sayfasını web_fetch ile
+  açma, bağlamı şişirir); ilk uygun arka plan + 2 kanıt bulununca dur. Bulunamazsa kupür kararını yapımcı verir.
 - **İki bağımsız hakem alt ajanı** (taze bağlam, dosyaya dokunmaz): görsel sadakat (orijinallerle kare kare, ölçerek) ve
   takipçi + senaryo + olgu (kaynak URL'lerini açarak ≥ 5 olgu). İstemler: `docs/is_akislari/kisa_reel.js` içindeki
   JUDGE_VISUAL / JUDGE_FOLLOWER; okuma listesi olarak hakeme yalnız bu dosyayı ve `STIL.md` §0, §14'ü ver.
@@ -86,8 +94,9 @@ bakar): `tr` → `wojak-ozel/teslim/<id>/`, `en` → `wojak-en-ozel/teslim/<id>/
 1. **Ortam (~3 dk):** `bash tools/hazirla.sh <özel-depo-yolu>` (bağ, iki deponun varsayılan dalı + pull, pip, font,
    referans, kısa pytest özeti, müzik kontrolü). Çıktıdaki uyarıyı düzelt, sonra devam et. Elle kurulum gerekirse:
    `mkdir -p /home/user` bağdan ÖNCE; depolar ayrık HEAD'de açılır, dosya yazmadan varsayılan dala geç.
-2. **Konu (~4 dk):** §5. Araştırmacıya 3 aday taratıp en güçlüsünü seç.
-3. **Araştırma (alt ajan, paralel ~8 dk):** olgu + görsel + karakter önerisi. Sen bu arada karakter kitine bak.
+2. **Konu (~4 dk):** §5. Veri dosyalarını oku, havuzdan ve kendi bilginden 3 aday çıkar, puan tablosunu doldur, sert
+   filtreyi uygula; eşiği geçen en güçlü adayı seç.
+3. **Araştırma (alt ajan, paralel ~8 dk):** olgu + görsel + karakter önerisi, §3 bütçesiyle. Sen bu arada karakter kitine bak.
 4. **Bölümü aç:** `python -m wojak new <id>` (en: `python -m wojak new en-<id> --kanal en`). Şablon: §8.
 5. **Görseller:** `python tools/commons.py ara|bilgi|indir ...` (`--help`); kendi Commons/429 betiğini YAZMA. Kanıtı ve arka
    planı §9'a göre hazırla (`episodes/<id>/gorsel.py`).
@@ -107,15 +116,72 @@ Süre bütçesi: ortam 3 · konu 4 · araştırma 8 (paralel) · karakter 5 · y
 Kabuk komutlarını toplu çalıştır (tek betikte birden çok adım); tek tek kare yerine tek birleşik sayfaya bak
 (`serit.jpg`, `bakis.jpg`, 360-390 px temas sayfası). Büyük görseli tam çözünürlükte bağlama alma.
 
-## 5. Konu seçimi
+## 5. Konu seçimi (31.10 veriyle yeniden yazıldı; en büyük kaldıraç budur)
 
-- **Önce performans verisi:** özel depodaki `istatistik.csv` (video başına izlenme, beğeni, ortalama izlenme %, abone;
-  günlük güncellenir). Konuyu seçmeden oku; en iyi performans gösterenlerin kalıbına yaslan. 29.10 TR durumu:
-  `kasikci-elmasi` 110K, `midas-mezari-altin` 79K, `ayasofya-viking-yazisi` 67K; `tahran-1985-ertugrul`,
-  `yerebatan-bodrum-balik`, `gobeklitepe-mezar-tasi` ~28K. Hazine, ünlü nesne ve sıradan insanın gözünden olay; soyut
-  diplomasi ve arkeoloji daha zayıf. Ortalama izlenme %110-137 (döngü izlemesi): son kare başa bağlanmalı.
-- **Filtre:** tek cümlelik "Ne?!" var mı; ≥ 2 bağımsız kaynak; ironi/ters köşe kurulabiliyor mu; serbest lisanslı güçlü
-  son kare var mı; `tr` için Türkiye bağlantısı (10M+ reel'lerin 17/19'u Türkiye'de geçiyor).
+**Veri ne diyor.** Aynı format, aynı ekip, aynı hafta; izlenme farkı 5-10 kat. Farkı en çok konu ve ilk replik açıklıyor
+(kanal genelinde zamanla hafif bir düşüş de var, ama aynı gün çıkan iki bölüm arasında bile fark 3-5 kat):
+
+| Bölüm | YouTube, 3-4. gün | Instagram (31.10) | Damar |
+|---|--:|--:|---|
+| `kasikci-elmasi` | ~110K | 288K | Türkiye efsanesi + sıradan insan + hazine |
+| `midas-mezari-altin` | ~85K | 250K | herkesin bildiği efsane kral + Zonguldaklı madenciler |
+| `hezarfen-galata-ucusu` | ~51K | 331K | Türkiye efsanesi + imkânsız iş + padişah |
+| `kanuni-gizlenen-olum` | ~46K | 358K | padişahın sırrı, dramatik ironi |
+| `karun-hazinesi-bros` | ~48K | 204K | ünlü hazine + hırsızlık |
+| `yerebatan-bodrum-balik`, `tahran-1985-ertugrul` | ~33K | 122K, ~170K | şehir tuhaflığı; Türk kahramanlığı |
+| `orban-topu-bizans`, `gobeklitepe-mezar-tasi` | ~22K, ~28K | 128K, 99K | yabancı usta; arkeoloji |
+| `goeben-fes-1914`, `pera-palas-anahtar-1979`, `karakoy-tunel-1874` | ~13K | 90K, 76K, 54K | yabancı gemi; yabancı yazar + medyum; ulaşım "ilk"i |
+| `schliemann-sal-1873`, `ankara-elci-vagonlari`, `piri-reis-haritasi-1929` | 3-6K (1-2. gün) | 33K, 70K, 46K | yabancı arkeolog; diplomasi; arşivde bulunan belge |
+
+Altın dönemde (2023-24, Instagram) **Türkiye efsane/gizem** kategorisinde 12 reelin 10'u 10M+ yaptı (Issız Cuma mezarlığı,
+129 nolu apartman, Havran mağarası, Tarsus kazısı, Kapalak kızı, Bitlisli Belkıs, Afyon türbesi, Davutlu köyü). Otomatik
+dönemde bu damar hiç denenmedi. Ayrıntı: `docs/INSTAGRAM_ANALIZ.md` §5-§6.
+
+**İki ana damar (akışın en az 3/4'ü; ikisini dönüşümlü kullan):**
+1. **Türkiye'de gösterilebilir bir yerde geçen gizem, efsane ya da tuhaf olay** (köy, mezarlık, mağara, türbe, define kazısı,
+   kale, cami, apartman): açıklanamayan bir şey + tek cümlelik dehşet/mucize dönüşü. Efsane, efsane diye anlatılır.
+2. **Türkiye'nin bildiği bir efsane, ünlü anekdot ya da hazine, sıradan insanın gözünden** (Kaşıkçı, Midas, Hezarfen,
+   Karun): izleyici adı duymuş ama bu ayrıntıyı bilmiyor.
+
+Yabancı konu en çok 4'te 1; ancak olay Türkiye'de geçiyorsa (`ayasofya-viking-yazisi` 71K) ya da dünyaca bilinen bir çapası
+varsa. **Zayıf damarlar (seçme):** yabancı askerî ya da diplomatik olay, ulaşım ve şehir "ilk"leri, arşivde bulunan belge,
+yabancı yazar/arkeolog/medyum anekdotu, müze nesnesinin teknik ayrıntısı, tek başına efsane düzeltmesi ("aslında öyle
+değilmiş" tek dönüşse zayıftır).
+
+**Puan tablosu** (her aday için 0-2; üç adayın tablosu RAPOR'a girer):
+
+| Ölçüt | 2 | 1 | 0 |
+|---|---|---|---|
+| A. Tanıdık çapa | Türkiye'de herkesin duyduğu yer/efsane/kişi/nesne | bölgesel ya da yarı bilinir | izleyici ilk kez duyuyor |
+| B. Dönüş (8 kelime testi) | dehşet, mucize ya da ironik kader tek cümlede | ilginç bilgi | "aslında şöyleymiş" düzeltmesi |
+| C. Kahraman | sıradan insan, anonim kurban, efsane kişi, mekân | ünlü tarihî kişi | yabancı görevli, akademisyen, diplomat |
+| D. İlk replik | bağlamsız anlaşılır; somut değer, tehlike, ölüm ya da imkânsızlık | ikisinden biri eksik | soyut, bürokratik, bilinmeyen özel ad ya da "bunu" |
+| E. Görsel | Türkiye'de gerçek mekân fotoğrafı + serbest güçlü son kare | biri zayıf | yalnız kupürle kurtarılıyor |
+
+**Eşik:** toplam **≥ 8/10 ve B = 2**. Geçen aday yoksa yeni aday bul; eşiğin altında üretim yapma.
+**`en` kanalı:** aynı tablo; A = dünyaca bilinen çapa (Titanic, Napoleon, Hitler, NASA), Türkiye şartı yok, E'de "gerçek
+mekân" yeter. EN verisi henüz ayırt etmiyor (31.10'da bütün videolar 1-2K); tablo yine doldurulur.
+
+**Sert filtre (aday araştırmaya gitmeden elenir):** son 10 yılda ölmüş ya da yaşayan özel kişi, çocuk, süren dava, güncel
+olay. Bunlar BEKLET demektir: 30.10'da `uluburun-kulakli-biskuvi` süngerci Ocak 2026'da öldüğü için $20 harcayıp yayına
+çıkamadı. Bunu konu adımında araştırmacıya ilk soru olarak sor.
+
+**İlk replik = kapak.** Instagram ızgarasında ve Shorts akışında görülen ilk kare budur; kaydırıp geçme orada olur.
+- İyi: "Çöplükte cam gibi bir taş buldum, alır mısın?" · "Usta, bu tepenin altında kim yatıyor?" · "Padişahım, Galata
+  Kulesi'nden Üsküdar'a uçtum" · "Paşam, kale düştü, müjdeyi padişaha ben vereyim".
+- Kötü: "Evet efendi, deneme seferleri başladı" · "Şliman Bey Truva'da Priamos'un hazinesini bulmuş" · "Bunu Washington'a
+  taahhütlü, bir milyon dolar sigortalı".
+- Kural: sıradan biri karşısındakine somut, değerli ya da tehlikeli bir şey söyler. İzleyicinin bilmediği özel ad, kurum
+  adı ya da belirsiz zamir yok. Ünlü çapa (padişah, Galata Kulesi, Midas) serbest.
+
+**YouTube başlığı:** en çok 60 karakter (`kasikci-elmasi` 54, `midas-mezari-altin` 57, `ayasofya-viking-yazisi` 43;
+zayıflar 69-88); ünlü çapayı içerir (`piri-reis-haritasi-1929` başlığında "Piri Reis" yoktu); tek merak boşluğu.
+
+**Veri dosyaları** (özel depo, konuyu seçmeden oku):
+- `istatistik.csv` (YouTube, günlük): **`izlenme_48s`** sütunuyla eşit yaşta karşılaştır; eski videonun toplamına bakma.
+- `instagram_istatistik.csv`: hesap sahibinin ekran görüntülerinden. Ana platform Instagram; izlenme orada 3-10 kat.
+- Aday kaynağı: önce `docs/KONU_HAVUZU.md` §A ve §A+ (doğrulanmamış fikirler; araştırmacı doğrular).
+
 - **Tekrar yok:** kanalda yapılmış konu seçilmez. `data/videos.csv`, `data/instagram_reels.csv`, `data/olay_metinleri.md`,
   `episodes/`, `KONU_HAVUZU.md` ve özel deponun `teslim/` klasöründe grep'le. Bir önceki bölümle aynı damardan arka arkaya
   gitme.
@@ -137,7 +203,7 @@ Kabuk komutlarını toplu çalıştır (tek betikte birden çok adım); tek tek 
   verir.
 - Kanıt tam genişlik (1080), y=960'a ortalı, 537-816 px yükseklik; kenarlık, bant, ok, ızgara, kolaj yok.
 - Filigran her karede (kart ve kanıt dahil); renderer koyar. Font Avenir Bold Italic (Poppins'e düşerse kanal değil).
-- Ses: tek parça imza müzik, ~-29,5 LUFS (tepe ~-17 dBTP), efekt yok, döngü yok.
+- Ses: tek parça imza müzik, ~−14 LUFS (gerçek tepe ≤ −1,5 dBTP; §2, 31.10), efekt yok, döngü yok.
 
 ## 7. Senaryo, başlık, hikâye metni
 
@@ -147,7 +213,8 @@ Kabuk komutlarını toplu çalıştır (tek betikte birden çok adım); tek tek 
 - *A-B-A-B soru-cevap:* son replik bir soru, cevabı son kanıt.
 
 **İşe yarayanlar:**
-- İlk replik olay anında kancadır ve bağlamı söyler (uçak, kaçırma, mezar...): "Sit down, this is a hijacking".
+- İlk replik olay anında kancadır ve bağlamı söyler (uçak, kaçırma, mezar...): "Sit down, this is a hijacking". İyi ve
+  kötü ilk replik örnekleri §5'te; ilk replik kapaktır, puan tablosunun D'si.
 - Kelime tohumu: S2'deki sıradan kelime son karede karşılığını bulur ("üç tahta kaşık" → Kaşıkçı; "dokundu" → "Dokundu,
   95 yıl önce"). Görsel tohum da olur (B'nin başındaki fes).
 - Ters köşe repliği nesneyi değil **imkânsızlığı** sorar ("Bekle, anahtarın yerini nereden bildi?"); resmin zaten
@@ -158,7 +225,8 @@ Kabuk komutlarını toplu çalıştır (tek betikte birden çok adım); tek tek 
 - Yüz kodu anlam taşır: sırıtma = kötü karakter. Şüpheli, firma, gerçek kişi ya da sevecen karakterde kötü yüz yok.
 - Replikteki fiilin nesnesi tek anlamlı olsun ("kapının dibindeki döşemeyi sökün").
 
-**Başlık** (`title`): 3-12 kelime; olayın adı ya da en şaşırtıcı tek cümlesi; **ters köşeyi söylemez** (son replikle
+**Başlık** (`title`): 3-12 kelime, **en çok 60 karakter, ünlü çapayı içerir** (§5); olayın adı ya da en şaşırtıcı tek
+cümlesi; **ters köşeyi söylemez** (son replikle
 karşılaştır); fiil kaynağa uyar ("teklif eden", "gördüğünü söyleyen"); somut yer/sayı/kişi. Başlık soruysa kapak
 (`cover_scene`) cevabı göstermesin: kapak = kanca sahnesi, ters köşe kapağı alternatif.
 
@@ -173,7 +241,7 @@ verir). Yabancı dilli son kare için "Videonun son karesi ... sayfasıdır" + T
 id: <id>                       # en: en-<id>
 # kanal: en                    # yalnız İngilizce kanal
 title: "<başlık>"
-music: {file: kanal, volume: 0.197}   # bu ortamda ~-29,6 LUFS; render sonrası ölç
+music: {file: kanal, volume: 0.197}   # render −14 LUFS'a kendisi ayarlar (~−14,3); sonra ölç
 scenes:
   - {type: dialog, duration: 3.0, bg: img/arka.jpg, blur: 1.7,
      chars: [{img: chars/a.png, side: left, height: 0.50}], text: "Kanca, olay anında"}
@@ -287,7 +355,8 @@ Olayın kendi nesnesi yoksa benzer dönem nesnesi olduğunu metinde ve `ek_madde
 6. Karakter PNG'si (3/7): kesik baş, 205 px kaynak, filigran. Kancada bağlam yok (2/7).
 
 **Ön kontrol listesi (render'dan sonra, hakemden önce; tek betikte):**
-- Ses: `ffmpeg -i teslim/<id>/<id>.mp4 -af ebur128=peak=true -f null - 2>&1 | grep -E "I:|Peak:" | tail -2` → ~-29,6 LUFS.
+- Ses: `ffmpeg -i teslim/<id>/<id>.mp4 -af ebur128=peak=true -f null - 2>&1 | grep -E "I:|Peak:" | tail -2` → −15 ile
+  −14 LUFS arası, tepe ≤ −1,5. −29 civarı çıkarsa eski kod çalışıyordur: `git pull`.
 - Süre ffprobe ile (render satırındaki süre yanlış basabilir); kesmeler 0,5 ızgarasında, sahneler durağan.
 - Telefon boyu (390 px) şerit: yetim kelime, yüz değişimi, kanıt okunurluğu, modern öğe, kostüm dönemi.
 - `bakis.jpg`: herkes içeri bakıyor, çeneler ve baş tepeleri kadrajda.
@@ -306,7 +375,7 @@ Olayın kendi nesnesi yoksa benzer dönem nesnesi olduğunu metinde ve `ek_madde
 yüz değişimi ≥ %0,40 · boy 0,42-0,55 · kostüm döneme uygun ya da kusur RAPOR'da.
 **Arka plan ve kanıt:** tek (en çok iki) renkli gerçek fotoğraf, modern öğe yok · kanıtlar 1080 genişlik, 537-816 px, ek
 yok · son kare sorunun cevabı, bir önceki bölümle aynı tür değil.
-**Ses, kapak:** imza müzik ~-29,6 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
+**Ses, kapak:** imza müzik ~−14 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
 **Metinler:** başlık sonu söylemiyor · hikâye 150-250 kelime, soruyla biter · açıklama ≤ 2.200 karakter · `metinler/*.txt`
 sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum önerisi.
 **Olgu, lisans, mahremiyet:** her olgu ≥ 2 kaynak, çelişen sayı yuvarlandı ya da çıktı · her görselin lisansı ve değişikliği
@@ -318,7 +387,8 @@ sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum öneris
 
 - Paket (`python -m wojak teslim`): `<id>.mp4`, `kapak.jpg`, `paylasim.md`, `metinler/`; özel depoya bunlar + `RAPOR.md`
   (+ gerekiyorsa `BEKLET`). `teslim` klasörü yeniden kurar: RAPOR'u teslimden SONRA yaz ya da kopyala.
-- **RAPOR.md** (kısa, ~60-90 satır): BEKLET durumu ve gerekçesi · konu ve "Ne?!" cümlesi, öbür iki aday · sahne listesi ·
+- **RAPOR.md** (kısa, ~60-90 satır): BEKLET durumu ve gerekçesi · konu ve "Ne?!" cümlesi · **§5 puan tablosu (3 aday,
+  A-E puanları ve toplam)** · sahne listesi ·
   başlık seçenekleri · hakem turları (puan, MUST, uygulanan düzeltme; puanlar hakem raporundan değiştirilmeden) · bilinen
   kusurlar · lisans tablosu · adım süreleri (tek tablo) · alt ajan çağrıları.
 - Özel depo: tek commit, Türkçe konu ("Teslim: <id> (iki hakemden 8/8, telifsiz, BEKLET yok)"), push. Son commit botun

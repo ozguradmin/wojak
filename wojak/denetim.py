@@ -356,10 +356,22 @@ def baslik_ters_kose(ep: Episode) -> list[str]:
     return []
 
 
+BASLIK_EN_COK = 60
+
+
+def baslik_uzun(ep: Episode) -> list[str]:
+    """Başlık 60 karakteri aşıyor mu. En çok izlenen TR başlıkları 43-57 karakter, en az izlenenler 69-88 (31.10 verisi:
+    kasikci-elmasi 54, midas-mezari-altin 57; pera-palas-anahtar-1979 88, ankara-elci-vagonlari 85)."""
+    n = len((ep.title or "").strip())
+    if n > BASLIK_EN_COK:
+        return [f"[başlık] başlık {n} karakter (en çok {BASLIK_EN_COK}); kısalt, ünlü çapayı koru (el kitabı §5)"]
+    return []
+
+
 def hakem_oncesi(ep: Episode) -> list[str]:
     """Hakemden önce yakalanabilen kusurlar (uyarı). Biri hata verirse (eksik dosya vb.) diğerleri yine çalışır."""
     out: list[str] = []
-    for fn in (yetim, sansur_izi, kanit_boyu, arka_plan, baslik_ters_kose):
+    for fn in (yetim, sansur_izi, kanit_boyu, arka_plan, baslik_ters_kose, baslik_uzun):
         try:
             out += fn(ep)
         except (OSError, ValueError) as e:

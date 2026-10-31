@@ -38,7 +38,8 @@
 10. Ses tek bir parçadır ve hiç efekt yoktur.
     - Hesabın imza "orijinal ses"i: Do minör, 3/4, yaklaşık 152–155 BPM.
     - Bant geçiren lo-fi melodi, 13,75 sn uzunlukta.
-    - Ses düzeyi −29,5 LUFS, tepe −17 dBTP.
+    - Ses düzeyi orijinallerde −29,5 LUFS, tepe −17 dBTP. **31.10'dan beri bizim hedefimiz −14 LUFS, tepe ≤ −1,5 dBTP**
+      (hesap sahibi: "müzik kısık"; −29,5 telefonda öteki videoların ~15 dB altında kalıyordu).
 11. `tarihselwojak` filigranı her karede bulunur (kart ve kanıt dahil). Sağ altta, kare tabanına yaklaşık 5 px mesafede durur.
 
 ---
@@ -342,7 +343,8 @@ Aşağıdaki değerler kısa formattaki 26 reel'den alındı: C5eF, DHG, C5ob ve
   - 250 Hz yüksek geçiren ve 4 kHz alçak geçiren filtre, hafif hışırtı tabanı.
   - 13,75 sn tek cümle; 11,5 sn'de tonikte tutulan bir kalış.
 - **Miks:**
-  - Entegre −29,5 LUFS (±0,5). Gerçek tepe −17 dBTP veya altı.
+  - Entegre −14 LUFS (±1; imza müziği tepe sınırıyla ~−14,3). Gerçek tepe −1,5 dBTP veya altı. (31.10'a kadar
+    orijinallerin −29,5 LUFS / −17 dBTP seviyesi kullanıldı.)
   - 0,00 sn'de başlar, döngü yok, SFX yok, seslendirme yok, limiter yok.
   - Reel 14,0 sn'yi geçmez.
 
@@ -386,7 +388,7 @@ Aşağıdaki değerler kısa formattaki 26 reel'den alındı: C5eF, DHG, C5ob ve
 | Kart | Anton 160 px, `max_w` 990 (≤ %92), 1,5 sn; metin ileri zaman atlaması |
 | Kanıt | Tek görsel, 1080 genişlik, y=960'a ortalı; `label`, `banner`, `zoom` yok; 1,5 sn |
 | Filigran | 196–218 x 30–34 px; sağ boşluk yaklaşık 95; taban boşluğu yaklaşık 5; her karede |
-| Müzik | G1 parçası (ya da §10.4'e göre üretilen), −29,5 LUFS, döngü yok, limiter yok; `sfx: []` |
+| Müzik | G1 parçası (ya da §10.4'e göre üretilen), −14 LUFS (31.10), döngü yok, limiter yok; `sfx: []` |
 
 ---
 
@@ -481,7 +483,8 @@ Kalıp: soru-cevapla ifşa, ardından kanıt.
 6. Arka planı karartma ya da gri tona çevirme. Sahne başına yeni fotoğraf seçme (en fazla 2 fotoğraf).
 7. Karaktersiz diyalog sahnesi bırakma. Aynı karakteri sahneler arasında taraf değiştirtme. 2'den fazla konuşmacı kullanma.
 8. Kartı geri dönüş ya da karşıtlık için kullanma ("10 gün önce", "Oysa 1919'da...").
-9. SFX koyma (drone, hit, boom, heartbeat, shutter, whoosh). −20 LUFS'tan yüksek miks yapma. Müziği döngüye sokma.
+9. SFX koyma (drone, hit, boom, heartbeat, shutter, whoosh). Müziği döngüye sokma. (Eski "−20 LUFS'tan yüksek miks
+   yapma" kuralı 31.10'da kalktı; hedef −14 LUFS.)
 10. Poppins Bold Italic kullanma (tek katlı "a", 9,7° eğim). Kontur dışında kutu ya da ofsetli gölge ekleme.
 11. Kanıtı küçültme, kenarlık verme, kağıt rengi zemin üstüne koyma, 2'li veya 4'lü ızgara yapma (kolaj gerekiyorsa hazır tek görsel kullan).
 12. Filigranı kartta ya da kanıtta atlama.

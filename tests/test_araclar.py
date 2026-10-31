@@ -266,8 +266,18 @@ def test_baslik_ters_koseyi_soyluyor():
 @pytest.mark.parametrize("bolum", ["kasikci-elmasi", "midas-mezari-altin", "tahran-1985-ertugrul",
                                    "yerebatan-bodrum-balik", "goeben-fes-1914", "pera-palas-anahtar-1979"])
 def test_yayinlanan_bolumlerde_on_kontrol_sessiz(bolum):
-    """Eşik yanlışsa yayınlanmış her bölümde öter; iki hakemden 8/8 alan bu bölümlerde uyarı çıkmamalı."""
-    assert denetim.hakem_oncesi(load(KOK / "episodes" / bolum)) == []
+    """Eşik yanlışsa yayınlanmış her bölümde öter; iki hakemden 8/8 alan bu bölümlerde uyarı çıkmamalı. Başlık uzunluğu
+    31.10'da eklenen bir politika: goeben ve pera-palas başlıkları (65, 88 karakter) bilerek uyarı alır, burada sayılmaz."""
+    uyarilar = denetim.hakem_oncesi(load(KOK / "episodes" / bolum))
+    assert [u for u in uyarilar if "karakter (en çok" not in u] == []
+
+
+def test_baslik_uzunlugu():
+    """En çok izlenen başlıklar 43-57 karakter, en az izlenenler 69-88 (31.10)."""
+    pera = load(KOK / "episodes/pera-palas-anahtar-1979")
+    assert any("karakter (en çok 60)" in u for u in denetim.baslik_uzun(pera))
+    assert denetim.baslik_uzun(load(KOK / "episodes/kasikci-elmasi")) == []
+    assert denetim.baslik_uzun(dataclasses.replace(pera, title="Pera Palas'ın 411 numaralı odasındaki anahtar")) == []
 
 
 # --- Yön kaydı: yalnız kendi girdisi -----------------------------------------------------------------------------
@@ -354,7 +364,7 @@ def test_ses_dogrusal_kazanc_ve_gorunur_uyari(tmp_path, monkeypatch, capsys):
     tp = float(olc_af.split("TP=")[1].split(":")[0])
     assert -9 <= tp <= 0                                              # ffmpeg'in kabul ettiği aralık
     af = cagri[1][cagri[1].index("-af") + 1]
-    assert af == "volume=-14.10dB"                                    # tepe -17 dBTP'ye göre (0.197 ile aynı)
+    assert af == "volume=1.40dB"                                      # -14 LUFS'a +1,71 dB yerine tepe -1,5'e göre
     assert "⚠" not in capsys.readouterr().out                          # hedefin 1 LU içinde: sessiz
     cagri.clear()
     olcum = {"bozuk": 1}

@@ -197,6 +197,7 @@ güncel olaylarda `python -m wojak check` dil denetimini ayrıca çalıştırır
 ## 6. Ses
 - 30 reel'in 27'sinde **aynı parça**: kanalın imza "orijinal ses"i (Do minör vals, ~153 BPM, lo-fi, 13,75 sn).
   **Ses efekti yok**, seslendirme yok, döngü yok; seviye −29,5 LUFS. En çok izlenen 9 reel'in hepsinde bu ses var.
+  (31.10: hesap sahibi müziği kısık buldu; bizim videolarda hedef artık −14 LUFS, tepe ≤ −1,5 dBTP.)
 - Üretimde `music: kanal` (hesabın reel'lerinden çıkarılan dosya, repoya girmez); yoksa sentez yedek
   (`imza_gece_vals.mp3`, orijinale benzemiyor; yeniden üretilmeli: STIL.md §10.4).
 

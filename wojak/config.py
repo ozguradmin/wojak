@@ -43,8 +43,9 @@ DIALOG_MAX_LINES = 2
 TEXT_HEAD_GAP = 55          # yazı bloğunun altı ile konuşanın başı arası (px, kare ölçeğinde)
 TEXT_CENTER_RANGE = (0.32, 0.50)  # blok merkezinin kare içindeki izinli aralığı
 
-# Ses: 27/30 reel'de AYNI parça (kanalın imza "orijinal ses"i, Do minör vals, 13,75 sn), efekt YOK,
-# entegre -29,5 LUFS, gerçek tepe -17 dBTP, döngü yok. Parça hesabın kendi reel'lerinden çıkarılır
+# Ses: 27/30 reel'de AYNI parça (kanalın imza "orijinal ses"i, Do minör vals, 13,75 sn), efekt YOK, döngü yok.
+# Orijinaller -29,5 LUFS / -17 dBTP idi; 31.10.2026'da hesap sahibi "müzik kısık" dedi, seviye YouTube'un referansına
+# (-14 LUFS, tepe <= -1,5 dBTP) çekildi. Parça hesabın kendi reel'lerinden çıkarılır
 # (assets/music/ozel/, repoya girmez); yoksa sentez imza müziği kullanılır.
 MUSIC_CHANNEL = MUSIC / "ozel" / "kanal_orijinal_ses.m4a"
 MUSIC_FALLBACK = MUSIC / "imza_gece_vals.mp3"
@@ -52,8 +53,8 @@ MUSIC_FALLBACK = MUSIC / "imza_gece_vals.mp3"
 # YouTube ihlal riski taşıdığı için `music: kanal` artık bunu çalar; eski ses yalnız `music: orijinal` ile seçilir.
 MUSIC_IMZA = MUSIC / "imza_v2_golge.m4a"
 MUSIC_IMZA_VARYANT = sorted(MUSIC.glob("imza_v2_*.m4a"))   # videoya göre dönüşümlü kullanılabilir
-LOUDNESS_LUFS = -29.5
-LOUDNESS_TP = -17.0
+LOUDNESS_LUFS = -14.0
+LOUDNESS_TP = -1.5
 MAX_DURATION = 14.0
 
 WATERMARK = "tarihselwojak"

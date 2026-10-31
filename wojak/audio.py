@@ -82,13 +82,13 @@ def _olc(src: Path) -> tuple[float, float]:
 
 
 def _loudnorm(src: Path, dst: Path) -> None:
-    """Orijinal reel'lerin seviyesine (-29,5 LUFS, -17 dBTP) ölçüp DOĞRUSAL kazanç (volume=dB) uygular.
+    """config.LOUDNESS_LUFS / LOUDNESS_TP'ye (31.10'dan beri -14 LUFS, -1,5 dBTP) ölçüp DOĞRUSAL kazanç (volume=dB)
+    uygular. Limiter yok: tepe TP'yi aşacaksa kazanç tepeye göre kısılır (imza_v2_golge: -15,7 LUFS / -2,9 dBTP ->
+    -14,3 LUFS / -1,5 dBTP) ve hedefin 1 LU'dan fazla altında kalırsa uyarılır.
 
-    Eskiden loudnorm'a TP=-17 veriliyordu; ffmpeg TP'yi -9..0 aralığında kabul ettiği için filtre hata veriyor, kod
-    sessizce 'anull'a düşüyor ve video -15,5 LUFS çıkıyordu (kanuni-gizlenen-olum, 23.10; o günden beri her bölüm
-    `volume: 0.197` ile elle düzeltiliyordu). Şimdi ölçüm + tek kazanç; tepe TP'yi aşacaksa kazanç tepeye göre kısılır
-    (imza_v2_golge: -15,7 LUFS / -2,9 dBTP -> -29,8 LUFS / -17,0 dBTP, 0.197 ile aynı) ve hedefin 1 LU'dan fazla altında
-    kalırsa uyarılır. Ölçülemezse ses değiştirilmeden geçer ama bu artık sessiz değil, uyarılır."""
+    Eskiden loudnorm'a TP=-17 veriliyordu (orijinal reel'lerin -29,5 LUFS seviyesi); ffmpeg TP'yi -9..0 aralığında kabul
+    ettiği için filtre hata veriyor, kod sessizce 'anull'a düşüyordu (kanuni-gizlenen-olum, 23.10). Ölçülemezse ses
+    değiştirilmeden geçer ama bu artık sessiz değil, uyarılır."""
     I, TP = config.LOUDNESS_LUFS, config.LOUDNESS_TP
     try:
         li, ltp = _olc(src)
