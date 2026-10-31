@@ -115,6 +115,10 @@
   "faces": "right",
   "file": "episodes/en-mechanical-turk/chars/a_sakin.png"
  },
+ "2ce5cff30f5ec209f8e433e71d39cddf455990c1": {
+  "faces": "right",
+  "file": "episodes/en-lustig-eiffel-tower/chars/b_sok.png"
+ },
  "2d6fd0e2178cfc076970b8ab4bc88b9643adefed": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_sakin.png"
@@ -274,6 +278,10 @@
  "548b7fdb3e12a46f298bf502844d415ad0dc6844": {
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/sakin.png"
+ },
+ "55c386a0a4133817a377be8e1cc603904827afef": {
+  "faces": "right",
+  "file": "episodes/en-lustig-eiffel-tower/chars/b_sakin.png"
  },
  "565587e5d5896778d12ffbdee1a79e69d83e44bc": {
   "faces": "right",
@@ -615,6 +623,10 @@
   "faces": "right",
   "file": "episodes/hope-elmasi-posta-1958/chars/b_memur.png"
  },
+ "b5a72af3ef38455d9f383065a3c5695a3c350c8c": {
+  "faces": "right",
+  "file": "episodes/en-lustig-eiffel-tower/chars/b_sok.png"
+ },
  "b5f4fe6b423cc425a29caaf6071b086414490155": {
   "faces": "front",
   "file": "episodes/en-d-b-cooper/chars/a_ter.png"
@@ -755,6 +767,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/sheskin_sakin.png"
  },
+ "e1250b57f5bf7a98e2e2e02dd71d183c67ad226b": {
+  "faces": "right",
+  "file": "episodes/en-lustig-eiffel-tower/chars/a_sakin.png"
+ },
  "e32cf848ba632e585cd4a11e8cf9c89d72c9b30f": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans.png"
@@ -834,6 +850,10 @@
  "f55bd366499e4b93b630d4c9ad3e1dca3db9611d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_mutlu.png"
+ },
+ "f95194a389835c71a4aa7f23f72e0c17c5764f7c": {
+  "faces": "right",
+  "file": "episodes/en-lustig-eiffel-tower/chars/b_sakin.png"
  },
  "f967de52d4e68f03878fbd6633780e877d4ae876": {
   "faces": "right",

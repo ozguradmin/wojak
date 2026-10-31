@@ -1,0 +1,103 @@
+# Victor Lustig and the Eiffel Tower "sale" (Paris, 1925; reportedly). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular_lustig.md (Smithsonian 2012+2015, resmi Eyfel sitesi, Wikipedia, Mental Floss, The Hustle).
+# CANLANDIRMA: iki karakter temsilidir; replikler uydurmadir. Alici (adi kaynaklarda var) videoda ADSIZ, "hurdaci" rolu kurgu.
+#   Hikayenin kaynagi zayif (en eski anlatim 1961 kitabi; Fransiz arsivinde iz bulunamadi) -> baslik ve metinde "reportedly".
+# Karakterler: A = wojakland 'Smug Suit Wojak' (Lustig rolu, kotu karakter yuzu), B = wojakland 'Suit Wojak' (fedora, gri takim;
+#   hurdaci rolu); ters kose varyanti chars/b_sok.png (ayni taban, ayni kutu).
+id: en-lustig-eiffel-tower
+kanal: en  # Wojak Past Files
+title: "The con man who reportedly sold the Eiffel Tower for scrap"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.6
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "The government is selling\nthe Eiffel Tower for scrap"
+
+  # 2) CEVAP — B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.6
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "I'll take it, here's the cash"
+
+  # 3) A (sol): gizlilik
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.6
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Excellent, now keep it\nbetween us"
+
+  - type: card
+    duration: 1.5
+    text: "A week later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.6
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, why is it still standing?"
+
+  # 6) KANIT 1 — ABD Adalet Bakanligi kimlik karti, 1931 (sonraki tutuklama)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: 1925'te isikli Eyfel Kulesi (Agence Rol / BnF)
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The con man who reportedly sold the Eiffel Tower for scrap
+  The full story is in the pinned comment 👇
+
+hashtags: [history, conman, paris]
+
+pinned_comment: |
+  Victor Lustig was a con artist, born in Austria-Hungary, who, according to the best-known account, "sold" the Eiffel Tower in Paris in 1925.
+
+  The tower, then 36 years old, was expensive to maintain. In the story, Lustig read about the upkeep problem in a newspaper, had fake government stationery made and posed as a deputy director at the postal ministry. He invited scrap-metal dealers to the Hôtel de Crillon and told them, in secrecy, that the tower would be dismantled and sold for scrap to the highest bidder. There is no sign that the authorities ever planned anything of the kind.
+
+  One businessman reportedly paid, then was too embarrassed to go to the police. Later that year he tried the same trick on new dealers. This time one of them contacted the police, and Lustig fled to the United States. He was caught for counterfeiting in 1935, sent to Alcatraz, and passed away in 1947 at a federal medical center in Springfield, Missouri.
+
+  The best-known version of the sale comes mostly from a 1961 book and later retellings, and some researchers say they found no contemporary French record of it. The tower was never torn down.
+
+  The two wojak characters are fictional; their lines are dramatized. The first image is a 1931 U.S. Justice Department card from a later arrest; the last is a color Photochrom print of the tower from the late 19th century.
+
+  Did a con man really sell the Eiffel Tower, or is it his best story?
+
+credits: "U.S. Department of Justice, Bureau of Investigation identification record, 1931 (public domain; cropped, enlarged); Eiffel Tower and fountain, Exposition Universal, Paris, c. 1890-1905, Photochrom print, author unknown, Library of Congress (public domain; cropped); background: Hôtel de Crillon, by Claus, 2007 (public domain; cropped to square, colour toned down, softened); all via Wikimedia Commons."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional; the dialogue is invented. The buyer in the story is a real private person whose name is deliberately not used."
+  - "**Source caution:** the Eiffel Tower sale is known mostly from later accounts (earliest well-known account: a 1961 book); title and text say \"reportedly\". The last image is the real tower in a late 19th-century print, not a picture of any sale. The Eiffel Tower site says the other dealers were accomplices; Smithsonian and Wikipedia say real dealers."
+
+sources:
+  - "Smithsonian Magazine, The Man Who Sold the Eiffel Tower. Twice. (Maysh, 2015): https://www.smithsonianmag.com/history/man-who-sold-eiffel-tower-twice-180958370/"
+  - "Eiffel Tower official site, Who sold the Eiffel Tower?: https://www.toureiffel.paris/en/news/history-and-culture/who-sold-eiffel-tower"
+  - "Wikipedia, Victor Lustig (cross-check): https://en.wikipedia.org/wiki/Victor_Lustig"
+  - "Mental Floss, The Smoothest Con Man (cross-check): https://www.mentalfloss.com/article/12809"
+  - "GÖRSEL img/ev_1.jpg — 'Victor Lustig DOJ BOI (FBI) identification, 1931.jpg', United States Department of Justice, public domain (US federal): https://commons.wikimedia.org/wiki/File:Victor_Lustig_DOJ_BOI_(FBI)_identification,_1931.jpg. Degisiklik: ust kisim kirpildi, 2,35x buyutuldu, hafif keskinlestirildi"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Eiffel Tower and fountain, Exposition Universal, 1889, Paris, France.jpg' (LoC Photochrom, c. 1890-1905, unknown author), public domain: https://commons.wikimedia.org/wiki/File:Eiffel_Tower_and_fountain,_Exposition_Universal,_1889,_Paris,_France.jpg. Degisiklik: yanlardan kirpildi, 1080x816. Kule 1925 degil 19. yuzyil sonu baskisi; metinde yazili"
+  - "Sinister Crimes, Victor Lustig (arsivde iz yok, 1961 kitabi): https://sinistercrimes.com/victor-lustig/"
+  - "La Libre (J.-F. Migniac aktarimi, Fransiz arsivinde iz yok): https://dossiers.lalibre.be/victor_lustig_l_escroc_qui_a_vendu_la_tour_eiffel_deux_fois/"
+  - "GÖRSEL img/arka.jpg — 'Hôtel de Crillon 25 08 2007.jpg', Claus, public domain (own work): https://commons.wikimedia.org/wiki/File:H%C3%B4tel_de_Crillon_25_08_2007.jpg. Degisiklik: kare kirpim, renk 0,72, parlaklik 1,10, hafif blur"
