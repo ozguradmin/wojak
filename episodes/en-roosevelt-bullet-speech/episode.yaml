@@ -1,0 +1,91 @@
+# Theodore Roosevelt shot in Milwaukee, 14 Oct 1912 (the speech that slowed the bullet). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgu_roosevelt.md (TR Presidential Library x2, Smithsonian, HISTORY, Wikipedia, UPI 1912, Fox/LOC). Görsel: /tmp/arastirma/gorsel.md.
+# CANLANDIRMA: iki kurgusal wojak. B Roosevelt'i canlandırır (belgeli söz: "You get me to that speech", TR Library); A adsız yaver, replikler uydurma.
+# Karakterler: A = wojakland 'Bow Tie Suit Wojak' (yaver; ters köşe a_sok = el çizimi şaşkın yüz), B = wojakland 'Mustache Zoomer Suit Wojak' (pince-nez, bıyık; omuz yaması silindi).
+id: en-roosevelt-bullet-speech
+kanal: en  # Wojak Past Files
+title: "Teddy Roosevelt kept speaking after being shot in 1912"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 3.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Colonel Roosevelt, you've\nbeen shot, see a doctor"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "You get me to that speech"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Sir, the bullet's still\ninside you"
+
+  - type: card
+    duration: 1.5
+    text: "Minutes later"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, how is he\nstill standing?"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_3.jpg]
+
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Teddy Roosevelt kept speaking after being shot in 1912
+  The full story is in the pinned comment 👇
+
+hashtags: [history, theodoreroosevelt, ushistory]
+
+pinned_comment: |
+  The shooting of Theodore Roosevelt was an assassination attempt on October 14, 1912, in Milwaukee, Wisconsin. Roosevelt, a former president, was campaigning for a third term as the Progressive, or "Bull Moose," Party candidate. As he stood in an open car outside the Gilpatrick Hotel to wave to a crowd, a man a few feet away fired a revolver.
+
+  Roosevelt carried a folded 50-page speech and a steel eyeglass case in his breast pocket. The bullet passed through both before lodging in his chest near a rib. The Theodore Roosevelt Presidential Library and the Smithsonian say the manuscript and the case slowed it.
+
+  A doctor urged him to go straight to the hospital. He refused, reportedly insisting, "You get me to that speech," and went on to the Milwaukee Auditorium. He told the crowd he had just been shot, and that it would take more than that to stop a Bull Moose. Sources disagree on how long he spoke, from roughly an hour to about 90 minutes.
+
+  Doctors judged that removing the bullet was riskier than leaving it, so it stayed in his chest for the rest of his life. About two weeks later he was back on the campaign trail. He lost the election to Woodrow Wilson.
+
+  The aide and the dialogue are a dramatization. The frames show a 1912 press photo of the bullet-pierced speech pages, and the bullet-damaged steel eyeglass case photographed at the Theodore Roosevelt Birthplace in 2007.
+
+  Would you have finished the speech?
+
+credits: "Wisconsin Street, Milwaukee (c. 1900, Library of Congress LCCN 2008679515, public domain; cropped, colour and brightness reduced, blurred, background only, not the 1912 scene); TR Assassination Bullet Damage (photo by Richard W. Allen, uploaded by Rickster77, 2007, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/; cropped, converted to black and white, contrast adjusted, slightly blurred; shared under the same licence); Elbert Martin and bullet-pierced speech (Bain News Service, 1912, Library of Congress LCCN 2014690861, public domain; cropped), all via Wikimedia Commons. Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**The video is a dramatization:** the characters are fictional; one aide is invented. Documented: the 'You get me to that speech' line (Theodore Roosevelt Presidential Library), the pierced 50-page speech and eyeglass case (both genuine artifacts), the bullet that stayed in his chest."
+  - "Suggested first comment: 'Actually the speech and the case slowed the bullet, they did not stop it' (the pinned text says slowed)."
+sources:
+  - "Date, place, 50-page speech and steel eyeglass case slowed the bullet, 'You get me to that speech', refused hospital, 80-90 min, bullet never removed: Theodore Roosevelt Presidential Library, 'The Assassination Attempt: Milwaukee, October 14, 1912': https://www.trlibrary.com/tr/post-presidency/assassination-attempt"
+  - "Bullet in chest not removed, opening words, Schrank judged insane: TR Presidential Library, 'Why Was Theodore Roosevelt Shot?': https://www.trlibrary.com/tr/tr-shot"
+  - "Three doctors found the speech and case slowed the bullet; spoke about an hour: Smithsonian Magazine, 'The Speech That Saved Teddy Roosevelt's Life': https://www.smithsonianmag.com/history/the-speech-that-saved-teddy-roosevelts-life-83479091/"
+  - "Overcoat, eyeglass case and speech slowed the bullet; 90 minutes; opening words: HISTORY, 'When Teddy Roosevelt Was Shot in 1912': https://www.history.com/articles/shot-in-the-chest-100-years-ago-teddy-roosevelt-kept-on-talking"
+  - "Overall event, bullet carried for life, 'two weeks recuperating': Wikipedia, 'Attempted assassination of Theodore Roosevelt': https://en.wikipedia.org/wiki/Attempted_assassination_of_Theodore_Roosevelt"
+  - "GÖRSEL img/bg.jpg (arka plan) — 'Wisconsin Street, Milwaukee-LCCN2008679515.jpg', Library of Congress, PD-1923: https://commons.wikimedia.org/wiki/File:Wisconsin_Street,_Milwaukee-LCCN2008679515.jpg. Değişiklik: kare kırpım, renk 0,75, parlaklık 0,93"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'TR Assassination Bullet Damage.jpg', Richard W. Allen / Rickster77, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:TR_Assassination_Bullet_Damage.jpg. Değişiklik: alt yarı kırpım (kolaj kenarlığı dışarıda), siyah-beyaz, autocontrast+gama, hafif blur"
+  - "GÖRSEL img/ev_3.jpg (kanıt 1) — 'Elbert Martin and bullet-pierced speech LCCN2014690861.jpg', Bain News Service 1912, Library of Congress, PD-Bain / PD-old-70-1923: https://commons.wikimedia.org/wiki/File:Elbert_Martin_and_bullet-pierced_speech_LCCN2014690861.jpg. Değişiklik: kırpım (alt yazı ve yüz dışarıda)"

@@ -47,6 +47,10 @@
   "faces": "right",
   "file": "episodes/en-great-moon-hoax/chars/b_smug.png"
  },
+ "10bd7280ff20807e5a5c17b6ee639d569a918beb": {
+  "faces": "right",
+  "file": "episodes/en-roosevelt-bullet-speech/chars/a_sakin.png"
+ },
  "12a1346a4b4f1fc943deea4f258e5d6fc65d9b94": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci2000_gergin.png"
@@ -318,6 +322,10 @@
  "5a051ed0a6ffda9dbc875170b62a5f77664af1de": {
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/terli.png"
+ },
+ "5ce765377dbe4d49a0699b9154904165a66b1689": {
+  "faces": "right",
+  "file": "episodes/en-roosevelt-bullet-speech/chars/b_sakin.png"
  },
  "5e1594f36df48eae7e34a859420ec74af0d15ecb": {
   "faces": "right",
@@ -794,6 +802,10 @@
  "df521b49eeece2939ff55f15980ddc62883197c5": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/sheskin_sakin.png"
+ },
+ "e0dc6eab85bdbd8e238a2ea80025ba70c22054df": {
+  "faces": "right",
+  "file": "episodes/en-roosevelt-bullet-speech/chars/a_sok.png"
  },
  "e1250b57f5bf7a98e2e2e02dd71d183c67ad226b": {
   "faces": "right",
