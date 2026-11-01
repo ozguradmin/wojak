@@ -534,7 +534,7 @@ def draft_episode(report_json: Path, n: int) -> Path:
     (dst / "img").mkdir(parents=True)
     tpl = (ROOT / "episodes" / "_sablon" / "episode.yaml").read_text(encoding="utf-8")
     ban_q = json.dumps(" ".join([t for t in tokens(c["headline"]) if len(t) > 3][:3]), ensure_ascii=False)
-    tpl = tpl.replace("id: sablon", f"id: {slug}\nyasak_sorgu: {ban_q}  # tools/gundem.py --yasak-takip bununla arar; en ayırt edici 2-3 kelime (isim, yer)\ngundem: true          # güncel olay: dil denetimi + docs/GUNDEM.md kontrol listesi\nkesin_hukum: false    # fail hakkında kesinleşmiş mahkûmiyet var mı?")
+    tpl = tpl.replace("id: sablon", f"id: {slug}\nyasak_sorgu: {ban_q}  # yayın botu 14 gün bununla arar; en ayırt edici 2-3 kelime (isim, yer)\nolay_yeri: \"\"         # ilçe ve il (\"Gebze, Kocaeli\"): bot RTÜK yasak listesinde bu yerin mahkemesine bakar\ngundem: true          # güncel olay: dil denetimi + docs/GUNDEM.md kontrol listesi; teslim BEKLET'li\nkesin_hukum: false    # fail hakkında kesinleşmiş mahkûmiyet var mı?")
     tpl = tpl.replace("# top_text: \"1996, Manisa\"", "top_text: \"<gün ay yıl>, <yer> — resmi açıklamalara göre\"  # bağlam videonun İÇİNDE olmalı")
     # json.dumps -> geçerli YAML çift tırnaklı dize (başlıkta " ya da \\ olsa bile)
     tpl = tpl.replace('title: "<Olay adı> (Olayı yorumlara yazdım)"', "title: " + json.dumps(c["headline"][:90], ensure_ascii=False))

@@ -31,6 +31,11 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
+- **1.11 Gündem (tr):** "Son bir haftada olmuş, gündemdeki bir olayı yaparsak ilgi çeker mi?" Veri evet diyor (Instagram'da
+  haber dalgasından 3-6 gün sonra medyan 8,85M). Hesap sahibi onaylı akışı istedi: her oturum konu seçmeden önce gündeme
+  bakar (§5 "Gündem"); güçlü olay varsa o günün videosu gündem olur. Gündem paketi her zaman BEKLET'li çıkar; bot Telegram'a
+  "Yayınla / Yayınlama" düğmeleriyle gönderir, yayın yasağını onaydan önce ve yayından sonra 14 gün arar. Kırmızı çizgiler
+  aynı (GUNDEM.md §2).
 - **1.11 Sansür (tr):** "Açıklamada ve videonun üzerinde hassas yerlerde sansür: boğazını k\*sti, \*ldürdü." Hassas kelimeyi
   yumuşatma ("vefat etti", "hayatını kaybetti" yerine düz yaz: "öldürdü", "boğazını kesti"); sansürü araç yapar: açıklama,
   başlık ve sabit yorumda `censor.metin`, videodaki replik, kart ve üst yazıda `censor.ekran` (render kendiliğinden). Araç bir
@@ -89,7 +94,8 @@
 - **En fazla 3 tur.** Çıta geçilmediyse ya da son turdaki düzeltme yeniden puanlanmadıysa → `BEKLET`.
 - Hakemler çelişirse orijinaller ne yapıyorsa o yapılır. Hakemin önerdiği sayıyı kareye bakmadan uygulama.
 
-**BEKLET** (bölüm klasöründe boş `BEKLET` dosyası; hesap sahibi karar verir) şu durumlardan biri varsa:
+**BEKLET** (bölüm klasöründe `BEKLET` dosyası, içinde **tek satırlık neden**; hesap sahibi Telegram'dan karar verir) şu
+durumlardan biri varsa:
 güncel olay (GUNDEM), çocuk, son 10 yılda ölmüş kişi, yaşayan özel kişi, süren dava, hakem çıtası geçilmedi ya da MUST
 kaldı, kanıt/arka plan/kupürde lisans şüphesi. Karakter lisansı BEKLET nedeni değildir.
 
@@ -97,7 +103,10 @@ kaldı, kanıt/arka plan/kupürde lisans şüphesi. Karakter lisansı BEKLET ned
 bakar): `tr` → `wojak-ozel/teslim/<id>/`, `en` → `wojak-en-ozel/teslim/<id>/`. Bir kanalın bölümü asla öbür depoya konmaz.
 - **BEKLET kararı teslim commit'inden ÖNCE verilir;** BEKLET varsa aynı ve tek commit'e girer. Sonradan BEKLET commit'i
   atılmaz (27.10'da `en-mincemeat` yayına girdikten 8 sn sonra BEKLET eklendi; video zaten yayındaydı).
-- `YAYINLANDI.json`'a dokunma. YouTube'a elle yükleme yok (bot çift yükler).
+- `YAYINLANDI.json`'a ve `ONAY.json`'a dokunma. YouTube'a elle yükleme yok (bot çift yükler).
+- **Onay (1.11):** bot BEKLET'li paketi Telegram'a video ve "Yayınla / Yayınlama" düğmeleriyle gönderir; nedeni BEKLET'teki
+  satırdan, o boşsa RAPOR'daki ilk BEKLET paragrafından alır (26-31.10 arası 4 `en` paketi boş BEKLET'le sessizce bekledi).
+  "Yayınla" saatlik kontrolde BEKLET'i siler, paket sıraya girer; 7 gün karar gelmezse yayınlanmaz.
 - Instagram'ı hesap sahibi Telegram'dan paylaşır; bölüme özel notlar `ek_maddeler`'e.
 - `tr` (31.10): bot YouTube'dan sonra Buffer ile Facebook sayfasına reel ve TikTok'a da paylaşır; Facebook metni
   `instagram_aciklama.txt`, TikTok metni `tiktok_aciklama.txt` (2.200 karakteri aşarsa hikâyenin son paragrafları
@@ -109,7 +118,7 @@ bakar): `tr` → `wojak-ozel/teslim/<id>/`, `en` → `wojak-en-ozel/teslim/<id>/
 1. **Ortam (~3 dk):** `bash tools/hazirla.sh <özel-depo-yolu>` (bağ, iki deponun varsayılan dalı + pull, pip, font,
    referans, kısa pytest özeti, müzik kontrolü). Çıktıdaki uyarıyı düzelt, sonra devam et. Elle kurulum gerekirse:
    `mkdir -p /home/user` bağdan ÖNCE; depolar ayrık HEAD'de açılır, dosya yazmadan varsayılan dala geç.
-2. **Konu (~4 dk):** §5. Veri dosyalarını oku, havuzdan ve kendi bilginden 3 aday çıkar (en az 2'si 1. ya da 2. damardan),
+2. **Konu (~4 dk):** `tr`'de önce gündem taraması (§5 sonundaki "Gündem", ~3 dk); uygun olay yoksa §5. Veri dosyalarını oku, havuzdan ve kendi bilginden 3 aday çıkar (en az 2'si 1. ya da 2. damardan),
    puan tablosunu doldur, sert filtreyi ve yorum testini uygula; eşiği geçen en güçlü adayı seç.
 3. **Araştırma (alt ajan, paralel ~8 dk):** olgu + görsel + karakter önerisi, §3 bütçesiyle. Sen bu arada karakter kitine bak.
 4. **Bölümü aç:** `python -m wojak new <id>` (en: `python -m wojak new en-<id> --kanal en`). Şablon: §8.
@@ -124,7 +133,8 @@ bakar): `tr` → `wojak-ozel/teslim/<id>/`, `en` → `wojak-en-ozel/teslim/<id>/
 9. **Hakemler:** iki alt ajan paralel (§3).
 10. **Son kontrol:** §12. BEKLET kararı (§3). RAPOR.md (§13).
 11. **Teslim:** paket → özel depo, tek commit, push. Herkese açık `wojak`'a bölüm dosyaları (yaml, betikler, `chars/`,
-    serbest `img/`) ve `data/karakter_yon.json`'daki **yalnız kendi girdilerin**.
+    serbest `img/`) ve `data/karakter_yon.json`'daki **yalnız kendi girdilerin**. Gündem bölümü herkese açık depoya girmez
+    (§5 "Gündem").
 12. **Ders:** `docs/DERS_KUTUSU.md`'ye en çok 10 satır, yalnız gerçekten yeni olan (§14).
 
 Süre bütçesi: ortam 3 · konu 4 · araştırma 8 (paralel) · karakter 5 · yaml→render 4 · ön kontrol 3 · hakem 5 · teslim 4.
@@ -198,7 +208,7 @@ ya da halk etimolojisi efsanesini tek doğru gibi oynama. Bu yorumu ve cevabın�
 mezarlık, iki mağara) art arda gelmez.
 
 **Sert filtre (aday araştırmaya gitmeden elenir):** son 10 yılda ölmüş ya da yaşayan özel kişi, çocuk, süren dava, güncel
-olay. Bunlar BEKLET demektir: 30.10'da `uluburun-kulakli-biskuvi` süngerci Ocak 2026'da öldüğü için $20 harcayıp yayına
+olay (güncel olay yalnız aşağıdaki "Gündem" yolundan girer). Bunlar BEKLET demektir: 30.10'da `uluburun-kulakli-biskuvi` süngerci Ocak 2026'da öldüğü için $20 harcayıp yayına
 çıkamadı. Bunu konu adımında araştırmacıya ilk soru olarak sor.
 
 **İlk replik = kapak.** Instagram ızgarasında ve Shorts akışında görülen ilk kare budur; kaydırıp geçme orada olur.
@@ -223,7 +233,27 @@ başlığında "Piri Reis" yoktu); tek merak boşluğu.
 
 - **Tekrar yok:** kanalda yapılmış konu seçilmez. `data/videos.csv`, `data/instagram_reels.csv`, `data/olay_metinleri.md`,
   `episodes/`, `KONU_HAVUZU.md` ve özel deponun `teslim/` klasöründe grep'le. Aynı alt tür art arda gelmez (damar dengesi).
-- Güncel olay ise önce `GUNDEM.md` §5 ve §7; yayın BEKLET'li.
+
+**Gündem (1.11, yalnız `tr`; hesap sahibi onayladı).** Konu adayından önce gündeme bak (~3 dk):
+`python tools/gundem.py --saat 72 --ilk 15`, sonra `out/gundem/<tarih>.md`. Bugünün videosu ancak şunların hepsi varsa
+gündem olur:
+- olay `GUNDEM.md` §2'den **en az 3 "evet"** alıyor ve hiçbir kırmızı çizgiye değmiyor (yayın yasağı, çocuk kaybı ya da
+  istismarı, cinsel suç, intihar, terör faili, siyasi konu, kimlikleri netleşmemiş taze olay);
+- haber dalgası **1-6 gün önce** (Instagram: 3-6 gün medyan 8,85M; 10 gün ve üstü 0/6), ≥ 10 kaynak ya da Trends'te;
+- tek yüzü olan bir insan hikâyesi ve resmî açıklama var (kayıp, ölüm, suçta valilik, emniyet ya da savcılık);
+- son 7 günde en çok 1 gündem teslimi var (haftada en çok 2).
+
+Yoksa normal konuya geç; çoğu gün böyle olur. Gündem adaylarına §5 puan tablosu uygulanmaz: RAPOR'a en iyi 3 gündem adayını
+GUNDEM.md §2 sorularıyla (evet/hayır, kaynak sayısı, dalga tarihi) yaz.
+
+Gündem bölümü: id `gundem-<kısa-ad>` (`.gitignore` herkese açık depoya sokmaz), `gundem: true`, `kesin_hukum`,
+`yasak_sorgu` (2-3 ayırt edici kelime: isim, yer), `olay_yeri` ("Gebze, Kocaeli"), bağlam `top_text` ile videonun içinde.
+Format ve dil GUNDEM.md §4: replik yalnız doğrulanmış bilgiden, kurbana uydurma söz yok, şüpheliye karakter yok.
+`python -m wojak teslim` BEKLET'i ve `GUNDEM.json`'u kendisi yazar (eksik alan varsa teslim etmez); BEKLET'e tek satır
+neden (olay, yer, dalga tarihi) yazabilirsin. RAPOR'a **`## Gündem kontrol listesi`** başlığıyla GUNDEM.md §5'in 12
+maddesi (evet/hayır + kanıt; RTÜK listesine bakılan saat): bu bölüm Telegram onay mesajında hesap sahibine gider. Bölüm
+klasörünü özel depoya `gundem/<id>/` olarak kopyala (aynı teslim commit'i). Herkese açık depoya gündem bölümü girmez;
+`DERS_KUTUSU`'na yazacağın derste olayı ve kişileri anma.
 
 ## 6. Format (STIL §0 + §15 özü)
 
@@ -428,10 +458,12 @@ sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum öneris
 - **RAPOR.md** (kısa, ~60-90 satır): BEKLET durumu ve gerekçesi · konu ve "Ne?!" cümlesi · **§5 puan tablosu (3 aday,
   damar, A-E puanları ve toplam)** · yorum testi ve cevabı · son 7 teslimin damarı · sahne listesi ·
   başlık seçenekleri · hakem turları (puan, MUST, uygulanan düzeltme; puanlar hakem raporundan değiştirilmeden) · bilinen
-  kusurlar · lisans tablosu · adım süreleri (tek tablo) · alt ajan çağrıları.
+  kusurlar · lisans tablosu · adım süreleri (tek tablo) · alt ajan çağrıları · gündemse `## Gündem kontrol listesi`
+  (§5 "Gündem"; Telegram onay mesajına gider).
 - Özel depo: tek commit, Türkçe konu ("Teslim: <id> (iki hakemden 8/8, telifsiz, BEKLET yok)"), push. Son commit botun
   olabilir: yazarı açıkça ver (`git -c user.name=Claude -c user.email=noreply@anthropic.com commit ...`).
-- Herkese açık `wojak`: `git pull --rebase` sonra commit ve push (oturumun dalı); konu satırı aynı biçimde.
+- Herkese açık `wojak`: `git pull --rebase` sonra commit ve push (oturumun dalı); konu satırı aynı biçimde. Gündem bölümü
+  buraya girmez; klasörü özel depoda `gundem/<id>/` olarak teslim commit'ine eklenir.
 
 ## 14. Oturum sonu: dersler
 

@@ -20,3 +20,8 @@ teslim/*/*.mp4
 
 # Uzun format (wojak/uzun): videolar ve ses önbelleği out/ altında; teslim/<id>-uzun/*.mp4 yukarıdaki kuralla dışarıda
 tools/telegram/node_modules/
+
+# Gündem (güncel olay) bölümleri herkese açık depoya girmez (1.11): yayın yasağı sonradan gelebilir (Narin: 8 gün sonra,
+# sosyal medya ve internet dahil) ve git geçmişinden silinemez. Bölüm klasörü özel depoda gundem/<id>/, paket teslim/<id>/.
+episodes/gundem-*/
+teslim/gundem-*/

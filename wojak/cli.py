@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import sys
 import time
@@ -175,8 +176,31 @@ def cmd_paket(a) -> None:
 
 
 # Teslimin üretmediği, elle konan dosyalar: yeniden teslimde silinmez. RAPOR.md teslimle silindi (en-great-moon-hoax,
-# 26.10); BEKLET silinirse bot bölümü yayınlar; YAYINLANDI.json'a hiç dokunulmaz (CLAUDE.md).
-TESLIM_KORUNAN = ("RAPOR.md", "BEKLET", "YAYINLANDI.json")
+# 26.10); BEKLET silinirse bot bölümü yayınlar; YAYINLANDI.json'a ve botun onay kaydı ONAY.json'a hiç dokunulmaz.
+TESLIM_KORUNAN = ("RAPOR.md", "BEKLET", "YAYINLANDI.json", "ONAY.json")
+
+
+def gundem_eksikleri(ep) -> list[str]:
+    """Gündem paketi için zorunlular (1.11): `gundem-` öneki (.gitignore bölümü ve paketi herkese açık depodan uzak tutar;
+    yayın yasağı sonradan gelirse git geçmişinden silinemez) ve yayın botunun yasak taraması için sorgu ile olay yeri."""
+    eksik = []
+    if not ep.id.startswith("gundem-"):
+        eksik.append("id 'gundem-' ile başlamalı (herkese açık depoya girmesin)")
+    if not ep.yasak_sorgu:
+        eksik.append("yasak_sorgu yok (2-3 ayırt edici kelime: isim, yer)")
+    if not ep.olay_yeri:
+        eksik.append('olay_yeri yok (ilçe ve il: "Gebze, Kocaeli")')
+    return eksik
+
+
+def gundem_dosyalari(ep, dst: Path) -> None:
+    """Gündem paketi onaysız yayınlanmaz: BEKLET (yapımcı yazmadıysa varsayılan neden) ve yayın botunun yayın yasağı
+    taraması için GUNDEM.json. Bot BEKLET'li paketi Telegram'a "Yayınla / Yayınlama" düğmeleriyle gönderir."""
+    if not (dst / "BEKLET").exists():
+        (dst / "BEKLET").write_text(f"Gündem videosu ({ep.olay_yeri}): yayından önce hesap sahibinin onayı gerekir.\n",
+                                    encoding="utf-8")
+    (dst / "GUNDEM.json").write_text(json.dumps({"sorgu": ep.yasak_sorgu, "yer": ep.olay_yeri}, ensure_ascii=False,
+                                                indent=2) + "\n", encoding="utf-8")
 
 
 def cmd_teslim(a) -> None:
@@ -187,6 +211,8 @@ def cmd_teslim(a) -> None:
     if not mp4.exists() or not (src / "kapak.jpg").exists():
         sys.exit(f"Önce render: python -m wojak render {a.episode}")
     # Kapılar mevcut teslim/<id>/ silinmeden ÖNCE: engellenen bir deneme eski geçerli paketi bozmasın.
+    if ep.gundem and gundem_eksikleri(ep):   # --zorla geçmez: onaysız ya da herkese açık yayın riski
+        sys.exit("Gündem paketi: " + "; ".join(gundem_eksikleri(ep)))
     uyarilar = denetim.check(ep)
     for u in uyarilar:
         print(f"  ⚠ {u}")
@@ -223,6 +249,8 @@ def cmd_teslim(a) -> None:
             shutil.copy2(src / name, dst / name)
     for f in (src / "metinler").glob("*.txt"):
         shutil.copy2(f, dst / "metinler" / f.name)
+    if ep.gundem:
+        gundem_dosyalari(ep, dst)
     print(f"teslim -> {dst}")
     for f in sorted(dst.rglob("*")):
         if f.is_file():

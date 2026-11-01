@@ -93,6 +93,8 @@ class Episode:
     notes: str = ""
     gundem: bool = False         # güncel olay: docs/GUNDEM.md kuralları ve dil denetimi uygulanır
     kesin_hukum: bool = False    # failin mahkûmiyeti kesinleşmiş mi (değilse "katil" vb. yasak)
+    yasak_sorgu: str = ""        # gündem: yayın yasağı aramasının 2-3 ayırt edici kelimesi (isim, yer); bot 14 gün arar
+    olay_yeri: str = ""          # gündem: ilçe ve il ("Gebze, Kocaeli"); bot RTÜK listesinde bu yerin mahkemesine bakar
     ai_generated: bool = False   # fotogerçekçi yapay zekâ görseli var mı (platformlarda etiket zorunlu)
     credits: str = ""            # görsel atfı (CC BY lisansı şart koşar); açıklamalara 'Görseller: ...' olarak eklenir
     cover_scene: int | None = None  # kapak sahnesi (1'den başlar); yoksa ilk diyalog sahnesi
@@ -211,6 +213,8 @@ def load(path: str | Path) -> Episode:
         notes=raw.get("notes", "") or "",
         gundem=bool(raw.get("gundem", False)),
         kesin_hukum=bool(raw.get("kesin_hukum", False)),
+        yasak_sorgu=str(raw.get("yasak_sorgu") or "").strip(),
+        olay_yeri=str(raw.get("olay_yeri") or "").strip(),
         ai_generated=bool(raw.get("ai_generated", False)),
         credits=str(raw.get("credits") or "").strip(),
         cover_scene=raw.get("cover_scene"),

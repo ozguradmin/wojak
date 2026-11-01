@@ -78,6 +78,34 @@ def test_tr_sansur_baglam_ve_ekran():
     assert compose.ekran_yazisi(_en(tr), "Wait, they all died") == "Wait, they all died"   # en ekranı sansürsüz
 
 
+def test_gundem_teslimi_beklet_ve_yasak_kaydi(tmp_path):
+    """1.11: gündem paketi BEKLET'li çıkar ve yayın botunun yasak taraması için GUNDEM.json yazılır; öneksiz, sorgusuz ya
+    da yersiz paket teslim edilmez. Yapımcının yazdığı BEKLET nedeni korunur."""
+    import json
+
+    from wojak import cli as _cli
+
+    hedef = tmp_path / "gundem-deneme"
+    shutil.copytree(ORNEK, hedef)
+    yml = hedef / "episode.yaml"
+    metin = "\n".join(s for s in yml.read_text(encoding="utf-8").splitlines() if not s.startswith("id:"))
+    yml.write_text('id: gundem-deneme\ngundem: true\nyasak_sorgu: "Gebze enkaz"\nolay_yeri: "Gebze, Kocaeli"\n' + metin,
+                   encoding="utf-8")
+    ep = load(hedef)
+    assert (ep.yasak_sorgu, ep.olay_yeri) == ("Gebze enkaz", "Gebze, Kocaeli") and _cli.gundem_eksikleri(ep) == []
+    assert len(_cli.gundem_eksikleri(dataclasses.replace(ep, id="enkaz", yasak_sorgu="", olay_yeri=""))) == 3
+    paket = tmp_path / "teslim"
+    paket.mkdir()
+    _cli.gundem_dosyalari(ep, paket)
+    assert "onayı gerekir" in (paket / "BEKLET").read_text(encoding="utf-8")
+    assert json.loads((paket / "GUNDEM.json").read_text(encoding="utf-8")) == {"sorgu": "Gebze enkaz",
+                                                                                "yer": "Gebze, Kocaeli"}
+    (paket / "BEKLET").write_text("Gündem: Gebze'de enkazdan çıkan kız, dalga 26.10\n", encoding="utf-8")
+    _cli.gundem_dosyalari(ep, paket)
+    assert (paket / "BEKLET").read_text(encoding="utf-8").startswith("Gündem: Gebze")
+    assert {"BEKLET", "ONAY.json"} <= set(_cli.TESLIM_KORUNAN)
+
+
 def test_en_denetim():
     ep = _en(load(ORNEK), gundem=True, kesin_hukum=False, title="The killer next door")
     u = denetim.check(ep)

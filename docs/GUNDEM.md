@@ -40,9 +40,18 @@ python tools/gundem.py --taslak 3      # rapordaki 3. olay için episodes/gundem
 python tools/gundem.py --yasak-takip   # yayınlanmış gündem bölümleri: sonradan yayın yasağı geldi mi?
 ```
 
-Akış: tarama günde 1-2 kez (sabah ve öğleden sonra) → en iyi aday hazırlanıp videoyla birlikte hesap sahibine
-(diğer 2 aday kısa notta) → onay → hesap sahibi paylaşır → yayından sonra 2 hafta boyunca her gün `--yasak-takip` (yasaklar olaydan günler sonra gelebiliyor;
-Narin'de kayboluştan 8 gün sonra). Yasak gelirse hesap sahibine hemen yazılır, video kaldırılır.
+Akış (1.11'den beri otomatik, onaylı):
+1. 19:00 `tr` üretim oturumu konu seçmeden önce tarar (`KISA_REEL_EL_KITABI.md` §5 "Gündem"). Uygun olay varsa o günün
+   videosu gündem olur; yoksa normal konu.
+2. Teslim her zaman BEKLET'li (`python -m wojak teslim` yazar). Yayın botu videoyu Telegram'a **"Yayınla / Yayınlama"**
+   düğmeleriyle gönderir; mesajda yayın yasağı taraması ve RAPOR'daki kontrol listesi var.
+3. Hesap sahibi RTÜK listesine bakıp basar. Bot onay anında yasağı yeniden arar; yeni bulgu yoksa YouTube, Facebook ve
+   TikTok'a yayınlar, Instagram paketini yollar.
+4. Yayından sonra 14 gün her sabah bot arar: haberlerde "yayın yasağı" ile olayın kelimeleri (`yasak_sorgu`), RTÜK
+   listesinde olay yerinin (`olay_yeri`) mahkemesi. Yasaklar olaydan günler sonra gelebiliyor (Narin'de kayboluştan 8 gün
+   sonra). Bulgu Telegram'a gider; yasak bu olaysa video her platformdan kaldırılır.
+
+`--yasak-takip` yerelde elle tarama için kaldı; günlük takibi yayın botu yapar (`wojak-ozel/yayin/yayinla.py --yasak-takip`).
 
 Rapor her olay için şunu verir: temsilî başlık, puan dökümü (uygunluk, kaç kaynak yazdı, Google Trends,
 tazelik, konu dışı cezası), tür (kayıp, mucize, kahramanlık, gizem, suç, kaza, tarih, hayvan),
@@ -139,14 +148,14 @@ Maddelerin tamamı "evet" olmadan güncel olay yayınlanmaz. `python -m wojak ch
     linç, nefret içerenler siliniyor (yorumlardan hesap sahibi de sorumlu tutulabiliyor).
 12. [ ] **Düzeltme ve kayıt:** Kaynak linkleri arşivlendi. Gelişme/düzeltme olursa güncel metni gönderirim, hesap sahibi
     açıklamayı/sabit yorumu düzenler; linç riskinde yorumları kapatır. Yasak ya da aile talebinde video
-    telefondan kaldırılır. Yayından sonra 2 hafta `gundem.py --yasak-takip`.
+    telefondan kaldırılır. Yayından sonra 2 hafta yayın botu her sabah yasak arar (§1 Akış).
 
 
 ## 6. Takvim önerisi
 
-Haftada 5 video: **3 tarihsel/efsane/gündem kancalı eski hikâye + 1-2 güncel**. Güncel video yalnızca olay
-Türkiye'de ulusal gündemdeyse ya da küresel viral bir görüntüsü varsa; yoksa stoktaki hazır videolardan
-biri yayınlanır (`docs/KONU_HAVUZU.md`). Yıldönümleri takvime önceden işlenir.
+31.10'dan beri günde 1 video (19:00). Güncel olay **haftada en çok 2** ve yalnız olay Türkiye'de ulusal gündemdeyse ya da
+küresel viral bir görüntüsü varsa; öteki günler tarihî gizem/facia (`KISA_REEL_EL_KITABI.md` §5, `docs/KONU_HAVUZU.md`).
+Hesap sahibi gündem videosunu reddederse o gün video çıkmaz. Yıldönümleri takvime önceden işlenir.
 
 ## 7. Hukuk ve platform kuralları (özet)
 
