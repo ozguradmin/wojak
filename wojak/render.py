@@ -129,7 +129,7 @@ def render(ep: Episode, out_dir: Path | None = None, *, square: bool = False, fp
     final = out_dir / f"{ep.id}{suffix}.mp4"
 
     W, H = (config.BOX, config.BOX) if square else (config.CANVAS_W, config.CANVAS_H)
-    top = compose.top_text_layer(ep.top_text) if (ep.top_text and not square) else None
+    top = compose.top_text_layer(compose.ekran_yazisi(ep, ep.top_text)) if (ep.top_text and not square) else None
     scale = ["-vf", f"scale={W // 2}:{H // 2}:flags=bilinear"] if preview else []
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
            "-s", f"{W}x{H}", "-r", str(fps), "-i", "-", *scale,
@@ -165,7 +165,7 @@ def still(ep: Episode, scene_index: int, out: Path, at: float = 0.6, square: boo
     sc = ep.scenes[scene_index]
     sr = SceneRenderer(ep, sc, config.BOX, config.FPS)
     i = min(sr.n - 1, round(at * sr.n))
-    top = compose.top_text_layer(ep.top_text) if (ep.top_text and not square) else None
+    top = compose.top_text_layer(compose.ekran_yazisi(ep, ep.top_text)) if (ep.top_text and not square) else None
     W, H = (config.BOX, config.BOX) if square else (config.CANVAS_W, config.CANVAS_H)
     Image.frombytes("RGB", (W, H), _canvas_frame(sr.frame(i), top, square, fill)).save(out, quality=92)
     return out

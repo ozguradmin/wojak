@@ -205,13 +205,16 @@ _SANSURLU = re.compile(r"\w+[*!]+\w+|(?<![\w*])\*+\w+")   # kelime İÇİNDE * y
 
 
 def sansur_izi(ep: Episode) -> list[str]:
-    """Sansürün bozduğu kelimeler. censor.metin başlık ve hikâyede "died"ı "d*ed", "Silahdar"ı "S!lahdar" yapıyor;
-    hakem ve izleyici bunu yazım hatası okuyor (Lady Be Good, Lusitania, Violet Jessop, Mona Lisa; Kanuni). Ekrandaki
-    yazı sansürlenmez: orada görülen yıldız elle yazılmıştır. TR'de kasıtlı maskeleme varsa (öl-, cinayet) bilerek geç."""
+    """Sansürün bozduğu kelimeler.
+    EN: censor.metin başlık ve hikâyede "died"ı "d*ed" yapıyor; hakem ve izleyici bunu yazım hatası okuyor (Lady Be Good,
+    Lusitania, Violet Jessop, Mona Lisa). Ekrandaki yazı sansürlenmez: orada görülen yıldız elle yazılmıştır.
+    TR (1.11, hesap sahibi): hassas kelime açıklamada ve ekranda bilerek sansürlü ("boğazını k*sti", "*ldürdü"); yalnız
+    cümle ortasındaki büyük harfli kelime bozulursa uyarır (özel ad olabilir: Silahdar, Kanlıca)."""
     from . import censor
     out = []
-    ekran = {f"sahne {i} yazı": s.text for i, s in enumerate(ep.scenes, 1) if s.text}
-    if ep.top_text:
+    tr = ep.kanal == "tr"
+    ekran = {} if tr else {f"sahne {i} yazı": s.text for i, s in enumerate(ep.scenes, 1) if s.text}
+    if ep.top_text and not tr:
         ekran["üst yazı"] = ep.top_text
     for where, t in ekran.items():
         bad = sorted(set(_SANSURLU.findall(t)))
@@ -219,17 +222,25 @@ def sansur_izi(ep: Episode) -> list[str]:
             out.append(f"[sansür] {where}: ekranda sansürlü yazım ({', '.join(bad)}); izleyici yazım hatası okur")
     for where, t in (("başlık", ep.title), ("hikâye/açıklama", ep.pinned_comment)):
         ham = (t or "").split()
-        if len(ham) != len(censor.metin(t or "", ep.kanal).split()):
+        yeni = censor.metin(t or "", ep.kanal).split()
+        if len(ham) != len(yeni):
             continue
         degisen = []
-        for a, b in zip(ham, censor.metin(t or "", ep.kanal).split()):
+        for i, (a, b) in enumerate(zip(ham, yeni)):
+            cumle_basi = i == 0 or ham[i - 1].rstrip("\"'”’)»").endswith((".", "!", "?", ":"))
             a, b = a.strip(_NOKTALAMA), b.strip(_NOKTALAMA)
+            if tr and (cumle_basi or not a[:1].isupper()):
+                continue
             if a != b and f"{a} -> {b}" not in degisen:
                 degisen.append(f"{a} -> {b}")
         if degisen:
             ek = "" if len(degisen) <= 5 else f" (+{len(degisen) - 5})"
-            oneri = "'passed away', 'did not survive', 'body'" if ep.kanal == "en" else "'vefat', 'hayatını kaybetti'"
-            out.append(f"[sansür] {where}: {', '.join(degisen[:5])}{ek}; kasıtlı değilse karşılık kullan ({oneri})")
+            if tr:
+                out.append(f"[sansür] {where}: {', '.join(degisen[:5])}{ek}; özel ad bozulmuş olabilir: başka kelime seç "
+                           f"ya da istisnayı docs/KOD_ONERILERI.md'ye yaz (hassas kelimenin sansürü kasıtlı, 1.11)")
+            else:
+                out.append(f"[sansür] {where}: {', '.join(degisen[:5])}{ek}; kasıtlı değilse karşılık kullan "
+                           f"('passed away', 'did not survive', 'body')")
     return out
 
 

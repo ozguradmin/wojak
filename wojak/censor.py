@@ -5,7 +5,8 @@ harf değiştirerek yazıyordu (c*n4yet, *ldürüldü, t3c4v*z, *leceğim...). A
 platformların otomatik kısıtlamasına (erişim düşürme, yaş sınırı) takılmamak.
 
 İki seviye:
-  - "ekran": video üstü yazılar için hafif (sadece en riskli kökler)
+  - "ekran": video üstü yazılar için hafif (sadece en riskli kökler); TR'de render kendisi uygular
+    (compose.ekran_yazisi; 1.11.2026 hesap sahibi: "boğazını k*sti", "*ldürdü" videoda da)
   - "metin": başlık/açıklama/sabit yorum için daha kapsamlı
 
 Bu bir ÜSLUP aracıdır, hukuki koruma DEĞİLDİR: "k4til" yazmak hukuken "katil" demektir.
@@ -17,26 +18,35 @@ from __future__ import annotations
 import re
 
 # (kök regex, değiştirme): kelime BAŞINDA eşleşir ((?<!\w)), ek korunur. Kelime başı şartı olmadan
-# "Bakanlığı", "Gölü", "bölüm", "savuran" gibi sıradan kelimeler bozuluyordu.
+# "Bakanlığı", "Gölü", "bölüm", "savuran" gibi sıradan kelimeler bozuluyordu. Değiştirme fonksiyon da olabilir
+# (bağlama bakan kural).
 W = r"(?<!\w)"
+# "kes-" yalnız uzuv adından sonra hassas: "boğazını kesti" -> "boğazını k*sti"; "sözünü kesti", "elektriği kesti" aynen.
+_UZUV = (r"(?:boğaz(?:ını|ı|larını)|baş(?:ını|ı|larını)|kafa(?:sını|sı|larını)|kol(?:unu|u|larını)"
+         r"|bacağ(?:ını|ı)|bacaklarını|kulağ(?:ını|ı)|kulaklarını|burn(?:unu|u)|dil(?:ini|i)"
+         r"|parmağ(?:ını|ı)|parmaklarını)")
 _EKRAN = [
     (W + r"öld[üu]r", "*ldür"),
-    (W + r"öl(?=[üemdsiıyl])", "*l"),
+    (W + r"öl(?=[üemdsiıyl])(?!üdeniz)", "*l"),            # Ölüdeniz yer adı
     (W + r"cinayet", "c!nayet"),
     (W + r"tecav[üu]z", "t3c4v*z"),
     (W + r"intihar", "1nt1h4r"),
     (W + r"ceset", "c3s3t"),
     (W + r"cesed", "c3s3d"),
     (W + r"kan(?!\w)", "k*n"),
-    (W + r"kanl(?=[ıi])", "k*nl"),
+    (W + r"kanl(?=[ıi])(?!ıca)", "k*nl"),                  # Kanlıca semt adı
     (W + r"taciz", "t4c*z"),
+    (W + "(" + _UZUV + r"\s+)kes", lambda m: m.group(1) + "k*s"),
+    (W + r"kesik(?=\s+(?:baş|kafa|bacak|kol|parmak|kulak))", "k*sik"),
+    (W + r"boğd(?=u)", "b*ğd"),                             # boğdu, boğdurdu; "Boğdan" değil
+    (W + r"boğazla(?=[dymn])", "b*ğazla"),                  # boğazladı; "Boğazlar" değil
 ]
 _METIN = _EKRAN + [
     (W + r"katlet", "k4tlet"),
     # ı/i katlaması kapalı: "katıldı" / "KATILIM" katil değildir
     (W + r"(?-i:[kK][aA][tT][iİ][lL])", "k4til"),
     (W + r"b[ıi]çak", "b*çak"),
-    (W + r"silah", "s!lah"),
+    (W + r"silah(?!dar|tar)", "s!lah"),                     # Silahdar unvanı bozulmaz
     (W + r"vur(?=ul|du|an)", "v*r"),
     (W + r"bo[ğg]arak", "b*ğarak"),
     (W + r"bo[ğg]ul", "b*ğul"),
@@ -77,6 +87,8 @@ _KURALLAR = {"tr": (_EKRAN, _METIN), "en": (_EN_EKRAN, _EN_METIN)}
 def _apply(text: str, rules) -> str:
     for pat, rep in rules:
         def sub(m, rep=rep):
+            if callable(rep):
+                return rep(m)
             s = m.group(0)
             return rep[0].upper() + rep[1:] if s[:1].isupper() and rep[0].isalpha() else rep
         text = re.sub(pat, sub, text, flags=re.IGNORECASE)

@@ -64,6 +64,20 @@ def test_en_sansur_kelime_basi_ve_sonu():
     assert censor.metin("killed") == "killed"                  # varsayılan tr
 
 
+def test_tr_sansur_baglam_ve_ekran():
+    """1.11 hesap sahibi: açıklamada ve videoda 'boğazını k*sti', '*ldürdü'; sıradan 'kesti', yer adı ve unvan bozulmaz."""
+    assert censor.metin("Cellat boğazını kesti, başı kesildi.") == "Cellat boğazını k*sti, başı k*sildi."
+    assert censor.ekran("Onu öldürdüler, kesik başı buldular") == "Onu *ldürdüler, k*sik başı buldular"
+    assert censor.ekran("Kervancıyı boğdurdu") == "Kervancıyı b*ğdurdu"
+    for temiz in ("Elektriği kesti", "Sözünü kesti", "Başkan kesti", "Boğazlar", "Boğaz'ın dibinde", "Boğdan voyvodası",
+                  "Silahdar Mustafa Paşa", "Ölüdeniz", "Kanlıca'da bir yalı"):
+        assert censor.metin(temiz) == temiz, temiz
+    from wojak import compose
+    tr = load(ORNEK)
+    assert compose.ekran_yazisi(tr, "Bekle, onu öldürdüler mi") == "Bekle, onu *ldürdüler mi"
+    assert compose.ekran_yazisi(_en(tr), "Wait, they all died") == "Wait, they all died"   # en ekranı sansürsüz
+
+
 def test_en_denetim():
     ep = _en(load(ORNEK), gundem=True, kesin_hukum=False, title="The killer next door")
     u = denetim.check(ep)

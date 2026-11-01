@@ -31,6 +31,11 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
+- **1.11 Sansür (tr):** "Açıklamada ve videonun üzerinde hassas yerlerde sansür: boğazını k\*sti, \*ldürdü." Hassas kelimeyi
+  yumuşatma ("vefat etti", "hayatını kaybetti" yerine düz yaz: "öldürdü", "boğazını kesti"); sansürü araç yapar: açıklama,
+  başlık ve sabit yorumda `censor.metin`, videodaki replik, kart ve üst yazıda `censor.ekran` (render kendiliğinden). Araç bir
+  kelimeyi kaçırırsa elle yıldız koy. Hakemler: TR'de hassas kelimedeki `*`, `!`, rakam kasıtlıdır, yazım hatası sayılmaz.
+  Yalnız özel ad bozulursa (`check` uyarır) başka kelime seç. EN değişmedi.
 - **1.11 Konu:** "Videolar kalitesiz; eskiden cinayet, gerçek gizem atılıyordu, tutan onlardı. Daha viral olabilecek konular
   yapın." `sultanahmet-alti-minare` yorumlarda düzeltildi: izleyici "altın/altı"yı değil, Mekke'ye yedinci minare anlatısını
   biliyordu. §5 yeniden yazıldı. Ana damar yeniden **Türkiye'de geçen ürkütücü gizem/efsane ve tarihî facia/suç**; ünlü
@@ -393,9 +398,9 @@ Olayın kendi nesnesi yoksa benzer dönem nesnesi olduğunu metinde ve `ek_madde
 - Süre ffprobe ile (render satırındaki süre yanlış basabilir); kesmeler 0,5 ızgarasında, sahneler durağan.
 - Telefon boyu (390 px) şerit: yetim kelime, yüz değişimi, kanıt okunurluğu, modern öğe, kostüm dönemi.
 - `bakis.jpg`: herkes içeri bakıyor, çeneler ve baş tepeleri kadrajda.
-- Sansür: `grep -nE '\*|!|[a-zçğıöşü]0[a-zçğıöşü]' teslim/<id>/metinler/*.txt` ile bozuk kelime ara. TR: "ölüm" → "vefat", "son nefesini verdi";
-  "silahdar", "silahsızlandırmak", "bombaladı" yerine unvansız ad, "alıkoymak", "topa tuttu". EN: died/dead/death/corpse →
-  "passed away", "did not survive", "lost their lives", "body"; "bomb" → "explosive device".
+- Sansür: `grep -nE '\*|!|[a-zçğıöşü]0[a-zçğıöşü]' teslim/<id>/metinler/*.txt` ile bozuk kelime ara. TR (1.11): hassas
+  kelimenin sansürü kasıtlıdır, yumuşatma; yalnız özel ad ya da sıradan kelime bozulduysa (Kanlıca, "sözünü kesti") düzelt.
+  EN: died/dead/death/corpse → "passed away", "did not survive", "lost their lives", "body"; "bomb" → "explosive device".
 - Başlığı son replikle karşılaştır; kapak cevabı vermiyor.
 - Metin uzunluğu (kelime ve karakter), kredi satırı tam, `ek_maddeler`'de canlandırma notu.
 

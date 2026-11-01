@@ -208,8 +208,11 @@ def test_sansur_izi_en_ve_tr():
     assert denetim.sansur_izi(_diyalog(en, "Stop! Wait, is that the ship?!")) == []    # ünlem kelime içinde değil
     tr = load(KOK / "episodes/kanuni-gizlenen-olum")
     assert denetim.sansur_izi(tr) == []
-    u = denetim.sansur_izi(dataclasses.replace(tr, pinned_comment="Silahdar Feridun Bey ölümü sakladı."))
-    assert any("Silahdar -> S!lahdar" in x for x in u) and any("ölümü -> *lümü" in x for x in u)
+    # 1.11: TR'de sansür kasıtlı (açıklamada ve ekranda); yalnız cümle ortasında bozulan büyük harfli kelime uyarılır
+    assert denetim.sansur_izi(dataclasses.replace(tr, pinned_comment="Silahdar Feridun Bey ölümü sakladı.")) == []
+    u = denetim.sansur_izi(dataclasses.replace(tr, pinned_comment="Yazar Ölmez ailesinin öldürüldüğünü yazdı."))
+    assert any("Ölmez -> *lmez" in x for x in u) and not any("öldürüldüğünü" in x for x in u)
+    assert denetim.sansur_izi(_diyalog(tr, "Bekle, onu *ldürdüler mi")) == []
 
 
 def _kanit(ep, tmp_path, w, h):

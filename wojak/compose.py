@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 
 from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 
-from . import config, facing, text
+from . import censor, config, facing, text
 from .episode import Episode, Scene
 
 
@@ -143,6 +143,12 @@ def dialog_text(msg: str, size: int = config.DIALOG_SIZE) -> Image.Image:
                            wrap="greedy", min_size=config.DIALOG_MIN_SIZE, soft=config.DIALOG_STROKE_SOFT)
 
 
+def ekran_yazisi(ep: Episode, msg: str) -> str:
+    """TR'de video üstü yazıda hassas kelimeler sansürlü (1.11, hesap sahibi: "boğazını k*sti", "*ldürdü"): yaml'a düz
+    yazılır, sansürü burası yapar. EN'de yazı olduğu gibi kalır ("d*ed" yazım hatası okunuyordu)."""
+    return censor.ekran(msg, "tr") if ep.kanal == "tr" else msg
+
+
 def watermark_layer(msg: str) -> Image.Image:
     # ölçülen: ~200 px genişlik, x-yüksekliği ~16 px, ince kontur
     return text.text_block(msg, font_path=config.FONT_DIALOG, size=30, max_w=500, max_lines=1,
@@ -153,14 +159,15 @@ def _overlay(ep: Episode, scene: Scene, box: int, char_tops: list[int] | None = 
     ov = Image.new("RGBA", (box, box), (0, 0, 0, 0))
     if scene.type == "card":
         if scene.text:
-            blk = text.card_block(scene.text)
+            blk = text.card_block(ekran_yazisi(ep, scene.text))
             ov.alpha_composite(blk, ((box - blk.width) // 2, (box - blk.height) // 2))
     else:
         if scene.text and scene.text_style != "none":
+            msg = ekran_yazisi(ep, scene.text)
             if scene.text_style == "outline":
-                blk = dialog_text(scene.text, scene.text_size)
+                blk = dialog_text(msg, scene.text_size)
             else:
-                blk = text.bubble_block(scene.text, dark=scene.text_style == "bubble_dark",
+                blk = text.bubble_block(msg, dark=scene.text_style == "bubble_dark",
                                         size=round(scene.text_size * 0.8), max_w=round(box * 0.86))
             # konumu katmanın kutusuna değil görünen yazıya göre hesapla (kutu kontur/satır boşluğu payı taşır)
             _, ink_top, _, ink_bot = blk.getchannel("A").getbbox() or (0, 0, 0, blk.height)
