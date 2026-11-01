@@ -31,6 +31,12 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
+- **1.11 Konu:** "Videolar kalitesiz; eskiden cinayet, gerçek gizem atılıyordu, tutan onlardı. Daha viral olabilecek konular
+  yapın." `sultanahmet-alti-minare` yorumlarda düzeltildi: izleyici "altın/altı"yı değil, Mekke'ye yedinci minare anlatısını
+  biliyordu. §5 yeniden yazıldı. Ana damar yeniden **Türkiye'de geçen ürkütücü gizem/efsane ve tarihî facia/suç**; ünlü
+  efsane yalnız bilinmeyen bir dönüşle. Puan tablosunda A artık "tanıdık çapa" değil **"Türkiye'de gösterilebilir yer"**
+  (ilk mesajda eski adı geçebilir; geçerli olan §5'teki tablodur). İlk mesajdaki "bir önceki bölümle aynı damardan gitme"
+  kuralı 1. damar için geçerli değil; yalnız aynı alt tür (iki mezarlık, iki mağara) art arda gelmez.
 - **31.10 Ses:** "Videolarda müzik kısık." Hedef **−14 LUFS entegre, gerçek tepe ≤ −1,5 dBTP** (YouTube'un referans
   seviyesi). Eski −29,5 LUFS altın dönem reellerinin ölçüsüydü; telefonda öteki videoların ~15 dB altında kalıyordu.
   Render bunu kendisi ayarlar (`config.LOUDNESS_*`); imza müziği tepe sınırı yüzünden ~−14,3 LUFS çıkar, bu normaldir.
@@ -98,8 +104,8 @@ bakar): `tr` → `wojak-ozel/teslim/<id>/`, `en` → `wojak-en-ozel/teslim/<id>/
 1. **Ortam (~3 dk):** `bash tools/hazirla.sh <özel-depo-yolu>` (bağ, iki deponun varsayılan dalı + pull, pip, font,
    referans, kısa pytest özeti, müzik kontrolü). Çıktıdaki uyarıyı düzelt, sonra devam et. Elle kurulum gerekirse:
    `mkdir -p /home/user` bağdan ÖNCE; depolar ayrık HEAD'de açılır, dosya yazmadan varsayılan dala geç.
-2. **Konu (~4 dk):** §5. Veri dosyalarını oku, havuzdan ve kendi bilginden 3 aday çıkar, puan tablosunu doldur, sert
-   filtreyi uygula; eşiği geçen en güçlü adayı seç.
+2. **Konu (~4 dk):** §5. Veri dosyalarını oku, havuzdan ve kendi bilginden 3 aday çıkar (en az 2'si 1. ya da 2. damardan),
+   puan tablosunu doldur, sert filtreyi ve yorum testini uygula; eşiği geçen en güçlü adayı seç.
 3. **Araştırma (alt ajan, paralel ~8 dk):** olgu + görsel + karakter önerisi, §3 bütçesiyle. Sen bu arada karakter kitine bak.
 4. **Bölümü aç:** `python -m wojak new <id>` (en: `python -m wojak new en-<id> --kanal en`). Şablon: §8.
 5. **Görseller:** `python tools/commons.py ara|bilgi|indir ...` (`--help`); kendi Commons/429 betiğini YAZMA. Kanıtı ve arka
@@ -120,10 +126,21 @@ Süre bütçesi: ortam 3 · konu 4 · araştırma 8 (paralel) · karakter 5 · y
 Kabuk komutlarını toplu çalıştır (tek betikte birden çok adım); tek tek kare yerine tek birleşik sayfaya bak
 (`serit.jpg`, `bakis.jpg`, 360-390 px temas sayfası). Büyük görseli tam çözünürlükte bağlama alma.
 
-## 5. Konu seçimi (31.10 veriyle yeniden yazıldı; en büyük kaldıraç budur)
+## 5. Konu seçimi (1.11'de yeniden yazıldı; en büyük kaldıraç budur)
 
-**Veri ne diyor.** Aynı format, aynı ekip, aynı hafta; izlenme farkı 5-10 kat. Farkı en çok konu ve ilk replik açıklıyor
-(kanal genelinde zamanla hafif bir düşüş de var, ama aynı gün çıkan iki bölüm arasında bile fark 3-5 kat):
+**Veri ne diyor.** Videoyu milyonlara taşıyan konu oldu, cila değil.
+- **Altın dönem (Ara 2023 – Şub 2024, Instagram, aynı 14 sn format):** Türkiye'de geçen gizem/efsane: 12 reelin 10'u 10M+
+  (Issız Cuma mezarlığı 22M, 129 nolu apartman 20M, Havran mağarası 20M, Tarsus kazısı 18M, Kapalak kızı 18M). Türkiye
+  facia/suç: Sakarya kezzap 28M, Kırkağaç 11M. Kader ironisi: depremden 2 saat önce eşini kovan adam 27,5M. Ortak şablon:
+  **gösterilebilir bir yer + açıklanamayan ya da dehşet verici bir şey + tek cümlelik dönüş.** Bu yerlerin çoğunu izleyici
+  ilk kez duyuyordu: ünlülük gerekmedi.
+- **Otomatik dönem (Eki 2026):** Instagram'da en iyisi `talidomit-turkiye` 590K (facia), sonra `kanuni-gizlenen-olum` 358K
+  (sır ve ölüm), `hezarfen` 331K, `kasikci` 288K; tarih anekdotları (Goeben, Pera, Karaköy, Schliemann, Piri Reis, Hope)
+  18-90K. Otomatik sistem neredeyse yalnız tarih bilgisi ve anekdot üretti; altın dönemin dehşet/gizem damarını hiç denemedi.
+- **`sultanahmet-alti-minare` (31.10):** herkesin bildiği espri efsanesi (altın/altı) oynandı; izleyicinin bildiği daha güçlü
+  anlatı (Mekke'ye yedinci minare) videoda yoktu, yorumlar "aslında..." diye düzeltti. Bilinen dönüş sürpriz değildir.
+
+YouTube'da da aynı hafta, aynı ekiple çıkan bölümler arasında fark 5-10 kat:
 
 | Bölüm | YouTube, 3-4. gün | Instagram (31.10) | Damar |
 |---|--:|--:|---|
@@ -137,40 +154,51 @@ Kabuk komutlarını toplu çalıştır (tek betikte birden çok adım); tek tek 
 | `goeben-fes-1914`, `pera-palas-anahtar-1979`, `karakoy-tunel-1874` | ~13K | 90K, 76K, 54K | yabancı gemi; yabancı yazar + medyum; ulaşım "ilk"i |
 | `schliemann-sal-1873`, `ankara-elci-vagonlari`, `piri-reis-haritasi-1929` | 3-6K (1-2. gün) | 33K, 70K, 46K | yabancı arkeolog; diplomasi; arşivde bulunan belge |
 
-Altın dönemde (2023-24, Instagram) **Türkiye efsane/gizem** kategorisinde 12 reelin 10'u 10M+ yaptı (Issız Cuma mezarlığı,
-129 nolu apartman, Havran mağarası, Tarsus kazısı, Kapalak kızı, Bitlisli Belkıs, Afyon türbesi, Davutlu köyü). Otomatik
-dönemde bu damar hiç denenmedi. Ayrıntı: `docs/INSTAGRAM_ANALIZ.md` §5-§6.
+Ayrıntı: `docs/INSTAGRAM_ANALIZ.md` §5-§6; altın dönem senaryoları `STIL.md` §14.
 
-**İki ana damar (akışın en az 3/4'ü; ikisini dönüşümlü kullan):**
-1. **Türkiye'de gösterilebilir bir yerde geçen gizem, efsane ya da tuhaf olay** (köy, mezarlık, mağara, türbe, define kazısı,
-   kale, cami, apartman): açıklanamayan bir şey + tek cümlelik dehşet/mucize dönüşü. Efsane, efsane diye anlatılır.
-2. **Türkiye'nin bildiği bir efsane, ünlü anekdot ya da hazine, sıradan insanın gözünden** (Kaşıkçı, Midas, Hezarfen,
-   Karun): izleyici adı duymuş ama bu ayrıntıyı bilmiyor.
+**Damarlar (öncelik sırasıyla; 3 adayın en az 2'si 1. ya da 2. damardan):**
+1. **Türkiye'de gösterilebilir bir yerde geçen ürkütücü gizem, efsane ya da tuhaf olay** (köy, mezarlık, mağara, türbe, kale,
+   zindan, sarnıç, apartman, define kazısı, terk edilmiş yapı): açıklanamayan bir şey + tek cümlelik dehşet ya da mucize
+   dönüşü. Haftada en az 4. Efsane metinde "anlatılana göre" diye anılır; video olayı içeriden oynar (altın dönemde de böyle).
+2. **Türkiye tarihî facia, suç, tuhaf ölüm ya da kader ironisi** (sert filtreden geçen: ilgili herkes en az 10 yıl önce ölmüş
+   ya da kimliksiz, çocuk merkezde değil, dava kapanmış): kurban insan olarak anlatılır; fail ayrıntısı, grafik görüntü ve alay
+   yok; hassas kelime ekranda sansürlü (STIL). Haftada 1-2.
+3. **Ünlü efsane, hazine ya da anekdot** (Kaşıkçı, Hezarfen tipi): yalnız izleyicinin bilmediği, belgeli bir dönüşle.
+   Haftada en çok 1-2.
 
 Yabancı konu en çok 4'te 1; ancak olay Türkiye'de geçiyorsa (`ayasofya-viking-yazisi` 71K) ya da dünyaca bilinen bir çapası
-varsa. **Zayıf damarlar (seçme):** yabancı askerî ya da diplomatik olay, ulaşım ve şehir "ilk"leri, arşivde bulunan belge,
-yabancı yazar/arkeolog/medyum anekdotu, müze nesnesinin teknik ayrıntısı, tek başına efsane düzeltmesi ("aslında öyle
-değilmiş" tek dönüşse zayıftır).
+varsa. **Zayıf (seçme):** yabancı askerî ya da diplomatik olay, ulaşım ve şehir "ilk"leri, arşivde bulunan belge, yabancı
+yazar/arkeolog/medyum anekdotu, müze nesnesinin teknik ayrıntısı, kelime oyunu ya da espri efsanesi, tek başına efsane
+düzeltmesi ("aslında öyle değilmiş" tek dönüşse zayıftır).
 
 **Puan tablosu** (her aday için 0-2; üç adayın tablosu RAPOR'a girer):
 
 | Ölçüt | 2 | 1 | 0 |
 |---|---|---|---|
-| A. Tanıdık çapa | Türkiye'de herkesin duyduğu yer/efsane/kişi/nesne | bölgesel ya da yarı bilinir | izleyici ilk kez duyuyor |
-| B. Dönüş (8 kelime testi) | dehşet, mucize ya da ironik kader tek cümlede | ilginç bilgi | "aslında şöyleymiş" düzeltmesi |
+| A. Türkiye'de gösterilebilir yer | olay Türkiye'de belli bir yerde geçiyor ve yerin serbest fotoğrafı var (ünlü olması gerekmez) | Türkiye bağı var ama yer zayıf ya da gösterilemiyor | Türkiye'de geçmiyor |
+| B. Dönüş (8 kelime testi) | tüyler ürperten, dehşet, mucize ya da kader ironisi tek cümlede **ve izleyicilerin çoğu bilmiyor** | şaşırtıcı ama hafif: ilginç bilgi, espri, kelime oyunu | herkesin bildiği dönüş (altın/altı minare, Kız Kulesi'ndeki yılan, Truva atı) ya da "aslında şöyleymiş" düzeltmesi |
 | C. Kahraman | sıradan insan, anonim kurban, efsane kişi, mekân | ünlü tarihî kişi | yabancı görevli, akademisyen, diplomat |
-| D. İlk replik | bağlamsız anlaşılır; somut değer, tehlike, ölüm ya da imkânsızlık | ikisinden biri eksik | soyut, bürokratik, bilinmeyen özel ad ya da "bunu" |
+| D. İlk replik | olayın içinden; bağlamsız anlaşılır; somut tehlike, ölüm, gizem ya da imkânsızlık | biri eksik | soyut, bürokratik, bilinmeyen özel ad ya da "bunu" |
 | E. Görsel | Türkiye'de gerçek mekân fotoğrafı + serbest güçlü son kare | biri zayıf | yalnız kupürle kurtarılıyor |
 
 **Eşik:** toplam **≥ 8/10 ve B = 2**. Geçen aday yoksa yeni aday bul; eşiğin altında üretim yapma.
 **`en` kanalı:** aynı tablo; A = dünyaca bilinen çapa (Titanic, Napoleon, Hitler, NASA), Türkiye şartı yok, E'de "gerçek
-mekân" yeter. EN verisi henüz ayırt etmiyor (31.10'da bütün videolar 1-2K); tablo yine doldurulur.
+mekân" yeter. EN verisi henüz ayırt etmiyor (31.10'da bütün videolar 1-2K); tablo yine doldurulur. B kuralı aynen geçerli.
+
+**Yorum testi (seçmeden önce):** konuyu bilen bir izleyicinin yazacağı ilk yorumu yaz ("Aslında..."). O yorum videodan daha
+ilginçse ya onu dönüş yap ya da konuyu bırak. Aynı olayın birden çok anlatısı varsa daha yaygın ve belgeli olanı oyna; espri
+ya da halk etimolojisi efsanesini tek doğru gibi oynama. Bu yorumu ve cevabını RAPOR'a yaz.
+
+**Damar dengesi:** RAPOR'a son 7 teslimin damarını (1, 2, 3) yaz. 1. damar art arda gelebilir; yalnız aynı alt tür (iki
+mezarlık, iki mağara) art arda gelmez.
 
 **Sert filtre (aday araştırmaya gitmeden elenir):** son 10 yılda ölmüş ya da yaşayan özel kişi, çocuk, süren dava, güncel
 olay. Bunlar BEKLET demektir: 30.10'da `uluburun-kulakli-biskuvi` süngerci Ocak 2026'da öldüğü için $20 harcayıp yayına
 çıkamadı. Bunu konu adımında araştırmacıya ilk soru olarak sor.
 
 **İlk replik = kapak.** Instagram ızgarasında ve Shorts akışında görülen ilk kare budur; kaydırıp geçme orada olur.
+- Altın dönem (10M+): "İmam bey bu mezarlar ayrı değil miydi, nasıl birleşti?" · "Gece yarısı oldu, hadi ayin yapalım" ·
+  "Olamaz, otobüs kaza yaptı" · "Annemin otopsi sonuçları çıktı mı?" (`STIL.md` §14).
 - İyi: "Çöplükte cam gibi bir taş buldum, alır mısın?" · "Usta, bu tepenin altında kim yatıyor?" · "Padişahım, Galata
   Kulesi'nden Üsküdar'a uçtum" · "Paşam, kale düştü, müjdeyi padişaha ben vereyim".
 - Kötü: "Evet efendi, deneme seferleri başladı" · "Şliman Bey Truva'da Priamos'un hazinesini bulmuş" · "Bunu Washington'a
@@ -179,16 +207,17 @@ olay. Bunlar BEKLET demektir: 30.10'da `uluburun-kulakli-biskuvi` süngerci Ocak
   adı ya da belirsiz zamir yok. Ünlü çapa (padişah, Galata Kulesi, Midas) serbest.
 
 **YouTube başlığı:** en çok 60 karakter (`kasikci-elmasi` 54, `midas-mezari-altin` 57, `ayasofya-viking-yazisi` 43;
-zayıflar 69-88); ünlü çapayı içerir (`piri-reis-haritasi-1929` başlığında "Piri Reis" yoktu); tek merak boşluğu.
+zayıflar 69-88); yerin adını ya da ünlü çapayı içerir ("Çanakkale'de yer değiştiren mezarlar"; `piri-reis-haritasi-1929`
+başlığında "Piri Reis" yoktu); tek merak boşluğu.
 
 **Veri dosyaları** (özel depo, konuyu seçmeden oku):
 - `istatistik.csv` (YouTube, günlük): **`izlenme_48s`** sütunuyla eşit yaşta karşılaştır; eski videonun toplamına bakma.
 - `instagram_istatistik.csv`: hesap sahibinin ekran görüntülerinden. Ana platform Instagram; izlenme orada 3-10 kat.
-- Aday kaynağı: önce `docs/KONU_HAVUZU.md` §A ve §A+ (doğrulanmamış fikirler; araştırmacı doğrular).
+- Aday kaynağı: önce `docs/KONU_HAVUZU.md` §A (1. damar), sonra §C (2. damar), §A+ yalnız bilinmeyen dönüşle
+  (doğrulanmamış fikirler; araştırmacı doğrular). Kendi bilgin de serbest: aynı şablon, Türkiye'de gösterilebilir yer.
 
 - **Tekrar yok:** kanalda yapılmış konu seçilmez. `data/videos.csv`, `data/instagram_reels.csv`, `data/olay_metinleri.md`,
-  `episodes/`, `KONU_HAVUZU.md` ve özel deponun `teslim/` klasöründe grep'le. Bir önceki bölümle aynı damardan arka arkaya
-  gitme.
+  `episodes/`, `KONU_HAVUZU.md` ve özel deponun `teslim/` klasöründe grep'le. Aynı alt tür art arda gelmez (damar dengesi).
 - Güncel olay ise önce `GUNDEM.md` §5 ve §7; yayın BEKLET'li.
 
 ## 6. Format (STIL §0 + §15 özü)
@@ -229,7 +258,7 @@ zayıflar 69-88); ünlü çapayı içerir (`piri-reis-haritasi-1929` başlığı
 - Yüz kodu anlam taşır: sırıtma = kötü karakter. Şüpheli, firma, gerçek kişi ya da sevecen karakterde kötü yüz yok.
 - Replikteki fiilin nesnesi tek anlamlı olsun ("kapının dibindeki döşemeyi sökün").
 
-**Başlık** (`title`): 3-12 kelime, **en çok 60 karakter, ünlü çapayı içerir** (§5); olayın adı ya da en şaşırtıcı tek
+**Başlık** (`title`): 3-12 kelime, **en çok 60 karakter, yerin adını ya da ünlü çapayı içerir** (§5); olayın adı ya da en şaşırtıcı tek
 cümlesi; **ters köşeyi söylemez** (son replikle
 karşılaştır); fiil kaynağa uyar ("teklif eden", "gördüğünü söyleyen"); somut yer/sayı/kişi. Başlık soruysa kapak
 (`cover_scene`) cevabı göstermesin: kapak = kanca sahnesi, ters köşe kapağı alternatif.
@@ -392,7 +421,7 @@ sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum öneris
 - Paket (`python -m wojak teslim`): `<id>.mp4`, `kapak.jpg`, `paylasim.md`, `metinler/`; özel depoya bunlar + `RAPOR.md`
   (+ gerekiyorsa `BEKLET`). `teslim` klasörü yeniden kurar: RAPOR'u teslimden SONRA yaz ya da kopyala.
 - **RAPOR.md** (kısa, ~60-90 satır): BEKLET durumu ve gerekçesi · konu ve "Ne?!" cümlesi · **§5 puan tablosu (3 aday,
-  A-E puanları ve toplam)** · sahne listesi ·
+  damar, A-E puanları ve toplam)** · yorum testi ve cevabı · son 7 teslimin damarı · sahne listesi ·
   başlık seçenekleri · hakem turları (puan, MUST, uygulanan düzeltme; puanlar hakem raporundan değiştirilmeden) · bilinen
   kusurlar · lisans tablosu · adım süreleri (tek tablo) · alt ajan çağrıları.
 - Özel depo: tek commit, Türkçe konu ("Teslim: <id> (iki hakemden 8/8, telifsiz, BEKLET yok)"), push. Son commit botun

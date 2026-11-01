@@ -11,10 +11,11 @@ karşılaştırıldı). Sıralama: formata uygunluk tahmini (⭐ = önce bunlar)
 Her konuda üretimden önce **en az 2 kaynakla doğrula** (`docs/URETIM_REHBERI.md` > 2).
 "Kanca" sütunu başlık/ilk replik fikridir, bilgi değildir.
 
-> **31.10 güncellemesi:** otomatik dönemin en çok izlenenleri (Kaşıkçı, Midas, Hezarfen, Kanuni, Karun) A ve A+ damarından;
-> en az izlenenler (Goeben, Pera Palas, Karaköy, Schliemann, Ankara elçileri, Piri Reis'in bulunuşu) bu listelerin
-> dışından. Önce A ve A+'dan seç, el kitabı §5 puan tablosuyla puanla. **Aşağıdaki yeni satırlar doğrulanmamış fikirdir:**
-> araştırmacı ≥ 2 kaynakla doğrular, efsane efsane diye anlatılır, tekrar grep'i yine yapılır.
+> **1.11 güncellemesi (hesap sahibi: "eskiden cinayet, gerçek gizem atılıyordu, tutan onlardı"):** önce **A** (Türkiye
+> ürkütücü gizem/efsane, haftada en az 4), sonra **C** (tarihî facia/suç, haftada 1-2); **A+** yalnız izleyicinin bilmediği
+> bir dönüş bulunursa (haftada en çok 1-2). A+'daki efsanelerin çoğunun dönüşünü herkes biliyor: el kitabı §5'te B = 0.
+> `sultanahmet-alti-minare` (A+) yorumlarda "aslında..." diye düzeltildi. **Yeni satırlar doğrulanmamış fikirdir:**
+> araştırmacı ≥ 2 kaynakla doğrular, efsane "anlatılana göre" diye anlatılır, tekrar grep'i yine yapılır.
 
 ## A. Türkiye — gizem, efsane, yer (altın dönemin en güçlü damarı)
 
@@ -36,14 +37,25 @@ Her konuda üretimden önce **en az 2 kaynakla doğrula** (`docs/URETIM_REHBERI.
 | | Cennet ve Cehennem obrukları (Silifke): Tayfon'un hapsedildiği anlatılan çukur | "Aşağı inme, orası cehennem" | Obruk (Commons) |
 | | Nemrut Dağı'nda bulunamayan kral mezarı | "Kralın mezarı bu tepenin altında mı?" | Dev başlar (Commons) |
 | | Giresun Adası ve Amazon efsanesi | "Bu adaya erkek ayak basamaz" | Ada (Commons); efsane |
+| ⭐ | Yedikule Zindanları'ndaki "Kanlı Kuyu": idam edilenlerin başlarının atıldığı anlatılan kuyu | "Gardiyan bey, bu kuyudan neden ses geliyor?" | Yedikule (Commons); rivayet; grafik yok |
+| ⭐ | Topkapı'daki Cellat Çeşmesi: cellatın idamdan sonra elini ve kılıcını yıkadığı anlatılan çeşme | "Su içeyim mi bu çeşmeden?" | Çeşme (Commons); rivayet |
+| ⭐ | Boğaz'ın dibinde ayakta duran çuvallar: dalgıcın gördüğü anlatılan, Sultan İbrahim dönemine bağlanan rivayet | "Bekle, dipteki çuvallar neden ayakta duruyor?" | Sarayburnu (Commons); rivayet, belgesiz; kurbanlarla alay yok |
+| ⭐ | Yuşa Tepesi (Beykoz): 17 metrelik mezar | "Hocam, bu mezar neden bu kadar uzun?" | Türbe (Commons); dini ton saygılı |
+| ⭐ | Çatalhöyük: ölülerin evin tabanının altına gömülmesi (MÖ 7000) | "Bu evin altında kim yatıyor?" | Kazı (Commons); arkeoloji, doğrulanır |
+| | Doğubayazıt meteor çukuru: 1892'de gökten düşen ateşin açtığı anlatılan çukur | "Dün gece gökten ateş düştü" | Çukur (Commons); tarih tartışmalı |
+| | Ayvalık Şeytan Sofrası: kayadaki "şeytanın ayak izi" | "Bu ayak izi kimin?" | Tepe (Commons); efsane |
+| | Spil Dağı'ndaki Ağlayan Kaya (Niobe): ağlayan anneden taşa dönüşen kaya | "Bu kayadan neden hep su damlıyor?" | Kaya (Commons); mitoloji |
+| | Karapınar obrukları (Konya): tarlada bir gecede açılan dev çukurlar | "Dün burada tarla vardı" | Obruk (Commons); kişi adı yok |
+| | Van Gölü canavarı | "Gölde bir şey yüzüyor" | Göl (Commons); görüntüyü çeken kişi hayatta: adı ve görüntüsü yok |
 
-## A+. Türkiye'nin bildiği efsaneler ve ünlü anekdotlar (31.10; otomatik dönemin en iyi damarı)
+## A+. Türkiye'nin bildiği efsaneler ve ünlü anekdotlar (yalnız bilinmeyen dönüşle; haftada en çok 1-2)
 
-Ortak şablon: izleyici adı duymuş, bu ayrıntıyı bilmiyor; sıradan biri (usta, işçi, kâtip, köylü) konuşur.
+Ortak şablon: izleyici adı duymuş, bu ayrıntıyı bilmiyor; sıradan biri (usta, işçi, kâtip, köylü) konuşur. Dönüşü herkes
+biliyorsa (seyahat/şefaat, gölge etme, Truva atı) B = 0: ya bilinmeyen belgeli bir ayrıntı bul ya da seçme. Yorum testini yap.
 
 | | Konu | Kanca (ilk replik fikri) | Not |
 |---|---|---|---|
-| ⭐ | Sultanahmet'in altı minaresi: "altın" yerine "altı" duyuldu, Mekke'ye yedinci minare yapıldı | "Padişahım, altı minare dediniz, değil mi?" | Efsane; Sultanahmet (Commons), eski Mekke gravürü (PD) |
+| ✅ | Sultanahmet'in altı minaresi | Yapıldı (`sultanahmet-alti-minare`, 31.10) | Yalnız "altın/altı" oynandı; yorumlar Mekke'ye yedinci minareyi hatırlattı |
 | ⭐ | Bursa Ulu Camii'nin 20 kubbesi: Niğbolu'dan sonra adanan 20 cami | "Padişahım, yirmi cami sözü vermiştiniz" | Ulu Cami iç mekân (Commons) |
 | ⭐ | Selimiye'deki ters lale: arsasını satmayan kadın efsanesi | "Bu tarlayı satmam, lalelerim var" | Ters lale motifi (Commons); efsane |
 | ⭐ | Karagöz ile Hacivat: Bursa'da inşaatı şakalarıyla yavaşlatan iki işçi efsanesi | "Usta, bir fıkra daha, sonra çalışırız" | Ölüm efsanesi: mizah duruma, kişilere değil |
@@ -72,16 +84,17 @@ Ortak şablon: izleyici adı duymuş, bu ayrıntıyı bilmiyor; sıradan biri (u
 | | 1999 Gölcük depremi — doğrulanmış bir kurtuluş hikâyesi | (haber arşivinden seç) | Hassas: aileler hayatta |
 | | Kahramanmaraş — doğrulanmış "kayıp-bulunma" hikâyeleri | (AFAD/haber kaynaklı seç) | Uydurma "melek" hikâyelerinden kaçın; "iddiaya göre" dili |
 
-## C. Türkiye — gerçek suç (en yüksek risk/ödül; dikkatli dil)
+## C. Türkiye — tarihî facia, suç, kader ironisi (2. damar; altın dönemde kezzap 28M, Kırkağaç 11M)
 
-Kurallar: kurbanı **insan** olarak anlat (kim olduğu, hayalleri), failin ayrıntısını değil.
-Mizah yok. Hassas kelimeler sansürlü. Yeni/yargısı süren davalarda sadece kesinleşmiş bilgiler.
+Kurallar: kurbanı **insan** olarak anlat (kim olduğu, hayalleri), failin ayrıntısını değil. Mizah yok, grafik görüntü yok.
+Hassas kelimeler sansürlü (STIL). **Sert filtre:** ilgili herkes en az 10 yıl önce ölmüş ya da kimliksiz, çocuk merkezde
+değil, dava kapanmış. Osmanlı ve erken Cumhuriyet dönemi en güvenlisi.
 
-| | Konu | Not |
-|---|---|---|
-| | Münevver Karabulut (2009) | Çok bilinir; dava kapanmış |
-| | Pınar Gültekin (2020) | Kadına şiddet bilinci vurgusu |
-| | Yenidoğan çetesi devamı / gündemdeki yeni dava | Sadece resmi bilgiler |
+| | Konu | Kanca | Not |
+|---|---|---|---|
+| ⭐ | Patrona Halil (1730): padişahı tahttan indiren hamam tellağı, birkaç hafta sonra kendisi öldürüldü | "Ağa, bugün hamamı kapatıyorum, işim var" | Kader ironisi; dönem gravürü (PD) |
+| | Kendi bilgin: Osmanlı/erken Cumhuriyet faciası, çözülmemiş eski ölüm, yer adıyla anılan "olay" | — | §5 tablosu ve sert filtre |
+| ✗ | Münevver Karabulut (2009), Pınar Gültekin (2020), Yenidoğan çetesi | — | Sert filtreye takılır (yaşayan fail ya da aile, yakın tarih): seçme |
 
 ## D. Dünya — çözülemeyen gizemler (2025-26'da 100-170K; Türkiye bağlantısı olmadığı için tavan daha düşük)
 
