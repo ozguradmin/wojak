@@ -67,3 +67,4 @@
 - `tools/commons.py ara`: dosya adını ~60 karakterde kesiyor; uzun Commons adlarında `indir`/`bilgi` için tam ad yazdırılsın (`--tam`) (31.10, sultanahmet-alti-minare).
 - `tools/wojak_site.py sheet`: `a|b|c` biçimli çok parçalı sorgu bazı kelime kombinasyonlarında "sonuç yok" döner ("gentleman_wojak|smug_suit..."); tek tek sorgu çalışır; alt çizgi/boşluk normalizasyonu ve | desteği tutarlı olsun (31.10, en-lustig-eiffel-tower).
 - `wojak/config.py`: EN TikTok varsayılan etiketleri (`#mystery`) gizem olmayan belgeli konulara da ekleniyor (izleyici hakem SHOULD, en-apollo-moon-disaster); bölümün `hashtags`ından türet ya da yaml ile ezilebilir yap (TR için aynı öneri yukarıda var).
+- `tools/wojak_site.py get --out-dir` ve `tools/wojak_lib.py get --out-dir` /tmp gibi repo dışı yolları `data/karakter_yon.json`'a yazıyor; repo dışı yolu kaydetmesin ya da `yon` listesi var olmayan dosyaları ayıklasın (01.11, en-booth-saves-lincoln-son).

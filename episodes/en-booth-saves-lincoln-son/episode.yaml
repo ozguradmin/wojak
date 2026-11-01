@@ -1,0 +1,107 @@
+# A Booth saves a Lincoln on a train platform (late 1863 / early 1864). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (Robert Lincoln'un Century Magazine'de basilan 1909 beyani, Emerson/Civil War Times 2005,
+#   Wikipedia Edwin Booth + Robert Todd Lincoln, Snopes, civilwarsaga/Bispham 1893, NPS).
+# CANLANDIRMA: iki karakter temsilidir; replikler uydurmadir. Robert'in gercek anlatimi: "coat collar was vigorously seized", Booth'u
+#   yuzunden taniyip adiyla tesekkur etti; Booth Robert'in kim oldugunu aylar sonra Badeau'dan ogrendi (anlatilana gore).
+# Karakterler: A = wojakland 'Grey Suit Wojak' (Robert rolu, genc), B = HF/wojakland 'Wojak With Suit HD' (Booth rolu; kel, papyonlu takim; sirtma duz agiza cevrildi);
+#   ters kose varyanti chars/b_sok.png (ayni taban, ayni kutu). Booth 1860'larda biyiksiz; karakterin biyigi kusur (RAPOR).
+id: en-booth-saves-lincoln-son
+kanal: en  # Wojak Past Files
+title: "A Booth saved a Lincoln before the assassination"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol, Robert)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_terli.png, side: left, height: 0.50}
+    text: "Help, I'm slipping between\ntrain and platform"
+
+  # 2) KURTARMA — B (sag, Booth)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Hold on, I've got your collar"
+
+  # 3) TESEKKUR — A (sol): adi eker
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Mr Booth, I owe you everything"
+
+  - type: card
+    duration: 1.5
+    text: "A while later"
+
+  # 4) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Lincoln's son?\nMy brother hates his father"
+
+  # 5) KANIT 1 — Century Magazine, Nisan 1909, s. 920 (Robert Lincoln'un beyani)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 6) KANIT 2 — son kare: Edwin Booth, T. R. Burnham, 1865 (LoC)
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  A Booth saved a Lincoln before the assassination
+  The full story is in the pinned comment 👇
+
+hashtags: [history, abrahamlincoln, civilwar]
+
+pinned_comment: |
+  In late 1863 or early 1864, Robert Todd Lincoln, the 20-year-old son of President Abraham Lincoln, was a Harvard student traveling by train. By his own account, he was pressed against a car on a crowded station platform when the train began to move. The motion twisted him off his feet and he dropped, feet first, into the gap between the platform and the car.
+
+  A hand seized his coat collar and pulled him up. Turning to thank his rescuer, he saw it was the famous actor Edwin Booth, and he thanked him by name. Accounts differ on the place (Jersey City, Trenton or Kentucky), and the exact date is unknown.
+
+  In Booth's own telling, relayed by William Bispham in 1893, a letter from Adam Badeau, an aide to General Grant, told him two weeks later whose son he had saved; other accounts say months. In 1909 Robert confirmed the story in a statement printed by The Century Magazine, and in 1918 he wrote that the train had moved only a few feet.
+
+  Edwin was the older brother of John Wilkes Booth, who shot President Lincoln in April 1865. In a letter written just after the assassination, Edwin said he had voted for Lincoln.
+
+  The background is an 1869 locomotive photo, not the actual station. The characters are fictional and their lines are dramatized.
+
+  Which part of this story surprises you most?
+
+credits: "Pacific Railroad Locomotive Charles H. Peck, unknown author, 1869, Missouri History Museum (public domain; cropped to square, colour toned down, softened); Edwin Booth, American actor and brother of John Wilkes Booth, by T. R. Burnham, 1865, Library of Congress (public domain; cropped); Edwin Booth and Lincoln, The Century Magazine, April 1909, p. 920, via Internet Archive (public domain; cropped). Images via Wikimedia Commons and Internet Archive."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional wojak drawings; the dialogue is invented. Documented: Robert Lincoln's own printed account (Century Magazine, April 1909) says his coat collar was seized, he was pulled up, and he recognized Edwin Booth and thanked him by name."
+  - "**Source caution:** place (Jersey City vs Trenton vs Kentucky) and date (late 1863 / early 1864) are disputed; the video names neither. When Booth learned who Robert was differs: Booth's own telling via Bispham (Century, 1893, same page 920) says two weeks later; Wikipedia/Emerson say months. The card says only \"A while later\" and the pinned comment gives both. Robert's 1918 letter says the train moved only a few feet, so the video does not claim he was nearly crushed. NPS says the old story that Robert was present at three assassinations is untrue; it is not used."
+  - "**Costume note:** the Booth character is a bald wojak in a bow tie (the real Edwin Booth had long dark hair, see the last frame). The line \"My brother hates his father\" is invented dialogue about a documented fact: John Wilkes Booth was a fierce Lincoln opponent while Edwin was a Unionist who had voted for Lincoln. The 1869 locomotive background is illustrative, not the station."
+  - "Hidden Words list in chat"
+
+sources:
+  - "The Century Magazine, April 1909, p. 920, 'Edwin Booth and Lincoln' (Robert T. Lincoln's statement, primary): https://archive.org/details/edwinboothlincol00boot"
+  - "Jason Emerson, 'Edwin Booth Saved Robert Todd Lincoln's Life', Civil War Times 2005 (HistoryNet): https://historynet.com/edwin-booth-saved-robert-todd-lincolns-life-2/"
+  - "Wikipedia, Edwin Booth (late 1863 or early 1864, Badeau letter months later): https://en.wikipedia.org/wiki/Edwin_Booth"
+  - "Wikipedia, Robert Todd Lincoln (Harvard student, rescue, Booth's comfort): https://en.wikipedia.org/wiki/Robert_Todd_Lincoln"
+  - "Snopes, John Wilkes Booth's brother and Lincoln's son (place/date dispute, Goff 1968): https://www.snopes.com/fact-check/john-wilkes-booth-brother-abraham-lincoln-son/"
+  - "Civil War Saga, Bispham account 1893 (Jersey City, collar): https://civilwarsaga.com/edwin-booth-saved-robert-todd-lincolns-life/"
+  - "National Park Service, Robert Todd Lincoln and presidential assassinations (three-assassinations story untrue): https://www.nps.gov/articles/000/robert-todd-lincoln-and-presidential-assassinations-not-formal-title.htm"
+  - "GÖRSEL img/arka.jpg — 'Pacific Railroad Locomotive Charles H. Peck.jpg', unknown author, 1869, Missouri History Museum, {{PD-Art|PD-1923}}: https://commons.wikimedia.org/wiki/File:Pacific_Railroad_Locomotive_Charles_H._Peck.jpg. Degisiklik: kare kirpim, renk 0,85, hafif blur. 1869 lokomotifi, olay 1863/64 (yaklasik dönem)"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Edwin Booth, American actor and brother of John Wilkes Booth) - T.R. Burnham, photographer ... LCCN2016652136.jpg', T. R. Burnham, 1865, Library of Congress, {{PD-old-100-1923}}: https://commons.wikimedia.org/wiki/File:Edwin_Booth,_American_actor_and_brother_of_John_Wilkes_Booth)_-_T.R._Burnham,_photographer,_247_Washington_Street,_Boston_LCCN2016652136.jpg. Degisiklik: kart kenari atildi, 1080x816 kirpim"
+  - "GÖRSEL img/ev_1.jpg — The Century Magazine, April 1909, p. 920, Century Co. New York 1909 (US yayin, 1930 öncesi, kamu malı), Internet Archive: https://archive.org/details/edwinboothlincol00boot. Degisiklik: 9 satir kirpildi, 1080 genislik"

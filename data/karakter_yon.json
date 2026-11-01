@@ -279,6 +279,10 @@
   "faces": "right",
   "file": "assets/characters/muhendis_baretli.png"
  },
+ "5381734ce6ed7559d71f1d8523393151cbd18ddd": {
+  "faces": "right",
+  "file": "episodes/en-booth-saves-lincoln-son/chars/b_sakin.png"
+ },
  "548b7fdb3e12a46f298bf502844d415ad0dc6844": {
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/sakin.png"
@@ -523,6 +527,10 @@
   "faces": "front",
   "file": "assets/kit/klasik/korku_karanlik.png"
  },
+ "9240ea17f479f6271ce8d072071756890f6b5d1a": {
+  "faces": "right",
+  "file": "episodes/en-booth-saves-lincoln-son/chars/b_sok.png"
+ },
  "93f7c1df799e56fafa1e148f8499db8c3d2b39de": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_kollar.png"
@@ -530,6 +538,10 @@
  "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/papaz_urkek.png"
+ },
+ "997f2c4d768f2e61212cedcc9aa9e7463891c9ab": {
+  "faces": "right",
+  "file": "episodes/en-booth-saves-lincoln-son/chars/a_terli.png"
  },
  "9a7442fe5d159f5446adf4331ca4a5b4ab71f8bb": {
   "faces": "right",
