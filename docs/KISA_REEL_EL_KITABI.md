@@ -34,9 +34,9 @@
 - **1.11 Konu:** "Videolar kalitesiz; eskiden cinayet, gerçek gizem atılıyordu, tutan onlardı. Daha viral olabilecek konular
   yapın." `sultanahmet-alti-minare` yorumlarda düzeltildi: izleyici "altın/altı"yı değil, Mekke'ye yedinci minare anlatısını
   biliyordu. §5 yeniden yazıldı. Ana damar yeniden **Türkiye'de geçen ürkütücü gizem/efsane ve tarihî facia/suç**; ünlü
-  efsane yalnız bilinmeyen bir dönüşle. Puan tablosunda A artık "tanıdık çapa" değil **"Türkiye'de gösterilebilir yer"**
-  (ilk mesajda eski adı geçebilir; geçerli olan §5'teki tablodur). İlk mesajdaki "bir önceki bölümle aynı damardan gitme"
-  kuralı 1. damar için geçerli değil; yalnız aynı alt tür (iki mezarlık, iki mağara) art arda gelmez.
+  efsane yalnız bilinmeyen bir dönüşle. Puan tablosunda A artık "tanıdık çapa" değil **"Türkiye'de gösterilebilir yer"**.
+  1. damar art arda gelebilir; yalnız aynı alt tür (iki mezarlık, iki mağara) art arda gelmez. İlk mesaj da buna göre
+  güncellendi.
 - **31.10 Ses:** "Videolarda müzik kısık." Hedef **−14 LUFS entegre, gerçek tepe ≤ −1,5 dBTP** (YouTube'un referans
   seviyesi). Eski −29,5 LUFS altın dönem reellerinin ölçüsüydü; telefonda öteki videoların ~15 dB altında kalıyordu.
   Render bunu kendisi ayarlar (`config.LOUDNESS_*`); imza müziği tepe sınırı yüzünden ~−14,3 LUFS çıkar, bu normaldir.
