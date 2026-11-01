@@ -507,6 +507,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
  },
+ "9078639fe85043029c0d8b72f3b4bb2b29d29ee3": {
+  "faces": "right",
+  "file": "episodes/hierapolis-cehennem-kapisi/chars/rahip_sakin.png"
+ },
  "91c6e930fc0f23f9f785b53ecd35d4853cb191be": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
@@ -590,6 +594,10 @@
  "ab795e0baa11a4983b1f7120475aff4af014f70a": {
   "faces": "right",
   "file": "assets/kit/klasik/cokkun.png"
+ },
+ "abd45fb3267b2d406373d05329656b750aacab39": {
+  "faces": "right",
+  "file": "episodes/hierapolis-cehennem-kapisi/chars/rahip_sok.png"
  },
  "ac8718298ee6bc21141a2711190b94a5a3980947": {
   "faces": "right",
@@ -866,6 +874,10 @@
  "f967de52d4e68f03878fbd6633780e877d4ae876": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci_gergin_konusuyor_yari.png"
+ },
+ "fa6aaa340e2129855cab08d1d14abb0f3bf9cc5d": {
+  "faces": "right",
+  "file": "episodes/hierapolis-cehennem-kapisi/chars/gezgin_sakin.png"
  },
  "fc0c59fd2bb68cfd12c85070b412dc89427a2086": {
   "faces": "right",
