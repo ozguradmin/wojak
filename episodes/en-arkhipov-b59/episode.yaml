@@ -1,0 +1,102 @@
+# 27 Ekim 1962: Sovyet denizaltısı B-59, USS Beale'in pratik derinlik bombaları, nükleer torpido (Beale fotoğrafı videodan çıkarıldı: görsel hakem renkli/farklı son kare istedi). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgular.md (NSA 2002 + 2022 brifingleri, USNI Naval History, Wikipedia, Orlov anlatımı NSA doc 16, Naval War College Review vol. 76).
+# CANLANDIRMA: karakterler kurgu, videoda gerçek kişi adı yok. Replikler belgeli söz değil; dayanakları: Moskova'yla temas yok (V), "savaş başlamış olabilir" (Orlov, reportedly), yüzeye çıkma önerisi (Arkhipov'a atfedilen rol, reportedly), ABD'nin nükleer torpidoyu bilmemesi (V).
+# Karakterler: A (sol) = denizci (wojakland Spanish Civil War Sailor, kep yazısı silinmiş) + terli varyant; B (sağ) = subay (wojakland US navy White Wojak, sade çapa) + şok varyantı. İkisi dumlupinar-denizaltisi-1953/chars'tan.
+# Arka plan: USS Cod kıç torpido dairesi (Dumlupınar bölümüyle aynı fotoğraf, aynı tür yer; B-59 değil).
+id: en-arkhipov-b59
+kanal: en  # Wojak Past Files
+title: "Cuban Missile Crisis: The Soviet Sub With a Nuclear Torpedo"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA: A (sol), terli.
+  - type: dialog
+    duration: 3.0
+    bg: img/arka_v2.jpg
+    blur: 3.4
+    chars:
+      - {img: chars/denizci_terli.png, side: left, height: 0.50}
+    text: "The Americans are bombing us,\nwe can't reach Moscow"
+
+  # 2) CEVAP: B (sağ), sakin.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka_v2.jpg
+    blur: 3.4
+    chars:
+      - {img: chars/subay_sakin.png, side: right, height: 0.50}
+    text: "Calm down, we should surface"
+
+  # 3) TIRMANIŞ: A (sol).
+  - type: dialog
+    duration: 3.0
+    bg: img/arka_v2.jpg
+    blur: 3.4
+    chars:
+      - {img: chars/denizci_terli.png, side: left, height: 0.50}
+    text: "Maybe the war has started,\nready the nuclear torpedo"
+
+  # 4) TERS KÖŞE: B, aynı kutu, şok.
+  - type: dialog
+    duration: 3.0
+    bg: img/arka_v2.jpg
+    blur: 3.4
+    chars:
+      - {img: chars/subay_sok.png, side: right, height: 0.50}
+    text: "Wait, do the Americans\neven know it's nuclear?"
+
+  # 5) KANIT 1: B-59 yüzeyde (US Navy, 28-29 Ekim 1962).
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_b59.jpg]
+
+  # 6) KANIT 2 (son kare, renkli): Foxtrot sınıfı denizaltı (ABD Donanması, 1986; B-59 ile aynı sınıf).
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_foxtrot.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Cuban Missile Crisis: The Soviet Sub With a Nuclear Torpedo
+  The full story is in the pinned comment 👇
+
+hashtags: [history, coldwar, cubanmissilecrisis]
+
+pinned_comment: |
+  On 27 October 1962, at the height of the Cuban Missile Crisis, the Soviet diesel submarine B-59 was hunted by United States Navy ships in the Sargasso Sea while the US enforced its blockade of Cuba. The boat had been cut off from Moscow for days, its batteries were nearly drained and temperatures inside reportedly passed 45 °C.
+
+  US destroyers, among them USS Beale, dropped small practice depth charges meant to force it to surface. The Americans did not know that B-59 carried a torpedo with a nuclear warhead. According to an account by Soviet officer Vadim Orlov, the captain, Valentin Savitsky, believed the war might already have begun and ordered the torpedo readied. Historians still disagree on how far that order went.
+
+  Launching it reportedly required the agreement of three senior officers. Vasili Arkhipov, chief of staff of the submarine brigade, is credited with persuading the captain to surface instead.
+
+  B-59 surfaced that evening among the US ships, was photographed by the US Navy and was sent home. The torpedo was never fired. The story stayed secret for decades. Arkhipov passed away in 1998; in 2017 his family received the inaugural Future of Life Award.
+
+  The last frame is not B-59 but another Foxtrot-class submarine, photographed by the US Navy in 1986. The first photo shows B-59 on 28 or 29 October.
+
+  Dramatized: the characters are fictional and the dialogue is invented, loosely based on reported accounts.
+
+  How close do you think the world really came that night?
+
+credits: "USS Cod, After Torpedo Room (Eric Friedebach, CC BY 2.0, https://creativecommons.org/licenses/by/2.0/; https://commons.wikimedia.org/wiki/File:USS_Cod,_After_Torpedo_Room_-_53057069719.jpg; cropped, colour, contrast and white balance adjusted, blurred, used as background); Soviet b-59 submarine (U.S. Navy photographer, 28-29 October 1962, National Archives RG 428, public domain, via Wikimedia Commons; cropped, lightly sharpened); Cuban Foxtrot submarine (U.S. Navy, 1 August 1986, National Archives 6410690, public domain, via Wikimedia Commons; resized). Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction and the lines are not documented quotes. Sourced: cut off from Moscow, practice depth charges as signals (US did not know about the nuclear torpedo), Savitsky reportedly thinking the war might have started (Orlov), Arkhipov credited with the surfacing."
+  - "**Tartışmalı:** üç subay onayı kuralı (birincil metin yok, 'reportedly'), torpidonun hazırlanıp hazırlanmadığı (Naval War College Review şüpheli), kimin 'dünyayı kurtardığı'. Videoda 'one man saved the world' yok; sabit yorumda 'credited with'."
+  - "Arka plan Dumlupınar bölümündeki USS Cod torpido dairesidir (Foxtrot iç mekânı serbest bulunamadı); B-59 değil, aynı türden yer. Kusur RAPOR'da."
+  - "Kanıt 1 (B-59 yüzeyde) 28-29 Ekim 1962 tarihli; 27 Ekim'in kendisi değil. Kanıt 2 (son kare) B-59 değil, aynı sınıftan (Foxtrot) bir Küba denizaltısı, 1986 ABD Donanması fotoğrafı; B-59'un renkli fotoğrafı yok. İkisi de sabit yorumda yazılı."
+  - "İlk yorum önerisi: 'Actually the torpedo was never armed' yorumuna sabit yorum zaten 'historians still disagree' diyor; cevap: NSA 2002 ve 2022 brifingleri iki anlatıyı da veriyor."
+
+sources:
+  - "Olay, tarih, yer, ABD'nin pratik derinlik bombaları, ABD'nin nükleer torpidodan habersizliği: https://nsarchive2.gwu.edu/NSAEBB/NSAEBB75/ ; https://nsarchive.gwu.edu/briefing-book/russia-programs/2022-10-03/soviet-submarines-nuclear-torpedoes-cuban-missile-crisis ; https://en.wikipedia.org/wiki/Soviet_submarine_B-59"
+  - "USS Beale 27 Ekim'de B-59'a pratik derinlik bombası attı, denizaltı yüzeye çıktı (deck log): https://nsarchive.gwu.edu/document/28922-13-deck-log-book-excerpts-uss-beale-dd-471-october-1962 ; https://en.wikipedia.org/wiki/USS_Beale_(DD-471) ; https://www.usni.org/magazines/naval-history-magazine/2021/june/black-saturday-declassified"
+  - "Moskova'yla temas yok, akü/hava, sıcaklık 45-50 °C (Orlov): https://nsarchive.gwu.edu/media/28925/ocr ; https://en.wikipedia.org/wiki/Soviet_submarine_B-59"
+  - "Savitsky'nin sözü (Orlov, reportedly; NSA 'controversial'), Ketov: emir torpido subayına ulaşmadı: https://nsarchive.gwu.edu/media/28925/ocr ; https://nsarchive.gwu.edu/briefing-book/russia-programs/2022-10-03/soviet-submarines-nuclear-torpedoes-cuban-missile-crisis"
+  - "Arkhipov rolü (69. tugay kurmay başkanı), yüzeye çıkma, 1998 ölüm, 2017 Future of Life Award: https://en.wikipedia.org/wiki/Vasily_Arkhipov ; https://futureoflife.org/recent-news/55-years-preventing-nuclear-attack-arkhipov-honored-inaugural-future-life-award/ ; https://www.rbth.com/history/326253-arkhipov-cuban-missil-crisis"
+  - "Üç subay onayı (tartışmalı): https://en.wikipedia.org/wiki/Soviet_submarine_B-59 ; https://www.gzcenter.org/the-man-who-saved-the-world-from-a-nuclear-war/ ; torpido hazırlığı şüphesi: https://digital-commons.usnwc.edu/cgi/viewcontent.cgi?article=8349&context=nwc-review"
+  - "1995 gazete haberi, 2002 Havana konferansı: https://nsarchive.gwu.edu/briefing-book/russia-programs/2022-10-03/soviet-submarines-nuclear-torpedoes-cuban-missile-crisis ; https://en.wikipedia.org/wiki/Soviet_submarine_B-59"
+  - "GÖRSEL img/ev_foxtrot.jpg (son kare, renkli) — 'Cuban Foxtrot submarine.jpg', Unknown, US Navy, 1 Ağustos 1986 (NARA 6410690), {{PD-USGov-Military-Navy}} (ham sayfadan doğrulandı): https://commons.wikimedia.org/wiki/File:Cuban_Foxtrot_submarine.jpg . B-59 ile aynı sınıf (Project 641 Foxtrot): https://en.wikipedia.org/wiki/Soviet_submarine_B-59 . Değişiklik: 1920 px küçük resimden 1080x716 yeniden boyutlandırma"
+  - "GÖRSEL img/ev_b59.jpg (kanıt 1) — 'Soviet b-59 submarine.jpg', U.S. Navy photographer, 28-29 Ekim 1962 (NARA RG 428, 428-N-711200), kamu malı (ABD hükümeti): https://commons.wikimedia.org/wiki/File:Soviet_b-59_submarine.jpg ; kimlik: https://cubancrisis1962.com/equipment/b59/ ; https://cimsec.org/vice-admiral-vasili-arkhipov-on-soviet-submarine-operations-during-the-cuban-missile-crisis/ . Değişiklik: beyaz kenar atıldı, 940x706 kırpım, 1080x811, hafif keskinleştirme"
+  - "GÖRSEL img/arka_v2.jpg (arka plan) — 'USS Cod, After Torpedo Room - 53057069719.jpg', Eric Friedebach (2022), CC BY 2.0: https://commons.wikimedia.org/wiki/File:USS_Cod,_After_Torpedo_Room_-_53057069719.jpg . Değişiklik: kare kırpım, renk 0,45, parlaklık 1,2 (Dumlupınar bölümünde hazırlandı); bu bölümde ek: kontrast 0,9, kırmızı 0,98 mavi 1,03 kazanç (sıcak tonu azaltır), blur 3,4"

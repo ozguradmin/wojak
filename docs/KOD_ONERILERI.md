@@ -70,3 +70,4 @@
 - `tools/wojak_site.py get --out-dir` ve `tools/wojak_lib.py get --out-dir` /tmp gibi repo dışı yolları `data/karakter_yon.json`'a yazıyor; repo dışı yolu kaydetmesin ya da `yon` listesi var olmayan dosyaları ayıklasın (01.11, en-booth-saves-lincoln-son).
 - `tools/wojak_site.py get`: `--out-dir` verilmezse PNG'yi `assets/characters/` altına koyup `data/karakter_yon.json`'a "front" girdisi yazıyor; aday denemelerinde repo kirleniyor (git checkout/clean gerekiyor). Varsayılan hedef `/tmp` ya da kaydı yalnız `--yon` verilince yazsın (01.11, en-roosevelt-bullet-speech).
 - `check`: arka plan ölçüsünü (Laplace, doygunluk, parlaklık) uyarı olmasa da tek satır yazdırsın ve "blur X için Laplace ~20" önerisini versin; blur seçimi için `denetim.arka_plan_olcu` elle taranıyor (02.11, dumlupinar-denizaltisi-1953).
+- `wojak render`: konsol satırı "video -> ... (7.4 sn)" gerçek süreyi (ffprobe 13,95 sn) yanlış basıyor; ffprobe ile okunan süreyi yazsın (02.11, en-arkhipov-b59).
