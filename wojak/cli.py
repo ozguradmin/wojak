@@ -194,11 +194,8 @@ def gundem_eksikleri(ep) -> list[str]:
 
 
 def gundem_dosyalari(ep, dst: Path) -> None:
-    """Gündem paketi onaysız yayınlanmaz: BEKLET (yapımcı yazmadıysa varsayılan neden) ve yayın botunun yayın yasağı
-    taraması için GUNDEM.json. Bot BEKLET'li paketi Telegram'a "Yayınla / Yayınlama" düğmeleriyle gönderir."""
-    if not (dst / "BEKLET").exists():
-        (dst / "BEKLET").write_text(f"Gündem videosu ({ep.olay_yeri}): yayından önce hesap sahibinin onayı gerekir.\n",
-                                    encoding="utf-8")
+    """Yayın botunun yayın yasağı taraması için GUNDEM.json: yayından hemen önce (haberde yasak varsa bot yayınlamaz) ve
+    yayından sonra 14 gün. 2.11'den beri onay adımı yok (hesap sahibi: "her şeyi onaylıyorum"), BEKLET yazılmaz."""
     (dst / "GUNDEM.json").write_text(json.dumps({"sorgu": ep.yasak_sorgu, "yer": ep.olay_yeri}, ensure_ascii=False,
                                                 indent=2) + "\n", encoding="utf-8")
 

@@ -40,14 +40,12 @@ python tools/gundem.py --taslak 3      # rapordaki 3. olay için episodes/gundem
 python tools/gundem.py --yasak-takip   # yayınlanmış gündem bölümleri: sonradan yayın yasağı geldi mi?
 ```
 
-Akış (1.11'den beri otomatik, onaylı):
+Akış (1.11'den beri otomatik; 2.11'den beri onay adımı yok, hesap sahibi: "her şeyi onaylıyorum, paylaşsın"):
 1. 19:00 `tr` üretim oturumu konu seçmeden önce tarar (`KISA_REEL_EL_KITABI.md` §5 "Gündem"). Uygun olay varsa o günün
-   videosu gündem olur; yoksa normal konu.
-2. Teslim her zaman BEKLET'li (`python -m wojak teslim` yazar). Yayın botu videoyu Telegram'a **"Yayınla / Yayınlama"**
-   düğmeleriyle gönderir; mesajda yayın yasağı taraması ve RAPOR'daki kontrol listesi var.
-3. Hesap sahibi RTÜK listesine bakıp basar. Bot onay anında yasağı yeniden arar; yeni bulgu yoksa YouTube, Facebook ve
-   TikTok'a yayınlar, Instagram paketini yollar.
-4. Yayından sonra 14 gün her sabah bot arar: haberlerde "yayın yasağı" ile olayın kelimeleri (`yasak_sorgu`), RTÜK
+   videosu gündem olur; yoksa normal konu. İnsan bakmadığı için kontrol listesinde tek şüphe gündemi iptal eder.
+2. Teslim doğrudan yayınlanır. Yayın botu yayından hemen önce haberlerde olaya "yayın yasağı" arar; bulursa yayınlamaz
+   (`DURDUR`) ve Telegram'a yazar. RTÜK listesinde yalnız olay yerinin mahkemesi tutuyorsa yayın sürer, not gider.
+3. Yayından sonra 14 gün her sabah bot arar: haberlerde "yayın yasağı" ile olayın kelimeleri (`yasak_sorgu`), RTÜK
    listesinde olay yerinin (`olay_yeri`) mahkemesi. Yasaklar olaydan günler sonra gelebiliyor (Narin'de kayboluştan 8 gün
    sonra). Bulgu Telegram'a gider; yasak bu olaysa video her platformdan kaldırılır.
 

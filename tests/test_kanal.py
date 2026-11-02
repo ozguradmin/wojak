@@ -78,9 +78,9 @@ def test_tr_sansur_baglam_ve_ekran():
     assert compose.ekran_yazisi(_en(tr), "Wait, they all died") == "Wait, they all died"   # en ekranı sansürsüz
 
 
-def test_gundem_teslimi_beklet_ve_yasak_kaydi(tmp_path):
-    """1.11: gündem paketi BEKLET'li çıkar ve yayın botunun yasak taraması için GUNDEM.json yazılır; öneksiz, sorgusuz ya
-    da yersiz paket teslim edilmez. Yapımcının yazdığı BEKLET nedeni korunur."""
+def test_gundem_teslimi_yasak_kaydi(tmp_path):
+    """1.11: yayın botunun yasak taraması için GUNDEM.json yazılır; öneksiz, sorgusuz ya da yersiz paket teslim edilmez.
+    2.11'den beri onay yok: teslim BEKLET yazmaz, yapımcının yazdığına dokunmaz."""
     import json
 
     from wojak import cli as _cli
@@ -97,7 +97,7 @@ def test_gundem_teslimi_beklet_ve_yasak_kaydi(tmp_path):
     paket = tmp_path / "teslim"
     paket.mkdir()
     _cli.gundem_dosyalari(ep, paket)
-    assert "onayı gerekir" in (paket / "BEKLET").read_text(encoding="utf-8")
+    assert not (paket / "BEKLET").exists()
     assert json.loads((paket / "GUNDEM.json").read_text(encoding="utf-8")) == {"sorgu": "Gebze enkaz",
                                                                                 "yer": "Gebze, Kocaeli"}
     (paket / "BEKLET").write_text("Gündem: Gebze'de enkazdan çıkan kız, dalga 26.10\n", encoding="utf-8")

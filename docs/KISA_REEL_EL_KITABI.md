@@ -31,6 +31,8 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
+- **2.11 Onay yok:** "Neden onay adımı var, her şeyi onaylıyorum, paylaşsın." BEKLET yayını durdurmaz (§3); gündem paketi
+  de doğrudan yayınlanır, bot yalnız yayından önce yasak haberi arar (§5 "Gündem"). Telegram onay düğmeleri kapatıldı.
 - **1.11 Gündem (tr):** "Son bir haftada olmuş, gündemdeki bir olayı yaparsak ilgi çeker mi?" Veri evet diyor (Instagram'da
   haber dalgasından 3-6 gün sonra medyan 8,85M). Hesap sahibi onaylı akışı istedi: her oturum konu seçmeden önce gündeme
   bakar (§5 "Gündem"); güçlü olay varsa o günün videosu gündem olur. Gündem paketi her zaman BEKLET'li çıkar; bot Telegram'a
@@ -94,19 +96,20 @@
 - **En fazla 3 tur.** Çıta geçilmediyse ya da son turdaki düzeltme yeniden puanlanmadıysa → `BEKLET`.
 - Hakemler çelişirse orijinaller ne yapıyorsa o yapılır. Hakemin önerdiği sayıyı kareye bakmadan uygulama.
 
-**BEKLET** (bölüm klasöründe `BEKLET` dosyası, içinde **tek satırlık neden**; hesap sahibi Telegram'dan karar verir) şu
-durumlardan biri varsa:
-güncel olay (GUNDEM), çocuk, son 10 yılda ölmüş kişi, yaşayan özel kişi, süren dava, hakem çıtası geçilmedi ya da MUST
-kaldı, kanıt/arka plan/kupürde lisans şüphesi. Karakter lisansı BEKLET nedeni değildir.
+**BEKLET** (bölüm klasöründe `BEKLET` dosyası, içinde **tek satırlık neden**) şu durumlardan biri varsa yazılır: çocuk,
+son 10 yılda ölmüş kişi, yaşayan özel kişi, süren dava, hakem çıtası geçilmedi ya da MUST kaldı, kanıt/arka plan/kupürde
+lisans şüphesi. Karakter lisansı BEKLET nedeni değildir. **2.11'den beri BEKLET yayını durdurmaz** (hesap sahibi: "her
+şeyi onaylıyorum, paylaşsın"): bot paketi yayınlar, nedeni Telegram'daki "Yayında" mesajına not olarak yazar. Yani
+yayınlanmaması gereken bir paketi teslim etme; sorun düzelmiyorsa konuyu değiştir.
 
-**Yayın.** Özel depodaki GitHub Actions botu teslimi push'tan **~10 dk sonra** yayınlar (yayından önce BEKLET'e tekrar
+**Yayın.** Özel depodaki GitHub Actions botu teslimi push'tan **~10 dk sonra** yayınlar (yayından önce `DURDUR`'a tekrar
 bakar): `tr` → `wojak-ozel/teslim/<id>/`, `en` → `wojak-en-ozel/teslim/<id>/`. Bir kanalın bölümü asla öbür depoya konmaz.
 - **BEKLET kararı teslim commit'inden ÖNCE verilir;** BEKLET varsa aynı ve tek commit'e girer. Sonradan BEKLET commit'i
   atılmaz (27.10'da `en-mincemeat` yayına girdikten 8 sn sonra BEKLET eklendi; video zaten yayındaydı).
 - `YAYINLANDI.json`'a ve `ONAY.json`'a dokunma. YouTube'a elle yükleme yok (bot çift yükler).
-- **Onay (1.11):** bot BEKLET'li paketi Telegram'a video ve "Yayınla / Yayınlama" düğmeleriyle gönderir; nedeni BEKLET'teki
-  satırdan, o boşsa RAPOR'daki ilk BEKLET paragrafından alır (26-31.10 arası 4 `en` paketi boş BEKLET'le sessizce bekledi).
-  "Yayınla" saatlik kontrolde BEKLET'i siler, paket sıraya girer; 7 gün karar gelmezse yayınlanmaz.
+- **Onay adımı yok (2.11):** 1.11'de kurulan Telegram onayı ("Yayınla / Yayınlama" düğmeleri) hesap sahibinin isteğiyle
+  kapatıldı (`ONAY_GEREK: "0"`). Yayını yalnız `DURDUR` dosyası durdurur; onu hesap sahibi ya da bot (gündemde yasak
+  haberi) koyar, ajan koymaz.
 - Instagram'ı hesap sahibi Telegram'dan paylaşır; bölüme özel notlar `ek_maddeler`'e.
 - `tr` (31.10): bot YouTube'dan sonra Buffer ile Facebook sayfasına reel ve TikTok'a da paylaşır; Facebook metni
   `instagram_aciklama.txt`, TikTok metni `tiktok_aciklama.txt` (2.200 karakteri aşarsa hikâyenin son paragrafları
@@ -249,11 +252,12 @@ GUNDEM.md §2 sorularıyla (evet/hayır, kaynak sayısı, dalga tarihi) yaz.
 Gündem bölümü: id `gundem-<kısa-ad>` (`.gitignore` herkese açık depoya sokmaz), `gundem: true`, `kesin_hukum`,
 `yasak_sorgu` (2-3 ayırt edici kelime: isim, yer), `olay_yeri` ("Gebze, Kocaeli"), bağlam `top_text` ile videonun içinde.
 Format ve dil GUNDEM.md §4: replik yalnız doğrulanmış bilgiden, kurbana uydurma söz yok, şüpheliye karakter yok.
-`python -m wojak teslim` BEKLET'i ve `GUNDEM.json`'u kendisi yazar (eksik alan varsa teslim etmez); BEKLET'e tek satır
-neden (olay, yer, dalga tarihi) yazabilirsin. RAPOR'a **`## Gündem kontrol listesi`** başlığıyla GUNDEM.md §5'in 12
-maddesi (evet/hayır + kanıt; RTÜK listesine bakılan saat): bu bölüm Telegram onay mesajında hesap sahibine gider. Bölüm
-klasörünü özel depoya `gundem/<id>/` olarak kopyala (aynı teslim commit'i). Herkese açık depoya gündem bölümü girmez;
-`DERS_KUTUSU`'na yazacağın derste olayı ve kişileri anma.
+`python -m wojak teslim` `GUNDEM.json`'u kendisi yazar (eksik alan varsa teslim etmez). **Onay adımı yok (2.11):** paket
+doğrudan yayınlanır; bot yalnız yayından hemen önce haberlerde bu olaya "yayın yasağı" arar, bulursa yayınlamaz. Bu yüzden
+kontrol listesinde tek "hayır" ya da şüphe varsa gündem yapma, normal konuya geç. RAPOR'a **`## Gündem kontrol listesi`**
+başlığıyla GUNDEM.md §5'in 12 maddesi (evet + kanıt; RTÜK listesine bakılan saat). Bölüm klasörünü özel depoya
+`gundem/<id>/` olarak kopyala (aynı teslim commit'i). Herkese açık depoya gündem bölümü girmez; `DERS_KUTUSU`'na
+yazacağın derste olayı ve kişileri anma.
 
 ## 6. Format (STIL §0 + §15 özü)
 
@@ -459,7 +463,7 @@ sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum öneris
   damar, A-E puanları ve toplam)** · yorum testi ve cevabı · son 7 teslimin damarı · sahne listesi ·
   başlık seçenekleri · hakem turları (puan, MUST, uygulanan düzeltme; puanlar hakem raporundan değiştirilmeden) · bilinen
   kusurlar · lisans tablosu · adım süreleri (tek tablo) · alt ajan çağrıları · gündemse `## Gündem kontrol listesi`
-  (§5 "Gündem"; Telegram onay mesajına gider).
+  (§5 "Gündem").
 - Özel depo: tek commit, Türkçe konu ("Teslim: <id> (iki hakemden 8/8, telifsiz, BEKLET yok)"), push. Son commit botun
   olabilir: yazarı açıkça ver (`git -c user.name=Claude -c user.email=noreply@anthropic.com commit ...`).
 - Herkese açık `wojak`: `git pull --rebase` sonra commit ve push (oturumun dalı); konu satırı aynı biçimde. Gündem bölümü
