@@ -59,6 +59,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
  },
+ "15e3033d8408709a966711ee8607b42f15f14ab7": {
+  "faces": "right",
+  "file": "episodes/dumlupinar-denizaltisi-1953/chars/subay_sok.png"
+ },
  "1a4e703fa9ac2406f829a206897de84b2496fca7": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
@@ -254,6 +258,10 @@
  "4b0a3598c148e0a16b3bf805fdba10086db813e3": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915_biyikli/gulumsuyor.png"
+ },
+ "4c5e8c01a94c322854ffb777e43769933e2eb8cc": {
+  "faces": "right",
+  "file": "episodes/dumlupinar-denizaltisi-1953/chars/denizci_sakin.png"
  },
  "4d238fe6c3a86ddf7f7374203351d261795c4e4a": {
   "faces": "right",
@@ -675,6 +683,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_fark.png"
  },
+ "b95827343f713b54276b9a08cd1ba99893087dc3": {
+  "faces": "right",
+  "file": "episodes/dumlupinar-denizaltisi-1953/chars/subay_sakin.png"
+ },
  "ba840f1db5cbfe73a45ca26fd0fa92fa3aff2506": {
   "faces": "front",
   "file": "episodes/en-d-b-cooper/chars/a_ter.png"
@@ -702,6 +714,10 @@
  "c16f393f784e27d515cf3271f28120d3f45f3438": {
   "faces": "right",
   "file": "episodes/sultanahmet-alti-minare/chars/usta_sok.png"
+ },
+ "c3b30ad0ee0c993981dbb829972743f9fa75aa1e": {
+  "faces": "right",
+  "file": "episodes/dumlupinar-denizaltisi-1953/chars/denizci_sakin.png"
  },
  "c4d8fa492ce23821baf5912cb781f515dcf44743": {
   "faces": "left",
@@ -890,6 +906,10 @@
  "f55bd366499e4b93b630d4c9ad3e1dca3db9611d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_mutlu.png"
+ },
+ "f7d37a9ca10c48f647d309e87ba98003a71db552": {
+  "faces": "right",
+  "file": "episodes/dumlupinar-denizaltisi-1953/chars/denizci_sakin.png"
  },
  "f95194a389835c71a4aa7f23f72e0c17c5764f7c": {
   "faces": "right",
