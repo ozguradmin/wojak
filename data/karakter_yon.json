@@ -99,6 +99,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/veteriner_v2_sakin.png"
  },
+ "262912b65e724473b09b481d6d11399697abfbaf": {
+  "faces": "left",
+  "file": "episodes/en-yamaguchi-two-bombs/chars/a_kaynak.png"
+ },
  "28365e0a4d32b291f30d4b5643df7bff2e5dc025": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
@@ -470,6 +474,10 @@
  "7ca57a5fe38408c95d9732bedf779035255779b9": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci_gulumsuyor_konusuyor.png"
+ },
+ "7daf8cdc4097a37d2074ecb4b9d40539890a0a13": {
+  "faces": "left",
+  "file": "episodes/en-yamaguchi-two-bombs/chars/a_sakin.png"
  },
  "7e1eae8ac572070bdbfc0a79016d223ba556e4b2": {
   "faces": "right",

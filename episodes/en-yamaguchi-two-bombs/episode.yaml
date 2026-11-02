@@ -1,0 +1,100 @@
+# Tsutomu Yamaguchi (1916-2010): Hiroşima (6 Ağu 1945) ve Nagasaki (9 Ağu 1945). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/en-yamaguchi-olgular.md (History.com, Biography, NBC/AP, NPR, ABC News, Kyodo/Hiroshima Peace Media, Nagasaki şehri, Discover Nagasaki).
+# HASSAS KONU: BBC QI 2010'daki "unluckiest man" şakası Japonya'da tepki çekti, BBC 2011'de özür diledi; kızı yaşıyor. Videoda şaka, "lucky/unlucky", "crazy" yok.
+# CANLANDIRMA: iki wojak kurgu; patronun repliği belgelenmiş sözün birebir alıntısı değil (kaynaklar yalnız patronun şüphe ettiğini söylüyor).
+# Karakterler: A (sol, Yamaguchi) = wojakland 'Japan Business Wojak' (siyah takım, gözlük). B (sağ, patron) = 'Suit Wojak' fötr şapkalı (en-apollo'dan aynı PNG'ler, b_sok = ters köşe, aynı kutu/silüet).
+# Arka plan: Nagasaki No.2 Dock (c.1910 el boyamalı kartpostal). Dönem 1945 değil, 35 yıl önce: tersanenin aynı yeri değil, aynı tür yer. RAPOR'da kusur.
+# Kanıt 1: Hiroşima mantar bulutu (NARA 542192). Kanıt 2 (son kare): Nagasaki mantar bulutu (HD.4F.002).
+id: en-yamaguchi-two-bombs
+kanal: en  # Wojak Past Files
+title: "The Hiroshima survivor who went back to work in Nagasaki"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA: A (sol). Bağlam: Hiroşima bombası.
+  - type: dialog
+    duration: 3.0
+    bg: img/bg_dock.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.48}
+    text: "Boss, I was in Hiroshima when the bomb fell"
+
+  # 2) CEVAP: B (sağ), şüphe.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_dock.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.48}
+    text: "One bomb can't\ndestroy a whole city"
+
+  # 3) TIRMANIŞ: A (sol). Nagasaki'ye döndü.
+  - type: dialog
+    duration: 3.0
+    bg: img/bg_dock.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.48}
+    text: "I saw it, then came\nhome to Nagasaki"
+
+  # 4) TERS KÖŞE: B, aynı kutu, şok yüzü. Pencereden gelen ışık.
+  - type: dialog
+    duration: 2.5
+    bg: img/bg_dock.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.48}
+    text: "Wait, why is the\nwindow so bright?"
+
+  # 5) KANIT 1: Hiroşima, 6 Ağustos 1945 (NARA, kamu malı).
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_hiroshima.jpg]
+
+  # 6) KANIT 2 (son kare): Nagasaki, 9 Ağustos 1945 (ABD Enerji Bakanlığı arşivi, kamu malı).
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_nagasaki.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The Hiroshima survivor who went back to work in Nagasaki
+  The full story is in the pinned comment 👇
+
+hashtags: [history, ww2, nagasaki]
+
+pinned_comment: |
+  Tsutomu Yamaguchi was a Mitsubishi engineer who was in Hiroshima on 6 August 1945 and back at work in Nagasaki three days later. Born in Nagasaki in 1916, he was a 29-year-old tanker designer. He was there on a three-month business trip when the first atomic weapon exploded at 8:15 a.m. on 6 August, roughly three kilometres away. He was badly hurt, but he made his way back to his home city of Nagasaki by train.
+
+  On 9 August he reported to the Mitsubishi office. While he described what he had seen in Hiroshima, his supervisor reportedly doubted that a single weapon could destroy an entire city. At 11:02 a.m. the second atomic weapon exploded over the Urakami district of Nagasaki.
+
+  At least 160 people are known to have been in both cities, but in March 2009 Yamaguchi was officially recognised as a double hibakusha, a survivor of both attacks, the only person to receive that recognition. He spoke about nuclear weapons, including at the United Nations in 2006. He passed away in Nagasaki on 4 January 2010, aged 93. By most estimates, well over 100,000 people lost their lives in the two attacks.
+
+  The photos show the atomic cloud over Hiroshima (6 August 1945) and over Nagasaki (9 August 1945). The background is a hand-coloured postcard of a Nagasaki shipyard from about 1910.
+
+  Dramatized: the characters are fictional and the dialogue is invented.
+
+  Would you have believed a man who told you one weapon had destroyed a city?
+
+credits: "Atomic cloud over Hiroshima (NARA 542192), George R. Caron, 6 August 1945, U.S. government work, public domain, via Wikimedia Commons (cropped); Atomic Cloud Rises Over Nagasaki (HD.4F.002), Charles Levy, 9 August 1945, U.S. Department of Energy, public domain, via Wikimedia Commons (resized); No. 2 Dock, Nagasaki, hand-coloured postcard, c. 1910, public domain, via Wikimedia Commons (square crop, colour adjusted, blurred, used as background). Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**HASSAS KONU, hesap sahibi karar versin:** Yamaguchi'nin kızı yaşıyor ve kamuoyunda konuşuyor. 2010'da BBC'nin QI programı onu 'dünyanın en şanssız adamı' diye şakaya vurdu, Japonya'da tepki çekti, BBC 2011'de özür diledi. Videoda şaka, 'lucky/unlucky' çerçevesi ve 'crazy' etiketi yok; yine de atom bombası + wojak formatı bazı izleyicilere saygısız gelebilir."
+  - "**Video is a dramatization:** the characters are fiction; the lines are not documented quotes. Sourced: Hiroshima 6 Aug 08:15, return to Nagasaki, report to the supervisor on 9 Aug, the supervisor's doubt (reportedly), the flash at 11:02, recognition in March 2009, death 4 Jan 2010."
+  - "Arka plan 1945 değil, c.1910 Nagasaki tersanesi (Mitsubishi'nin gerçek ofisinin fotoğrafı bulunamadı); ofis sahnesi tersane önünde geçiyor gibi okunur. Kusur RAPOR'da."
+  - "Olgu çelişkileri (metinden çıkarıldı): Nagasaki'ye varış günü (7 mi 8 Ağustos), ofis mesafesi (1,75-3,5 km), Hiroşima'daki tam yer, tanınma günü (23/24 Mart)."
+  - "İlk yorum önerisi: 'Would you have believed...' sorusu sabit yorumda; 'Actually 160+ people...' yorumuna metin zaten cevap veriyor."
+
+sources:
+  - "Yamaguchi: kimlik, Mitsubishi mühendisi, Hiroşima iş gezisi, Nagasaki'ye dönüş: https://www.history.com/articles/the-man-who-survived-two-atomic-bombs ; https://www.biography.com/history-culture/a44577392/tsutomu-yamaguchi-hiroshima-and-nagasaki-bombing-survivor ; https://www.nbcnews.com/id/wbna34722073"
+  - "9 Ağustos ofis sahnesi, patronun şüphesi (reportedly), flaş: https://www.biography.com/history-culture/a44577392/tsutomu-yamaguchi-hiroshima-and-nagasaki-bombing-survivor ; https://www.npr.org/2010/01/06/122291007/only-survivor-of-both-atomic-bombs-dies ; https://www.history.com/articles/the-man-who-survived-two-atomic-bombs"
+  - "Hiroşima 08:15: https://www.britannica.com/topic/Hiroshima-Peace-Memorial ; https://dive-hiroshima.com/en/explore/2675/ . Nagasaki 11:02, Urakami: https://nagasakipeace.jp/en/search/record/photo/part_2_01.html ; https://www.discover-nagasaki.com/en/sightseeing/126"
+  - "Mart 2009 tanınma, ≥160 kişi, ölüm 4 Ocak 2010 (mide kanseri, 93): https://www.hiroshimapeacemedia.jp/?p=14868 ; https://abcnews.com/WN/atomic-bomb-victim-survived-hiroshima-nagasaki-dies-japan/story?id=9489697 ; https://www.nbcnews.com/id/wbna34722073"
+  - "Toplam kayıp (metinde 'well over 100,000'; kaynaklarda 110.000-246.000): https://en.wikipedia.org/wiki/Atomic_bombings_of_Hiroshima_and_Nagasaki ; https://www.biography.com/history-culture/a44577392/tsutomu-yamaguchi-hiroshima-and-nagasaki-bombing-survivor (226.000'e kadar)"
+  - "GÖRSEL img/ev_hiroshima.jpg — 'Atomic cloud over Hiroshima - NARA 542192 - Edit.jpg', George R. Caron, PD-USGov: https://commons.wikimedia.org/wiki/File:Atomic_cloud_over_Hiroshima_-_NARA_542192_-_Edit.jpg . Değişiklik: dikey görselden mantar başı kırpımı (kayıt numarası dışarıda), 1080x814."
+  - "GÖRSEL img/ev_nagasaki.jpg (son kare) — 'Atomic Cloud Rises Over Nagasaki, HD.4F.002 (11873155226).jpg', Charles Levy, PD-USGov-DOE: https://commons.wikimedia.org/wiki/File:Atomic_Cloud_Rises_Over_Nagasaki,_HD.4F.002_(11873155226).jpg . Değişiklik: yalnız yeniden boyutlandırma, 1080x740."
+  - "GÖRSEL img/bg_dock.jpg (arka plan) — 'No2 Dock Nagasaki.jpg', el boyamalı kartpostal c.1910, PD-Japan-oldphoto (ABD'de 1930 öncesi yayın): https://commons.wikimedia.org/wiki/File:No2_Dock_Nagasaki.jpg . Değişiklik: alttaki yazı bandı dışarıda kare kırpım, renk 1,2, parlaklık 0,95, blur 2,4."
