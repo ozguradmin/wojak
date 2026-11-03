@@ -71,3 +71,4 @@
 - `tools/wojak_site.py get`: `--out-dir` verilmezse PNG'yi `assets/characters/` altına koyup `data/karakter_yon.json`'a "front" girdisi yazıyor; aday denemelerinde repo kirleniyor (git checkout/clean gerekiyor). Varsayılan hedef `/tmp` ya da kaydı yalnız `--yon` verilince yazsın (01.11, en-roosevelt-bullet-speech).
 - `check`: arka plan ölçüsünü (Laplace, doygunluk, parlaklık) uyarı olmasa da tek satır yazdırsın ve "blur X için Laplace ~20" önerisini versin; blur seçimi için `denetim.arka_plan_olcu` elle taranıyor (02.11, dumlupinar-denizaltisi-1953).
 - `wojak render`: konsol satırı "video -> ... (7.4 sn)" gerçek süreyi (ffprobe 13,95 sn) yanlış basıyor; ffprobe ile okunan süreyi yazsın (02.11, en-arkhipov-b59).
+- `tools/commons.py indir --genislik 1920`: özgün dosya 1920'den darsa (ör. 1678x923) özgün yerine 1280 küçük resmi indiriyor; istenen genişlik özgünü aşınca md5 özgün yolunu (429 geri çekilmeli) denesin (03.11, yilanli-sutun-tilsimi).
