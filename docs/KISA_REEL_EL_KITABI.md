@@ -114,7 +114,8 @@ bakar): `tr` → `wojak-ozel/teslim/<id>/`, `en` → `wojak-en-ozel/teslim/<id>/
 - `tr` (31.10): bot YouTube'dan sonra Buffer ile Facebook sayfasına reel ve TikTok'a da paylaşır; Facebook metni
   `instagram_aciklama.txt`, TikTok metni `tiktok_aciklama.txt` (2.200 karakteri aşarsa hikâyenin son paragrafları
   kısalır; başlık, soru, atıflar ve hashtag'ler kalır). İkisinde de görsel atıfları eksiksiz olsun. Hazır bir bölümü belli saate bırakmak için klasöre
-  `YAYIN_ZAMANI` (ISO zaman, ör. `2026-11-01T09:00:00+00:00`) konabilir. 31.10'dan beri TR üretimi günde bir (19:00).
+  `YAYIN_ZAMANI` (ISO zaman, ör. `2026-11-01T09:00:00+00:00`) konabilir. 31.10'dan beri TR üretimi günde bir (19:00);
+  3.11'den beri EN de günde bir (New York 12:15, önce 12:15 ve 18:15; kredi azaldığı için).
 
 ## 4. Hızlı başlangıç (çalışan yol, sırayla)
 
