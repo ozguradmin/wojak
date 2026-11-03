@@ -1,0 +1,97 @@
+# Acoustic Kitty (CIA, 1960s). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgu/olgular.md (CIA memo "Views on Trained Cats" NSA/GWU EBB 54, UNREDACTED 2010, Smithsonian 2013, HISTORY 2018/2025, Mental Floss 2011).
+# CANLANDIRMA: iki adsız wojak; gerçek kişi temsil edilmez. Taksi/trafik sonu tek kaynaklı (Marchetti, 2018'de öldü) ve tartışmalı: videoda "kedi trafiğe yürüdü" canlandırması, metinde "reportedly".
+# Karakterler: A = wojakland 'Grey Suit Wojak' (görevli; ters köşe a_sok = el çizimi şaşkın yüz), B = wojakland 'Suit Wojak' (fötr şapkalı şüpheci patron).
+id: en-acoustic-kitty
+kanal: en  # Wojak Past Files
+title: "The CIA once wired a live cat to spy on the Soviets"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 3.0
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Sir, our CIA spy\ncat is wired"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/bg.jpg
+    blur: 3.0
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Will a cat really\nfollow orders?"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 3.0
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Relax, it'll cross the\nstreet and listen"
+
+  - type: card
+    duration: 1.5
+    text: "One mission later"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/bg.jpg
+    blur: 3.0
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Sir, the cat just\nwalked into traffic"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The CIA once wired a live cat to spy on the Soviets
+  The full story is in the pinned comment 👇
+
+hashtags: [history, coldwar, cia]
+
+pinned_comment: |
+  Note: the traffic scene in the video is a dramatization of a disputed, single-source account (details below).
+
+  Acoustic Kitty is the name of a 1960s Central Intelligence Agency project that tried to turn a live house cat into a mobile listening device. A heavily redacted CIA memo from 1967, "Views on Trained Cats", has since been declassified. According to accounts of the program, surgeons reportedly placed a microphone in the cat's ear, a transmitter near its skull and a thin antenna in its fur, so it could wander near Soviet targets and transmit conversations.
+
+  Training was the hard part. Cats go where they please, and reportedly one wandered off when it was hungry or distracted. The memo says cats can indeed be trained to move short distances, but concludes that the method would not be practical in a real foreign setting. The program ended in 1967.
+
+  The best-known ending is less certain. A former CIA officer said that on its first field test, in Washington, D.C., the cat was hit by a taxi. A former CIA technical chief disputes that, and no declassified document settles it. The traffic scene in the video dramatizes that disputed account. Sources also disagree on the cost, with figures of 15 million dollars and more.
+
+  Both evidence frames are pages of the declassified CIA memo.
+
+  Dramatized: the characters and the dialogue are invented.
+
+  Would you have trusted a cat to do a spy's job?
+
+credits: "Views on Trained Cats (CIA memo, 1967), pages 1 and 2, United States Central Intelligence Agency, public domain (U.S. government work), via the National Security Archive, George Washington University (cropped, grayscale, contrast adjusted); Washington - Department of Commerce Building and Downtown (1965), by Roger W, CC BY-SA 2.0, via Wikimedia Commons (cropped to square, colors softened, blurred; used as background). Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction; no real person is represented and the lines are not documented quotes. Sourced: the project (CIA memo, March 1967 per the National Security Archive), the cat as a listening device, cancellation in 1967."
+  - "Taksi/trafik sonu tek kaynaklı (eski CIA subayı Marchetti, 2018'de öldü; anlatı Richelson 2001'e dayanır; videoda hedge yok, kart STIL gereği yalnız 'One mission later'; hedge açıklama ve sabit yorumda) ve eski bir CIA teknik şefi tarafından reddediliyor. Video bunu yalnız canlandırma olarak ('kedi trafiğe yürüdü') gösterir; açıklama 'reportedly' diyor, belge taksiden söz etmez."
+  - "Her iki kanıt kare gerçek, gizliliği kaldırılmış CIA notunun sayfalarıdır (s.1: konu satırı ve 1. paragraf; s.2: 'would not be practical'). Not, sayfa 1'de el yazısı '3-67' ve 'RELEASED SEP 1983' damgası taşır; '2001'de yayınlandı' denmedi."
+  - "Arka plan: 1965 Washington D.C. havadan renkli fotoğraf (Commerce Binası çevresi); Sovyet büyükelçiliği değil, aynı dönem ve şehir. Kredide belirtildi."
+  - "Videoda yaşayan ya da son 10 yılda ölmüş kimse adlandırılmadı veya temsil edilmedi; konu BEKLET nedeni değil."
+  - "Maliyet kaynaklarda çelişir (15 milyon dolar ve üstü); videoda yok, metinde 'figures of 15 million dollars and more' denildi."
+
+sources:
+  - "Proje ve CIA notu (Views on Trained Cats, 'practical' değil, kediler kısa mesafe gezdirilebilir; not Mart 1967, NSA'ya göre): https://nsarchive2.gwu.edu/NSAEBB/NSAEBB54/st27.pdf ; https://unredacted.com/2010/03/05/document-friday-acoustic-kitty/ ; https://www.smithsonianmag.com/history/the-cias-most-highly-trained-spies-werent-even-human-20149/ ; https://www.history.com/articles/cia-spy-cat-espionage-fail"
+  - "Cerrahi (kulakta mikrofon, kafatası tabanında verici, tüyde anten; kaynaklar ayrıntıda ayrışır, 'reportedly'): https://www.mentalfloss.com/article/27790/cia-plan-use-cats-spies-and-taxi-ruined-it ; https://www.smithsonianmag.com/history/the-cias-most-highly-trained-spies-werent-even-human-20149/ ; https://www.history.com/articles/cia-spy-cat-espionage-fail"
+  - "Taksi anlatısı (eski CIA subayı, tek köken; eski CIA teknik şefi reddediyor; belgede yok): https://unredacted.com/2010/03/05/document-friday-acoustic-kitty/ ; https://www.smithsonianmag.com/history/the-cias-most-highly-trained-spies-werent-even-human-20149/ ; https://www.mentalfloss.com/article/27790/cia-plan-use-cats-spies-and-taxi-ruined-it ; https://www.history.com/articles/cia-spy-cat-espionage-fail"
+  - "Maliyet (15 milyon dolar ve üstü, kaynaklar çelişir): https://unredacted.com/2010/03/05/document-friday-acoustic-kitty/ ; https://en.wikipedia.org/wiki/Acoustic_Kitty ; https://www.mentalfloss.com/article/27790/cia-plan-use-cats-spies-and-taxi-ruined-it"
+  - "GÖRSEL img/kanit_2.jpg (son kare) — CIA, 'Views on Trained Cats [Redacted] for [Redacted] Use', 1967, sayfa 2, ABD hükümeti çalışması (kamu malı), National Security Archive EBB 54: https://nsarchive2.gwu.edu/NSAEBB/NSAEBB54/st27.pdf . Değişiklik: PDF'teki 240 ppi taramadan kırpım (1080x536), gri tonlama, otomatik kontrast."
+  - "GÖRSEL img/kanit_1.jpg — aynı CIA notu, sayfa 1 (kamu malı, aynı kaynak). Değişiklik: PDF taramasından konu satırı ve 1. paragraf kırpımı (1080x689), gri tonlama, otomatik kontrast."
+  - "GÖRSEL img/bg.jpg (arka plan) — 'Washington - Department of Commerce Building and Downtown (1965) (4392672686).jpg', Roger W from Sarasota, 17 Nisan 1965, CC BY-SA 2.0 (ham sayfada doğrulandı): https://commons.wikimedia.org/wiki/File:Washington_-_Department_of_Commerce_Building_and_Downtown_(1965)_(4392672686).jpg . Değişiklik: kare kırpım, doygunluk 0,55, parlaklık 1,08, blur 3,0."

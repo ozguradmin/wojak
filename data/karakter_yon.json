@@ -79,6 +79,10 @@
   "faces": "right",
   "file": "episodes\\midas-mezari-altin\\chars\\madenci_sok.png"
  },
+ "1e29503b76630ba45591998986173ba8a785ea12": {
+  "faces": "front",
+  "file": "episodes/en-acoustic-kitty/chars/b_kaynak.png"
+ },
  "207fdc64df6a928e637bba9a8a786aed5c3ce3f3": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/tek_gozyasi.png"
@@ -158,6 +162,10 @@
  "352072bb5d8d0a4bdcef95347d141923cf9a74b0": {
   "faces": "right",
   "file": "assets/characters/koylu_kasketli_biyikli.png"
+ },
+ "35d4c572f414dbc2fb2f0e8dac2461c1fec5ab14": {
+  "faces": "right",
+  "file": "episodes/en-acoustic-kitty/chars/a_sok.png"
  },
  "35f2c038ec0b90619416eb4f850177535e267302": {
   "faces": "right",
@@ -323,6 +331,10 @@
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/agliyor.png"
  },
+ "58db58cf327163249f139c1bde9c44cf7b1d613c": {
+  "faces": "right",
+  "file": "episodes/en-acoustic-kitty/chars/b_sakin.png"
+ },
  "5969a59aba2fb6aa741fb876c3aa3daf9afd0b29": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_sakin.png"
@@ -462,6 +474,10 @@
  "7680eea425233166e5f9ac8d6c1ed524c6b8db22": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/voss_v2_sakin.png"
+ },
+ "787730f825a750745aa8d6b85ea14f384600e2c1": {
+  "faces": "right",
+  "file": "episodes/en-acoustic-kitty/chars/a_sok.png"
  },
  "7a5f374eb2a248cb4e6b21f844967a5fc742f100": {
   "faces": "right",
@@ -842,6 +858,10 @@
  "e32cf848ba632e585cd4a11e8cf9c89d72c9b30f": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans.png"
+ },
+ "e3a10d20d4dc6c11b5388a030c6ac29aa3fc2927": {
+  "faces": "front",
+  "file": "episodes/en-acoustic-kitty/chars/a_kaynak.png"
  },
  "e4164dd5c77428d03dfb87678bbee51bab7dd75c": {
   "faces": "right",
