@@ -74,3 +74,4 @@
 - `tools/commons.py indir --genislik 1920`: özgün dosya 1920'den darsa (ör. 1678x923) özgün yerine 1280 küçük resmi indiriyor; istenen genişlik özgünü aşınca md5 özgün yolunu (429 geri çekilmeli) denesin (03.11, yilanli-sutun-tilsimi).
 - `wojak render`: episode.yaml ayrıştırma hatasında (ParserError) sessizce eski mp4'ü bırakıyor ve çıkış koduyla bildirmiyor; hatada dur ve kırmızı uyarı yaz, `teslim` da yaml'ı mp4'ten yeniyse reddetsin (03.11, en-acoustic-kitty).
 - `wojak/censor.py`: TR doğal ölüm kalıplarını ("ölümüne dek", "ölümünden sonra", "öldükten sonra") yıldızlama ya da `check` "doğal ölüm sansürlendi, tarih aralığıyla yaz" diye uyarsın (04.11, meryem-ana-evi-1891).
+- `wojak` TikTok/hashtag profili (`en`): araç `#mystery #truestory` ekliyor; facia/belgeli olay konularında uymuyor (en-boston-molasses-flood, 04.11); konu etiketine göre ya da yalnız bölüm `hashtags:` ile sınırla.

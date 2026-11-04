@@ -1,0 +1,94 @@
+# Boston Molasses Flood (15 Ocak 1919). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgular.md (Wikipedia, BPL, Mass Moments, Boston.gov, NPR, Smithsonian, History.com, Live Science, Old North Church).
+# CANLANDIRMA: iki adsız wojak (tank işçisi + yönetici); gerçek kişi temsil edilmez, replikler belgeli alıntı değil; sızıntı, boyama ve inleme "reportedly" (Puleo, Dark Tide).
+# Karakterler: A = wojakland 'Worker 2 Wojak' (kasket + tulum), B = wojakland '1950s Businessman Wojak' (fötr şapka; sırıtma silinip düz ağız; b_sok = ters köşe, aynı silüet).
+id: en-boston-molasses-flood
+kanal: en  # Wojak Past Files
+title: "Boston's leaking molasses tank got a coat of brown paint"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Boss, the molasses tank\nis leaking again"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Just paint it brown,\nnobody will notice"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "It groans whenever\nthey fill it"
+
+  - type: card
+    duration: 1.5
+    text: "Months later"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, why is\nthe whole tank leaking?"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Boston's leaking molasses tank got a coat of brown paint
+  The full story is in the pinned comment 👇
+
+hashtags: [history, boston, molassesflood]
+
+pinned_comment: |
+  The Great Molasses Flood struck Boston's North End on January 15, 1919. A steel tank at 529 Commercial Street, owned by United States Industrial Alcohol (through its Purity Distilling subsidiary, as the headline says) and holding about 2.3 million gallons of molasses, ruptured at around 12:30 p.m. The wave is estimated at 15 to 25 feet high (accounts range from 15 to 40; the marker says 40) and about 35 mph. It took 21 lives and injured roughly 150 people.
+
+  The tank was built in 1915 and reportedly leaked almost from the start. People reportedly heard it groan whenever it was filled, and local children reportedly collected the syrup that seeped out. In 1918 the tank was painted brown, reportedly to hide the leaks. Investigators later found it had never been properly tested: reportedly only about six inches of water were run in before it was filled with molasses.
+
+  At first the company blamed anarchists for planting an explosive device. In 1925, court-appointed auditor Hugh Ogden rejected that and held the company responsible for the tank's structural failure. The company paid about $628,000 in damages. A 2014 engineering analysis found the steel was only about half as thick as it should have been.
+
+  The final frames are real: the front page of the Boston Daily Globe, January 16, 1919 (first-night figures: 11 lives lost; the final toll was 21), and the Bostonian Society historical marker at the site.
+
+  Note: the video is a dramatization of reported accounts. The characters and dialogue are invented.
+
+  Which would you have noticed first: the leak or the paint job?
+
+credits: "Fishing Schooners at T Wharf, Boston, Mass (Detroit Publishing Co. postcard, c. 1905; scan by NYPL, public domain; cropped, brightness slightly reduced, blurred; used as background, not the North End site), Boston Daily Globe, Jan. 16, 1919 (public domain; enlarged slightly), Molasses Flood Historical Marker by MLHalsey, 2012, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0; cropped and resized), via Wikimedia Commons. Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction; no real person is represented and the lines are not documented quotes. Sourced: 15 Jan 1919, tank at 529 Commercial St, ~2.3M gallons, 21 dead (we write 'lives'), ~150 injured, 1925 Ogden finding. 'Reportedly' (mostly Puleo, Dark Tide): leaking from the start, brown paint, groaning, children collecting syrup."
+  - "Kart 'Months later': tank 1918 yazında kahverengiye boyandı (Puleo, NBC, Vita Brevis), patlama Ocak 1919; 'again' sızıntının kronik olduğunu söyler. Su testi: yalnız ~6 inç su (reportedly); 'never test-filled' denmedi."
+  - "Arka plan: T Wharf (Boston rıhtımı, Detroit Publishing Co. photochrom kartpostalı ~1905, renkli); olay yeri North End değil, aynı kentin limanı, kredide belirtildi. Felaket öncesi renkli North End fotoğrafı bulunamadı. Tank fotoğrafı (s/b, 417 px) 1. tur görsel hakemde arka plan MUST'ı aldığı için bırakıldı."
+  - "Kanıt 1 manşeti 'kills 11' ilk gece sayısı; sabit yorumda 21 ve 'first-night figures' notu var. Levha '40-foot wave' diyor; sabit yorum 15-25 ft tahmini (kaynaklar 15-40 ft arası)."
+  - "Mağdur ismi, çocuk ayrıntısı, ceset ya da yaralı görüntüsü yok."
+
+sources:
+  - "Olay (15 Ocak 1919, 529 Commercial St, ~2,3 milyon galon, 21 ölü, ~150 yaralı, ~12:30): https://en.wikipedia.org/wiki/Great_Molasses_Flood ; https://www.massmoments.org/moment-details/great-molasses-flood.html ; https://www.bpl.org/blogs/post/bostons-great-molasses-flood/"
+  - "Sızıntı, 1918 yazında boyama (reportedly; Puleo, Dark Tide; NBC 'In 1918'; Vita Brevis 'July 1918'): https://www.boston.gov/news/100-years-ago-today-molasses-crashes-through-bostons-north-end ; https://www.smithsonianmag.com/smart-news/why-boston-molasses-disaster-was-so-deadly-180961209/ ; https://www.npr.org/2019/01/15/685154620/a-deadly-tsunami-of-molasses-in-bostons-north-end"
+  - "Su testi yapılmadı, 1925 Ogden kararı, anarşist iddiasının reddi, $628.000: https://en.wikipedia.org/wiki/Great_Molasses_Flood ; https://www.history.com/articles/the-great-molasses-flood-of-1919 ; https://oldnorth.com/blog/the-1919-molasses-flood/ ; https://www.sec.state.ma.us/divisions/state-house-tours/did-you-know/Molasses-Flood.htm"
+  - "Dalga 15-25 ft, ~35 mph tahmini; 2014 çelik analizi: https://www.livescience.com/56947-why-molasses-flood-1919-was-deadly.html ; https://www.history.com/articles/great-molasses-flood-science ; https://newenglandhistoricalsociety.com/great-boston-molasses-disaster-1919/"
+  - "GÖRSEL img/arka.jpg (arka plan) — 'Fishing Schooners at T Wharf, Boston, Mass (NYPL b12647398-68427).tiff', Detroit Publishing Co. kartpostalı (c. 1905), NYPL taraması, Commons Public domain (ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:Fishing_Schooners_at_T_Wharf,_Boston,_Mass_(NYPL_b12647398-68427).tiff . Değişiklik: kart kenarları dışarıda kare kırpım, renk 1,0, parlaklık 0,92, blur 2,4."
+  - "GÖRSEL img/kanit_1.jpg — 'Boston Daily Globe Jan. 16, 1919.png', Boston Daily Globe (1919 ABD yayını), Commons Public domain: https://commons.wikimedia.org/wiki/File:Boston_Daily_Globe_Jan._16,_1919.png . Değişiklik: 850 -> 1080 genişlik."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Molasses Flood Historical Marker.jpg', MLHalsey, 2012, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:Molasses_Flood_Historical_Marker.jpg . Değişiklik: levha metni kırpıldı, 1080x815."

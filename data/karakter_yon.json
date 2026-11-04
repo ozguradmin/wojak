@@ -147,6 +147,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_fark.png"
  },
+ "2db01b639115d2527606f833f7868c4295105720": {
+  "faces": "right",
+  "file": "episodes/en-boston-molasses-flood/chars/b_sok.png"
+ },
  "30db62d81b2f0691364361e06b71dfafa352e56a": {
   "faces": "right",
   "file": "episodes/ankara-elci-vagonlari/chars/a_diplomat_sok.png"
@@ -295,6 +299,10 @@
   "faces": "right",
   "file": "episodes/en-great-moon-hoax/chars/a_agliyor.png"
  },
+ "525c23433cd866335d43c9325f77eef4c5c8f840": {
+  "faces": "right",
+  "file": "episodes/en-boston-molasses-flood/chars/a_sakin.png"
+ },
  "525c84672fd40d5b495d247456d85441efba9fe3": {
   "faces": "right",
   "file": "episodes\\kasikci-elmasi\\chars\\bulan_sakin.png"
@@ -374,6 +382,10 @@
  "61fb0a64e39323ee8a029f134425e935b869a8b0": {
   "faces": "right",
   "file": "episodes/yerebatan-bodrum-balik/chars/evsahibi_sakin.png"
+ },
+ "625472bb8fdcd06043ae8705f445fb5f8593c2d7": {
+  "faces": "front",
+  "file": "episodes/en-boston-molasses-flood/chars/b_kaynak.png"
  },
  "62da4359940bc315755ea69f1fb51b5331e2983c": {
   "faces": "right",
@@ -815,6 +827,10 @@
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/sakin.png"
  },
+ "d345a11f5cc2cf131d34fd5f486af4b3d4c30f09": {
+  "faces": "right",
+  "file": "episodes/en-boston-molasses-flood/chars/b_sakin.png"
+ },
  "d4d9a34654d8a8bc2b0e5873e9f5288c234a6aae": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/eczaci_v2_sakin.png"
@@ -842,6 +858,10 @@
  "d8f8657d4b0bfb84dcbbd13ac8e2cf450fbbdca1": {
   "faces": "right",
   "file": "episodes/en-mona-lisa/chars/peruggia_sok.png"
+ },
+ "d9efc1a0912f333fbfc927e0270201e85cb23d39": {
+  "faces": "right",
+  "file": "episodes/en-boston-molasses-flood/chars/b_sok.png"
  },
  "daa5727f03e399eadb611bb4a4e09733e34034ed": {
   "faces": "right",
@@ -934,6 +954,10 @@
  "f34463a4232bccdeeedf1814b43b8183897985a8": {
   "faces": "right",
   "file": "episodes/hope-elmasi-posta-1958/chars/b_memur_sok.png"
+ },
+ "f402963420f5070d70aad906361eaa7a86491147": {
+  "faces": "front",
+  "file": "episodes/en-boston-molasses-flood/chars/a_kaynak.png"
  },
  "f4afc247400801a4434e9cbb1be5d823d950919c": {
   "faces": "right",
