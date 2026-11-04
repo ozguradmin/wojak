@@ -73,3 +73,4 @@
 - `wojak render`: konsol satırı "video -> ... (7.4 sn)" gerçek süreyi (ffprobe 13,95 sn) yanlış basıyor; ffprobe ile okunan süreyi yazsın (02.11, en-arkhipov-b59).
 - `tools/commons.py indir --genislik 1920`: özgün dosya 1920'den darsa (ör. 1678x923) özgün yerine 1280 küçük resmi indiriyor; istenen genişlik özgünü aşınca md5 özgün yolunu (429 geri çekilmeli) denesin (03.11, yilanli-sutun-tilsimi).
 - `wojak render`: episode.yaml ayrıştırma hatasında (ParserError) sessizce eski mp4'ü bırakıyor ve çıkış koduyla bildirmiyor; hatada dur ve kırmızı uyarı yaz, `teslim` da yaml'ı mp4'ten yeniyse reddetsin (03.11, en-acoustic-kitty).
+- `wojak/censor.py`: TR doğal ölüm kalıplarını ("ölümüne dek", "ölümünden sonra", "öldükten sonra") yıldızlama ya da `check` "doğal ölüm sansürlendi, tarih aralığıyla yaz" diye uyarsın (04.11, meryem-ana-evi-1891).

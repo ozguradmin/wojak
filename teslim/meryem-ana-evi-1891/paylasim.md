@@ -1,0 +1,132 @@
+# meryem-ana-evi-1891 — paylaşım paketi
+
+Süre: 14.0 sn · 7 sahne · video: `meryem-ana-evi-1891.mp4` · kapak: `kapak.jpg`
+
+## Instagram Reels
+
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2180/2200
+
+```
+1891'de Efes'te bir kitabı çürütmeye giden rahipler
+
+Meryem Ana Evi'nin bulunuşu, 1891 yılında İzmir'in Selçuk ilçesi yakınındaki Bülbüldağı'nda yaşanan ve yatalak bir Alman rahibenin anlattıklarının yıkık bir taş evle eşleştirilmesiyle bilinen bir olaydır.
+
+Rahibe Anna Katharina Emmerich (1774-1824) Almanya'dan hiç çıkmadı; 1813'ten 1824'e dek yatağa bağlı yaşadı. Görümlerini şair Clemens Brentano yazıya geçirdi. Brentano (1778-1842) kitabı göremedi; Meryem'in hayatını anlatan kitap 1852'de Münih'te yayımlandı ve Efes yakınında, denizi gören bir tepedeki evi tarif ediyordu: dikdörtgen taşlar, yüksekte pencereler, ortasında ocak.
+
+1881'de Fransız rahip Julien Gouyet böyle bir yer bulduğunu söyledi ama ciddiye alınmadı. 1891'de İzmir'deki Lazarist rahipler yola çıktı; anlatılana göre amaç kitabın yanlış olduğunu göstermekti, ekibin başındaki Peder Henri Jung kuşkucuydu. 29 Temmuz'da tütün tarlasındaki kadınlardan su istediler, kadınlar onları "manastır"daki kaynağa yolladı. Orada tarife uyan çatısız bir taş yapı buldular. Şirince'nin Rum köylüleri orayı "Panaya Kapulu" diye ziyaret ediyordu. Yeri 1892'de Rahibe Marie de Mandat-Grancey satın aldı.
+
+Katolik Kilisesi evin gerçekten Meryem'e ait olduğu konusunda hüküm vermedi; Vatikan, Emmerich'i 2004'te kutsanmış ilan ederken Brentano'nun metinlerini dosyaya almadı.
+
+Videodaki ev bugünkü hâlidir; 1891'de çatısız bir yıkıntıydı. İlk kanıt kitabın 1890 baskısının başlık sayfası ("Kutsal Bakire Meryem'in Hayatı"), son kare Gabriel von Max'in 1885'te hayal ettiği yatağındaki Emmerich'tir.
+
+Sizce rahibe bu evi gerçekten gördü mü, yoksa Brentano mu ekledi?
+
+Görseller: Pinus brutia forest Side Turkey 2 (vom Thüringer, CC BY 3.0, creativecommons.org/licenses/by/3.0; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; House of the Virgin Mary (Mfryc, CC BY-SA 2.5, creativecommons.org/licenses/by-sa/2.5; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; Leben der heiligen Jungfrau Maria, Stuttgart: Cotta 1890, başlık sayfası (kamu malı; kırpıldı, kontrast), Internet Archive; Gabriel von Max, Anna Katharina Emmerick, 1885, Neue Pinakothek (kamu malı; kırpıldı), Wikimedia Commons.
+```
+
+## YouTube Shorts
+
+### Başlık — 51/100
+
+```
+1891'de Efes'te bir kitabı çürütmeye giden rahipler
+```
+
+### Açıklama
+
+```
+1891'de Efes'te bir kitabı çürütmeye giden rahipler
+
+Meryem Ana Evi'nin bulunuşu, 1891 yılında İzmir'in Selçuk ilçesi yakınındaki Bülbüldağı'nda yaşanan ve yatalak bir Alman rahibenin anlattıklarının yıkık bir taş evle eşleştirilmesiyle bilinen bir olaydır.
+
+Rahibe Anna Katharina Emmerich (1774-1824) Almanya'dan hiç çıkmadı; 1813'ten 1824'e dek yatağa bağlı yaşadı. Görümlerini şair Clemens Brentano yazıya geçirdi. Brentano (1778-1842) kitabı göremedi; Meryem'in hayatını anlatan kitap 1852'de Münih'te yayımlandı ve Efes yakınında, denizi gören bir tepedeki evi tarif ediyordu: dikdörtgen taşlar, yüksekte pencereler, ortasında ocak.
+
+1881'de Fransız rahip Julien Gouyet böyle bir yer bulduğunu söyledi ama ciddiye alınmadı. 1891'de İzmir'deki Lazarist rahipler yola çıktı; anlatılana göre amaç kitabın yanlış olduğunu göstermekti, ekibin başındaki Peder Henri Jung kuşkucuydu. 29 Temmuz'da tütün tarlasındaki kadınlardan su istediler, kadınlar onları "manastır"daki kaynağa yolladı. Orada tarife uyan çatısız bir taş yapı buldular. Şirince'nin Rum köylüleri orayı "Panaya Kapulu" diye ziyaret ediyordu. Yeri 1892'de Rahibe Marie de Mandat-Grancey satın aldı.
+
+Katolik Kilisesi evin gerçekten Meryem'e ait olduğu konusunda hüküm vermedi; Vatikan, Emmerich'i 2004'te kutsanmış ilan ederken Brentano'nun metinlerini dosyaya almadı.
+
+Videodaki ev bugünkü hâlidir; 1891'de çatısız bir yıkıntıydı. İlk kanıt kitabın 1890 baskısının başlık sayfası ("Kutsal Bakire Meryem'in Hayatı"), son kare Gabriel von Max'in 1885'te hayal ettiği yatağındaki Emmerich'tir.
+
+Sizce rahibe bu evi gerçekten gördü mü, yoksa Brentano mu ekledi?
+
+Görseller: Pinus brutia forest Side Turkey 2 (vom Thüringer, CC BY 3.0, creativecommons.org/licenses/by/3.0; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; House of the Virgin Mary (Mfryc, CC BY-SA 2.5, creativecommons.org/licenses/by-sa/2.5; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; Leben der heiligen Jungfrau Maria, Stuttgart: Cotta 1890, başlık sayfası (kamu malı; kırpıldı, kontrast), Internet Archive; Gabriel von Max, Anna Katharina Emmerick, 1885, Neue Pinakothek (kamu malı; kırpıldı), Wikimedia Commons.
+
+#MeryemAnaEvi #Efes #shorts
+```
+
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1570 karakter
+
+```
+Meryem Ana Evi'nin bulunuşu, 1891 yılında İzmir'in Selçuk ilçesi yakınındaki Bülbüldağı'nda yaşanan ve yatalak bir Alman rahibenin anlattıklarının yıkık bir taş evle eşleştirilmesiyle bilinen bir olaydır.
+
+Rahibe Anna Katharina Emmerich (1774-1824) Almanya'dan hiç çıkmadı; 1813'ten 1824'e dek yatağa bağlı yaşadı. Görümlerini şair Clemens Brentano yazıya geçirdi. Brentano (1778-1842) kitabı göremedi; Meryem'in hayatını anlatan kitap 1852'de Münih'te yayımlandı ve Efes yakınında, denizi gören bir tepedeki evi tarif ediyordu: dikdörtgen taşlar, yüksekte pencereler, ortasında ocak.
+
+1881'de Fransız rahip Julien Gouyet böyle bir yer bulduğunu söyledi ama ciddiye alınmadı. 1891'de İzmir'deki Lazarist rahipler yola çıktı; anlatılana göre amaç kitabın yanlış olduğunu göstermekti, ekibin başındaki Peder Henri Jung kuşkucuydu. 29 Temmuz'da tütün tarlasındaki kadınlardan su istediler, kadınlar onları "manastır"daki kaynağa yolladı. Orada tarife uyan çatısız bir taş yapı buldular. Şirince'nin Rum köylüleri orayı "Panaya Kapulu" diye ziyaret ediyordu. Yeri 1892'de Rahibe Marie de Mandat-Grancey satın aldı.
+
+Katolik Kilisesi evin gerçekten Meryem'e ait olduğu konusunda hüküm vermedi; Vatikan, Emmerich'i 2004'te kutsanmış ilan ederken Brentano'nun metinlerini dosyaya almadı.
+
+Videodaki ev bugünkü hâlidir; 1891'de çatısız bir yıkıntıydı. İlk kanıt kitabın 1890 baskısının başlık sayfası ("Kutsal Bakire Meryem'in Hayatı"), son kare Gabriel von Max'in 1885'te hayal ettiği yatağındaki Emmerich'tir.
+
+Sizce rahibe bu evi gerçekten gördü mü, yoksa Brentano mu ekledi?
+```
+
+## TikTok (isteğe bağlı)
+
+### Açıklama — 2251/4000
+
+```
+1891'de Efes'te bir kitabı çürütmeye giden rahipler
+
+Meryem Ana Evi'nin bulunuşu, 1891 yılında İzmir'in Selçuk ilçesi yakınındaki Bülbüldağı'nda yaşanan ve yatalak bir Alman rahibenin anlattıklarının yıkık bir taş evle eşleştirilmesiyle bilinen bir olaydır.
+
+Rahibe Anna Katharina Emmerich (1774-1824) Almanya'dan hiç çıkmadı; 1813'ten 1824'e dek yatağa bağlı yaşadı. Görümlerini şair Clemens Brentano yazıya geçirdi. Brentano (1778-1842) kitabı göremedi; Meryem'in hayatını anlatan kitap 1852'de Münih'te yayımlandı ve Efes yakınında, denizi gören bir tepedeki evi tarif ediyordu: dikdörtgen taşlar, yüksekte pencereler, ortasında ocak.
+
+1881'de Fransız rahip Julien Gouyet böyle bir yer bulduğunu söyledi ama ciddiye alınmadı. 1891'de İzmir'deki Lazarist rahipler yola çıktı; anlatılana göre amaç kitabın yanlış olduğunu göstermekti, ekibin başındaki Peder Henri Jung kuşkucuydu. 29 Temmuz'da tütün tarlasındaki kadınlardan su istediler, kadınlar onları "manastır"daki kaynağa yolladı. Orada tarife uyan çatısız bir taş yapı buldular. Şirince'nin Rum köylüleri orayı "Panaya Kapulu" diye ziyaret ediyordu. Yeri 1892'de Rahibe Marie de Mandat-Grancey satın aldı.
+
+Katolik Kilisesi evin gerçekten Meryem'e ait olduğu konusunda hüküm vermedi; Vatikan, Emmerich'i 2004'te kutsanmış ilan ederken Brentano'nun metinlerini dosyaya almadı.
+
+Videodaki ev bugünkü hâlidir; 1891'de çatısız bir yıkıntıydı. İlk kanıt kitabın 1890 baskısının başlık sayfası ("Kutsal Bakire Meryem'in Hayatı"), son kare Gabriel von Max'in 1885'te hayal ettiği yatağındaki Emmerich'tir.
+
+Sizce rahibe bu evi gerçekten gördü mü, yoksa Brentano mu ekledi?
+
+Görseller: Pinus brutia forest Side Turkey 2 (vom Thüringer, CC BY 3.0, creativecommons.org/licenses/by/3.0; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; House of the Virgin Mary (Mfryc, CC BY-SA 2.5, creativecommons.org/licenses/by-sa/2.5; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; Leben der heiligen Jungfrau Maria, Stuttgart: Cotta 1890, başlık sayfası (kamu malı; kırpıldı, kontrast), Internet Archive; Gabriel von Max, Anna Katharina Emmerick, 1885, Neue Pinakothek (kamu malı; kırpıldı), Wikimedia Commons.
+
+#MeryemAnaEvi #Efes #tarih #wojak #tarihselwojak #keşfet #olay #gizem
+```
+
+## Yükleme kontrol listesi
+
+- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
+- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
+- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
+- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
+- [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
+- [ ] **YouTube: yükledikten sonra Kontroller adımını kontrol et** (telif ve reklam uygunluğu; uyarı gelirse videoyu özele al, YAYIN_PLANI §0)
+- [ ] **Video bir canlandırmadır:** iki rahip kurgu karakterdir, gerçek ekipten kimseyi temsil etmez; ekrandaki sözler belgeli alıntı değildir. Belgeli olan: Emmerich'in Almanya'dan hiç çıkmadığı ve 1813'ten 1824'e dek yatağa bağlı kaldığı; görümlerinin Brentano'nun kaleminden 1852'de kitap olarak çıktığı; İzmir'deki Lazarist rahiplerin 1891'de bu kitaptaki tarifle Bülbüldağı'nda yıkık taş evi bulduğu. 'Kitabın yanlış olduğunu kanıtlamak' amacı keşfedenlerin kendi anlatımıdır (Poulin), metinde 'anlatılana göre' diye geçer
+- [ ] **Kanıtlar:** ilk kanıt kitabın 1890 Stuttgart (Cotta) baskısının başlık sayfası (Internet Archive, kamu malı; ilk baskı 1852 Münih); son kare Gabriel von Max'in 1885 tablosu (Neue Pinakothek, kamu malı). Kupür ya da kendi ürettiğimiz kart yok. Arka planlar: kızılçam ormanında dağ yolu (Side, Antalya; Bülbüldağı'nın kendisi değil, aynı türden yamaç) ve Meryem Ana Evi'nin bugünkü (1951'de restore edilmiş) taş cephesi
+- [ ] Yorum yönetimi: 'Orayı Şirince Rumları zaten biliyordu' denirse: doğru, hikâye metninde var; 1891'de olan, yerin kitaptaki tarifle eşleştirilmesi. 'Brentano uydurdu' denirse: Vatikan 2004'te Brentano metinlerini dosyaya almadı; metne ne kadar eklediği tartışmalı, son soru bu yüzden. 'Papa Francis de gitti' denirse: hayır, 2014'te yalnız Ankara ve İstanbul'a gitti. 'Meryem Efes'e hiç gelmedi' denirse: Kilise bu konuda hüküm vermedi, videoda da 'kanıtlandı' denmiyor
+- [ ] İlk yorum önerisi: 'Hiç görmediği bir dağdaki evi tarif etmesi tesadüf mü, yoksa Brentano'nun eklemesi mi? Siz ne düşünüyorsunuz?'
+- [ ] Gizli kelimeler (Hidden Words) listesi sohbette
+
+Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
+
+## Kaynaklar (doğrulama için, paylaşılmaz)
+
+- Vatikan, Anna Katharina Emmerick biyografisi (2004 beatifikasyonu): doğum-ölüm, rahibelik, hastalık: https://www.vatican.va/news_services/liturgy/saints/ns_lit_doc_20041003_emmerick_en.html
+- Catholic Encyclopedia (1909), 'Anne Catherine Emmerich': 1813'te yatağa düştü, Brentano'nun kaydı, 1852 'Meryem'in Hayatı': https://www.newadvent.org/cathen/05406b.htm
+- Britannica, 'Blessed Anna Katharina Emmerick': yatalaklık, Brentano, beatifikasyon süreci: https://www.britannica.com/biography/Blessed-Anna-Katharina-Emmerick
+- CNS / Catholic Review (19.1.2012), 'Tradition of Mary's house in Turkey stems from nun's vision': Almanya'dan hiç çıkmadı, rahiplerden birinin amacı kitabın yanlışlığını göstermek, kadınların 'manastır'ı göstermesi: https://www.archbalt.org/tradition-of-marys-house-in-turkey-stems-from-nuns-vision/
+- Turkish Archaeological News (2019), 'House of the Virgin Mary': Gouyet 1881, Jung en ateşli karşı çıkan, Mandat-Grancey 1892, yapı tarihlemesi tartışması, mezar bulunamadı: https://turkisharchaeonews.net/object/house-virgin-mary-ephesus
+- Meryem Ana Evi resmî sitesi: Jung'un kuşkuculuğu, 'doğrulamak ya da çürütmek', Poulin'in anlatımı: https://www.hzmeryemanaevi.com/en/emmericks-revelations/ ; https://www.hzmeryemanaevi.com/en/reclamation-of-the-house-rahibe-nun-mandat-de-grancey/
+- ASE (Meryem Ana Evi Derneği), 'Mary's House': 29 Temmuz 1891, tütün tarlası ve su, Panaya Kapulu, papa ziyaretleri: https://ase1955.org/marys-house
+- TDV İslâm Ansiklopedisi, 'Meryem': 29 Temmuz 1891 Jung, Kasım 1892 satın alma, Aralık 1892 heyet: https://islamansiklopedisi.org.tr/meryem
+- Kitaptaki tarif (İngilizce çeviri, 'The Life of the Blessed Virgin Mary'): https://ccel.org/ccel/emmerich/lifemary.xxiii.html
+- 30Giorni / L'Osservatore Romano (7.10.2004): Brentano metinleri beatifikasyonda dikkate alınmadı: http://www.30giorni.it/in_breve_id_numero_148_id_arg_32126_l3.htm
+- Papa ziyaretleri ve Francis'in 2014'te Efes'e gitmediği: Vatikan 2014 gezi programı https://www.vatican.va/content/francesco/en/travels/2014/outside/documents/papa-francesco-turchia-2014.html ; Wikipedia 'House of the Virgin Mary' https://en.wikipedia.org/wiki/House_of_the_Virgin_Mary
+- GÖRSEL img/arka_orman.jpg — 'Pinus brutia forest Side Turkey 2.jpg', vom Thüringer (2011, panoramio), CC BY 3.0: https://commons.wikimedia.org/wiki/File:Pinus_brutia_forest_Side_Turkey_2.jpg . Değişiklik: 1920 px küçük resimden kare kırpım (380,150,1670,1440; gökyüzü azaltıldı), 1080'e küçültme, Color 0,45, Brightness 1,04, render'da blur 2,4. Bülbüldağı değil, aynı türden kızılçam yamacı
+- GÖRSEL img/arka_ev.jpg — 'House of the Virgin Mary.jpg', Mfryc (varsayılan yazar, 2005), CC BY-SA 2.5: https://commons.wikimedia.org/wiki/File:House_of_the_Virgin_Mary.jpg . Değişiklik: 1920 px küçük resimden kare kırpım (640,300,1400,1060; çatı örtüsü, kapı önündeki paspas, turistler, tabela, saksılar dışarıda), açık kapının içindeki bilgi levhası karanlık iç mekân tonuyla örtüldü ve kapı içi koyulaştırıldı, 1080'e büyütme (1,42x), gama 0,70, Color 0,66, render'da blur 2,0
+- GÖRSEL img/kanit_1.jpg — 'Leben der heiligen Jungfrau Maria. Nach den Betrachtungen der gottseligen Anna Katharina Emmerich ... aufgeschrieben von Clemens Brentano', Stuttgart: J. G. Cotta'sche Buchhandlung Nachfolger, 1890; başlık sayfası (Internet Archive lebenderheiligen00emme, leaf n6; Getty Research Institute taraması): https://archive.org/details/lebenderheiligen00emme . Kamu malı: 1890 yayını, Brentano 1842'de öldü. Değişiklik: tam satırlarda kırpım (başlıktan '† 9. Februar 1824' satırına), autocontrast %0,5, 1080 genişliğe küçültme
+- GÖRSEL img/kanit_2.jpg (son kare) — 'Anna Katharina Emmerick - Gabriel von Max 1885.jpg', Gabriel von Max (1840-1915), 1885, Neue Pinakothek; fotoğraf Yelkrokoyade (2015), {{PD-Art}}: https://commons.wikimedia.org/wiki/File:Anna_Katharina_Emmerick_-_Gabriel_von_Max_1885.jpg . Değişiklik: yatay kırpım (0,230,1920,1680; üstteki ressam yazısı ve alttaki haç dışarıda), 1080x816'ya küçültme
+- KARAKTER A genç rahip (sol): wojakland 'Surprised Priest Wojak' (https://wojakland.com/gmedia/surprised_priest_wojak-png/); 2x büyütme, ağız düzeltildi, şok varyantı chars/uret.py
+- KARAKTER B yaşlı rahip (sağ): wojakland 'Era Priest Wojak' (https://wojakland.com/gmedia/era_priest_wojak-png/); dokunulmadı

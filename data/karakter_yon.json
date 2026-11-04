@@ -311,6 +311,10 @@
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/sakin.png"
  },
+ "54d27899e8d2d5b7c539437018fb1cc443252dda": {
+  "faces": "right",
+  "file": "episodes/meryem-ana-evi-1891/chars/a_sakin.png"
+ },
  "55c386a0a4133817a377be8e1cc603904827afef": {
   "faces": "right",
   "file": "episodes/en-lustig-eiffel-tower/chars/b_sakin.png"
@@ -422,6 +426,10 @@
  "6f8ccdfb81a40c4cf6405b35392571e584766452": {
   "faces": "right",
   "file": "episodes/talidomit-turkiye/chars/veteriner.png"
+ },
+ "6f950e37a0bb33e4e31a68a8038751fd839264ec": {
+  "faces": "right",
+  "file": "episodes/meryem-ana-evi-1891/chars/a_sok.png"
  },
  "7006644ceb4f6ce03457ecb1c4678e68f5257a7f": {
   "faces": "right",
@@ -766,6 +774,10 @@
  "c72f82d513a9e86b5a1bfdfd378339312593879a": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/sakin.png"
+ },
+ "c7b47f8dea595331c8375203b28a8486bb6ca4a9": {
+  "faces": "right",
+  "file": "episodes/meryem-ana-evi-1891/chars/b_sakin.png"
  },
  "c97d9c5ba713573c4f1cd32db5fc2fea8725ba59": {
   "faces": "right",
