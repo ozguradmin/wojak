@@ -31,6 +31,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_ciddi.png"
  },
+ "07d2a4b3cb1c46a886ca2d7da0b74000490ccad7": {
+  "faces": "right",
+  "file": "episodes/en-cadaver-synod/chars/b_sakin.png"
+ },
  "09486f327cccc250f07de5df55cb5aadf584efd5": {
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/japon_endise.png"
@@ -438,6 +442,10 @@
  "6d8a992d2d5d3ab3b23e523dcf65fe46b73af2d0": {
   "faces": "right",
   "file": "episodes/yerebatan-bodrum-balik/chars/gyllius_sok.png"
+ },
+ "6da0c40850d5460090587a7f7c19fb384bdf74fc": {
+  "faces": "right",
+  "file": "episodes/en-cadaver-synod/chars/b_sok.png"
  },
  "6f8ccdfb81a40c4cf6405b35392571e584766452": {
   "faces": "right",
@@ -962,6 +970,10 @@
  "ede385aef7cf2374126f33909203e5dc53c1987f": {
   "faces": "right",
   "file": "episodes/en-bat-bomb/chars/a_sok.png"
+ },
+ "f1f07d81f8931c4a6d0f11ba300195f66c22e848": {
+  "faces": "right",
+  "file": "episodes/en-cadaver-synod/chars/a_sakin.png"
  },
  "f34463a4232bccdeeedf1814b43b8183897985a8": {
   "faces": "right",

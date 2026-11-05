@@ -1,0 +1,92 @@
+# Cadaver Synod (Ocak 897, Roma). Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgu/olgular.md (Britannica x2, Wikipedia, New Advent, Catholic Answers/Kelly, JSTOR Daily, Medievalists.net, Monroe 2021).
+# CANLANDIRMA: iki adsız wojak (katip + papa); replikler belgeli alıntı değil. Diyakon, ceset giydirme/taht, hapis: belgeli; deprem, parmaklar, boğulma: "reportedly".
+# Karakterler: A = wojakland 'Sad Monk Wojak' (2x büyütme), B = HF clayshoaf 'Pope Pius' (sigara silindi; b_sok = ters köşe, aynı silüet).
+id: en-cadaver-synod
+kanal: en  # Wojak Past Files
+title: "In 897, a pope dug up his predecessor and put him on trial"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Holy Father, you can't\ntry a buried pope"
+
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Then dig him up,\nhe'll stand trial"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Rome will not\nlike this"
+
+  - type: card
+    duration: 1.5
+    text: "Months later"
+
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, why am I\nin prison?"
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  In 897, a pope dug up his predecessor and put him on trial
+  The full story is in the pinned comment 👇
+
+hashtags: [history, medievalhistory, popes]
+
+pinned_comment: |
+  The Cadaver Synod was a trial held in January 897 in the Lateran Basilica in Rome, where Pope Stephen VI (numbered VII in older lists) put the body of Pope Formosus on trial. Formosus had passed away in April 896 and had been buried for about nine months.
+
+  His body was exhumed, dressed in papal robes and seated on a throne, and a deacon was appointed to answer for him. The deacon's words were not recorded. Formosus was accused of perjury, of breaking church rules against moving from one bishopric to another, and of coveting the papacy. He was found guilty and his papacy was declared invalid. The three fingers he used for blessings were reportedly cut off, and the body was thrown into the Tiber. It was later recovered and reburied.
+
+  Later in 897, Stephen VI was deposed and imprisoned, and he reportedly did not survive his imprisonment. Later accounts add an earthquake during the trial, but historians dispute that. Pope Theodore II annulled the synod during his reign of about 20 days in late 897, and in 898 John IX banned posthumous trials. Sergius III later reinstated the verdict.
+
+  The final frames are real: an engraving from a 19th-century edition of Maurice de La Châtre's Histoire des papes and the 1870 painting "Le Pape Formose et Étienne VI" by Jean-Paul Laurens (Musée des Beaux-Arts, Nantes).
+
+  Note: the video is a dramatization. The characters and dialogue are invented, and the background shows the Lateran Basilica as it looks today (it has been rebuilt since 897).
+
+  If you were the deacon appointed to speak for Formosus, what would you say?
+
+credits: "Roma, Basilica di San Giovanni in Laterano, interno (2) by Palickap, 2017, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0; cropped, color reduced, brightened, blurred), Cadaver Synod illustration on Maurice de La Châtre's Histoire des papes (19th-century edition, public domain; cropped), Le Pape Formose et Étienne VI by Jean-Paul Laurens, 1870, Musée des Beaux-Arts de Nantes (public domain; resized), via Wikimedia Commons. Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction; no real person is represented and the lines are not documented quotes. Sourced: January 897, Lateran Basilica; Formosus died April 896, ~9 months buried; corpse dressed and seated on a throne with a deacon answering for it; charges (perjury, canon against moving between sees, coveting the papacy); guilty verdict; Tiber; Stephen VI deposed and imprisoned, died in 897; Theodore II annulled, John IX banned corpse trials, Sergius III reinstated. 'Reportedly': three fingers cut off, strangled in prison, earthquake (disputed, later embellishment), who recovered the body."
+  - "Kart 'Months later': Ocak 897 duruşma, Stephen VI'nın tahttan indirilip hapsi aynı yılın ortasında (Temmuz-Ağustos). Numara: bugün Stephen VI, 1961 öncesi listelerde VII; Laurens tablosunun Commons dosya adı 'Étienne VI'. Tablo Nantes'ta (Orsay değil)."
+  - "Arka plan: Lateran Bazilikası nefi (bugünkü iç mekân, Commons Palickap CC BY-SA 4.0); 897'deki bina bugünkü barok iç mekân değildir (Lateran sonradan yeniden yapıldı), sabit yorumda yazılı değil; ek not: arka plan temsilidir."
+  - "Gizli kelime yok. Ceset, kan, parmak kesme görüntüsü yok; kanıt 2 tabloda ceset kuru yüzlü gösterilir (1870 resim)."
+
+sources:
+  - "Olay (Ocak 897, Lateran, 9 ay, ceset taht + diyakon, suçlamalar, hüküm, Tiber, Stephen VI'nın düşüşü): https://www.britannica.com/topic/Cadaver-Synod ; https://www.britannica.com/biography/Formosus ; https://en.wikipedia.org/wiki/Cadaver_Synod ; https://www.newadvent.org/cathen/06139b.htm"
+  - "Suçlamalar (J. N. D. Kelly alıntısı), numara ve itirazlar: https://www.catholic.com/magazine/print-edition/the-strange-case-of-pope-formosus ; https://daily.jstor.org/the-cadaver-synod-putting-a-dead-pope-on-trial/ ; https://www.medievalists.net/2025/05/cadaver-synod/"
+  - "Theodore II (Aralık 897, ~20 gün) ve John IX (898): https://en.wikipedia.org/wiki/Pope_Theodore_II ; https://www.britannica.com/biography/Formosus ; https://en.wikipedia.org/wiki/Cadaver_Synod"
+  - "GÖRSEL img/arka.jpg (arka plan) — 'Roma, Basilica di San Giovanni in Laterano, interno (2).jpg', Palickap, 2017, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Roma,_Basilica_di_San_Giovanni_in_Laterano,_interno_(2).jpg . Değişiklik: üst kısım kare kırpım, renk 0,38, parlaklık 1,22, blur 2,4."
+  - "GÖRSEL img/kanit_1.jpg — 'Cadaver Synod illustration on Maurice de La Châtre's Histoire des papes.jpg', c. 1870, Commons PD-old-70-expired (Commons: circa 1870; eserin ilk baskısı 1842-44, bu baskı 19. yy): https://commons.wikimedia.org/wiki/File:Cadaver_Synod_illustration_on_Maurice_de_La_Ch%C3%A2tre%27s_Histoire_des_papes.jpg . Değişiklik: sahne kırpımı, 1080x760."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Jean Paul Laurens Le Pape Formose et Etienne VI 1870.jpg', Jean-Paul Laurens (öl. 1921), Commons PD-Art: https://commons.wikimedia.org/wiki/File:Jean_Paul_Laurens_Le_Pape_Formose_et_Etienne_VI_1870.jpg . Değişiklik: 1920 -> 1080 genişlik."
