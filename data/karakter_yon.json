@@ -219,6 +219,10 @@
   "faces": "right",
   "file": "episodes/en-great-moon-hoax/chars/a_cok_terli.png"
  },
+ "40081263f97de04399895fc47a4092df0645b70b": {
+  "faces": "left",
+  "file": "episodes/cevri-kalfa-1808/chars/mahmud_sakin.png"
+ },
  "40da4ab664ecb8405c65d95f805e7b4f4990bbf2": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_sakin.png"
@@ -591,6 +595,10 @@
   "faces": "right",
   "file": "episodes/en-booth-saves-lincoln-son/chars/b_sok.png"
  },
+ "92b5fbefb5c0ec54f05d3289156aeed2dc1d1862": {
+  "faces": "right",
+  "file": "episodes/cevri-kalfa-1808/chars/kalfa_kaygi.png"
+ },
  "93f7c1df799e56fafa1e148f8499db8c3d2b39de": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_kollar.png"
@@ -702,6 +710,10 @@
  "b2e2560974b261781d6a7052580474f02dc170ca": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/sakin.png"
+ },
+ "b448eff6152ba2f6c166962cbfe1e9920d8a5cd7": {
+  "faces": "right",
+  "file": "episodes/cevri-kalfa-1808/chars/kalfa_sok.png"
  },
  "b474a182e62eec7246f6d0c3586b6a8b8e76d7b6": {
   "faces": "right",
