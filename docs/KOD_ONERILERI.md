@@ -76,3 +76,4 @@
 - `wojak/censor.py`: TR doğal ölüm kalıplarını ("ölümüne dek", "ölümünden sonra", "öldükten sonra") yıldızlama ya da `check` "doğal ölüm sansürlendi, tarih aralığıyla yaz" diye uyarsın (04.11, meryem-ana-evi-1891).
 - `wojak` TikTok/hashtag profili (`en`): araç `#mystery #truestory` ekliyor; facia/belgeli olay konularında uymuyor (en-boston-molasses-flood, 04.11); konu etiketine göre ya da yalnız bölüm `hashtags:` ile sınırla.
 - `tools/commons.py indir`: özgün çözünürlük seçeneği (`--ozgun`, md5 yolu + 429 geri çekilme) yok; 1920'den büyük kırpım için elle curl gerekti (05.11, cevri-kalfa-1808).
+- `wojak/pack.py`: gündem bölümünde (`gundem: true`) TR varsayılan TikTok etiketleri (#gizem #keşfet #olay) hiç eklenmesin; `caption` hiçbir metne girmediği için `check` 'canlandırma notu pinned_comment'te yok' diye uyarsın (05.11, gündem önizlemesi).
