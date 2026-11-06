@@ -1,0 +1,98 @@
+# 24 Ocak 1961, Goldsboro (Kuzey Karolina) B-52 kazası: iki Mk 39 hidrojen bombası düştü, patlamayı Jones'a (1969) göre tek düşük voltajlı anahtar engelledi. Wojak Past Files (kanal: en).
+# Olgu: /tmp/arastirma/olgular.md (Wikipedia + Speer/Sandia 1961 alıntıları, NARA blogu, NC DNCR, NPR/NBC/Guardian 2013, PBS). Sayı (3/4 mü 5/6 mı) TARTIŞMALI: replikte "almost every safety failed".
+# CANLANDIRMA: karakterler kurgu, gerçek kişi adı yok, replikler belgeli söz değil. Dayanak: iki bomba düştü (V); bomba 1 ağaçta asılı kaldı (V); neredeyse tüm emniyetler devre dışı (Jones 1969 + McNamara 1983 6/7, tartışmalı sayı); tek anahtar (Jones sözü, NPR/NBC).
+# Karakterler: A (sol) = Suit Wojak (en-bat-bomb b_sakin), B (sağ) = 1950s Businessman Wojak (en-bat-bomb a_sakin/a_sok). Aynı PNG'ler, roller ters.
+# Arka plan: Goldsboro/Faro yakını tarla (Commons CC0, 2025); 1961 görüntüsü değil, sahaya benzer bugünkü tarla.
+id: en-goldsboro-bombs
+kanal: en  # Wojak Past Files
+title: "In 1961, a B-52 lost two nuclear weapons over North Carolina"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA: A (sol), sakin.
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Sir, two hydrogen bombs\njust fell on North Carolina"
+
+  # 2) CEVAP: B (sağ), sakin.
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Relax, they have\nsafety switches"
+
+  # 3) TIRMANIŞ: A (sol).
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "One hung in a tree,\nalmost every safety failed"
+
+  # 4) TERS KÖŞE: B, aynı kutu, şok.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, one switch stopped\na nuclear blast?"
+
+  # 5) KANIT 1: bomba ağaçta (USAF 1961).
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_bomba.jpg]
+
+  # 6) KANIT 2 (son kare, renkli): NC tarihî levhası.
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_levha.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  In 1961, a B-52 lost two nuclear weapons over North Carolina
+  The full story is in the pinned comment 👇
+
+hashtags: [history, coldwar, nuclear]
+
+pinned_comment: |
+  The Goldsboro B-52 crash was a 1961 accident near Goldsboro, North Carolina, in which a US Air Force bomber carrying two thermonuclear weapons broke apart in midair. On the night of 23-24 January, the B-52G, on a Strategic Air Command alert mission, was refuelling in the air when a leak was spotted in its right wing. The bomber was ordered back but lost control and broke apart just after midnight. Of eight crew, five landed safely by parachute and three did not survive.
+
+  Both Mark 39 weapons, each rated at about 3.8 megatons (roughly 250 times the Hiroshima device), separated from the aircraft. One weapon's parachute opened and snagged in a tree, leaving it largely intact. The other fell without a parachute and broke apart on impact; its secondary stage was never recovered.
+
+  Neither exploded. In 1969, Sandia National Laboratories safety supervisor Parker F. Jones wrote that "one simple, dynamo-technology, low voltage switch stood between the United States and a major catastrophe." His memo reached the public in 2013 through author Eric Schlosser's Freedom of Information Act request. How many safeguards failed is disputed: sources give figures from three of four to seven of eight, and the account remains debated.
+
+  The archive photo is a US Air Force image of the parachuted weapon, the background is a nearby field as it looks today, and the last frame is a North Carolina historical marker.
+
+  Dramatized: the characters are fictional and the dialogue is invented.
+
+  Do you think one switch is enough?
+
+credits: "1961 Goldsboro B-52 Crash Easement (Pithon314, 2025, CC0, https://commons.wikimedia.org/wiki/File:1961_Goldsboro_B-52_Crash_Easement.jpg; cropped, colour and brightness adjusted, blurred, used as background); Goldsboro Mk 39 Bomb 1 (U.S. Air Force, 1961, public domain, via Wikimedia Commons; cropped); \"Nuclear Mishap\" marker in Eureka, NC (RJHaas, 2014, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0, https://commons.wikimedia.org/wiki/File:%22Nuclear_Mishap%22_marker_in_Eureka,_NC.jpg; cropped, resized). Characters: ready-made wojak art."
+ai_generated: false
+ek_maddeler:
+  - "**Video is a dramatization:** the characters are fiction and the lines are not documented quotes. Sourced: two Mk 39 bombs fell, one hung in a tree by its parachute (bomb 1), nearly all safeties failed (Jones 1969: 3 of 4; McNamara 1983: 6 of 7; count disputed), Jones's one-switch sentence (NPR, NBC 2013)."
+  - "**Tartışmalı:** kaç emniyetin devre dışı kaldığı (NARA 5/6, DNCR 7/8, Jones 3/4); Jones'un anahtar değerlendirmesinin kendisi tartışmalı (armscontrolwonk). Metinde 'disputed', replikte 'almost every'. Ölenlerin adı ve tanık/arazi sahibi bilgisi hiçbir yerde yok."
+  - "Arka plan Faro/Goldsboro yakını bugünkü tarla (2025 fotoğrafı), 1961 görüntüsü değil. Kanıt 1 (bomba ağaçta) USAF 1961 fotoğrafının film perdesi görüntüsü; levha 2014 fotoğrafı."
+  - "Sandia 1961 şeması (Commons PD-USGov etiketli, yüklenici belgesi) lisans şüphesi nedeniyle kullanılmadı; Jones notunun sayfa görüntüsünün serbest kopyası yok."
+  - "İlk yorum önerisi: 'Actually it was 24 megatons' (yanlış: Lapp 1962, Mk 39 = 3.8 Mt) ya da 'Actually 7 of 8 failed': sabit yorum sayının tartışmalı olduğunu zaten söylüyor."
+
+sources:
+  - "Kaza tarihi/saati, yer, B-52G, 8 mürettebat (5 kurtuldu, 3 öldü), yakıt sızıntısı, iki bomba, bomba 1 ağaçta, bomba 2 parçalandı ve ikincil kısım bulunamadı: https://en.wikipedia.org/wiki/1961_Goldsboro_B-52_crash ; https://www.dncr.nc.gov/blog/2023/12/18/nuclear-mishap-f-70 ; https://prologue.blogs.archives.gov/2021/01/22/brush-with-catastrophe-the-day-the-u-s-almost-nuked-itself/ ; https://www.cnn.com/2014/06/12/us/north-carolina-nuclear-bomb-drop"
+  - "Jones notu (22 Ekim 1969), 'one simple, dynamo-technology, low voltage switch' sözü, FOIA/Schlosser, Guardian 20 Eylül 2013: https://www.npr.org/sections/thetwo-way/2013/09/20/224514980/doc-sheds-new-light-on-the-time-the-u-s-almost-nuked-itself ; https://www.nbcnews.com/news/us-news/one-cheap-switch-saved-us-nuclear-catastrophe-1961-declassified-document-flna4b11221026 ; https://www.osti.gov/servlets/purl/1426902"
+  - "McNamara 1983: bomba 7 adımın 6'sını geçti (NPR); sayı tartışması: https://www.armscontrolwonk.com/archive/403910/ghosts-in-the-machine/ ; https://armscontrolcenter.org/the-goldsboro-b-52-crash/"
+  - "3,8 Mt, Hiroşima'nın ~250 katı: https://prologue.blogs.archives.gov/2021/01/22/brush-with-catastrophe-the-day-the-u-s-almost-nuked-itself/ ; http://large.stanford.edu/courses/2018/ph241/williams1/ ; https://www.nbcnews.com/news/us-news/one-cheap-switch-saved-us-nuclear-catastrophe-1961-declassified-document-flna4b11221026 (yaklaşık 4 Mt)"
+  - "Resmî ilk açıklama 'unarmed' (yerel basın): https://www.dncr.nc.gov/blog/2023/12/18/nuclear-mishap-f-70 ; https://en.wikipedia.org/wiki/1961_Goldsboro_B-52_crash"
+  - "GÖRSEL img/arka.jpg (arka plan) — '1961 Goldsboro B-52 Crash Easement.jpg', Pithon314, 2025-04-13, CC0 ({{self|cc-zero}}, ham sayfadan doğrulandı): https://commons.wikimedia.org/wiki/File:1961_Goldsboro_B-52_Crash_Easement.jpg . Değişiklik: 1280 px küçük resimden 960x960 kare kırpım, renk 0,72, parlaklık 0,93, blur 2,4"
+  - "GÖRSEL img/ev_bomba.jpg (kanıt 1) — 'Goldsboro Mk 39 Bomb 1.jpeg', U.S. Air Force, 1961-01, {{PD-USGov-Military-Air Force}} (ham sayfadan doğrulandı; Commons kredisi 2013 film karesi, altındaki fotoğraf USAF): https://commons.wikimedia.org/wiki/File:Goldsboro_Mk_39_Bomb_1.jpeg . Değişiklik: siyah perde kenarları atıldı, 1192x670 kırpım, 1080x607"
+  - "GÖRSEL img/ev_levha.jpg (son kare, renkli) — '\"Nuclear Mishap\" marker in Eureka, NC.jpg', RJHaas, 2014-04-26, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:%22Nuclear_Mishap%22_marker_in_Eureka,_NC.jpg . Levha NC Tarihî Levha Programı F-70 (DNCR). Değişiklik: 820x615 kırpım, 1080x810"
