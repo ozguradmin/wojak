@@ -78,3 +78,4 @@
 - `tools/commons.py indir`: özgün çözünürlük seçeneği (`--ozgun`, md5 yolu + 429 geri çekilme) yok; 1920'den büyük kırpım için elle curl gerekti (05.11, cevri-kalfa-1808).
 - `wojak/pack.py`: gündem bölümünde (`gundem: true`) TR varsayılan TikTok etiketleri (#gizem #keşfet #olay) hiç eklenmesin; `caption` hiçbir metne girmediği için `check` 'canlandırma notu pinned_comment'te yok' diye uyarsın (05.11, gündem önizlemesi).
 - `data/karakter_yon.json`: yeniden üretilen PNG'nin eski sha girdileri birikiyor; `wojak yon` aynı dosya yolunun eski sha girdisini silsin (05.11, en-cadaver-synod).
+- `wojak/censor.py`: TR'de "ölü/ölüler" arkeolojik gömü bağlamında da yıldızlanıyor ("*lüler"); bölüm yaml'ında `sansur_haric: [ölü]` gibi bilinçli istisna ya da `check`'te "sansür kelimeyi bozdu, eşanlamlı seç" uyarısı (06.11, catalhoyuk-sekinin-alti).

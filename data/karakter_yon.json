@@ -3,6 +3,10 @@
   "faces": "right",
   "file": "episodes/en-cardiff-giant/chars/a_sok.png"
  },
+ "00b36607399cd0b104b7efda0e6b69c1cde53d1d": {
+  "faces": "right",
+  "file": "episodes/catalhoyuk-sekinin-alti/chars/yasli_sakin.png"
+ },
  "00dec93cf3697ef79b35a8011ca14d7b9a06f7ce": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_v2_sakin.png"
@@ -38,6 +42,10 @@
  "09486f327cccc250f07de5df55cb5aadf584efd5": {
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/japon_endise.png"
+ },
+ "0c24e88be989c0dafbde5fd7befd270da1145337": {
+  "faces": "right",
+  "file": "episodes/catalhoyuk-sekinin-alti/chars/genc_uzgun.png"
  },
  "0c5467939e38f0e85cbeea2b50f314ba264d043b": {
   "faces": "right",
@@ -510,6 +518,10 @@
  "787730f825a750745aa8d6b85ea14f384600e2c1": {
   "faces": "right",
   "file": "episodes/en-acoustic-kitty/chars/a_sok.png"
+ },
+ "78d44bdfc2f747daca08692c217532eb5ba69b8a": {
+  "faces": "right",
+  "file": "episodes/catalhoyuk-sekinin-alti/chars/genc_sok.png"
  },
  "7a5f374eb2a248cb4e6b21f844967a5fc742f100": {
   "faces": "right",
