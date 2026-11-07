@@ -31,6 +31,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci_gulumsuyor_konusuyor_yari.png"
  },
+ "05aac143bd059716d310182f21558966daacb54b": {
+  "faces": "right",
+  "file": "episodes/edirne-sarayi-1878/chars/pasa.png"
+ },
  "07808372ec31a938cd5a415d79033f54f682214d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_ciddi.png"
@@ -375,6 +379,10 @@
   "faces": "right",
   "file": "assets/kit/kurtarmaci_klasik/terli.png"
  },
+ "5bbf3dd865fc0de8f7a89e1c48c1cacf852ce171": {
+  "faces": "right",
+  "file": "episodes/edirne-sarayi-1878/chars/asker_sakin.png"
+ },
  "5ce765377dbe4d49a0699b9154904165a66b1689": {
   "faces": "right",
   "file": "episodes/en-roosevelt-bullet-speech/chars/b_sakin.png"
@@ -614,6 +622,10 @@
  "9240ea17f479f6271ce8d072071756890f6b5d1a": {
   "faces": "right",
   "file": "episodes/en-booth-saves-lincoln-son/chars/b_sok.png"
+ },
+ "926962bfb39a23fd143fd769d30eadc35667652b": {
+  "faces": "right",
+  "file": "episodes/edirne-sarayi-1878/chars/asker_sok.png"
  },
  "92b5fbefb5c0ec54f05d3289156aeed2dc1d1862": {
   "faces": "right",
