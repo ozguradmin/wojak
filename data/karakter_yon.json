@@ -67,6 +67,10 @@
   "faces": "right",
   "file": "episodes/en-roosevelt-bullet-speech/chars/a_sakin.png"
  },
+ "12531b0a71ff26741bbe2fd936377c1b8fb790f6": {
+  "faces": "left",
+  "file": "episodes/en-ghost-army/chars/b_sakin.png"
+ },
  "12a1346a4b4f1fc943deea4f258e5d6fc65d9b94": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci2000_gergin.png"
@@ -723,6 +727,10 @@
   "faces": "left",
   "file": "assets/characters/sovyet_yuruyuscu_erkek.png"
  },
+ "ae4bba609d368cc83f3af327df9607e1f5b9c5a4": {
+  "faces": "left",
+  "file": "episodes/en-ghost-army/chars/b_sok.png"
+ },
  "b04222d664c5581bab9d8ff36984c858f521bcdf": {
   "faces": "right",
   "file": "episodes/van-depremi-azra-bebek/chars/kurtarmaci_baretli.png"
@@ -794,6 +802,10 @@
  "bb95713531bfc7e6a46ba704605d41796f39f18a": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_kararli.png"
+ },
+ "bbc1561d683f54d6a31773eda7fdddcd5d1441df": {
+  "faces": "right",
+  "file": "episodes/en-ghost-army/chars/a_sakin.png"
  },
  "bea5a7bca2817842e8f13b5427abfb1f5c48de29": {
   "faces": "right",
