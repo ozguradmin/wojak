@@ -575,6 +575,10 @@
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_sepet.png"
  },
+ "84cd9d7115119936292486f6c204b25be6fd7ac0": {
+  "faces": "left",
+  "file": "episodes/en-titanic-binoculars-key/chars/a_sakin.png"
+ },
  "863c7d4111b78e4761e9511f1fc24699ab9d099f": {
   "faces": "left",
   "file": "episodes/en-cardiff-giant/chars/b_sakin.png"
@@ -639,6 +643,10 @@
   "faces": "right",
   "file": "episodes/cevri-kalfa-1808/chars/kalfa_kaygi.png"
  },
+ "93e4276490e734bb76a62db2f27d298318b5df73": {
+  "faces": "left",
+  "file": "episodes/en-titanic-binoculars-key/chars/a_sok.png"
+ },
  "93f7c1df799e56fafa1e148f8499db8c3d2b39de": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_kollar.png"
@@ -666,6 +674,10 @@
  "9be670926a436edfd45192ea709f0fb874b5fadd": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_ciddi.png"
+ },
+ "9c649c19d53d88a2695553247977ad923e0400e1": {
+  "faces": "right",
+  "file": "episodes/en-titanic-binoculars-key/chars/b_sakin.png"
  },
  "9d15b053823cdc1290e33af21ab3b55952a54385": {
   "faces": "right",
