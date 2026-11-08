@@ -79,3 +79,4 @@
 - `wojak/pack.py`: gündem bölümünde (`gundem: true`) TR varsayılan TikTok etiketleri (#gizem #keşfet #olay) hiç eklenmesin; `caption` hiçbir metne girmediği için `check` 'canlandırma notu pinned_comment'te yok' diye uyarsın (05.11, gündem önizlemesi).
 - `data/karakter_yon.json`: yeniden üretilen PNG'nin eski sha girdileri birikiyor; `wojak yon` aynı dosya yolunun eski sha girdisini silsin (05.11, en-cadaver-synod).
 - `wojak/censor.py`: TR'de "ölü/ölüler" arkeolojik gömü bağlamında da yıldızlanıyor ("*lüler"); bölüm yaml'ında `sansur_haric: [ölü]` gibi bilinçli istisna ya da `check`'te "sansür kelimeyi bozdu, eşanlamlı seç" uyarısı (06.11, catalhoyuk-sekinin-alti).
+- `tools/hazirla.sh`: pip adımı gereken modüller zaten içe aktarılabiliyorsa atlansın, `faster-whisper` yalnız uzun video bayrağıyla kurulsun; 08.11'de ilk kurulum ~15 dk sürdü, ajanın 5 dk komut sınırını aştı (hayirsizada-kopekleri-1910).

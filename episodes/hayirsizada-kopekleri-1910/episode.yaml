@@ -1,0 +1,112 @@
+# hayirsizada-kopekleri-1910 — Hayırsızada sürgünü: 1910 yazının başında (emir 28 Mayıs, nakil Haziran başı), İttihat ve
+# Terakki döneminde İstanbul Şehremaneti on binlerce sokak köpeğini toplatıp Marmara'daki Sivriada'ya (Hayırsızada)
+# bıraktı. Ağaçsız, tek kuyulu kayalık adada belediyenin gönderdiği ekmek yetmedi; köpekler birkaç ay içinde açlıktan ve
+# susuzluktan öldü. Adanın yakınından bir kayık geçince köpeklerin hep birden kıyıya geldiğini ve iniltilerini Pierre
+# Loti anlatıyor (Bardakçı 1998 aktarımı); tekneleri gören köpeklerin suya atlayıp yiyecek istediği Afyoncu/Kuzucu'da.
+# İskelet C2fa (dramatik ironi): A (adsız belediye memuru, sol) kanca: köpekleri bu ıssız adaya bırakıyoruz → B (adsız
+# sandalcı/mavna reisi, sağ) uyarır: yiyecek yetmez → A geçiştirir: ekmek göndeririz (belediyenin kendi iddiası; tohum)
+# → kart "Birkaç gün sonra" → B aynı kutuda şok yüzüyle: kayığı görünce hepsi neden kıyıya koşuyor (cevap: açlar).
+# Kanıt: İstanbul sokak köpekleri (ca. 1900, Rijksmuseum CC0; kim) → son kare: Le Petit Parisien'in 7.8.1910 resimli
+# ekindeki çizim, adaya indirilen köpekler + gazetenin kendi alt yazısı (cevap; DÖNEMİN RESİMLİ GAZETE ÇİZİMİ; son 5:
+# taşbaskı, kazı fotoğrafı, kupür, tablo, kupür). Olayın serbest lisanslı fotoğrafı bulunamadı (RAPOR).
+# Sayı tartışmalı (40-50 bin arşiv; 80 bin yaygın): videoda sayı yok, metinde "on binlerce".
+
+id: hayirsizada-kopekleri-1910
+title: "Hayırsızada'ya bırakılan İstanbul köpeklerine ne oldu?"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (memur, sol); arka planda adanın kendisi
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/memur.png, side: left, height: 0.48}
+    text: "Reis, İstanbul'un köpeklerini\nbu ıssız adaya bırakıyoruz"
+
+  # 2) B (sandalcı, sağ): şüphe (ada küçük, ağaçsız kayalık)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/sandalci_sakin.png, side: right, height: 0.48}
+    text: "Bunca köpek\nbu kayalığa sığar mı?"
+
+  # 3) A: geçiştirir (belediye haftada üç kez ekmek gönderdiğini söyledi; tohum)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/memur.png, side: left, height: 0.48}
+    text: "Bir şey olmaz,\nekmeğini de göndeririz"
+
+  # 4) ara kart (ileri zaman)
+  - type: card
+    duration: 1.5
+    text: "Birkaç gün sonra"
+
+  # 5) TERS KÖŞE — B, aynı kutu, şok yüzü (Loti: kayık geçince hepsi kıyıya geliyordu)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/sandalci_sok.png, side: right, height: 0.48}
+    text: "Bekle, kayığı görünce hepsi\nneden kıyıya koşuyor?"
+
+  # 6-7) KANIT — İstanbul sokak köpekleri (kim), son kare: 1910 gazete çizimi (cevap)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Hayırsızada'ya bırakılan İstanbul köpeklerine ne oldu?
+  Olayın tamamı sabit yorumda 👇
+hashtags: [hayırsızada, istanbul, tarih]
+
+pinned_comment: |
+  Hayırsızada sürgünü, 1910 yılında İstanbul'da yaşanan ve on binlerce sokak köpeğinin Marmara'daki Sivriada'ya bırakılması olarak bilinen bir olaydır.
+
+  Mayıs 1910'un sonunda, İttihat ve Terakki döneminde, İstanbul Şehremaneti köpeklerin toplanması için emir aldı. Haziran başında köpekler mavnalara yüklenip şehre yaklaşık 15 kilometre uzaktaki, halk arasında Hayırsızada da denen ağaçsız ve suyu kıt kayalık adaya götürüldü. Kaç köpek taşındığı kaynaklarda farklı: sıkça anılan rakam 80 bin, Kemalettin Kuzucu'nun arşiv çalışması 40-50 bin diyor.
+
+  Belediye adaya haftada üç kez ekmek gönderdiğini söyledi, ama bu binlerce köpeğe yetmedi. Köpekler birkaç ay içinde açlıktan ve susuzluktan öldü. Murat Bardakçı'nın aktardığı bir Pierre Loti metnine göre, adanın yakınından bir kayık geçtiğinde köpekler hep birden kıyıya geliyor, iniltileri duyuluyordu; Erhan Afyoncu da tekneleri gören köpeklerin suya atlayıp yiyecek istediğini yazar. Anlatılana göre sesler geceleri rüzgârla İstanbul kıyılarına kadar ulaşıyordu.
+
+  Anlatılana göre İstanbullular, iki yıl sonraki depremi ve Balkan Savaşı'nı köpeklerin "ahına" bağladı.
+
+  Videonun son karesi, Fransız Le Petit Parisien gazetesinin 7 Ağustos 1910 tarihli resimli ekindeki çizimdir; altındaki Fransızca yazı "LES 80.000 CHIENS DE CONSTANTINOPLE DÉPORTÉS DANS L'ILE OXIAS", Türkçesi: "Konstantinopolis'in 80.000 köpeği Oxias adasına sürüldü."
+
+  Sence hayırsız olan ada mıydı, yoksa köpekleri oraya bırakanlar mı?
+
+credits: "Sivriada (Julian Nyča, 2014, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kırpıldı, kontrast ve renk düzeltildi, tepedeki işaret direği silindi, bulanıklaştırıldı), Wikimedia Commons; Groupe de chiens, İstanbul, ca. 1900 (Sébah & Joaillier'e atfedilir; Rijksmuseum RP-F-F01141-CG, CC0; kırpıldı), Wikimedia Commons; Le Petit Parisien Supplément littéraire illustré, 7 Ağustos 1910, s. 260 (Gallica/BnF, kamu malı; kırpıldı), Wikimedia Commons"
+ai_generated: false
+
+ek_maddeler:
+  - "**Video bir canlandırmadır:** memur ve sandalcı kurgu karakterlerdir, gerçek kişileri temsil etmez; ekrandaki sözler belgeli alıntı değildir. Belgeli olan: 1910'da köpeklerin Sivriada'ya bırakılması, adanın küçük ve kayalık olması, adada yiyeceğin yetmemesi, belediyenin ekmek gönderdiğini söylemesi, kayık geçince köpeklerin kıyıya gelmesi (Loti; Afyoncu/Kuzucu)."
+  - "Son kare 1910 tarihli gerçek bir Fransız gazete çizimidir, fotoğraf değildir; olayın serbest lisanslı fotoğrafı bulunamadı."
+  - "Sayı tartışmalı (40-80 bin): videoda sayı yok; gazete çiziminin alt yazısındaki 80.000 dönemin iddiasıdır, metinde belirtildi."
+  - "İlk yorum önerisi: \"Köpeklerin sesi geceleri İstanbul kıyılarından duyuluyormuş. Sizce bu olay neden bu kadar az anlatılıyor?\""
+  - "Yorum yönetimi: sokak köpekleri bugün siyasi bir tartışma. Güncel yasa tartışmasına girme; kutuplaştıran, hakaret içeren yorumları gizle ya da sil."
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: 1910 olayı; son 10 yılda ölmüş/yaşayan özel kişi, çocuk, süren dava yok."
+  - "Tarih (28 Mayıs emir, Haziran başı nakil), Sivriada ~15 km, sayı 40-50 bin (Kuzucu arşiv çalışması), tekneyi gören köpeklerin suya atlayıp yiyecek istemesi, önceki denemeler: Erhan Afyoncu, Sabah, 2.6.2024: https://sabah.com.tr/yazarlar/erhan-afyoncu/2024/06/02/114-yil-once-zamaninda-tedbir-alinmayinca-sokak-kopekleri-cok-aci-sekilde-itlaf-oldu"
+  - "İttihatçı hükûmetin emri, Şehremaneti gözetimi, ekmek (haftada 3) ve tek kuyu, ah anlatısı (Porte 1915), Son Posta 1946 (Talu) sesler: Mine Yıldırım, Reflektif 5(3), 2024: https://dergi.bilgi.edu.tr/index.php/reflektif/article/download/321/247"
+  - "Loti tanıklığı (kayık geçince hepsi kıyıya geliyordu, iniltiler; iki ay), Haziran başı, 80 bin civarı, sesler 'söylendiğine göre' İstanbul'dan, Balkan Savaşı ahı: Murat Bardakçı, Hürriyet, 26.4.1998: https://www.hurriyet.com.tr/yazarlar/murat-bardakci/tarihimizin-iki-buyuk-kopek-soykirimi-39015990"
+  - "Sayı ~40.000, sesler Anadolu kıyısına: TIME, 3.5.1937: https://time.com/archive/6864827/animals-istanbul-dogs/"
+  - "Schick, Toplumsal Tarih 200 (on binlerce; II. Mahmud denemesi): https://www.timeturk.com/tr/2010/08/12/100-yil-onceki-katliam-200-sayinin-kapaginda.html"
+  - "Adalar Postası (Sivriada/Hayırsızada, önceki sürgün): https://adalarpostasi.com/2010/04/02/adalar-postasi-2400-sivriada-hayirsizada-neden-mi-hayirsiz/"
+  - "GÖRSEL img/arka.jpg — 'Sivriada.JPG', Julian Nyča, 2014, {{self|cc-by-sa-4.0}}: https://commons.wikimedia.org/wiki/File:Sivriada.JPG. Değişiklik: kare kırpım, kontrast/renk/parlaklık, tepedeki küçük işaret direği gökyüzü yamasıyla silindi; renderer bulanıklaştırır."
+  - "GÖRSEL img/kanit_1.jpg — 'Groep honden bij Istanbul Groupe de chiens (titel op object), RP-F-F01141-CG.jpg', Rijksmuseum, ca. 1900 - Nisan 1910 öncesi, CC0: https://commons.wikimedia.org/wiki/File:Groep_honden_bij_Istanbul_Groupe_de_chiens_(titel_op_object),_RP-F-F01141-CG.jpg. Değişiklik: kırpım, autocontrast."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Le Petit Parisien Supplément littéraire (...) bpt6k9105167 7.jpg', Le Petit Parisien, 7.8.1910 (çizer adı yok), {{PD-old-70}}, kaynak Gallica/BnF https://gallica.bnf.fr/ark:/12148/bpt6k9105167/f7.item : https://commons.wikimedia.org/wiki/File:Le_Petit_Parisien_Suppl%C3%A9ment_litt%C3%A9raire_(...)_bpt6k9105167_7.jpg. 1910 Fransa'da yayımlanmış anonim eser (AB: yayından 70 yıl; ABD: 1929 öncesi yayın) = kamu malı. Değişiklik: alt bölüm kırpıldı (gazetenin alt yazısı tam satır)."
