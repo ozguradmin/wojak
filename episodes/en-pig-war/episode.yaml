@@ -1,0 +1,106 @@
+# The Pig War (San Juan Island, 1859). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/pig-war/olgular.md (NPS San Juan Island NHP, HistoryLink 5724/5037, Canadian Encyclopedia, Seattle Times, Atlas Obscura, Historic UK).
+# CANLANDIRMA: iki karakter temsilidir; replikler uydurmadir. A = Amerikali yerlesimci rolu (Cutlar'i temsil eder), B = Ingiliz sirket/gorevli rolu
+#   (kurgu; gercek kisi temsil etmez). "It was eating my potatoes" gibi tartismali replik kullanilmadi.
+# Karakterler: A = wojakland 'Farmer Wojak', B = wojakland 'English Wojak'; ters kose varyanti chars/b_sok.png (ayni taban, ayni kutu).
+id: en-pig-war
+kanal: en  # Wojak Past Files
+title: "The 1859 US–Britain standoff that began in a garden"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "I shot a British company's\npig in my garden"
+
+  # 2) CEVAP — B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Pay $100 or we'll arrest you"
+
+  # 3) A (sol)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Then I'll call the US Army"
+
+  - type: card
+    duration: 1.5
+    text: "Weeks later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Why are there warships\nover one pig?"
+
+  # 6) KANIT 1 — NARA 1860 haritasi (Camp Pickett + HBC binalari)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: 1872'de Ingiliz askerleri adadan ayriliyor
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The 1859 US–Britain standoff that began in a garden
+  The full story is in the pinned comment 👇
+
+hashtags: [history, pigwar, sanjuanisland]
+
+pinned_comment: |
+  The Pig War was a border standoff between the United States and Britain that began on San Juan Island in June 1859 and nearly became a shooting war.
+
+  The 1846 Oregon Treaty ran the border down the middle of a channel, but there were two channels. The Americans said Haro Strait, the British said Rosario Strait, and the San Juan Islands sat in between.
+
+  On June 15, 1859, an American settler, Lyman Cutlar, shot a pig that belonged to the Hudson's Bay Company and kept rooting in his garden. He offered $10; the company's manager, Charles Griffin, wanted $100. British authorities reportedly threatened to arrest Cutlar, though no arrest was ever attempted.
+
+  American settlers asked the U.S. Army for protection. General William Harney sent Captain George Pickett, later famous for Pickett's Charge at Gettysburg, who landed with a company of about 65 soldiers in late July. British warships followed. By late August the Americans had 461 men and 14 cannons. Rear Admiral Lambert Baynes reportedly refused to "involve two great nations in a war over a squabble about a pig".
+
+  Both sides agreed to a joint occupation. In 1872 a commission appointed by Germany's Kaiser Wilhelm I ruled for the United States. The British Royal Marines left English Camp that November; the last American troops left in 1874. No human casualties were recorded: the pig was the only one.
+
+  The wojak characters are fictional and their lines are dramatized.
+
+  Would you have shot the pig?
+
+credits: "Map of South East End of San Juan Island, W.T., Showing Government Reservations, War Department, Office of the Chief of Engineers, December 1860, National Archives (public domain; cropped); British troops leaving English Camp, 1872, published in the British Columbia Mining Record, December 1899 (public domain; cropped); background: American Camp, San Juan Island (23758), by Buidhe, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), cropped, colour toned down, softened; all via Wikimedia Commons."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional; the dialogue is invented and does not quote anyone. The \"potatoes\" version of the Cutlar-Griffin exchange is likely apocryphal and is not used."
+  - "**Source caution:** sources differ on the size of Pickett's landing party (64 or 66) and the number of British ships and sailors; the text uses \"about 65\" and no ship count. The Baynes quote comes from the National Park Service narrative; the original letter was not located, so the text says \"reportedly\". The last image shows British troops leaving English Camp in 1872, the 1860 map shows the American and British camps."
+  - "Suggested first comment: the Union Jack still flies daily over English Camp, raised by American National Park Service rangers."
+
+sources:
+  - "National Park Service, San Juan Island NHP, The Pig War (pig, $, arrest threat, Pickett, 461 men/14 cannons, Baynes quote, 1872 ruling, departures): https://www.nps.gov/sajh/learn/historyculture/the-pig-war.htm"
+  - "HistoryLink.org Essay 5724 (Oldham), San Juan Island Pig War Part 1 (no arrest attempted, $10/$100, Pickett landing, three ships): https://www.historylink.org/File/5724"
+  - "HistoryLink.org Essay 5037, Lyman Cutlar touches off Pig War: https://historylink.org/File/5037"
+  - "The Canadian Encyclopedia, The Pig War (no human casualties, Wilhelm I arbitration): https://www.thecanadianencyclopedia.ca/en/article/pig-war"
+  - "Historic UK, The Pig War of 1859 (Baynes quote, joint occupation): https://www.historic-uk.com/HistoryUK/HistoryofBritain/The-Pig-War/"
+  - "Atlas Obscura, In 1859, the United States and Britain Almost Went to War Over a Pig: https://www.atlasobscura.com/articles/pig-war-british-american-border-dispute-san-juan-island"
+  - "Wikipedia, Pig War (1859) (cross-check; potato quote likely apocryphal): https://en.wikipedia.org/wiki/Pig_War_(1859)"
+  - "GÖRSEL img/ev_1.jpg — 'Map of South East End of San Juan Island, Washington Territory, Showing Government Reservations - NARA - 100305680.jpg', War Department Office of the Chief of Engineers, 1860, PD-USGov (raw checked): https://commons.wikimedia.org/wiki/File:Map_of_South_East_End_of_San_Juan_Island,_Washington_Territory,_Showing_Government_Reservations_-_NARA_-_100305680.jpg. Degisiklik: kirpildi (baslik+harita+aciklama), 1080x816, hafif keskinlestirildi"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'British troops evacuate San Juan Island, Washington Terr, 1872 - Restored.jpg', unknown author, British Columbia Mining Record Dec 1899 p.66, PD-1923 (raw checked): https://commons.wikimedia.org/wiki/File:British_troops_evacuate_San_Juan_Island,_Washington_Terr,_1872_-_Restored.jpg. Degisiklik: kirpildi 1080x816"
+  - "GÖRSEL img/arka.jpg — 'American Camp, San Juan Island (23758).jpg', Buidhe, CC BY-SA 4.0 (own work, raw checked): https://commons.wikimedia.org/wiki/File:American_Camp,_San_Juan_Island_(23758).jpg. Degisiklik: kare kirpim, renk 0,72, parlaklik 0,80, blur"

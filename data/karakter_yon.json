@@ -179,6 +179,10 @@
   "faces": "right",
   "file": "episodes/en-boston-molasses-flood/chars/b_sok.png"
  },
+ "2de286a34c899af9f857ebc9f718f78781a5725c": {
+  "faces": "right",
+  "file": "episodes/en-pig-war/chars/b_sok.png"
+ },
  "30db62d81b2f0691364361e06b71dfafa352e56a": {
   "faces": "right",
   "file": "episodes/ankara-elci-vagonlari/chars/a_diplomat_sok.png"
@@ -346,6 +350,10 @@
  "5381734ce6ed7559d71f1d8523393151cbd18ddd": {
   "faces": "right",
   "file": "episodes/en-booth-saves-lincoln-son/chars/b_sakin.png"
+ },
+ "53c19dfe0597911bd2fd787a6b03a9783b1dda78": {
+  "faces": "right",
+  "file": "episodes/en-pig-war/chars/b_sakin.png"
  },
  "548b7fdb3e12a46f298bf502844d415ad0dc6844": {
   "faces": "right",
@@ -606,6 +614,10 @@
  "8aa0abe9e7c8757c13b48c39ef013ba707294bdb": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_supheci.png"
+ },
+ "8e997f533db86057d11b3dd9cb87bcf09e3b9306": {
+  "faces": "right",
+  "file": "episodes/en-pig-war/chars/a_sakin.png"
  },
  "8eb0e58c44eba67374904b779a6b6b0e4c8cd6bf": {
   "faces": "right",
