@@ -1,0 +1,97 @@
+# yeralti-camii-karakoy — Karaköy'deki Bizans mahzeni (Kurşunlu Mahzen) ve 1752'de camiye çevrilmesi menkıbesi.
+# Damar 1 (Türkiye'de gösterilebilir yerde gizem/menkıbe). Olay 1752, iki adsız derviş konuşur; menkıbe repliklerde
+# rivayet kipiyle (-mış) anlatılır. Kanıt: caminin giriş tabelası (nerede/ne oldu), son kare: türbe (cevap;
+# OLAYIN GEÇTİĞİ YERİN BUGÜNKÜ FOTOĞRAFI; son 5 bölümde yok: gazete çizimi, kalıntı, kazı, kupür, tablo).
+id: yeralti-camii-karakoy
+title: "Karaköy'de ruhların gittiği anlatılan Bizans mahzeni"
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol), genç derviş
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/genc_sakin.png, side: left, height: 0.50}
+    text: "Hocam, ruhlar Galata'daki\nmahzene gidiyormuş"
+
+  # 2) CEVAP — B (sağ), yaşlı derviş; tohum: Bizans kalesi
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/dervis_sakin.png, side: right, height: 0.50}
+    text: "O mahzen Bizans kalesinden\nkalma, şimdi depo"
+
+  # 3) TIRMANIŞ — A
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/genc_sakin.png, side: left, height: 0.50}
+    text: "Paşa mahzeni açtırmış,\niçinden kabirler çıkmış"
+
+  # 4) TERS KÖŞE — B, aynı kutu, şok yüzü
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/dervis_sok.png, side: right, height: 0.50}
+    text: "Bekle, Bizans kalesinde\nMüslüman kabri nereden çıkmış?"
+
+  # 5-6) KANIT — caminin giriş tabelası (mahzen camiye döndü), son kare: türbe (cevap; tur 1 sonrası neonsuz çekim)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Karaköy'de ruhların gittiği anlatılan Bizans mahzeni
+  Olayın tamamı sabit yorumda 👇
+hashtags: [karaköy, istanbul, tarih]
+
+pinned_comment: |
+  Kurşunlu Mahzen olayı, 1752-1756 yıllarında İstanbul Karaköy'de yaşanan ve Bizans'tan kalma bir kale mahzeninin bir şeyhin manevi görüşü üzerine camiye çevrilmesi olarak anlatılan bir olaydır.
+
+  Mahzen, Bizans'ın Galata'daki Kastellion adlı hisarının altında yer alır. Hisarın ilk yapımı 6. yüzyılın sonlarına tarihlenir; Haliç'e gerilen ünlü zincirin Galata ucunun bu kaleye bağlandığı kabul edilir. Fetihten sonra yapı uzun süre depo olarak kullanıldı ve halk arasında Kurşunlu Mahzen adıyla anıldı.
+
+  Anlatılana göre Şam'daki şeyh Murad Efendi, manevi âlemde Üsküdar'dan Galata'ya uzanan bir köprüden büyük ruhların geçtiğini, Kurşunlu Mahzen'de yatan bazı zatları ziyarete gittiklerini gördü. Oğlu Şeyh Mehmed Efendi 1752'de Şam'dan İstanbul'a gelip bunu saraya bildirdi. Sadrazam Köse Bahir Mustafa Paşa mahzeni elden geçirtti; çalışmalar sırasında kabirlere ulaşıldığı anlatılır. Başka anlatımlar kabirlerin bilinmesini 17. yüzyıla, IV. Murad dönemine bağlar; rivayetler birbirini tutmaz.
+
+  Camideki sandukalar Vehb bin Hüşeyre, Amr bin el-As ve Süfyan bin Uyeyne'ye atfedilir. Rivayete göre Vehb bin Hüşeyre Emevilerin İstanbul kuşatmasında şehit düştü; Amr bin el-As'ın kabri ise Mısır'da, Süfyan bin Uyeyne'ninki Mekke'dedir. Bu yüzden buradaki kabirlerin makam türbesi olduğu düşünülür. Yapı bugün de ibadete açıktır.
+
+  Giriş tabelasında Hicri 1166-1169, Miladi 1753-1756 yazar; Hicri 1166 yılı 1752 sonbaharında başladığı için kaynaklar çevrilmeyi 1752-1756 olarak da verir. Son iki kare tabela ve türbe bölümüdür (2011 fotoğrafları); arka plan caminin iç mekânıdır, iki derviş kurgudur.
+
+  Karaköy'den geçerken merdivenle yerin altına inilen bu camiyi hiç fark ettiniz mi?
+
+  Kaynaklar: TDV İslâm Ansiklopedisi (Mustafa Paşa, Köse); Sağlam, MASROP E-Dergi 18(2), 2024; S. Genim, Kurşunlu Mahzen Köşkü ve Yeraltı Camii.
+
+credits: "20110722 interior, south entrance ve Yeralti Cami turbe 1, Karakoy Istanbul Turkey (User:Ggia, 2011, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, renk ve parlaklık düzeltildi, arka plan bulanıklaştırıldı), Wikimedia Commons"
+ai_generated: false
+
+ek_maddeler:
+  - "**Video bir canlandırmadır:** iki derviş kurgu karakterdir, gerçek kişileri (Şeyh Murad Efendi, Şeyh Mehmed Efendi, Bahir Mustafa Paşa) temsil etmez; ekrandaki sözler belgeli alıntı değildir. Belgeli olan: mahzenin Bizans'ın Kastellion hisarına ait olması, fetihten sonra depo olarak kullanılması, 1752-1756'da Sadrazam Köse Bahir Mustafa Paşa döneminde camiye çevrilmesi, içindeki türbe. Ruhların görülmesi ve kabirlerin bulunması menkıbedir (anlatılana göre)."
+  - "Kabirlerdeki kişilerin adı videoda geçmez; sahabe ve tabiin adları kimseye söyletilmez, canlandırılmaz. Hikâye metni kabirlerin makam türbesi olduğunun düşünüldüğünü açıkça yazar."
+  - "İlk yorum önerisi: \"Karaköy'den geçerken bu caminin kapısını hiç fark ettiniz mi? Merdivenle yerin altına iniliyor.\""
+  - "Yorum yönetimi: yapı faal bir cami ve ziyaret yeri. 'Aslında makam kabri' yorumlarına sabit cevap: \"Doğru, hikâye metninde de yazdık: kaynaklar bunların makam türbesi olduğunu söylüyor; menkıbeyi 'anlatılana göre' diye aktardık.\" Dinî tartışmayı kızıştıran, hakaret içeren yorumları gizle."
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: 1752 olayı; son 10 yılda ölmüş/yaşayan özel kişi, çocuk, süren dava yok (Yeraltı Camii için dava bulunmadı; çıkan dava haberleri başka bir yapıya, Karaköy Merzifonlu Kara Mustafa Paşa Mescidi'ne ait)."
+  - "Kastellion hisarı, ilk inşa 6. yy sonu: H. S. Sağlam, MASROP E-Dergi 18(2), 2024: https://dergipark.org.tr/tr/pub/masrop/article/1510167 ; S. Genim, Kurşunlu Mahzen Köşkü ve Yeraltı Camii: https://www.sinangenim.com/tr/medya/yayimlar-ve-bildiriler/kursunlu-mahzen-kosku-ve-yeralti-camii-644/"
+  - "Haliç zincirinin Galata ucu Kastellion: Vikipedi 'İstanbul'un Fethi' (2 Nisan 1453, Kastellion ile Eugenios kuleleri arası): https://tr.wikipedia.org/wiki/%C4%B0stanbul'un_fethi ; TTOK/Genim 'Kastellion tou Galatau': https://turing.tr/turing-haberleri/kastellion-tou-galatau/"
+  - "Camiye çevrilme 1752-1756 (kitabeler H.1166 ve H.1169), Köse Bahir Mustafa Paşa, önce silah/depo: TDV İslâm Ansiklopedisi 'Mustafa Paşa, Köse': https://islamansiklopedisi.org.tr/mustafa-pasa-kose ; Vikipedi 'Yeraltı Camii': https://tr.wikipedia.org/wiki/Yeralt%C4%B1_Camii ; Yeni Dünya Dergisi: https://yenidunyadergisi.com/blog/istanbulda-kac-sahabi-kabri-var-kaci-yeralti-cami-i-serifinde-boyle-bilmezdik-biz-beyoglunu"
+  - "Menkıbe (Şeyh Murad Efendi'nin manevi görüşü: Üsküdar'dan Galata'ya köprüden geçen ruhlar; oğlunun 1752'de bildirmesi; kabirlere ulaşılması), anlatılana göre: https://blog.murber.com/yeralti-camii-kursunlu-mahzen-camii/ ; https://www.blog.namazsitesi.com/yeralti-kursunlu-mahzen-camii-ve-sahabeleri.html ; Erkal 2011 aktarımı (Nakşibendi şeyhin keşfi, kurşunlu sandukalar): https://islamicana.com/tag/yeralti-cami/"
+  - "Sandukaların atfedildiği kişiler ve makam türbesi değerlendirmesi (Süfyan b. Uyeyne 814 Mekke; Amr b. el-As Mısır): Beyoğlu türbe envanteri aktarımı: https://kolayarapca1.wordpress.com/ssu/ ; Genim (atfedilen üç makam), yukarıdaki bağlantı; Erkal fn.105 (Islamicana), yukarıdaki bağlantı"
+  - "GÖRSEL img/arka.jpg — '20110722 interior Yeralti Cami Karakoy Istanbul Turkey.jpg', User:Ggia, 2011, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:20110722_interior_Yeralti_Cami_Karakoy_Istanbul_Turkey.jpg. Değişiklik: ortadan kare kırpım, 1080'e küçültme, renk 1,15, parlaklık 1,32, 200 üstü tonlar sıkıştırıldı; renderer bulanıklaştırır."
+  - "GÖRSEL img/kanit_1.jpg — '20110722 south entrance Yeralti Cami Karakoy Istanbul Turkey.jpg', User:Ggia, 2011, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:20110722_south_entrance_Yeralti_Cami_Karakoy_Istanbul_Turkey.jpg. Değişiklik: sağ üst bölüm (tabela ve kapı) kırpıldı, 1080 genişliğe küçültüldü."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — '20110722 Yeralti Cami turbe Karakoy Istanbul Turkey 1.jpg', User:Ggia, 2011, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:20110722_Yeralti_Cami_turbe_Karakoy_Istanbul_Turkey_1.jpg. Değişiklik: soldan ve üstten kırpıldı, 1080 genişliğe küçültüldü, renk doygunluğu 0,6."

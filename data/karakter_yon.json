@@ -35,6 +35,10 @@
   "faces": "right",
   "file": "episodes/edirne-sarayi-1878/chars/pasa.png"
  },
+ "066dab06ffec11092bd8871fa55921ba4eab8f1f": {
+  "faces": "right",
+  "file": "episodes/yeralti-camii-karakoy/chars/dervis_sok.png"
+ },
  "07808372ec31a938cd5a415d79033f54f682214d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_v2_ciddi.png"
@@ -786,6 +790,10 @@
  "b5f4fe6b423cc425a29caaf6071b086414490155": {
   "faces": "front",
   "file": "episodes/en-d-b-cooper/chars/a_ter.png"
+ },
+ "b6127bb293067fb65eb289094fccd6b7144cabe9": {
+  "faces": "right",
+  "file": "episodes/yeralti-camii-karakoy/chars/dervis_sakin.png"
  },
  "b74600a78a78ea055a83f8a5cfc02a70506809f5": {
   "faces": "right",

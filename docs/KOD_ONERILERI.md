@@ -81,3 +81,4 @@
 - `wojak/censor.py`: TR'de "ölü/ölüler" arkeolojik gömü bağlamında da yıldızlanıyor ("*lüler"); bölüm yaml'ında `sansur_haric: [ölü]` gibi bilinçli istisna ya da `check`'te "sansür kelimeyi bozdu, eşanlamlı seç" uyarısı (06.11, catalhoyuk-sekinin-alti).
 - `tools/hazirla.sh`: pip adımı gereken modüller zaten içe aktarılabiliyorsa atlansın, `faster-whisper` yalnız uzun video bayrağıyla kurulsun; 08.11'de ilk kurulum ~15 dk sürdü, ajanın 5 dk komut sınırını aştı (hayirsizada-kopekleri-1910).
 - `tools/commons.py ara`: başlıkları 60 karakterde kesiyor, tam dosya adı olmadan `bilgi/indir` çalışmıyor; araştırmacı ~15 yerine 30 çağrı harcadı (08.11, en-eiffel-lift-1940 avı): `ara` tam başlığı (ya da `--tam`) yazdırsın.
+- `wojak yon`: başka bölümden birebir kopyalanan PNG (aynı sha) kaydedilince mevcut girdinin `file` alanı yeni yolla üzerine yazılıyor (09.11, yeralti-camii-karakoy: hezarfen_emin girdisi); sha zaten kayıtlı ve yön aynıysa dokunmasın.
