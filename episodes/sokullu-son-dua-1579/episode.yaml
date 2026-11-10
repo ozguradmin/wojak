@@ -1,0 +1,119 @@
+# Sokullu Mehmed Paşa'nın son gecesi (İstanbul, 1579). Araştırma notu: /tmp/arastirma/olgular.md (repoya girmez).
+# Altın dönem kalıbı C2fa (dramatik ironi): A masum/ironik niyet -> B -> A tohum -> kart -> B aynı kutuda yüz değişir -> 2 kanıt.
+# AYNI YER: sadrazamın konağı, bir gece önce; S5 ertesi gün ikindi divanı (karttan sonra, aynı mekân).
+#   A (hep solda): sadrazam (Sokullu Mehmed Paşa'ya karşılık gelir; kanuni-gizlenen-olum'daki sadrazamın kendisi,
+#      13 yıl sonra kırçıl sakallı). Videoda ad yok; ciddi/sakin yüz.
+#   B (hep sağda): paşanın adamlarından biri (kurgu; anlatıda Kosova'yı okuyan hazinedar Hasan Ağa'dır, onu temsil etmez).
+#      Çizim: hezarfen-galata-ucusu'ndaki sarıklı adam ve şok varyantı (paşayla aynı kalın kontur ailesi; görsel hakem tur 1 MUST).
+# Olgu sınırları (olgular.md):
+#   - S1: rivayet (Peçevî, hazinedar Hasan Ağa'dan naklen; Gökbilgin İA c.7 s.605, Zararsız 2021 s.332, TDV "bazı
+#     kaynaklarda"): öleceğinden bir gece önce I. Murad'ın Kosova'daki şehadetini okuttu, ağladı, kendisine de böyle bir
+#     şehadet nasip olmasını diledi. Peçevî'nin birebir lafzı bulunamadı: replik canlandırmadır, tırnaklı alıntı değil.
+#     "Kosova'da Murad Han" S1'de III. Murad (o günün padişahı) ile karışmasın diye.
+#   - S3 tohum "dilekçe": saldırgan arzuhal verecekmiş gibi yaklaştı (TDV, Gökbilgin/İA, Selânikî).
+#   - Kart "Ertesi gün": "bir gece evvel" (İA), "ertesi gün ikindi divanında" (Zararsız, Şimşirgil).
+#   - S5: canlandırma; saldırı gösterilmez. Saldırgan arzuhal verecekmiş gibi yaklaşıp koynundan hançer çıkardı (TDV, İA). Cevabı son kare verir: I. Murad da isteği varmış gibi
+#     yaklaşan biri tarafından hançerlendi (TDV "Kosova Savaşları"; Âşıkpaşazâde "üzengisini öper gibi").
+#   - Gün (30 Eylül / 11 Ekim / 12 Ekim) kaynaklarda ayrışıyor: ekranda tarih yok, metinde yalnız 1579.
+# Karakterler: chars/uret.py. Görseller: gorsel.py.
+id: sokullu-son-dua-1579
+title: "Sokullu Mehmed Paşa'nın bir gece önce ettiği dua"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sadrazam, sol): dramatik ironi; dilediği ölüm ertesi gün gelecek
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/pasa_sakin.png, side: left, height: 0.52}
+    text: "Rabbim, Kosova'da Murad Han\ngibi beni de şehit et"
+
+  # 2) B (sağ, sakin): itiraz eder
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/adam_sakin.png, side: right, height: 0.52}
+    text: "Estağfurullah paşam,\nAllah uzun ömür versin"
+
+  # 3) A: tohum (dilekçe); ertesi gün saldırgan dilekçe verir gibi yaklaşacak
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/pasa_sakin.png, side: left, height: 0.52}
+    text: "Yarın divanda dilekçeleri\nyine ben alırım"
+
+  # 4) ara kart (ileri zaman; "bir gece evvel" -> ertesi gün)
+  - type: card
+    duration: 1.5
+    text: "Bir gün sonra"
+
+  # 5) TERS KÖŞE — B, aynı kutu, şok yüzü: S3 tohumu (dilekçe); cevabı son kare: Murad Han'a yapılan suikast sahnesi (eğilen adam, elinde beyaz bir nesne, kılıç)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/adam_sok.png, side: right, height: 0.52}
+    text: "Bekle, dilekçeli adamın\nelinde ne var?"
+
+  # 6-7) KANIT — sadrazamın 1603 gravürü (kim), son kare: I. Murad'ın öldürülüşü minyatürü (cevap: "Sultan Murad gibi")
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Sokullu Mehmed Paşa'nın bir gece önce ettiği dua
+  Olayın tamamı sabit yorumda 👇
+hashtags: [sokullumehmedpaşa, osmanlı, tarih]
+
+pinned_comment: |
+  Sokullu Mehmed Paşa suikastı, 1579 yılında İstanbul'da Osmanlı sadrazamının kendi konağındaki ikindi divanında bir saldırgan tarafından öldürülmesi olarak bilinen bir olaydır.
+
+  Sokullu, Kanuni, II. Selim ve III. Murad dönemlerinde yaklaşık on dört yıl sadrazamlık yapmıştı; Kanuni'nin Zigetvar'daki ölümünü haftalarca ordudan gizleyen de oydu. III. Murad döneminde ise nüfuzu giderek azalmıştı.
+
+  Tarihçi Peçevî'nin, paşanın hazinedarı Hasan Ağa'dan naklettiğine göre paşa her gece ona Osmanlı tarihi okuturdu. Anlatılana göre olaydan bir gece önce I. Murad'ın 1389'da Kosova'daki şehadetini okutmuş, gözleri dolmuş ve kendisine de böyle bir şehadet nasip olması için dua etmişti.
+
+  Ertesi gün, ikindi divanında, derviş kılıklı bir adam dilekçe verecekmiş gibi yaklaşıp hançerle saldırdı. Peçevî'ye göre bu adam paşadan âdeti üzere harçlık almaya gelirdi; paşa ona para vermek için elini cebine atmıştı. Sokullu o akşam öldü ve Eyüp'te Mimar Sinan'ın yaptığı türbeye defnedildi. Saldırganın kimliği ve arkasında kimin olduğu bugün de tartışılır; kesin bir kanıt yoktur.
+
+  Kaynaklara göre I. Murad da Kosova'da, bir isteği varmış gibi yaklaşan biri tarafından hançerlenmişti. Aradan yaklaşık 190 yıl geçmişti. Videonun son karesi, Ahmedî'nin İskendernâme'sinin 15. yüzyıl sonuna ait bir nüshasındaki minyatürdür; Commons açıklamasında I. Murad'a yapılan suikast sahnesi olarak tanımlanır.
+
+  Sence bu bir tesadüf mü, yoksa sonradan eklenmiş bir rivayet mi?
+
+credits: "Sokollu Mehmed Pasha Mosque DSCF4409 (R Prazeres, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kare kırpıldı, renk ve parlaklık düzeltildi, bulanıklaştırıldı), Wikimedia Commons; Sokollu Mehmed Paşa portresi (Jacob Schrenck von Notzing'in 1603 tarihli kitabı, Polona taraması, kamu malı; kırpıldı, kontrast düzeltildi), Wikimedia Commons; I. Murad'ın öldürülüşü, Ahmedî, İskendernâme, 15. yy sonu (Rusya Millî Kütüphanesi C133, bilinmeyen sanatçı, kamu malı; kırpıldı), Wikimedia Commons"
+ai_generated: false
+
+ek_maddeler:
+  - "**Video bir canlandırmadır:** karakterler kurgudur; sadrazam Sokullu Mehmed Paşa'ya karşılık gelir, yanındaki adam kurgu bir karakterdir, gerçek kimseyi temsil etmez. Ekrandaki sözler belgeli alıntı değildir. Belgeli olan: 1579'da kendi konağındaki ikindi divanında dilekçe verir gibi yaklaşan derviş kılıklı birinin saldırısı, kısa süre sonra, akşam ezanı vakti ölümü (TDV; Selânikî, Şimşirgil), Eyüp'e defni (TDV). Bir gece önceki dua Peçevî'nin hazinedardan naklettiği rivayettir; metinde 'anlatılana göre' diye geçer."
+  - "Arka plan, olayın geçtiği konak değil (bugüne ulaşmadı), Sokullu'nun Kadırga'da Mimar Sinan'a yaptırdığı caminin avlusudur."
+  - "Son kare I. Murad'ın Kosova'da öldürülüşünü gösteren 15. yüzyıl sonu Osmanlı minyatürüdür (Sokullu'nun değil); dua ile ertesi günkü saldırı arasındaki benzerliği gösterir."
+  - "İlk yorum önerisi: \"Gece Murad Han gibi şehitlik diliyor, ertesi gün Murad Han gibi... Sizce tesadüf mü?\""
+  - "Yorum yönetimi: saldırganın etnik/dinî kimliği ve III. Murad'ın parmağı olduğu iddiası tartışmalı; kanıt yok. Kutuplaştıran yorumları gizle."
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: 1579 olayı; son 10 yılda ölmüş/yaşayan özel kişi, çocuk, süren dava yok."
+  - "1579, İstanbul, kendi konağı, ikindi divanı, derviş kılıklı biri arzuhal verecekmiş gibi yaklaşıp hançer çıkardı, kısa süre sonra öldü, türbe Eyüp'te, Kanuni'nin ölümünü gizledi, 'bazı kaynaklarda Murad Hudâvendigâr gibi şehid olmayı arzuladığı ifade edilir': E. Afyoncu, 'Sokullu Mehmed Paşa', TDV İslâm Ansiklopedisi c.37 (2009): https://islamansiklopedisi.org.tr/sokullu-mehmed-pasa"
+  - "Bir gece önce hazinedar Tavaşi Hasan Ağa'ya Murad'ın şehadetini okuttu, dua etti (Hasan Ağa'dan naklen Peçevî I, 25); sarayında ikindi divanı, derviş kıyafetinde adam: M. T. Gökbilgin, 'Mehmed Paşa, Sokullu', İslâm Ansiklopedisi c.7 (1957) s.595-605: https://wiki.gokbilgin.com/index.php?title=Sokullu_Mehmed_Pa%C5%9Fa"
+  - "Peçevî'nin Hasan Ağa'dan nakli, 'o gece... ertesi gün ikindi divanında', para vermek için elini cebine atması, aynı gün ölüm, tarih ayrılığı (8 Şâban / 20 Şâban 987): A. Zararsız, Mediterranean Journal of Humanities XI (2021) 321-354: http://proje.akdeniz.edu.tr/mcri/mjh/11/MJH_22_Abdullah_ZARARSIZ.pdf"
+  - "Selânikî özeti: ikindi divanı, arzuhal sunar gibi, akşam ezanına kadar yaşadı; III. Murad iddiası kanıtsız: H. Erdem, Karar, 15.10.2017: https://www.karar.com/yazarlar/hakan-erdem/sokullu-suikastine-bir-bakis-5196"
+  - "Bir gece önce dua, ertesi akşam ölüm, Kabasakal tarafındaki sarayı: A. Şimşirgil, 'Bir devrin adı: Sokollu': https://www.ademder.org.tr/blog/ahmet-%C5%9Fim%C5%9Firgil/ahmet-simsirgil-makaleleri/birdevrinadisokollu"
+  - "Defin: Eyüp'teki Sinan türbesi (976/1568-69, oğulları için), 1579'da kendisi de defnedildi: S. Parlak, TDV 'Sokullu Mehmed Paşa Külliyesi (Eyüp)': https://islamansiklopedisi.org.tr/sokullu-mehmed-pasa-kulliyesi--eyup"
+  - "I. Murad Kosova'da (1389) isteği var diyerek yaklaşan yaralı biri tarafından hançerlendi (Osmanlı kaynakları); ayrıntılar tartışmalı: TDV 'Kosova Savaşları': https://islamansiklopedisi.org.tr/kosova-savaslari ; H. İnalcık, TDV 'Murad I': https://islamansiklopedisi.org.tr/murad-i"
+  - "Âşıkpaşazâde 'üzengisini öper gibi', Enverî 'el öpme bahanesi': İlim ve Medeniyet: https://www.ilimvemedeniyet.com/osmanli-klasik-kaynaklarina-gore-murat-hudavendigarin-sehit-edilmesi-meselesi"
+  - "GÖRSEL img/arka.jpg — 'Sokollu Mehmed Pasha Mosque DSCF4409.jpg', R Prazeres, 2016, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Sokollu_Mehmed_Pasha_Mosque_DSCF4409.jpg. Değişiklik: kare kırpım (kemerlerdeki projektörler dışarıda), renk 0,85, parlaklık 1,07; renderer bulanıklaştırır."
+  - "GÖRSEL img/kanit_1.jpg — 'Sokollu Mehmet Paşa Мехмед-паша Соколовић 1603.jpg', Jacob Schrenck von Notzing, 1603 (Polona: https://polona.pl/item-view/34b0700b-9127-4756-830f-3e0994f34fa4?page=89), kamu malı: https://commons.wikimedia.org/wiki/File:Sokollu_Mehmet_Pa%C5%9Fa_%D0%9C%D0%B5%D1%85%D0%BC%D0%B5%D0%B4-%D0%BF%D0%B0%D1%88%D0%B0_%D0%A1%D0%BE%D0%BA%D0%BE%D0%BB%D0%BE%D0%B2%D0%B8%D1%9B_1603.jpg. Değişiklik: baş-gövde kırpımı, autocontrast."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Fol. 254a. The murder of Sultan Murad I (cropped), Iskender-name by Ahmedi, late 15th century (National Library of Russia, C133).jpg', bilinmeyen sanatçı, kamu malı: https://commons.wikimedia.org/wiki/File:Fol._254a._The_murder_of_Sultan_Murad_I_(cropped),_Iskender-name_by_Ahmedi,_late_15th_century_(National_Library_of_Russia,_C133).jpg. Değişiklik: yatay sıkı kırpım (eğilen adam, kılıç, I. Murad; ayaklar ve sol kenar şeridi dışarıda)."

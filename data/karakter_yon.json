@@ -231,6 +231,10 @@
   "faces": "right",
   "file": "episodes/uluburun-kulakli-biskuvi/chars/b_reis.png"
  },
+ "3c562d5fd3f808221f685fa94d25edac837b26fb": {
+  "faces": "right",
+  "file": "episodes/sokullu-son-dua-1579/chars/adam_sok.png"
+ },
  "3c5758573fc38c9b8c553edf6150a907ea1ab45b": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci2000_sakin.png"
@@ -342,6 +346,10 @@
  "525c84672fd40d5b495d247456d85441efba9fe3": {
   "faces": "right",
   "file": "episodes\\kasikci-elmasi\\chars\\bulan_sakin.png"
+ },
+ "533e05d009c2d7f45fa9e01048447b1f051e23b3": {
+  "faces": "left",
+  "file": "episodes/sokullu-son-dua-1579/chars/pasa_sakin.png"
  },
  "53669d9d580e8d816123af1b6384f9210678e1d0": {
   "faces": "right",
@@ -1094,6 +1102,10 @@
  "fcb62cc249d8853528fac04717b2b86179cd5f00": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_sade.png"
+ },
+ "fd7fa07bde669f031d6b6570444c63f01426772e": {
+  "faces": "right",
+  "file": "episodes/sokullu-son-dua-1579/chars/adam_sakin.png"
  },
  "fe342ddcde5a2308240e4a52818e7374c57568d8": {
   "faces": "right",

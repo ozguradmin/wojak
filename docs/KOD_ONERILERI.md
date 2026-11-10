@@ -82,3 +82,4 @@
 - `tools/hazirla.sh`: pip adımı gereken modüller zaten içe aktarılabiliyorsa atlansın, `faster-whisper` yalnız uzun video bayrağıyla kurulsun; 08.11'de ilk kurulum ~15 dk sürdü, ajanın 5 dk komut sınırını aştı (hayirsizada-kopekleri-1910).
 - `tools/commons.py ara`: başlıkları 60 karakterde kesiyor, tam dosya adı olmadan `bilgi/indir` çalışmıyor; araştırmacı ~15 yerine 30 çağrı harcadı (08.11, en-eiffel-lift-1940 avı): `ara` tam başlığı (ya da `--tam`) yazdırsın.
 - `wojak yon`: başka bölümden birebir kopyalanan PNG (aynı sha) kaydedilince mevcut girdinin `file` alanı yeni yolla üzerine yazılıyor (09.11, yeralti-camii-karakoy: hezarfen_emin girdisi); sha zaten kayıtlı ve yön aynıysa dokunmasın.
+- `wojak/denetim.py` kart kuralı (`sonra$`): TR'de doğal ileri zaman "Ertesi gün" `[stil]` uyarısı alıyor, "Bir gün sonra"ya zorlanınca takipçi hakem "yapay" diye SHOULD verdi; regex "Ertesi gün|Ertesi sabah|Ertesi akşam"ı da kabul etsin (10.11, sokullu-son-dua-1579).
