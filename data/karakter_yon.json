@@ -551,6 +551,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/voss_v2_sakin.png"
  },
+ "77df180b3dc0a513c0a812d6c2ac8e22d32f0dfb": {
+  "faces": "right",
+  "file": "episodes/en-franz-ferdinand-wrong-turn/chars/a_sakin.png"
+ },
  "787730f825a750745aa8d6b85ea14f384600e2c1": {
   "faces": "right",
   "file": "episodes/en-acoustic-kitty/chars/a_sok.png"
@@ -586,6 +590,10 @@
  "80094b731835a607574aac82e20538e1ef488dc9": {
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/hostes_sakin.png"
+ },
+ "807438358c525ecd793eaebffbb28c8cd4ad3529": {
+  "faces": "right",
+  "file": "episodes/en-franz-ferdinand-wrong-turn/chars/b_sakin.png"
  },
  "808a7b1ad6963741e82f761fdd66a4492cafe0fd": {
   "faces": "right",
@@ -770,6 +778,10 @@
  "ae4bba609d368cc83f3af327df9607e1f5b9c5a4": {
   "faces": "left",
   "file": "episodes/en-ghost-army/chars/b_sok.png"
+ },
+ "ae59060a5f025ea303f75549bec6e012caef16be": {
+  "faces": "right",
+  "file": "episodes/en-franz-ferdinand-wrong-turn/chars/b_sok.png"
  },
  "b04222d664c5581bab9d8ff36984c858f521bcdf": {
   "faces": "right",
