@@ -167,6 +167,10 @@
   "faces": "right",
   "file": "episodes/uluburun-kulakli-biskuvi/chars/b_reis_sok.png"
  },
+ "2b9d174829d730480d0e7bf5b4ae13e7d5f43ca3": {
+  "faces": "right",
+  "file": "episodes/eskisehir-cinli-hamam/chars/polis_sakin.png"
+ },
  "2bca371890031009c7a612b34ffa50909721c068": {
   "faces": "right",
   "file": "episodes/en-mechanical-turk/chars/a_sakin.png"
@@ -226,6 +230,10 @@
  "3a18372bc5d69b96f889311f74519583bd0f058c": {
   "faces": "right",
   "file": "episodes/en-mechanical-turk/chars/a_sok.png"
+ },
+ "3a488cda8ab4037aacac3ac9bfedc11d2361db8c": {
+  "faces": "right",
+  "file": "episodes/eskisehir-cinli-hamam/chars/polis_sok.png"
  },
  "3ab328d10271b94f8d83d1e7ee603b822622f090": {
   "faces": "right",

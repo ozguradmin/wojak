@@ -1,0 +1,111 @@
+# Eskişehir "cinli hamam" söylentisi (Şubat-Mart 2007). ÖNİZLEME (hesap sahibinin özel isteği, 11.11.2026): cinli konu.
+# Araştırma notu: /tmp/arastirma/eskisehir-cinli-hamam.md (repoya girmez).
+# Damar 1 (Türkiye'de gösterilebilir yer + ürkütücü şehir efsanesi). Alt tür: hamam (önceki 1. damar: alanya-adam-atacagi,
+# kale/uçurum; aynı alt tür değil).
+# Kalıp A-B-A-B: A kanca (ürperten an) -> B kapının kilitli olduğunu söyler (tohum) -> A elbiselerinin içeride olduğunu
+# söyler -> B aynı kutuda yüz değişir, imkânsızlığı sorar -> 2 kanıt: boş hamam (temsilî), son kare Emniyet açıklaması.
+# AYNI YER, AYNI AN: sabaha karşı, hamamın önü.
+#   A (hep solda): hamamdan peştamalla kaçan adsız adam (kurgu). B (hep sağda): adsız polis memuru (kurgu).
+# Olgu sınırları (araştırma notu):
+#   - Haberli çekirdek (Hürriyet, Radikal, DHA, AA; 3 Mart 2007): söylenti ~15 gün sürdü; Emniyet'in yazılı açıklamasına
+#     göre söylentide "sabaha karşı" bir vatandaşın cin gördüğü, karakola başvurduğu, "olay yerine giden polislerin de aynı
+#     görüntülerle karşılaşıp ürperdiği" anlatılıyordu; Emniyet: böyle bir olay yok, müracaat yok. Müftü vaaz verdi.
+#   - Söylentinin ayrıntıları (ayakları ters/çarpık, peştamalla kaçma, hamamın kilitli çıkması ve eşyalarının içeride
+#     olması) haberlerde değil, sonradan yazılmış anlatılarda (Gazete Duvar, ParanormalHaber, Ekşi Sözlük): metinde
+#     "anlatılana göre". Kaynaksız öğeler (ölüm, polislerin ayağı ters, kamyoncu, ezan) KULLANILMADI.
+#   - Hamamın, işletmecinin ve adamın adı videoda ve yayın metinlerinde yok (yalnız iki kaynak URL'sinin adresinde geçer). Görseller temsilî tarihî hamam; haberdeki hamam bir termal
+#     otelin içinde, tarihî değil.
+# Karakterler: chars/uret.py. Görseller: gorsel.py (arka plan, kanıt 1), kupur.py (son kare).
+id: eskisehir-cinli-hamam
+title: "Eskişehir'de hamamdan peştamalla kaçtığı söylenen adam"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (adam, sol): ürperten somut an
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.3
+    chars:
+      - {img: chars/adam_cok_terli.png, side: left, height: 0.50}
+    text: "Memur bey, hamamda\nayakları ters adamlar var"
+
+  # 2) B (polis, sağ): geçiştirir; tohum: kapı kilitli
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.3
+    chars:
+      - {img: chars/polis_sakin.png, side: right, height: 0.50}
+    text: "Sabaha karşı hamam kapalı,\nkapı da kilitli"
+
+  # 3) A: elbiseleri içeride kaldı (anlatılardaki "eşyaları içerideydi")
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.3
+    chars:
+      - {img: chars/adam_terli.png, side: left, height: 0.50}
+    text: "Ama elbiselerim içeride,\npeştamalla kaçtım"
+
+  # 4) TERS KÖŞE — B, aynı kutu, şok yüzü: imkânsızlık
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.3
+    chars:
+      - {img: chars/polis_sok.png, side: right, height: 0.50}
+    text: "Bekle, kilitli hamama\nnasıl girdin?"
+
+  # 5-6) KANIT — boş hamamın musluğu ve kurnası (temsilî), son kare: Emniyet açıklamasıyla 2007 gazete kupürü (canlandırma)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Eskişehir'de hamamdan peştamalla kaçtığı söylenen adam
+  Olayın tamamı sabit yorumda 👇
+hashtags: [eskisehir, sehirefsanesi, cin]
+
+pinned_comment: |
+  Eskişehir cinli hamam söylentisi, 2007 yılının başında Eskişehir'de Hamamyolu Caddesi çevresindeki bir hamamla ilgili kulaktan kulağa yayılan ve cinlerle ilgili anlatılan bir şehir efsanesidir.
+
+  Anlatılana göre bir adam hamamda içeridekilerin ayaklarının ters olduğunu görür ve sabaha karşı peştamalıyla sokağa fırlar. Bir sürümde polis önce adamı ciddiye almaz; hamama dönüldüğünde kapı kilitli çıkar, adamın elbiseleri ise içeridedir. Söylentiye göre olay yerine giden polisler de aynı görüntüyle karşılaşıp ürpermiştir.
+
+  Resmî açıklamalar geldiğinde söylenti yaklaşık 15 gündür kulaktan kulağa yayılıyordu. Hamamın işletmecisi işlerinin yarı yarıya azaldığını söyledi. Mart 2007'nin başında Eskişehir Müftüsü Abdullah Ceyhan, Çarşı Camii'nde verdiği vaazda söylentinin gerçekle ilgisi olmadığını belirtti ve "Bunun altında rekabet gibi konular aramak gerekir" dedi.
+
+  Eskişehir Emniyet Müdürlüğü de yazılı açıklama yaptı: İlde hiçbir hamamda böyle bir olay yaşanmamış, Emniyet'e bu konuda bir başvuru da yapılmamıştı. Söylentiyi kimin başlattığı bilinmiyor.
+
+  Videodaki diyalog canlandırmadır; adam ve polis kurgu karakterlerdir. Görseller temsilî hamam görselleridir; haberdeki hamam değildir. Son kare canlandırmadır; söz Hürriyet, 3 Mart 2007 haberinden.
+
+  Siz bu söylentiyi o yıllarda duymuş muydunuz?
+
+credits: "Safranbolu Cinci Hamamı 2014 (Hamdigumus, CC0; çatıdaki TV anteni ve iki paratoner direği rötuşla silindi, kare kırpıldı, renk 0,70, bulanıklaştırıldı), Wikimedia Commons; Turkish bath-Kurna 2 (Pivox, 2018, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kırpıldı, kontrast ayarlandı), Wikimedia Commons; kupürdeki fotoğraf: İSTANBUL ÜNİVERSİTESİ HAMAM MÜZESİ (Derin aldanmaz, CC0; kırpıldı, siyah-beyaz rastere çevrildi), Wikimedia Commons. Son kare canlandırmadır; söz Hürriyet, 3 Mart 2007 haberinden."
+ai_generated: false
+
+ek_maddeler:
+  - "**ÖNİZLEME, YAYINLANMAZ:** paket özel depoda test/ altında; yayın zamanını hesap sahibi ayarlar."
+  - "**Video bir canlandırmadır:** adam ve polis kurgu karakterlerdir, gerçek kimseyi temsil etmez; ekrandaki sözler belgeli alıntı değildir. Belgeli olan (Hürriyet, Radikal, DHA, AA; 3 Mart 2007): açıklamalar geldiğinde söylentinin yaklaşık 15 gündür yayıldığı, Emniyet açıklamasına göre söylentide sabaha karşı cin görüldüğü ve olay yerine giden polislerin de aynı görüntüyle ürperdiğinin anlatıldığı; Emniyet'in böyle bir olay ve başvuru olmadığını açıkladığı; müftünün vaazı. Ayakları ters kişiler, peştamalla kaçış, kilitli kapı ve içerideki elbiseler söylentinin anlatılarındandır (Gazete Duvar, ParanormalHaber, Ekşi Sözlük), haber değildir."
+  - "**Görseller temsilîdir:** arka plan Safranbolu'daki tarihî Cinci Hamamı'nın kubbeleri, ilk kanıt adı belirtilmemiş bir hamamın musluğu ve kurnası, kupürdeki foto İstanbul Üniversitesi Hamam Müzesi'nin cephesi; haberdeki Eskişehir hamamı bir termal otelin içindedir ve gösterilmez. Hamamın ve işletmecinin adı bilerek videoda ve yayın metinlerinde yok (yalnız iki kaynak URL'sinin adresinde geçer) (söylenti işletmeye zarar vermişti; yeniden hedef göstermeyelim). Yorumlarda ad yazılırsa yanıt verme."
+  - "**Son kare canlandırmadır:** kendi tasarımımız 2007 gazete kupürü; manşet Hürriyet'in 3 Mart 2007 başlığı (Eskişehir'de \"cinli hamam\" vaazı, tırnaklarıyla), spot Emniyet açıklamasından birebir tam cümle; gazetenin logosu, adı ve düzeni yok, yayın adı yalnız alttaki 'Kaynak:' satırında."
+  - "Yorum yönetimi: 'Aslında rakip hamamların uydurmasıydı' denirse: müftü 'rekabet gibi konular aramak gerekir' dedi, kanıtlanmadı. 'Adam sonra öldü' denirse: hiçbir haberde yok, dedikodu. 'Polisler de gördü' denirse: Emniyet'e göre başvuru bile yapılmadı. Cin inancıyla alay eden yorumlara katılma."
+  - "İlk yorum önerisi: \"Kapı kilitliydi, elbiseleri içerideydi... Siz o sabah o hamama girer miydiniz?\""
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: 2007 şehir söylentisi; adam anonim, çocuk yok, söylentiden doğan dava bulunamadı, güncel değil. Hamam bugün çalışıyor ve işletmeci yaşıyor: adları videoda ve yayın metinlerinde yok."
+  - "Söylenti, ~15 gün, müftü vaazı (Çarşı Camii, 'rekabet gibi konular aramak gerekir'), Emniyet yazılı açıklaması (polislerin de aynı görüntülerle ürperdiği söylentisi; böyle bir olay ve müracaat yok), işletmecinin 'işlerim yarı yarıya azaldı' sözü: Hürriyet, 'Eskişehir'de cinli hamam vaazı', 3 Mart 2007: https://www.hurriyet.com.tr/gundem/eskisehir-de-cinli-hamam-vaazi-6051638"
+  - "Aynı çekirdek (15 gün, Emniyet açıklaması, müftü sözü): Radikal, 'Emniyet: Cin min görmedik!', 3 Mart 2007: http://m.radikal.com.tr/turkiye/emniyet_cin_min_gormedik-807473 ; Hürriyet/DHA, 'Eskişehirliler cin söylentilerine inanmadı', 3 Mart 2007: https://www.hurriyet.com.tr/gundem/eskisehirliler-cin-soylentilerine-inanmadi-6054422"
+  - "Emniyet açıklamasının AA metni ('sabaha karşı bir vatandaş tarafından cin görüldüğü... Çarşı Polis Merkezi Amirliğine müracaat ettiği'): https://www.frmtr.com/garip-olaylar/847161-eskisehiri-karistiran-cin-dedikodusu.html ; Haber7/AA: https://www.haber7.com/guncel/haber/224336-eskisehirde-cin-isinin-altindan-otel-cikti"
+  - "Söylentinin anlatıları (ayakları ters/çarpık, peştamalla kaçış, hamamın kilitli/kapalı çıkması, eşyaların içeride olması; 'anlatılana göre'): Gazete Duvar: https://www.gazeteduvar.com.tr/eskisehir-cossun-es-esler-duysun-makale-1669174 ; ParanormalHaber: https://paranormalhaber.com/eskisehir-has-hamam-olayi/ ; Ekşi Sözlük: https://eksisozluk.com/has-hamam--769073 ; Korku101: https://korku101.com/folklorik-korku/sehir-efsaneleri/eskisehir-cinli-hamam/"
+  - "GÖRSEL img/arka.jpg — 'Safranbolu Cinci Hamamı 2014.jpg', Hamdigumus, 2014, CC0: https://commons.wikimedia.org/wiki/File:Safranbolu_Cinci_Hamam%C4%B1_2014.jpg. Değişiklik: iki kubbe arasındaki çatı TV anteni ve sol kubbedeki iki ince paratoner direği OpenCV inpaint ile silindi, kare kırpım, 1080'e büyütme, renk 0,70; renderer bulanıklaştırır. Temsilî (Safranbolu)."
+  - "GÖRSEL img/kanit_1.jpg — 'Turkish bath-Kurna 2.jpg', Pivox, 2018, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Turkish_bath-Kurna_2.jpg. Değişiklik: yatay kırpım, 1080 genişliğe küçültme, hafif otomatik kontrast. Temsilî (hamamın adı Commons'ta yok)."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — kendi tasarımımız kupür (kupur.py). Kupürdeki fotoğraf: 'İSTANBUL ÜNİVERSİTESİ HAMAM MÜZESİ.jpg', Derin aldanmaz, CC0: https://commons.wikimedia.org/wiki/File:%C4%B0STANBUL_%C3%9CN%C4%B0VERS%C4%B0TES%C4%B0_HAMAM_M%C3%9CZES%C4%B0.jpg (kırpım, siyah-beyaz raster). Manşet (tırnaklarıyla) ve söz Hürriyet, 3 Mart 2007 haberinden birebir."
