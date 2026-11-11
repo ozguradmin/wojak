@@ -1,0 +1,105 @@
+# The Great Seal Bug ("The Thing"), Moscow 1945-1952. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (NSA National Cryptologic Museum, CIA "Compromise of the Great Seal", NSA/DSS "The Thing and I" 2018, State Dept Office of the Historian, Atlas Obscura, Mental Floss).
+# CANLANDIRMA: A = Sovyet heyet temsilcisi rolu, B = ABD buyukelcisi rolu (kurgu; gercek kisi temsil etmez, replikler uydurmadir).
+# Karakterler: A = wojakland 'Soviet Cap Wojak', B = wojakland 'Grey Suit Wojak'; ters kose varyanti chars/b_sok.png (ayni taban, ayni kutu).
+id: en-great-seal-bug
+kanal: en  # Wojak Past Files
+title: "The Great Seal gift that hung in Moscow for seven years"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Soviet schoolchildren gave\nyou a US Great Seal"
+
+  # 2) B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Lovely, it goes in my study"
+
+  # 3) A (sol): tohum = pil/kablo yok
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "No batteries, no wires,\nno upkeep"
+
+  - type: card
+    duration: 1.5
+    text: "Seven years later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.0
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, how is it listening\nwithout batteries?"
+
+  # 6) KANIT 1 — kapali muhur (NSA muze fotografi)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: acik cihaz (muze)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The Great Seal gift that hung in Moscow for seven years
+  The full story is in the pinned comment 👇
+
+hashtags: [history, coldwar, spies]
+
+pinned_comment: |
+  The Great Seal Bug, nicknamed "The Thing," was a Soviet listening device hidden in a gift to the US ambassador in Moscow. It went undetected for about seven years.
+
+  On August 4, 1945, Soviet Young Pioneers presented a hand-carved wooden Great Seal of the United States to Ambassador W. Averell Harriman, as a gesture of friendship between wartime allies. It hung in the ambassador's study at Spaso House, the official residence.
+
+  Inside was a passive device with no battery and no wires. It worked only when a radio beam from outside energized it, which made it very hard to find. Leon Theremin, the inventor of the theremin instrument, is widely credited with designing it.
+
+  Three more ambassadors lived with the seal. In 1951 a British radio operator reportedly overheard voices from the embassy on a Soviet radio channel. In September 1952, during George Kennan's term, State Department technician Joseph Bezjian traced the voice to the carving.
+
+  On May 26, 1960, Ambassador Henry Cabot Lodge Jr. presented the bug to the UN Security Council as evidence of Soviet spying.
+
+  The wojak characters are fictional and their lines are dramatized.
+
+  Would you have hung it in your study?
+
+credits: "NSA Great Seal bug, by the National Security Agency (public domain; museum display; cropped); Great Seal bug - National Cryptologic Museum - DSC08049, by Daderot, 2013, CC0 (museum display; cropped); background: Spaso House (2019) 08 by shakko, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), cropped, a small modern sign retouched out, colour toned down, softened; all via Wikimedia Commons."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (a Soviet delegate and a US ambassador); the dialogue is invented and does not quote anyone. Documented: the 1945 gift, the passive device, about seven years on the wall, the September 1952 discovery."
+  - "**Images:** the two evidence photos show the National Cryptologic Museum's display of the Great Seal bug (the original's location is uncertain). The background is a 2019 photo of a Spaso House reception room, not the 1945 study."
+  - "Suggested first comment: the device had no power source of its own, so it only worked when a Soviet radio beam hit it."
+
+sources:
+  - "NSA National Cryptologic Museum, Cold War: Great Seal (Aug 4 1945 gift by Soviet schoolchildren, residential office, discovered 1952): https://www.nsa.gov/History/National-Cryptologic-Museum/Exhibits-Artifacts/Exhibit-View/article/2718563/cold-war-great-seal/"
+  - "CIA, Compromise of the Great Seal (1945 gift, 1960 UN Security Council presentation 26 May): https://www.cia.gov/stories/story/compromise-of-the-great-seal/"
+  - "NSA/DSS, The Thing and I, History Today Oct 2018 (Bezjian, dictation ruse, Kennan): https://www.nsa.gov/portals/75/documents/news-features/declassified-documents/history-today-articles/10%202018/04OCT2018%20The%20Thing%20and%20I.pdf"
+  - "State Dept Office of the Historian, chiefs of mission, Russia (Harriman, Smith, Kirk, Kennan tenures): https://history.state.gov/departmenthistory/people/chiefsofmission/russia"
+  - "Atlas Obscura, How a Gift from Schoolchildren Let the Soviets Spy on the U.S. for 7 Years (Spaso House study, passive device, Theremin): https://www.atlasobscura.com/articles/how-a-gift-from-schoolchildren-let-the-soviets-spy-on-the-us-for-7-years"
+  - "Mental Floss, The Time the Soviets Gave the U.S. a Hidden Spy Device (gesture of friendship, 7 years, British radio operator 1951, van): https://www.mentalfloss.com/article/584493/soviet-spies-bugged-united-states-seven-years"
+  - "Wikipedia, The Thing (listening device) (cross-check): https://en.wikipedia.org/wiki/The_Thing_(listening_device)"
+  - "GÖRSEL img/ev_1.jpg — 'NSA Great Seal bug.jpg', NSA, public domain (US government agency work): https://commons.wikimedia.org/wiki/File:NSA_Great_Seal_bug.jpg. Degisiklik: sikı kirpim, 1080x816"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Great Seal bug - National Cryptologic Museum - DSC08049.JPG', Daderot, CC0 (raw checked): https://commons.wikimedia.org/wiki/File:Great_Seal_bug_-_National_Cryptologic_Museum_-_DSC08049.JPG. Degisiklik: kirpim 1080x816"
+  - "GÖRSEL img/arka.jpg — 'Spaso House (2019) 08 by shakko.jpg', Shakko, CC BY-SA 4.0 (raw checked): https://commons.wikimedia.org/wiki/File:Spaso_House_(2019)_08_by_shakko.jpg. Degisiklik: kare kirpim, kucuk modern tabela silindi, renk 0,62, parlaklik 1,02, blur"

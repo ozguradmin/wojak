@@ -103,6 +103,10 @@
   "faces": "right",
   "file": "assets/kit/klasik/mutlu.png"
  },
+ "1ccfa39d1acf92c07515c65b88bc649cb766b86f": {
+  "faces": "right",
+  "file": "episodes/en-great-seal-bug/chars/b_sakin.png"
+ },
  "1d7b2a2adf43ed34ccee4e0440db65d4c1999e21": {
   "faces": "right",
   "file": "episodes\\midas-mezari-altin\\chars\\madenci_sok.png"
@@ -322,6 +326,10 @@
  "4c5e8c01a94c322854ffb777e43769933e2eb8cc": {
   "faces": "right",
   "file": "episodes/dumlupinar-denizaltisi-1953/chars/denizci_sakin.png"
+ },
+ "4caddae08abb83b3e14419a7a76eacdfe11e529e": {
+  "faces": "right",
+  "file": "episodes/en-great-seal-bug/chars/a_sakin.png"
  },
  "4d238fe6c3a86ddf7f7374203351d261795c4e4a": {
   "faces": "right",
@@ -1074,6 +1082,10 @@
  "ede385aef7cf2374126f33909203e5dc53c1987f": {
   "faces": "right",
   "file": "episodes/en-bat-bomb/chars/a_sok.png"
+ },
+ "f141b589e21669b18b01e7d596df223a81e9b100": {
+  "faces": "right",
+  "file": "episodes/en-great-seal-bug/chars/b_sok.png"
  },
  "f1f07d81f8931c4a6d0f11ba300195f66c22e848": {
   "faces": "right",
