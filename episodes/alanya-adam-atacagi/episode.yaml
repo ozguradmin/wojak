@@ -1,0 +1,107 @@
+# Alanya Kalesi'ndeki Adam Atacağı efsanesi (Antalya). Araştırma notu: /tmp/arastirma/olgular.md (repoya girmez).
+# Damar 1 (Türkiye'de gösterilebilir yer + ürkütücü efsane). Alt tür: kale/uçurum infaz efsanesi (önceki 1. damar:
+# yeralti-camii-karakoy, yeraltı türbesi; aynı alt tür değil).
+# Altın dönem kalıbı C2fa: A ironik umut -> B kuralı ve tehlikeyi söyler -> A geçiştirir -> A aynı kutuda yüz değişir -> 2 kanıt.
+# AYNI YER, AYNI AN: İç Kale'nin denize bakan surları.
+#   A (hep solda): adsız mahkûm (kurgu). B (hep sağda): adsız kale askeri (kurgu). Gerçek kimseyi temsil etmezler.
+# Olgu sınırları (olgular.md):
+#   - Efsane: mahkûma üç taş verilir, biri yamaca takılmadan denize ulaşırsa affedilir, ulaşmazsa uçurumdan atılır
+#     (Vikipedi/Hoted zinciri; Türkiye Turizm Ansiklopedisi; Kültür Portalı aktarımı). Sonun farklı anlatımları var
+#     (çuval, mancınık, sarnıç): videoda ortak payda "uçurumdan atılırsın".
+#   - "İmkânsız" kaynakta yok; "çok zor" (Hoted: hava akımı ve yer çekimi) ve "kayalara düşerse suçlu" (VisitAlanya).
+#     S4 bu mahkûmun taşının denize ulaşmadığını sorar; genel bir imkânsızlık iddiası yok.
+#   - Dönem: efsane Roma (Bakanlık Kültür Portalı, Türkiye Turizm Ansiklopedisi) ya da Bizans (Hoted, Petit Futé)
+#     dönemine bağlanır; ekranda dönem yok. İdamın gerçekten yapıldığına dair belge yok: metinde "anlatılana göre".
+#   - Görseller Adam Atacağı'nın kendisini değil, kale yarımadasının uçurumunu ve İç Kale'den Cilvarda yönündeki kayalık yamacı gösterir.
+# Karakterler: chars/uret.py. Görseller: gorsel.py.
+id: alanya-adam-atacagi
+title: "Alanya Kalesi'nde idam mahkûmuna üç taş verilirmiş"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (mahkûm, sol): taş, deniz, idamdan af
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/mahkum_sakin.png, side: left, height: 0.50}
+    text: "Bu taşı denize atarsam\nidamdan kurtulacak mıyım?"
+
+  # 2) B (asker, sağ): kural ve tehlike (üç taş; olmazsa uçurumdan atılır)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/asker.png, side: right, height: 0.50}
+    text: "Üç taşın var, olmazsa\nuçurumdan atılırsın"
+
+  # 3) A: geçiştirir (deniz aşağıda görünüyor); tohum: "aşağıda"
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/mahkum_sakin.png, side: left, height: 0.50}
+    text: "Bir şey olmaz,\ndeniz hemen aşağıda"
+
+  # 4) TERS KÖŞE — A, aynı kutu, şok yüzü; cevabı son kare: uçurumla deniz arasındaki kayalık yamaç
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/mahkum_sok.png, side: left, height: 0.50}
+    text: "Bekle, taş neden\ndenize ulaşmıyor?"
+
+  # 5-6) KANIT — kale yarımadasının denize inen uçurumu (nerede), son kare: İç Kale surunun altındaki uçurum, basamaklı kayalık yamaç ve dipteki kaya burnu (cevap)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Alanya Kalesi'nde idam mahkûmuna üç taş verilirmiş
+  Olayın tamamı sabit yorumda 👇
+hashtags: [alanya, alanyakalesi, efsane]
+
+pinned_comment: |
+  Adam Atacağı efsanesi, Antalya'nın Alanya ilçesindeki Alanya Kalesi'nde, ölüme mahkûm edilenlere üç taş verildiği ve taşlardan biri denize ulaşırsa cezanın affedildiği anlatılan bir halk anlatısıdır.
+
+  Anlatılana göre Roma ya da Bizans döneminde ölüme mahkûm edilenler kalenin denize bakan uçurumuna getirilirdi. Mahkûmun eline üç taş verilirdi. Taşlardan biri yamaca takılmadan denize ulaşırsa cezası affedilir, ulaşmazsa kendisi uçurumdan aşağı atılırdı. Taşın denize ulaşmasının, aşağıdaki kayalık yamaç ve hava akımları yüzünden çok zor olduğu anlatılır. Efsanenin sonu kaynaklarda farklı aktarılır: bazı anlatımlarda mahkûm bir çuvala konularak atılır, bazılarında mancınıkla denize fırlatılır, bazılarında ise sarnıca atılır.
+
+  Bizans döneminde Kalonoros diye anılan kale, 1221'de Anadolu Selçuklu Sultanı I. Alâeddin Keykubad tarafından alınmış, şehir Alâiye adını almıştı. Bugün Adam Atacağı diye anılan yer, kalenin denizden yaklaşık 250 metre yükseklikteki İç Kale bölümünde, uçurumun kenarındadır; resmî kayıtlarda 13. yüzyıldan kalma bir Selçuklu su sarnıcıdır.
+
+  Burada gerçekten idam yapıldığına dair bir belge gösterilmemiştir; hikâye halk anlatısı olarak yaşar. Videodaki kareler kale yarımadasının uçurumlarını ve dibindeki kayalıkları gösterir; Adam Atacağı'nın tam altı değildir.
+
+  Sence o üç taştan biri denize ulaşabilir miydi?
+
+credits: "Walls of the Citadel of Alanya Castle (Julian Lupyan, CC0; kare kırpıldı, küçük bilgi tabelası taş dokusuyla örtüldü, renk 0,35, parlaklık 1,05, bulanıklaştırıldı), Wikimedia Commons; Cliff - Alanya - panoramio (Tanya Dedyukhina, CC BY 3.0 https://creativecommons.org/licenses/by/3.0/; kırpıldı, büyütüldü), Wikimedia Commons; Alanya Castle Cape Cilvarda View from Citadel 7914 (Dosseman, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kırpıldı, parlaklık 1,12), Wikimedia Commons"
+ai_generated: false
+
+ek_maddeler:
+  - "**Video bir canlandırmadır:** karakterler kurgudur; mahkûm ve asker gerçek kimseyi temsil etmez. Ekrandaki sözler belgeli alıntı değildir. Anlatılan efsanedir: üç taş, biri denize ulaşırsa af, ulaşmazsa uçurumdan atılma (Vikipedi/Hoted; Türkiye Turizm Ansiklopedisi; Kültür Portalı aktarımı). İdamın gerçekten yapıldığına dair belge yoktur; metinde 'anlatılana göre' diye geçer."
+  - "Asker çizimi konik miğferli, pullu zırh başlıklı genel bir ortaçağ askeridir; efsane Roma ya da Bizans dönemine bağlanır, kostüm birebir dönem rekonstrüksiyonu değildir."
+  - "Kanıt kareleri Adam Atacağı'nın kendisi değildir: ilki kale yarımadasının denize inen uçurumu (tepede surlar), son kare Commons başlığına göre İç Kale'den (Citadel) Cilvarda Burnu yönüne bakış: sur, altındaki kayalık yamaç ve dipteki kayalar (Commons'ta Adam Atacağı fotoğrafı bulunamadı)."
+  - "Yorum yönetimi: 'Ben oradan taş attım, denize ulaştı' yorumları gelebilir; efsane 'çok zor' der, imkânsız demez. Uçurumdan taş atmayı teşvik eden yorumlara katılma (aşağıdakiler için tehlikeli)."
+  - "İlk yorum önerisi: \"Üç taş, bir uçurum ve aşağıda kayalar... Siz olsanız taşı nasıl atardınız?\""
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: Roma/Bizans dönemine bağlanan halk efsanesi; son 10 yılda ölmüş/yaşayan özel kişi, çocuk, süren dava, güncel olay yok."
+  - "Efsane (üç taş, yamaca takılmadan denize ulaşırsa af, aksi halde çuvala konup uçurumdan atılma); Adam Atacağı uçurumun üstündeki sarnıç: Vikipedi 'İçkale Müzesi': https://tr.wikipedia.org/wiki/%C4%B0%C3%A7kale_M%C3%BCzesi ; ALTSO/HOTED Alanya tarihi yerler (Bizans devri, hava akımı ve yer çekimi nedeniyle çok zor): https://hotedalanya.org.tr/hoted/alanya-tatihi-yerler-49/"
+  - "Efsane Roma dönemine bağlanır, eline üç taş verilip birini denize ulaştırması istenir: Türkiye Turizm Ansiklopedisi 'Alanya Kalesi': https://turkiyeturizmansiklopedisi.com/alanya-kalesi ; Kültür Portalı 'Adam Atacağı Efsanesi' (aktarım: Gezimanya): https://www.kulturportali.gov.tr/turkiye/antalya/kulturatlasi/adam-atacagi-efsanesi , https://gezimanya.com/alanya/gezilecek-yerler/alanya-kalesi-ve-surlar"
+  - "Taş kayalara düşerse suçlu sayılır: VisitAlanya: https://listeo.visitalanya.com/listing/the-alanya-castle-museum/ ; idam belgesi yok, Rehberler Odası aktarımı (~240 m, rüzgâr, hava akımı): Antalya Hürses: https://www.antalyahurses.com/antalyada-mahkumlara-3-tas-veriliyordu-basaramayanin-sonu-kotuydu/560981"
+  - "Adam Atacağı İç Kale'de; 13. yy Selçuklu su sarnıcı, 15 m derin, 1999 tescil: Antalya Kültür Envanteri (T.C. Antalya Valiliği): https://www.antalyakulturenvanteri.com/adam-atacagi/ ; İç Kale denizden 250 m, surlarda Ehmedek, İçkale, Adam Atacağı: Antalya Valiliği PDF: https://www.antalya.gov.tr/kurumlar/antalya.gov.tr/Site/sehir_kartlari/antik_kentler/alanya_muze_bagli/alanya_kale_anit.pdf"
+  - "1221 Alâeddin Keykubad, Kalonoros -> Alâiye; denizden 250 m: TDV İslâm Ansiklopedisi 'Alanya': https://islamansiklopedisi.org.tr/alanya ; ALKÜ 'Alaaddin Keykubat kimdir': https://www.alanya.edu.tr/alku/kurumsal/alaaddin-keykubat-kimdir/"
+  - "GÖRSEL img/arka.jpg — 'Walls of the Citadel of Alanya Castle.jpg', Julian Lupyan, 2024, CC0: https://commons.wikimedia.org/wiki/File:Walls_of_the_Citadel_of_Alanya_Castle.jpg. Değişiklik: sol kare kırpım (deniz payı az), 4. mazgaldaki küçük modern bilgi tabelası aynı mazgalın taş dokusuyla örtüldü, renk 0,35, parlaklık 1,05; renderer bulanıklaştırır."
+  - "GÖRSEL img/kanit_1.jpg — 'Cliff - Alanya - panoramio.jpg', Tanya Dedyukhina, 2009, CC BY 3.0: https://commons.wikimedia.org/wiki/File:Cliff_-_Alanya_-_panoramio.jpg. Değişiklik: kırpım (sağdaki otel/evler ve tepedeki anten dışarıda), 1,32x büyütme."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Alanya Castle Cape Cilvarda View from Citadel 7914.jpg', Dosseman, 2013, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Alanya_Castle_Cape_Cilvarda_View_from_Citadel_7914.jpg. Değişiklik: kırpım (gri gökyüzünün çoğu dışarıda), parlaklık 1,12."

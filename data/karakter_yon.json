@@ -19,6 +19,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_ciddi.png"
  },
+ "01840a05d448c48555a561ec6738d28b7dcbf03a": {
+  "faces": "left",
+  "file": "episodes/alanya-adam-atacagi/chars/asker.png"
+ },
  "039bcbe86a55ca803781bf5521013c408f219eec": {
   "faces": "right",
   "file": "episodes/piri-reis-haritasi-1929/chars/b_bilgin.png"
@@ -919,6 +923,10 @@
   "faces": "right",
   "file": "episodes/piri-reis-haritasi-1929/chars/b_bilgin_sok.png"
  },
+ "ccf6c4381b7a2aa25b0cc9c133ef6cc1f9c8fee4": {
+  "faces": "right",
+  "file": "episodes/alanya-adam-atacagi/chars/mahkum_sok.png"
+ },
  "cd14514ac357a09199333d8aeec627c9334dd254": {
   "faces": "front",
   "file": "episodes/en-d-b-cooper/chars/b_hemsire.png"
@@ -1010,6 +1018,10 @@
  "e4164dd5c77428d03dfb87678bbee51bab7dd75c": {
   "faces": "right",
   "file": "episodes\\karun-hazinesi-bros\\chars\\mudur_sakin.png"
+ },
+ "e44f81308e58d76cdc5eec20d456a9d32288ead6": {
+  "faces": "right",
+  "file": "episodes/alanya-adam-atacagi/chars/mahkum_sakin.png"
  },
  "e4ae396f61d5e195c61a3e70d8d5576e57530461": {
   "faces": "front",
