@@ -31,6 +31,12 @@ from . import config, denetim, episode, pack, render
 
 def _summary(ep: episode.Episode) -> None:
     print(f"{ep.id}: {ep.duration:.1f} sn, {len(ep.scenes)} sahne")
+    if ep.music:
+        try:
+            yer = ep.music.file.resolve().relative_to(config.MUSIC.resolve())
+        except ValueError:
+            yer = ep.music.file
+        print(f"  müzik: {yer}" + (f"  (music: {ep.music.ad})" if ep.music.ad else ""))
     t = 0.0
     for i, s in enumerate(ep.scenes, 1):
         txt = (s.text or s.banner or ", ".join(p.name for p in s.images) or "").replace("\n", " ")

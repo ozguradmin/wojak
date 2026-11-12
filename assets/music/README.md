@@ -1,9 +1,44 @@
 # Müzik
 
+## Hava kütüphanesi (12.11.2026): `hava/`, bize ait
+
+Hesap sahibi: "sürekli aynı müzik sıkıyor". Konuya göre beş hava, her birinde iki parça. Hangi konuya hangisi:
+`docs/KISA_REEL_EL_KITABI.md` §6 tablosu. `music: gizem` o havanın parçalarından birini bölüm kimliğine göre sabit seçer,
+`music: gizem_b` o parçayı (`wojak/episode.py` `muzik_dosyasi`).
+
+Üretim `python tools/hava_muzik.py --hepsi` (besteler `tools/hava_besteler.py`, nota nota kod). Her çalgı ayrı MIDI
+(`mido`), FluidSynth ile MuseScore General SF2 (MIT; yaylılar VSCO-2 CE, CC0; piyano kamu malı Splendid Grand) çalınır, numpy
+ile EQ ve ortak sentetik yankı, 14,0 sn kusursuz döngü (yankı kuyruğu başa sarılır), −14 LUFS, gerçek tepe ≤ −1,5 dBTP, AAC
+192k. Kayıt, örnek ya da başka bir parçanın sesi yok; melodi ve armoni özgün. Her parça Gölge'nin açılışındaki "5-4 | 3"
+iç çekişini küçük bir selam olarak taşır (`masal_b`'de Lidya renkli Do-Si | La). Ölçümler, piyano rulosu ve spektrogram
+`out/hava/` altında; `--dinleme` hepsini numaralı kartlarla tek videoda dinletir (`out/hava/hava_dinleme.mp4`).
+Kurulum: `apt-get install fluidsynth musescore-general-soundfont-lossless` ve `pip install mido soundfile scipy matplotlib`.
+
+| Dosya | Ad | Ton, ölçü, tempo | Çalgılar |
+|---|---|---|---|
+| `gizem_a.m4a` | Saat | Re minör, 4/4, 137 | tik-tak çelesta, klarnet, pizzicato bas, tremolo, timpani |
+| `gizem_b.m4a` | Dehliz | Mi minör, 6/8, 206 (sekizlik) | yumuşak piyano arpeji, yalnız keman, konser davulu, uzak çan |
+| `merak_a.m4a` | Keşif | Sol majör, 4/4, 120 | marimba, glockenspiel, zıplayan pizzicato, shaker, üçgen |
+| `merak_b.m4a` | Buluş | Re majör, 6/8, 257 (sekizlik) | flüt, klarnet, arp, pizzicato bas, glockenspiel, tef |
+| `ironik_a.m4a` | Sinsi | Re minör, 4/4, 120 | parmak ucunda fagot, pizzicato, glockenspiel göz kırpması, tahta blok |
+| `ironik_b.m4a` | Ters Köşe | Fa majör, 3/4, 154 | klarnet, tuba "um-pa-pa", pizzicato, glockenspiel |
+| `destansi_a.m4a` | Zafer | Re minör, 4/4, 137 | kornolar (ikinci yarıda trompetler), 3+3+2 yaylı ostinato, timpani, taiko |
+| `destansi_b.m4a` | Onur | Sol minör, 4/4, 69 | ağır korno, yaylılar, kontrbas, uzak trampet, timpani |
+| `masal_a.m4a` | Kule | Mi minör, 3/4, 116 | flüt + çelesta, arp valsi, yaylılar |
+| `masal_b.m4a` | Rüya | Fa Lidya, 6/8, 206 (sekizlik) | çelesta, glockenspiel, arp, "u" korosu, viyolonsel |
+
+## Eski klasik kanal sesi: `music: klasik` (12.11.2026)
+
+Altın dönemin "orijinal ses"i (G1, Do minör vals, 13,75 sn; STIL §10). Hak sahibi belirsiz olduğu için açık repoya girmez:
+özel depoda (`wojak-ozel/kanal_orijinal_ses.m4a`) durur, `tools/hazirla.sh` her oturumda `ozel/` altına kopyalar. 22.10'da
+YouTube ihlali sonrası bırakılmıştı; 12.11'de hesap sahibi kısıtlanan videoları tek tek izledi, hiçbirinde bu ses yoktu:
+"hep olmasa da yine kullanabiliriz". Kural: `kanal` yerine arada bir (son 7 günde en çok 2), yalnız tr kanalı.
+`music: orijinal` aynı dosyadır.
+
 ## Kanalın imza müziği (22.10.2026): `imza_v2_golge.m4a`, bize ait
 
-`music: kanal` artık bunu çalar (`wojak/config.py` MUSIC_IMZA). Eski orijinal ses (`ozel/`, YouTube ihlal riski) yalnız
-`music: orijinal` ile seçilir. Ölçüme dayalı ikinci çalışmanın ürünü (arastirma/imza_muzik/, DURUM.md): özgün melodiler,
+`music: kanal` bunu çalar (`wojak/config.py` MUSIC_IMZA); hüzünlü konuların ve kararsız kalınca varsayılanıdır. Eski
+orijinal ses `music: klasik` (yukarıda). Ölçüme dayalı ikinci çalışmanın ürünü (arastirma/imza_muzik/, DURUM.md): özgün melodiler,
 orijinalden ses kullanılmadı; eleştirmen puanları 7-7,5/10. Hesap sahibi dördünü "hepsi benzer" buldu: aynı ailedir,
 videoya göre dönüşümlü kullanılabilir (`music: {file: imza_v2_ic_cekis_b.m4a}` gibi).
 

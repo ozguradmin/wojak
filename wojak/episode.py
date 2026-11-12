@@ -5,6 +5,7 @@
 
 from __future__ import annotations
 
+import zlib
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -74,6 +75,7 @@ class Music:
     fade_in: float = 0.0
     fade_out: float = 0.0        # orijinallerde parça kesilerek biter
     loop: bool = False           # orijinallerde döngü yok
+    ad: str | None = None        # kısa ad (kanal, klasik, gizem...): muzik_dosyasi(); dosya yoluysa None
 
 
 @dataclass
@@ -107,6 +109,42 @@ class Episode:
     @property
     def duration(self) -> float:
         return sum(s.duration for s in self.scenes)
+
+
+_TR_ASCII = str.maketrans("ıİüÜşŞçÇöÖğĞ", "iIuUsScCoOgG")
+
+
+def _muzik_adi(ad: str) -> str:
+    """Kısa adlar Türkçe harfle de yazılabilir: destansı -> destansi, hüzün -> huzun."""
+    sade = ad.strip().translate(_TR_ASCII).lower()
+    return sade if sade in ("kanal", "imza", "huzun", "klasik", "orijinal", *config.HAVALAR) else ad
+
+
+def muzik_dosyasi(ad: str, bolum_id: str) -> Path | None:
+    """`music:` kısa adını dosyaya çevirir; kısa ad değilse None (o zaman dosya yolu olarak aranır). 12.11.2026:
+
+    kanal | imza | huzun       -> imza vals Gölge (hüzün, trajedi; 22.10'dan beri varsayılan)
+    klasik | orijinal          -> eski kanal sesi (özel depodan, tools/hazirla.sh kopyalar); yoksa imza ve `check` uyarır
+    gizem | merak | ironik | destansi | masal
+                               -> o havanın parçalarından biri, bölüm kimliğine göre SABİT seçilir (yeniden render aynı
+                                  parçayı verir; bölümden bölüme parça değişir)
+    gizem_a, merak_b ...       -> o parça (assets/music/hava/<ad>.m4a)
+    """
+    imza = config.MUSIC_IMZA if config.MUSIC_IMZA.exists() else config.MUSIC_FALLBACK
+    if ad in ("kanal", "imza", "huzun"):
+        return imza
+    if ad in ("klasik", "orijinal"):
+        return config.MUSIC_CHANNEL if config.MUSIC_CHANNEL.exists() else imza
+    if ad in config.HAVALAR:
+        secenek = sorted(config.MUSIC_HAVA.glob(f"{ad}_*.m4a"))
+        if not secenek:
+            raise EpisodeError(f"music: {ad}: {config.MUSIC_HAVA}/{ad}_*.m4a yok")
+        return secenek[zlib.crc32(bolum_id.encode("utf-8")) % len(secenek)]
+    if "/" not in ad and "." not in ad:
+        tam = config.MUSIC_HAVA / f"{ad}.m4a"
+        if tam.is_file():
+            return tam
+    return None
 
 
 def _resolve(base: Path, p: str | None, kind: str = "file") -> Path | None:
@@ -188,10 +226,10 @@ def load(path: str | Path) -> Episode:
         if isinstance(m, str):
             m = {"file": m}
         m = dict(m)
-        if m["file"] in ("kanal", "imza"):  # kanalın bize ait imza müziği (22.10)
-            m["file"] = str(config.MUSIC_IMZA if config.MUSIC_IMZA.exists() else config.MUSIC_FALLBACK)
-        elif m["file"] == "orijinal":  # eski orijinal ses (YouTube ihlal riski); yoksa yedek
-            m["file"] = str(config.MUSIC_CHANNEL if config.MUSIC_CHANNEL.exists() else config.MUSIC_FALLBACK)
+        ad = _muzik_adi(str(m["file"]))
+        kisa = muzik_dosyasi(ad, str(raw.get("id") or base.name))
+        if kisa is not None:
+            m["ad"], m["file"] = ad, str(kisa)
         m["file"] = _resolve(base, m["file"], "music")
         music = Music(**m)
     kanal = str(raw.get("kanal") or "tr")

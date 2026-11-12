@@ -74,6 +74,16 @@ else
   sert "font: $FONT_DEPO/$FONT yok"
 fi
 
+# 4b. Eski klasik kanal sesi (`music: klasik`, 12.11.2026). Kanal sesi açık repoya girmez; font gibi özel depodan gelir.
+#     Yoksa yalnız uyarı: `music: klasik` imzaya düşer ve `check` bunu söyler.
+KLASIK=kanal_orijinal_ses.m4a
+mkdir -p assets/music/ozel
+if [ -f "assets/music/ozel/$KLASIK" ] || cp "$FONT_DEPO/$KLASIK" assets/music/ozel/ >>"$LOG" 2>&1; then
+  ok "klasik ses: assets/music/ozel/$KLASIK"
+else
+  fail "klasik ses: $FONT_DEPO/$KLASIK yok; music: klasik imzaya düşer"
+fi
+
 # 5. Referans reel'ler (hakemlerin kıyas kaynağı): yalnız referans/ yoksa aç
 if ls referans/*.mp4 >/dev/null 2>&1; then
   ok "referans: zaten var ($(ls referans/*.mp4 | wc -l) mp4)"
@@ -96,11 +106,18 @@ else
   sert "referans: $FONT_DEPO/referans.7z açılamadı"
 fi
 
-# 6. İmza müziği (config.MUSIC_IMZA) yerinde mi
-if m=$(python -c "from wojak import config; p = config.MUSIC_IMZA; print(p.relative_to(config.ROOT)); raise SystemExit(0 if p.exists() else 1)" 2>>"$LOG"); then
+# 6. İmza müziği (config.MUSIC_IMZA) ve hava kütüphanesi (config.MUSIC_HAVA, her havada en az iki parça) yerinde mi
+if m=$(python - 2>>"$LOG" <<'PY2'
+from wojak import config
+eksik = [h for h in config.HAVALAR if len(list(config.MUSIC_HAVA.glob(f"{h}_*.m4a"))) < 2]
+print(f"{config.MUSIC_IMZA.relative_to(config.ROOT)} + {len(list(config.MUSIC_HAVA.glob('*.m4a')))} hava parçası"
+      + (f", eksik hava: {eksik}" if eksik else ""))
+raise SystemExit(0 if config.MUSIC_IMZA.exists() and not eksik else 1)
+PY2
+); then
   ok "müzik: $m"
 else
-  fail "müzik: config.MUSIC_IMZA yok ($m); music: kanal yedek sese düşer"
+  fail "müzik: $m (music: kanal yedek sese düşer ya da hava eksik)"
 fi
 
 # 7. Testler: yalnız özet satırı

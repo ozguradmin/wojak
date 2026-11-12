@@ -149,11 +149,20 @@ def stil(ep: Episode) -> list[str]:
         out.append("[stil] kanıt sahnesi yok (25/30 reel kanıtla biter; yoksa son replik güçlü bir ters köşe olmalı)")
     if ep.duration > config.MAX_DURATION + 0.05:
         out.append(f"[stil] toplam {ep.duration:.1f} sn; imza ses 13,75 sn, en fazla 14,0 sn")
+    adlar = "kanal | klasik | " + " | ".join(config.HAVALAR)
     if ep.music is None:
-        out.append("[stil] müzik yok; orijinallerin 27/30'u kanalın imza sesini kullanıyor (music: kanal)")
-    elif ep.music.file.resolve() not in (config.MUSIC_CHANNEL.resolve(), config.MUSIC_FALLBACK.resolve(),
-                                      *(p.resolve() for p in config.MUSIC_IMZA_VARYANT)):
-        out.append("[stil] imza ses dışında bir müzik (music: kanal önerilir)")
+        out.append(f"[stil] müzik yok; orijinallerin 27/30'u tek parça müzikle (music: {adlar})")
+    elif ep.music.ad in ("klasik", "orijinal") and ep.kanal != "tr":
+        out.append(f"[stil] music: {ep.music.ad} yalnız tr kanalında (eski Tarihsel Wojak sesi); en kanalı havalardan seçer")
+    elif ep.music.ad in ("klasik", "orijinal") and not config.MUSIC_CHANNEL.exists():
+        yol = config.MUSIC_CHANNEL
+        yol = yol.relative_to(config.ROOT) if yol.is_relative_to(config.ROOT) else yol
+        out.append(f"[stil] music: {ep.music.ad} istendi ama {yol} yok "
+                   "(bash tools/hazirla.sh <özel-depo> kopyalar); şimdilik imza çalıyor")
+    elif ep.music.file.resolve() not in {p.resolve() for p in (
+            config.MUSIC_CHANNEL, config.MUSIC_FALLBACK, *config.MUSIC_IMZA_VARYANT,
+            *config.MUSIC_HAVA.glob("*.m4a"))}:
+        out.append(f"[stil] kütüphane dışı müzik (music: {adlar}; docs/KISA_REEL_EL_KITABI.md müzik tablosu)")
     return out
 
 

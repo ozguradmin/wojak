@@ -31,6 +31,10 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
+- **12.11 Müzik:** "Sürekli aynı müzik sıkıyor, farklı müzikler de üretelim." Müzik artık **konuya göre** seçilir (§6
+  "Müzik" tablosu): imza vals `kanal` (hüzün), eski klasik ses `klasik` (arada bir, yalnız tr) ya da bize ait hava
+  kütüphanesi `gizem`, `merak`, `ironik`, `destansi`, `masal` (her havada iki parça). Eski klasik ses için: hesap sahibi
+  kısıtlanan YouTube videolarını tek tek izledi, hiçbirinde bu ses yoktu; "hep olmasa da yine kullanabiliriz".
 - **2.11 Onay yok:** "Neden onay adımı var, her şeyi onaylıyorum, paylaşsın." BEKLET yayını durdurmaz (§3); gündem paketi
   de doğrudan yayınlanır, bot yalnız yayından önce yasak haberi arar (§5 "Gündem"). Telegram onay düğmeleri kapatıldı.
 - **1.11 Gündem (tr):** "Son bir haftada olmuş, gündemdeki bir olayı yaparsak ilgi çeker mi?" Veri evet diyor (Instagram'da
@@ -59,8 +63,8 @@
   Lisans kuralları yalnız kanıt, arka plan ve kupür içindir.
 - **25.10 Bakış:** `faces:` yazılmaz; PNG'nin kendi yönü `yon` ile kaydedilir (§10). İki yayımlanmış reel'de karakter
   dışarı bakmıştı.
-- **22.10 Müzik:** her kısa reel aynı imza: `music: {file: kanal, volume: 0.197}` (bizim `imza_v2_golge.m4a`). `orijinal`
-  asla (YouTube riski). Havası çok farklı konuda yalnız aynı aileden varyant.
+- **22.10 Müzik (12.11'de genişledi, yukarıda):** imza `music: kanal` (bizim `imza_v2_golge.m4a`) hüzünlü konuların ve
+  kararsız kalınca varsayılanıdır.
 - **22-23.10 YouTube:** herkese açık yükleme, hikâye metni yorum olarak; bunu yayın botu yapar. Elle yükleme yok.
 - **21.10 Son kare:** telifli gazete sayfası kullanılmaz. Düz "alıntı kartı" (kâğıt + yazı + çizgi) hesap sahibinden
   **1/10** aldı (iki hakem 8/8 vermişti): son kare ya gerçek serbest belge ya da gerçek sanılacak kalitede kupür (§9).
@@ -276,7 +280,31 @@ yazacağın derste olayı ve kişileri anma.
   verir.
 - Kanıt tam genişlik (1080), y=960'a ortalı, 537-816 px yükseklik; kenarlık, bant, ok, ızgara, kolaj yok.
 - Filigran her karede (kart ve kanıt dahil); renderer koyar. Font Avenir Bold Italic (Poppins'e düşerse kanal değil).
-- Ses: tek parça imza müzik, ~−14 LUFS (gerçek tepe ≤ −1,5 dBTP; §2, 31.10), efekt yok, döngü yok.
+- Ses: tek parça müzik, konuya göre (aşağıdaki tablo), ~−14 LUFS (gerçek tepe ≤ −1,5 dBTP; §2, 31.10), efekt yok, döngü
+  yok.
+
+**Müzik: konuya göre seç (12.11).** Hepsi 14,0 sn ve bize ait (`klasik` hariç); render seviyeyi kendisi ayarlar.
+
+| `music:` | Hava | Parçalar | Konu |
+|---|---|---|---|
+| `kanal` | hüzün, trajedi | imza vals Gölge (Do minör, akordeon) | ölüm, facia, kayıp, ihanet, acı son; **kararsızsan bu** |
+| `klasik` | hüzün, ürperti | eski kanal valsi (altın dönem sesi) | `kanal` yerine arada bir: son 7 günde en çok 2, yalnız tr |
+| `gizem` | gizem, gerilim | `gizem_a` Saat: Re minör, tik-tak çelesta, klarnet · `gizem_b` Dehliz: Mi minör, yalnız keman, karanlık piyano | çözülmemiş gizem, kaybolma, söylenti, lanet, casusluk, faili meçhul, ürkütücü yer |
+| `merak` | merak, keşif | `merak_a` Keşif: Sol majör, marimba, zıplayan pizzicato · `merak_b` Buluş: Re majör, flüt, arp | buluş, icat, ilk, rekor, şaşırtıcı bilgi, arkeoloji, bilim |
+| `ironik` | ironik, hafif komik | `ironik_a` Sinsi: Re minör, parmak ucunda fagot · `ironik_b` Ters Köşe: Fa majör vals, klarnet, tuba | tuhaf olay, kimsenin ölmediği aksilik, bürokrasi, kandırmaca, kurnazlık |
+| `destansi` | destansı | `destansi_a` Zafer: Re minör, kornolar, davullar · `destansi_b` Onur: Sol minör, ağır korno, uzak trampet | `_a` zafer, kurtarma, direniş · `_b` anma, fedakârlık, onurlu ölüm |
+| `masal` | masalsı, efsane | `masal_a` Kule: Mi minör ninni-vals, flüt, çelesta · `masal_b` Rüya: Fa Lidya, çelesta, koro | efsane, mit, halk hikâyesi, kehanet, saray masalı |
+
+- Kısa ad (`music: gizem`) iki parçadan birini bölüm kimliğine göre **sabit** seçer: yeniden render aynı parçayı verir,
+  bölümler arasında çeşitlilik kendiliğinden gelir. Belirli parça gerekiyorsa tam adı yaz (`music: gizem_b`).
+  `destansi`'de ikisi farklıdır: anma ve ölüm için hep `destansi_b`, zafer ve kurtarma için `destansi_a`.
+- Hava konuyla çelişmez: ölümün olduğu facia `ironik` ya da `merak` olmaz. Ölüm varsa `kanal`, `klasik` ya da `destansi_b`.
+- `check` ilk satırda çalan parçayı yazar (`müzik: hava/gizem_b.m4a  (music: gizem)`); kütüphane dışı müzik `[stil]` verir.
+- `klasik`: ses özel depodan gelir (`bash tools/hazirla.sh`); yoksa `check` uyarır ve imza çalar. Son 7 günde kaç kez
+  kullanıldı: `git log --since=7.days -p -- 'episodes/*/episode.yaml' | grep -c '^+music:.*klasik'` (2 ise kullanma).
+  Hak sahibi belirsiz (STIL §10); kullanma kararı hesap sahibinin, BEKLET gerekmez. en kanalında yok.
+- Hakemler müziği yalnız bu tabloya göre değerlendirir: tabloya uyan seçim "imza değil" diye puan kırmaz, konuyla çelişen
+  hava MUST'tır.
 
 ## 7. Senaryo, başlık, hikâye metni
 
@@ -314,7 +342,7 @@ verir). Yabancı dilli son kare için "Videonun son karesi ... sayfasıdır" + T
 id: <id>                       # en: en-<id>
 # kanal: en                    # yalnız İngilizce kanal
 title: "<başlık>"
-music: {file: kanal, volume: 0.197}   # render −14 LUFS'a kendisi ayarlar (~−14,3); sonra ölç
+music: {file: kanal, volume: 0.197}   # konuya göre (§6): kanal | klasik | gizem | merak | ironik | destansi | masal
 scenes:
   - {type: dialog, duration: 3.0, bg: img/arka.jpg, blur: 1.7,
      chars: [{img: chars/a.png, side: left, height: 0.50}], text: "Kanca, olay anında"}
@@ -448,7 +476,7 @@ Olayın kendi nesnesi yoksa benzer dönem nesnesi olduğunu metinde ve `ek_madde
 yüz değişimi ≥ %0,40 · boy 0,42-0,55 · kostüm döneme uygun ya da kusur RAPOR'da.
 **Arka plan ve kanıt:** tek (en çok iki) renkli gerçek fotoğraf, modern öğe yok · kanıtlar 1080 genişlik, 537-816 px, ek
 yok · son kare sorunun cevabı, bir önceki bölümle aynı tür değil.
-**Ses, kapak:** imza müzik ~−14 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
+**Ses, kapak:** konuya uygun müzik (§6 tablosu; `check`'in ilk satırı) ~−14 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
 **Metinler:** başlık sonu söylemiyor · hikâye 150-250 kelime, soruyla biter · açıklama ≤ 2.200 karakter · `metinler/*.txt`
 sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum önerisi.
 **Olgu, lisans, mahremiyet:** her olgu ≥ 2 kaynak, çelişen sayı yuvarlandı ya da çıktı · her görselin lisansı ve değişikliği

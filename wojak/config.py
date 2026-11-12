@@ -50,9 +50,16 @@ TEXT_CENTER_RANGE = (0.32, 0.50)  # blok merkezinin kare içindeki izinli aralı
 MUSIC_CHANNEL = MUSIC / "ozel" / "kanal_orijinal_ses.m4a"
 MUSIC_FALLBACK = MUSIC / "imza_gece_vals.mp3"
 # 22.10.2026: kanalın yeni imza müziği BİZE AİT (tools/imza_muzik.py çalışması, arastirma/imza_muzik/). Eski orijinal ses
-# YouTube ihlal riski taşıdığı için `music: kanal` artık bunu çalar; eski ses yalnız `music: orijinal` ile seçilir.
+# YouTube ihlal riski taşıdığı için `music: kanal` artık bunu çalar; eski ses 12.11.2026'dan beri `music: klasik` (= orijinal).
 MUSIC_IMZA = MUSIC / "imza_v2_golge.m4a"
 MUSIC_IMZA_VARYANT = sorted(MUSIC.glob("imza_v2_*.m4a"))   # videoya göre dönüşümlü kullanılabilir
+# 12.11.2026: konuya göre HAVA müzikleri (hesap sahibi: "sürekli aynı müzik sıkıyor"). Hepsi bize ait (tools/hava_muzik.py
+# + tools/hava_besteler.py; MuseScore General SF2, MIT), 14,0 sn, -14 LUFS; her biri Gölge'nin "5-4 | 3" iç çekişini
+# küçük bir selam olarak taşır. `music: gizem` o havanın parçalarından birini bölüm kimliğine göre SABİT seçer, `gizem_b`
+# o parçayı. Eski kanal sesi `music: klasik` (= orijinal): repoya girmez, tools/hazirla.sh özel depodan kopyalar.
+MUSIC_HAVA = MUSIC / "hava"
+HAVALAR = {"gizem": "gizem, gerilim", "merak": "merak, keşif", "ironik": "ironik, hafif komik",
+           "destansi": "destansı, kahramanlık", "masal": "masalsı, efsane"}
 LOUDNESS_LUFS = -14.0
 LOUDNESS_TP = -1.5
 MAX_DURATION = 14.0

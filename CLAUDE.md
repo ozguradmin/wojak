@@ -11,8 +11,9 @@ Commons images: `python tools/commons.py` (rate limit and standard widths built 
 the channel already did. **Long videos now use Google Gemini TTS** (owner, 23.10; no ElevenLabs): `gemini-2.5-pro-tts`, narrator
 Charon at 1.25x, settings in `docs/UZUN_FORMAT.md` §1.1. The long `talidomit-turkiye` is approved.
 Queued long-form work: `docs/YAYIN_PLANI.md` §4. YouTube got a violation: read `docs/YAYIN_PLANI.md` §0 before producing.
-Signature music (22.10): `music: kanal` now plays OUR OWN waltz (`assets/music/imza_v2_golge.m4a`); the old channel audio is
-`music: orijinal` only (YouTube risk). Variants `imza_v2_*.m4a` may rotate per video.
+Music by mood (12.11): `music: kanal` is our waltz Gölge (sad topics, the default); `klasik` is the old channel audio (now and
+then, tr only; it lives in the private repo and `hazirla.sh` copies it); `gizem | merak | ironik | destansi | masal` pick from our
+mood library `assets/music/hava/` (two tracks each). Which mood for which topic: `docs/KISA_REEL_EL_KITABI.md` §6.
 **Fresh cloud session?** The licensed font and the reference reels are not in the repo: run `docs/ADIM_ADIM.md` §1.
 
 ## What this repo is
@@ -126,13 +127,14 @@ python -m wojak uzun render    uzun/<id>        # also: kare, kucukresim, paket,
 python tools/wojak_site.py search|sheet|get ...   # wojakland / wojaksparadise
 python tools/wojak_lib.py  search|sheet|get ...   # 10,378 transparent wojak PNGs
 python tools/kit_varyant.py ...                   # face variants of one base
+python tools/hava_muzik.py --hepsi [--dinleme]    # mood music library -> assets/music/hava/ (+ listening video)
 python -m pytest tests/ -q                        # or: python tests/test_uzun.py
 ```
 
 ## The owner's standing preferences (latest first; details in docs/OGRENILENLER.md, top table)
 
-- Music (22.10): every short uses the same signature `music: kanal`; a variant or a slightly slower/lower version only for a
-  topic with a very different mood.
+- Music (12.11, replaces 22.10): "the same music every time is boring". Pick by the topic's mood from the handbook §6 table;
+  `kanal` stays the default for sad topics; `klasik` now and then (none of the restricted YouTube videos used it).
 - YouTube (22.10, 23.10): public uploads with the story text as a comment. Since 23.10 the `wojak-ozel` bot does this (see the
   delivery flow); `tools/yt_yukle.py` is not used for shorts any more (duplicate risk). The API cannot pin; the owner pins in Studio.
 - No AI-generated images (16.10): backgrounds and evidence are real photos/documents (or our own flat drawings);
