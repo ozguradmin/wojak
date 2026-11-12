@@ -123,6 +123,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
  },
+ "21a0727d5ab1e058b0e780ab6311d6e5befe9813": {
+  "faces": "right",
+  "file": "episodes/en-wojtek-soldier-bear/chars/a_sok.png"
+ },
  "22b57f095dc4ce27dd8dd801bfb8ecc9d247bf35": {
   "faces": "right",
   "file": "assets/kit/klasik/gulumsuyor.png"
@@ -150,6 +154,10 @@
  "29dea8726b6f3785d50eb87317402f6e21af9ddb": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
+ },
+ "29f99a51c04f20f659920b1f8f7105b149fd34a7": {
+  "faces": "right",
+  "file": "episodes/en-wojtek-soldier-bear/chars/b_sakin.png"
  },
  "2a0efc7e975b7f8369e7e90dbc409c15fd0bac88": {
   "faces": "right",
@@ -1154,5 +1162,9 @@
  "fe342ddcde5a2308240e4a52818e7374c57568d8": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_dusunceli.png"
+ },
+ "ff03ab0678eb6f448086678cff871d91c6a04a6c": {
+  "faces": "right",
+  "file": "episodes/en-wojtek-soldier-bear/chars/a_sakin.png"
  }
 }

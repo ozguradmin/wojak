@@ -1,0 +1,105 @@
+# Wojtek, the bear adopted by a Polish army supply company (1942-47). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular-wojtek.md (IPN, Muzeum Historii Polski, British Library, Culture.pl, Polityka, TIME, Wikipedia, Kresy Family).
+# CANLANDIRMA: A = Polonyali er rolu, B = subay rolu (kurgu; gercek kisi temsil etmez; replikler uydurmadir). "Adopted" belgeli;
+#   ayinin mermi/sandik tasimasi "veterans say" (kesin degil), videoda yalniz soru olarak.
+# Karakterler: A = wojakland 'Polish Military WWII Wojak', B = wojakland 'Polish Legionary Wojak'; ters kose a_sok.png (ayni taban, ayni kutu).
+id: en-wojtek-soldier-bear
+kanal: en  # Wojak Past Files
+title: "The Polish army unit that adopted a bear in 1942"
+
+music: {file: kanal, volume: 0.197}
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Captain, can our unit\nkeep a bear cub?"
+
+  # 2) CEVAP — B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Fine, keep him\nout of trouble"
+
+  # 3) A (sol) — tohum: "izliyor" -> sonra tasiyor
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "He only watches\nus work, sir"
+
+  - type: card
+    duration: 1.5
+    text: "Two years later"
+
+  # 5) TERS KOSE — A, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, is the bear\ncarrying our ammo?"
+
+  # 6) KANIT 1 — Edinburgh Wojtek aniti (asker + ayi)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: mermi tasiyan Wojtek heykeli (Weelsby Woods)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The Polish army unit that adopted a bear in 1942
+  The full story is in the pinned comment 👇
+
+hashtags: [history, wojtek, ww2]
+
+pinned_comment: |
+  Wojtek was a Syrian brown bear who became the mascot of a Polish artillery supply company in the Second World War.
+
+  Polish soldiers acquired the cub near Hamadan, Iran, in April 1942, and accounts differ on what they paid. The 22nd Artillery Supply Company (also called the 22nd Transport Company) received him in August 1942. Transport rules reportedly barred animals from the troopship, and the unit reportedly listed him on its books to get him aboard; a British Library account instead describes a special permit. The unit sailed from Alexandria on the MS Batory in February 1944.
+
+  During the Battle of Monte Cassino in May 1944, veterans say Wojtek carried ammunition crates to the artillery positions, copying the men around him. Accounts differ on whether the crates were full or empty, and some accounts play the story down. The company later adopted an emblem showing a bear carrying a shell, and statues of him now show it too. Some sources say he was promoted to corporal.
+
+  After the war the unit settled in Scotland, and in November 1947 Wojtek went to Edinburgh Zoo, where he lived until he passed away in 1963. Edinburgh unveiled a bronze statue of him in 2015.
+
+  The background shows today's rebuilt Monte Cassino abbey, and the last two frames are photos of memorials, not period photos. The wojak characters are fictional and their lines are dramatized.
+
+  Was he a soldier, a mascot, or a little of both?
+
+credits: "Wojtek in Princes Street Gardens (geograph.org.uk 4731932) by M J Richardson, 2015, CC BY-SA 2.0 (https://creativecommons.org/licenses/by-sa/2.0), cropped; Wojtek sculpture, Weelsby Woods, by RexSueciae, 2025, CC0, cropped; background: Monte Cassino Abbey 2019 03 by DonGatley, 2019, CC0, cropped, colour toned down; all via Wikimedia Commons."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional; the dialogue is invented and does not quote anyone. Only the facts are documented: Polish soldiers adopted the bear cub in Iran in 1942; the company's emblem shows a bear carrying a shell."
+  - "**Source caution:** sources differ on the unit's name (Artillery Supply or Transport Company), on the date and price of the purchase, on whether the bear was formally enlisted, ranked or paid, on what the crates held at Monte Cassino, and on his cause of death. The video only asks the question; the text says \"veterans say\" and \"reportedly\". No free-licensed period photo of Wojtek was found, so both evidence frames are photos of memorials made decades later (the Edinburgh memorial and a wooden sculpture in Grimsby). The background is the rebuilt Monte Cassino abbey as it looks today, used as an illustrative setting; the first scenes of the story took place in Iran in 1942."
+  - "Suggested first comment: Wojtek's story is partly legend, so which part do you believe?"
+
+sources:
+  - "Institute of National Remembrance (IPN), Wojtek moved to Edinburgh Zoo 15 Nov 1947, listed on the company's books, company received him 22 Aug 1942: https://eng.ipn.gov.pl/en/news/9982,On-15-November-1947-Wojtek-the-bear-was-moved-from-the-Anders-Army-to-the-Edinbu.html"
+  - "British Library blog (Szkuta, 2015), cub bought in Iran, Monte Cassino, emblem, Edinburgh Zoo; calls parts a legend: https://www.bl.uk/stories/blogs/posts/wojtek-the-soldier-bear-from-the-polish-army"
+  - "Muzeum Historii Polski, Wojtek - miś, który został żołnierzem (Alexandria, MS Batory, Feb 1944): https://muzhp.pl/wiedza-on-line/wojtek-mis-ktory-zostal-zolnierzem"
+  - "Wikipedia, Wojtek (emblem, Monte Cassino 'said to', Edinburgh statue 2015): https://en.wikipedia.org/wiki/Wojtek"
+  - "TIME (2017), veterans' accounts of crates at Monte Cassino, empty-crates remark: https://time.com/4731787/wojtek-the-bear-history/"
+  - "Polityka, Wojtek na wojennej ścieżce (animals barred from the ship, other pets aboard): https://www.polityka.pl/tygodnikpolityka/historia/1504620,1,wojtek-na-wojennej-sciezce.read"
+  - "Culture.pl (Narębski interview, ship rule): http://culture.pl/en/article/one-photo-one-story-wojtek-the-soldier-bear"
+  - "Polish History, Wojtek - A Bear Who Became A Soldier: https://polishhistory.pl/wojtek-a-bear-who-became-a-soldier/"
+  - "GÖRSEL img/ev_1.jpg — 'Wojtek in Princes Street Gardens - geograph.org.uk - 4731932.jpg', M J Richardson, 2015, CC BY-SA 2.0 (Geograph, Commons SDC lisansı): https://commons.wikimedia.org/wiki/File:Wojtek_in_Princes_Street_Gardens_-_geograph.org.uk_-_4731932.jpg. Değişiklik: yeniden boyut 1080x810"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Wojtek sculpture, Weelsby Woods 20250526 140325.jpg', RexSueciae, 2025, {{self|cc-zero}} (raw checked): https://commons.wikimedia.org/wiki/File:Wojtek_sculpture,_Weelsby_Woods_20250526_140325.jpg. Değişiklik: kırpım, 1080x816"
+  - "GÖRSEL img/arka.jpg — 'Monte Cassino Abbey 2019 03.jpg', DonGatley, 2019, {{self|cc-zero}} (raw checked): https://commons.wikimedia.org/wiki/File:Monte_Cassino_Abbey_2019_03.jpg. Değişiklik: kare kırpım, renk 0,6, parlaklık 0,92, blur"
