@@ -58,6 +58,9 @@ MUSIC_IMZA_VARYANT = sorted(MUSIC.glob("imza_v2_*.m4a"))   # videoya göre dön�
 # küçük bir selam olarak taşır. `music: gizem` o havanın parçalarından birini bölüm kimliğine göre SABİT seçer, `gizem_b`
 # o parçayı. Eski kanal sesi `music: klasik` (= orijinal): repoya girmez, tools/hazirla.sh özel depodan kopyalar.
 MUSIC_HAVA = MUSIC / "hava"
+# 13.11.2026: hesap sahibi ilk 10 parçayı beğenmedi ("oyun arka plan müziği gibi, wojak videolarına uymaz"). Yenileri
+# onaylanana dek hava adları `check`te [stil] uyarısı verir; şimdilik yalnız `kanal` ve `klasik` kullanılır.
+HAVA_ONAYLI = False
 HAVALAR = {"gizem": "gizem, gerilim", "merak": "merak, keşif", "ironik": "ironik, hafif komik",
            "destansi": "destansı, kahramanlık", "masal": "masalsı, efsane"}
 LOUDNESS_LUFS = -14.0

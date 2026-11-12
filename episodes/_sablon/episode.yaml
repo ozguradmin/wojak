@@ -18,8 +18,8 @@
 id: sablon
 title: "<Olay adı> (Olayı yorumlara yazdım)"
 
-# Müzik konuya göre (docs/KISA_REEL_EL_KITABI.md §6): kanal (hüzün, imza vals) | klasik (eski kanal sesi, arada bir, yalnız tr)
-# | gizem | merak | ironik | destansi | masal (hava kütüphanesi; tam ad da olur: gizem_b). `check` çalan parçayı ilk satırda yazar.
+# Müzik (docs/KISA_REEL_EL_KITABI.md §6): kanal (imza vals, varsayılan) | klasik (eski kanal sesi, arada bir, yalnız tr).
+# Hava adları (gizem, merak...) onay bekliyor. `check` çalan parçayı ilk satırda yazar.
 music: kanal
 
 scenes:

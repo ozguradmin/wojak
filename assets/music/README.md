@@ -1,6 +1,9 @@
 # Müzik
 
-## Hava kütüphanesi (12.11.2026): `hava/`, bize ait
+## Hava kütüphanesi (12.11.2026): `hava/`, bize ait, **onay bekliyor**
+
+> 13.11.2026: hesap sahibi bu 10 parçayı beğenmedi ("oyun arka plan müziği gibi, wojak videolarına uymaz"). Yenileri eski
+> klasik sesin dünyasından yapılıyor; o zamana dek `config.HAVA_ONAYLI = False` ve `check` hava adlarında uyarır.
 
 Hesap sahibi: "sürekli aynı müzik sıkıyor". Konuya göre beş hava, her birinde iki parça. Hangi konuya hangisi:
 `docs/KISA_REEL_EL_KITABI.md` §6 tablosu. `music: gizem` o havanın parçalarından birini bölüm kimliğine göre sabit seçer,

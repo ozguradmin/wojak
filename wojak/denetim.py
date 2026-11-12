@@ -149,9 +149,11 @@ def stil(ep: Episode) -> list[str]:
         out.append("[stil] kanıt sahnesi yok (25/30 reel kanıtla biter; yoksa son replik güçlü bir ters köşe olmalı)")
     if ep.duration > config.MAX_DURATION + 0.05:
         out.append(f"[stil] toplam {ep.duration:.1f} sn; imza ses 13,75 sn, en fazla 14,0 sn")
-    adlar = "kanal | klasik | " + " | ".join(config.HAVALAR)
+    adlar = "kanal | klasik" + ("".join(f" | {h}" for h in config.HAVALAR) if config.HAVA_ONAYLI else "")
     if ep.music is None:
         out.append(f"[stil] müzik yok; orijinallerin 27/30'u tek parça müzikle (music: {adlar})")
+    elif not config.HAVA_ONAYLI and config.MUSIC_HAVA.resolve() in ep.music.file.resolve().parents:
+        out.append("[stil] hava müzikleri hesap sahibinin onayını bekliyor (13.11); şimdilik music: kanal ya da klasik")
     elif ep.music.ad in ("klasik", "orijinal") and ep.kanal != "tr":
         out.append(f"[stil] music: {ep.music.ad} yalnız tr kanalında (eski Tarihsel Wojak sesi); en kanalı havalardan seçer")
     elif ep.music.ad in ("klasik", "orijinal") and not config.MUSIC_CHANNEL.exists():

@@ -74,10 +74,19 @@ def test_klasik_varsa_eski_ses(tmp_path, monkeypatch):
 
 
 @pytest.mark.parametrize("yazilan,ad", [("gizem", "gizem"), ("destansı", "destansi"), ("Hüzün", "huzun")])
-def test_bolumde_hava_adi(tmp_path, yazilan, ad):
+def test_bolumde_hava_adi(tmp_path, monkeypatch, yazilan, ad):
+    monkeypatch.setattr(config, "HAVA_ONAYLI", True)
     ep = load(_bolum(tmp_path, yazilan))
     assert ep.music.ad == ad
     assert not [u for u in denetim.stil(ep) if "müzik" in u]
+
+
+def test_onaysiz_hava_uyarir(tmp_path, monkeypatch):
+    monkeypatch.setattr(config, "HAVA_ONAYLI", False)
+    for yazilan in ("gizem", "merak_b", "{file: hava/masal_a.m4a}"):
+        ep = load(_bolum(tmp_path, yazilan, bolum_id=f"b{abs(hash(yazilan)) % 9999}"))
+        assert any("onayını bekliyor" in u for u in denetim.stil(ep)), yazilan
+    assert not [u for u in denetim.stil(load(_bolum(tmp_path, "kanal", bolum_id="k"))) if "müzik" in u]
 
 
 def test_kutuphane_disi_muzik_uyarir(tmp_path):
