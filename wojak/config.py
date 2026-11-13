@@ -61,9 +61,9 @@ MUSIC_IMZA_VARYANT = sorted(MUSIC.glob("imza_v2_*.m4a"))   # videoya göre dön�
 MUSIC_HAVA = MUSIC / "hava"
 HAVALAR = {"gizem": "gizem, gerilim", "merak": "merak, keşif", "ironik": "ironik, hafif komik",
            "destansi": "destansı, kahramanlık", "masal": "masalsı, efsane"}
-# Hesap sahibi v2'yi dinleyip onaylayana dek kapalı: hava adları `check`te [stil] uyarısı verir, yalnız `kanal` ve
-# `klasik` kullanılır. Onay gelince True yapılır ve el kitabı §6 tablosu açılır.
-HAVA_ONAYLI = False
+# 13.11.2026: hesap sahibi v2'yi dinledi ve onayladı ("güzel olmuş hepsi"). False yapılırsa hava adları `check`te
+# [stil] uyarısı verir (yeni, henüz dinlenmemiş parçalar eklenirken kullanılır).
+HAVA_ONAYLI = True
 LOUDNESS_LUFS = -14.0
 LOUDNESS_TP = -1.5
 MAX_DURATION = 14.0

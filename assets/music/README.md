@@ -1,6 +1,6 @@
 # Müzik
 
-## Hava kütüphanesi v2 (13.11.2026): `hava/`, bize ait, **hesap sahibinin onayını bekliyor**
+## Hava kütüphanesi v2 (13.11.2026): `hava/`, bize ait, hesap sahibi onayladı
 
 Hesap sahibi 12.11: "sürekli aynı müzik sıkıyor". İlk deneme (10 parça, temiz "orkestra" MIDI'si: marimba, korno,
 pizzicato, salon yankısı, kusursuz döngü) 13.11'de reddedildi: "oyun yapıyorsan arka plan müziğine uyar ama bizim wojak
@@ -24,8 +24,8 @@ Benzerlik puanı 52-64, kanal uyumu 59-72 (klasik 78, Gölge 77, reddedilenler 1
 
 Üretim: `python tools/hava_muzik.py --hepsi` (besteler `tools/hava_besteler.py`; aynı JSON + tohum = aynı dosya).
 Dinleme: `python tools/hava_muzik.py --onizleme plan.json out/hava/onizleme.mp4` parçaları gerçek yayınlanmış videoların
-altında çaldırır. Onaya kadar `config.HAVA_ONAYLI = False`: `check` hava adlarında uyarır. Her havada şimdilik tek
-parça var; ikinci parça eklenince `music: gizem` ikisi arasında bölüm kimliğine göre seçer.
+altında çaldırır. Hesap sahibi 13.11'de dinleyip onayladı ("güzel olmuş hepsi"); seçim tablosu el kitabı §6'da. Her
+havada şimdilik tek parça var; ikinci parça eklenince `music: gizem` ikisi arasında bölüm kimliğine göre seçer.
 
 ## Eski klasik kanal sesi: `music: klasik` (12.11.2026)
 

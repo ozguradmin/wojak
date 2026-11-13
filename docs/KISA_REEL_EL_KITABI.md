@@ -31,9 +31,9 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
-- **13.11 Müzik:** ilk hava parçaları beğenilmedi: "oyun arka plan müziği gibi, wojak videolarına uymaz". Yenileri eski
-  klasik sesin dünyasından yapılıyor. **O zamana dek yalnız `kanal` ve `klasik`** (§6 "Müzik"); `gizem`, `merak` gibi hava
-  adı yazarsan `check` `[stil]` uyarısı verir.
+- **13.11 Müzik:** müzik artık **konuya göre** seçilir (§6 "Müzik" tablosu). İlk hava parçaları beğenilmedi ("oyun arka
+  plan müziği gibi, wojak videolarına uymaz"); yenileri eski klasik sesin iskeletiyle ve bizim valsin ses motoruyla
+  yapıldı, hesap sahibi dinleyip onayladı: "güzel olmuş hepsi". Beş hava: `gizem`, `merak`, `ironik`, `destansi`, `masal`.
 - **12.11 Müzik:** "Sürekli aynı müzik sıkıyor." Eski klasik ses geri geldi (`music: klasik`, yalnız tr): hesap sahibi
   kısıtlanan YouTube videolarını tek tek izledi, hiçbirinde bu ses yoktu; "en çok beğenilen eski olandı", "hep olmasa da
   yine kullanabiliriz". Konuya göre hava müzikleri (gizem, merak, ironik, destansı, masal) hazırlanıyor.
@@ -284,19 +284,31 @@ yazacağın derste olayı ve kişileri anma.
 - Filigran her karede (kart ve kanıt dahil); renderer koyar. Font Avenir Bold Italic (Poppins'e düşerse kanal değil).
 - Ses: tek parça müzik (aşağıdaki tablo), ~−14 LUFS (gerçek tepe ≤ −1,5 dBTP; §2, 31.10), efekt yok, döngü yok.
 
-**Müzik (13.11).** Şimdilik iki seçenek; render seviyeyi kendisi ayarlar.
+**Müzik (13.11): konuya göre seç.** Hepsi aynı ailedendir (kamışlı um-pa-pa, eski plak sesi); render seviyeyi kendisi
+ayarlar.
 
-| `music:` | Ne | Ne zaman |
-|---|---|---|
-| `kanal` | bizim imza vals Gölge (Do minör, akordeon) | varsayılan; **kararsızsan bu** |
-| `klasik` | eski kanal valsi (altın dönem sesi, izleyicinin en sevdiği) | `kanal` yerine arada bir: son 7 günde en çok 2, yalnız tr |
+| `music:` | Hava | Parça | Konu |
+|---|---|---|---|
+| `kanal` | hüzün, trajedi | Gölge (imza vals) | ölüm, facia, kayıp, ihanet, acı son; **kararsızsan bu** |
+| `klasik` | hüzün, ürperti | eski kanal valsi | `kanal` yerine arada bir: son 7 günde en çok 2, yalnız tr |
+| `gizem` | gizem, gerilim | Fısıltı | çözülmemiş gizem, kaybolma, söylenti, lanet, ürkütücü yer |
+| `merak` | merak, keşif | Acaba | buluş, keşif, şaşırtıcı bilgi, arkeoloji, bilim |
+| `ironik` | ironik, hafif komik | Hınzır | tuhaf olay, kimsenin ölmediği aksilik, kandırmaca, kurnazlık |
+| `destansi` | destansı | Yemin | kurtarma, direniş, cesaret, zafer |
+| `masal` | masalsı, efsane | Bir Varmış | efsane, kehanet, tılsım, halk hikâyesi |
 
+- Hava konuyla çelişmez. Ölümün ya da acının olduğu olay `ironik` ya da `merak` olmaz; kahramanlık acı sonla bitiyorsa
+  `destansi` değil `kanal`. Emin değilsen `kanal`.
+- Kısa ad o havanın parçasını seçer (bir havaya ikinci parça eklenince bölüm kimliğine göre sabit seçim yapılır);
+  belirli parça için tam ad da yazılabilir (`music: gizem_a`). `check` ilk satırda çalan parçayı yazar
+  (`müzik: hava/gizem_a.m4a  (music: gizem)`); kütüphane dışı müzik `[stil]` verir.
+- `ironik` parçası 13,4 sn'de kısa bir "tak" ile biter; sondaki kısa sessizlik kusur değildir.
 - `klasik`: ses özel depodan gelir (`bash tools/hazirla.sh`); yoksa `check` uyarır ve imza çalar. Son 7 günde kaç kez
   kullanıldı: `git log --since=7.days -p -- 'episodes/*/episode.yaml' | grep -c '^+music:.*klasik'` (2 ise kullanma).
-  Hak sahibi belirsiz (STIL §10); kullanma kararı hesap sahibinin, BEKLET gerekmez. en kanalında yok.
-- Hava adları (`gizem`, `merak`, `ironik`, `destansi`, `masal`) **onay bekliyor, kullanma**: ilk parçalar beğenilmedi
-  (§2, 13.11). Onaylanınca bu tabloya girer ve `check` uyarmayı bırakır.
-- `check` ilk satırda çalan parçayı yazar (`müzik: imza_v2_golge.m4a  (music: kanal)`); kütüphane dışı müzik `[stil]` verir.
+  Kaynağı ticari bir yayın ("Phantomimes", SDM Nation); kullanma kararı hesap sahibinin, BEKLET gerekmez. en kanalında
+  yok.
+- Hakemler müziği yalnız bu tabloya göre değerlendirir: tabloya uyan seçim "imza değil" diye puan kırmaz, konuyla
+  çelişen hava MUST'tır.
 
 ## 7. Senaryo, başlık, hikâye metni
 
@@ -334,7 +346,7 @@ verir). Yabancı dilli son kare için "Videonun son karesi ... sayfasıdır" + T
 id: <id>                       # en: en-<id>
 # kanal: en                    # yalnız İngilizce kanal
 title: "<başlık>"
-music: {file: kanal, volume: 0.197}   # ya da klasik (§6 "Müzik"); render −14 LUFS'a kendisi ayarlar
+music: {file: kanal, volume: 0.197}   # konuya göre (§6): kanal | klasik | gizem | merak | ironik | destansi | masal
 scenes:
   - {type: dialog, duration: 3.0, bg: img/arka.jpg, blur: 1.7,
      chars: [{img: chars/a.png, side: left, height: 0.50}], text: "Kanca, olay anında"}
@@ -468,7 +480,7 @@ Olayın kendi nesnesi yoksa benzer dönem nesnesi olduğunu metinde ve `ek_madde
 yüz değişimi ≥ %0,40 · boy 0,42-0,55 · kostüm döneme uygun ya da kusur RAPOR'da.
 **Arka plan ve kanıt:** tek (en çok iki) renkli gerçek fotoğraf, modern öğe yok · kanıtlar 1080 genişlik, 537-816 px, ek
 yok · son kare sorunun cevabı, bir önceki bölümle aynı tür değil.
-**Ses, kapak:** müzik `kanal` ya da `klasik` (§6; `check`'in ilk satırı) ~−14 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
+**Ses, kapak:** konuya uygun müzik (§6 tablosu; `check`'in ilk satırı) ~−14 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
 **Metinler:** başlık sonu söylemiyor · hikâye 150-250 kelime, soruyla biter · açıklama ≤ 2.200 karakter · `metinler/*.txt`
 sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum önerisi.
 **Olgu, lisans, mahremiyet:** her olgu ≥ 2 kaynak, çelişen sayı yuvarlandı ya da çıktı · her görselin lisansı ve değişikliği

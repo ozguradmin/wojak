@@ -69,5 +69,5 @@ Hakemlerin düzeltmelerinden sonraki sürüm yeniden hakeme okutulmadı (kullan�
 
 ## 6. Açık kalanlar
 
-- Hesap sahibi beğenirse: `config.HAVA_ONAYLI = True`, el kitabı §6 tablosu, her havaya ikinci parça.
-- Beğenmezse denenecek ikinci yol: kendi seçimlerinin tarzı (§3: yavaşlatılmış, koyu, tek fikirli) ayrı bir motorla.
+- **13.11: hesap sahibi beşini de onayladı** ("güzel olmuş hepsi"). `config.HAVA_ONAYLI = True`, el kitabı §6 tablosu açık.
+- Sırada (istenirse): her havaya ikinci parça; kendi seçimlerinin tarzında (§3: yavaşlatılmış, koyu, tek fikirli) parçalar.
