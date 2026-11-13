@@ -312,7 +312,7 @@ Hepsi aynı ailedendir (kamışlı um-pa-pa, eski plak sesi); render seviyeyi ke
   önceki bölümüne bakar, yanlışsa `müzik sırası` uyarısı verir. Elle: `git log --diff-filter=A --format= --name-only --
   'episodes/*/episode.yaml' | head` (en bölümleri `en-` ile başlar; kanalın ilk satırdaki bölümü öncekidir).
   Kaynağı ticari bir yayın ("Phantomimes", SDM Nation); kullanma kararı hesap sahibinin (13.11: iki kanalda öncelikli),
-  BEKLET gerekmez.
+  BEKLET gerekmez. Studio'daki hak taleplerinin hiçbiri bu ses için değil (13.11, YAYIN_PLANI §0).
 - Hakemler müziği yalnız bu tabloya göre değerlendirir: tabloya uyan seçim "imza değil" diye puan kırmaz, konuyla
   çelişen hava MUST'tır.
 
