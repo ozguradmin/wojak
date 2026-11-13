@@ -32,12 +32,14 @@ havada şimdilik tek parça var; ikinci parça eklenince `music: gizem` ikisi ar
 Altın dönemin "orijinal ses"i (G1, Do minör vals, 13,75 sn; STIL §10). Hak sahibi belirsiz olduğu için açık repoya girmez:
 özel depoda (`wojak-ozel/kanal_orijinal_ses.m4a`) durur, `tools/hazirla.sh` her oturumda `ozel/` altına kopyalar. 22.10'da
 YouTube ihlali sonrası bırakılmıştı; 12.11'de hesap sahibi kısıtlanan videoları tek tek izledi, hiçbirinde bu ses yoktu:
-"hep olmasa da yine kullanabiliriz". Kural: `kanal` yerine arada bir (son 7 günde en çok 2), yalnız tr kanalı.
+"hep olmasa da yine kullanabiliriz". 13.11'den beri kural: iki kanalda da sırayla, önceki bölüm klasik değilse klasik
+("hepsini kullan, eski klasiğe daha çok öncelik ver"); `check` sırayı denetler. en kanalı da dosyayı `wojak-ozel`'den alır.
 `music: orijinal` aynı dosyadır.
 
 ## Kanalın imza müziği (22.10.2026): `imza_v2_golge.m4a`, bize ait
 
-`music: kanal` bunu çalar (`wojak/config.py` MUSIC_IMZA); hüzünlü konuların ve kararsız kalınca varsayılanıdır. Eski
+`music: kanal` bunu çalar (`wojak/config.py` MUSIC_IMZA); klasik sırası olmayan bölümlerde hüzünlü konuların ve kararsız
+kalınca seçimidir. Eski
 orijinal ses `music: klasik` (yukarıda). Ölçüme dayalı ikinci çalışmanın ürünü (arastirma/imza_muzik/, DURUM.md): özgün melodiler,
 orijinalden ses kullanılmadı; eleştirmen puanları 7-7,5/10. Hesap sahibi dördünü "hepsi benzer" buldu: aynı ailedir,
 videoya göre dönüşümlü kullanılabilir (`music: {file: imza_v2_ic_cekis_b.m4a}` gibi).

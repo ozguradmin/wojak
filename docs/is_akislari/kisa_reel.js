@@ -109,7 +109,7 @@ HARD RULES (docs/STIL.md; renderer defaults already match it, do not override th
   faces: in episode.yaml. After render run python -m wojak bakis episodes/${ID} and look at out/${ID}/kareler/bakis.jpg: the left
   character must look right, the right one left.
 - One real colour background photo for the dialogue (max 2, second only after the card); no zoom/shake/flash/pop/sfx/label/banner;
-  music by the topic's mood from the KISA_REEL_EL_KITABI §6 table (kanal | klasik | gizem | merak | ironik | destansi | masal); no sfx.
+  music per KISA_REEL_EL_KITABI §6: klasik if the channel's previous episode did not play it, else by the topic's mood (kanal | gizem | merak | ironik | destansi | masal); `check` warns on the order; no sfx.
 - Title per KONSEPT §4 (not AI slop); story text (pinned_comment) 150-250 words, <= ~1,950 characters, encyclopedic first sentence,
   chronological, ends with a question; hashtags: 2-3 topic tags (YouTube only); sources: every fact URL + every image's
   source/licence; credits: CC BY/BY-SA attributions of images actually used; telif_notu for any img/telifli/ image; ek_maddeler (seed
@@ -180,7 +180,7 @@ conflict, follow what the golden-era originals do (look). Keep everything the ju
 HARD RULES: 13.5-14.0 s, durations multiples of 0.5 s; dialogue 2.0-3.0 s; optional single forward-time card 1.5 s; 2-3 evidence
 images at the very END; A always left, B always right, one character per dialogue scene, present tense, colloquial, 1-11 words, no
 '.' or '…'; twist = same character, same box, face variant; clean flat ready-made MS-Paint wojak only, gaze registered; one real
-colour background (max 2); no zoom/shake/flash/pop/sfx/label/banner; music from the handbook §6 mood table, matching the topic; facts never contradicted; story text 150-250 words
+colour background (max 2); no zoom/shake/flash/pop/sfx/label/banner; music per the handbook §6 order (klasik every other episode, otherwise the topic's mood); facts never contradicted; story text 150-250 words
 ending with a question; licences in sources/credits; copyrighted evidence in img/telifli/ with telif_notu. No code edits under
 wojak/ or tools/; no other episodes; no commit.
 Work loop: check (no [stil] warnings) -> frames -> LOOK -> render -> teslim; rebuild ${D}/yanyana.jpg and look at it. Overwrite

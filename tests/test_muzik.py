@@ -111,14 +111,65 @@ def test_hava_parcalari_14_sn_ve_stereo():
         assert bilgi["streams"][0]["channels"] == 2, p.name
 
 
-def test_klasik_en_kanalinda_uyarir(tmp_path, monkeypatch):
+def test_klasik_en_kanalinda_da_serbest(tmp_path, monkeypatch):
+    """13.11: hesap sahibi klasiği iki kanalda da istedi ("türkçe/yabancı kanal için")."""
     sahte = tmp_path / "kanal_orijinal_ses.m4a"
     shutil.copy(config.MUSIC_IMZA, sahte)
     monkeypatch.setattr(config, "MUSIC_CHANNEL", sahte)
+    monkeypatch.setattr(denetim, "onceki_bolum", lambda ep, kok=None: None)
     d = _bolum(tmp_path, "klasik")
     yol = d / "episode.yaml"
     yol.write_text("kanal: en\n" + yol.read_text(encoding="utf-8"), encoding="utf-8")
-    assert any("yalnız tr kanalında" in u for u in denetim.stil(load(d)))
+    assert not [u for u in denetim.stil(load(d)) if "müzik" in u or "music" in u]
+
+
+@pytest.mark.parametrize("onceki, simdi, uyari", [
+    ("kanal", "klasik", None),                       # önceki bölümün `music:` değeri (onceki_bolum'un verdiği)
+    ("gizem", "klasik", None),
+    ("hava/merak_a.m4a", "klasik", None),
+    ("klasik", "gizem", None),
+    ("ozel/kanal_orijinal_ses.m4a", "masal", None),
+    ("klasik", "{file: kanal, volume: 0.197}", None),
+    ("klasik", "klasik", "de klasikti"),
+    ("orijinal", "{file: klasik, volume: 0.5}", "de klasikti"),
+    ("kanal", "gizem", "sıra klasikte"),
+    ("destansi", "{file: kanal, volume: 0.197}", "sıra klasikte"),
+])
+def test_muzik_sirasi(tmp_path, onceki, simdi, uyari):
+    ep = load(_bolum(tmp_path, simdi))
+    u = denetim.muzik_sirasi(ep, ("onceki-bolum", onceki))
+    assert (uyari is None and u == []) or (uyari is not None and len(u) == 1 and uyari in u[0]), u
+    assert denetim.muzik_sirasi(ep, None) == []      # git geçmişi yoksa kural denetlenmez
+
+
+def test_onceki_bolum_git_gecmisinden(tmp_path):
+    """Önceki bölüm, episode.yaml'ın depoya ilk girdiği commit'e göre ve yalnız aynı kanaldan bulunur."""
+    kok = tmp_path / "depo"
+    (kok / "episodes").mkdir(parents=True)
+
+    def git(*a):
+        subprocess.run(["git", "-C", str(kok), *a], check=True, capture_output=True)
+
+    git("init", "-q")
+    git("config", "user.email", "t@t")
+    git("config", "user.name", "t")
+    for bolum, govde in (("eski-tr", "music: klasik\n"), ("en-bir", "kanal: en\nmusic: gizem\n"),
+                         ("yeni-tr", "music: {file: kanal, volume: 0.197}\n"), ("en-iki", "kanal: en\nmusic: klasik\n")):
+        (kok / "episodes" / bolum).mkdir()
+        (kok / "episodes" / bolum / "episode.yaml").write_text(f"id: {bolum}\n{govde}", encoding="utf-8")
+        git("add", "-A")
+        git("commit", "-q", "-m", bolum)
+    (kok / "episodes/eski-tr/episode.yaml").write_text("id: eski-tr\nmusic: klasik\n# düzeltme\n", encoding="utf-8")
+    git("commit", "-qam", "eski-tr düzeltme")   # düzeltme sırayı bozmaz
+
+    tr = load(_bolum(tmp_path, "klasik", bolum_id="simdiki"))
+    assert denetim.onceki_bolum(tr, kok) == ("yeni-tr", "kanal")
+    en = load(_bolum(tmp_path, "klasik", bolum_id="en-simdiki"))
+    en.kanal = "en"
+    assert denetim.onceki_bolum(en, kok) == ("en-iki", "klasik")
+    en.id = "en-iki"                           # kendisi sayılmaz (yeniden render)
+    assert denetim.onceki_bolum(en, kok) == ("en-bir", "gizem")
+    assert denetim.onceki_bolum(tr, tmp_path / "git-degil") is None
 
 
 def test_besteler_iskelete_uyar():

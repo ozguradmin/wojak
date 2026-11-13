@@ -335,8 +335,8 @@ Aşağıdaki değerler kısa formattaki 26 reel'den alındı: C5eF, DHG, C5ob ve
 
 ### 10.4 Ses hedefi
 
-- **13.11.2026'dan beri:** tek parça müzik konuya göre seçilir: imza vals (`kanal`), G1 (`klasik`, arada bir) ya da
-  G1'in iskeletiyle yapılan beş hava parçası (`gizem`, `merak`, `ironik`, `destansi`, `masal`; `assets/music/hava/`).
+- **13.11.2026'dan beri:** tek parça müzik sırayla seçilir: her iki bölümden birinde G1 (`klasik`, tr ve en), ötekinde
+  konuya göre imza vals (`kanal`) ya da G1'in iskeletiyle yapılan beş hava parçası (`gizem`, `merak`, `ironik`, `destansi`, `masal`; `assets/music/hava/`).
   Seçim tablosu: `docs/KISA_REEL_EL_KITABI.md` §6. Seviye, başlangıç ve süre kuralları aşağıdaki gibi kalır.
 - **Tercih (21.10'a kadar):** Hesabın kendi imza orijinal sesi (G1). Hesap sahibinde var.
 - **G1'in bize ait benzeri (21.10):** `tools/imza_muzik.py` → `assets/music/imza_vals*.m4a` (aşağıdaki hedefe göre yapıldı).

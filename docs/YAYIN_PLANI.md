@@ -32,6 +32,9 @@
 - **YouTube sürümleri için riskler** (nedeni öğrenilince karar hesap sahibinin):
   1. Kısa reel'lerin imza müziği bir reel'in sesinden çıkarıldı. Kaynağı üçüncü taraf bir parçaysa YouTube'da Content ID
      eşleşmesi alabilir. Bize ait benzeri üretildi: `assets/music/imza_vals*.m4a` (`tools/imza_muzik.py`, 21.10; hesap sahibi dinleyip seçecek).
+     **Karar (12-13.11, hesap sahibi):** eski klasik ses (`music: klasik`) yeniden kullanılır; 13.11'den beri iki kanalda
+     her iki bölümden birinde (KISA_REEL_EL_KITABI §6 sırası). Telif uyarısı gelirse video özele alınır, hesap sahibine
+     bildirilir.
   2. `img/telifli/` haber fotoğrafları YouTube'da telif kaldırma talebi alabilir. YouTube sürümünde mümkünse serbest
      lisanslı görsel kullanılır.
   3. Hassas konular (deprem, çocuk, ölüm, şiddet): GUNDEM.md §5 ve §7. Grafik görüntü yok. Çocuk gerçek fotoğrafla

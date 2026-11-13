@@ -7,10 +7,13 @@ kelimeler anlamına göre (maskelenmiş hâlleri dahil) denetlenir. Hukuki tavsi
 from __future__ import annotations
 
 import re
+import subprocess
 from pathlib import Path
 
+import yaml
+
 from . import config
-from .episode import Episode
+from .episode import Episode, _muzik_adi
 
 # Maskelenmiş yazımları da yakalamak için: harf yerine gelebilecek karakterler
 _MASK = {"a": "[a4@*]", "e": "[e3*]", "i": "[iı1!*]", "ı": "[ıi1!*]", "o": "[o0ø*]", "ö": "[öo0ø*]",
@@ -92,6 +95,57 @@ def _speaker(img: Path) -> str:
     return f"kit:{p.parent.name}" if p.parent.parent.name == "kit" else str(p)
 
 
+def _klasik_mi(music) -> bool:
+    """episode.yaml'daki `music:` değeri (kısa ad, dosya yolu ya da {file: ...}) eski klasik kanal sesi mi."""
+    ad = str((music.get("file") if isinstance(music, dict) else music) or "")
+    return _muzik_adi(ad) in ("klasik", "orijinal") or config.MUSIC_CHANNEL.name in ad
+
+
+def onceki_bolum(ep: Episode, kok: Path | None = None) -> tuple[str, str] | None:
+    """Aynı kanalın bir önceki bölümü ve `music:` değeri: (kimlik, müzik). Müzik sırası kuralı içindir (13.11.2026).
+
+    Sıra, bölümün episode.yaml'ının depoya İLK girdiği commit'e göredir (yeniden render ya da düzeltme sırayı bozmaz);
+    şu anki bölüm sayılmaz. git yoksa, geçmiş yoksa ya da kanalın önceki bölümü bulunamazsa None (kural denetlenmez).
+    """
+    kok = kok or config.ROOT
+    try:
+        cikti = subprocess.run(
+            ["git", "-C", str(kok), "log", "--diff-filter=A", "--format=", "--name-only", "--",
+             "episodes/*/episode.yaml"], capture_output=True, text=True, encoding="utf-8", timeout=30, check=True).stdout
+    except (OSError, subprocess.SubprocessError):
+        return None
+    for satir in cikti.splitlines():
+        yol = kok / satir.strip()
+        bolum = yol.parent.name
+        if not satir.strip() or bolum in (ep.id, "_sablon") or not yol.is_file():
+            continue
+        try:
+            raw = yaml.safe_load(yol.read_text(encoding="utf-8")) or {}
+        except (OSError, yaml.YAMLError):
+            continue
+        if str(raw.get("kanal") or "tr") != ep.kanal:
+            continue
+        m = raw.get("music")
+        return bolum, str((m.get("file") if isinstance(m, dict) else m) or "yok")
+    return None
+
+
+def muzik_sirasi(ep: Episode, onceki: tuple[str, str] | None) -> list[str]:
+    """13.11.2026 hesap sahibi: "hepsini kullan, eski klasiğe daha çok öncelik ver" (tr ve en). Kanalda bölümler
+    sırayla: önceki bölüm klasik değilse bu bölüm `klasik`; klasikse konuya göre öteki parçalardan biri (§6 tablosu)."""
+    if ep.music is None or onceki is None:
+        return []
+    bolum, muzik = onceki
+    simdi = ep.music.ad in ("klasik", "orijinal")
+    if simdi and _klasik_mi(muzik):
+        return [f"[stil] müzik sırası: {ep.kanal} kanalının önceki bölümü ({bolum}) de klasikti; bu bölümde konuya uyan "
+                "öteki parça (kanal | gizem | merak | ironik | destansi | masal; el kitabı §6)"]
+    if not simdi and not _klasik_mi(muzik):
+        return [f"[stil] müzik sırası: {ep.kanal} kanalının önceki bölümü ({bolum}) '{muzik}' çaldı; sıra klasikte "
+                "(music: klasik; el kitabı §6)"]
+    return []
+
+
 def stil(ep: Episode) -> list[str]:
     import re
     from . import config
@@ -154,8 +208,6 @@ def stil(ep: Episode) -> list[str]:
         out.append(f"[stil] müzik yok; orijinallerin 27/30'u tek parça müzikle (music: {adlar})")
     elif not config.HAVA_ONAYLI and config.MUSIC_HAVA.resolve() in ep.music.file.resolve().parents:
         out.append("[stil] hava müzikleri hesap sahibinin onayını bekliyor (13.11); şimdilik music: kanal ya da klasik")
-    elif ep.music.ad in ("klasik", "orijinal") and ep.kanal != "tr":
-        out.append(f"[stil] music: {ep.music.ad} yalnız tr kanalında (eski Tarihsel Wojak sesi); en kanalı havalardan seçer")
     elif ep.music.ad in ("klasik", "orijinal") and not config.MUSIC_CHANNEL.exists():
         yol = config.MUSIC_CHANNEL
         yol = yol.relative_to(config.ROOT) if yol.is_relative_to(config.ROOT) else yol
@@ -165,6 +217,7 @@ def stil(ep: Episode) -> list[str]:
             config.MUSIC_CHANNEL, config.MUSIC_FALLBACK, *config.MUSIC_IMZA_VARYANT,
             *config.MUSIC_HAVA.glob("*.m4a"))}:
         out.append(f"[stil] kütüphane dışı müzik (music: {adlar}; docs/KISA_REEL_EL_KITABI.md müzik tablosu)")
+    out += muzik_sirasi(ep, onceki_bolum(ep))
     return out
 
 

@@ -11,8 +11,9 @@ Commons images: `python tools/commons.py` (rate limit and standard widths built 
 the channel already did. **Long videos now use Google Gemini TTS** (owner, 23.10; no ElevenLabs): `gemini-2.5-pro-tts`, narrator
 Charon at 1.25x, settings in `docs/UZUN_FORMAT.md` §1.1. The long `talidomit-turkiye` is approved.
 Queued long-form work: `docs/YAYIN_PLANI.md` §4. YouTube got a violation: read `docs/YAYIN_PLANI.md` §0 before producing.
-Music by mood (13.11, owner-approved): `music: kanal` is our waltz Gölge (sad topics, the default); `klasik` is the old channel
-audio, the audience's favourite (now and then, tr only; it lives in the private repo and `hazirla.sh` copies it);
+Music (13.11, owner-approved): channels alternate. If the channel's previous episode did not play `klasik` (the old channel
+audio, the audience's favourite; tr and en; it lives in the private repo and `hazirla.sh` copies it), this one plays it;
+otherwise pick by mood: `kanal` is our waltz Gölge (sad topics, the default when unsure);
 `gizem | merak | ironik | destansi | masal` are five sibling waltzes on the classic audio's skeleton (`assets/music/hava/`, made
 with the house-sound engine `tools/ev_sesi/`). Which mood for which topic: `docs/KISA_REEL_EL_KITABI.md` §6.
 **Fresh cloud session?** The licensed font and the reference reels are not in the repo: run `docs/ADIM_ADIM.md` §1.
@@ -136,7 +137,8 @@ python -m pytest tests/ -q                        # or: python tests/test_uzun.p
 
 - Music (13.11): "the same music every time is boring", but mood tracks must sound like OUR videos (the old classic audio is
   the yardstick, "the most liked"), not like game background music: the first 10 orchestral tracks were rejected, the five
-  classic-family waltzes approved ("güzel olmuş hepsi"). Pick by topic from the handbook §6 table; `klasik` now and then.
+  classic-family waltzes approved ("güzel olmuş hepsi"). Then "use all of them, give the old classic more priority" (tr and
+  en): every other episode `klasik`, the rest by topic from the handbook §6 table; `check` warns on the order.
 - YouTube (22.10, 23.10): public uploads with the story text as a comment. Since 23.10 the `wojak-ozel` bot does this (see the
   delivery flow); `tools/yt_yukle.py` is not used for shorts any more (duplicate risk). The API cannot pin; the owner pins in Studio.
 - No AI-generated images (16.10): backgrounds and evidence are real photos/documents (or our own flat drawings);

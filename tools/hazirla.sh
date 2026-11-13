@@ -74,14 +74,25 @@ else
   sert "font: $FONT_DEPO/$FONT yok"
 fi
 
-# 4b. Eski klasik kanal sesi (`music: klasik`, 12.11.2026). Kanal sesi açık repoya girmez; font gibi özel depodan gelir.
+# 4b. Eski klasik kanal sesi (`music: klasik`, 12.11.2026; 13.11'den beri iki kanalda da her iki bölümden biri). Kanal
+#     sesi açık repoya girmez; font gibi özel depodan gelir (önce kanalın kendi özel deposu, sonra wojak-ozel).
 #     Yoksa yalnız uyarı: `music: klasik` imzaya düşer ve `check` bunu söyler.
 KLASIK=kanal_orijinal_ses.m4a
 mkdir -p assets/music/ozel
-if [ -f "assets/music/ozel/$KLASIK" ] || cp "$FONT_DEPO/$KLASIK" assets/music/ozel/ >>"$LOG" 2>&1; then
+if [ -f "assets/music/ozel/$KLASIK" ] || cp "$OZEL/$KLASIK" assets/music/ozel/ >>"$LOG" 2>&1 \
+   || cp "$FONT_DEPO/$KLASIK" assets/music/ozel/ >>"$LOG" 2>&1; then
   ok "klasik ses: assets/music/ozel/$KLASIK"
 else
-  fail "klasik ses: $FONT_DEPO/$KLASIK yok; music: klasik imzaya düşer"
+  fail "klasik ses: $OZEL/$KLASIK ve $FONT_DEPO/$KLASIK yok; music: klasik imzaya düşer"
+fi
+
+# 4c. Müzik sırası (`check`, 13.11.2026) kanalın önceki bölümünü git geçmişinden bulur; sığ klonda son 3 haftayı getir.
+if [ "$(git rev-parse --is-shallow-repository 2>>"$LOG")" = "true" ]; then
+  if git fetch -q --shallow-since="$(date -u -d '21 days ago' +%F 2>/dev/null || echo 2026-10-20)" origin >>"$LOG" 2>&1; then
+    ok "git geçmişi: sığ klon son 3 haftaya derinleştirildi (müzik sırası)"
+  else
+    fail "git geçmişi: sığ klon derinleşmedi; check müzik sırasını denetleyemez"
+  fi
 fi
 
 # 5. Referans reel'ler (hakemlerin kıyas kaynağı): yalnız referans/ yoksa aç

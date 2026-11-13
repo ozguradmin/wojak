@@ -18,9 +18,10 @@
 id: sablon
 title: "<Olay adı> (Olayı yorumlara yazdım)"
 
-# Müzik konuya göre (docs/KISA_REEL_EL_KITABI.md §6): kanal (hüzün, imza vals; kararsızsan bu) | klasik (eski kanal sesi,
-# arada bir, yalnız tr) | gizem | merak | ironik | destansi | masal. `check` çalan parçayı ilk satırda yazar.
-music: kanal
+# Müzik sırayla (docs/KISA_REEL_EL_KITABI.md §6): kanalın önceki bölümü klasik değilse klasik (eski kanal sesi, tr ve en);
+# klasikse konuya göre kanal (hüzün, imza vals; kararsızsan bu) | gizem | merak | ironik | destansi | masal.
+# `check` çalan parçayı ilk satırda yazar, sıra yanlışsa uyarır.
+music: klasik
 
 scenes:
   # 1) KANCA — A (sol). Kapak karesi genelde bu sahneden.

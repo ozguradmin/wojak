@@ -31,10 +31,13 @@
 
 ## 2. Hesap sahibinin kararları (hakemlerden önce gelir; en yenisi üstte)
 
+- **13.11 Müzik sırası (tr ve en):** "Hepsini kullanarak video üret artık; eski klasik müziğe diğerlerinden daha çok
+  öncelik verebilirsin", iki kanal için. Kanalın bölümleri sırayla: önceki bölüm `klasik` değilse bu bölüm `klasik`;
+  klasikse konuya göre öteki altı parçadan biri (§6). Klasik bölümlerin yarısında çalar; `check` sırayı denetler.
 - **13.11 Müzik:** müzik artık **konuya göre** seçilir (§6 "Müzik" tablosu). İlk hava parçaları beğenilmedi ("oyun arka
   plan müziği gibi, wojak videolarına uymaz"); yenileri eski klasik sesin iskeletiyle ve bizim valsin ses motoruyla
   yapıldı, hesap sahibi dinleyip onayladı: "güzel olmuş hepsi". Beş hava: `gizem`, `merak`, `ironik`, `destansi`, `masal`.
-- **12.11 Müzik:** "Sürekli aynı müzik sıkıyor." Eski klasik ses geri geldi (`music: klasik`, yalnız tr): hesap sahibi
+- **12.11 Müzik (13.11'de genişledi):** "Sürekli aynı müzik sıkıyor." Eski klasik ses geri geldi (`music: klasik`): hesap sahibi
   kısıtlanan YouTube videolarını tek tek izledi, hiçbirinde bu ses yoktu; "en çok beğenilen eski olandı", "hep olmasa da
   yine kullanabiliriz". Konuya göre hava müzikleri (gizem, merak, ironik, destansı, masal) hazırlanıyor.
 - **2.11 Onay yok:** "Neden onay adımı var, her şeyi onaylıyorum, paylaşsın." BEKLET yayını durdurmaz (§3); gündem paketi
@@ -65,8 +68,8 @@
   Lisans kuralları yalnız kanıt, arka plan ve kupür içindir.
 - **25.10 Bakış:** `faces:` yazılmaz; PNG'nin kendi yönü `yon` ile kaydedilir (§10). İki yayımlanmış reel'de karakter
   dışarı bakmıştı.
-- **22.10 Müzik (12.11'de genişledi, yukarıda):** imza `music: kanal` (bizim `imza_v2_golge.m4a`) hüzünlü konuların ve
-  kararsız kalınca varsayılanıdır.
+- **22.10 Müzik (13.11'de değişti, yukarıda):** imza `music: kanal` (bizim `imza_v2_golge.m4a`) hüzünlü konuların
+  parçasıdır; varsayılan artık sıradır (klasik, sonra konuya göre).
 - **22-23.10 YouTube:** herkese açık yükleme, hikâye metni yorum olarak; bunu yayın botu yapar. Elle yükleme yok.
 - **21.10 Son kare:** telifli gazete sayfası kullanılmaz. Düz "alıntı kartı" (kâğıt + yazı + çizgi) hesap sahibinden
   **1/10** aldı (iki hakem 8/8 vermişti): son kare ya gerçek serbest belge ya da gerçek sanılacak kalitede kupür (§9).
@@ -284,13 +287,14 @@ yazacağın derste olayı ve kişileri anma.
 - Filigran her karede (kart ve kanıt dahil); renderer koyar. Font Avenir Bold Italic (Poppins'e düşerse kanal değil).
 - Ses: tek parça müzik (aşağıdaki tablo), ~−14 LUFS (gerçek tepe ≤ −1,5 dBTP; §2, 31.10), efekt yok, döngü yok.
 
-**Müzik (13.11): konuya göre seç.** Hepsi aynı ailedendir (kamışlı um-pa-pa, eski plak sesi); render seviyeyi kendisi
-ayarlar.
+**Müzik (13.11): sırayla klasik, sonra konuya göre.** Kanalın önceki bölümü `klasik` değilse bu bölüm `klasik`; klasikse
+aşağıdaki tablodan konuya uyan öteki parça (hesap sahibi: "hepsini kullan, eski klasiğe daha çok öncelik ver", tr ve en).
+Hepsi aynı ailedendir (kamışlı um-pa-pa, eski plak sesi); render seviyeyi kendisi ayarlar.
 
 | `music:` | Hava | Parça | Konu |
 |---|---|---|---|
-| `kanal` | hüzün, trajedi | Gölge (imza vals) | ölüm, facia, kayıp, ihanet, acı son; **kararsızsan bu** |
-| `klasik` | hüzün, ürperti | eski kanal valsi | `kanal` yerine arada bir: son 7 günde en çok 2, yalnız tr |
+| `kanal` | hüzün, trajedi | Gölge (imza vals) | ölüm, facia, kayıp, ihanet, acı son; klasik sırası değilse ve **kararsızsan bu** |
+| `klasik` | hüzün, ürperti | eski kanal valsi | **her iki bölümden biri** (tr ve en): önceki bölüm klasik değilse bu; her konuya uyar |
 | `gizem` | gizem, gerilim | Fısıltı | çözülmemiş gizem, kaybolma, söylenti, lanet, ürkütücü yer |
 | `merak` | merak, keşif | Acaba | buluş, keşif, şaşırtıcı bilgi, arkeoloji, bilim |
 | `ironik` | ironik, hafif komik | Hınzır | tuhaf olay, kimsenin ölmediği aksilik, kandırmaca, kurnazlık |
@@ -298,15 +302,17 @@ ayarlar.
 | `masal` | masalsı, efsane | Bir Varmış | efsane, kehanet, tılsım, halk hikâyesi |
 
 - Hava konuyla çelişmez. Ölümün ya da acının olduğu olay `ironik` ya da `merak` olmaz; kahramanlık acı sonla bitiyorsa
-  `destansi` değil `kanal`. Emin değilsen `kanal`.
+  `destansi` değil `kanal`. Emin değilsen `kanal`. Konu birden çok parçaya uyuyorsa kanalda son kullanılmayanı seç:
+  altısı da dönsün.
 - Kısa ad o havanın parçasını seçer (bir havaya ikinci parça eklenince bölüm kimliğine göre sabit seçim yapılır);
   belirli parça için tam ad da yazılabilir (`music: gizem_a`). `check` ilk satırda çalan parçayı yazar
   (`müzik: hava/gizem_a.m4a  (music: gizem)`); kütüphane dışı müzik `[stil]` verir.
 - `ironik` parçası 13,4 sn'de kısa bir "tak" ile biter; sondaki kısa sessizlik kusur değildir.
-- `klasik`: ses özel depodan gelir (`bash tools/hazirla.sh`); yoksa `check` uyarır ve imza çalar. Son 7 günde kaç kez
-  kullanıldı: `git log --since=7.days -p -- 'episodes/*/episode.yaml' | grep -c '^+music:.*klasik'` (2 ise kullanma).
-  Kaynağı ticari bir yayın ("Phantomimes", SDM Nation); kullanma kararı hesap sahibinin, BEKLET gerekmez. en kanalında
-  yok.
+- `klasik`: ses özel depodan gelir (`bash tools/hazirla.sh`); yoksa `check` uyarır ve imza çalar. Sıra: `check` kanalın
+  önceki bölümüne bakar, yanlışsa `müzik sırası` uyarısı verir. Elle: `git log --diff-filter=A --format= --name-only --
+  'episodes/*/episode.yaml' | head` (en bölümleri `en-` ile başlar; kanalın ilk satırdaki bölümü öncekidir).
+  Kaynağı ticari bir yayın ("Phantomimes", SDM Nation); kullanma kararı hesap sahibinin (13.11: iki kanalda öncelikli),
+  BEKLET gerekmez.
 - Hakemler müziği yalnız bu tabloya göre değerlendirir: tabloya uyan seçim "imza değil" diye puan kırmaz, konuyla
   çelişen hava MUST'tır.
 
@@ -346,7 +352,7 @@ verir). Yabancı dilli son kare için "Videonun son karesi ... sayfasıdır" + T
 id: <id>                       # en: en-<id>
 # kanal: en                    # yalnız İngilizce kanal
 title: "<başlık>"
-music: {file: kanal, volume: 0.197}   # konuya göre (§6): kanal | klasik | gizem | merak | ironik | destansi | masal
+music: klasik                  # sıra (§6): önceki bölüm klasikse konuya göre kanal | gizem | merak | ironik | destansi | masal
 scenes:
   - {type: dialog, duration: 3.0, bg: img/arka.jpg, blur: 1.7,
      chars: [{img: chars/a.png, side: left, height: 0.50}], text: "Kanca, olay anında"}
@@ -480,7 +486,7 @@ Olayın kendi nesnesi yoksa benzer dönem nesnesi olduğunu metinde ve `ek_madde
 yüz değişimi ≥ %0,40 · boy 0,42-0,55 · kostüm döneme uygun ya da kusur RAPOR'da.
 **Arka plan ve kanıt:** tek (en çok iki) renkli gerçek fotoğraf, modern öğe yok · kanıtlar 1080 genişlik, 537-816 px, ek
 yok · son kare sorunun cevabı, bir önceki bölümle aynı tür değil.
-**Ses, kapak:** konuya uygun müzik (§6 tablosu; `check`'in ilk satırı) ~−14 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
+**Ses, kapak:** müzik §6 sırasına ve tablosuna uygun (`check`'in ilk satırı, müzik sırası uyarısı yok) ~−14 LUFS, efekt yok · `kapak.jpg` doğru sahne, etiketsiz.
 **Metinler:** başlık sonu söylemiyor · hikâye 150-250 kelime, soruyla biter · açıklama ≤ 2.200 karakter · `metinler/*.txt`
 sansürden sonra okundu · `ek_maddeler`'de canlandırma notu, ilk yorum önerisi.
 **Olgu, lisans, mahremiyet:** her olgu ≥ 2 kaynak, çelişen sayı yuvarlandı ya da çıktı · her görselin lisansı ve değişikliği

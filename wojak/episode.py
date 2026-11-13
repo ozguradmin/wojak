@@ -123,7 +123,7 @@ def _muzik_adi(ad: str) -> str:
 def muzik_dosyasi(ad: str, bolum_id: str) -> Path | None:
     """`music:` kısa adını dosyaya çevirir; kısa ad değilse None (o zaman dosya yolu olarak aranır). 12.11.2026:
 
-    kanal | imza | huzun       -> imza vals Gölge (hüzün, trajedi; 22.10'dan beri varsayılan)
+    kanal | imza | huzun       -> imza vals Gölge (hüzün, trajedi; klasik sırası değilse kararsızken bu)
     klasik | orijinal          -> eski kanal sesi (özel depodan, tools/hazirla.sh kopyalar); yoksa imza ve `check` uyarır
     gizem | merak | ironik | destansi | masal
                                -> o havanın parçalarından biri, bölüm kimliğine göre SABİT seçilir (yeniden render aynı
