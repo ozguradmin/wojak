@@ -1,0 +1,103 @@
+# Project Habakkuk: Britain's WWII plan for an ice aircraft carrier (Quebec 1943 demo). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (Defense Media Network 2010/2021, Cabinet Magazine #7, CNN Style, DIVER magazine, Alberta Aviation Museum, 99% Invisible, Wikipedia Pykrete/Habakkuk/Pyke).
+# CANLANDIRMA: iki karakter kurgu rolleridir. A = sivil mucit rolu (gercek kisiyi temsil etmez), B = Muttefik subay rolu (gercek kisiyi temsil etmez).
+#   Replikler belgeli soz degildir. Tabanca/sekme olayi "reportedly": kim ateslediyse ve kimi sıyırdığı kaynaklarda celiskili, replik bunu sormaz.
+# Karakterler: A = assets/kit/klasik/sakin (duz klasik wojak); B = assets/kit/ingiliz_er_1915 (sakin = kit; b_sok = ters kose, ayni kutu, chars/uret.py).
+id: en-habakkuk-ice-carrier
+kanal: en  # Wojak Past Files
+title: "Churchill Backed a WWII Plan for an Ice Aircraft Carrier"
+
+music: klasik
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Churchill approved my\nice aircraft carrier"
+
+  # 2) CEVAP — B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Ice melts, you know"
+
+  # 3) A (sol): kurşun tohumu
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "With sawdust it melts\nmuch slower"
+
+  - type: card
+    duration: 1.5
+    text: "Months later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Why is Roosevelt reading\nabout ice ships"
+
+  # 6) KANIT 1 — Churchill, Quebec, Agustos 1943 (NARA)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: Amiral King'in 9 Eylul 1943 tarihli GIZLI notu, konu: HABBAKUKS
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Churchill Backed a WWII Plan for an Ice Aircraft Carrier
+  The full story is in the pinned comment 👇
+
+hashtags: [history, ww2, churchill]
+
+pinned_comment: |
+  Project Habakkuk was a British Second World War plan to build an aircraft carrier out of ice. The inventor Geoffrey Pyke proposed a floating island made of pykrete, a mix of roughly 14 percent wood pulp and 86 percent ice, to cover the mid-Atlantic gap where U-boats hunted convoys beyond the reach of land-based planes. Winston Churchill backed the idea in December 1942. The full ship was planned at about 2,000 feet long and around two million tons, with a refrigeration system to keep the ice frozen.
+
+  At the Quebec Conference in August 1943, Lord Louis Mountbatten reportedly fired a revolver at a block of ice, then at a block of pykrete. In the retelling, a bullet ricocheted and buzzed past the officers' legs. Accounts disagree on who fired, who was grazed and even where: one account, by the scientist Max Perutz, places a similar ricochet in London, not Quebec.
+
+  A 60-foot test model was built on Patricia Lake in Alberta in 1943. Most accounts say it was made of plain lake ice, and that it took months to years to melt once the cooling was switched off. In September 1943 the U.S. Navy sent President Roosevelt a secret memo on the Habbakuk schemes (the last frame). By late 1943 it was judged impractical and dropped.
+
+  The wojak characters are fictional and their lines are dramatized.
+
+  Would you have sailed on a warship made of ice?
+
+credits: "Château Frontenac after a freezing rain day in Quebec city, by Wilfredor, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), cropped, colour and brightness toned down, softened; Winston Churchill in Quebec, c. August 1943 (NARA 197118, titled 'at a conference in Quebec'), U.S. National Archives, public domain (cropped); Memorandum for the President, Subject: Habbakuks, 9 September 1943, Naval Aide's Files, Roosevelt Map Room, U.S. federal records via DPLA, public domain (cropped, contrast adjusted); all via Wikimedia Commons."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles; the dialogue is invented and quotes no one. The ricochet story is told only in the description, with 'reportedly': sources differ on who fired, who was grazed and even where (Quebec 1943 or London). The video itself shows no ricochet."
+  - "**Image caution:** the first evidence photo shows Churchill arriving at the Quebec conference in August 1943 (NARA), not the pykrete demonstration; no photograph of the Patricia Lake model with a free licence was found (searched Wikimedia Commons, Internet Archive, Wikipedia image lists). The last frame is the first page of a 9 September 1943 U.S. Navy memorandum to the President (signed by Admiral Ernest King) about the project; the document uses the spelling 'Habbakuks'."
+  - "Suggested first comment: the Patricia Lake test model was reportedly plain lake ice, not pykrete."
+
+sources:
+  - "Defense Media Network, Project Habakkuk Breaks the Ice at the Quebec Conference (Mountbatten revolver, ricochet, Quebec Aug 1943): https://www.defensemedianetwork.com/stories/project-habakkuk-breaks-the-ice-at-the-quebec-conference/"
+  - "Cabinet Magazine #7, The Floating Island (Quebec demo, pistol shots, ricochet): https://www.cabinetmagazine.org/issues/7/collins.php/"
+  - "CNN Style, Project Habbakuk (Churchill 4 Dec 1942 memo, Patricia Lake model made of lake ice): https://edition.cnn.com/style/article/project-habbakuk-ice-aircraft-carrier"
+  - "Alberta Aviation Museum, Operation Habbakuk (60x30 ft, 1000 t model, 1943, impractical): https://albertaaviationmuseum.com/operation-habbakuk-the-iceberg-aircraft-carrier/"
+  - "DIVER magazine, Code name Habbakuk (plain ice model, disguise as boathouse): https://divermag.com/habbakuk/"
+  - "99% Invisible, Project Habbakuk (pykrete, 10 million pound price tag, remains in the lake): https://99percentinvisible.org/article/project-habbakuk-britains-secret-ice-bergship-aircraft-carrier-project/"
+  - "Wikipedia, Pykrete and Project Habakkuk (14/86 percent mix, 2,000 ft ship, December 1943 board meeting; cross-check only): https://en.wikipedia.org/wiki/Pykrete , https://en.wikipedia.org/wiki/Project_Habakkuk"
+  - "The National Interest, Project Habakkuk (14 percent wood pulp; ricochet story veracity doubtful): https://nationalinterest.org/blog/buzz/project-habakkuk-why-british-couldnt-make-aircraft-carrier-from-ice-wl-072826"
+  - "GÖRSEL img/arka.jpg — 'Château Frontenac after a freezing rain day in Quebec city.jpg', Wilfredor, CC BY-SA 4.0 (raw template self|cc-by-sa-4.0): https://commons.wikimedia.org/wiki/File:Ch%C3%A2teau_Frontenac_after_a_freezing_rain_day_in_Quebec_city.jpg . Degisiklik: kare kirpim, renk 0,62, parlaklik 0,95, blur 2,2"
+  - "GÖRSEL img/ev_1.jpg — 'Winston Churchill at a conference in Quebec - NARA - 197118.jpg', U.S. National Archives, 1943-08, raw template PD-USGov: https://commons.wikimedia.org/wiki/File:Winston_Churchill_at_a_conference_in_Quebec_-_NARA_-_197118.jpg . Degisiklik: kirpim, 1080x816"
+  - "GÖRSEL img/ev_2.jpg (son kare) — PDF sayfa 2 of 'Naval Aide's Files (A1-1) Habbakuks (Floating Airdoromes for Asia Theatre) - September 1-9, 1943 - DPLA' (Memorandum for the President, 9 Sep 1943, U.S. Fleet HQ, signed E. J. King), Roosevelt Map Room (US federal records, public domain): https://commons.wikimedia.org/w/index.php?curid=192265599 . Degisiklik: ust kisim kirpildi, gri ton, hafif kontrast/keskinlestirme"

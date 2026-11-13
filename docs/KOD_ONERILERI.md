@@ -87,3 +87,4 @@
 - `tools/gundem.py`: BBC Türkçe ve DW Türkçe RSS bu ortamdan 403 veriyor (11.11, alanya-adam-atacagi); başarısız akışı tek satır özetle ve oturumlar arası önbellekle atla.
 - `tools/commons.py ham_lisans`: Geograph kaynaklı dosyalarda ham sayfa yalnız `{{Geograph from structured data}}` içerir (lisans yapısal veride), `ham_lisans` boş döner ve araştırmacı "doğrulanamadı" der (12.11, en-wojtek-soldier-bear); bu şablonu görünce API `LicenseShortName`i kabul edip "SDC" notu düşsün.
 - `python -m wojak new <id>`: bölüm klasörü araştırmacı `img/` açtığı için varsa "zaten var" deyip şablonu yazmıyor (12.11, en-wojtek-soldier-bear); klasör var ama `episode.yaml` yoksa şablonu yazsın.
+- `wojak/config.py` `LOUDNESS_TP`: -1,5 hedefi loudnorm ölçümünde -1,47 dBTP çıkıyor ve görsel hakem MUST veriyor (13.11, en-habakkuk-ice-carrier); varsayılanı -1,65 yap.
