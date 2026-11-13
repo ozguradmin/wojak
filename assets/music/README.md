@@ -1,34 +1,31 @@
 # Müzik
 
-## Hava kütüphanesi (12.11.2026): `hava/`, bize ait, **onay bekliyor**
+## Hava kütüphanesi v2 (13.11.2026): `hava/`, bize ait, **hesap sahibinin onayını bekliyor**
 
-> 13.11.2026: hesap sahibi bu 10 parçayı beğenmedi ("oyun arka plan müziği gibi, wojak videolarına uymaz"). Yenileri eski
-> klasik sesin dünyasından yapılıyor; o zamana dek `config.HAVA_ONAYLI = False` ve `check` hava adlarında uyarır.
+Hesap sahibi 12.11: "sürekli aynı müzik sıkıyor". İlk deneme (10 parça, temiz "orkestra" MIDI'si: marimba, korno,
+pizzicato, salon yankısı, kusursuz döngü) 13.11'de reddedildi: "oyun yapıyorsan arka plan müziğine uyar ama bizim wojak
+videolarına uymaz; eski klasik sesi iyi incele". Ölçü de aynısını söylüyordu: eski klasik sese benzerlik puanında
+(0-100) Gölge 75, o parçalar 13-16.
 
-Hesap sahibi: "sürekli aynı müzik sıkıyor". Konuya göre beş hava, her birinde iki parça. Hangi konuya hangisi:
-`docs/KISA_REEL_EL_KITABI.md` §6 tablosu. `music: gizem` o havanın parçalarından birini bölüm kimliğine göre sabit seçer,
-`music: gizem_b` o parçayı (`wojak/episode.py` `muzik_dosyasi`).
+v2, eski klasik sesin **iskeleti** üzerine beş kardeş valstir (inceleme: `arastirma/hava_muzik/NOTLAR.md`): 3/4, iki
+vuruşluk "pa pa" ile başlar, iki akorluk sarkaç baştan sona sürer, ilk 4 ölçü yalnız kamışlı um-pa-pa ("u a a"), ezgi
+~4,5 sn'de girer, iki ölçülük hücre yinelenir, ~8 sn'de "çığlık" (videoda ters köşe), son nota kesmeye kadar tutulur
+(kanıt görselleri). Ses Gölge'yi yapan ev sesi motorundan çıkar (`tools/ev_sesi/`: FluidR3 örnekleri, MIT + klasik
+sesten **ölçülen** lo-fi zincir; klasik sesin kendisinden hiçbir ses kullanılmaz). Melodiler ve armoniler özgün.
+Benzerlik puanı 52-64, kanal uyumu 59-72 (klasik 78, Gölge 77, reddedilenler 1-22).
 
-Üretim `python tools/hava_muzik.py --hepsi` (besteler `tools/hava_besteler.py`, nota nota kod). Her çalgı ayrı MIDI
-(`mido`), FluidSynth ile MuseScore General SF2 (MIT; yaylılar VSCO-2 CE, CC0; piyano kamu malı Splendid Grand) çalınır, numpy
-ile EQ ve ortak sentetik yankı, 14,0 sn kusursuz döngü (yankı kuyruğu başa sarılır), −14 LUFS, gerçek tepe ≤ −1,5 dBTP, AAC
-192k. Kayıt, örnek ya da başka bir parçanın sesi yok; melodi ve armoni özgün. Her parça Gölge'nin açılışındaki "5-4 | 3"
-iç çekişini küçük bir selam olarak taşır (`masal_b`'de Lidya renkli Do-Si | La). Ölçümler, piyano rulosu ve spektrogram
-`out/hava/` altında; `--dinleme` hepsini numaralı kartlarla tek videoda dinletir (`out/hava/hava_dinleme.mp4`).
-Kurulum: `apt-get install fluidsynth musescore-general-soundfont-lossless` ve `pip install mido soundfile scipy matplotlib`.
+| Dosya | Ad | Ton, tempo | Sarkaç | Renk ve fikir |
+|---|---|---|---|---|
+| `gizem_a.m4a` | Fısıltı | La minör, 152 | i ↔ ♭vi (La m ↔ Fa m) | klarnet-müzet; yoklayan hücre, yükselip asılı kalan soru, açık biten son |
+| `merak_a.m4a` | Acaba | Sol majör, 152 | I ↔ II (Lidya) | tremolo armonika; soru tonlamalı hücre, "buldum" anı, çözülen son |
+| `ironik_a.m4a` | Hınzır | Fa majör, 160 | I ↔ V7 | kuru, kesik eşlik; topallayan hücre, "yanlış nota" şakası, sonda kısa bir "tak" |
+| `destansi_a.m4a` | Yemin | Fa minör → Fa majör, 152 | i ↔ ♭VII (açık beşliler) | hafif davul; borazan gibi noktalı hücre, ♭VI-♭VII-I ile majöre çıkış |
+| `masal_a.m4a` | Bir Varmış | Mi majör, 144 | I ↔ iv | müzik kutusu + kamış; beşik gibi hücre, Hicaz basamaklı kapanış |
 
-| Dosya | Ad | Ton, ölçü, tempo | Çalgılar |
-|---|---|---|---|
-| `gizem_a.m4a` | Saat | Re minör, 4/4, 137 | tik-tak çelesta, klarnet, pizzicato bas, tremolo, timpani |
-| `gizem_b.m4a` | Dehliz | Mi minör, 6/8, 206 (sekizlik) | yumuşak piyano arpeji, yalnız keman, konser davulu, uzak çan |
-| `merak_a.m4a` | Keşif | Sol majör, 4/4, 120 | marimba, glockenspiel, zıplayan pizzicato, shaker, üçgen |
-| `merak_b.m4a` | Buluş | Re majör, 6/8, 257 (sekizlik) | flüt, klarnet, arp, pizzicato bas, glockenspiel, tef |
-| `ironik_a.m4a` | Sinsi | Re minör, 4/4, 120 | parmak ucunda fagot, pizzicato, glockenspiel göz kırpması, tahta blok |
-| `ironik_b.m4a` | Ters Köşe | Fa majör, 3/4, 154 | klarnet, tuba "um-pa-pa", pizzicato, glockenspiel |
-| `destansi_a.m4a` | Zafer | Re minör, 4/4, 137 | kornolar (ikinci yarıda trompetler), 3+3+2 yaylı ostinato, timpani, taiko |
-| `destansi_b.m4a` | Onur | Sol minör, 4/4, 69 | ağır korno, yaylılar, kontrbas, uzak trampet, timpani |
-| `masal_a.m4a` | Kule | Mi minör, 3/4, 116 | flüt + çelesta, arp valsi, yaylılar |
-| `masal_b.m4a` | Rüya | Fa Lidya, 6/8, 206 (sekizlik) | çelesta, glockenspiel, arp, "u" korosu, viyolonsel |
+Üretim: `python tools/hava_muzik.py --hepsi` (besteler `tools/hava_besteler.py`; aynı JSON + tohum = aynı dosya).
+Dinleme: `python tools/hava_muzik.py --onizleme plan.json out/hava/onizleme.mp4` parçaları gerçek yayınlanmış videoların
+altında çaldırır. Onaya kadar `config.HAVA_ONAYLI = False`: `check` hava adlarında uyarır. Her havada şimdilik tek
+parça var; ikinci parça eklenince `music: gizem` ikisi arasında bölüm kimliğine göre seçer.
 
 ## Eski klasik kanal sesi: `music: klasik` (12.11.2026)
 

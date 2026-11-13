@@ -13,8 +13,9 @@ Charon at 1.25x, settings in `docs/UZUN_FORMAT.md` §1.1. The long `talidomit-tu
 Queued long-form work: `docs/YAYIN_PLANI.md` §4. YouTube got a violation: read `docs/YAYIN_PLANI.md` §0 before producing.
 Music (13.11): `music: kanal` is our waltz Gölge (the default); `klasik` is the old channel audio, the audience's favourite (now
 and then, tr only; it lives in the private repo and `hazirla.sh` copies it). The mood library `assets/music/hava/`
-(`gizem | merak | ironik | destansi | masal`) is NOT approved: the owner found the first 10 tracks "game background music"; `check`
-warns until new ones are approved (`config.HAVA_ONAYLI`). Rules: `docs/KISA_REEL_EL_KITABI.md` §6.
+(`gizem | merak | ironik | destansi | masal`) is NOT approved yet: the owner found the first 10 tracks "game background music".
+v2 (13.11) is five sibling waltzes on the classic audio's skeleton, made with the house-sound engine (`tools/ev_sesi/`); it
+waits for the owner's verdict and `check` warns until then (`config.HAVA_ONAYLI`). Rules: `docs/KISA_REEL_EL_KITABI.md` §6.
 **Fresh cloud session?** The licensed font and the reference reels are not in the repo: run `docs/ADIM_ADIM.md` §1.
 
 ## What this repo is
@@ -128,7 +129,7 @@ python -m wojak uzun render    uzun/<id>        # also: kare, kucukresim, paket,
 python tools/wojak_site.py search|sheet|get ...   # wojakland / wojaksparadise
 python tools/wojak_lib.py  search|sheet|get ...   # 10,378 transparent wojak PNGs
 python tools/kit_varyant.py ...                   # face variants of one base
-python tools/hava_muzik.py --hepsi [--dinleme]    # mood music library -> assets/music/hava/ (+ listening video)
+python tools/hava_muzik.py --hepsi               # mood music v2 -> assets/music/hava/ (--onizleme: on real videos)
 python -m pytest tests/ -q                        # or: python tests/test_uzun.py
 ```
 

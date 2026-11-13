@@ -25,3 +25,5 @@ tools/telegram/node_modules/
 # sosyal medya ve internet dahil) ve git geçmişinden silinemez. Bölüm klasörü özel depoda gundem/<id>/, paket teslim/<id>/.
 episodes/gundem-*/
 teslim/gundem-*/
+arastirma/hava_muzik/cache/
+arastirma/hava_muzik/.kulak.lock

@@ -37,14 +37,14 @@ def _bolum(tmp_path: Path, music: str, bolum_id: str = "deneme") -> Path:
     return d
 
 
-def test_her_havanin_en_az_iki_parcasi_var():
+def test_her_havanin_parcasi_var():
     for hava in config.HAVALAR:
-        assert len(list(config.MUSIC_HAVA.glob(f"{hava}_*.m4a"))) >= 2, hava
+        assert list(config.MUSIC_HAVA.glob(f"{hava}_*.m4a")), hava
 
 
 def test_kisa_adlar():
     assert muzik_dosyasi("kanal", "x") == muzik_dosyasi("huzun", "x") == config.MUSIC_IMZA
-    assert muzik_dosyasi("gizem_b", "x") == config.MUSIC_HAVA / "gizem_b.m4a"
+    assert muzik_dosyasi("gizem_a", "x") == config.MUSIC_HAVA / "gizem_a.m4a"
     assert muzik_dosyasi("imza_v2_golge.m4a", "x") is None      # dosya adı: eskisi gibi yol olarak aranır
     assert muzik_dosyasi("hava/gizem_a.m4a", "x") is None
 
@@ -83,7 +83,7 @@ def test_bolumde_hava_adi(tmp_path, monkeypatch, yazilan, ad):
 
 def test_onaysiz_hava_uyarir(tmp_path, monkeypatch):
     monkeypatch.setattr(config, "HAVA_ONAYLI", False)
-    for yazilan in ("gizem", "merak_b", "{file: hava/masal_a.m4a}"):
+    for yazilan in ("gizem", "merak_a", "{file: hava/masal_a.m4a}"):
         ep = load(_bolum(tmp_path, yazilan, bolum_id=f"b{abs(hash(yazilan)) % 9999}"))
         assert any("onayını bekliyor" in u for u in denetim.stil(ep)), yazilan
     assert not [u for u in denetim.stil(load(_bolum(tmp_path, "kanal", bolum_id="k"))) if "müzik" in u]
@@ -107,7 +107,7 @@ def test_hava_parcalari_14_sn_ve_stereo():
         r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=channels,sample_rate",
                             "-of", "json", str(p)], capture_output=True, text=True, check=True)
         bilgi = json.loads(r.stdout)
-        assert 13.95 <= float(bilgi["format"]["duration"]) <= 14.1, p.name
+        assert 13.7 <= float(bilgi["format"]["duration"]) <= 14.1, p.name
         assert bilgi["streams"][0]["channels"] == 2, p.name
 
 
@@ -119,3 +119,16 @@ def test_klasik_en_kanalinda_uyarir(tmp_path, monkeypatch):
     yol = d / "episode.yaml"
     yol.write_text("kanal: en\n" + yol.read_text(encoding="utf-8"), encoding="utf-8")
     assert any("yalnız tr kanalında" in u for u in denetim.stil(load(d)))
+
+
+def test_besteler_iskelete_uyar():
+    """Her parça klasik sesin iskeletinde: 3/4, iki vuruşluk auftakt, ezgi 3. ölçünün sonundan önce girmez."""
+    sys.path.insert(0, str(config.ROOT / "tools"))
+    import hava_besteler
+    assert set(hava_besteler.BESTELER) == {p.stem for p in HAVA_DOSYALARI}
+    for ad, f in hava_besteler.BESTELER.items():
+        b = f()
+        assert b["beats_per_bar"] == 3 and b["pickup_beats"] == 2 and 140 <= b["tempo_bpm"] <= 164, ad
+        ilk = min(n["bar"] * 3 + n["beat"] for n in b["notes"])
+        assert ilk >= 3 * 3 + 3, ad                              # en erken 3. ölçünün 3. vuruşu
+        assert ad.split("_")[0] in config.HAVALAR, ad

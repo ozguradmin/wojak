@@ -53,16 +53,17 @@ MUSIC_FALLBACK = MUSIC / "imza_gece_vals.mp3"
 # YouTube ihlal riski taşıdığı için `music: kanal` artık bunu çalar; eski ses 12.11.2026'dan beri `music: klasik` (= orijinal).
 MUSIC_IMZA = MUSIC / "imza_v2_golge.m4a"
 MUSIC_IMZA_VARYANT = sorted(MUSIC.glob("imza_v2_*.m4a"))   # videoya göre dönüşümlü kullanılabilir
-# 12.11.2026: konuya göre HAVA müzikleri (hesap sahibi: "sürekli aynı müzik sıkıyor"). Hepsi bize ait (tools/hava_muzik.py
-# + tools/hava_besteler.py; MuseScore General SF2, MIT), 14,0 sn, -14 LUFS; her biri Gölge'nin "5-4 | 3" iç çekişini
-# küçük bir selam olarak taşır. `music: gizem` o havanın parçalarından birini bölüm kimliğine göre SABİT seçer, `gizem_b`
-# o parçayı. Eski kanal sesi `music: klasik` (= orijinal): repoya girmez, tools/hazirla.sh özel depodan kopyalar.
+# Konuya göre HAVA müzikleri (hesap sahibi 12.11: "sürekli aynı müzik sıkıyor"). İlk 10 parça (temiz orkestra MIDI'si)
+# 13.11'de reddedildi: "oyun arka plan müziği gibi, wojak videolarına uymaz". v2 (13.11): eski klasik sesin iskeleti
+# üzerine beş kardeş vals, Gölge'yi yapan ev sesi motoruyla (tools/hava_besteler.py, tools/hava_muzik.py,
+# tools/ev_sesi/). `music: gizem` o havanın parçalarından birini bölüm kimliğine göre SABİT seçer, `gizem_a` o parçayı.
+# Eski kanal sesi `music: klasik` (= orijinal): repoya girmez, tools/hazirla.sh özel depodan kopyalar.
 MUSIC_HAVA = MUSIC / "hava"
-# 13.11.2026: hesap sahibi ilk 10 parçayı beğenmedi ("oyun arka plan müziği gibi, wojak videolarına uymaz"). Yenileri
-# onaylanana dek hava adları `check`te [stil] uyarısı verir; şimdilik yalnız `kanal` ve `klasik` kullanılır.
-HAVA_ONAYLI = False
 HAVALAR = {"gizem": "gizem, gerilim", "merak": "merak, keşif", "ironik": "ironik, hafif komik",
            "destansi": "destansı, kahramanlık", "masal": "masalsı, efsane"}
+# Hesap sahibi v2'yi dinleyip onaylayana dek kapalı: hava adları `check`te [stil] uyarısı verir, yalnız `kanal` ve
+# `klasik` kullanılır. Onay gelince True yapılır ve el kitabı §6 tablosu açılır.
+HAVA_ONAYLI = False
 LOUDNESS_LUFS = -14.0
 LOUDNESS_TP = -1.5
 MAX_DURATION = 14.0

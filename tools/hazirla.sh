@@ -106,10 +106,10 @@ else
   sert "referans: $FONT_DEPO/referans.7z açılamadı"
 fi
 
-# 6. İmza müziği (config.MUSIC_IMZA) ve hava kütüphanesi (config.MUSIC_HAVA, her havada en az iki parça) yerinde mi
+# 6. İmza müziği (config.MUSIC_IMZA) ve hava kütüphanesi (config.MUSIC_HAVA, her havada en az bir parça) yerinde mi
 if m=$(python - 2>>"$LOG" <<'PY2'
 from wojak import config
-eksik = [h for h in config.HAVALAR if len(list(config.MUSIC_HAVA.glob(f"{h}_*.m4a"))) < 2]
+eksik = [h for h in config.HAVALAR if not list(config.MUSIC_HAVA.glob(f"{h}_*.m4a"))]
 print(f"{config.MUSIC_IMZA.relative_to(config.ROOT)} + {len(list(config.MUSIC_HAVA.glob('*.m4a')))} hava parçası"
       + (f", eksik hava: {eksik}" if eksik else ""))
 raise SystemExit(0 if config.MUSIC_IMZA.exists() and not eksik else 1)

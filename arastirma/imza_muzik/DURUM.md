@@ -14,3 +14,6 @@ Durum:
 - Sıradaki adım: `wf_tasarim.js` ile her motor üç melodiyi işler, ses ve müzik eleştirmenleri puanlar; en iyiler
   düzeltilir, `tools/imza_muzik.py` yeniden yazılır, yeni dosyalar assets/music/'e girer. Yollar iş klasörüne göredir
   (SP = scratchpad/muzik2); yeni oturumda bu klasör SP olarak kopyalanıp orijinal ses `assets/music/ozel/` altına konur.
+
+**13.11.2026:** `sf` motorunun genişletilmiş kopyası `tools/ev_sesi/` altında (hava müzikleri v2 bununla yapıldı;
+kılavuz `tools/ev_sesi/OKU.md`, inceleme notları `arastirma/hava_muzik/NOTLAR.md`).
