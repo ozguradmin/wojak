@@ -53,6 +53,7 @@
 
 - `tests/`: sabit `/home/user/wojak` yolu yerine depo kökünü kullan (taze konteynerde bağ yokken `test_short_youtube_aciklamasi_hikayeyi_tasir` düşüyor); talidomit telifli görseline bağlı hashtag testi ortam eksiğinde düşmesin.
 - `wojak check`/denetim: kanıt görsellerinde koyu piksel oranı (<15) > %1 ise `[stil]` uyarısı (yarı ton taramada ezik gölge; schliemann-sal-1873 tur 1 MUST'ı).
+- `tests/test_muzik.py` (`test_bolumde_hava_adi`, `test_onaysiz_hava_uyarir`): müzik sırası denetimi gerçek depodaki önceki tr bölümüne bakıyor; önceki bölüm `kanal` çaldıysa testlere "müzik sırası" uyarısı giriyor ve `hazirla.sh` 4 FAIL veriyor (13.11, haydarpasa-patlamasi-1917); testte sıra denetimini monkeypatch'le ya da geçici bölümü sıradan muaf tut.
 
 ## Belge düzeltmeleri (eski bilgi taşıyanlar)
 

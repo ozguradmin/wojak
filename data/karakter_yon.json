@@ -583,6 +583,10 @@
   "faces": "right",
   "file": "episodes/en-franz-ferdinand-wrong-turn/chars/a_sakin.png"
  },
+ "7874bc6d7c2829feffe602854afaded8dcaa922d": {
+  "faces": "right",
+  "file": "episodes/haydarpasa-patlamasi-1917/chars/asker_sakin.png"
+ },
  "787730f825a750745aa8d6b85ea14f384600e2c1": {
   "faces": "right",
   "file": "episodes/en-acoustic-kitty/chars/a_sok.png"
@@ -826,6 +830,10 @@
  "b17e7d9c922e73169efabef67faa97abb518842c": {
   "faces": "right",
   "file": "assets/kit/bizans_prenses/terli.png"
+ },
+ "b264cb3084e9f2431af177a9458c1656635d9dd5": {
+  "faces": "right",
+  "file": "episodes/haydarpasa-patlamasi-1917/chars/asker_sok.png"
  },
  "b2e2560974b261781d6a7052580474f02dc170ca": {
   "faces": "right",
