@@ -151,6 +151,10 @@
   "faces": "right",
   "file": "episodes/hayirsizada-kopekleri-1910/chars/memur.png"
  },
+ "299089e83a1ca25d7019ad32a43d7318d7421ddb": {
+  "faces": "right",
+  "file": "episodes/patrona-halil-1730/chars/patrona_emin.png"
+ },
  "29dea8726b6f3785d50eb87317402f6e21af9ddb": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
@@ -715,6 +719,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_kollar.png"
  },
+ "946e1cb80cb8f8bcf3bb22e2722388a7f1f43f2b": {
+  "faces": "right",
+  "file": "episodes/patrona-halil-1730/chars/patrona_sok.png"
+ },
  "94de8a41331002c43c78dfc4022c25d647f343a9": {
   "faces": "right",
   "file": "episodes/en-habakkuk-ice-carrier/chars/b_sok.png"
@@ -870,6 +878,10 @@
  "b74600a78a78ea055a83f8a5cfc02a70506809f5": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
+ },
+ "b7a3d94d4068ee24a2c778e7bcafd249bcd87e5d": {
+  "faces": "right",
+  "file": "episodes/patrona-halil-1730/chars/yoldas_sakin.png"
  },
  "b90caea546fe9e641f959e5d2441447d74269c87": {
   "faces": "right",

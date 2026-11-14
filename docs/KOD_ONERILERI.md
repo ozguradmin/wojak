@@ -88,3 +88,4 @@
 - `tools/commons.py ham_lisans`: Geograph kaynaklı dosyalarda ham sayfa yalnız `{{Geograph from structured data}}` içerir (lisans yapısal veride), `ham_lisans` boş döner ve araştırmacı "doğrulanamadı" der (12.11, en-wojtek-soldier-bear); bu şablonu görünce API `LicenseShortName`i kabul edip "SDC" notu düşsün.
 - `python -m wojak new <id>`: bölüm klasörü araştırmacı `img/` açtığı için varsa "zaten var" deyip şablonu yazmıyor (12.11, en-wojtek-soldier-bear); klasör var ama `episode.yaml` yoksa şablonu yazsın.
 - `wojak/config.py` `LOUDNESS_TP`: -1,5 hedefi loudnorm ölçümünde -1,47 dBTP çıkıyor ve görsel hakem MUST veriyor (13.11, en-habakkuk-ice-carrier); varsayılanı -1,65 yap.
+- `tests/test_muzik.py::test_klasik_varsa_eski_ses`: geçici `{file: klasik}` bölümünde de müzik sırası gerçek depoya bakıyor; önceki tr bölümü klasikse "müzik sırası" uyarısı girip test düşüyor ve `hazirla.sh` FAIL veriyor (14.11, patrona-halil-1730); sıra denetimini testte monkeypatch'le.
