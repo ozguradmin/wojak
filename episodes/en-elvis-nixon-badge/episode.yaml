@@ -1,0 +1,103 @@
+# Elvis Presley'nin 21 Aralik 1970'te Beyaz Saray'a gelisi (Nixon ile gorusme). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (NARA, NSA/GWU belgeleri, White House Historical Association, Smithsonian, Time, Constitution Center, Washingtonian, AP).
+# CANLANDIRMA: iki karakter kurgu rolleridir (Beyaz Saray gorevlileri; gercek kisiyi temsil etmez). Replikler belgeli soz degildir.
+#   Videoda yalnizca Elvis ve Nixon anilir (fotografta); yardimcilar adlandirilmaz. Sure/saat/sayfa sayisi celiskili: videoda ve aciklamada yok.
+# Karakterler: A = assets/kit/klasik/sakin (duz klasik wojak); B = wojakland 'Grey Suit Wojak' (sakin = indirilen PNG; b_sok = ters kose, ayni kutu, chars/uret.py).
+id: en-elvis-nixon-badge
+kanal: en  # Wojak Past Files
+title: "Elvis Asked President Nixon to Make Him a Federal Agent"
+
+music: ironik
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Elvis wants to be\na federal agent"
+
+  # 2) CEVAP — B (sag); memo kenarindaki el yazisina gonderme
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.4
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "You must be kidding"
+
+  # 3) A (sol): ikinci istek (memo: randevu istedi, merhaba deyip hediye verecek)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "He wants to meet\nthe president"
+
+  - type: card
+    duration: 1.5
+    text: "Hours later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti; cevabi son kanitlar (onay + Oval Ofis fotografi) sessizce verir
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.4
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, they actually\nlet him in"
+
+  # 6) KANIT 1 — 21 Aralik 1970 Beyaz Saray notu, 2. sayfa: el yazisi "You must be kidding" ve onay
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: Ollie Atkins, Oval Ofis, 21.12.1970
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Elvis Asked President Nixon to Make Him a Federal Agent
+  The full story is in the pinned comment 👇
+
+hashtags: [history, elvis, nixon]
+
+pinned_comment: |
+  The Elvis Presley–Richard Nixon meeting took place on December 21, 1970, after Presley arrived at the White House without an appointment. He had flown overnight from Los Angeles to Washington, and at about 6:30 in the morning he handed a handwritten letter to a guard at the northwest gate. Written on American Airlines stationery, it offered his help in the fight against narcotics and asked to be made a "Federal Agent at Large." He reportedly told the White House he was staying at a hotel under the name Jon Burrows.
+
+  A White House aide wrote a memo proposing that Presley be allowed to meet the president briefly. The chief of staff's reply, scrawled in the margin, was "You must be kidding", and yet the meeting was approved (the video's first evidence frame is part of page two of that memo).
+
+  Around midday Presley was shown into the Oval Office. He had brought a World War II Colt .45 pistol as a gift, but the Secret Service took it at the security check. A White House photographer, Ollie Atkins, captured the handshake. Before leaving the Oval Office, Presley hugged the president. According to later accounts, he also asked for a federal narcotics badge, and that afternoon an official from the federal narcotics bureau gave him one. Aides later described it as honorary.
+
+  The visit stayed secret until the Washington Post reported it in January 1972. Today the photograph is one of the most requested images in the National Archives.
+
+  Would you have let him in?
+
+credits: "White House North Lawn 3-2007, by Nminow, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons (cropped, colour and brightness toned down, softened); Memorandum for H. R. Haldeman from Dwight L. Chapin, 21 December 1970, page 2, White House document, U.S. National Archives (copy published by the National Security Archive), public domain (cropped, contrast adjusted); Elvis Presley and Richard Nixon in the Oval Office, 21 December 1970, by Ollie Atkins, White House photograph via the U.S. National Archives, public domain, via Wikimedia Commons (resized)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional White House staff roles and represent no real person; the dialogue is invented. Documented: the letter asking to be a 'Federal Agent at Large', the handwritten 'You must be kidding' on the memo, the approval, and the Oval Office meeting. The video names only Elvis Presley and Richard Nixon; no other participant is named or portrayed. Duration of the meeting, exact time (12:30 vs 12:45) and page count of the letter are given differently in sources, so they are left out."
+  - "**Image caution:** the background is the White House north front (2007), not 1970. The first evidence frame is the National Archives copy of the memo, page 2; the last frame is the White House photograph by Ollie Atkins. The National Archives notes that the estates of Nixon and Presley may claim rights in their likenesses for commercial use; the photograph itself is a U.S. government work."
+  - "The badge request is documented in later accounts (Smithsonian, White House Historical Association) but not in the contemporary meeting memo; the description says 'according to later accounts'."
+  - "Suggested first comment: Presley's letter was written on an overnight flight (the airline stationery is in the National Archives)."
+
+sources:
+  - "National Archives, When Nixon Met Elvis (21 Dec 1970; letter delivered at ~6:30 a.m. to guard at the northwest gate; American Airlines stationery; WWII-era pistol gift): https://www.archives.gov/exhibits/nixon-met-elvis/page-1.html"
+  - "White House Historical Association, The President Meets the King of Rock 'n' Roll (letter, 'You must be kidding', Secret Service kept the gun, Oval Office photo by Oliver F. Atkins, badge, 27 Jan 1972 Washington Post): https://www.whitehousehistory.org/the-president-of-the-united-states-meets-the-king-of-rock-n-roll"
+  - "Smithsonian Magazine, When Elvis Met Nixon (red-eye flight, 6:30 a.m., Colt .45, BNDD badge, 'most requested photographs'): https://www.smithsonianmag.com/history/when-elvis-met-nixon-69892425/"
+  - "National Security Archive (GWU), Doc 3 memo Chapin to Haldeman, 21 Dec 1970 (handwritten 'You must be kidding'; 'Approve Presley coming in at end of Open Hour'): https://nsarchive2.gwu.edu/nsa/elvis/docs/doc3.pdf"
+  - "National Security Archive, Doc 2 letter transcription ('Federal Agent at Large'; 'Jon Burrows'): https://nsarchive2.gwu.edu/nsa/elvis/docs/doc2.pdf"
+  - "National Constitution Center, The story behind the most famous White House summit ever (unannounced, Secret Service took the gift): https://constitutioncenter.org/blog/the-story-behind-the-most-famous-white-house-summit-ever"
+  - "Time, Elvis and Nixon photo (honorary badge; most-requested photograph): https://time.com/4894301/elvis-president-nixon-photo/"
+  - "GÖRSEL img/arka.jpg — 'White House North Lawn 3-2007.jpg', Nminow, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:White_House_North_Lawn_3-2007.jpg . Degisiklik: kare kirpim, renk 0,92, parlaklik 0,80, blur 1,4"
+  - "GÖRSEL img/ev_1.jpg — NSA/GWU doc3.pdf sayfa 2 (Chapin to Haldeman memo, White House, 21 Dec 1970; ABD hukumeti belgesi): https://nsarchive2.gwu.edu/nsa/elvis/docs/doc3.pdf . Degisiklik: kirpim, gri ton, kontrast"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Elvis-nixon.jpg', Ollie Atkins, Beyaz Saray fotografcisi, 21.12.1970, ham sayfa {{NARA-image}} {{PD-USGov-POTUS}}: https://commons.wikimedia.org/wiki/File:Elvis-nixon.jpg . Degisiklik: 1080 genislige kucultuldu"

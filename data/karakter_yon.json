@@ -455,6 +455,10 @@
   "faces": "right",
   "file": "assets/kit/bizans_prenses/korku.png"
  },
+ "5f9a4c8ad1f713af07b4150e23dff1b4c5839309": {
+  "faces": "right",
+  "file": "episodes/en-elvis-nixon-badge/chars/b_sakin.png"
+ },
  "60e17cc128cf62788ab1ebc12d53ddd2efa97b61": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_baba.png"
@@ -1146,6 +1150,10 @@
  "f51528bf0c260a2371429a44c74a44103c662666": {
   "faces": "right",
   "file": "episodes/en-dancing-plague-1518/chars/b_sakin.png"
+ },
+ "f52cc9f7d0b1aa290c1d4bfaa127b3fadf381bf6": {
+  "faces": "right",
+  "file": "episodes/en-elvis-nixon-badge/chars/b_sok.png"
  },
  "f5562cea239e6f4c16c5a8feba7fa33f0d377264": {
   "faces": "right",
