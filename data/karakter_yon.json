@@ -587,6 +587,10 @@
   "faces": "right",
   "file": "episodes/en-cardiff-giant/chars/a_sakin.png"
  },
+ "759c06543d36f54079145d94ba1445eb782dbe03": {
+  "faces": "left",
+  "file": "episodes/en-lincoln-body-snatchers/chars/b_sok.png"
+ },
  "7621d605282adae2a5218f0f0aa758d7b8c6ed69": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_v2_supheci.png"
@@ -631,6 +635,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/temsilci_notr.png"
  },
+ "7e91ee2c62f064468001b59f356ea8d5a9400e33": {
+  "faces": "front",
+  "file": "episodes/en-lincoln-body-snatchers/chars/src/a_src.png"
+ },
  "7f4e21cf2ae472785b4dbf780f61e63ce05210ab": {
   "faces": "left",
   "file": "episodes\\kanuni-gizlenen-olum\\chars\\yeniceri_sok.png"
@@ -646,6 +654,10 @@
  "808a7b1ad6963741e82f761fdd66a4492cafe0fd": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/musteri_v2_sakin.png"
+ },
+ "80fc92dbf877e48d09f02265db51f529d2b41760": {
+  "faces": "left",
+  "file": "episodes/en-lincoln-body-snatchers/chars/b_sakin.png"
  },
  "81f96fdd044779d5ea2f4e8789bdfa38fe7724ff": {
   "faces": "right",
@@ -1130,6 +1142,10 @@
  "ebc3a62215403a45858c2ba69b0c030a611d86f2": {
   "faces": "left",
   "file": "episodes\\gobeklitepe-mezar-tasi\\chars\\arkeolog_emin.png"
+ },
+ "ebd6fd5b30d1b6061b1329875a2b04785281c17b": {
+  "faces": "right",
+  "file": "episodes/en-lincoln-body-snatchers/chars/a_sakin.png"
  },
  "ec161ae5609fcdd12b714c564d031bd46972f2d9": {
   "faces": "right",

@@ -1,0 +1,104 @@
+# 1876: sahte para cetesi Lincoln'un naasini Springfield'daki turbeden calip fidye icin kullanmak istedi; Secret Service muhbiri (Swegles) cetede. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (NPS, US Secret Service "Moments in History", Illinois Times 5.11.2026, US News/Craughwell 2007, Chicago Sun-Times 2021, H-Net; birincil: J. C. Power, History of an Attempt to Steal the Body of Abraham Lincoln, 1890, Internet Archive).
+# CANLANDIRMA: iki karakter kurgu rolleridir (cete lideri ve cete uyesi; gercek kisiyi temsil etmez). Replikler belgeli soz degildir.
+#   Tartismali (replikte ve metinde kesin soylenmez): tabutun ne kadar oynatildigi, atesi kimin actigi, yakalanma gunu, Kinealy'nin akibeti.
+# Karakterler: A = wl:irish_wojak (koyu ceket, biyik; 2x buyutuldu), B = wl:worker_2_wojak (kasket, tulum; gogusten kesildi; b_sok = ters kose, ayni kutu, chars/uret.py).
+id: en-lincoln-body-snatchers
+kanal: en  # Wojak Past Files
+title: "Counterfeiters Plotted to Steal Abraham Lincoln's Body"
+
+music: klasik
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Tonight we steal Lincoln's\nbody for ransom"
+
+  # 2) B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "What if the police find out"
+
+  # 3) A (sol): muhbir tohumu
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Relax, Lewis is\nour inside man"
+
+  - type: card
+    duration: 1.5
+    text: "Hours later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, who told the\ndetectives we're here?"
+
+  # 6) KANIT 1 — Power (1890) kitabinin kapak sayfasi
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: ayni kitaptan "Interior of the Catacomb, as the Thieves Left It" gravuru
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Counterfeiters Plotted to Steal Abraham Lincoln's Body
+  The full story is in the pinned comment 👇
+
+hashtags: [history, abrahamlincoln, secretservice]
+
+pinned_comment: |
+  By 1876, a Chicago counterfeiting gang had a problem: its best engraver, Benjamin Boyd, was locked up in the state penitentiary at Joliet. According to the National Park Service, gang leader James "Big Jim" Kinealy planned to steal Abraham Lincoln's remains from his tomb in Springfield, hide them in the Indiana sand dunes, and demand Boyd's release and $200,000.
+
+  Kinealy's men, Terence Mullen and Jack Hughes, were to do the job. Lewis Swegles was in on the plan too, but he was a paid Secret Service informant. Agent Patrick Tyrrell set an ambush with police and Pinkerton detectives hidden inside the monument.
+
+  On Election Night, November 7, 1876, the thieves cut through the tomb's padlock and opened the sarcophagus. Accounts differ on how far they moved the coffin. Then a pistol went off by accident, the thieves ran, and the lawmen reportedly ended up firing at each other in the dark.
+
+  Mullen and Hughes were arrested in Chicago days later, and in 1877 each got a year in prison. Lincoln's remains never left Oak Ridge Cemetery. In 1901 they were placed in a steel cage and sunk ten feet down, encased in concrete, where they still rest.
+
+  The Secret Service was created in 1865 to fight counterfeiting. The evidence frames come from John Carroll Power's 1890 book on the attempt: its title page and the engraving "Interior of the Catacomb, as the Thieves Left It". The wojak characters are fictional.
+
+  Would you have trusted Lewis with the plan?
+
+credits: "View of Lincoln's Tomb - Oak Ridge Cemetery - Springfield - Illinois - USA by Adam63, 2017, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:View_of_Lincoln%27s_Tomb_-_Oak_Ridge_Cemetery_-_Springfield_-_Illinois_-_USA.jpg, cropped, colour and brightness adjusted, softened; History of an Attempt to Steal the Body of Abraham Lincoln (title page, and the engraving 'Interior of the Catacomb, as the Thieves Left It', p. 56) by John Carroll Power, Springfield, Ill., 1890, public domain, via the Internet Archive (cropped, contrast adjusted)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional gang roles; the dialogue is invented and quotes no one. The video shows no remains: the evidence frames are the title page of John Carroll Power's 1890 book on the attempt and its engraving of the empty catacomb room (the tomb room as the thieves left it, no remains shown)."
+  - "**Contested details are left out or hedged:** how far the coffin was moved (NPS: pulled out; Illinois Times: could not be lifted), who fired the pistol (Pinkerton agent or another officer), the day of the arrests (about ten days later per NPS and the Secret Service, 'days' elsewhere), and Kinealy's fate."
+  - "Suggested first comment: Lincoln was never actually taken out of Oak Ridge Cemetery; the thieves only got as far as the sarcophagus. Whether grave robbery was a crime in Illinois in 1876 is disputed, so the thieves were charged with conspiracy and attempted larceny (Illinois Times)."
+
+sources:
+  - "National Park Service, A Plot to Steal the Remains of President Lincoln (plan, ransom $200,000, Boyd, Kinealy, Mullen, Hughes, Swegles informant, Tyrrell, 7 Nov 1876, accidental pistol shot, arrests in Chicago): https://www.nps.gov/articles/000/a-plot-to-steal-the-remains-of-president-lincoln.htm"
+  - "U.S. Secret Service, Moments in History (thwarted attempt, Election Night 1876, one-year sentence): https://www.secretservice.gov/newsroom/releases/2018/11/moments-history-us-secret-service-successfully-thwart-attempt-steal"
+  - "Illinois Times, The attempt to steal Lincoln's body, 5 Nov 2026 (Swegles paid informant, conspiracy and attempted larceny, one year at Joliet, May 1877): https://www.illinoistimes.com/history/the-attempt-to-steal-lincolns-body/"
+  - "U.S. News & World Report, A Plot to Steal Lincoln's Body, Craughwell, 24 Jun 2007 (1901 steel cage, 10-foot-deep vault, concrete; remains still at Oak Ridge): https://www.usnews.com/news/articles/2007/06/24/a-plot-to-steal-lincolns-body"
+  - "Chicago Sun-Times, 15 Apr 2021 (Chicago Daily News report of the arrests; plot summary): https://chicago.suntimes.com/2021/4/15/22382530/abraham-lincolns-body-stolen-plot"
+  - "J. C. Power, History of an Attempt to Steal the Body of Abraham Lincoln (1890), table of contents (thieves expected to make $200,000; officers concealed in Memorial Hall; thieves foiled but escape; captured in Chicago): https://archive.org/details/historyofattemp00powe"
+  - "U.S. Secret Service timeline (formally established 5 July 1865; counterfeiting): https://www.secretservice.gov/about/history/timeline"
+  - "GÖRSEL img/arka.jpg — 'View of Lincoln's Tomb - Oak Ridge Cemetery - Springfield - Illinois - USA.jpg', Adam63, CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:View_of_Lincoln%27s_Tomb_-_Oak_Ridge_Cemetery_-_Springfield_-_Illinois_-_USA.jpg . Degisiklik: kare kirpim (alt kisim), renk 0,7, parlaklik 1,15, blur 2,5"
+  - "GÖRSEL img/ev_1.jpg — J. C. Power, 'History of an attempt to steal the body of Abraham Lincoln' (Springfield, Ill.: H. W. Rokker, 1890), kapak sayfasi, Internet Archive 'historyofattemp00powe' (ayni baski, LoC kopyasi: 'historyofattempt00powe', NOT_IN_COPYRIGHT) (yazar 1894'te oldu, 1890 yayin: kamu mali): https://archive.org/details/historyofattemp00powe . Degisiklik: kirpim, kontrast"
+  - "GÖRSEL img/ev_2.jpg (son kare) — ayni kitap, s. 56, gravur 'Interior of the Catacomb, as the Thieves Left It' (kamu mali, 1890): https://archive.org/details/historyofattemp00powe . Degisiklik: sayfa 90 derece dondurulup plaka kirpildi, kontrast"
