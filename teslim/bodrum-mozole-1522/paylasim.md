@@ -1,0 +1,126 @@
+# bodrum-mozole-1522 — paylaşım paketi
+
+Süre: 14.0 sn · 7 sahne · video: `bodrum-mozole-1522.mp4` · kapak: `kapak.jpg`
+
+## Instagram Reels
+
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2176/2200
+
+```
+Bodrum'da şövalyeler mermer lahdi sabaha bıraktı
+
+Halikarnas Mozolesi'nin mezar odası olayı, 1522 yılında Bodrum'da yaşanan ve dünyanın yedi harikasından birinin son tahribi olarak bilinen bir olaydır.
+
+Mozole, MÖ 353'te *len Karya hükümdarı Mausolos için eşi Artemisia tarafından yaptırıldı; "mozole" sözcüğü bu yapıdan gelir. 15. yüzyılın başında Bodrum'a yerleşen Saint-Jean şövalyeleri, kaleyi yaparken yıkık mozoleyi baştan beri taş ocağı gibi kullandı; 1494 civarında beyaz mermeri de kireç için yakmaya başladılar. 1522'de Osmanlı saldırısından çekinerek kaleyi yeniden güçlendirirken yıkım doruğa çıktı.
+
+Anlatılana göre o yıl temeli kazan şövalyeler sütunlu büyük bir odaya, onun ardında da beyaz mermer bir lahde ulaştı. Paydos işareti çalınca lahit açılmadan bırakıldı. Ertesi gün kapak kaldırılmıştı; yerde yalnızca altın kumaş parçaları ve altın pullar vardı. Şövalyeler, gece korsanların geldiğini düşündü. Olayı, orada bulunan Komutan de la Tourette'in Fransa'da Jacques d'Aléchamps'a anlattığını Claude Guichard 1581'de kitabına geçirdi. 1966-77 Danimarka kazısı ise mezarın şövalyelerden çok önce bir tünelle soyulmuş olabileceğini düşündürdü.
+
+Aynı yıl Rodos, Kanuni Sultan Süleyman'a teslim oldu; şövalyeler Bodrum Kalesi'ni 5 Ocak 1523'te bıraktı.
+
+Videodaki diyalog canlandırmadır; şövalyeler kurgu karakterdir. İlk kanıt 1572 tarihli hayalî bir mozole gravürüdür. Son kare, Guichard'ın anlatısının Newton ve Pullan'ın 1862 kitabındaki İngilizce çevirisidir (s. 78): ertesi gün mezarın açık bulunduğunu, korsanların gece gelip lahdin kapağını kaldırdığının düşünüldüğünü yazar.
+
+Sence lahdi bir gecede kim boşalttı: korsanlar mı, yoksa çok daha önce gelen soyguncular mı?
+
+Görseller: Bodrum Castle 4 (Ad Meskens, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0; kırpıldı, küçük modern öğeler rötuşla silindi, büyütüldü, renk düzeltildi, bulanıklaştırıldı), Wikimedia Commons; Mausolaeum (Philips Galle, Maarten van Heemskerck'ten, 1572, Rijksmuseum, kamu malı; kırpıldı), Wikimedia Commons; A History of Discoveries at Halicarnassus, s. 78 (C. T. Newton ve R. P. Pullan, 1862, kamu malı; kırpıldı), Internet Archive / Getty Research Institute
+```
+
+## YouTube Shorts
+
+### Başlık — 48/100
+
+```
+Bodrum'da şövalyeler mermer lahdi sabaha bıraktı
+```
+
+### Açıklama
+
+```
+Bodrum'da şövalyeler mermer lahdi sabaha bıraktı
+
+Halikarnas Mozolesi'nin mezar odası olayı, 1522 yılında Bodrum'da yaşanan ve dünyanın yedi harikasından birinin son tahribi olarak bilinen bir olaydır.
+
+Mozole, MÖ 353'te *len Karya hükümdarı Mausolos için eşi Artemisia tarafından yaptırıldı; "mozole" sözcüğü bu yapıdan gelir. 15. yüzyılın başında Bodrum'a yerleşen Saint-Jean şövalyeleri, kaleyi yaparken yıkık mozoleyi baştan beri taş ocağı gibi kullandı; 1494 civarında beyaz mermeri de kireç için yakmaya başladılar. 1522'de Osmanlı saldırısından çekinerek kaleyi yeniden güçlendirirken yıkım doruğa çıktı.
+
+Anlatılana göre o yıl temeli kazan şövalyeler sütunlu büyük bir odaya, onun ardında da beyaz mermer bir lahde ulaştı. Paydos işareti çalınca lahit açılmadan bırakıldı. Ertesi gün kapak kaldırılmıştı; yerde yalnızca altın kumaş parçaları ve altın pullar vardı. Şövalyeler, gece korsanların geldiğini düşündü. Olayı, orada bulunan Komutan de la Tourette'in Fransa'da Jacques d'Aléchamps'a anlattığını Claude Guichard 1581'de kitabına geçirdi. 1966-77 Danimarka kazısı ise mezarın şövalyelerden çok önce bir tünelle soyulmuş olabileceğini düşündürdü.
+
+Aynı yıl Rodos, Kanuni Sultan Süleyman'a teslim oldu; şövalyeler Bodrum Kalesi'ni 5 Ocak 1523'te bıraktı.
+
+Videodaki diyalog canlandırmadır; şövalyeler kurgu karakterdir. İlk kanıt 1572 tarihli hayalî bir mozole gravürüdür. Son kare, Guichard'ın anlatısının Newton ve Pullan'ın 1862 kitabındaki İngilizce çevirisidir (s. 78): ertesi gün mezarın açık bulunduğunu, korsanların gece gelip lahdin kapağını kaldırdığının düşünüldüğünü yazar.
+
+Sence lahdi bir gecede kim boşalttı: korsanlar mı, yoksa çok daha önce gelen soyguncular mı?
+
+Görseller: Bodrum Castle 4 (Ad Meskens, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0; kırpıldı, küçük modern öğeler rötuşla silindi, büyütüldü, renk düzeltildi, bulanıklaştırıldı), Wikimedia Commons; Mausolaeum (Philips Galle, Maarten van Heemskerck'ten, 1572, Rijksmuseum, kamu malı; kırpıldı), Wikimedia Commons; A History of Discoveries at Halicarnassus, s. 78 (C. T. Newton ve R. P. Pullan, 1862, kamu malı; kırpıldı), Internet Archive / Getty Research Institute
+
+#bodrum #mozole #shorts
+```
+
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1642 karakter
+
+```
+Halikarnas Mozolesi'nin mezar odası olayı, 1522 yılında Bodrum'da yaşanan ve dünyanın yedi harikasından birinin son tahribi olarak bilinen bir olaydır.
+
+Mozole, MÖ 353'te *len Karya hükümdarı Mausolos için eşi Artemisia tarafından yaptırıldı; "mozole" sözcüğü bu yapıdan gelir. 15. yüzyılın başında Bodrum'a yerleşen Saint-Jean şövalyeleri, kaleyi yaparken yıkık mozoleyi baştan beri taş ocağı gibi kullandı; 1494 civarında beyaz mermeri de kireç için yakmaya başladılar. 1522'de Osmanlı saldırısından çekinerek kaleyi yeniden güçlendirirken yıkım doruğa çıktı.
+
+Anlatılana göre o yıl temeli kazan şövalyeler sütunlu büyük bir odaya, onun ardında da beyaz mermer bir lahde ulaştı. Paydos işareti çalınca lahit açılmadan bırakıldı. Ertesi gün kapak kaldırılmıştı; yerde yalnızca altın kumaş parçaları ve altın pullar vardı. Şövalyeler, gece korsanların geldiğini düşündü. Olayı, orada bulunan Komutan de la Tourette'in Fransa'da Jacques d'Aléchamps'a anlattığını Claude Guichard 1581'de kitabına geçirdi. 1966-77 Danimarka kazısı ise mezarın şövalyelerden çok önce bir tünelle soyulmuş olabileceğini düşündürdü.
+
+Aynı yıl Rodos, Kanuni Sultan Süleyman'a teslim oldu; şövalyeler Bodrum Kalesi'ni 5 Ocak 1523'te bıraktı.
+
+Videodaki diyalog canlandırmadır; şövalyeler kurgu karakterdir. İlk kanıt 1572 tarihli hayalî bir mozole gravürüdür. Son kare, Guichard'ın anlatısının Newton ve Pullan'ın 1862 kitabındaki İngilizce çevirisidir (s. 78): ertesi gün mezarın açık bulunduğunu, korsanların gece gelip lahdin kapağını kaldırdığının düşünüldüğünü yazar.
+
+Sence lahdi bir gecede kim boşalttı: korsanlar mı, yoksa çok daha önce gelen soyguncular mı?
+```
+
+## TikTok (isteğe bağlı)
+
+### Açıklama — 2243/4000
+
+```
+Bodrum'da şövalyeler mermer lahdi sabaha bıraktı
+
+Halikarnas Mozolesi'nin mezar odası olayı, 1522 yılında Bodrum'da yaşanan ve dünyanın yedi harikasından birinin son tahribi olarak bilinen bir olaydır.
+
+Mozole, MÖ 353'te *len Karya hükümdarı Mausolos için eşi Artemisia tarafından yaptırıldı; "mozole" sözcüğü bu yapıdan gelir. 15. yüzyılın başında Bodrum'a yerleşen Saint-Jean şövalyeleri, kaleyi yaparken yıkık mozoleyi baştan beri taş ocağı gibi kullandı; 1494 civarında beyaz mermeri de kireç için yakmaya başladılar. 1522'de Osmanlı saldırısından çekinerek kaleyi yeniden güçlendirirken yıkım doruğa çıktı.
+
+Anlatılana göre o yıl temeli kazan şövalyeler sütunlu büyük bir odaya, onun ardında da beyaz mermer bir lahde ulaştı. Paydos işareti çalınca lahit açılmadan bırakıldı. Ertesi gün kapak kaldırılmıştı; yerde yalnızca altın kumaş parçaları ve altın pullar vardı. Şövalyeler, gece korsanların geldiğini düşündü. Olayı, orada bulunan Komutan de la Tourette'in Fransa'da Jacques d'Aléchamps'a anlattığını Claude Guichard 1581'de kitabına geçirdi. 1966-77 Danimarka kazısı ise mezarın şövalyelerden çok önce bir tünelle soyulmuş olabileceğini düşündürdü.
+
+Aynı yıl Rodos, Kanuni Sultan Süleyman'a teslim oldu; şövalyeler Bodrum Kalesi'ni 5 Ocak 1523'te bıraktı.
+
+Videodaki diyalog canlandırmadır; şövalyeler kurgu karakterdir. İlk kanıt 1572 tarihli hayalî bir mozole gravürüdür. Son kare, Guichard'ın anlatısının Newton ve Pullan'ın 1862 kitabındaki İngilizce çevirisidir (s. 78): ertesi gün mezarın açık bulunduğunu, korsanların gece gelip lahdin kapağını kaldırdığının düşünüldüğünü yazar.
+
+Sence lahdi bir gecede kim boşalttı: korsanlar mı, yoksa çok daha önce gelen soyguncular mı?
+
+Görseller: Bodrum Castle 4 (Ad Meskens, CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0; kırpıldı, küçük modern öğeler rötuşla silindi, büyütüldü, renk düzeltildi, bulanıklaştırıldı), Wikimedia Commons; Mausolaeum (Philips Galle, Maarten van Heemskerck'ten, 1572, Rijksmuseum, kamu malı; kırpıldı), Wikimedia Commons; A History of Discoveries at Halicarnassus, s. 78 (C. T. Newton ve R. P. Pullan, 1862, kamu malı; kırpıldı), Internet Archive / Getty Research Institute
+
+#bodrum #mozole #tarih #wojak #tarihselwojak #keşfet #olay #gizem
+```
+
+## Yükleme kontrol listesi
+
+- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
+- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
+- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
+- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
+- [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
+- [ ] **Video bir canlandırmadır:** iki şövalye kurgu karakterdir, gerçek kimseyi temsil etmez; ekrandaki sözler belgeli alıntı değildir. Belgeli olan: şövalyelerin mozole kalıntılarını kale için sökmesi (1494 civarından 1522'ye), Komutan de la Tourette'in anlatısı (Guichard 1581): temelde oda ve beyaz mermer lahit, paydos işaretiyle ertesi güne bırakılması, sabah kapağın kaldırılmış ve yerde altın kumaş ile pul parçaları bulunması. Bu sahne tek tanığa dayanır, metinde 'anlatılana göre' dedik.
+- [ ] Son kare kitap sayfasıdır (Newton & Pullan 1862, s. 78; Internet Archive, Getty taraması): Guichard 1581 anlatısının İngilizce çevirisi, "The day after, when they returned, they found the tomb opened ... the pirates ... had removed the lid of the sepulchre".
+- [ ] Arka plan Bodrum Kalesi'dir (mozole taşlarıyla güçlendirildi); lahit kalenin değil, yakındaki mozole temelinin altında bulundu. İlk kanıt 1572 tarihli hayalî rekonstrüksiyondur, mozolenin gerçek görünüşü değildir.
+- [ ] İlk yorum önerisi: "Dünya harikasını kireç ocağına çeviren şövalyeler, kral mezarını bir gece boş bıraktı. Sizce sabah lahdi kim açmıştı?"
+- [ ] Yorum yönetimi: 'heykelleri İngilizler çaldı' tartışmasını güncel siyasete çeken ya da dinî/etnik aşağılama içeren yorumları gizle.
+- [ ] YouTube: yükledikten sonra Kontroller adımını kontrol et
+- [ ] Gizli kelimeler (Hidden Words) listesi sohbette
+
+Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
+
+## Kaynaklar (doğrulama için, paylaşılmaz)
+
+- SERT FİLTRE: olay 1522; ilgili herkes 16. yüzyılda öldü. Yaşayan özel kişi, çocuk, son 10 yılda ölen, süren dava yok.
+- 1522 mezar odası anlatısı (oda, beyaz mermer lahit, paydos işareti, ertesi sabah kaldırılmış kapak, altın kumaş ve pul parçaları, korsan tahmini; Tourette -> d'Aléchamps -> Guichard, Funérailles, Lyon 1581, s. 378-81): C. T. Newton & R. P. Pullan, A History of Discoveries at Halicarnassus (1862), s. 74-76: https://books.google.com/books/about/A_History_of_Discoveries_at_Halicarnassu.html?id=7B0GAAAAQAAJ ; The Afterlife of the Mausoleum of Halicarnassus (Cambridge UP), böl. 1 ve Ek I (Guichard çevirisi): https://www.cambridge.org/core/books/afterlife-of-the-mausoleum-of-halicarnassus/appendices/CD877312646CF3C930A3538DA1037AD7
+- Şövalyelerin mozoleyi taş ocağı olarak kullanması, 1494 civarı, Osmanlı tehdidi: Cambridge UP böl. 1: https://www.cambridge.org/core/books/afterlife-of-the-mausoleum-of-halicarnassus/maussolleion-at-halikarnassos/888E2C34B0964AD50D5D80786DADD3BE ; Smith, Dictionary of Greek and Roman Antiquities (1890), 'Mausoleum': http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0063%3Aentry%3Dmausoleum-cn ; Fergusson, The Mausoleum at Halicarnassus Restored (Guichard'ın Fransızca metni dahil): https://www.gutenberg.org/cache/epub/53578/pg53578-images.html
+- Danimarka kazısı (Jeppesen 1966-77): şövalyelerden çok önceki soyguncu tüneli, asıl odanın eksen dışında olması: Cambridge UP böl. 1 (yukarıda); English Wikipedia 'Mausoleum at Halicarnassus': https://en.wikipedia.org/wiki/Mausoleum_at_Halicarnassus
+- Mausolos (MÖ 377-353), Artemisia, 'mausoleum' sözcüğü, British Museum'daki parçalar: British Museum: https://www.britishmuseum.org/collection/galleries/mausoleum-halikarnassos ; Smith 1890 (yukarıda)
+- Rodos'un Aralık 1522'de düşmesi, Bodrum Kalesi'nin 5 Ocak 1523'te teslimi: Bodrum Belediyesi: https://www.bodrum.bel.tr/en/page.php?id=20%2FBodrum_Castle ; Rome Art Lover: https://www.romeartlover.it/Bodrum1.html ; English Wikipedia 'Bodrum Castle': https://en.wikipedia.org/wiki/Bodrum_Castle
+- 1846'da kale duvarından 12 kabartmanın fermanla Londra'ya götürülmesi: Newton & Pullan 1862, s. 232 (yukarıda); Fergusson (Gutenberg, yukarıda)
+- GÖRSEL img/arka.jpg — 'Bodrum Castle 4.JPG', Ad Meskens, 2008, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:Bodrum_Castle_4.JPG. Değişiklik: sağ kuledeki bayrak direği, anten ve üç küçük ziyaretçi silueti komşu taş/gök dokusuyla rötuşlandı (gorsel.py ROTUS), bayrak direklerinin altından kare kırpım (x 370-959, y 290-879), 1080'e büyütme, renk 0,85, parlaklık 1,02; renderer bulanıklaştırır.
+- GÖRSEL img/kanit_1.jpg — 'Mausoleum at Halicarnassus RP-P-2005-214-27-2 (cropped).jpg', Philips Galle, Maarten van Heemskerck'ten, 1572 (Octo Mundi Miracula serisi), Rijksmuseum, {{PD-US-expired}}{{PD-old-70}}: https://commons.wikimedia.org/wiki/File:Mausoleum_at_Halicarnassus_RP-P-2005-214-27-2_(cropped).jpg. Değişiklik: yapıya kırpım 1080x816.
+- GÖRSEL img/kanit_2.jpg (son kare) — C. T. Newton & R. P. Pullan, A History of Discoveries at Halicarnassus, Cnidus & Branchidae (London, 1862), s. 78 (Guichard 1581'in İngilizce çevirisi); Internet Archive gri_33125008617553, Getty Research Institute taraması, possible-copyright-status NOT_IN_COPYRIGHT (1862 yayını; Newton 1894'te öldü, kamu malı): https://archive.org/details/gri_33125008617553 (leaf 99: https://archive.org/download/gri_33125008617553/page/n99_w2000.jpg). Değişiklik: yalnız 'The day after' paragrafı tam satırdan kırpıldı, üst ve alta aynı sayfanın boş kâğıdından 16 px pay eklendi, 1080 genişlik.

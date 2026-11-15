@@ -67,6 +67,10 @@
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
  },
+ "0e4d61475617d0db409b7332ec0f8efc319125eb": {
+  "faces": "right",
+  "file": "episodes/bodrum-mozole-1522/chars/komutan.png"
+ },
  "0f4c17a4c0ba793b930f32054c86a8555b00962b": {
   "faces": "right",
   "file": "episodes/en-great-moon-hoax/chars/b_smug.png"
@@ -90,6 +94,10 @@
  "15e3033d8408709a966711ee8607b42f15f14ab7": {
   "faces": "right",
   "file": "episodes/dumlupinar-denizaltisi-1953/chars/subay_sok.png"
+ },
+ "19a3e201655777de248157ec33f97663e63673ed": {
+  "faces": "right",
+  "file": "episodes/bodrum-mozole-1522/chars/hosp_sok.png"
  },
  "1a4e703fa9ac2406f829a206897de84b2496fca7": {
   "faces": "right",
@@ -730,6 +738,10 @@
  "94de8a41331002c43c78dfc4022c25d647f343a9": {
   "faces": "right",
   "file": "episodes/en-habakkuk-ice-carrier/chars/b_sok.png"
+ },
+ "9561a3f83e3e576d74c4019a419b4621764714a3": {
+  "faces": "right",
+  "file": "episodes/bodrum-mozole-1522/chars/hosp_sakin.png"
  },
  "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
   "faces": "right",
