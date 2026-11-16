@@ -15,6 +15,10 @@
   "faces": "right",
   "file": "episodes/goeben-fes-1914/chars/denizci_sok.png"
  },
+ "00ff45595ad1a71822552c64287844f3d00ad609": {
+  "faces": "right",
+  "file": "episodes/en-hitler-nephew-navy/chars/b_sakin.png"
+ },
  "01437181fdaa6abbfb983e34ab4a65b144711c5d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_ciddi.png"
@@ -994,6 +998,10 @@
  "ca74112f568126536d95ad0a7510f36daa49e97e": {
   "faces": "right",
   "file": "assets/kit/klasik/terli.png"
+ },
+ "ca848720d3c3df7572f2b9823cc2ddc080b92202": {
+  "faces": "right",
+  "file": "episodes/en-hitler-nephew-navy/chars/b_sok.png"
  },
  "cc48e5f2034f20fdd2d0ee443c38d5d35831aef5": {
   "faces": "right",

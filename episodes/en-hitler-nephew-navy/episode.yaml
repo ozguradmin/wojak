@@ -1,0 +1,109 @@
+# William Patrick Hitler (1911-1987), Adolf Hitler'in yegeni: 3 Mart 1942'de Roosevelt'e yazip ABD silahli kuvvetlerine katilmak istedi; 6 Mart 1944'te ABD Donanmasi'na yemin etti. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (US Navy Memorial, Lyon Air Museum, America in WWII, Warfare History Network, Letters of Note, Forward, Dublin City Council, Boing Boing, NZ Herald, Sky HISTORY).
+# CANLANDIRMA: iki karakter kurgu rolleridir (William ve bir Donanma subayi); replikler belgeli soz degildir. Belgeli olan: 3 Mart 1942 mektubunun ilk cumlesi (son kare, birebir).
+#   Dusuruldu: "Yahudi buyukbaba" soylentisi, santaj iddiasi, Purple Heart (belgelenemedi), disaridan alintilar ("loathsome nephew", "climb on my back").
+#   Tartismali (metinde "most sources" / "reportedly"): ayrilis yili (1946 / 1947), banka adi, mektubun FBI'a gittigi.
+# Karakterler: A = wl:grey_suit_wojak (degistirilmedi), B = wl:us_marines_white_wojak (gogusten kesildi; b_sok = ters kose, ayni kutu, chars/uret.py).
+id: en-hitler-nephew-navy
+kanal: en  # Wojak Past Files
+title: "Hitler's Nephew Asked the US to Let Him Fight Hitler"
+
+# Kanalin onceki bolumu (en-lincoln-body-snatchers) klasikti -> konuya gore: merak (saskinlik veren bilgi).
+music: merak
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "I'm Hitler's nephew,\nI want to join the Navy"
+
+  # 2) B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Hitler's nephew\nwants to fight us?"
+
+  # 3) A (sol)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "No, I want to\nfight him"
+
+  - type: card
+    duration: 1.5
+    text: "Two years later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.8
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, the Navy actually\ntook Hitler's nephew?"
+
+  # 6) KANIT 1 — US Navy fotografi: William, Donanma kiyafeti, 'Target Berlin' afisi
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: 3 Mart 1942 mektubu (canlandirma, birebir cumle)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Hitler's Nephew Asked the US to Let Him Fight Hitler
+  The full story is in the pinned comment 👇
+
+hashtags: [history, ww2, navy]
+
+pinned_comment: |
+  William Patrick Hitler (1911-1987) was Adolf Hitler's British-born nephew, who asked President Franklin D. Roosevelt to let him fight against his uncle's regime.
+
+  Born in Liverpool on 12 March 1911 to Alois Hitler Jr., Adolf's half-brother, and the Irish-born Bridget Dowling, he grew up in England. In 1933 he went to Germany, where his uncle reportedly found him a bank job in Berlin. He left before the war and reached America in early 1939. That July, Look magazine ran his article "Why I Hate My Uncle."
+
+  After America entered the war, he wrote to Roosevelt. In his letter of 3 March 1942 he called himself "the nephew and only descendant of the ill-famed Chancellor and Leader of Germany" and asked to join the fight against tyranny. Roosevelt passed the matter to the FBI, which looked into his background and allowed him to serve.
+
+  On 6 March 1944 he was sworn into the U.S. Navy in New York City and served as a pharmacist's mate. After the war he changed his surname and lived quietly in New York until he passed away in 1987. Some writers call him an opportunist who stayed in Germany while it suited him and left just before the war; others point to his Navy service.
+
+  The dialogue is invented. The final frame is a recreation; the quote is from his letter to President Roosevelt, 3 March 1942, as published by Letters of Note, 2012.
+
+  Principled opponent or opportunist: what is your verdict?
+
+credits: "U.S.S. Iowa (BB61) in the New York Navy Yard looking aft from about Frame 120 (US Navy / National Archives, 1943, public domain), via Wikimedia Commons, cropped, highlights compressed, softened; William-Patrick-Hitler.jpg (U.S. Navy photographer, 1944-1947, public domain), via Wikimedia Commons, cropped and enlarged 5.7x from a 190x222 original (conventional enlargement, film grain added). The final frame is a recreation of a typed letter page; the quote is from his letter to President Roosevelt, 3 March 1942, as published by Letters of Note, 2012."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (William and a Navy officer); the dialogue is invented and is not a documented exchange. Documented: he wrote to Roosevelt on 3 March 1942 asking to join the fight against his uncle's regime; he was sworn into the Navy on 6 March 1944. The last frame is a recreated letter page; the sentence on it is the real first sentence of his letter."
+  - "**Contested details are left out or hedged:** discharge year (most sources say 1947; some give 1946), the Purple Heart (reported but the US Naval Institute found no record, so omitted), the bank's name, and the rumour about Hitler's grandfather (omitted)."
+  - "Sons and the post-war surname are not named. Suggested first comment: Historians still disagree about his motives; what do you think?"
+
+sources:
+  - "US Navy Memorial, Hitler-William (born 12 Mar 1911 Liverpool; father Alois Hitler Jr.; mother Irish-born Bridget Dowling; 1933 job in Berlin; Roosevelt passed it to the FBI; joined Navy 6 Mar 1944; pharmacist's mate; later changed name): https://navylog.navymemorial.org/hitler-william"
+  - "Lyon Air Museum, Corpsman Hitler, U.S. Navy? (sworn in 6 Mar 1944, pharmacist's mate; letter to FDR passed to FBI; died 14 Jul 1987): https://lyonairmuseum.org/blog/corpsman-hitler-us-navy/"
+  - "America in WWII, Corpsman Hitler, US Navy? (sworn in 6 Mar 1944 New York; FDR passed letter to Hoover; historians' debate on motives; NARA photo caption): http://www.americainwwii.com/articles/corpsman-hitler-us-navy/"
+  - "Letters of Note, To Hell with Hitler (letter text, 3 Mar 1942): http://www.lettersofnote.com/2012/08/to-hell-with-hitler.html"
+  - "The Forward, Hitler's Nephew Begged To Fight for the U.S., 3 Aug 2012 (quote 'I am the nephew and only descendant...', dated 3 Mar 1942): https://forward.com/schmooze/160460/hitler-s-nephew-begged-to-fight-for-the-us/"
+  - "Warfare History Network, Why I Hate My Uncle (same quote and date; 1944 enlistment, 1947 discharge): https://warfarehistorynetwork.com/article/why-i-hate-my-uncle-hitlers-nephews-letter-to-fdr/"
+  - "Dublin City Council Libraries, Hitler's Irish Nephew (birth, Irish mother, Liverpool): https://www.dublincity.ie/library/blog/hitlers-irish-nephew"
+  - "Boing Boing, Why I Hate My Uncle (Look, 1939), 23 Aug 2022, and NZ Herald (4 July 1939 issue): https://boingboing.net/2022/08/23/why-i-hate-my-uncle-by-wi.html"
+  - "Sky HISTORY, How Hitler's nephew fought against him during WWII (Berlin bank job via uncle; reputed): https://www.history.co.uk/articles/how-hitler-s-nephew-fought-against-him-during-wwii"
+  - "HistoryNet, The Other Hitler (early 1939 US lecture tour; died 1987): https://historynet.com/the-other-hitler/"
+  - "GÖRSEL img/arka.jpg — 'U.S.S. Iowa (BB61) in the New York Navy Yard looking aft from about Frame 120.jpg', US Navy official photograph, 1943, public domain (PD-USGov-Military-Navy): https://commons.wikimedia.org/wiki/File:U.S.S._Iowa_(BB61)_in_the_New_York_Navy_Yard_looking_aft_from_about_Frame_120.jpg . Degisiklik: kare kirpim (ust yazi atildi), blur 1,8. Olayin kendi mekani degil; 1943 New York Donanma tersanesi (yemin New York'ta)."
+  - "GÖRSEL img/ev_1.jpg — 'William-Patrick-Hitler.jpg', Photographer of US Navy, 1944-1947, public domain (PD-USGov-Military-Navy; kaynak sayfa historybyzim.com): https://commons.wikimedia.org/wiki/File:William-Patrick-Hitler.jpg . Degisiklik: 190x144 kirpim, 5,7x geleneksel (bicubic) buyutme, hafif bulaniklik+keskinlestirme, film gurultusu; kaynak 190x222"
+  - "GÖRSEL img/ev_2.jpg (son kare) — KENDI URETIMIMIZ yazi makinesi mektup sayfasi canlandirmasi; sayfadaki bütün satirlar 3 Mart 1942 mektubunun gercek metni (tam metin: IBTimes https://www.ibtimes.com/william-patrick-hitler-writes-fdr-letter-requesting-join-us-military-and-fight-nazis-wwii-photo ; Forward ve Warfare History Network ayni cumleyi dogruluyor); ekranda yazi/etiket yok; gercek mektup taramasi kullanilmadi (serbest tarama bulunamadi)"
