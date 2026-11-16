@@ -1,0 +1,106 @@
+# Silifke (Mersin) Cennet ve Cehennem obrukları (antik Korykion Antron). Araştırma notu: /tmp/arastirma/olgular.md
+# (repoya girmez). Damar 1 (Türkiye'de gösterilebilir yer + ürkütücü efsane). Alt tür: obruk (önceki 1. damar
+# bodrum-mozole-1522 lahit/mezar; aynı alt tür değil).
+# İskelet C2fa (dramatik ironi): A Cehennem'in tehlikesini söyler -> B efsaneyi ekler -> A "Cennet'in dibinde bakılacak
+# bir şey yok" diye geçiştirir -> B aynı kutuda şok yüzüyle aşağıdaki kiliseyi fark eder -> 2 kanıt (Cehennem; son kare kilise).
+# AYNI YER, AYNI AN: Cennet obruğunun kenarı. A (hep solda): adsız köylü (kurgu). B (hep sağda): adsız yaşlı köylü
+# (kurgu). Gerçek kimseyi temsil etmezler.
+# Olgu sınırları (olgular.md):
+#   - Cehennem: içbükey kenarlar, "inilemez" (Silifke Kaymakamlığı, AA, Bakanlık). "Kimse inemez" DENMEZ: ipli iniş
+#     teorik olarak anılıyor. S1: "dibine inilmiyor".
+#   - Zeus-Tayfon: Bakanlık/Kaymakamlık anlatısı (Zeus Tayfon'u Etna'ya kapatmadan önce burada tuttu); antik bağ
+#     Kilikya mağarası. S2 "derler" ile efsane olarak.
+#   - Kilise: Cennet obruğunun tabanında, mağara ağzında; kapısındaki yazıta göre 5. yy'da Paulus adlı biri Meryem
+#     Ana için yaptırmış (KaymSil, muze.gov.tr, Şahin 2024). Sayılar: Cennet ~70 m, Cehennem 128 m, ~450 basamak.
+# Karakterler: chars/uret.py. Görseller: gorsel.py.
+id: cennet-cehennem-obrugu
+title: "Silifke'de Cehennem denen çukurun yanında ne var?"
+
+music: gizem
+
+scenes:
+  # 1) KANCA — A (köylü, sol): yandaki çukurun adı Cehennem, yürüyerek inilmiyor (KaymSil/AA: içbükey kenar, inilemez)
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/koylu_sakin.png, side: left, height: 0.50}
+    text: "Şu çukura Cehennem diyorlar,\nyürüyerek inilmiyor"
+
+  # 2) B (dede, sağ): efsane
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/dede_sakin.png, side: right, height: 0.50}
+    text: "Zeus dev bir canavarı\noraya hapsetmiş derler"
+
+  # 3) A: geçiştirir (dramatik ironi: karakterin yanlış inancı, S4 ve son kare hemen çürütür; tohum: "dibinde").
+  #    Tur 1 MUST (takipçi): eski "kimse inmemiştir" olguyla çelişiyordu (Cennet'e ~450 basamakla iniliyor); çıkarıldı.
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/koylu_sakin.png, side: left, height: 0.50}
+    text: "Bu Cennet'in dibinde\nbakılacak bir şey yok"
+
+  # 4) TERS KÖŞE — B, aynı kutu, şok yüzü; cevabı son kare
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/dede_sok.png, side: right, height: 0.50}
+    text: "Bekle, bu çukurun dibinde\nkilise mi var?"
+
+  # 5-6) KANIT — Cehennem obruğu yukarıdan (nerede); son kare: Cennet'in dibinde mağara ağzındaki kilise (cevap)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 2.0
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Silifke'de Cehennem denen çukurun yanında ne var?
+  Olayın tamamı sabit yorumda 👇
+hashtags: [silifke, mersin, cennetcehennem]
+
+pinned_comment: |
+  Cennet ve Cehennem obrukları, Mersin'in Silifke ilçesinde Narlıkuyu yakınında bulunan ve antik çağda Korykion Antron (Korykos Mağarası) adıyla anılan iki çöküntü çukuru olarak bilinir. Yeraltı suyunun kireçtaşını eritmesiyle tavanı çöken bu boşluklar birbirine yaklaşık 75-80 metre uzaklıktadır.
+
+  Cehennem denen çukurun derinliği yaklaşık 128 metredir. Kenarları içbükey olduğu için yürüyerek inilemez; bugün bir seyir terasından izlenir. Bakanlık ve Kaymakamlık metinlerinde anlatıldığına göre Zeus, dev Tayfon'u Etna Dağı'nın altına kapatmadan önce bir süre burada hapsetmiştir. Antik yazarlar Tayfon'u "Kilikya mağarası" ile anar; çukurun adı o metinlerde geçmez.
+
+  Yanındaki Cennet obruğu yaklaşık 70 metre derinliktedir ve dibine yaklaşık 450 basamaklı bir yolla inilir. Tabanında, mağaranın ağzında küçük bir kilise durur. Kapısının üzerindeki dört satırlık Yunanca yazıya göre kiliseyi Paulus adında biri Meryem Ana için yaptırmıştır; yapı 5. yüzyıla tarihlenir. Yaklaşık 1.500 yıllık yapıya yolun 300. basamağı civarında varılır.
+
+  Romalı yazar Pomponius Mela, mağaraya girenleri tanrısal bir güçle çalan zillerin sesinin ürküttüğünü yazar. Mağaranın ucunda bugün yeraltı akarsuyunun sesi duyulur; Mela'nın zil sesinin bununla ilgili olup olmadığını bilen yok.
+
+  Cennet'in basamaklarından inip o kiliseyi gören oldu mu?
+
+credits: "Narlıkuyu Cennet (Heaven) sinkhole 2353 (Dosseman, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kare kırpıldı, renk 0,75, parlaklık 1,1, bulanıklaştırıldı), Wikimedia Commons; Narlıkuyu Cehenem (Hell) sinkhole 1438 (Dosseman, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kırpıldı, gama 0,88, parlak gökyüzü kısıldı), Wikimedia Commons; Cennet Cehennem, Cennet deki Kilise - panoramio (Korkut Tas, CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/; kırpıldı, gölgeler açıldı, parlak gökyüzü hafif kısıldı), Wikimedia Commons"
+ai_generated: false
+
+ek_maddeler:
+  - "**Video bir canlandırmadır:** karakterler kurgudur; iki köylü gerçek kimseyi temsil etmez, ekrandaki sözler belgeli alıntı değildir. Belgeli olan: Cehennem obruğunun içbükey kenarları yüzünden yürüyerek inilemediği (Silifke Kaymakamlığı, AA), Zeus-Tayfon anlatısı (Bakanlık/Kaymakamlık metni; efsane), Cennet obruğunun tabanında mağara ağzındaki 5. yy kilisesi ve kapısındaki Paulus yazıtı (Kaymakamlık, muze.gov.tr, Şahin 2024)."
+  - "Kanıt kareleri: ilki Commons başlığına göre Cehennem obruğuna yukarıdan bakış; son kare Cennet obruğunun dibinde, mağara kemerinin altındaki kilise."
+  - "Yorum yönetimi: 'Cehennem'e iple inilir' yorumu gelebilir; videoda 'yürüyerek inilmiyor' denir (resmî metin: inilemez), 'kimse inemez' denmez. '452/462 basamak' yorumlarına: kaynaklar 450-462 arası sayı verir, metinde 'yaklaşık 450'."
+  - "İlk yorum önerisi: \"Biri Cehennem, öbürünün dibinde 1.500 yıllık kilise... Basamaklardan inen var mı?\""
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: doğal yer + arkeoloji + mitoloji; son 10 yılda ölmüş/yaşayan özel kişi, çocuk, süren dava, güncel olay yok."
+  - "Cennet 250x110 m, ~70 m derin; Cehennem 128 m, içbükey kenarlar, inilemez; ~452 basamak, kiliseye 300. basamakta; kilise 5. yy, Paulus, Meryem Ana; Zeus-Tayfon anlatısı: Silifke Kaymakamlığı: https://www.silifke.gov.tr/cennet ; Kültür ve Turizm Bakanlığı Müze Kart: https://muze.gov.tr/muze-detay?DistId=CCO&SectionId=CCO01"
+  - "Kilise obruk tabanında, mağara girişinde, kapı üstünde yazıt (Yunanca metin, Hicks 1891 no. 25): Şahin, H. (2024), Colloquium Anatolicum 23: https://dergipark.org.tr/en/download/article-file/4220449"
+  - "Cehennem 128 m, içbükey kenarları nedeniyle inilmesi mümkün değil; 452 basamak: Anadolu Ajansı: https://www.aa.com.tr/tr/turkiye/yenilenen-yuzuyle-cennet-cehennem-obruklarina-yilda-500-bin-turist-cekmek-hedefleniyor/2262569 ; Vikipedi: https://tr.wikipedia.org/wiki/Cennet_ve_Cehennem_%C3%87%C3%B6k%C3%BCkleri"
+  - "Tayfon ve Kilikya mağarası: Aiskhylos, Prometheus ~351 (Webster 1866): https://en.wikisource.org/wiki/Prometheus_Bound_(Webster_1866) ; Apollodoros 1.6.3 (Korykos mağarası): https://www.perseus.tufts.edu/hopper/text?doc=Apollod.+1.6.3&lang=original"
+  - "Zil sesi: Pomponius Mela, De Chorographia 1.73 ('terret ingredientes sonitu cymbalorum divinitus'): https://la.wikisource.org/wiki/De_chorographia/Liber_I ; yeraltı akarsuyu: Strabon 14.5.5: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Strabo/14E*.html"
+  - "GÖRSEL img/arka.jpg — 'Narlıkuyu Cennet (Heaven) sinkhole 2353.jpg', Dosseman, 2015, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}): https://commons.wikimedia.org/wiki/File:Narl%C4%B1kuyu_Cennet_(Heaven)_sinkhole_2353.jpg. Değişiklik: sağdan kare kırpım, renk 0,75, parlaklık 1,1; renderer bulanıklaştırır."
+  - "GÖRSEL img/kanit_1.jpg — 'Narlıkuyu Cehenem (Hell) sinkhole 1438.jpg', Dosseman, 2011, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}): https://commons.wikimedia.org/wiki/File:Narl%C4%B1kuyu_Cehenem_(Hell)_sinkhole_1438.jpg. Değişiklik: kenarlardan kırpım, gama 0,88, parlak gökyüzü %22'ye kadar kısıldı."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Cennet Cehennem, Cennet deki Kilise - panoramio.jpg', Korkut Tas, 2011, CC BY-SA 3.0 ({{cc-by-sa-3.0|Korkut Tas}}, Panoramio incelemesi 2016-12-14): https://commons.wikimedia.org/wiki/File:Cennet_Cehennem,_Cennet_deki_Kilise_-_panoramio.jpg. Değişiklik: kiliseye sıkı kırpım, gama 0,8, parlak gökyüzü %8 kısıldı."

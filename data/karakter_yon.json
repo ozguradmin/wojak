@@ -855,6 +855,10 @@
   "faces": "right",
   "file": "episodes/en-franz-ferdinand-wrong-turn/chars/b_sok.png"
  },
+ "aedce60d1660db52e4a4c2644b24660c94dcaa86": {
+  "faces": "right",
+  "file": "episodes/cennet-cehennem-obrugu/chars/dede_sakin.png"
+ },
  "b04222d664c5581bab9d8ff36984c858f521bcdf": {
   "faces": "right",
   "file": "episodes/van-depremi-azra-bebek/chars/kurtarmaci_baretli.png"
@@ -1030,6 +1034,10 @@
  "d4d9a34654d8a8bc2b0e5873e9f5288c234a6aae": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/eczaci_v2_sakin.png"
+ },
+ "d54c3f93bd352ddbe4843205715baf7949857be9": {
+  "faces": "right",
+  "file": "episodes/cennet-cehennem-obrugu/chars/dede_sok.png"
  },
  "d5503a7c300abfbf79165acd4752d281c46c2457": {
   "faces": "right",
