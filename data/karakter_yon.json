@@ -331,6 +331,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/taban/kostumlu_nervous_temiz_ice.png"
  },
+ "45da77068d8b52923851c713bd46716574c825fe": {
+  "faces": "left",
+  "file": "episodes/en-abbott-golf-1900/chars/b_sakin.png"
+ },
  "46336da719d04b5b080ceda151fb58d0ba86dea4": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/ingiliz_subay_tozluk.png"
@@ -911,6 +915,10 @@
   "faces": "right",
   "file": "episodes/hope-elmasi-posta-1958/chars/b_memur.png"
  },
+ "b58414dc2ab115334ba8c25a9539b08df400c64d": {
+  "faces": "left",
+  "file": "episodes/en-abbott-golf-1900/chars/a_sakin.png"
+ },
  "b5a72af3ef38455d9f383065a3c5695a3c350c8c": {
   "faces": "right",
   "file": "episodes/en-lustig-eiffel-tower/chars/b_sok.png"
@@ -1083,6 +1091,10 @@
   "faces": "right",
   "file": "episodes/en-mona-lisa/chars/peruggia_sok.png"
  },
+ "d9d085ed45c401d2e85dbce3a15de38eb5fbeaca": {
+  "faces": "left",
+  "file": "episodes/en-abbott-golf-1900/chars/b_sok.png"
+ },
  "d9efc1a0912f333fbfc927e0270201e85cb23d39": {
   "faces": "right",
   "file": "episodes/en-boston-molasses-flood/chars/b_sok.png"
@@ -1110,6 +1122,10 @@
  "e1250b57f5bf7a98e2e2e02dd71d183c67ad226b": {
   "faces": "right",
   "file": "episodes/en-lustig-eiffel-tower/chars/a_sakin.png"
+ },
+ "e31325306d386a08885ce0ab89e0d3a4b6e43177": {
+  "faces": "left",
+  "file": "episodes/en-abbott-golf-1900/chars/b_sok.png"
  },
  "e32cf848ba632e585cd4a11e8cf9c89d72c9b30f": {
   "faces": "right",

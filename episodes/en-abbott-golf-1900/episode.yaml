@@ -1,0 +1,109 @@
+# 1900: Margaret Abbott (ABD), Compiegne'de kadinlar golf turnuvasini kazandi; odul porselen kase; IOC bugun Olimpiyat sayiyor; ailesine gore ole dek Olimpiyat oldugunu bilmedi. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (Olympedia, Olympics.com, Britannica, History.com, NWHM, USOPM, USA Golf, FFGolf, Chicago Tribune 1900).
+# CANLANDIRMA: karakterler kurgu; replikler belgeli soz degildir. Belgeli: "golf championship of Paris" sozu (oglu Philip Dunne, Golf Digest 1984; USOPM alintisi).
+#   Tartismali (replikte ve metinde kesin soylenmez): dogum yili (1876/1878), turnuva gunu (3/4 Ekim), Compiegne'in Paris'e uzakligi, "ilk kadin sampiyon" (Charlotte Cooper/Pourtales daha once).
+# Karakterler: A = HF clayshoaf 5_Doomer_Girl/2418 (pembe sapkali hanim; belden kesildi, 2x), B = wl:suit_wojak (biyik, papyon; b_sok = ters kose, ayni kutu, chars/uret.py).
+id: en-abbott-golf-1900
+kanal: en  # Wojak Past Files
+title: "The 1900 Olympic golf champion whose prize was a bowl"
+
+music: klasik
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.8
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "I won the golf\nchampionship of Paris"
+
+  # 2) B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.8
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "So what's the prize?"
+
+  # 3) A (sol): kase tohumu
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.8
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "A porcelain bowl,\nand I love it"
+
+  - type: card
+    duration: 1.5
+    text: "Decades later"
+
+  # 5) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.8
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, she never knew\nshe won the Olympics?"
+
+  # 6) KANIT 1 — 1900 golf etkinliginden dergi fotografi
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: Chicago Tribune, Ekim 1900
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The 1900 Olympic golf champion whose prize was a bowl
+  The full story is in the pinned comment 👇
+
+hashtags: [history, olympics, golf]
+
+pinned_comment: |
+  In October 1900, an American golfer named Margaret Abbott won a nine-hole women's tournament at the Compiègne golf club, north of Paris. It was held as part of the Paris World's Fair, and the Chicago Tribune ran it under the headline "Wins Women's Golf Cup." Her prize was an antique porcelain bowl, not a medal.
+
+  Today the International Olympic Committee counts that event as an Olympic competition, which makes Abbott the first American woman to win an Olympic event. (She was not the first woman to win an Olympic title: Hélène de Pourtalès won in sailing that May, and Charlotte Cooper took the first individual title, in tennis, that July.) Her mother, Mary, played too and finished seventh, and they remain the only mother and daughter to compete in the same Olympic event.
+
+  Reportedly, Abbott never learned her win was Olympic. In a 1984 Golf Digest piece, her son wrote that she had told the family only that she had won the golf championship of Paris. Sports historian Paula Welch began piecing her story together in the 1970s, two decades after Abbott passed away in 1955.
+
+  The event was never billed as the Olympics at the time, and the bowl's whereabouts are reportedly unknown.
+
+  The last two frames: a 1900 magazine photo of the golf event (it does not name the players) and the Chicago Tribune headline from October 1900. The wojak characters are fictional.
+
+  If you won something huge and nobody told you, would you want to know?
+
+credits: "Grand entrance, Exposition Universal, 1900, Paris, France by Detroit Publishing Company, public domain, via Wikimedia Commons (cropped, colour and brightness adjusted, softened); Margaret Abbott golf event 1900 Olympic Games, photographer unknown, published in La Vie au Grand Air, 14 Oct 1900 (print held by the USGA Museum), public domain, via Wikimedia Commons (border cropped, contrast adjusted); Margaret Abbott Chicago Tribune, The Chicago Tribune, Oct 1900, public domain, via Wikimedia Commons (cropped to the headline)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (the golfer and a friend); the dialogue is invented and is not a documented quote. What is documented: she reportedly told her family only that she had won the golf championship of Paris (her son Philip Dunne, Golf Digest, 1984; quoted by the US Olympic & Paralympic Museum). The 'Decades later' line speaks for the researcher-and-family discovery in the 1970s-80s, not for any real person."
+  - "**Hedged or left out on purpose:** the exact date (3 Oct per Olympedia, FFGolf, History.com; 4 Oct per USA Golf and Atlas Obscura), the distance from Paris to Compiègne (30 mi / 50 mi / 70 km in different sources), her birth year (1876 per Olympedia, 1878 per Wikipedia, NWHM, Britannica), and the whereabouts of the bowl (no known photo, one source). The 'never knew' claim rests on the family's account (Dunne, Welch) and is worded 'reportedly'."
+  - "The 1900 photo's Commons title names Abbott, but the image itself carries no caption naming the player, so the video does not say who is in it. The first scene's background is the 1900 World's Fair main gate in Paris; the tournament itself was at Compiègne."
+  - "Suggested first comment: Hélène de Pourtalès (sailing, May 1900) was the first woman to win an Olympic title and Charlotte Cooper (tennis, July 1900) the first individual champion; Abbott was the first American woman. The Tribune clipping is dated 7 Oct on Commons and 6 Oct (p. 9) in Wikipedia's references, so only the month is written. The IOC counts the 1900 golf event as Olympic, though no one called it that at the time."
+
+sources:
+  - "Olympedia, Golf, Individual Women, 1900 (Compiègne, 3 Oct 1900, nine holes, Abbott 47, Mary Abbott =7th with 65, status Olympic): https://www.olympedia.org/results/40001"
+  - "Olympedia, Margaret Abbott (first American woman to win an Olympic gold; born Calcutta; died 10 June 1955): https://www.olympedia.org/athletes/18138"
+  - "Olympics.com, Margaret Abbott, the Olympic golf champion who died without knowing it (prize was a bowl; not told it was Olympic; Dunne quote): https://www.olympics.com/en/news/margaret-abbott-the-olympic-golf-champion-who-died-without-knowing-it"
+  - "Britannica, Margaret Abbott: A Study Break (porcelain bowl surrounded by chiseled gold; nine-hole tournament; not aware even at her death in 1955): https://www.britannica.com/biography/A-Study-Break-1367944"
+  - "History.com, Margaret Abbott, first American woman Olympic win (porcelain bowl; oblivious until death in 1955; Illinois Golf Hall of Fame): https://www.history.com/articles/margaret-abbott-first-american-woman-olympic-win"
+  - "US Olympic & Paralympic Museum, An unknowing history-maker (Dunne quote 'golf championship of Paris'; only mother and daughter in the same event; 1900 prizes were objects): https://usopm.org/an-unknowing-historymaker-margaret-abbott-was-the-first-american-female-to-be-an-olympic-champion/"
+  - "USA Golf, A journey to Paris and back, 15 Jun 2023 (antique porcelain bowl; Welch research; mother seventh): https://www.usagolf.org/news/2023/june/15/a-journey-to-paris-and-back-uncovering-margaret-abbott-s-unwitting-legacy-"
+  - "FFGolf, Le golf aux JO de Paris en 1900 (Compiègne, 'Prix de la ville de Compiègne', 70 km north of Paris): https://www.ffgolf.org/golf-pro/jeux-olympiques/paris-1900"
+  - "National Women's History Museum, Margaret Ives Abbott (nine holes; mother Mary seventh; Degas and Rodin): https://www.womenshistory.org/education-resources/biographies/margaret-ives-abbott"
+  - "Golf Digest, Philip Dunne, 'My mother, the golf Olympian', Aug 1984 (title and author checked; text paywalled): https://archive.golfdigest.com/article/1984/08/01/my-mother-the-golf-olympian"
+  - "Olympics.com, Charlotte Cooper (first woman to win Olympic gold in an individual event, 1900): https://www.olympics.com/en/athletes/charlotte-cooper"
+  - "GÖRSEL img/arka.jpg — 'Grand entrance, Exposition Universal, 1900, Paris, France.jpg', Detroit Publishing Company / Library of Congress, public domain (raw page checked): https://commons.wikimedia.org/wiki/File:Grand_entrance,_Exposition_Universal,_1900,_Paris,_France.jpg . Degisiklik: kare kirpim, renk 0,8, parlaklik 0,8, blur 2,8"
+  - "GÖRSEL img/ev_1.jpg — 'Margaret Abbott golf event 1900 Olympic Games.png', photographer unknown, La Vie au Grand Air, 14 Oct 1900, public domain (raw page checked): https://commons.wikimedia.org/wiki/File:Margaret_Abbott_golf_event_1900_Olympic_Games.png . Degisiklik: kenar kirpimi, otomatik kontrast"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Margaret Abbott Chicago Tribune.jpg', The Chicago Tribune, Oct 1900, public domain (raw page checked): https://commons.wikimedia.org/wiki/File:Margaret_Abbott_Chicago_Tribune.jpg . Degisiklik: baslik bolumune kirpim"
