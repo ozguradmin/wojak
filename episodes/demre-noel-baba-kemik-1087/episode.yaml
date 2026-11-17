@@ -1,0 +1,115 @@
+# Myra (bugünkü Demre, Antalya), 1087: Barili denizciler Aziz Nikolaos Kilisesi'nde mezarı kırıp azizin kemiklerini
+# gemiyle Bari'ye götürdü. Araştırma notu: /tmp/arastirma/olgular_demre.md (repoya girmez). Damar 1 (Türkiye'de
+# gösterilebilir yer + mezar + ürkütücü/mucizevi ayrıntı). Önceki 1. damar cennet-cehennem-obrugu (obruk): aynı alt tür değil.
+# İskelet C2fa (dramatik ironi): A mezarı kırdırır -> B keşiş direnir, mezardan "kutsal yağ" aktığını söyler -> A "Papa
+# gönderdi" diye geçiştirir -> kart -> A aynı kutuda şok yüzüyle lahdin içindeki sıvıyı fark eder -> 2 kanıt
+# (kırık lahit; son kare manna şişecikleri (1876 bağışı)).
+# AYNI YER, AYNI AN: kilisenin içi. A (hep solda): adsız, silahlı Barili denizci (kurgu). B (hep sağda): adsız bekçi
+# keşiş (kurgu). Gerçek kimseyi temsil etmezler.
+# Olgu sınırları (olgular_demre.md; çağdaş anlatı Nicephorus, çev. Jones 1978 + 13. yy Grek anlatı):
+#   - Kırk yedi silahlı adam kiliseye girdi; dört bekçi keşiş "ölürüz de vermeyiz" dedi, bağlandı (silahlı çatışma yok).
+#   - Denizciler Papa'nın gönderdiğini İDDİA etti (metin bunu kandırma gibi sunar) -> S3 karakterin iddiası.
+#   - Myra'daki mezardan kutsal sıvı/yağ sızdığına inanılırdı (bekçiler süngerle sıvı çıkarılan yeri gösterdi) -> S2.
+#   - Genç bir denizci döşemeyi ve mermer lahdi demir çekiçle kırdı -> S1 "Kırın şu mermeri".
+#   - Lahit "kutsal sıvıyla dolu", güzel koku, kemikler sıvının içinde (anlatı) -> S4; metinde "anlatıya göre".
+#   - Bari'de her 9 Mayıs'ta "manna" toplanır; 1925 analizi saf su; yoğuşma olduğu düşünülür -> yalnız hikâye metni.
+#   - "62 denizci", "Türkiye resmen iade istedi", "kemikler kesin azizin" KULLANILMAZ.
+# Karakterler: chars/uret.py. Görseller: gorsel.py.
+id: demre-noel-baba-kemik-1087
+title: "Demre'de Noel Baba'nın mezarını kıran denizciler"
+
+# Müzik sırası (el kitabı §6): tr kanalının önceki bölümü cennet-cehennem-obrugu 'gizem' çaldı -> bu bölüm klasik.
+music: klasik
+
+scenes:
+  # 1) KANCA — A (denizci, sol): mezarı kırdırır (Nicephorus: döşeme ve lahit çekiçle kırıldı). Tur 1: tamlama satırda bölünmesin
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.6
+    chars:
+      - {img: chars/denizci_sakin.png, side: left, height: 0.50}
+    text: "Kırın şu mezarı,\nazizi gemiye taşıyoruz"
+
+  # 2) B (keşiş, sağ): direniş sözlü (Nicephorus: vermeyeceklerini söylediler; "ölürüz" sansürde bozulduğu için çıkarıldı); tohum: mezardan kutsal yağ akar (Myra inancı)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.6
+    chars:
+      - {img: chars/kesis_sakin.png, side: right, height: 0.50}
+    text: "Azizi vermeyiz,\nmezarından kutsal yağ akar"
+
+  # 3) A: geçiştirir; "Papa gönderdi" denizcilerin iddiasıdır (iki anlatıda da)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.6
+    chars:
+      - {img: chars/denizci_sakin.png, side: left, height: 0.50}
+    text: "Bir şey olmaz,\nbizi Papa gönderdi"
+
+  # 4) ara kart (ileri zaman: lahit çekiçle kırılır)
+  - type: card
+    duration: 1.5
+    text: "Biraz sonra"
+
+  # 5) TERS KÖŞE — A, aynı kutu, şok yüzü: lahdin içi hoş kokulu kutsal sıvıyla dolu (Nicephorus: "holy liquid", hoş koku;
+  #    13. yy Grek anlatı: "sacred oil"). Tur 1 takipçi: "kokulu" -> "mis kokulu"; tohumla aynı kelime "yağ".
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.6
+    chars:
+      - {img: chars/denizci_sok.png, side: left, height: 0.50}
+    text: "Bekle, kemikler neden\nmis kokulu yağda yüzüyor?"
+
+  # 6-7) KANIT — kilisede gösterilen kırık lahit (nerede); son kare: "Aziz Nikolaos mannası" şişecikleri (1876 bağışı) (cevap: sıvı
+  #      bugün de toplanıp şişeleniyor). Tur 1 takipçi MUST: son kare sıvıyla bağlanmalı.
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Demre'de Noel Baba'nın mezarını kıran denizciler
+  Olayın tamamı sabit yorumda 👇
+hashtags: [noelbaba, demre, antalya]
+
+pinned_comment: |
+  Aziz Nikolaos'un kemiklerinin kaçırılması, 1087 yılında Myra'da (bugünkü Demre, Antalya) yaşanan ve Bari'de "nakil" olarak anılan bir olaydır. Nikolaos 4. yüzyılda Myra piskoposuydu; Noel Baba figürü yüzyıllar sonra onun hikâyelerinden doğdu.
+
+  Barili Nicephorus'un aynı yıllarda yazdığı anlatıya göre Bari'den gelen gemilerdeki kırk yedi silahlı adam kiliseye girdi. Dört bekçi keşiş azizi vermeyeceklerini söyledi. Denizciler kendilerini Papa'nın gönderdiğini ileri sürdü ve keşişleri bağladı. Genç bir denizci önce döşemeyi, sonra mermer lahdi demir çekiçle kırdı. Anlatıya göre lahdin içi kutsal bir sıvıyla doluydu (sonraki bir Grek anlatıda "kutsal yağ"), kemikler bu sıvının içindeydi ve kiliseye mis gibi bir koku yayıldı.
+
+  Myra halkı kıyıya koşup gemileri durdurmaya çalıştı. Gemiler 9 Mayıs 1087'de Bari'ye ulaştı; kemikler bugün San Nicola Bazilikası'nın kriptasında durur. Venediklilerin 1100 civarında kalan parçaları da aldığı anlatılır. Demre'deki kilisede bugün kırık lahitler gösterilir; azizin asıl mezarının hangisi olduğu kesin değildir.
+
+  Bari'de her yıl 9 Mayıs'ta mezarın içinde biriken sıvı toplanır ve buna "manna" denir. İnananlar bunu mucize sayar. 1925'te yapılan bir analiz sıvıyı çok saf su olarak buldu; yoğuşma olduğu düşünülür. Videonun son karesi, bu sıvı için yapılmış şişeciklerdir (Milano, Castello Sforzesco müzesi; 1876'da müzeye bağışlandı).
+
+  Sizce Nikolaos'un kemikleri kurtarıldı mı, kaçırıldı mı?
+
+credits: "Myra Saint Nicolas church interior nave and apse 5395 (Dosseman, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kare kırpıldı, modern projektör rötuşla silindi, gama 0,72, renk 1,8, bulanıklaştırıldı), Wikimedia Commons; Myra Saint Nicolas church interior Another alternative sarcophagus of the saint 5874 (Dosseman, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kırpıldı, gama 0,9), Wikimedia Commons; Musei Castello Sforzesco - Bottigliette di Manna di San Nicola (Sciking, CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/; kırpıldı), Wikimedia Commons"
+ai_generated: false
+
+ek_maddeler:
+  - "**Video bir canlandırmadır:** karakterler kurgudur; denizci ve keşiş gerçek kimseyi temsil etmez, ekrandaki sözler belgeli alıntı değildir. Belgeli olan (Nicephorus'un 1087-1088 anlatısı, çev. C. W. Jones 1978; 13. yy Grek anlatı): kırk yedi silahlı adamın kiliseye girmesi, bekçi keşişlerin azizi vermeyeceklerini söylemesi, denizcilerin Papa'nın gönderdiğini ileri sürmesi, lahdin çekiçle kırılması ve anlatıya göre içinin kokulu, kutsal bir sıvıyla dolu bulunması."
+  - "Kanıt kareleri: ilki Demre'deki kilisede azizin olası lahitlerinden biri olarak gösterilen kırık lahit (1087'de kırılan lahit olduğu kesin değil, metinde de böyle); son kare Milano Castello Sforzesco müzesinde sergilenen, Aziz Nikolaos'un mezarından toplanan sıvı (manna) için yapılmış cam şişecikler; etiketinde 'Fialette per la manna di San Nicola' yazar (müzeye 1876'da bağışlandı; yapım tarihi etikette yok)."
+  - "Yorum yönetimi: 'Kemikler aslında Demre'de, Bari'dekiler başkasının' yorumuna: 2017'de Antalya'daki bir yetkili kilisenin altında dokunulmamış bir mezar olabileceğini söyledi, doğrulanmadı; kazı başkanı mezarın yerinin kesinleşmediğini söylüyor (AA, 2024). 'Noel Baba Türk'tü' yorumuna: Nikolaos 4. yüzyılda bugünkü Türkiye topraklarında, Likya'da yaşadı."
+  - "İlk yorum önerisi: \"Lahdi kırdılar, kemikleri götürdüler; Bari'de o mezardan her yıl hâlâ 'manna' toplanıyor. Sizce kurtarma mı, hırsızlık mı?\""
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: 1087 olayı; 4. ve 11. yy kişileri; çocuk, son 10 yılda ölmüş/yaşayan özel kişi, süren dava, güncel olay yok."
+  - "Kırk yedi silahlı adam, dört bekçi keşiş, 'Papa gönderdi' iddiası, keşişlerin bağlanması, genç denizcinin demir çekiçle döşemeyi ve lahdi kırması, lahdin kutsal sıvıyla dolu bulunması ve koku, Myra halkının kıyıya koşması, 9 Mayıs 1087 Bari: Nicephorus, The Translation of Saint Nicholas (çev. C. W. Jones, Univ. of Chicago Press 1978): https://www.stnicholascenter.org/who-is-st-nicholas/stories-legends/classic-sources/translation-i"
+  - "Aynı olay (çekiçle kapak kırma, kutsal yağ, Papa ve konseyin gönderdiği iddiası, bekçilerin ağıtı): anonim 13. yy Grek anlatı: https://www.stnicholascenter.org/who-is-st-nicholas/stories-legends/classic-sources/translation-ii ; 9 Mayıs 1087 varış: Orderic Vitalis'in aktardığı John the Archdeacon: https://www.stnicholascenter.org/who-is-st-nicholas/stories-legends/classic-sources/translation-orderic-vitalis"
+  - "Kemikler Bari San Nicola Bazilikası kriptasında; Venedik ~1100 (tek vakayiname): Vikipedi 'Saint Nicholas': https://en.wikipedia.org/wiki/Saint_Nicholas ; Oxford 2017 (Bari'den ayrı leğen kemiği parçası, 4. yy): https://www.eurekalert.org/news-releases/683570"
+  - "Manna: her 9 Mayıs toplanır; 1925 Bari Üniversitesi analizi çok saf su; yoğuşma olduğu düşünülür: Britannica: https://www.britannica.com/story/do-the-relics-of-saint-nicholas-really-emit-a-holy-substance ; St Nicholas Center (Cioffari): https://www.stnicholascenter.org/who-is-st-nicholas/saint-in-bari/manna ; Snopes: https://www.snopes.com/fact-check/santa-bones-liquid/"
+  - "Demre'deki mezar yeri kesin değil, 2017 iddiası doğrulanmadı: AA 2024: https://www.aa.com.tr/tr/kultur/aziz-nikolaos-kilisesi-kazilarinda-tarihe-isik-tutacak-lahit-bulundu/3414796 ; AP/CBC 2017: https://www.cbc.ca/news/science/saint-nicholas-remains-turkish-archeologists-1.4340641 ; Demre Kaymakamlığı: https://www.demre.gov.tr/aziz-nikolas-noel-baba-muzesi"
+  - "GÖRSEL img/arka.jpg — 'Myra Saint Nicolas church interior nave and apse 5395.jpg', Dosseman, 2011, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}): https://commons.wikimedia.org/wiki/File:Myra_Saint_Nicolas_church_interior_nave_and_apse_5395.jpg. Değişiklik: sağdan kare kırpım (sol kemerdeki ızgara kapı, tabela ve bir spot lamba dışarıda), sol üst saçaktaki modern projektör çevre taştan dolduruldu (cv2.inpaint), gama 0,72, renk 1,8; renderer bulanıklaştırır."
+  - "GÖRSEL img/kanit_1.jpg — 'Myra Saint Nicolas church interior Another alternative sarcophagus of the saint 5874.jpg', Dosseman, 2011, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}): https://commons.wikimedia.org/wiki/File:Myra_Saint_Nicolas_church_interior_Another_alternative_sarcophagus_of_the_saint_5874.jpg. Değişiklik: kırpım, gama 0,9."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Musei Castello Sforzesco - Bottigliette di Manna di San Nicola.jpg', Sciking, 2024, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}): https://commons.wikimedia.org/wiki/File:Musei_Castello_Sforzesco_-_Bottigliette_di_Manna_di_San_Nicola.jpg. Müze etiketi: 'Fialette per la manna di San Nicola', vetro cristallo, acquamarina; Legato M. De Cristoforis 1876. Değişiklik: kırpım (şişecikler + etiket)."

@@ -59,6 +59,10 @@
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/japon_endise.png"
  },
+ "0a3597164ee4f3ed764b42017a4ea1e8dcf19015": {
+  "faces": "right",
+  "file": "episodes/demre-noel-baba-kemik-1087/chars/denizci_sakin.png"
+ },
  "0c24e88be989c0dafbde5fd7befd270da1145337": {
   "faces": "right",
   "file": "episodes/catalhoyuk-sekinin-alti/chars/genc_uzgun.png"
@@ -98,6 +102,10 @@
  "15e3033d8408709a966711ee8607b42f15f14ab7": {
   "faces": "right",
   "file": "episodes/dumlupinar-denizaltisi-1953/chars/subay_sok.png"
+ },
+ "1695b91a1353cba764d1614f8bdd1f6b9771e40e": {
+  "faces": "right",
+  "file": "episodes/demre-noel-baba-kemik-1087/chars/denizci_sok.png"
  },
  "19a3e201655777de248157ec33f97663e63673ed": {
   "faces": "right",
@@ -606,6 +614,10 @@
  "77df180b3dc0a513c0a812d6c2ac8e22d32f0dfb": {
   "faces": "right",
   "file": "episodes/en-franz-ferdinand-wrong-turn/chars/a_sakin.png"
+ },
+ "784486b71d4fab0c85978c1b5e9f3d2697a83d2b": {
+  "faces": "right",
+  "file": "episodes/demre-noel-baba-kemik-1087/chars/kesis_sakin.png"
  },
  "7874bc6d7c2829feffe602854afaded8dcaa922d": {
   "faces": "right",
