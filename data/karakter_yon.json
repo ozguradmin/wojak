@@ -299,6 +299,10 @@
   "faces": "left",
   "file": "episodes\\kanuni-gizlenen-olum\\chars\\yeniceri_mutlu.png"
  },
+ "3f2294ed614d27023aebc66ee847170f29b31e46": {
+  "faces": "right",
+  "file": "episodes/en-great-fire-hubert/chars/b_sakin.png"
+ },
  "3f4d31c5d8d022f11843cdd61a1c7a74cb2a2098": {
   "faces": "right",
   "file": "episodes/en-great-moon-hoax/chars/a_cok_terli.png"
@@ -847,6 +851,10 @@
   "faces": "right",
   "file": "episodes/yerebatan-bodrum-balik/chars/gyllius_sakin.png"
  },
+ "a68dbee01930befd5b261262b58ee6f1fe541604": {
+  "faces": "right",
+  "file": "episodes/en-great-fire-hubert/chars/b_sok.png"
+ },
  "a8013d389fa98a357c6f48392b51a07f58ff0aea": {
   "faces": "left",
   "file": "episodes/en-emu-war/chars/a_sakin.png"
@@ -1194,6 +1202,10 @@
  "ea13a194cb4d979c0c6efedc7df2348c1ecfe682": {
   "faces": "right",
   "file": "episodes\\gobeklitepe-mezar-tasi\\chars\\koylu_merakli.png"
+ },
+ "eb6a7a9b97e5d89d81d429ecbffeb95ebc51f405": {
+  "faces": "right",
+  "file": "episodes/en-great-fire-hubert/chars/a_sakin.png"
  },
  "ebc3a62215403a45858c2ba69b0c030a611d86f2": {
   "faces": "left",

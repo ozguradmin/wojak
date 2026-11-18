@@ -1,0 +1,100 @@
+# 1666: Londra Buyuk Yangini; Fransiz saatci cirigi Robert Hubert yangini cikardigini itiraf etti ve asildi; firinin boyle bir penceresi yoktu (Pepys, 24 Subat 1667). Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgu/olgular.md (British Library blogu, Museum of London ozeti, Pepys gunlugu, Wikipedia, Guildhall Library blogu, Executed Today, Monument/Londonist).
+# CANLANDIRMA: karakterler kurgu; replikler belgeli soz degildir. Belgeli: Pepys 24.2.1667 girisi (birebir alinti sayfa 195'te son karede), firin penceresi itirazi.
+#   Tartismali (replikte ve metinde kesin soylenmez): asilma tarihi (27/29 Ekim; 27 yazildi), mahkeme adi (Old Bailey / Middlesex), kaptan ifadesinin tarihi, gemi Londra'ya ne zaman vardi.
+# Karakterler: A = wl:medieval_2_wojak (turuncu takke, yun tunik; belden kesildi, 2x) = Hubert rolu; B = wl:medieval_citizen_wojak (gri kukuletali, 2x) = sorgulayan rolu; b_sok = ters kose, ayni kutu, chars/uret.py.
+id: en-great-fire-hubert
+kanal: en  # Wojak Past Files
+title: "He confessed to the Great Fire of London and was hanged"
+
+music: kanal
+
+scenes:
+  # 1) KANCA — A (sol)
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "I started the Great Fire\nof London"
+
+  # 2) B (sag)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "How did you do it?"
+
+  # 3) A (sol): pencere tohumu
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "I pushed a fire-ball through\nthe bakery window"
+
+  # 4) TERS KOSE — B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, the baker swears\nthere was no window?"
+
+  # 5) KANIT 1 — Pepys gunlugu, s. 195 (firin penceresi yok)
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+  # 6) KANIT 2 — son kare: yangin nerede basladi (resmi plaket, fotograf)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  He confessed to the Great Fire of London and was hanged
+  The full story is in the pinned comment 👇
+
+hashtags: [history, greatfireoflondon, london]
+
+pinned_comment: |
+  The Great Fire of London began shortly after midnight on Sunday, 2 September 1666, in Thomas Farriner's bakery on Pudding Lane.
+
+  With the city looking for someone to blame, a young Frenchman from Rouen named Robert Hubert confessed to starting it. His first story put the fire in Westminster, where the flames never reached. His second said he had pushed a fire-ball through a window of the bakery. The baker and his household swore there was no such window. Samuel Pepys wrote about the contradiction in his diary in February 1667, noting that Hubert had been hanged "by his own confession." According to the British Library, the only support for the confession was that he could lead officials to the bakery site.
+
+  Hubert was executed at Tyburn on 27 October 1666. According to the Museum of London, the Lord Chief Justice told King Charles II that he did not believe a word of the confession, and the captain of the ship that had brought Hubert to London reported that he had not gone ashore until two days after the fire began. Historians widely accept that the confession was false, though sources disagree on details such as when the captain spoke.
+
+  The last two frames: page 195 of Pepys's diary in the 1893 Wheatley edition, and the plaque near Pudding Lane marking the site of the bakery (spelled Faryner there). The wojak characters and dialogue are fictional.
+
+  Why would someone confess to something they didn't do?
+
+credits: "Great Fire London, unknown artist, 1675, public domain, via Wikimedia Commons (cropped, brightened, softened); Thomas Faryner shop plaque, Pudding Lane, photo by Acabashi, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons, commons.wikimedia.org/wiki/File:Thomas_Faryner_shop_plaque_Pudding_Lane_City_of_London_England.jpg (cropped); The diary of Samuel Pepys, ed. Henry B. Wheatley, vol. 6 (London, 1893), p. 195, public domain, via Internet Archive (cropped)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (Hubert and an examiner); the dialogue is invented and is not a documented quote. What is documented: Hubert confessed, said he had put a fire-ball in at a window of the bakery, and the baker's household swore there was no such window (Pepys, 24 Feb 1666/67, shown in the last frame)."
+  - "**Hedged or left out on purpose:** execution date (27 Oct per BL, Museum of London, Executed Today; 29 Oct per some sources), court (Old Bailey vs Middlesex sessions), when the ship captain gave his statement (after the hanging per Museum of London, 'years later' per Wikipedia), when the ship reached London (31 Aug per one source), torture, accomplices, Hubert's religion, the Monument inscription. 'Clearly innocent' is not claimed; the text says historians widely accept the confession was false."
+  - "Pepys does NOT call Hubert a wretch or mad in the diary; 'poor distracted wretch' is Lord Clarendon's phrase and is not used. Pepys wrote that Hubert 'did not speak like a madman'."
+  - "Suggested first comment: the Monument's inscription blamed Catholic plotters until it was removed in 1830. The Pepys page also carries a footnote quoting Burnet that Hubert was hanged on no other evidence than his own confession."
+
+sources:
+  - "British Library, Robert Hubert and the Great Fire of London (Untold Lives blog, 23 Aug 2022; watchmaker son from Rouen per BL, confession, executed 27 Oct 1666, bakery had no window, only supporting evidence was describing the site): https://www.bl.uk/stories/blogs/posts/robert-hubert-and-the-great-fire-of-london"
+  - "Museum of London, Information on Robert Hubert (summary PDF; captain reported Hubert had not gone ashore until two days after the fire started; Lord Chief Justice did not believe the confession): http://col4.museumoflondon.org.uk/mediaLib/382/media-382948/original.pdf"
+  - "Samuel Pepys, Diary, 24 Feb 1666/67 (hanged for it by his own confession; baker, son and daughter swear there was no such window), with Latham & Matthews note: https://www.pepysdiary.com/diary/1667/02/24/"
+  - "Wikipedia, Robert Hubert (first said Westminster, then a fire grenade through a bakery window): https://en.wikipedia.org/wiki/Robert_Hubert"
+  - "Guildhall Library blog, The Great Fire of London 1666, 30 Apr 2020 (contradictory confessions): https://guildhalllibrarynewsletter.wordpress.com/2020/04/30/the-great-fire-of-london-1666/"
+  - "Executed Today, 27 Oct 2009, Robert Hubert (hanged 27 Oct 1666): https://www.executedtoday.com/2009/10/27/1666-robert-hubert-great-fire-of-london/"
+  - "Wikipedia, Great Fire of London (began 2 Sep 1666 in Thomas Farriner's bakery on Pudding Lane): https://en.wikipedia.org/wiki/Great_Fire_of_London"
+  - "Pepys History Project (Univ. of Leicester), Who discovered the Great Fire? (first witness woken by smoke before 2 am on 2 Sep 1666 at the bakery): https://pepyshistory.le.ac.uk/who-discovered-the-great-fire/"
+  - "GÖRSEL img/arka.jpg — 'Great Fire London.jpg', unknown artist, 1675 (Museum of London Prints credit), {{PD-Art|PD-old-100-1923}} (raw page checked): https://commons.wikimedia.org/wiki/File:Great_Fire_London.jpg . Degisiklik: kare kirpim, gama 0,58, renk ayni, blur 2,5"
+  - "GÖRSEL img/ev_1.jpg — 'Thomas Faryner shop plaque Pudding Lane City of London England.jpg', Acabashi, CC BY-SA 4.0 (raw page checked): https://commons.wikimedia.org/wiki/File:Thomas_Faryner_shop_plaque_Pudding_Lane_City_of_London_England.jpg . Degisiklik: kirpim (yazi bolumu), renk ayni"
+  - "GÖRSEL img/ev_2.jpg (son kare) — The diary of Samuel Pepys, ed. H. B. Wheatley, vol. VI (London, Bell, 1893), p. 195, Internet Archive id diaryofsamuelpep06pepy (leaf n210, w2000), 1893 baski / Pepys d. 1703 / Wheatley d. 1917: kamu mali. Degisiklik: ust satirlara kirpim: https://archive.org/details/diaryofsamuelpep06pepy"
