@@ -443,6 +443,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/sheskin_v2_saskin.png"
  },
+ "5839d392312aa4400827ff3047df477833b85b6e": {
+  "faces": "right",
+  "file": "episodes/hipodrom-nika-532/chars/isyanci_sakin.png"
+ },
  "5874620547d9f263e7c440d6ccbe350df2cc949f": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/agliyor.png"
@@ -550,6 +554,10 @@
  "6da0c40850d5460090587a7f7c19fb384bdf74fc": {
   "faces": "right",
   "file": "episodes/en-cadaver-synod/chars/b_sok.png"
+ },
+ "6dad2cf3344f5fab652d7901b1c3e26f42f163e2": {
+  "faces": "right",
+  "file": "episodes/hipodrom-nika-532/chars/isyanci_sok.png"
  },
  "6f8ccdfb81a40c4cf6405b35392571e584766452": {
   "faces": "right",
@@ -682,6 +690,10 @@
  "81f96fdd044779d5ea2f4e8789bdfa38fe7724ff": {
   "faces": "right",
   "file": "episodes/kiz-kulesi-efsanesi/chars/imparator_bizans_sepet.png"
+ },
+ "84c0bef356366c49e2df7db3328f38c5e56b9c2c": {
+  "faces": "right",
+  "file": "episodes/hipodrom-nika-532/chars/uyaran_terli.png"
  },
  "84cd9d7115119936292486f6c204b25be6fd7ac0": {
   "faces": "left",
