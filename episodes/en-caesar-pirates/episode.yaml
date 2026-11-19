@@ -1,0 +1,103 @@
+# MÖ ~75: genc Julius Caesar Kilikyali korsanlarca kacirildi; korsanlar 20 talent istedi, Caesar 50'ye cikardi, esirken hepsini asacagini soyleyip sakaya vurdu; serbest kalinca Miletos'ta gemi donatip hepsini yakaladi ve carmiha gerdi. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (Plutarch Caesar 1.8-2.7, Suetonius Div. Jul. 4 + 74, Britannica, HISTORY 2025, Live Science, Osgood 2010).
+# CANLANDIRMA: karakterler kurgu; replikler belgeli soz degildir. Belgeli (Plutarch 2.1-2.7): 20 talent istendi, Caesar gulup 50 kabul etti; esirken "gulerek hepsini asmakla tehdit etti", korsanlar sakaci sandi; sonra Miletos'tan gemi donatti, hepsini carmiha gerdi.
+#   Tartismali / videoda yok: Rodos yolculugu (Suetonius) vs Bithynia'dan donus (Plutarch), vali adi, "bogazlarini kestirdi" (yalniz Suetonius 74), Polyaenus'un zehirli ziyafeti, yil (75/80 BC).
+# Karakterler: A = wl:eyepatch_pirate_2_wojak (korsan kaptan rolu; a_sok = ters kose, ayni kutu, chars/uret.py), B = wl:julius_caesar_wojak (Caesar rolu).
+id: en-caesar-pirates
+kanal: en  # Wojak Past Files
+title: "Julius Caesar's Pirate Kidnappers Thought He Was Joking"
+
+music: klasik
+
+scenes:
+  # 1) KANCA — A (sol), korsan
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Your ransom is\ntwenty talents, Roman"
+
+  # 2) B (sag), esir
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Make it fifty,\nI'll crucify you all"
+
+  # 3) A (sol): gecistirir
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Ha, listen to\nthis guy"
+
+  - type: card
+    duration: 1.5
+    text: "Weeks later"
+
+  # 5) TERS KOSE — A, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.2
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, was he\nserious?"
+
+  # 6) KANIT 1 — Miletos antik liman alani
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: Caesar denaryusu (CAESAR yazili)
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Julius Caesar's pirate kidnappers thought he was joking
+  The full story is in the pinned comment 👇
+
+hashtags: [history, juliuscaesar, pirates]
+
+pinned_comment: |
+  Around 75 BC, a young Roman nobleman named Julius Caesar was sailing across the Aegean when Cilician pirates captured him near the island of Pharmacusa. They demanded a ransom of twenty talents. According to the Greek writer Plutarch, Caesar laughed at them for not knowing who their captive was and offered fifty instead.
+
+  He stayed with the pirates for about forty days while his followers collected the money in various cities. Plutarch writes that Caesar joined their games, read them his poems and speeches, and called them illiterate barbarians when they did not applaud. He also reportedly told them, often and with a laugh, that he would have them all crucified (Plutarch's translators say "hang"; Suetonius says crucify). The pirates took it for boyish high spirits.
+
+  Once the ransom was paid, Caesar manned ships at Miletus, even though he held no public office at the time. He found the pirates still at anchor off the island and captured most of them. When the governor of Asia dragged his feet over their fate, Caesar went to Pergamum and had them crucified, just as he had promised.
+
+  Ancient writers differ on some details, such as where Caesar was heading when he was taken. The dialogue is imagined and the pirate's hat is a meme shortcut. Images: the ruins of Miletus (background), a model trireme for illustration, and a silver denarius minted decades later that carries his name.
+
+  If a prisoner told you he would come back for you, would you laugh too?
+
+credits: "Turquie Milet Ville Port Des Lions 25042011 by rene boulay, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), https://commons.wikimedia.org/wiki/File:Turquie_Milet_Ville_Port_Des_Lions_25042011_-_panoramio.jpg (cropped, colour and brightness adjusted, softened); Trireme 1 by Rama, CC BY-SA 2.0 fr (https://creativecommons.org/licenses/by-sa/2.0/fr/deed.en), https://commons.wikimedia.org/wiki/File:Trireme_1.jpg (cropped); Silver denarius of Julius Caesar (MET DP143309), The Metropolitan Museum of Art, CC0, https://commons.wikimedia.org/wiki/File:Silver_denarius_of_Julius_Caesar_MET_DP143309.jpg (cropped)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (a pirate captain and Caesar); the dialogue is invented and is not a documented quote. Documented (Plutarch, Life of Caesar 2.1-2.7): the pirates asked twenty talents, Caesar laughed and agreed to fifty, he often threatened to hang them all while they thought he was joking, then fitted out ships at Miletus and had the captured pirates crucified."
+  - "**Left out on purpose:** the year (about 75 BC per Suetonius; some modern writers say 80 BC), the voyage's purpose (Rhodes per Suetonius, return from Bithynia per Plutarch), the governor's name, the claim that he first had their throats cut (Suetonius 74, not Plutarch), Polyaenus's poisoned-banquet version, and any dollar value for a talent. The costume of the pirate is a tricorn hat for recognisability, not period-correct."
+  - "The first evidence image is a modern model of a trireme (a generic ancient warship, not Caesar's actual ships); the final frame is a Roman silver denarius from 47-46 BC (decades after the events), used because it names him. The background is the ancient harbour area of Miletus, where Caesar manned his ships, not the island of Pharmacusa (no free photograph of it was found; Commons searches: Farmakonisi, Pharmakonisi, Pharmacusa)."
+  - "Suggested first comment: 'Actually Suetonius says he had their throats cut first, as a mercy.' Answer: yes, Suetonius (Divus Julius 74) adds that; Plutarch does not, so the video and text leave it out."
+  - "Licence note: the Miletus background (CC BY-SA 3.0) and the trireme photo (CC BY-SA 2.0 fr) are ShareAlike; credits carry licence and file-page links. Whether the video itself needs a ShareAlike licence is the channel owner's call."
+
+sources:
+  - "Plutarch, Life of Caesar 1.8-2.7 (Loeb, Perrin 1919; Thayer): 20 -> 50 talents, 38 days, poems and speeches, hang threat 'laughingly', ransom from Miletus, ships, Pergamum, crucified them all when they thought he was joking: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Plutarch/Lives/Caesar*.html"
+  - "Suetonius, Divus Julius 4 and 74 (Thayer): pirates, Pharmacusa, nearly forty days, fifty talents, crucified as he had sworn: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/Julius*.html"
+  - "Britannica, The Time Julius Caesar Was Captured by Pirates (38 days, fleet raised at Miletus, no official post): https://www.britannica.com/story/the-time-julius-caesar-was-captured-by-pirates"
+  - "HISTORY (C. Klein, 16 Jun 2025), Julius Caesar pirate kidnap legend (20 talents, Miletus, Pergamum, crucifixion): https://www.history.com/articles/julius-caesar-pirate-kidnap-legend"
+  - "Osgood, Caesar and the Pirates, Greece & Rome 57 (2010) (comparison of Plutarch, Suetonius, Velleius): https://repository.digital.georgetown.edu/downloads/1dad8461-8119-40d3-8ae0-0e0674ac3885"
+  - "Live Science, Julius Caesar (20 talents, Plutarch): https://www.livescience.com/julius-caesar"
+  - "GÖRSEL img/arka.jpg — 'Turquie Milet Ville Port Des Lions 25042011 - panoramio.jpg', rene boulay, CC BY-SA 3.0 (raw page checked by researcher): https://commons.wikimedia.org/wiki/File:Turquie_Milet_Ville_Port_Des_Lions_25042011_-_panoramio.jpg . Degisiklik: kare kirpim, renk 0,5, parlaklik 0,93, blur 2,2"
+  - "GÖRSEL img/ev_1.jpg — 'Trireme 1.jpg', Rama, CC BY-SA 2.0 fr (commons.py bilgi checked): https://commons.wikimedia.org/wiki/File:Trireme_1.jpg . Degisiklik: 1080 px genislige kucultuldu, ortadan 816 px kirpim"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Silver denarius of Julius Caesar MET DP143309.jpg', Metropolitan Museum of Art, CC0: https://commons.wikimedia.org/wiki/File:Silver_denarius_of_Julius_Caesar_MET_DP143309.jpg . Degisiklik: sikke ortali 1080x816 kirpim"

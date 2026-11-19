@@ -63,6 +63,10 @@
   "faces": "right",
   "file": "episodes/demre-noel-baba-kemik-1087/chars/denizci_sakin.png"
  },
+ "0b454bf27cc433c5273ad7c40d1ecf0d9531a345": {
+  "faces": "left",
+  "file": "episodes/en-caesar-pirates/chars/a_sok.png"
+ },
  "0c24e88be989c0dafbde5fd7befd270da1145337": {
   "faces": "right",
   "file": "episodes/catalhoyuk-sekinin-alti/chars/genc_uzgun.png"
@@ -398,6 +402,10 @@
  "4d757cc31545877430c3d2b26e3e8bf4a3021eb1": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/sheskin_saskin.png"
+ },
+ "4fecc07e32cebde0e32f8b2c450d9e5f5927394a": {
+  "faces": "left",
+  "file": "episodes/en-caesar-pirates/chars/a_sok.png"
  },
  "50a167479e1cd02bf6bcdd68092b6c8b8e972eb5": {
   "faces": "right",
@@ -1071,6 +1079,10 @@
   "faces": "front",
   "file": "episodes/en-d-b-cooper/chars/b_hemsire.png"
  },
+ "d03ab21e7fce8820dbc8a6f1e245dae632ac5310": {
+  "faces": "right",
+  "file": "episodes/en-caesar-pirates/chars/b_sakin.png"
+ },
  "d0f22cbac08bd394a5438d7841830e7d001f4c89": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_saskin.png"
@@ -1090,6 +1102,10 @@
  "d345a11f5cc2cf131d34fd5f486af4b3d4c30f09": {
   "faces": "right",
   "file": "episodes/en-boston-molasses-flood/chars/b_sakin.png"
+ },
+ "d45d1bf72351606360b86d7f82c5e40203c88e63": {
+  "faces": "left",
+  "file": "episodes/en-caesar-pirates/chars/a_sakin.png"
  },
  "d4d9a34654d8a8bc2b0e5873e9f5288c234a6aae": {
   "faces": "right",
