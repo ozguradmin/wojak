@@ -271,6 +271,10 @@
   "faces": "right",
   "file": "episodes/schliemann-sal-1873/chars/isci_sok.png"
  },
+ "3b3f392c1a196119e8947349aba2e9f56f06f338": {
+  "faces": "right",
+  "file": "episodes/sarayburnu-cuvallar/chars/dalgic_terli.png"
+ },
  "3bd087dffb2e0d19bf95a17f991530320b453437": {
   "faces": "right",
   "file": "assets/characters/sovyet_asker_kis.png"
@@ -326,6 +330,10 @@
  "42bae1c5422264144a711f9480bf0f054612f4ec": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_terli.png"
+ },
+ "43d81147b9bad3855fa7d1b0097da92f99337345": {
+  "faces": "right",
+  "file": "episodes/sarayburnu-cuvallar/chars/reis_emin.png"
  },
  "43e07d18ec53bdfbb6ef6e3304f49d22883be17e": {
   "faces": "left",
@@ -702,6 +710,10 @@
  "84cd9d7115119936292486f6c204b25be6fd7ac0": {
   "faces": "left",
   "file": "episodes/en-titanic-binoculars-key/chars/a_sakin.png"
+ },
+ "85776dc94b65a5b83fe23ff687e877fa32e79457": {
+  "faces": "right",
+  "file": "episodes/sarayburnu-cuvallar/chars/reis_sok.png"
  },
  "863c7d4111b78e4761e9511f1fc24699ab9d099f": {
   "faces": "left",
