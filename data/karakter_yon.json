@@ -215,6 +215,10 @@
   "faces": "right",
   "file": "episodes/en-lustig-eiffel-tower/chars/b_sok.png"
  },
+ "2d1f5c5ccbb8de6c3c117c12e80f8a79887ef236": {
+  "faces": "right",
+  "file": "episodes/hannibal-gebze-yedi-kapi/chars/hizmetkar_sok.png"
+ },
  "2d6fd0e2178cfc076970b8ab4bc88b9643adefed": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_sakin.png"
@@ -606,6 +610,10 @@
  "71fff396e3cbdad513c9e73fa6496bcc640294fd": {
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/hostes_duygulu.png"
+ },
+ "72961f383273e1d6a17502c984d01e3bdda90607": {
+  "faces": "right",
+  "file": "episodes/hannibal-gebze-yedi-kapi/chars/hannibal_sakin.png"
  },
  "72c6a3a98826d49f06a960303f595096b2a73ce7": {
   "faces": "right",
