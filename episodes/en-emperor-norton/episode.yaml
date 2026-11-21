@@ -1,0 +1,105 @@
+# 1859-1880 San Francisco: Joshua Norton, bankrupt businessman, declared himself "Emperor of these United States"; in Jan 1867 a "special officer" (private neighborhood guard) had him taken in on a lunacy charge; newspapers protested, Police Chief Patrick Crowley released him and apologized for the police, Norton issued the officer an "imperial pardon", police later saluted him. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/en-nazi-saboteur-fbi-norton.md (Wikipedia, Emperor Norton Trust, Celebrate California / California State Library, FoundSF, KQED, AHA, OpenSFHistory).
+# CANLANDIRMA: karakterler kurgu; replikler belgeli soz degildir. Belgeli: 21 Ocak 1867 tutuklama (once serserilik, para bulununca delilik/lunacy; Stockton'daki akil hastanesine sevk tehlikesi), gazete tepkisi, polis sefi Crowley'nin serbest birakip polis adina ozur dilemesi (tam sozu hicbir kaynakta yok: tirnakli alinti YOK), Norton'in memura "imperial pardon" vermesi, polisin sonradan selam vermesi (selamin emir oldugu iddiasi tek kaynak: videoda yok).
+#   Videoda yok (efsane/tartismali): Bummer ve Lazarus, "Frisco" kararnamesi, 30.000 kisilik cenaze, Twain/Stevenson, "bedava yemek" (yalniz reportedly), "within days".
+# Karakterler: A = wl:suit_wojak (mahalle muhafizi "special officer" rolu; a_sok = ters kose, ayni kutu, chars/uret.py), B = wl:civil_war_wojak (Norton rolu; mavi kepi ve ceket, Norton'in mavi asker ceketinin yerine; sirıtma silindi, chars/uret.py).
+id: en-emperor-norton
+kanal: en  # Wojak Past Files
+title: "He declared himself Emperor of the United States in 1859"
+
+music: klasik
+
+scenes:
+  # 1) KANCA — A (sol), muhafiz
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Sir, you're under\narrest for lunacy"
+
+  # 2) B (sag), Norton
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "I'm the Emperor of\nthe United States"
+
+  # 3) A (sol): gecistirir
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Sure you are,\nlet's go"
+
+  - type: card
+    duration: 1.5
+    text: "A little later"
+
+  # 5) TERS KOSE — A, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 1.7
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, why's the chief\napologizing to him"
+
+  # 6) KANIT 1 — Norton, ayakta CDV portresi (Bradley & Rulofson)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: Norton'in kendi bastigi 50 centlik banknot (1878; Wells Fargo History Museum, San Francisco)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  He declared himself Emperor of the United States in 1859
+  The full story is in the pinned comment 👇
+
+hashtags: [history, sanfrancisco, emperornorton]
+
+pinned_comment: |
+  In September 1859, a bankrupt San Francisco businessman named Joshua Norton sent a letter to the Daily Evening Bulletin declaring himself "Emperor of these United States." The paper printed it, and for about the next twenty years he lived in the city as Norton I.
+
+  In January 1867 a "special officer" arrested him. Special officers were private guards paid by neighborhood residents and businesses, not regular police. Norton was first held for vagrancy, and once money was found on him the charge became lunacy, which could have meant commitment to the state asylum at Stockton.
+
+  The newspapers protested. The Daily Alta California wrote that he had harmed no one, robbed no one and despoiled no country. Police Chief Patrick Crowley released him and apologized on behalf of the police. Norton answered by issuing an imperial pardon to the officer who had arrested him, and police officers reportedly saluted him from then on.
+
+  Norton printed his own scrip in denominations from 50 cents to $10, and some of the businesses he frequented accepted it. Theaters reserved seats for him; the final frame is one of his 50-cent notes, dated 1878. When he collapsed on a San Francisco street on 8 January 1880 and did not survive, he had only a few dollars; the Pacific Club paid for his funeral, and about 10,000 people reportedly came to see his body.
+
+  The dialogue in the video is imagined. Was San Francisco humoring him, or protecting him?
+
+credits: "Norton I Bradley & Rulofson Portrait, Bradley & Rulofson, public domain (PD-US-expired), Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Norton_I_Bradley_%26_Rulofson_Portrait.jpg; cropped); Emperor Norton 50 cent note WFHM SF, BrokenSphere, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/), Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Emperor_Norton_50_cent_note_WFHM_SF.JPG; cropped, contrast adjusted); Montgomery Block, 1862, George Robinson Fardon, public domain (PD-old-100), Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Montgomery_Block,_1862.jpg; cropped, color adjusted, darkened slightly, softened)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (a neighborhood guard and Norton); the dialogue is invented and is not a documented quote. Documented: the January 1867 arrest by a special officer (vagrancy, then lunacy), the newspaper outcry, Police Chief Crowley's release and apology on behalf of the police, Norton's imperial pardon of the officer, and police salutes afterwards. The video compresses the charge to 'lunacy' and the officer to 'the guard'; the chief's exact words are in no source, so none are quoted."
+  - "**Left out on purpose:** ('twenty-one years' is a popular figure; FoundSF, KQED and OpenSFHistory say about 20; 1859 to Jan 1880 is just over 20), Bummer and Lazarus (not his dogs per FoundSF and others), the 'Frisco' decree (probably fake), the 30,000-person funeral and two-mile procession (later legend; the Chronicle reported three carriages), Twain and Stevenson links, free meals (only 'reportedly'), 'within days' for the release (one source), and the year he added 'Protector of Mexico' (1861 vs 1866)."
+  - "The background is Montgomery Block, San Francisco, 1862, a period street view, not the exact place of the arrest. Evidence 1 is a carte-de-visite portrait of Norton by Bradley & Rulofson (about 1870, standing, cap and epaulettes); the final frame is a real 50-cent note of the Imperial Government of Norton I dated 12 June 1878, photographed in a museum display (the photograph is CC BY-SA 3.0; the note itself is a 19th-century document). No recreated frame is used. The character B wears a plain blue kepi and coat as a stand-in for Norton's blue military-style coat; his feathered hat (seen in other portraits) is not shown."
+  - "Sensitive handling: the story is framed as an unjust confinement threat, not a joke about illness. Norton died in 1880; nobody living is named."
+  - "Suggested first comment: 'Actually Bummer and Lazarus were his dogs.' Answer: the record says they were two strays; a caricature drew them with him. The video leaves the dogs out."
+  - "Licence note: the background and the portrait are public domain (raw file-page templates checked); the banknote photo is CC BY-SA 3.0 (ShareAlike; credit and link are in the Images line; whether the video itself needs a ShareAlike licence is the channel owner's call)."
+
+sources:
+  - "Wikipedia, Emperor Norton (1859 letter, 1867 arrest, Crowley's apology, imperial pardon to the officer, salutes, funeral): https://en.wikipedia.org/wiki/Emperor_Norton"
+  - "The Emperor Norton Trust, The Life & Legend of Emperor Norton (release, apology, pardon, salutes, special officers, theatre seats, funeral legends): https://emperornortontrust.org/emperor/life"
+  - "Celebrate California (California State Library), 21 January 1867, An Egregious Affront to the Emperor (arrest date, vagrancy then lunacy, Stockton, release, salute): https://celebratecalifornia.library.ca.gov/january-21-1867-an-egregious-affront-to-the-emperor-2/"
+  - "FoundSF, Emperor Norton (scrip denominations, theatre seats, dog myth, free-meal doubt): https://www.foundsf.org/Emperor_Norton"
+  - "KQED, Who Was Emperor Norton (1859 letter, death on 8 Jan 1880): https://www.kqed.org/news/11652705/americas-emperor-san-franciscans-treasure-who-was-emperor-norton"
+  - "American Historical Association, The Unselfish Ruler: Norton I (funeral, death): https://www.historians.org/perspectives-article/the-unselfish-ruler-norton-i-emperor-of-the-united-states-december-2023/"
+  - "OpenSFHistory, The Emperor in San Francisco: A Closer Look (died with a few dollars, funeral fund): https://www.opensfhistory.org/osfhcrucible/2019/09/16/the-emperor-in-san-francisco-a-closer-look/"
+  - "GÖRSEL img/arka.jpg — 'Montgomery Block, 1862.jpg', George Robinson Fardon (Bancroft Library, Roy D. Graves Pictorial Collection), PD-old-100: https://commons.wikimedia.org/wiki/File:Montgomery_Block,_1862.jpg . Degisiklik: kenar paspartusu atildi, kare kirpim, renk 0,9, blur 1,7"
+  - "GÖRSEL img/ev_1.jpg — 'Norton I Bradley & Rulofson Portrait.jpg', Bradley & Rulofson (c. 1870), PD-US-expired (ham sayfa checked by producer): https://commons.wikimedia.org/wiki/File:Norton_I_Bradley_%26_Rulofson_Portrait.jpg . Degisiklik: bas-govde kirpim 1080x816"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'Emperor Norton 50 cent note WFHM SF.JPG', BrokenSphere, CC BY-SA 3.0 (2008 fotograf; sergilenen 1878 tarihli banknotun kendisi 19. yy. kamu malı belge; Wells Fargo History Museum, San Francisco): https://commons.wikimedia.org/wiki/File:Emperor_Norton_50_cent_note_WFHM_SF.JPG . Degisiklik: kenarlar dahil kirpim, autocontrast. Banknot 1878 tarihli (This 12 day of June 1878), Imperial Government of Norton I; banknot varligi: FoundSF, Emperor Norton Trust, Jewish Press"

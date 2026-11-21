@@ -359,6 +359,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/taban/kostumlu_nervous_temiz_ice.png"
  },
+ "454ce3c6b1ef74cf958c1acbbb0a8eae2f4ddd4c": {
+  "faces": "left",
+  "file": "episodes/en-emperor-norton/chars/b_sakin.png"
+ },
  "45da77068d8b52923851c713bd46716574c825fe": {
   "faces": "left",
   "file": "episodes/en-abbott-golf-1900/chars/b_sakin.png"
@@ -711,6 +715,10 @@
   "faces": "left",
   "file": "episodes\\kanuni-gizlenen-olum\\chars\\yeniceri_sok.png"
  },
+ "7fc898814b26fe70bf4ecb71a42b196908542ad5": {
+  "faces": "right",
+  "file": "episodes/en-emperor-norton/chars/a_sakin.png"
+ },
  "80094b731835a607574aac82e20538e1ef488dc9": {
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/hostes_sakin.png"
@@ -766,6 +774,10 @@
  "8aa0abe9e7c8757c13b48c39ef013ba707294bdb": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kelsey_supheci.png"
+ },
+ "8df926ff3e01d2fe6988433a8b255f407e3026c4": {
+  "faces": "right",
+  "file": "episodes/en-emperor-norton/chars/a_sok.png"
  },
  "8e997f533db86057d11b3dd9cb87bcf09e3b9306": {
   "faces": "right",
