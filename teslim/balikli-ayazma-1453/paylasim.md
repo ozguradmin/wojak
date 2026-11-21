@@ -1,0 +1,127 @@
+# balikli-ayazma-1453 — paylaşım paketi
+
+Süre: 14.0 sn · 6 sahne · video: `balikli-ayazma-1453.mp4` · kapak: `kapak.jpg`
+
+## Instagram Reels
+
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2179/2200
+
+```
+İstanbul fethedilirken ayazmada balık pişiren keşiş
+
+Balıklı Ayazması efsanesi, 1453'te İstanbul'un fethi sırasında Silivrikapı dışındaki bir ayazmada geçtiği anlatılan bir halk anlatısıdır. Ayazma bugün Zeytinburnu'ndaki Balıklı Meryem Ana Rum Ortodoks Manastırı'nın içindedir; Yunanca adı Zoodochos Pege, yani "yaşam veren kaynak"tır.
+
+Anlatılana göre şehre son saldırı sürerken bir keşiş ayazmanın yanında tavada balık kızartıyordu. Başka bir keşiş koşup şehrin alındığını haber verdi. Keşiş inanmadı; tavadaki balıklar canlanıp fırlarsa inanacağını söyledi. Balıklar o an canlanıp tavadan fırladı ve kaynağa atladı.
+
+Efsaneyi 1874'te İstanbul'u gezen İtalyan yazar Edmondo De Amicis, 1877'de yayımlanan kitabında anlattı. Onun anlatısında balıklar yalnız bir yüzleri piştiği için yarı kahverengi, yarı kırmızıdır; keşiş de İngilizce baskıda "I will believe that when I see my fish jump out of the pan" (Balıklarımın tavadan fırladığını görürsem inanırım) der. İngiliz gezgin Julia Pardoe ise 1837'de başka bir rivayet aktarır: yemek verilmeyen bir hacı için balıklar kaynaktan fırlayıp sıcak küllere atlar.
+
+Bugün ayazmanın mermer havuzunda kırmızı balıklar yüzer; halk, bunların o balıkların soyundan geldiğine inanır.
+
+Arka plan ayazmanın bugünkü mahzenidir. Sondan önceki kare, Commons'ta ayazmanın balıkları diye etiketlenen bir fotoğraftır (2006). Son kare, Thomas Allom'un çizimiyle 1830'larda basılan "Spring of the Miraculous Fishes, at Baloukli" (Balıklı'daki mucizevi balıklar kaynağı) gravürüdür.
+
+Sizce bu bir mucize efsanesi mi, yoksa ziyaretçilere anlatılan iyi bir hikâye mi?
+
+Görseller: Church of St. Mary of the Spring 9133 (Dosseman, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0; kırpıldı, rötuşlandı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; Turkey, Istanbul, Zoodochos Pege (Fish Church) (Dave Proffer, CC BY 2.0, https://creativecommons.org/licenses/by/2.0; kırpıldı, büyütüldü, aydınlatıldı), Wikimedia Commons; Spring of the Miraculous Fishes, at Baloukli (Thomas Allom çizimi, J. Tingle gravürü; Wellcome Collection, CC BY 4.0, https://creativecommons.org/licenses/by/4.0; kırpıldı, kontrast ayarlandı), Wikimedia Commons
+```
+
+## YouTube Shorts
+
+### Başlık — 51/100
+
+```
+İstanbul fethedilirken ayazmada balık pişiren keşiş
+```
+
+### Açıklama
+
+```
+İstanbul fethedilirken ayazmada balık pişiren keşiş
+
+Balıklı Ayazması efsanesi, 1453'te İstanbul'un fethi sırasında Silivrikapı dışındaki bir ayazmada geçtiği anlatılan bir halk anlatısıdır. Ayazma bugün Zeytinburnu'ndaki Balıklı Meryem Ana Rum Ortodoks Manastırı'nın içindedir; Yunanca adı Zoodochos Pege, yani "yaşam veren kaynak"tır.
+
+Anlatılana göre şehre son saldırı sürerken bir keşiş ayazmanın yanında tavada balık kızartıyordu. Başka bir keşiş koşup şehrin alındığını haber verdi. Keşiş inanmadı; tavadaki balıklar canlanıp fırlarsa inanacağını söyledi. Balıklar o an canlanıp tavadan fırladı ve kaynağa atladı.
+
+Efsaneyi 1874'te İstanbul'u gezen İtalyan yazar Edmondo De Amicis, 1877'de yayımlanan kitabında anlattı. Onun anlatısında balıklar yalnız bir yüzleri piştiği için yarı kahverengi, yarı kırmızıdır; keşiş de İngilizce baskıda "I will believe that when I see my fish jump out of the pan" (Balıklarımın tavadan fırladığını görürsem inanırım) der. İngiliz gezgin Julia Pardoe ise 1837'de başka bir rivayet aktarır: yemek verilmeyen bir hacı için balıklar kaynaktan fırlayıp sıcak küllere atlar.
+
+Bugün ayazmanın mermer havuzunda kırmızı balıklar yüzer; halk, bunların o balıkların soyundan geldiğine inanır.
+
+Arka plan ayazmanın bugünkü mahzenidir. Sondan önceki kare, Commons'ta ayazmanın balıkları diye etiketlenen bir fotoğraftır (2006). Son kare, Thomas Allom'un çizimiyle 1830'larda basılan "Spring of the Miraculous Fishes, at Baloukli" (Balıklı'daki mucizevi balıklar kaynağı) gravürüdür.
+
+Sizce bu bir mucize efsanesi mi, yoksa ziyaretçilere anlatılan iyi bir hikâye mi?
+
+Görseller: Church of St. Mary of the Spring 9133 (Dosseman, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0; kırpıldı, rötuşlandı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; Turkey, Istanbul, Zoodochos Pege (Fish Church) (Dave Proffer, CC BY 2.0, https://creativecommons.org/licenses/by/2.0; kırpıldı, büyütüldü, aydınlatıldı), Wikimedia Commons; Spring of the Miraculous Fishes, at Baloukli (Thomas Allom çizimi, J. Tingle gravürü; Wellcome Collection, CC BY 4.0, https://creativecommons.org/licenses/by/4.0; kırpıldı, kontrast ayarlandı), Wikimedia Commons
+
+#istanbul #efsane #shorts
+```
+
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1541 karakter
+
+```
+Balıklı Ayazması efsanesi, 1453'te İstanbul'un fethi sırasında Silivrikapı dışındaki bir ayazmada geçtiği anlatılan bir halk anlatısıdır. Ayazma bugün Zeytinburnu'ndaki Balıklı Meryem Ana Rum Ortodoks Manastırı'nın içindedir; Yunanca adı Zoodochos Pege, yani "yaşam veren kaynak"tır.
+
+Anlatılana göre şehre son saldırı sürerken bir keşiş ayazmanın yanında tavada balık kızartıyordu. Başka bir keşiş koşup şehrin alındığını haber verdi. Keşiş inanmadı; tavadaki balıklar canlanıp fırlarsa inanacağını söyledi. Balıklar o an canlanıp tavadan fırladı ve kaynağa atladı.
+
+Efsaneyi 1874'te İstanbul'u gezen İtalyan yazar Edmondo De Amicis, 1877'de yayımlanan kitabında anlattı. Onun anlatısında balıklar yalnız bir yüzleri piştiği için yarı kahverengi, yarı kırmızıdır; keşiş de İngilizce baskıda "I will believe that when I see my fish jump out of the pan" (Balıklarımın tavadan fırladığını görürsem inanırım) der. İngiliz gezgin Julia Pardoe ise 1837'de başka bir rivayet aktarır: yemek verilmeyen bir hacı için balıklar kaynaktan fırlayıp sıcak küllere atlar.
+
+Bugün ayazmanın mermer havuzunda kırmızı balıklar yüzer; halk, bunların o balıkların soyundan geldiğine inanır.
+
+Arka plan ayazmanın bugünkü mahzenidir. Sondan önceki kare, Commons'ta ayazmanın balıkları diye etiketlenen bir fotoğraftır (2006). Son kare, Thomas Allom'un çizimiyle 1830'larda basılan "Spring of the Miraculous Fishes, at Baloukli" (Balıklı'daki mucizevi balıklar kaynağı) gravürüdür.
+
+Sizce bu bir mucize efsanesi mi, yoksa ziyaretçilere anlatılan iyi bir hikâye mi?
+```
+
+## TikTok (isteğe bağlı)
+
+### Açıklama — 2248/4000
+
+```
+İstanbul fethedilirken ayazmada balık pişiren keşiş
+
+Balıklı Ayazması efsanesi, 1453'te İstanbul'un fethi sırasında Silivrikapı dışındaki bir ayazmada geçtiği anlatılan bir halk anlatısıdır. Ayazma bugün Zeytinburnu'ndaki Balıklı Meryem Ana Rum Ortodoks Manastırı'nın içindedir; Yunanca adı Zoodochos Pege, yani "yaşam veren kaynak"tır.
+
+Anlatılana göre şehre son saldırı sürerken bir keşiş ayazmanın yanında tavada balık kızartıyordu. Başka bir keşiş koşup şehrin alındığını haber verdi. Keşiş inanmadı; tavadaki balıklar canlanıp fırlarsa inanacağını söyledi. Balıklar o an canlanıp tavadan fırladı ve kaynağa atladı.
+
+Efsaneyi 1874'te İstanbul'u gezen İtalyan yazar Edmondo De Amicis, 1877'de yayımlanan kitabında anlattı. Onun anlatısında balıklar yalnız bir yüzleri piştiği için yarı kahverengi, yarı kırmızıdır; keşiş de İngilizce baskıda "I will believe that when I see my fish jump out of the pan" (Balıklarımın tavadan fırladığını görürsem inanırım) der. İngiliz gezgin Julia Pardoe ise 1837'de başka bir rivayet aktarır: yemek verilmeyen bir hacı için balıklar kaynaktan fırlayıp sıcak küllere atlar.
+
+Bugün ayazmanın mermer havuzunda kırmızı balıklar yüzer; halk, bunların o balıkların soyundan geldiğine inanır.
+
+Arka plan ayazmanın bugünkü mahzenidir. Sondan önceki kare, Commons'ta ayazmanın balıkları diye etiketlenen bir fotoğraftır (2006). Son kare, Thomas Allom'un çizimiyle 1830'larda basılan "Spring of the Miraculous Fishes, at Baloukli" (Balıklı'daki mucizevi balıklar kaynağı) gravürüdür.
+
+Sizce bu bir mucize efsanesi mi, yoksa ziyaretçilere anlatılan iyi bir hikâye mi?
+
+Görseller: Church of St. Mary of the Spring 9133 (Dosseman, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0; kırpıldı, rötuşlandı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons; Turkey, Istanbul, Zoodochos Pege (Fish Church) (Dave Proffer, CC BY 2.0, https://creativecommons.org/licenses/by/2.0; kırpıldı, büyütüldü, aydınlatıldı), Wikimedia Commons; Spring of the Miraculous Fishes, at Baloukli (Thomas Allom çizimi, J. Tingle gravürü; Wellcome Collection, CC BY 4.0, https://creativecommons.org/licenses/by/4.0; kırpıldı, kontrast ayarlandı), Wikimedia Commons
+
+#istanbul #efsane #tarih #wojak #tarihselwojak #keşfet #olay #gizem
+```
+
+## Yükleme kontrol listesi
+
+- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
+- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
+- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
+- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
+- [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
+- [ ] **Video bir canlandırmadır:** karakterler kurgu, ekrandaki sözler birebir alıntı değildir. Konu bir efsanedir; tarihî olay olarak değil, 19. yüzyıl gezginlerinin aktardığı hâliyle anlatıldı. Yaşlı keşişin repliği De Amicis'in aktardığı söze ("I will believe that when I see my fish jump out of the pan") dayanır; haberci De Amicis'teki gibi başka bir keşiştir (Türkçe anlatılarda "biri" ya da "arkadaşı").
+- [ ] Sondan önceki kare: ayazma havuzunda yüzen balık, Dave Proffer, 2006 (Flickr dizisi 'Zoodochos Pege (Fish Church)'; Commons'taki konum etiketi yaklaşık, kiliseden ~6 km doğuyu gösteriyor). Son kare: Thomas Allom çizimi, J. Tingle gravürü 'Spring of the Miraculous Fishes, at Baloukli', 1830'lar (R. Walsh, Constantinople and the Scenery of the Seven Churches of Asia Minor; Wellcome Collection V0020099).
+- [ ] İlk yorum önerisi: "Bu bir halk anlatısı; en ayrıntılı eski yazılı hâli De Amicis'in kitabında (1878 İngilizce baskı, s. 258-259). Julia Pardoe'nun 1837'deki versiyonu bambaşka. Siz hangisini duymuştunuz?"
+- [ ] Yorum yönetimi: konuyu bugünkü siyasete, Rum-Türk kavgasına ya da dinî hakarete çeken yorumları gizle. Urfa Balıklıgöl ile karıştıranlara: ayrı yer, ayrı hikâye.
+- [ ] YouTube: yükledikten sonra Kontroller adımını kontrol et
+- [ ] Gizli kelimeler (Hidden Words) listesi sohbette
+
+Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
+
+## Kaynaklar (doğrulama için, paylaşılmaz)
+
+- SERT FİLTRE: 1453 efsanesi; keşiş ve haberci adsız. Çocuk, yaşayan özel kişi, son 10 yılda ölen, süren dava yok (araştırmacı raporu). Video güncel tartışmalara (manastır, patrikhane, ayrı bir kurum olan Balıklı Rum Hastanesi) değinmez.
+- Efsane (son saldırı sırasında balık kızartan keşiş, 'The city is taken!', 'I will believe that when I see my fish jump out of the pan', balıklar canlı fırlar, yarı kahverengi yarı kırmızı, sarnıca konur, bugün görülür): Edmondo De Amicis, Constantinople, çev. Caroline Tilton (G. P. Putnam's Sons, 1878), s. 258-259: https://archive.org/details/constantinople00deam/page/n268
+- Efsanenin Türkçe anlatımı (kuşatma sırasında balık kızartan papaz, 'tavadan canlanarak sıçrarlarsa inanırım', balıklar ayazmaya atlar, halk soyundan geldiklerine inanır; De Amicis 1874 ziyareti; Pardoe versiyonu): Z Dergisi, 'İstanbul'da Ayazma Kültürü ve Balıklı Ayazması': https://www.zdergisi.istanbul/makale/istanbulda-ayazma-kulturu-ve-balikli-ayazmasi-92
+- Efsane ve havuzdaki kırmızı-siyah balıklar; II. Mahmud'un 1833 fermanı: ortodokslartoplulugu.com, 'Balıklı Ayazması': https://www.ortodokslartoplulugu.com/kutsal-mekanlar/balikli-ayazmasi/
+- Pardoe versiyonu (aç hacı, balıklar küllere atlar, 'cooked on one side and crude on the other'): Julia Pardoe, The City of the Sultan I (Colburn, 1837), s. 440-442: https://archive.org/details/cityofsultanandd01pardiala/page/n476
+- Konum (Silivrikapı dışı, surların dışı), Yunanca ad Zoodochos Pege, havuzda yüzen balıklar, ilk yapı I. Leon / Justinianus, bugünkü kilise 1835: Wikipedia 'Church of St. Mary of the Spring (Istanbul)': https://en.wikipedia.org/wiki/Church_of_St._Mary_of_the_Spring_(Istanbul) ; Archons of the Ecumenical Patriarchate: https://archons.org/greek-orthodox-sites-in-istanbul/
+- Zeytinburnu (Balıklı, Kazlıçeşme): Wikipedia 'Balıklı, Istanbul': https://en.wikipedia.org/wiki/Bal%C4%B1kl%C4%B1,_Istanbul ; A Gazete (adres Seyit Nizam Mah., Zeytinburnu): https://www.agazete.com.tr/yazarlar/makbule-mazi-206/balikli-meryem-ana-efsanesi-6848
+- İstanbul Ansiklopedisi (R. E. Koçu), 'Balıklı (Zoodohos Piyi) Ayazması ve Rum Ortodoks Kilisesi': https://istanbulansiklopedisi.org/handle/rek/5892
+- GÖRSEL img/arka.jpg — 'Church of St. Mary of the Spring 9133.jpg', Dosseman, 2014, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}, ham sayfadan doğrulandı): https://commons.wikimedia.org/wiki/File:Church_of_St._Mary_of_the_Spring_9133.jpg. Değişiklik: 1920 genişlikten kare kırpım (450-1476, 252-1278), 1080'e büyütme, sıcak döküm azaltıldı (R 0,93, G 0,98, B 1,10), tepsi/kupalar ve 4 musluk başı komşu mermerden yamayla örtüldü, renk 0,85, parlaklık 1,12; renderer bulanıklaştırır.
+- De Amicis'in 1874'te İstanbul'da bulunduğu, Costantinopoli'nin 1877'de yayımlandığı: Wikipedia (it) 'Costantinopoli (libro di viaggio)': https://it.wikipedia.org/wiki/Costantinopoli_(libro_di_viaggio) ; Z Dergisi (yukarıda)
+- GÖRSEL img/kanit_1.jpg — 'Turkey, Istanbul, Zoodochos Pege (Fish Church) (3946146620).jpg', Dave Proffer, 2006, CC BY 2.0 ({{cc-by-2.0}}, ham sayfadan doğrulandı): https://commons.wikimedia.org/wiki/File:Turkey,_Istanbul,_Zoodochos_Pege_(Fish_Church)_(3946146620).jpg. Değişiklik: 590x393 kırpım, gren azaltma (medyan 3), 1080x720'ye büyütme (1,83x), gama 0,55, parlaklık 1,12. Not: Commons konum etiketi yaklaşık (kiliseden ~6 km doğu); dosya Proffer'ın 'Zoodochos Pege (Fish Church)' dizisinden.
+- GÖRSEL img/kanit_2.jpg (son kare) — 'People visiting the spring of the "miraculous fishes" at Bal Wellcome V0020099.jpg', Thomas Allom çizimi, J. Tingle gravürü, 1830'lar (eser kamu malı; Wellcome Collection taraması CC BY 4.0, {{cc-by-4.0}}, ham sayfadan doğrulandı): https://commons.wikimedia.org/wiki/File:People_visiting_the_spring_of_the_%22miraculous_fishes%22_at_Bal_Wellcome_V0020099.jpg. Değişiklik: alt yarı + basılı alt yazı kırpıldı (147,1450,1768,2545), autocontrast, 1080x730.

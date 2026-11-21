@@ -27,6 +27,10 @@
   "faces": "left",
   "file": "episodes/alanya-adam-atacagi/chars/asker.png"
  },
+ "038779a9961c833463196e5f84f8bbaaa681aa30": {
+  "faces": "right",
+  "file": "episodes/balikli-ayazma-1453/chars/kesis_sok.png"
+ },
  "039bcbe86a55ca803781bf5521013c408f219eec": {
   "faces": "right",
   "file": "episodes/piri-reis-haritasi-1929/chars/b_bilgin.png"
@@ -166,6 +170,10 @@
  "262912b65e724473b09b481d6d11399697abfbaf": {
   "faces": "left",
   "file": "episodes/en-yamaguchi-two-bombs/chars/a_kaynak.png"
+ },
+ "26ea760e311b5e2def8b325d2cd83a025945dd62": {
+  "faces": "right",
+  "file": "episodes/balikli-ayazma-1453/chars/genc_kesis_sakin.png"
  },
  "28365e0a4d32b291f30d4b5643df7bff2e5dc025": {
   "faces": "right",
@@ -1114,6 +1122,10 @@
  "d345a11f5cc2cf131d34fd5f486af4b3d4c30f09": {
   "faces": "right",
   "file": "episodes/en-boston-molasses-flood/chars/b_sakin.png"
+ },
+ "d41210ecfc9bc69f57b5789a0522226b8bcd1e21": {
+  "faces": "right",
+  "file": "episodes/balikli-ayazma-1453/chars/kesis_sakin.png"
  },
  "d45d1bf72351606360b86d7f82c5e40203c88e63": {
   "faces": "left",
