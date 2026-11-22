@@ -1,0 +1,105 @@
+# 18-19 Eylul 1980, Damascus (Arkansas) Titan II silosu (Launch Complex 374-7): bakim sirasinda dusen lokma yakit tankini deldi, ~8,5 saat sonra patlama, silo kapagi ve W53 baslik havaya firladi, baslik patlamadi. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/olgular.md (Encyclopedia of Arkansas, Washington Post 29.10.1980, Wikipedia, KARK 2026, UALR, PBS American Experience, NPR 2016, Arkansas Times).
+# CANLANDIRMA: karakterler kurgu, gercek kisi adi yok (teknisyen + cavus rolleri); replikler belgeli soz degildir. Videoda sayi yok (lokma agirligi 3-9 lb, dusme 70-80 ft, baslik mesafesi 100/600 ft celisik): yalniz "socket", "fuel tank", "8,5 saat", "warhead outside".
+#   Videoda yok: 1982 kanser davasi (sonuc bulunamadi), tutuklama/uyari, kisi adlari, ateslemenin nedeni (tartismali).
+# Karakterler: A (sol) = wl:worker_2_wojak (bakim teknisyeni rolu; tulum, kasket; a_sakin), B (sag) = HF 5_Boomer/9691 "Boomer Drill Sergeant" (cavus rolu; b_sakin, b_sok = ters kose, ayni kutu; chars/uret.py). Donem kusuru: kasket ve tulum 1980'e yaklasik.
+id: en-titan-ii-socket
+kanal: en  # Wojak Past Files
+title: "A dropped socket wrecked a nuclear missile silo in Arkansas"
+
+music: kanal
+
+scenes:
+  # 1) KANCA: A (sol), teknisyen
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "I dropped a socket in\nthe nuclear missile silo"
+
+  # 2) B (sag), cavus
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "It's just a\nsocket, relax"
+
+  # 3) A (sol)
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "It punctured the\nmissile's fuel tank"
+
+  - type: card
+    duration: 1.5
+    text: "Eight and a half\nhours later"
+
+  # 5) TERS KOSE: B, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.4
+    chars:
+      - {img: chars/b_sok.png, side: right, height: 0.50}
+    text: "Wait, why is the\nwarhead outside?"
+
+  # 6) KANIT 1: silo icinde Titan II
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_fuze.jpg]
+
+  # 7) KANIT 2 (son kare): Arkansas tarihi levhasi 'Titan II Missile Complex 374-7 Explosion' (2026, USAF foto), yalniz levha
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_levha.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  A dropped socket wrecked a nuclear missile silo in Arkansas
+  The full story is in the pinned comment 👇
+
+hashtags: [history, coldwar, nuclear]
+
+pinned_comment: |
+  The 1980 Damascus Titan II explosion was a nuclear weapons accident at Launch Complex 374-7, a missile silo in Van Buren County, Arkansas. On the evening of 18 September 1980, around 6:30 p.m., a maintenance crew was servicing the Titan II, a liquid-fueled intercontinental missile. A heavy socket slipped off a wrench, fell down the silo, struck the missile and punctured the first-stage fuel tank.
+
+  Fuel began to leak. The site and nearby homes were evacuated while crews tried to assess the leak. Around 3 a.m. on 19 September, about eight and a half hours after the leak began, the missile exploded. The blast threw the silo's massive closure door into the air and ejected the W53 warhead, which had a yield of about nine megatons. The warhead landed a short distance from the silo and did not detonate, and no radioactive material was released.
+
+  One airman did not survive and 21 other people were injured. The Air Force called the cause human error. The site was never rebuilt, and the Titan II program was retired by 1987.
+
+  The background and the missile photo show other Titan II sites, not Damascus. The final frame is the Arkansas historical marker for the site, installed in 2026.
+
+  The dialogue in the video is imagined. Should a single dropped tool ever be able to do this?
+
+credits: "Titan II missile silo, Mark Clagg, 1987, public domain (U.S. Air Force / DoD), Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Titan_II_missile_silo.JPEG; cropped, color and brightness reduced, blurred); Titan Missile Museum-NRIS-92001234-Green Valley Arizona1, Packbj, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Titan_Missile_Museum-NRIS-92001234-Green_Valley_Arizona1.jpg; cropped); Titan II Missile Complex 374-7 Explosion historical marker, photo by Staff Sgt. Justin Todd, U.S. Air Force, 18 September 2026, public domain, DVIDS (https://www.dvidshub.net/image/9948943; cropped, enlarged)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (a maintenance technician and a sergeant); the dialogue is invented and is not a documented quote; no real person is portrayed or named. Documented: the evening of 18 Sept 1980 dropped socket, the punctured first-stage fuel tank, the explosion about 8.5 hours later, the silo door and the W53 warhead thrown out of the silo, the warhead landing a short distance away without detonating, one airman lost and 21 injured."
+  - "**Left out on purpose (sources disagree):** socket weight (3, 8 or 9 lb), fall height (70 or 80 ft), warhead distance (about 100 ft, 600 ft or a quarter mile depending on the source), evacuation numbers (1,000 or 1,400), door tonnage (700, 740, 743), the cause of the ignition, and names of the people involved. A 1982 cancer suit announced by a former airman was not followed up (no outcome found); 1984 federal court records say the Arkansas actions over the accident were settled (not used in the video)."
+  - "The background is a Titan II silo (a deactivated site photographed in 1987), not the exact Damascus site; evidence 1 is the Titan II in its silo at the Titan Missile Museum, Arizona. The final frame is the real Arkansas historical marker for the site (dedicated 18 Sept 2026), photographed by the U.S. Air Force, cropped to the sign only so no bystanders show. No recreated frame is used. Character A's cap and overalls are an approximation for 1980."
+  - "Sensitive handling: one airman lost his life; the video never mentions him or mocks anyone, and the dialogue stays on the mistake. The accident is 46 years old."
+  - "Suggested first comment: 'It was a wrench, not a socket.' Answer: the socket slipped off a wrench; accounts say both."
+  - "Licence note: the silo photo is public domain (PD-USGov-Military, raw page checked); the missile photo is CC BY-SA 4.0 (credit and link in the Images line; ShareAlike); the marker photo is a U.S. Air Force (DoD) photo marked public domain on DVIDS (the marker text itself is not reproduced beyond the cropped photo)."
+
+sources:
+  - "Encyclopedia of Arkansas, Titan II Missile Explosion (times, door, warhead near gate, one airman lost, 21 injured, site closed): https://encyclopediaofarkansas.net/entries/titan-ii-missile-explosion-2543/"
+  - "Washington Post, 29 Oct 1980, At the Titan Site, the Blasts Came at 3 A.M. (explosion about 3 a.m.): https://www.washingtonpost.com/archive/politics/1980/10/29/at-the-titan-site-the-blasts-came-at-3-am/681b9b0c-5516-4423-9573-c2fec1426023/"
+  - "Wikipedia, 1980 Damascus Titan missile explosion (timeline, W53 nine megatons, socket from wrench, punctured fuel tank; cross-checked with the sources above): https://en.wikipedia.org/wiki/1980_Damascus_Titan_missile_explosion"
+  - "KARK, 46th anniversary (18 Sept 2026) (warhead near front gate, 9 megatons, 1987 deactivation): https://www.kark.com/news/state-news/marking-the-46th-anniversary-of-the-titan-ii-missile-explosion-in-damascus-arkansas/"
+  - "PBS American Experience, Command and Control (accident account, Air Force 'human error', program retired): https://www.pbs.org/wgbh/americanexperience/films/command-and-control/"
+  - "NPR, 15 Sept 2016, Command and Control (socket from wrench, explosion avoided): https://www.npr.org/2016/09/15/493792864/in-chilling-documentary-command-and-control-a-nuclear-explosion-narrowly-avoided"
+  - "UALR Center for Arkansas History and Culture, Titan II Zero Hour (program ended): https://ualrexhibits.org/zerohour/titan-ii/"
+  - "GÖRSEL img/arka.jpg — 'Titan II missile silo.JPEG', Mark Clagg, USAF/DoD VIRIN DF-ST-89-09618, 16 Sept 1987, {{PD-USGov-Military}} (ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:Titan_II_missile_silo.JPEG . Degisiklik: 1000x1000 kare kirpim, renk 0,8, parlaklik 0,96, blur 1,7"
+  - "GÖRSEL img/ev_fuze.jpg — 'Titan Missile Museum-NRIS-92001234-Green Valley Arizona1.jpg', Packbj, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}, ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:Titan_Missile_Museum-NRIS-92001234-Green_Valley_Arizona1.jpg . Degisiklik: yatay kirpim 1080x700"
+  - "GÖRSEL img/ev_levha.jpg (son kare) — DVIDS image 9948943, 'Historical Dedication Marker Dedication Ceremony of Titan II 374-7', Staff Sgt. Justin Todd, 19th Airlift Wing, U.S. Air Force, 18 Sept 2026, PUBLIC DOMAIN (DVIDS): https://www.dvidshub.net/image/9948943/historical-dedication-marker-dedication-ceremony-titan-ii-374-7 . Degisiklik: yalniz levha kirpimi (kisiler kadraj disi), 2000 px kaynaktan 1.9x buyutme"

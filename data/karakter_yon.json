@@ -59,6 +59,10 @@
   "faces": "right",
   "file": "episodes/en-cadaver-synod/chars/b_sakin.png"
  },
+ "0933d320bd88d34d6ba6c2fc6deaf1d0fae0d5d4": {
+  "faces": "left",
+  "file": "episodes/en-titan-ii-socket/chars/b_sakin.png"
+ },
  "09486f327cccc250f07de5df55cb5aadf584efd5": {
   "faces": "right",
   "file": "episodes/tahran-1985-ertugrul/chars/japon_endise.png"
@@ -578,6 +582,10 @@
  "6a9eb0629da7fcff203287dca661e35397999f42": {
   "faces": "right",
   "file": "episodes\\hezarfen-galata-ucusu\\chars\\hezarfen_emin.png"
+ },
+ "6babbc6762120f98d05df9649530a0558d2cbb25": {
+  "faces": "left",
+  "file": "episodes/en-titan-ii-socket/chars/b_sok.png"
  },
  "6c447f5a26fce474e58db6eeca27b912d0fc657e": {
   "faces": "right",
