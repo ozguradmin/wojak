@@ -355,6 +355,10 @@
   "faces": "left",
   "file": "episodes\\gobeklitepe-mezar-tasi\\chars\\arkeolog_terli.png"
  },
+ "43e6110900a7fb7a027797704d2ff8b410dde1da": {
+  "faces": "right",
+  "file": "episodes/antakya-kharonion-veba/chars/koylu_sok.png"
+ },
  "449f847a279776d4333d44d02bf0ad31342b03cd": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/taban/kostumlu_nervous_temiz_ice.png"
@@ -1187,6 +1191,10 @@
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/terli.png"
  },
+ "dba3a9c8b29819b48778c62ccdb27f98a31b43a0": {
+  "faces": "right",
+  "file": "episodes/antakya-kharonion-veba/chars/koylu_sakin.png"
+ },
  "dbadf3fcf7bf5a418103f87917630fcf1fdbf9b8": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anne_adayi_sakin.png"
@@ -1326,6 +1334,10 @@
  "f7d37a9ca10c48f647d309e87ba98003a71db552": {
   "faces": "right",
   "file": "episodes/dumlupinar-denizaltisi-1953/chars/denizci_sakin.png"
+ },
+ "f83d8a6e0ed686012c4f9605c278cb6962de2033": {
+  "faces": "left",
+  "file": "episodes/antakya-kharonion-veba/chars/telestes.png"
  },
  "f95194a389835c71a4aa7f23f72e0c17c5764f7c": {
   "faces": "right",
