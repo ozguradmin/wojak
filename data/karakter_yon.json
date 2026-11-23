@@ -687,6 +687,10 @@
   "faces": "right",
   "file": "episodes/demre-noel-baba-kemik-1087/chars/kesis_sakin.png"
  },
+ "78546934ae4673e04ca366a53c1aa9971b62c828": {
+  "faces": "right",
+  "file": "episodes/en-jfk-coconut/chars/a_sok.png"
+ },
  "7874bc6d7c2829feffe602854afaded8dcaa922d": {
   "faces": "right",
   "file": "episodes/haydarpasa-patlamasi-1917/chars/asker_sakin.png"
@@ -855,6 +859,10 @@
   "faces": "right",
   "file": "episodes/bodrum-mozole-1522/chars/hosp_sakin.png"
  },
+ "96fc05f55f1ff702c986b90269580906170905f2": {
+  "faces": "right",
+  "file": "episodes/en-jfk-coconut/chars/b_sakin.png"
+ },
  "996ef1893dc5072a4019d62b875a3ca7b82c69f2": {
   "faces": "right",
   "file": "episodes/canakkale-kayip-tabur/chars/papaz_urkek.png"
@@ -950,6 +958,10 @@
  "ad12c792611141bb49f0b328249ad0dcc1f89ad0": {
   "faces": "left",
   "file": "assets/characters/sovyet_yuruyuscu_erkek.png"
+ },
+ "ad5ee10c9118e57931767d82b6544f702ae4b528": {
+  "faces": "right",
+  "file": "episodes/en-jfk-coconut/chars/a_sakin.png"
  },
  "ae4bba609d368cc83f3af327df9607e1f5b9c5a4": {
   "faces": "left",

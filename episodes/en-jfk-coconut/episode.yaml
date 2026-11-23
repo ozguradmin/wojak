@@ -1,0 +1,103 @@
+# Ağustos 1943: PT-109 batti; Teğmen Kennedy yesil hindistancevizi kabuguna mesaj kazidi, iki Solomon adali kanoyla goturdu, murettebat kurtarildi; kabuk sonra Oval Ofis masasinda kagit agirligi oldu. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/en-jfk-coconut.md (JFK Library, JFK Artifacts/NARA nesne MO 63.4852, Time, military.com, NPS, Smithsonian).
+# CANLANDIRMA: karakterler kurgu (A = denizci rolu, B = Kennedy rolu); replikler belgeli soz degildir. Belgeli: mesaj metni, kazima 6 Agustos, kano ile tasima, 7 Agustos gecesi kurtarma, kagit agirligi.
+#   Videoda yok (celiskili/tek kaynak): kabugun Kennedy'ye nasil geri dondugu, mesafe, "yakalanirsa sil" talimati, kazima fikrinin kime ait oldugu (JFK Library: Gasa gosterdi).
+# Karakterler: A = wl:us_marines_wojak (siyah ceket, sakalli; a_sok = ters kose, ayni kutu, chars/uret.py), B = wl:us_marines_white_wojak (beyaz ceket).
+id: en-jfk-coconut
+kanal: en  # Wojak Past Files
+title: "The coconut JFK kept on his Oval Office desk"
+
+music: klasik
+
+scenes:
+  # 1) KANCA — A (sol), denizci
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Skipper, our boat sank\nand we're stranded"
+
+  # 2) B (sag), Kennedy rolu
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "Quick, hand me\nthat coconut"
+
+  # 3) A (sol): gecistirir
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Sir, you can't\nmail a coconut"
+
+  - type: card
+    duration: 1.5
+    text: "A day later"
+
+  # 5) TERS KOSE — A, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 2.5
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, the coconut\nactually got through?"
+
+  # 6) KANIT 1 — PT-109 teknesi, 1942 Donanma fotografi
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 7) KANIT 2 — son kare: hindistancevizi kabugu (JFK Library nesnesi)
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  The coconut JFK kept on his Oval Office desk
+  The full story is in the pinned comment 👇
+
+hashtags: [history, jfk, wwii]
+
+pinned_comment: |
+  On the night of 1 to 2 August 1943, the US Navy patrol torpedo boat PT-109, commanded by 26-year-old John F. Kennedy, was rammed by a Japanese destroyer in the Solomon Islands. Eleven of the thirteen men aboard survived and swam to a tiny island to wait for rescue.
+
+  On 5 August, two Solomon Islander scouts, Biuku Gasa and Eroni Kumana, found the group. The next day Kennedy scratched a message into a green coconut husk, a method that, according to the JFK Library, Gasa showed him. The museum transcript reads: "NAURO ISL...COMMANDER...NATIVE KNOWS POS'IT...HE CAN PILOT...11 ALIVE...NEED SMALL BOAT...KENNEDY".
+
+  The two men carried the message by dugout canoe to the Allied coastwatchers, and a rescue was arranged. PT boats picked Kennedy up on the night of 7 August, and the crew reached the Rendova base the next morning.
+
+  Kennedy's father later had the carved fragment sealed in plastic on a wooden base, and JFK used it as a paperweight in the Oval Office. It is now in the JFK Library in Boston. The Smithsonian notes that history does not record how Kennedy got the message back, and the letters were darkened with carbon in 1944.
+
+  The first photo shows PT-109 in December 1942, carrying survivors of the cruiser USS Northampton, eight months before the sinking. The dialogue is imagined, and the background is a lagoon elsewhere in the Solomon Islands. If you were stranded, what would you carve on a coconut?
+
+credits: "PT-109, unknown author, 1942, US Navy photograph via Navsource Online, public domain (PD-USGov), via Wikimedia Commons (cropped, sharpened); JFK PT-109 Coconut, jfklibrary.org, public domain, via Wikimedia Commons (sides extended with plain backdrop); Marovo Lagoon (16 August 2008), Xplore Dive, CC BY 2.0 (https://creativecommons.org/licenses/by/2.0), https://commons.wikimedia.org/wiki/File:Marovo_Lagoon_(16_August_2008).jpg (cropped, colour and brightness adjusted, softened)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (a sailor and Kennedy); the dialogue is invented and is not a documented quote. Documented: the PT-109 sinking, the message carved on a green coconut husk on 6 August 1943, the islanders carrying it by canoe, the rescue on the night of 7 August, the paperweight in the Oval Office."
+  - "**Left out on purpose:** how the shell returned to Kennedy (Smithsonian: not recorded; popular sites disagree), the distance to Rendova (60 km vs 35 miles), the 'scratch it out if captured' story (two popular sources only), who first had the idea (JFK Library credits Gasa with showing the method; the video gives it to the officer for brevity)."
+  - "Evidence 1 is a US Navy photo of PT-109 in December 1942, eight months before the sinking, carrying cruiser survivors at Tulagi (not the night of the sinking); the final frame is the real museum object (carbon-enhanced letters, 1944). Background: Marovo Lagoon, Solomon Islands (2008), not the island where the crew was stranded."
+  - "Suggested first comment: 'Actually the message was carved on a green husk, not a ripe coconut.' Answer: yes, a green coconut husk; the museum piece is the dried fragment."
+
+sources:
+  - "JFK Library, John F. Kennedy and PT-109 (sinking night 1-2 Aug 1943, Gasa and Kumana, carving on green husk, 7 Aug rescue): https://www.jfklibrary.org/learn/about-jfk/jfk-in-history/john-f-kennedy-and-pt-109"
+  - "JFK Artifacts (NARA), Coconut shell bearing rescue message, MO 63.4852 (Kennedy carved it, message text, plastic mount 1944, carbon letters, Oval Office, donated 1965): https://jfk.artifacts.archives.gov/objects/14084/coconut-shell-bearing-rescue-message"
+  - "Smithsonian Magazine, why JFK kept a coconut shell on his White House desk (history does not record how he got it back): https://www.smithsonianmag.com/smart-news/why-jfk-kept-coconut-shell-white-house-desk-180964263/"
+  - "TIME, A Friend in Deed (Gasa, dugout canoe, message carried; crew plucked from the island): https://time.com/archive/6674329/a-friend-in-deed/"
+  - "military.com, Kennedy in WWII (6 Aug carving on green coconut): https://www.military.com/history/kennedy-wwii-pt-boat.html"
+  - "NPS, Kennedy WWII (same message text): https://www.nps.gov/articles/kennedyww2.htm"
+  - "ANU Asia Pacific, why JFK kept the coconut husk on his desk (date 2 Aug 1943): https://asiapacific.anu.edu.au/content-centre/article/news/why-president-jfk-kept-coconut-husk-his-desk"
+  - "GÖRSEL img/ev_1.jpg — 'PT-109.jpg', Unknown author, Navsource Online, 1942-12-01, {{PD-USGov}} (ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:PT-109.jpg . Degisiklik: 840x635 kirpim -> 1080x816, hafif keskinlestirme"
+  - "GÖRSEL img/ev_2.jpg (son kare) — 'JFK PT-109 Coconut.jpg', jfklibrary.org, public domain (commons.py bilgi): https://commons.wikimedia.org/wiki/File:JFK_PT-109_Coconut.jpg . Degisiklik: 816 px yukseklige 1,29x, yanlar duz zeminle 1080'e tamamlandi"
+  - "GÖRSEL img/arka.jpg — 'Marovo Lagoon (16 August 2008).jpg', Xplore Dive, CC BY 2.0 (commons.py bilgi): https://commons.wikimedia.org/wiki/File:Marovo_Lagoon_(16_August_2008).jpg . Degisiklik: sol-ust kare kirpim, renk 0,68, parlaklik 1,2, blur 2,0"
