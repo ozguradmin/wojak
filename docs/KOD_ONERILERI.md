@@ -93,3 +93,5 @@
 - `tools/commons.py`: Internet Archive sayfa indirme için `ia-sayfa <id> <basılı-sayfa-no>` komutu (page_numbers.json'daki leafNum ile gerçek `n<leaf>` 3 kayıyor, en-great-fire-hubert 18.11); basılı sayfa numarasını kare üstünden doğrulayıp doğru leaf'i indirsin.
 - `check`: kitap/belge sayfası kanıtında üst ve alt kenarın 6 px'lik şeridinde koyu piksel (komşu satır uzantısı) varsa uyar; yarım satır ve satır kırıntısı ilk turda MUST alıyor (20.11, hannibal-gebze-yedi-kapi).
 - `episodes/_sablon/gorsel.py` ve kopyaları: `stats()` Laplace'ı uint8 dizide hesaplıyor (taşma, 14.000 gibi anlamsız değer); `.astype(float)` ekle (en-emperor-norton 21.11).
+- `wojak/compose.py` `top_text_layer`: üst yazı y≈158-254'te kalıyor, Reels üst arayüzüyle çakışıyor; görsel hakem gündem bölümünde (23.11) 300-390'a indirilmesini istedi; konum yaml'dan ayarlanabilsin.
+- `wojak teslim`: paket sınırı aşılınca durduğunda `teslim/<id>/` içindeki eski mp4'ü silsin ya da üstüne "ESKİ" uyarısı yazsın (23.11: hakeme eski video gidebilirdi).
