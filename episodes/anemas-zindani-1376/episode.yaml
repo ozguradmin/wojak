@@ -1,0 +1,107 @@
+id: anemas-zindani-1376
+title: "İstanbul'da oğlunu hapse attıran Bizans imparatoru"
+
+# Müzik sırası (el kitabı §6): tr kanalının önceki bölümü antakya-kharonion-veba 'masal' çaldı -> bu bölüm klasik.
+music: klasik
+
+# İskelet C2fa (dramatik ironi): A (V. İoannis) oğlunu hapse attırır -> B (muhafız) kaçarsa diye uyarır -> A geçiştirir
+# -> kart "Üç yıl sonra" -> aynı kutuda A'nın yüzü değişir: oğlu kaçmış, kendisini Anemas'a götürüyorlar -> 2 kanıt.
+# Olgu disiplini: 1373'te Andronikos'un nereye kapatıldığı tartışmalı (yalnız Doukas "Anemas" der); bu yüzden S1-S3'te yer
+# adı yok. 1376'da İoannis'in Anemas Kulesi'ne kapatılması kesin (Norwich; Dennis/Dumbarton Oaks; Doukas kronolojisi).
+# Arka plan: Ayvansaray'da Blakhernai surları ve bugün "Anemas Zindanları" diye anılan yapının kulesi (dış cephe).
+# Son 5 son kare: nesnenin bugünkü fotoğrafı, gravür, kitap sayfası, mekân+levha, kitap sayfası -> bu bölüm: TEKNİK PLAN
+# (Millingen 1899, "Plan of the so-called Prison of Anemas"): S4'teki "Anemas" kelimesinin karşılığı.
+scenes:
+  # 1) KANCA — A (sol): imparator oğlunu hapse attırıyor
+  - type: dialog
+    duration: 2.5
+    bg: img/arka.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/imparator_sakin.png, side: left, height: 0.54}
+    text: "Oğlumu hapse atın,\ngün yüzü görmesin"
+
+  # 2) UYARI — B (sağ): muhafız, kaçış tohumu
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/muhafiz_sakin.png, side: right, height: 0.54}
+    text: "Efendim, ya bir gün kaçarsa"
+
+  # 3) GEÇİŞTİRME — A
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/imparator_sakin.png, side: left, height: 0.54}
+    text: "Bir şey olmaz,\nkimse kaçamaz"
+
+  # 4) ARA KART — ileri zaman (1373 -> 1376)
+  - type: card
+    duration: 1.5
+    text: "Üç yıl sonra"
+
+  # 5) TERS KÖŞE — A, aynı kutu, şok yüzü
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 4.0
+    chars:
+      - {img: chars/imparator_sok.png, side: left, height: 0.54}
+    text: "Bekle, oğlum nasıl kaçtı,\nbeni neden Anemas'a atıyorsunuz?"
+
+  # 6-7) KANIT — V. İoannis'in Ayasofya mozaiğinin Fossati çizimi, 1847 (kim); son kare Anemas planı (nerede)
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_1.jpg]
+  - type: evidence
+    duration: 1.5
+    images: [img/kanit_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  İstanbul'da oğlunu hapse attıran Bizans imparatoru
+  Olayın tamamı sabit yorumda 👇
+hashtags: [istanbul, bizans, tarih]
+
+pinned_comment: |
+  Bizans imparatoru V. İoannis Palaiologos, 1373'te isyan eden oğlu IV. Andronikos'u hapsettirdi; üç yıl sonra, 1376'da aynı oğlu tarafından İstanbul'da Anemas Kulesi'ne kapatıldı.
+
+  Mayıs 1373'te veliaht IV. Andronikos, Osmanlı şehzadesi Savcı Bey ile birlikte babalarına karşı ayaklandı. İsyan ay sonunda bastırıldı. Sultan I. Murad oğlunu cezalandırdı ve imparatordan da aynısını istedi. Andronikos hapsedildi, yerine kardeşi Manuel eş-imparator ilan edildi. Bizans tarihçisi Doukas'a göre Andronikos'un hapsedildiği yer de Anemas Kulesi'ydi; çağdaş kayıtlar ise başka yerler gösterir.
+
+  Temmuz 1376'da Andronikos, Cenevizlilerin yardımıyla kaçtı. Gelibolu'yu geri vermek karşılığında Murad'dan asker aldı ve 12 Ağustos'ta şehre girdi. Babasını ve kardeşleri Manuel ile Theodoros'u Anemas Kulesi'ne kapattı.
+
+  Yaklaşık üç yıl sonra İoannis ile Manuel kaçıp Murad'a sığındı. Daha fazla haraç vaat ettiler; Murad bu kez onlara asker verdi. 1 Temmuz 1379'da şehre geri döndüler. Gelibolu ise 1377'de yeniden Osmanlıların eline geçmişti.
+
+  Bugün Ayvansaray'da "Anemas Zindanları" diye anılan yapının bu kule olup olmadığı tartışmalıdır; araştırmacılar "sözde Anemas Zindanları" der. Sondan önceki kare, V. İoannis'in Ayasofya'daki mozaiğinin Fossati kardeşler tarafından 1847'de, sıvayla örtülmeden önce çizilmiş hâlidir. Son kare, Alexander van Millingen'in 1899'da yayımladığı "Plan of the so-called Prison of Anemas" (Sözde Anemas Hapishanesi'nin planı) çizimidir.
+
+  Sizce bu bir kader ironisi miydi, yoksa iki tarafa da asker verip kazanan Sultan Murad mıydı?
+
+credits: "Prison of Anemas (Isabeau, CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0; kırpıldı, renk ve parlaklık ayarlandı, bulanıklaştırıldı), Wikimedia Commons; John V Palaiologos, Fossati drawing of mosaic in Hagia Sophia (Gaspare ve Giuseppe Fossati, 1847, kamu malı; kırpıldı, gri tona çevrildi, kontrast ayarlandı), Wikimedia Commons; Plan of the so-called Prison of Anemas (Alexander van Millingen, 1899, kamu malı; kırpıldı, kontrast ayarlandı), Wikimedia Commons"
+ai_generated: false
+
+ek_maddeler:
+  - "**Video bir canlandırmadır:** karakterler kurgu, ekrandaki sözler birebir alıntı değildir. Belgeli olan: V. İoannis 1373'teki isyandan sonra oğlu IV. Andronikos'u hapsettirdi; Andronikos Temmuz 1376'da kaçtı ve babasını Anemas Kulesi'ne kapattı (1376-1379). Muhafız kurgu bir roldür. 1373'teki hapsin yeri tartışmalı olduğu için videoda ilk sahnelerde yer adı geçmez."
+  - "Sondan önceki kare: V. İoannis Palaiologos'un Ayasofya'nın doğu kemerindeki 14. yüzyıl mozaiği; Fossati kardeşlerin 1847 restorasyonunda mozaiği sıvayla örtmeden önce çizdiği kopya (Archivio di Stato del Cantone Ticino, Fondo Fossati 364). Son kare: Alexander van Millingen, Byzantine Constantinople (1899), 'Plan of the so-called Prison of Anemas'."
+  - "İlk yorum önerisi: \"1373'te oğlunu hapsettiren V. İoannis, 1376'da oğlunun emriyle Anemas Kulesi'ne kapatıldı. İşin tuhafı: Sultan Murad önce oğluna, üç yıl sonra babaya asker verdi. Siz kimden yanasınız?\""
+  - "Yorum yönetimi: 'Andronikos 1373'te Anemas'a değil başka yere kondu' diyene: haklı, çağdaş kayıtlar farklı yer gösterir; Anemas'ı Doukas anlatır, videoda 1373 için yer adı verilmedi. 'Bina aslında Blakhernai alt yapısı' diyene: evet, adı geleneksel. 'Savcı isyanı 1385' diyene: Osmanlı kronikleri öyle der, TDV İslâm Ansiklopedisi 1373 der."
+  - "YouTube: yükledikten sonra Kontroller adımını kontrol et"
+  - "Gizli kelimeler (Hidden Words) listesi sohbette"
+
+sources:
+  - "SERT FİLTRE: 1373-1379 olayı; son 10 yılda ölmüş ya da yaşayan özel kişi, süren dava yok. Torun VII. İoannis 1373'te küçük çocuktu; videoda ve metinde yer almaz."
+  - "1373 isyanı (Andronikos ve Savcı Bey, Mayıs 1373; 25 Mayıs yenilgi; 30 Mayıs teslim; Murad'ın Savcı'yı cezalandırıp imparatordan aynısını istemesi): TDV İslâm Ansiklopedisi, 'Murad I' (H. İnalcık): https://islamansiklopedisi.org.tr/murad-i ; Wikipedia 'Andronikos IV Palaiologos': https://en.wikipedia.org/wiki/Andronikos_IV_Palaiologos"
+  - "1373 hapis yeri tartışması (Doukas: Anemas; Kısa Kronik 9: Kauleos manastırı; Venedik kaynakları: Pera): Nilgün Elam, 'Babalar ve Oğullar: IV. Andronikos Palaiologos ve Savcı Çelebi'nin İsyanı (1373)', Tarih Araştırmaları Dergisi 30/49: https://dergipark.org.tr/tr/download/article-file/781284 ; Wikipedia 'Prison of Anemas': https://en.wikipedia.org/wiki/Prison_of_Anemas"
+  - "Manuel'in 25 Eylül 1373'te eş-imparator olması: Wikipedia 'Manuel II Palaiologos': https://en.wikipedia.org/wiki/Manuel_II_Palaiologos ; J. J. Norwich, Byzantium: The Decline and Fall, bölüm 21: https://erenow.org/postclassical/byzantium-the-decline-and-fall/21.php"
+  - "Andronikos'un Temmuz 1376'da Cenevizlilerin yardımıyla kaçması, Gelibolu karşılığı Murad'dan asker alması, 12 Ağustos 1376'da şehre girmesi; İoannis, Manuel ve Theodoros'un Anemas Kulesi'ne kapatılması (yaklaşık üç yıl): Norwich (yukarıda: 'languished for three years in the Tower of Anemas'); G. T. Dennis (ed.), The Letters of Manuel II Palaeologus, Dumbarton Oaks, giriş ('imprisonment in the Anemas Tower'): https://ia600809.us.archive.org/11/items/cfhb-11.1-nicetae-choniatae-historia/CFHB%2008_Manuel%20II%20Palaeologus_Epistulae.pdf ; Doukas, Decline and Fall of Byzantium to the Ottoman Turks (çev. Magoulias), kronoloji: https://abkhazworld.com/aw/Pdf/Doukas_Decline_and_Fall_of_Byzantium_to_the_Ottomans.pdf ; Wikipedia 'Andronikos IV Palaiologos' (yukarıda)"
+  - "1379 kaçışı, Murad'a sığınma, daha fazla haraç vaadi, 1 Temmuz 1379'da şehre dönüş; Gelibolu'nun 1377 sonunda Osmanlılara geçmesi: Norwich (yukarıda); Roman Emperors (DIR), 'Manuel II': https://roman-emperors.sites.luc.edu/manuel2.htm ; Doukas kronolojisi (yukarıda)"
+  - "Ayvansaray'daki yapının kimliği tartışmalı ('Sözde Anemas Zindanları'): İstanbul Surları projesi (Koç Üniv., N. Asutay-Effenberger): https://istanbulsurlari.ku.edu.tr/en/essay/72/blakhernai-sarayi-ve-sozde-anemas-zindani ; Wikipedia 'Prison of Anemas' (yukarıda)"
+  - "V. İoannis'in Ayasofya doğu kemerindeki mozaiği ve Fossati kardeşlerin 1847'de mozaiği çizip sıvayla örtmesi: N. Teteriatnikov, 'The Mosaics of the Eastern Arch of Hagia Sophia in Constantinople', Gesta 52/1: https://www.journals.uchicago.edu/doi/abs/10.1086/669685 ; Pallasweb, 'Mosaic of the Seraphim': https://www.pallasweb.com/deesis/seraphim-mosaic-uncovered-in-hagia-sophia.html"
+  - "GÖRSEL img/arka.jpg — 'Prison of Anemas.jpg', Isabeau, 2018, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}, ham sayfadan doğrulandı): https://commons.wikimedia.org/wiki/File:Prison_of_Anemas.jpg. Değişiklik: 1920 genişlikteki dosyadan kare kırpım (1010-1920, 200-1110; soldaki cami ve minare dışarıda), 1080'e büyütme, renk 0,66, parlaklık 1,32; renderer bulanıklaştırır."
+  - "GÖRSEL img/kanit_1.jpg — 'John V Palaiologos, Fossati drawing of mosaic in Hagia Sophia.jpg', Gaspare Fossati (1809-1883) ve Giuseppe Fossati (1822-1891), 1847 (Archivio di Stato del Cantone Ticino, Bellinzona, Fondo Fossati nr. 364), {{PD-Art}} (ham sayfadan doğrulandı; çizerler 70+ yıl önce öldü): https://commons.wikimedia.org/wiki/File:John_V_Palaiologos,_Fossati_drawing_of_mosaic_in_Hagia_Sophia.jpg. Değişiklik: 1280 genişlikteki dosyadan baş-omuz kırpımı (180,150,1100,845), gri ton + autocontrast + gama, nötr kâğıt beyazı (tur 3: sepya kaldırıldı), 1080x816. Tur 1 takipçi MUST üzerine önceki görsel ('Restored mosaic of John V Palaiologos (head).jpg': dijital iyileştirilmiş fotoğraf, Flickr kaynağı 'All rights reserved') çıkarıldı."
+  - "GÖRSEL img/kanit_2.jpg (son kare) — 'Millingen - Plan of Anemas Prison.jpg', Alexander van Millingen, Byzantine Constantinople (1899), {{PD-old}}: https://commons.wikimedia.org/wiki/File:Millingen_-_Plan_of_Anemas_Prison.jpg. Değişiklik: 1920 genişlikteki dosyadan üst-orta kırpım (300,0,1500,740; başlık ve hücreler; lejant ve sağdaki etiket dışarıda), autocontrast, 1080x666."

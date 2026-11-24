@@ -487,6 +487,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/sheskin_v2_saskin.png"
  },
+ "579767910c65c2d956f4210f1aa7604acce68c9f": {
+  "faces": "right",
+  "file": "episodes/anemas-zindani-1376/chars/imparator_sok.png"
+ },
  "5839d392312aa4400827ff3047df477833b85b6e": {
   "faces": "right",
   "file": "episodes/hipodrom-nika-532/chars/isyanci_sakin.png"
@@ -662,6 +666,10 @@
  "744a6f80ad4b44c9191bb467e704d03c6b234c0e": {
   "faces": "right",
   "file": "episodes/nusret-mayin-gemisi/chars/itilaf_deniz_subayi.png"
+ },
+ "751c256f22c10de48b9381e0169684fc50943dac": {
+  "faces": "right",
+  "file": "episodes/anemas-zindani-1376/chars/muhafiz_sakin.png"
  },
  "757130c5365f864eda26caf24a86f99dbc8db3f8": {
   "faces": "right",
@@ -1110,6 +1118,10 @@
  "c97d9c5ba713573c4f1cd32db5fc2fea8725ba59": {
   "faces": "right",
   "file": "episodes\\karun-hazinesi-bros\\chars\\mufettis_sok.png"
+ },
+ "c9bd1927d467567081fca89e8e1c33b720122da4": {
+  "faces": "right",
+  "file": "episodes/anemas-zindani-1376/chars/imparator_sakin.png"
  },
  "ca74112f568126536d95ad0a7510f36daa49e97e": {
   "faces": "right",
