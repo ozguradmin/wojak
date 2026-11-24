@@ -1,0 +1,99 @@
+# 9 Haziran 1865 Staplehurst tren kazasi: Dickens'in vagonu koprude asili kaldi, yaralilara yardim etti, el yazmasi icin vagona geri tirmandi;
+# 'Our Mutual Friend' Postscript'inde "ebediyen ayrilmaya bundan yakin olamam" yazdi; tam 5 yil sonra 9 Haziran 1870'te oldu. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/en-dickens-staplehurst-olgu.md (Dickens Project UCSC, Charles Dickens Page, Mitton mektubu 13.6.1865, Wikipedia, The Conversation, World History Project).
+# CANLANDIRMA: karakterler kurgu (A = yolcu rolu, B = Dickens rolu); replikler belgeli soz degildir.
+#   Videoda yok (celiskili/tek kaynak): yarali sayisi, vagon sayisi, kuplaj mekanizmasi, "kaza onu oldurdu" iddiasi, Signal-Man baglantisi, Peckham teorisi, yol arkadaslarinin kimligi.
+# Karakterler: A = wl:irish_wojak (Viktorya ceketi, biyikli; a_sok = ters kose, ayni kutu), B = wl:victorian_man_wojak (silindir sapka; filigran silindi). chars/uret.py
+id: en-dickens-staplehurst
+kanal: en  # Wojak Past Files
+title: "Dickens Climbed Back Into a Hanging Train Carriage"
+
+music: kanal
+
+scenes:
+  # 1) KANCA — A (sol), yolcu
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 3.2
+    chars:
+      - {img: chars/a_sakin.png, side: left, height: 0.50}
+    text: "Mr Dickens, our carriage is\nhanging off a bridge"
+
+  # 2) B (sag), Dickens rolu
+  - type: dialog
+    duration: 2.0
+    bg: img/arka.jpg
+    blur: 3.2
+    chars:
+      - {img: chars/b_sakin.png, side: right, height: 0.50}
+    text: "First the injured,\nthen my manuscript"
+
+  - type: card
+    duration: 1.5
+    text: "Five years later"
+
+  # 4) TERS KOSE — A, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 3.2
+    chars:
+      - {img: chars/a_sok.png, side: left, height: 0.50}
+    text: "Wait, Dickens passed away on\nthe crash anniversary?"
+
+  # 5) KANIT 1 — ILN 1865 gravuru
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 6) KANIT 2 — 1865 baski, baslik sayfasi
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_2.jpg]
+
+  # 7) KANIT 3 (son kare) — Westminster Abbey'deki Dickens tasi: "DIED 9TH JUNE 1870"
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_3.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  Dickens Climbed Back Into a Hanging Train Carriage
+  The full story is in the pinned comment 👇
+
+hashtags: [dickens, history, victorian]
+
+pinned_comment: |
+  The Staplehurst rail crash was a derailment on 9 June 1865 at Staplehurst in Kent, England, best remembered because the novelist Charles Dickens was aboard. The boat train from Folkestone to London reached a viaduct where a section of track had been lifted for repairs, and the foreman had read the wrong timetable. Ten people lost their lives, and Dickens's first-class carriage was left hanging at an angle over the broken bridge.
+
+  After getting his travelling companions out, Dickens used his hat to carry water to the injured. He then climbed back into the swaying carriage for the manuscript of Our Mutual Friend, as he wrote to his friend Thomas Mitton.
+
+  In the novel's postscript, dated 2 September 1865, he wrote that he could "never be much nearer parting company with my readers for ever, than I was then". Some biographers say the crash left him shaken for the rest of his life. On 8 June 1870 he had a stroke at dinner at his home, Gad's Hill Place, and he passed away the next day, 9 June 1870: five years to the day after the crash.
+
+  The frames show an engraving from the Illustrated London News (1865), the title page of the 1865 Chapman & Hall edition, and Dickens's stone in Westminster Abbey. The dialogue and the passenger are imagined, and the background is a Victorian viaduct in Sussex, not the crash site. Do you think it was only a coincidence?
+
+credits: "Staplehurst rail crash (engraving), Illustrated London News, 1865, public domain, via Wikimedia Commons (resized); Our Mutual Friend, vol. II title page, Chapman & Hall, 1865, scan via Internet Archive, public domain (cropped, paper tone added); Charles Dickens grave, by Zmbro, 2022, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Charles_Dickens_grave.jpg (cropped; the cropped photographs remain under CC BY-SA 4.0); Balcombe Viaduct (Ouse Valley Viaduct), by Matthew Hoser, 2017, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Balcombe_Viaduct_(Ouse_Valley_Viaduct).jpg (cropped, colour and brightness adjusted, softened)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (a passenger and Dickens); the dialogue is invented and is not a documented quote. Documented: the 9 June 1865 crash, Dickens's carriage hanging over the bridge, his help for the injured, his climb back for the manuscript (letter to Thomas Mitton, 13 June 1865), the postscript sentence quoted in the pinned comment (verbatim from the 1865 print, with its comma), and his death on 9 June 1870 (stone: DIED 9TH JUNE 1870)."
+  - "**Left out on purpose:** the number of injured and of carriages that fell, how the carriage stayed up (sources differ: coupling held, coupling snapped, wreckage), any claim that the crash caused his death (disputed; only 'some biographers' in the pinned comment), the link to The Signal-Man (debated), the Peckham theory, and the identity of his travelling companions."
+  - "Evidence 1 is an Illustrated London News engraving (1865, PD-old). Evidence 2 is the title page of volume II of the 1865 Chapman & Hall edition (volume I carries the same title); a warm paper tone was added to the scan's white. Evidence 3 (last frame) is Dickens's stone in Westminster Abbey (2022 photo): CHARLES DICKENS, BORN 7TH FEBRUARY 1812, DIED 9TH JUNE 1870. Background: the underside of the Ouse Valley (Balcombe) Viaduct, Sussex, a Victorian railway viaduct, not the crash site."
+  - "Suggested first comment: 'The date is just a coincidence, the postscript meant the end of the book.' Answer: yes, 'THE END' refers to closing the novel, and the death came from a stroke; the video only points out the date match, so coincidence is the supported reading."
+
+sources:
+  - "The Dickens Project (UC Santa Cruz), Staplehurst Disaster (date, track lifted, wrong timetable, carriage hanging, water for the injured, manuscript in overcoat pocket, climbed back): https://dickens.ucsc.edu/omf-scholarly-pages/dickens-and-our-mutual-friend/staplehurst-disaster/"
+  - "David A. Perdue, The Charles Dickens Page, Staplehurst Railway Crash (10 dead, Kentish Gazette and Board of Trade citations, postscript, trauma as contributing factor): https://www.charlesdickenspage.com/staplehurst-railway-crash-1865.html"
+  - "Dickens to Thomas Mitton, 13 June 1865, Pilgrim Letters vol. 11 (manuscript, 'clambered back into the carriage for it'; carriage hung suspended and balanced): https://victorianpersistence.files.wordpress.com/2017/01/letter-of-charles-dickens-to-thomas-mitton-24-june-1865.pdf"
+  - "Wikipedia, Staplehurst rail crash (date, ten dead, died five years to the day): https://en.wikipedia.org/wiki/Staplehurst_rail_crash"
+  - "Our Mutual Friend, 1865 print, Postscript dated 2 September 1865 (Internet Archive bwb_KV-166-006_2 and ourmutualfriend00stongoog p. 309; sentence verified verbatim, with comma after 'for ever'): https://archive.org/details/bwb_KV-166-006_2"
+  - "The Conversation, Charles Dickens: newly discovered documents reveal truth about his death and burial (stroke at dinner 8 June, death 9 June 1870 at Gad's Hill Place): https://theconversation.com/charles-dickens-newly-discovered-documents-reveal-truth-about-his-death-and-burial-130079"
+  - "World History Project, Charles Dickens Dies (five years to the day after the Staplehurst crash): https://worldhistoryproject.org/1870/6/8/charles-dickens-dies/"
+  - "GÖRSEL img/ev_1.jpg — 'Staplehurst rail crash.jpg', Illustrated London News, 1865, {{PD-old}} (ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:Staplehurst_rail_crash.jpg . Değişiklik: 1280 px kaynaktan 1080x760'a küçültüldü"
+  - "GÖRSEL img/ev_2.jpg — Our Mutual Friend, Chapman & Hall 1865, cilt II başlık sayfası, Internet Archive ourmutualfriend00stongoog (1865 yayını, yazar 1870'te öldü, kamu malı; IA lisans alanı boş): https://archive.org/details/ourmutualfriend00stongoog . Değişiklik: 2400x1700 kırpım -> 1080x765, autocontrast, kâğıt tonu (zemin rengi)"
+  - "GÖRSEL img/ev_3.jpg (son kare) — 'Charles Dickens grave.jpg', Zmbro, 2022, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}, ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:Charles_Dickens_grave.jpg . Değişiklik: 1480x800 kırpım -> 1080x584"
+  - "GÖRSEL img/arka.jpg — 'Balcombe Viaduct (Ouse Valley Viaduct).jpg', Matthew Hoser, 2017, CC BY-SA 4.0 ({{self|cc-by-sa-4.0}}, ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:Balcombe_Viaduct_(Ouse_Valley_Viaduct).jpg . Değişiklik: 1332x1332 kırpım -> 1080, renk 0,85, parlaklık 1,15, blur 2,2"

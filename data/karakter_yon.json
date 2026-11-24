@@ -83,6 +83,10 @@
   "faces": "right",
   "file": "episodes/orban-topu-bizans/chars/imparator_sok.png"
  },
+ "0d78e54ae872348b1e814625760bf361e284d5a4": {
+  "faces": "right",
+  "file": "episodes/en-dickens-staplehurst/chars/a_sakin.png"
+ },
  "0dc88746faae6e9f9ea7cd70afa2e8c10821df52": {
   "faces": "front",
   "file": "assets/kit/klasik/hickiriyor.png"
@@ -246,6 +250,10 @@
  "2de286a34c899af9f857ebc9f718f78781a5725c": {
   "faces": "right",
   "file": "episodes/en-pig-war/chars/b_sok.png"
+ },
+ "2f5cdba6d1c8a4722d3a84db68a8468cc227e339": {
+  "faces": "right",
+  "file": "episodes/en-dickens-staplehurst/chars/a_sok.png"
  },
  "30db62d81b2f0691364361e06b71dfafa352e56a": {
   "faces": "right",
@@ -610,6 +618,10 @@
  "6da0c40850d5460090587a7f7c19fb384bdf74fc": {
   "faces": "right",
   "file": "episodes/en-cadaver-synod/chars/b_sok.png"
+ },
+ "6da1f1982584d766339d8a8b801894f60a3e6646": {
+  "faces": "right",
+  "file": "episodes/en-dickens-staplehurst/chars/b_sakin.png"
  },
  "6dad2cf3344f5fab652d7901b1c3e26f42f163e2": {
   "faces": "right",
