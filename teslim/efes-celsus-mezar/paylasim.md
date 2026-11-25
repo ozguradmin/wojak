@@ -1,0 +1,118 @@
+# efes-celsus-mezar — paylaşım paketi
+
+Süre: 14.0 sn · 6 sahne · video: `efes-celsus-mezar.mp4` · kapak: `kapak.jpg`
+
+## Instagram Reels
+
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 1940/2200
+
+```
+Efes'teki Celsus Kütüphanesi'nin altından çıkan oda
+
+Celsus Kütüphanesi'nin altındaki mezar, 1904 yılında Efes'te (Selçuk, İzmir) yapılan kazıda ortaya çıkan ve ünlü kütüphanenin aynı zamanda bir anıt mezar olduğunu gösteren mezar odasıdır.
+
+Kütüphane 2. yüzyılın başında, büyük olasılıkla MS 114 dolaylarında yapılmaya başlandı. Konsül Aquila, yapıyı babası Tiberius Julius Celsus Polemaeanus'un anısına yaptırdı; Celsus, MS 92'de Roma'da konsül, 105-106 dolaylarında Asya eyaletinin prokonsülü olmuştu. Roma dünyasında şehrin içine gömülmek, çok az kişiye tanınan bir onurdu. Lahitte kütüphaneye adını veren Celsus yatar.
+
+1903 ve 1904 sonbaharlarında Rudolf Heberdey başkanlığındaki Avusturyalı kazı ekibi kütüphaneyi toprağın altından çıkardı. Heberdey'in 1905'te yayımlanan raporuna göre okuma salonunun apsisinin altında, temele oyulmuş tonozlu bir mezar odası ve içinde iyi korunmuş, beyaz mermerden bir lahit bulundu. Lahit sonradan açıldığında içinde kurşun bir tabut ve iskelet kalıntıları bulunduğu bildirilir. Odanın girişi lahitten dar olduğu için lahdin yapım sırasında içeri indirildiği düşünülür. Lahit bugün de yerindedir. Bugün görülen cephe ise yıkık parçalardan 1970-1978'de yeniden dikildi.
+
+Sondan önceki kare, Heberdey'in raporundaki 1904 kazısının fotoğrafıdır. Son kare canlandırmadır; söz Belleten (Türk Tarih Kurumu), Ekim 1979'dan: onarımda görev alan bir arkeoloğun 1976 konferansının Türkçe özeti. Oradaki "Kitaplığın kurucusu" Celsus'tur.
+
+Efes'te önünde fotoğraf çektirdiğiniz kütüphanenin altında bir mezar olduğunu biliyor muydunuz?
+
+Görseller: Ephesus Celsus Library Façade (Benh LIEU SONG, CC BY-SA 3.0; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Ephesus_Celsus_Library_Fa%C3%A7ade.jpg; Bibliothek von Ephesus, 1904 (R. Heberdey, ÖJh 8, 1905, Fig. 15; kamu malı; kırpıldı), Internet Archive, https://archive.org/details/jahresheftedes08stuoft
+```
+
+## YouTube Shorts
+
+### Başlık — 51/100
+
+```
+Efes'teki Celsus Kütüphanesi'nin altından çıkan oda
+```
+
+### Açıklama
+
+```
+Efes'teki Celsus Kütüphanesi'nin altından çıkan oda
+
+Celsus Kütüphanesi'nin altındaki mezar, 1904 yılında Efes'te (Selçuk, İzmir) yapılan kazıda ortaya çıkan ve ünlü kütüphanenin aynı zamanda bir anıt mezar olduğunu gösteren mezar odasıdır.
+
+Kütüphane 2. yüzyılın başında, büyük olasılıkla MS 114 dolaylarında yapılmaya başlandı. Konsül Aquila, yapıyı babası Tiberius Julius Celsus Polemaeanus'un anısına yaptırdı; Celsus, MS 92'de Roma'da konsül, 105-106 dolaylarında Asya eyaletinin prokonsülü olmuştu. Roma dünyasında şehrin içine gömülmek, çok az kişiye tanınan bir onurdu. Lahitte kütüphaneye adını veren Celsus yatar.
+
+1903 ve 1904 sonbaharlarında Rudolf Heberdey başkanlığındaki Avusturyalı kazı ekibi kütüphaneyi toprağın altından çıkardı. Heberdey'in 1905'te yayımlanan raporuna göre okuma salonunun apsisinin altında, temele oyulmuş tonozlu bir mezar odası ve içinde iyi korunmuş, beyaz mermerden bir lahit bulundu. Lahit sonradan açıldığında içinde kurşun bir tabut ve iskelet kalıntıları bulunduğu bildirilir. Odanın girişi lahitten dar olduğu için lahdin yapım sırasında içeri indirildiği düşünülür. Lahit bugün de yerindedir. Bugün görülen cephe ise yıkık parçalardan 1970-1978'de yeniden dikildi.
+
+Sondan önceki kare, Heberdey'in raporundaki 1904 kazısının fotoğrafıdır. Son kare canlandırmadır; söz Belleten (Türk Tarih Kurumu), Ekim 1979'dan: onarımda görev alan bir arkeoloğun 1976 konferansının Türkçe özeti. Oradaki "Kitaplığın kurucusu" Celsus'tur.
+
+Efes'te önünde fotoğraf çektirdiğiniz kütüphanenin altında bir mezar olduğunu biliyor muydunuz?
+
+Görseller: Ephesus Celsus Library Façade (Benh LIEU SONG, CC BY-SA 3.0; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Ephesus_Celsus_Library_Fa%C3%A7ade.jpg; Bibliothek von Ephesus, 1904 (R. Heberdey, ÖJh 8, 1905, Fig. 15; kamu malı; kırpıldı), Internet Archive, https://archive.org/details/jahresheftedes08stuoft
+
+#efes #arkeoloji #shorts
+```
+
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1513 karakter
+
+```
+Celsus Kütüphanesi'nin altındaki mezar, 1904 yılında Efes'te (Selçuk, İzmir) yapılan kazıda ortaya çıkan ve ünlü kütüphanenin aynı zamanda bir anıt mezar olduğunu gösteren mezar odasıdır.
+
+Kütüphane 2. yüzyılın başında, büyük olasılıkla MS 114 dolaylarında yapılmaya başlandı. Konsül Aquila, yapıyı babası Tiberius Julius Celsus Polemaeanus'un anısına yaptırdı; Celsus, MS 92'de Roma'da konsül, 105-106 dolaylarında Asya eyaletinin prokonsülü olmuştu. Roma dünyasında şehrin içine gömülmek, çok az kişiye tanınan bir onurdu. Lahitte kütüphaneye adını veren Celsus yatar.
+
+1903 ve 1904 sonbaharlarında Rudolf Heberdey başkanlığındaki Avusturyalı kazı ekibi kütüphaneyi toprağın altından çıkardı. Heberdey'in 1905'te yayımlanan raporuna göre okuma salonunun apsisinin altında, temele oyulmuş tonozlu bir mezar odası ve içinde iyi korunmuş, beyaz mermerden bir lahit bulundu. Lahit sonradan açıldığında içinde kurşun bir tabut ve iskelet kalıntıları bulunduğu bildirilir. Odanın girişi lahitten dar olduğu için lahdin yapım sırasında içeri indirildiği düşünülür. Lahit bugün de yerindedir. Bugün görülen cephe ise yıkık parçalardan 1970-1978'de yeniden dikildi.
+
+Sondan önceki kare, Heberdey'in raporundaki 1904 kazısının fotoğrafıdır. Son kare canlandırmadır; söz Belleten (Türk Tarih Kurumu), Ekim 1979'dan: onarımda görev alan bir arkeoloğun 1976 konferansının Türkçe özeti. Oradaki "Kitaplığın kurucusu" Celsus'tur.
+
+Efes'te önünde fotoğraf çektirdiğiniz kütüphanenin altında bir mezar olduğunu biliyor muydunuz?
+```
+
+## TikTok (isteğe bağlı)
+
+### Açıklama — 2008/4000
+
+```
+Efes'teki Celsus Kütüphanesi'nin altından çıkan oda
+
+Celsus Kütüphanesi'nin altındaki mezar, 1904 yılında Efes'te (Selçuk, İzmir) yapılan kazıda ortaya çıkan ve ünlü kütüphanenin aynı zamanda bir anıt mezar olduğunu gösteren mezar odasıdır.
+
+Kütüphane 2. yüzyılın başında, büyük olasılıkla MS 114 dolaylarında yapılmaya başlandı. Konsül Aquila, yapıyı babası Tiberius Julius Celsus Polemaeanus'un anısına yaptırdı; Celsus, MS 92'de Roma'da konsül, 105-106 dolaylarında Asya eyaletinin prokonsülü olmuştu. Roma dünyasında şehrin içine gömülmek, çok az kişiye tanınan bir onurdu. Lahitte kütüphaneye adını veren Celsus yatar.
+
+1903 ve 1904 sonbaharlarında Rudolf Heberdey başkanlığındaki Avusturyalı kazı ekibi kütüphaneyi toprağın altından çıkardı. Heberdey'in 1905'te yayımlanan raporuna göre okuma salonunun apsisinin altında, temele oyulmuş tonozlu bir mezar odası ve içinde iyi korunmuş, beyaz mermerden bir lahit bulundu. Lahit sonradan açıldığında içinde kurşun bir tabut ve iskelet kalıntıları bulunduğu bildirilir. Odanın girişi lahitten dar olduğu için lahdin yapım sırasında içeri indirildiği düşünülür. Lahit bugün de yerindedir. Bugün görülen cephe ise yıkık parçalardan 1970-1978'de yeniden dikildi.
+
+Sondan önceki kare, Heberdey'in raporundaki 1904 kazısının fotoğrafıdır. Son kare canlandırmadır; söz Belleten (Türk Tarih Kurumu), Ekim 1979'dan: onarımda görev alan bir arkeoloğun 1976 konferansının Türkçe özeti. Oradaki "Kitaplığın kurucusu" Celsus'tur.
+
+Efes'te önünde fotoğraf çektirdiğiniz kütüphanenin altında bir mezar olduğunu biliyor muydunuz?
+
+Görseller: Ephesus Celsus Library Façade (Benh LIEU SONG, CC BY-SA 3.0; kırpıldı, renk ayarlandı, bulanıklaştırıldı), Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Ephesus_Celsus_Library_Fa%C3%A7ade.jpg; Bibliothek von Ephesus, 1904 (R. Heberdey, ÖJh 8, 1905, Fig. 15; kamu malı; kırpıldı), Internet Archive, https://archive.org/details/jahresheftedes08stuoft
+
+#efes #arkeoloji #tarih #wojak #tarihselwojak #keşfet #olay #gizem
+```
+
+## Yükleme kontrol listesi
+
+- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
+- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
+- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
+- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
+- [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
+- [ ] **Video bir canlandırmadır:** karakterler kurgu, ekrandaki sözler birebir alıntı değildir; işçi ve ustabaşı 1904 kazı ekibinden kimseyi temsil etmez. Belgeli olan: 1904 kazısında Celsus Kütüphanesi'nin apsisinin altında tonozlu bir mezar odası ve içinde beyaz mermer bir lahit bulundu (Heberdey 1905); kütüphane, Celsus'un anısına oğlu Aquila tarafından yaptırıldı ve onun anıt mezarıdır.
+- [ ] Arka plandaki cephe 1970-1978'de yeniden dikildi; 1904'te yıkıktı (sondan önceki kare o hâli gösterir).
+- [ ] Son kare canlandırmadır: Belleten (Türk Tarih Kurumu), Cilt 43, Sayı 172, Ekim 1979, s. 809-822 ('Efes'teki Celsus Kitaplığı Onarım Çalışmaları', 12 Nisan 1976 TTK konferansının Türkçe özeti) içindeki cümle birebir: 'Lahit Mezar içinde bugün Kitaplığın kurucusu yatmaktadır.' Görünen bütün satırlar aynı paragraftan birebir; dergi CC BY-NC olduğu için sayfa görüntüsü değil, kendi dizdiğimiz yakın çekim; sarı fosforlu kalem izi bizim. Belleten'in logosu ve düzeni yok. Alttaki 'Kaynak:' satırı hesap sahibinin kupür/kart kuralı gereği. Sondan önceki kare: R. Heberdey, 'Vorläufiger Bericht über die Grabungen in Ephesus 1904', ÖJh 8 (1905), Beiblatt Fig. 15.
+- [ ] İlk yorum önerisi: "Türk Tarih Kurumu'nun Belleten dergisi 1979'da açıkça yazmış: 'Lahit Mezar içinde bugün Kitaplığın kurucusu yatmaktadır.' Celsus'un lahdi bugün de apsisin altındaki odada. Efes'e gidenler, siz biliyor muydunuz?"
+- [ ] Yorum yönetimi: 'Biliyorduk, rehber anlatmıştı' diyene: evet, rehberler anlatır, ama çoğu ziyaretçi bilmiyor. 'Hiç açılmadı' diyene: akademik kaynaklar (Strocka 2003, 2009) açıldığını, içinde kurşun tabut ve iskelet kalıntıları olduğunu yazar; yılı 1904 ya da 1905 diye geçer. 'Kütüphaneyi Celsus yaptırdı' diyene: yazıta göre oğlu Aquila yaptırdı; Belleten'in 'Kitaplığın kurucusu' dediği, kütüphaneye adını veren ve lahitte yatan Celsus'tur. 'Cephe 1904'te ayakta değildi' diyene: doğru, 1970-78'de yeniden dikildi; videoda yer, bugünkü hâliyle gösterildi.
+- [ ] YouTube: yükledikten sonra Kontroller adımını kontrol et
+- [ ] Gizli kelimeler (Hidden Words) listesi sohbette
+
+Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
+
+## Kaynaklar (doğrulama için, paylaşılmaz)
+
+- SERT FİLTRE: MS 2. yüzyıl gömüsü ve 1903-1904 kazısı; son 10 yılda ölmüş ya da yaşayan özel kişi, çocuk, süren dava yok.
+- Birincil: R. Heberdey, 'Vorläufiger Bericht über die Grabungen in Ephesus 1904', Jahreshefte des Österr. Archäol. Institutes 8 (1905), Beiblatt Sp. 61-80 (Sp. 63-68: kütüphanenin açılması, apsisin altında tonozlu mezar odası ve 'wohlerhaltener Sarkophag aus weißem Marmor', Nike ve Eros taşıyan girlandlar; Sp. 68: 'In der Grabkammer unter der Apsis hat also Ti. Julius Aquila den Vater begraben'): https://archive.org/details/jahresheftedes08stuoft
+- Kütüphane Aquila tarafından babası Celsus'un anısına yaptırıldı, mirasçıları tamamladı; Celsus 92'de konsül, Asya prokonsülü; şehir içine gömülme istisnai onur: V. M. Strocka, 'The Celsus Library in Ephesus' (2003): https://freidok.uni-freiburg.de/files/4986/aEfMnZclW_9SHOhd/Strocka_The_Celsus_Library_in_Ephesus.pdf ; Wikipedia 'Library of Celsus': https://en.wikipedia.org/wiki/Library_of_Celsus ; Kültür Portalı: https://www.kulturportali.gov.tr/portal/celsus-kutuphanesi
+- 1903-1904 kazısı, Heberdey başkanlığı, 1904'te lahdin bulunması: Hueber & Strocka, 'Die Bibliothek des Celsus', Antike Welt 6 (1975): https://freidok.uni-freiburg.de/files/5330/Zm9BXLweZxnag7oK/Hueber_Strocka_Die_Bibliothek_des_Celsus.pdf ; World History Encyclopedia: https://www.worldhistory.org/Library_of_Celsus/ ; ephesus.net: https://www.ephesus.net/library-of-celsus/
+- Lahdin açılması, kurşun tabut ve iskelet kalıntıları (yıl 1904/1905 tartışmalı, metinde yıl verilmedi); lahdin dar girişten sığmaması ve yapım sırasında indirilmesi (çıkarım); lahdin bugün yerinde olması: Strocka 2003 (yukarıda); Strocka, 'Die Celsusbibliothek als Ehrengrab am Embolos' (2009): https://www.austriaca.at/0xc1aa5576%200x002295e2.pdf ; de.wikipedia 'Celsus-Bibliothek': https://de.wikipedia.org/wiki/Celsus-Bibliothek ; tunchertourism: https://tunchertourism.com/en/blog/ephesus-ancient-city/library-of-celsus-ephesus
+- Cephenin 1970-1978'de yeniden dikilmesi: Wikipedia 'Library of Celsus' (yukarıda); Belleten 1979 (aşağıda; dipnot 3: onarım Eylül 1978'de bitti)
+- Belleten (Türk Tarih Kurumu) 43/172, Ekim 1979, s. 809-822, 'Efes'teki Celsus Kitaplığı Onarım Çalışmaları' (Türkçe metin; apsisin altında küçük kapalı oda ve lahit, lahdin yapım sırasında konması, 'Lahit Mezar içinde bugün Kitaplığın kurucusu yatmaktadır.', 'Kitaplık aşağı-yukarı M.S. 114 yıllarında yapılmaya başlanmış'): https://belleten.gov.tr/tam-metin/1578/tur (DOI 10.37879/belleten.1979.809; lisans CC BY-NC 4.0, bu yüzden sayfa görüntüsü kullanılmadı)
+- GÖRSEL img/arka.jpg — 'Ephesus Celsus Library Façade.jpg', Benh LIEU SONG, CC BY-SA 3.0 ({{self|cc-by-sa-3.0}}, ham sayfadan doğrulandı): https://commons.wikimedia.org/wiki/File:Ephesus_Celsus_Library_Fa%C3%A7ade.jpg. Değişiklik: özgün 9163x7100 dosyadan üst bölümden kare kırpım (2291,406,6873,4988; alt kattaki ziyaretçiler dışarıda), 1080'e küçültme, renk 0,72, parlaklık 0,93; renderer bulanıklaştırır.
+- GÖRSEL img/kanit_1.jpg — R. Heberdey, ÖJh 8 (1905) Beiblatt Sp. 63-64, Fig. 15 'Ansicht der Ruine ... der Bibliothek von Ephesus' (1904 kazı fotoğrafı, fotoğrafçı belirtilmemiş; Viyana 1905 yayını: anonim eser yayından 70 yıl sonra, yazar Heberdey 1936'da öldü; ABD'de 1931 öncesi yayın): kamu malı. Internet Archive, Robarts - University of Toronto taraması, leaf 345: https://archive.org/details/jahresheftedes08stuoft/page/n345. Aynı fotoğrafın küçük kopyası Commons'ta 'Library of ephesos before reconstruction.jpg' ({{PD-US}}). Değişiklik: yalnız fotoğraf kırpıldı (324,320,1836,1322), autocontrast, 1080x716.
+- GÖRSEL img/kanit_belleten.jpg (son kare) — kendi ürettiğimiz canlandırma (belge.py): Belleten, Ekim 1979'daki 'Res. 7,8'deki kesit' paragrafı birebir (dipnot işareti hariç), Liberation Serif ve Libre Franklin (SIL OFL) ile iki yana yaslı, heceli yeniden dizildi; cevap cümlesinde sarı fosforlu kalem izi; kâğıt dokusu ve mürekkep üretildi. Telif içeren görüntü yok.
