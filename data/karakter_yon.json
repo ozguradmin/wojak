@@ -23,6 +23,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/kaymakcalan_v2_ciddi.png"
  },
+ "01609c9238223af637597b4956cd94abc2fdf8d3": {
+  "faces": "right",
+  "file": "episodes/en-hess-scotland/chars/hess_sakin.png"
+ },
  "01840a05d448c48555a561ec6738d28b7dcbf03a": {
   "faces": "left",
   "file": "episodes/alanya-adam-atacagi/chars/asker.png"
@@ -391,6 +395,10 @@
   "faces": "left",
   "file": "assets/kit/prenses_genc/sakin.png"
  },
+ "48a044fec303f81c1435d6e26236d3979e10c9dd": {
+  "faces": "right",
+  "file": "episodes/en-hess-scotland/chars/farmer_sakin.png"
+ },
  "497a7a9066e0b011032e69f1ee68085d65e4e9ce": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/agliyor.png"
@@ -442,6 +450,10 @@
  "50a167479e1cd02bf6bcdd68092b6c8b8e972eb5": {
   "faces": "right",
   "file": "episodes/en-mona-lisa/chars/geri.png"
+ },
+ "50a91e2eef4a989d3bd1427291a4492a523c1ae3": {
+  "faces": "right",
+  "file": "episodes/en-hess-scotland/chars/hess_sok.png"
  },
  "51f7a3e469b7b28b2067f75a54ae3a61ac234fc7": {
   "faces": "right",
