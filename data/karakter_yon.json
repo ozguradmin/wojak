@@ -255,6 +255,10 @@
   "faces": "right",
   "file": "episodes/en-pig-war/chars/b_sok.png"
  },
+ "2e6f2bfad2210b8f358255e18aaf58a6fc91e678": {
+  "faces": "right",
+  "file": "episodes/vezir-bostanci-kosusu/chars/bostanci_sok.png"
+ },
  "2f5cdba6d1c8a4722d3a84db68a8468cc227e339": {
   "faces": "right",
   "file": "episodes/en-dickens-staplehurst/chars/a_sok.png"
@@ -418,6 +422,10 @@
  "49f18e3a17415a949768278c06ca6060764a31bb": {
   "faces": "left",
   "file": "episodes\\kanuni-gizlenen-olum\\chars\\vezir_sakin.png"
+ },
+ "4a52305dd1347028fbae9093df163918fc7122b4": {
+  "faces": "right",
+  "file": "episodes/vezir-bostanci-kosusu/chars/bostanci_emin.png"
  },
  "4b0a3598c148e0a16b3bf805fdba10086db813e3": {
   "faces": "right",

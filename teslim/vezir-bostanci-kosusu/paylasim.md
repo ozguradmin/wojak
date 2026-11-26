@@ -1,0 +1,117 @@
+# vezir-bostanci-kosusu — paylaşım paketi
+
+Süre: 14.0 sn · 7 sahne · video: `vezir-bostanci-kosusu.mp4` · kapak: `kapak.jpg`
+
+## Instagram Reels
+
+### Açıklama (başlık + hikâye; hashtag yok, hesabın kendi düzeni) — 2187/2200
+
+```
+Topkapı'da idamlık sadrazamın cellatla yarıştığı anlatılır
+
+Bostancıbaşı koşusu, Osmanlı'da idama mahkûm edilen sadrazamın canı için sarayın baş bahçıvanıyla yarıştığı anlatılan bir uygulamadır. Bostancıbaşı, Topkapı Sarayı'nın bahçelerinden ve sahil güvenliğinden, idam hükümlerinin yerine getirilmesinden de sorumlu görevliydi.
+
+1793 tarihli bir Fransız saray planının açıklamasına göre *lüme mahkûm edilecek vezirler Orta Kapı'nın iki kulesi arasındaki odada tutuklanırdı. Anlatılana göre sadrazam buradan sarayın bahçelerini geçip deniz surlarındaki Balıkhane Kapısı'na koşardı. Bostancıbaşından önce varırsa cezası sürgüne çevrilir, geç kalırsa hüküm hemen uygulanırdı. Bu koşuyu Barnette Miller, Osmanlı tarihçisi Abdurrahman Şeref Efendi'nin bir makalesine dayanarak anlattı; N. M. Penzer'in The Harem'i (1936) ve Smithsonian Magazine onu aktarır. Geleneğin kökeni bilinmiyor. İncelediğimiz Türkçe kaynaklarda ise koşu değil, "Balıkhane'ye indirilmek" geçer: azledilen sadrazam Balıkhane'de padişahın kararını beklerdi.
+
+Bu anlatılar Hacı Salih Paşa'yı koşuyu kazanan son sadrazam diye sunar. Türkçe kaynaklara göre paşanın mührü 10 Kasım 1822'de alındı; Balıkhane'de korku dolu birkaç saat geçirdikten sonra Gelibolu'ya sürgün edildi. Ardından Anadolu ve Şam valisi oldu, 1828'de *ldü.
+
+Videodaki karakterler anonimdir. Son karede Kauffer ve Lechevalier'nin 1786 İstanbul haritasından Topkapı görülüyor: Orta Kapou ve deniz surlarındaki İncili Köşk (Indgiouli Keuchk).
+
+Sizce bu koşu gerçekten yapıldı mı, yoksa "Balıkhane'ye indirilmek" zamanla yarışa mı dönüştü?
+
+Görseller: Topkapi - Mittleres Tor (Rabe!, CC BY-SA 3.0 creativecommons.org/licenses/by-sa/3.0; kırpıldı, kapının üstündeki modern bayrak ve direği rötuşla silindi, renk ve parlaklık düzeltildi, bulanıklaştırıldı), commons.wikimedia.org/wiki/File:Topkapi_-_Mittleres_Tor.jpg; 29 - Bostangi (bostancı kıyafeti; Octavien Dalvimart, The Military Costume of Turkey, 1813; kamu malı; kırpıldı, yanları tamamlandı, kâğıt tonu verildi), Wikimedia Commons; Carte de Constantinople (François Kauffer ve J.-B. Lechevalier, 1786, Bibliothèque nationale de France; kamu malı; kırpıldı, kontrast düzeltildi), Wikimedia Commons
+```
+
+## YouTube Shorts
+
+### Başlık — 58/100
+
+```
+Topkapı'da idamlık sadrazamın cellatla yarıştığı anlatılır
+```
+
+### Açıklama
+
+```
+Topkapı'da idamlık sadrazamın cellatla yarıştığı anlatılır
+
+Bostancıbaşı koşusu, Osmanlı'da idama mahkûm edilen sadrazamın canı için sarayın baş bahçıvanıyla yarıştığı anlatılan bir uygulamadır. Bostancıbaşı, Topkapı Sarayı'nın bahçelerinden ve sahil güvenliğinden, idam hükümlerinin yerine getirilmesinden de sorumlu görevliydi.
+
+1793 tarihli bir Fransız saray planının açıklamasına göre *lüme mahkûm edilecek vezirler Orta Kapı'nın iki kulesi arasındaki odada tutuklanırdı. Anlatılana göre sadrazam buradan sarayın bahçelerini geçip deniz surlarındaki Balıkhane Kapısı'na koşardı. Bostancıbaşından önce varırsa cezası sürgüne çevrilir, geç kalırsa hüküm hemen uygulanırdı. Bu koşuyu Barnette Miller, Osmanlı tarihçisi Abdurrahman Şeref Efendi'nin bir makalesine dayanarak anlattı; N. M. Penzer'in The Harem'i (1936) ve Smithsonian Magazine onu aktarır. Geleneğin kökeni bilinmiyor. İncelediğimiz Türkçe kaynaklarda ise koşu değil, "Balıkhane'ye indirilmek" geçer: azledilen sadrazam Balıkhane'de padişahın kararını beklerdi.
+
+Bu anlatılar Hacı Salih Paşa'yı koşuyu kazanan son sadrazam diye sunar. Türkçe kaynaklara göre paşanın mührü 10 Kasım 1822'de alındı; Balıkhane'de korku dolu birkaç saat geçirdikten sonra Gelibolu'ya sürgün edildi. Ardından Anadolu ve Şam valisi oldu, 1828'de *ldü.
+
+Videodaki karakterler anonimdir. Son karede Kauffer ve Lechevalier'nin 1786 İstanbul haritasından Topkapı görülüyor: Orta Kapou ve deniz surlarındaki İncili Köşk (Indgiouli Keuchk).
+
+Sizce bu koşu gerçekten yapıldı mı, yoksa "Balıkhane'ye indirilmek" zamanla yarışa mı dönüştü?
+
+Görseller: Topkapi - Mittleres Tor (Rabe!, CC BY-SA 3.0 creativecommons.org/licenses/by-sa/3.0; kırpıldı, kapının üstündeki modern bayrak ve direği rötuşla silindi, renk ve parlaklık düzeltildi, bulanıklaştırıldı), commons.wikimedia.org/wiki/File:Topkapi_-_Mittleres_Tor.jpg; 29 - Bostangi (bostancı kıyafeti; Octavien Dalvimart, The Military Costume of Turkey, 1813; kamu malı; kırpıldı, yanları tamamlandı, kâğıt tonu verildi), Wikimedia Commons; Carte de Constantinople (François Kauffer ve J.-B. Lechevalier, 1786, Bibliothèque nationale de France; kamu malı; kırpıldı, kontrast düzeltildi), Wikimedia Commons
+
+#tarih #osmanlı #shorts
+```
+
+### Sabit yorum (yayından hemen sonra yaz ve sabitle) — 1512 karakter
+
+```
+Bostancıbaşı koşusu, Osmanlı'da idama mahkûm edilen sadrazamın canı için sarayın baş bahçıvanıyla yarıştığı anlatılan bir uygulamadır. Bostancıbaşı, Topkapı Sarayı'nın bahçelerinden ve sahil güvenliğinden, idam hükümlerinin yerine getirilmesinden de sorumlu görevliydi.
+
+1793 tarihli bir Fransız saray planının açıklamasına göre *lüme mahkûm edilecek vezirler Orta Kapı'nın iki kulesi arasındaki odada tutuklanırdı. Anlatılana göre sadrazam buradan sarayın bahçelerini geçip deniz surlarındaki Balıkhane Kapısı'na koşardı. Bostancıbaşından önce varırsa cezası sürgüne çevrilir, geç kalırsa hüküm hemen uygulanırdı. Bu koşuyu Barnette Miller, Osmanlı tarihçisi Abdurrahman Şeref Efendi'nin bir makalesine dayanarak anlattı; N. M. Penzer'in The Harem'i (1936) ve Smithsonian Magazine onu aktarır. Geleneğin kökeni bilinmiyor. İncelediğimiz Türkçe kaynaklarda ise koşu değil, "Balıkhane'ye indirilmek" geçer: azledilen sadrazam Balıkhane'de padişahın kararını beklerdi.
+
+Bu anlatılar Hacı Salih Paşa'yı koşuyu kazanan son sadrazam diye sunar. Türkçe kaynaklara göre paşanın mührü 10 Kasım 1822'de alındı; Balıkhane'de korku dolu birkaç saat geçirdikten sonra Gelibolu'ya sürgün edildi. Ardından Anadolu ve Şam valisi oldu, 1828'de *ldü.
+
+Videodaki karakterler anonimdir. Son karede Kauffer ve Lechevalier'nin 1786 İstanbul haritasından Topkapı görülüyor: Orta Kapou ve deniz surlarındaki İncili Köşk (Indgiouli Keuchk).
+
+Sizce bu koşu gerçekten yapıldı mı, yoksa "Balıkhane'ye indirilmek" zamanla yarışa mı dönüştü?
+```
+
+## TikTok (isteğe bağlı)
+
+### Açıklama — 2262/4000
+
+```
+Topkapı'da idamlık sadrazamın cellatla yarıştığı anlatılır
+
+Bostancıbaşı koşusu, Osmanlı'da idama mahkûm edilen sadrazamın canı için sarayın baş bahçıvanıyla yarıştığı anlatılan bir uygulamadır. Bostancıbaşı, Topkapı Sarayı'nın bahçelerinden ve sahil güvenliğinden, idam hükümlerinin yerine getirilmesinden de sorumlu görevliydi.
+
+1793 tarihli bir Fransız saray planının açıklamasına göre *lüme mahkûm edilecek vezirler Orta Kapı'nın iki kulesi arasındaki odada tutuklanırdı. Anlatılana göre sadrazam buradan sarayın bahçelerini geçip deniz surlarındaki Balıkhane Kapısı'na koşardı. Bostancıbaşından önce varırsa cezası sürgüne çevrilir, geç kalırsa hüküm hemen uygulanırdı. Bu koşuyu Barnette Miller, Osmanlı tarihçisi Abdurrahman Şeref Efendi'nin bir makalesine dayanarak anlattı; N. M. Penzer'in The Harem'i (1936) ve Smithsonian Magazine onu aktarır. Geleneğin kökeni bilinmiyor. İncelediğimiz Türkçe kaynaklarda ise koşu değil, "Balıkhane'ye indirilmek" geçer: azledilen sadrazam Balıkhane'de padişahın kararını beklerdi.
+
+Bu anlatılar Hacı Salih Paşa'yı koşuyu kazanan son sadrazam diye sunar. Türkçe kaynaklara göre paşanın mührü 10 Kasım 1822'de alındı; Balıkhane'de korku dolu birkaç saat geçirdikten sonra Gelibolu'ya sürgün edildi. Ardından Anadolu ve Şam valisi oldu, 1828'de *ldü.
+
+Videodaki karakterler anonimdir. Son karede Kauffer ve Lechevalier'nin 1786 İstanbul haritasından Topkapı görülüyor: Orta Kapou ve deniz surlarındaki İncili Köşk (Indgiouli Keuchk).
+
+Sizce bu koşu gerçekten yapıldı mı, yoksa "Balıkhane'ye indirilmek" zamanla yarışa mı dönüştü?
+
+Görseller: Topkapi - Mittleres Tor (Rabe!, CC BY-SA 3.0 creativecommons.org/licenses/by-sa/3.0; kırpıldı, kapının üstündeki modern bayrak ve direği rötuşla silindi, renk ve parlaklık düzeltildi, bulanıklaştırıldı), commons.wikimedia.org/wiki/File:Topkapi_-_Mittleres_Tor.jpg; 29 - Bostangi (bostancı kıyafeti; Octavien Dalvimart, The Military Costume of Turkey, 1813; kamu malı; kırpıldı, yanları tamamlandı, kâğıt tonu verildi), Wikimedia Commons; Carte de Constantinople (François Kauffer ve J.-B. Lechevalier, 1786, Bibliothèque nationale de France; kamu malı; kırpıldı, kontrast düzeltildi), Wikimedia Commons
+
+#tarih #osmanlı #topkapısarayı #wojak #tarihselwojak #keşfet #olay #gizem
+```
+
+## Yükleme kontrol listesi
+
+- [ ] Saat: **20:00-20:15**, 2 günde 1 (Instagram altın döneminde 25/25 reel bu düzende)
+- [ ] Instagram: Reels → videoyu seç → **Kapağı düzenle → Galeriden ekle → `kapak.jpg`** → açıklamayı yapıştır
+- [ ] Ses: videodaki kanalın imza müziği (orijinal ses). Ayrıca müzik ekleme
+- [ ] YouTube: Shorts yükle → başlık + açıklama → yayınlanınca **sabit yorumu yaz ve sabitle** (⋮ → Sabitle)
+- [ ] Yapay zekâ sorusu: "Hayır" (bu bölümde fotogerçekçi yapay zekâ görseli yok; wojak çizimi gerçekçi sayılmaz)
+- [ ] İlk 1-2 saat: yorumlara cevap (özellikle "ben oralıyım" yorumları), hakaret/isim ifşası içerenleri sil
+- [ ] **Video bir canlandırmadır:** karakterler anonimdir, Hacı Salih Paşa'yı ya da belirli bir sadrazamı temsil etmez; koşu Barnette Miller'ın (Abdurrahman Şeref'e dayanarak) anlattığı, Penzer (1936) ve Smithsonian'ın aktardığı bir gelenektir. Belgeli olan: vezirlerin Orta Kapı'da tutuklanması (Perrier 1793 planı), Balıkhane'ye indirilme, Hacı Salih Paşa'nın 10 Kasım 1822'de azledilip Gelibolu'ya sürülmesi.
+- [ ] YouTube: yükledikten sonra Kontroller adımını kontrol et
+- [ ] İlk yorum önerisi: "Koşuyu Miller ve Penzer anlatıyor; incelediğimiz Türkçe kaynaklar 'Balıkhane'ye indirilmek' diyor. Sizce hangisi?"
+- [ ] Gizli kelimeler (Hidden Words) listesi sohbette
+
+Metinler ayrıca tek tek: `metinler/` klasöründe (.txt).
+
+## Kaynaklar (doğrulama için, paylaşılmaz)
+
+- Koşu anlatısı, bostancıbaşı = baş cellat, kazanırsa sürgün, son kurtulan Hacı Salih Paşa 1822-23; Penzer bunu Barnette Miller'dan (Abdurrahman Şeref Efendi makalesine dayanarak) aktarır: N. M. Penzer, The Harem (1936), s. 69-71: https://archive.org/stream/haremaccountofin00penquoft/haremaccountofin00penquoft_djvu.txt
+- Koşu, Orta Kapı'da hükmün bostancıbaşına verilmesi, kökeninin bilinmediği, kaynakça Miller + Goodwin 1999: Smithsonian Magazine (Mike Dash, 2012), 'The Ottoman Empire's Life-or-Death Race': https://www.smithsonianmag.com/history/the-ottoman-empires-life-or-death-race-164064882/
+- Orta Kapı (Ortakapoussi) kuleleri arasındaki odada ölüme mahkûm vezirlerin tutuklanması: 'Plan du Serail', Perrier, 1793, BnF btv1b53100703g (açıklama G): https://commons.wikimedia.org/wiki/File:Plan_du_Serail_-_btv1b53100703g.jpg
+- Hacı Salih Paşa: mühür 10 Kasım 1822, Balıkhane'de birkaç saat, Gelibolu'ya sürgün, Anadolu ve Şam valiliği: TDV İslâm Ansiklopedisi 'Sâlih Paşa, Hacı': https://islamansiklopedisi.org.tr/salih-pasa-haci
+- Hacı Salih Paşa (aynı olgular + ölüm 1828; tr Vikipedi: Aralık 1828, Konya): Wikipedia 'Hacı Salih Pasha': https://en.wikipedia.org/wiki/Hac%C4%B1_Salih_Pasha
+- Balıkhane'ye indirilmek, cellatların bostancıbaşına bağlılığı: Ece Yüksel, 'Osmanlı Cellatları' (DergiPark): https://dergipark.org.tr/tr/download/article-file/264829 ; Ekrem Buğra Ekinci, 'Cellâdlık bir ustalık idi': https://ekrembugraekinci.com/article/?ID=1326
+- Balıkhane Kapısı sarayın Marmara surlarında: Wikipedia tr 'İncili Köşk': https://tr.wikipedia.org/wiki/%C4%B0ncili_K%C3%B6%C5%9Fk ; Penzer s. 69 ('Balik Hane Kapi, Gate of the Fish-house')
+- Benderli Ali Paşa 1821'de sürgün sonrası idam: Wikipedia tr 'Benderli Ali Paşa': https://tr.wikipedia.org/wiki/Benderli_Ali_Pa%C5%9Fa ; Pusula Haber: https://www.pusulahaber.com.tr/cellat-mezadindaki-lanetli-saat-500453h.htm
+- GÖRSEL img/arka.jpg — 'Topkapi - Mittleres Tor.jpg', Rabe!, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:Topkapi_-_Mittleres_Tor.jpg. Değişiklik: kare kırpım (alt şeritteki ziyaretçiler dışarıda), modern bayrak ve direği OpenCV inpaint ile silindi, renk 0,92, parlaklık 0,86, render'da bulanıklık
+- GÖRSEL img/kanit_1.jpg — '29 - Bostangi.jpg', Octavien Dalvimart (çizim), The Military Costume of Turkey, Thomas McLean, Londra 1813, kamu malı: https://commons.wikimedia.org/wiki/File:29_-_Bostangi.jpg. Değişiklik: 0,91x küçültme, yanlar levhanın kâğıt rengiyle 1080'e tamamlandı
+- GÖRSEL img/kanit_2.jpg (son kare) — 'Carte de Constantinople - Levée par F. Kauffer et J.B. Lechevalier - btv1b10100568w.jpg', François Kauffer (1751?-1801) ve J.-B. Lechevalier, 'l'an 1786' (Commons tarihi 1800-1802 baskı), BnF, kamu malı: https://commons.wikimedia.org/wiki/File:Carte_de_Constantinople_-_Lev%C3%A9e_par_F._Kauffer_et_J.B._Lechevalier_-_btv1b10100568w.jpg. Değişiklik: özgünden Topkapı bölümü kırpıldı (1,35x), autocontrast
+- İncili Köşk Değirmen ve Balıkhane kapıları arasında, sarayın Marmara surlarında: Wikipedia tr 'İncili Köşk': https://tr.wikipedia.org/wiki/%C4%B0ncili_K%C3%B6%C5%9Fk ; Rehber Ansiklopedisi 'Topkapı Sarayı': https://www.rehberansiklopedisi.com/topkapi-sarayi/
