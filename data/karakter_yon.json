@@ -719,6 +719,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/voss_v2_sakin.png"
  },
+ "76c7340e7c69729d199ab242ec41a8d2a98ce1a0": {
+  "faces": "right",
+  "file": "episodes/en-palomares-fisherman/chars/admiral_sakin.png"
+ },
  "77df180b3dc0a513c0a812d6c2ac8e22d32f0dfb": {
   "faces": "right",
   "file": "episodes/en-franz-ferdinand-wrong-turn/chars/a_sakin.png"
@@ -742,6 +746,10 @@
  "78d44bdfc2f747daca08692c217532eb5ba69b8a": {
   "faces": "right",
   "file": "episodes/catalhoyuk-sekinin-alti/chars/genc_sok.png"
+ },
+ "7901787af90bd3f44183f56fc61e260ebbfd8039": {
+  "faces": "right",
+  "file": "episodes/en-palomares-fisherman/chars/admiral_sok.png"
  },
  "7a5f374eb2a248cb4e6b21f844967a5fc742f100": {
   "faces": "right",
@@ -970,6 +978,10 @@
  "a8013d389fa98a357c6f48392b51a07f58ff0aea": {
   "faces": "left",
   "file": "episodes/en-emu-war/chars/a_sakin.png"
+ },
+ "a9130914cb5320b6483d76a311439a2fa6eff665": {
+  "faces": "right",
+  "file": "episodes/en-palomares-fisherman/chars/fisher_sakin.png"
  },
  "aad499cd4e00da655b854e1280ac53cba3b47457": {
   "faces": "left",
