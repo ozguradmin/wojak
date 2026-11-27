@@ -98,17 +98,16 @@ Serbest arama: Commons (tools/commons.py) sorguları: "Sarıkız Tepesi", "Kazda
 ## Adım süreleri
 | adım | süre |
 |---|---|
-| Ortam (hazirla.sh, ölçüm) | 2 dk |
-| Gündem taraması | 2 dk |
-| Konu (veri, havuz, grep, puan tablosu) | 8 dk |
-| Araştırma (2 alt ajan paralel; bu arada karakter) | 7 dk |
-| Son kare avı (commons.py, temas sayfası) | 4 dk |
-| Karakterler (uret.py, yön kaydı) | 6 dk |
-| yaml → check → frames → render → teslim | 4 dk |
-| Hakem tur 1 + düzeltme (karakter değişimi, kırpımlar, metin) | 10 dk |
-| Hakem tur 2 + SHOULD | 5 dk |
-| RAPOR, teslim, commit/push, dersler | 6 dk |
-| **Toplam** | **~54 dk** |
+| Ortam (hazirla.sh, ölçüm) | 1 dk |
+| Gündem taraması | 1 dk |
+| Konu (veri, havuz, grep, puan tablosu) | 5 dk |
+| Araştırma (2 alt ajan paralel; bu arada karakter seçimi ve uret.py) | 6 dk |
+| Son kare avı (commons.py, temas sayfası) | 3 dk |
+| yaml → check → frames → render → teslim | 3 dk |
+| Hakem tur 1 + düzeltme (karakter değişimi, kırpımlar, metin) | 6 dk |
+| Hakem tur 2 + SHOULD | 3 dk |
+| RAPOR, teslim, commit/push, dersler | 4 dk |
+| **Toplam (duvar saati 19:03-19:35)** | **~32 dk** |
 
 Alt ajan çağrıları: araştırmacı ×2 (olgu, görsel), görsel hakem ×1 iş parçacığı (2 tur), takipçi hakem ×1 (2 tur).
 Yaklaşık maliyet: ~$10-14 (yapımcı Opus ~%55, araştırmacılar ~%25, hakemler ~%20; tahmin, ölçülmedi).
