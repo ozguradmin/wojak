@@ -403,6 +403,10 @@
   "faces": "right",
   "file": "episodes/en-hess-scotland/chars/farmer_sakin.png"
  },
+ "4946c1ac2fe963647cbd80a56b3ea8b4472fd8e0": {
+  "faces": "right",
+  "file": "episodes/kazdagi-sarikiz/chars/baba_sakin.png"
+ },
  "497a7a9066e0b011032e69f1ee68085d65e4e9ce": {
   "faces": "right",
   "file": "assets/kit/anne_basortulu2/agliyor.png"
@@ -855,6 +859,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/voss_v2_ciddi.png"
  },
+ "90179ce270f3918a4373a08d1a184c44ad9ae31b": {
+  "faces": "right",
+  "file": "episodes/kazdagi-sarikiz/chars/baba_sok.png"
+ },
  "901a34b0015bc34d044a37feb1534fd12c9fe38c": {
   "faces": "right",
   "file": "assets/kit/ingiliz_er_1915/kaygili.png"
@@ -1118,6 +1126,10 @@
  "bbc1561d683f54d6a31773eda7fdddcd5d1441df": {
   "faces": "right",
   "file": "episodes/en-ghost-army/chars/a_sakin.png"
+ },
+ "bcba646e2c63e002664f54131827a723f22c8caa": {
+  "faces": "left",
+  "file": "episodes/kazdagi-sarikiz/chars/kiz_sakin.png"
  },
  "bea5a7bca2817842e8f13b5427abfb1f5c48de29": {
   "faces": "right",
