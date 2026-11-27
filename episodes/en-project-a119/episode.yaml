@@ -1,0 +1,93 @@
+# 1958-59: ABD Hava Kuvvetleri'nin gizli "A Study of Lunar Research Flights" calismasi (Project A119): Ay'da nukleer patlamanin Dunya'dan gorulup gorulmeyecegi; ekipte yuksek lisans ogrencisi Carl Sagan. Wojak Past Files (kanal: en).
+# Olgu notu: /tmp/arastirma/a119-olgular.md (rapor PDF, DTIC AD0425380 / NSA EBB 479, Nature 4 May 2000, Observer 14 May 2000, Wikipedia, History.com, Task & Purpose, SpaceDaily).
+# CANLANDIRMA: karakterler kurgu (A = Hava Kuvvetleri komutani rolu, B = bilim insani rolu); replikler belgeli soz degildir. Belgeli: calisma, kurum, tarih, Sagan'in katki listesinde olmasi.
+#   Videoda yok (celiskili/tek kaynak): bomba verimi (1,7 kt/W25 vs Hiroshima), iptal gerekcesi ve kesin tarihi, Sagan'in yasi, Reiffel adi (2017'de oldu), Sovyet E-4 ayrintilari.
+# Karakterler: A (sol) = komutan rolu: wl:us_marines_white_wojak (beyaz donanma subayi; g_sok = ters kose, ayni kutu, chars/uret.py); B (sag) = bilim insani rolu: wl:grey_suit_wojak (gri takim).
+id: en-project-a119
+kanal: en  # Wojak Past Files
+title: "In 1958, the US Air Force studied nuking the Moon"
+
+music: klasik
+
+scenes:
+  # 1) KANCA — A (sol), komutan rolu
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 1.2
+    chars:
+      - {img: chars/g_sakin.png, side: left, height: 0.50}
+    text: "Doctor, can we\nnuke the Moon?"
+
+  # 2) B (sag), bilim insani rolu: tohum
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 1.2
+    chars:
+      - {img: chars/s_sakin.png, side: right, height: 0.50}
+    text: "Sure, a grad student\nwill run the numbers"
+
+  - type: card
+    duration: 1.5
+    text: "Decades later"
+
+  # 4) TERS KOSE — A, ayni kutu, yuz varyanti
+  - type: dialog
+    duration: 3.0
+    bg: img/arka.jpg
+    blur: 1.2
+    chars:
+      - {img: chars/g_sok.png, side: left, height: 0.50}
+    text: "Wait, that grad student\nwas Carl Sagan?"
+
+  # 5) KANIT 1 — raporun kapagi (Hava Kuvvetleri Ozel Silahlar Merkezi, arma: mantar bulutu)
+  - type: evidence
+    duration: 1.5
+    images: [img/ev_1.jpg]
+
+  # 6) KANIT 2 — son kare: ayni raporun kunye sayfasi ("With contributions by ... C. E. Sagan")
+  - type: evidence
+    duration: 2.0
+    images: [img/ev_2.jpg]
+
+cover_scene: 1
+cover_at: 0.5
+
+caption: |
+  In 1958, the US Air Force studied nuking the Moon
+  The full story is in the pinned comment 👇
+
+hashtags: [history, coldwar, space]
+
+pinned_comment: |
+  Project A119 was a classified United States Air Force study, begun in 1958, into what a nuclear explosion on the Moon would look like from Earth. The Air Force asked a physicist at the Armour Research Foundation in Chicago to examine the idea quickly, and his team included a young graduate student named Carl Sagan, who worked on how a cloud of dust would spread in the Moon's weak gravity.
+
+  The surviving report, "A Study of Lunar Research Flights, Vol. I", is dated 19 June 1959. It lists scientific, military and political motives, and warns that public reaction could be strongly negative unless world opinion were prepared in advance. The project's leader later described the aim as a public-relations show of American strength, a response to the shock of Sputnik.
+
+  The study was reportedly dropped in 1959, and its reasons were never fully documented. It stayed largely unknown until a 1999 biography of Sagan revealed that his 1959 fellowship application mentioned classified work. In 2000 the project's leader confirmed it in a letter to the journal Nature. No warhead ever went to the Moon. The Soviet Union reportedly drafted a similar plan of its own, called E-4, which was also dropped.
+
+  The first frame of evidence is the cover of the real report, with the emblem of the Air Force Special Weapons Center; the final frame is its title page, which lists the contributors, including C. E. Sagan. The dialogue is imagined, and the background is a daytime photo of the Moon. Would you have wanted to watch that flash?
+
+credits: "Daytime moon over London, England (2019), Acabashi, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0), https://commons.wikimedia.org/wiki/File:Daytime_moon_over_London,_England.jpg (cropped, resized, colour reduced, slightly darkened, softened); A Study of Lunar Research Flights, Vol. I (19 June 1959), Armour Research Foundation / US Air Force Special Weapons Center, DTIC AD0425380, public domain, via Wikimedia Commons (two crops of the cover and the title page, paper tone and margins added)."
+
+ai_generated: false
+
+ek_maddeler:
+  - "**Dramatization:** the two characters are fictional roles (a senior US officer and a scientist; the officer's white uniform is a ready-made US Navy-style wojak, not an Air Force one); the dialogue is invented and is not a documented quote. Documented: the 1958-59 Air Force study, the Armour Research Foundation team, C. E. Sagan on the contributor list, the 2000 disclosure."
+  - "**Left out on purpose:** the weapon yield (1.7 kt vs 'Hiroshima-sized' conflict), why and exactly when it was cancelled (the leader said he never knew; January 1959 is the common date, the report is dated June 1959), Sagan's age, the leader's name (he died in 2017), Soviet E-4 details. 'Grad student' is how sources describe Sagan then; the video does not claim he designed the project, only that he worked on the dust-cloud math (per the leader and Wikipedia)."
+  - "The final frame shows the contributor list on the real report's title page; other names on it are 1959 researchers and are not discussed. It is a public-domain US Air Force report (Commons {{PD-USGov-Military-Air Force}})."
+  - "Suggested first comment: 'There's no mushroom cloud on the Moon, there's no air.' Answer: correct, the leader himself said the dust would spread in all directions instead (AP, 2000); and no bomb was ever launched."
+
+sources:
+  - "Birincil: L. Reiffel, A Study of Lunar Research Flights, Vol. I, AFSWC-TR-59-39, 19 June 1959 (cover, title page, contributor list incl. C. E. Sagan, motives, public-reaction warning); DTIC AD0425380: https://apps.dtic.mil/sti/tr/pdf/AD0425380.pdf ; NSA EBB 479: https://nsarchive2.gwu.edu/NSAEBB/NSAEBB479/docs/EBB-Moon02.pdf"
+  - "Wikipedia, Project A119 (1958 start, Armour Research Foundation, Sagan dust-cloud modelling, Davidson 1999, Miller fellowship application, cancellation Jan 1959, Soviet E-4): https://en.wikipedia.org/wiki/Project_A119"
+  - "Nature 405, 13 (4 May 2000), L. Reiffel letter on the lunar bomb project: https://www.nature.com/nature/journal/v405/n6782/full/405013a0.html"
+  - "The Observer / Guardian, 14 May 2000 (leader: PR show, mushroom cloud visible from Earth, does not know why it was scrapped; text copy): https://www.aulis.com/nuclear.htm"
+  - "History.com, nuclear bomb on the Moon, Cold War plan: https://www.history.com/articles/nuclear-bomb-moon-cold-war-plan"
+  - "History.co.uk / Sky HISTORY, how America nearly nuked the Moon (May 1958, Miller Institute application): https://www.history.co.uk/article/how-america-nearly-nuked-the-moon"
+  - "Task & Purpose, Air Force Moon Project A119 (atomic bomb, 1958 request): https://taskandpurpose.com/history/air-force-moon-project-a119/"
+  - "Novinite (10 Oct 2017), Soviet E-4 nuclear blast on the Moon, document dated 6 Sep 1958: https://www.novinite.com/articles/184116/Secret+Documents+Reveal+the+Soviet+Union+Planned+a+Nuclear+Blast+on+the+Moon"
+  - "GÖRSEL img/ev_1.jpg — 'A Study of Lunar Research Flights.pdf' (sayfa 3, kapak), Armour Research Foundation / USAF, Commons {{PD-USGov-Military-Air Force}} (ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:A_Study_of_Lunar_Research_Flights.pdf . Degisiklik: 300 dpi taramadan kirpim (2068x1605) + kenarlara bosluk, kagit tonu (238,233,220), 1080x788"
+  - "GÖRSEL img/ev_2.jpg (son kare) — ayni PDF, sayfa 5 (kunye sayfasi). Degisiklik: 940x523 kirpim + kenarlara bosluk, kagit tonu, 1080x647"
+  - "GÖRSEL img/arka.jpg — 'Daytime moon over London, England.jpg', Acabashi, CC BY-SA 4.0, {{self|cc-by-sa-4.0}} (ham sayfa kontrol edildi): https://commons.wikimedia.org/wiki/File:Daytime_moon_over_London,_England.jpg . Degisiklik: 1920 px kare 1080'e kucultuldu, renk 0,35, parlaklik 0,92, blur 1,2"

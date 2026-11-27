@@ -615,6 +615,10 @@
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/lenz_fark.png"
  },
+ "6a97ff83850cb7485f152a457b33ab60b3c37770": {
+  "faces": "right",
+  "file": "episodes/en-project-a119/chars/s_sakin.png"
+ },
  "6a9eb0629da7fcff203287dca661e35397999f42": {
   "faces": "right",
   "file": "episodes\\hezarfen-galata-ucusu\\chars\\hezarfen_emin.png"
@@ -1422,6 +1426,10 @@
  "f55bd366499e4b93b630d4c9ad3e1dca3db9611d": {
   "faces": "right",
   "file": "uzun/talidomit-turkiye/chars/anlatici_v2_mutlu.png"
+ },
+ "f60b83caaa5a377e6d97444ac196ccac89876ef1": {
+  "faces": "right",
+  "file": "episodes/en-project-a119/chars/g_sok.png"
  },
  "f7d37a9ca10c48f647d309e87ba98003a71db552": {
   "faces": "right",
